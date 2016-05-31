@@ -20,4 +20,12 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     public function __construct()
     {
     }
+
+    /**
+     * @Given there is a farmer user :username with password :password
+     */
+    public function thereIsAFarmerUserWithPassword($username, $password)
+    {
+        throw new \Behat\Behat\Tester\Exception\PendingException();
+    }
 }
