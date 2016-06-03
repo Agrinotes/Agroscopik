@@ -5,10 +5,9 @@ Feature: Registration
 
   Scenario: Register
     Given I am on "/register"
-    When I fill in "email" with "farmer@gmail.com"
-    And I fill in "fisrt_name" with "Jackie"
-    And I fill in "last_name" with "Chan"
-    And I fill in "password" with "farmer"
-    And I press "register_submit"
-    Then I should be on "/registration/confirmed"
-    And there is a farmer user "farmer@gmail.com" with password "farmer"
+    When I fill in "Mail" with "farmer@gmail.com"
+    And I fill in "Prénom" with "Jackie"
+    And I fill in "Nom" with "Chan"
+    And I fill in "Mot de passe" with "farmer"
+    And I press "Créer un compte"
+    Then I should be on "/register/confirmed"
