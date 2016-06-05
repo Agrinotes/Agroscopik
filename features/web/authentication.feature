@@ -3,10 +3,20 @@ Feature: Authentication
   As a farmer
   I need to be able to login and logout
 
+  Background:
+    Given there is a farmer user with email "farmer@repair.nc" and password "farmer"
+
   Scenario: Logging in
-    Given there is a farmer user with email "farmer@gmail.com" and password "farmer"
-    And I am on "/login"
-    When I fill in "Mail" with "farmer@gmail.com"
+    Given I am on "/login"
+    When I fill in "E-mail" with "farmer@repair.nc"
     And I fill in "Mot de passe" with "farmer"
-    And I press "Connexion"
-    Then I should see "Déconnexion"
+    And I press "Se connecter"
+    Then I should see "Connecté"
+
+  Scenario: Logging in with bad credentials
+    Given I am on "/login"
+    When I fill in "E-mail" with "farmer@repair.nc"
+    And I fill in "Mot de passe" with "wrongPass"
+    And I press "Se connecter"
+    Then I should see "Identifiants invalides"
+

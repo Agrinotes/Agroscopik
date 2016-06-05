@@ -5,3 +5,6 @@ fos_user:
     registration:
         form:
             type: UserBundle\Form\RegistrationType
+    profile:
+        form:
+            type: UserBundle\Form\ProfileType

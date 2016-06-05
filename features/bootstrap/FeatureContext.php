@@ -5,6 +5,8 @@ use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use \Behat\MinkExtension\Context\RawMinkContext;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+
 
 /**
  * Defines application features from the specific context.
@@ -13,13 +15,6 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
 {
     use \Behat\Symfony2Extension\Context\KernelDictionary;
 
-    /**
-     * Initializes context.
-     *
-     * Every scenario gets its own context instance.
-     * You can also pass arbitrary arguments to the
-     * context constructor through behat.yml.
-     */
     public function __construct()
     {
     }
@@ -29,8 +24,8 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function clearData()
     {
-        $em = $this->getContainer()->get('doctrine')->getManager();
-        $em->createQuery('DELETE FROM UserBundle:User')->execute();
+        $purger = new ORMPurger($this->getContainer()->get('doctrine')->getManager());
+        $purger->purge();
     }
 
     /**
@@ -39,14 +34,16 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     public function thereIsAFarmerUserWithEmailAndPassword($email, $password)
     {
         $user = new \UserBundle\Entity\User();
-        $user->setFirstName("Jackie");
-        $user->setLastName("Chan");
+        $user->setFirstName("Hugo");
+        $user->setLastName("Lehoux");
         $user->setEmail($email);
         $user->setPlainPassword($password);
-        $user->setRoles(array('ROLE_FARMER'));
+        $user->setEnabled(true);
 
         $em = $this->getContainer()->get('doctrine')->getManager();
         $em->persist($user);
         $em->flush();
     }
+
+
 }

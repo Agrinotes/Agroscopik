@@ -5,9 +5,9 @@ Feature: Registration
 
   Scenario: Register
     Given I am on "/register"
-    When I fill in "Mail" with "farmer@gmail.com"
-    And I fill in "Prénom" with "Jackie"
-    And I fill in "Nom" with "Chan"
+    When I fill in "E-mail" with "farmer@repair.nc"
+    And I fill in "Prénom" with "Hugo"
+    And I fill in "Nom" with "Lehoux"
     And I fill in "Mot de passe" with "farmer"
     And I press "Créer un compte"
     Then I should be on "/register/confirmed"

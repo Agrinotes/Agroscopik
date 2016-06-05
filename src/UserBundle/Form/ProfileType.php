@@ -8,14 +8,14 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class RegistrationType extends AbstractType
+class ProfileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->remove('username')
             ->remove('email')
             ->add('email',EmailType::class,array(
-                'label'=>'E-mail'
+                'label'=>'Mail'
             ))
             ->add('firstName', TextType::class,
             array(
@@ -25,23 +25,18 @@ class RegistrationType extends AbstractType
                 array(
                     'label'=>'Nom'
                 ))
-
-            ->remove('plainPassword')
-            ->add('plainPassword', PasswordType::class,
-                array(
-                    'label'=>'Mot de passe'
-                ));
+        ;
     }
 
     public function getParent()
     {
-        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+        return 'FOS\UserBundle\Form\Type\ProfileFormType';
 
     }
 
     public function getBlockPrefix()
     {
-        return 'app_user_registration';
+        return 'app_user_profile';
     }
 
 
