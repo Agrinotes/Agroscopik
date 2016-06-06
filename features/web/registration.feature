@@ -10,5 +10,4 @@ Feature: Registration
     And I fill in "Nom" with "Lehoux"
     And I fill in "Mot de passe" with "farmer"
     And I press "Créer un compte"
-    Then I should be on "/register/confirmed"
-    And I should have the role "ROLE_FARMER"
+    Then I should see "farmer@repair.nc"

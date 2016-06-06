@@ -4,7 +4,7 @@ Feature: Authentication
   I need to be able to login and logout
 
   Background:
-    Given there is a farmer user with email "farmer@repair.nc" and password "farmer"
+    Given there is a farmer with email "farmer@repair.nc" and password "farmer"
 
   Scenario: Logging in
     Given I am on "/login"
@@ -16,7 +16,7 @@ Feature: Authentication
   Scenario: Logging in with bad credentials
     Given I am on "/login"
     When I fill in "E-mail" with "farmer@repair.nc"
-    And I fill in "Mot de passe" with "wrongPass"
+    And I fill in "Mot de passe" with "wrong_password"
     And I press "Se connecter"
     Then I should see "Identifiants invalides"
 

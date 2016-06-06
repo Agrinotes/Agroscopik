@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Farm list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for farm in farms %}
+            <tr>
+                <td><a href="{{ path('farm_show', { 'id': farm.id }) }}">{{ farm.id }}</a></td>
+                <td>{{ farm.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('farm_show', { 'id': farm.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('farm_edit', { 'id': farm.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('farm_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

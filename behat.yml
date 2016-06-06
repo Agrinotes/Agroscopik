@@ -7,7 +7,7 @@ default:
             paths: [ %paths.base%/features/web ]
     extensions:
         Behat\MinkExtension:
-            base_url: http://localhost/agronomik/agroscopik/web
+            base_url: http://localhost/agronomik/agroscopik/web/app_dev.php
             goutte: ~
             selenium2: ~
         Behat\Symfony2Extension: ~

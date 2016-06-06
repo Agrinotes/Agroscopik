@@ -7,3 +7,9 @@ services:
         class: UserBundle\Form\ProfileType
         tags:
             - { name: form.type, alias: app_user_profile }
+    app.registration_confirm:
+        class: UserBundle\EventListener\RegistrationConfirmListener
+        arguments:
+            - "@router"
+        tags:
+            - { name: kernel.event_subscriber }

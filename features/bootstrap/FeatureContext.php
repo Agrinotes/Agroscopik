@@ -4,8 +4,12 @@ use Behat\Behat\Context\Context;
 use Behat\Behat\Context\SnippetAcceptingContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Behat\Mink\Exception\UnsupportedDriverActionException;
 use \Behat\MinkExtension\Context\RawMinkContext;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Behat\Mink\Driver\BrowserKitDriver;
+use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 
 /**
@@ -31,17 +35,16 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     }
 
     /**
-     * @Given there is a farmer user with email :email and password :password
+     * @Given there is a farmer with email :email and password :password
      */
-    public function thereIsAFarmerUserWithEmailAndPassword($email, $password)
+    public function thereIsAFarmerWithEmailAndPassword($email, $password)
     {
         $user = new \UserBundle\Entity\User();
-        $user->setFirstName("Hugo");
-        $user->setLastName("Lehoux");
+        $user->setFirstName("farmer_first_name");
+        $user->setLastName("farmer_last_name");
         $user->setEmail($email);
         $user->setPlainPassword($password);
         $user->setEnabled(true);
-        $user->addRole('ROLE_FARMER');
 
         $em = $this->getContainer()->get('doctrine')->getManager();
         $em->persist($user);
@@ -51,12 +54,29 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     }
 
     /**
-     * @Given I am logged in as a farmer
+     * @Given I am logged in as a farmer with email :email and password :password
      */
-    public function iAmLoggedInAsAFarmer()
+    public function iAmLoggedInAsAFarmer($email, $password)
     {
-        $this->currentUser = $this->thereIsAFarmerUserWithEmailAndPassword('admin', 'admin');
+        $this->thereIsAFarmerWithEmailAndPassword($email,$password);
+        $this->visitPath('/login');
+        $this->getPage()->fillField('E-mail', $email);
+        $this->getPage()->fillField('Mot de passe', $password);
+        $this->getPage()->pressButton('Se connecter');
     }
 
-
+    /**
+     * @return \Behat\Mink\Element\DocumentElement
+     */
+    private function getPage()
+    {
+        return $this->getSession()->getPage();
+    }
+    /**
+     * @return \Doctrine\ORM\EntityManager
+     */
+    private function getEntityManager()
+    {
+        return $this->getContainer()->get('doctrine.orm.entity_manager');
+    }
 }
