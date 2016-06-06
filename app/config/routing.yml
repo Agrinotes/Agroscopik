@@ -1,3 +1,7 @@
+app_admin:
+    resource: "@AppBundle/Controller/AdminController.php"
+    type:     annotation
+
 app_farm:
     resource: "@AppBundle/Controller/FarmController.php"
     type:     annotation

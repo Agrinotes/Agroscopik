@@ -22,23 +22,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class FarmController extends Controller
 {
-    /**
-     * Lists all Farm entities.
-     *
-     * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/", name="farm_index")
-     * @Method("GET")
-     */
-    public function indexAction()
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $farms = $em->getRepository('AppBundle:Farm')->findAll();
-
-        return $this->render('farm/index.html.twig', array(
-            'farms' => $farms,
-        ));
-    }
 
     /**
      * Creates a new Farm entity.
@@ -73,8 +56,16 @@ class FarmController extends Controller
             // Retrieve the security identity of the current user
             $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
 
-            // Grant owner access
-            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+            // Create Access Mask
+            $builder = new MaskBuilder();
+            $builder
+                ->add('create')
+                ->add('view')
+                ->add('edit');
+            $mask = $builder->get();
+
+            // Grant access
+            $acl->insertObjectAce($securityIdentity, $mask);
             $aclProvider->updateAcl($acl);
 
             return $this->redirectToRoute('farm_show', array('id' => $farm->getId()));
@@ -91,7 +82,7 @@ class FarmController extends Controller
      *
      * @Route("/{id}", name="farm_show")
      * @Method("GET")
-     * @Security("is_granted('VIEW', farm)")
+     * @Security("is_granted('VIEW', farm) or is_granted('ROLE_ADMIN')")
      */
     public function showAction(Farm $farm)
     {
@@ -112,7 +103,7 @@ class FarmController extends Controller
      *
      * @Route("/{id}/edit", name="farm_edit")
      * @Method({"GET", "POST"})
-     * @Security("is_granted('EDIT', farm)")
+     * @Security("is_granted('EDIT', farm) or is_granted('ROLE_ADMIN')")
      */
     public function editAction(Request $request, Farm $farm)
     {
@@ -140,7 +131,7 @@ class FarmController extends Controller
      *
      * @Route("/{id}", name="farm_delete")
      * @Method("DELETE")
-     * @Security("is_granted('DELETE', farm)")
+     * @Security("is_granted('DELETE', farm) or is_granted('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, Farm $farm)
     {
@@ -153,7 +144,7 @@ class FarmController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('farm_index');
+        return $this->redirectToRoute('something_here');
     }
 
     /**

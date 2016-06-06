@@ -4,7 +4,7 @@ default:
             contexts:
                 - FeatureContext
                 - Behat\MinkExtension\Context\MinkContext
-            paths: [ %paths.base%/features/web ]
+            paths: [ %paths.base%/features/web/farmer , %paths.base%/features/web/admin ]
     extensions:
         Behat\MinkExtension:
             base_url: http://localhost/agronomik/agroscopik/web/app_dev.php

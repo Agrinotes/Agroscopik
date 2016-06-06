@@ -10,23 +10,24 @@
                 <td>{{ farm.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nom de la ferme</th>
                 <td>{{ farm.name }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('farm_index') }}">Back to the list</a>
-        </li>
+        {% if is_granted('EDIT',farm) or is_granted('ROLE_ADMIN') %}
         <li>
             <a href="{{ path('farm_edit', { 'id': farm.id }) }}">Edit</a>
         </li>
+        {% endif %}
+        {% if is_granted('DELETE',farm) or is_granted('ROLE_ADMIN') %}
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
+        {% endif %}
     </ul>
 {% endblock %}

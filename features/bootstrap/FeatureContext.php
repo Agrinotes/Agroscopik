@@ -10,6 +10,9 @@ use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Behat\Mink\Driver\BrowserKitDriver;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Bridge\Doctrine\DataFixtures\ContainerAwareLoader;
+use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
+
 
 
 /**
@@ -32,6 +35,18 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     {
         $purger = new ORMPurger($this->getContainer()->get('doctrine')->getManager());
         $purger->purge();
+    }
+
+    /**
+     * @BeforeScenario @admin_fixtures
+     */
+    public function loadFixtures()
+    {
+        $loader = new ContainerAwareLoader($this->getContainer());
+        $loader->loadFromDirectory(__DIR__.'/../../src/UserBundle/DataFixtures');
+        $loader->loadFromDirectory(__DIR__.'/../../src/AppBundle/DataFixtures');
+        $executor = new ORMExecutor($this->getEntityManager());
+        $executor->execute($loader->getFixtures(), true);
     }
 
     /**
@@ -72,6 +87,8 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     {
         return $this->getSession()->getPage();
     }
+
+
     /**
      * @return \Doctrine\ORM\EntityManager
      */
@@ -79,4 +96,17 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     {
         return $this->getContainer()->get('doctrine.orm.entity_manager');
     }
+
+    /**
+     * @Given I am logged in as an admin with email :email and password :password
+     */
+    public function iAmLoggedInAsAnAdminWithEmailAndPassword($email, $password)
+    {
+        $this->visitPath('/login');
+        $this->getPage()->fillField('E-mail', $email);
+        $this->getPage()->fillField('Mot de passe', $password);
+        $this->getPage()->pressButton('Se connecter');
+    }
+
+
 }

@@ -5,10 +5,10 @@ Feature: Farm management
 
   Background:
     Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
-    And print current URL
 
   Scenario: Create farm information
     When I am on "/farm/new"
+    And print last response
     And I fill in "Nom de la ferme" with "MyFarm"
     And I press "Create"
     Then I should see "MyFarm"

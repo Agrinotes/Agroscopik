@@ -1,0 +1,11 @@
+<h1>Liste des exploitations</h1>
+
+<ul>
+{% for farm in farms %}
+    <li>
+        <a href="{{ path('farm_show', {'id': farm.id}) }}">
+            {{ farm.name }}
+        </a>
+    </li>
+{% endfor %}
+</ul>
