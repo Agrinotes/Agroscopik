@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -9,6 +10,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Farm;
 use AppBundle\Form\FarmType;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Farm controller.
@@ -21,7 +26,7 @@ class FarmController extends Controller
      * Lists all Farm entities.
      *
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/list", name="farm_index")
+     * @Route("/", name="farm_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -38,14 +43,15 @@ class FarmController extends Controller
     /**
      * Creates a new Farm entity.
      *
-     * @Security("has_role('ROLE_USER')")
      * @Route("/new", name="farm_new")
      * @Method({"GET", "POST"})
+     * @Security("has_role('ROLE_USER')")
      */
     public function newAction(Request $request)
     {
         $farm = new Farm();
 
+        // Grant ROLE_FARMER to current user
         $user = $this->getUser();
         $user->addRole('ROLE_FARMER');
 
@@ -53,10 +59,23 @@ class FarmController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Store Farm in database and update User Roles
             $em = $this->getDoctrine()->getManager();
             $em->persist($farm);
             $em->persist($user);
             $em->flush();
+
+            // Create the ACL
+            $aclProvider = $this->get('security.acl.provider');
+            $objectIdentity = ObjectIdentity::fromDomainObject($farm);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // Retrieve the security identity of the current user
+            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
+
+            // Grant owner access
+            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+            $aclProvider->updateAcl($acl);
 
             return $this->redirectToRoute('farm_show', array('id' => $farm->getId()));
         }
@@ -72,9 +91,14 @@ class FarmController extends Controller
      *
      * @Route("/{id}", name="farm_show")
      * @Method("GET")
+     * @Security("is_granted('VIEW', farm)")
      */
     public function showAction(Farm $farm)
     {
+
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Farm');
+
         $deleteForm = $this->createDeleteForm($farm);
 
         return $this->render('farm/show.html.twig', array(
@@ -88,6 +112,7 @@ class FarmController extends Controller
      *
      * @Route("/{id}/edit", name="farm_edit")
      * @Method({"GET", "POST"})
+     * @Security("is_granted('EDIT', farm)")
      */
     public function editAction(Request $request, Farm $farm)
     {
@@ -115,6 +140,7 @@ class FarmController extends Controller
      *
      * @Route("/{id}", name="farm_delete")
      * @Method("DELETE")
+     * @Security("is_granted('DELETE', farm)")
      */
     public function deleteAction(Request $request, Farm $farm)
     {

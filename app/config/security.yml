@@ -2,10 +2,12 @@ security:
     encoders:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
+    acl:
+        connection: default
+
     role_hierarchy:
         ROLE_FARMER:      ROLE_USER
         ROLE_ADMIN:       ROLE_FARMER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
     providers:
         fos_userbundle:
