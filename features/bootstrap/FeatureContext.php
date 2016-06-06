@@ -19,6 +19,8 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     {
     }
 
+    private $currentUser;
+
     /**
      * @BeforeScenario
      */
@@ -39,10 +41,21 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
         $user->setEmail($email);
         $user->setPlainPassword($password);
         $user->setEnabled(true);
+        $user->addRole('ROLE_FARMER');
 
         $em = $this->getContainer()->get('doctrine')->getManager();
         $em->persist($user);
         $em->flush();
+
+        return $user;
+    }
+
+    /**
+     * @Given I am logged in as a farmer
+     */
+    public function iAmLoggedInAsAFarmer()
+    {
+        $this->currentUser = $this->thereIsAFarmerUserWithEmailAndPassword('admin', 'admin');
     }
 
 
