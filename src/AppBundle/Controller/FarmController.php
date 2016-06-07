@@ -71,7 +71,7 @@ class FarmController extends Controller
             return $this->redirectToRoute('farm_show', array('id' => $farm->getId()));
         }
 
-        return $this->render('farm/new.html.twig', array(
+        return $this->render('AppBundle:farm:new.html.twig', array(
             'farm' => $farm,
             'form' => $form->createView(),
         ));
@@ -92,7 +92,7 @@ class FarmController extends Controller
 
         $deleteForm = $this->createDeleteForm($farm);
 
-        return $this->render('farm/show.html.twig', array(
+        return $this->render('AppBundle:farm:show.html.twig', array(
             'farm' => $farm,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -119,7 +119,7 @@ class FarmController extends Controller
             return $this->redirectToRoute('farm_edit', array('id' => $farm->getId()));
         }
 
-        return $this->render('farm/edit.html.twig', array(
+        return $this->render('AppBundle:farm:edit.html.twig', array(
             'farm' => $farm,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
