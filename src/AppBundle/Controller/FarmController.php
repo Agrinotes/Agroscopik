@@ -22,6 +22,21 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class FarmController extends Controller
 {
+    /**
+     * List all Farm entities
+     *
+     * @Security("has_role('ROLE_ADMIN')")
+     * @Route("/list")
+     */
+    public function farmListAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $farms = $em->getRepository('AppBundle:Farm')->findAll();
+
+        return $this->render('AppBundle:admin:farm_list.html.twig',array(
+            'farms' => $farms
+        ));
+    }
 
     /**
      * Creates a new Farm entity.
@@ -38,6 +53,10 @@ class FarmController extends Controller
         $user = $this->getUser();
         $user->addRole('ROLE_FARMER');
 
+        // Set Farmer on created farm to make it easier to retrieve later
+        $farm->setFarmer($user);
+
+        // Create form and handle it
         $form = $this->createForm('AppBundle\Form\FarmType', $farm);
         $form->handleRequest($request);
 
@@ -45,7 +64,7 @@ class FarmController extends Controller
             // Store Farm in database and update User Roles
             $em = $this->getDoctrine()->getManager();
             $em->persist($farm);
-            $em->persist($user);
+            $em->persist($user); // Could be removed because Farm cascade persist User but I keep it to code defensively
             $em->flush();
 
             // Create the ACL

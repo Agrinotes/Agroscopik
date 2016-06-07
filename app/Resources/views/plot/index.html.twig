@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Plot list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for plot in plots %}
+            <tr>
+                <td><a href="{{ path('plot_show', { 'id': plot.id }) }}">{{ plot.id }}</a></td>
+                <td>{{ plot.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('plot_show', { 'id': plot.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('plot_edit', { 'id': plot.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('plot_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

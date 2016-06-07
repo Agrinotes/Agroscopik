@@ -39,11 +39,13 @@ class LoadFarm implements FixtureInterface, ContainerAwareInterface
 
         // Add ROLE_FARMER to current user
         $user->setRoles(array('ROLE_FARMER'));
+
         $em->persist($user);
 
         // Create a farm
         $farm = new Farm();
         $farm->setName('Farm 1');
+        $farm->setFarmer($user);
         $em->persist($farm);
         $em->flush();
     }

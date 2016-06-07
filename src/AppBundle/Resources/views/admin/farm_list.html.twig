@@ -5,7 +5,7 @@
     <li>
         <a href="{{ path('farm_show', {'id': farm.id}) }}">
             {{ farm.name }}
-        </a>
+        </a> {{ farm.farmer.fullName }}
     </li>
 {% endfor %}
 </ul>

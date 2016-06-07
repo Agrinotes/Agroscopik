@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,7 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Farm
 {
-    /**
+    public function __construct()
+    {
+        $this->plots = new ArrayCollection();
+    }
+
+        /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -28,6 +34,17 @@ class Farm
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany (targetEntity="AppBundle\Entity\Plot", mappedBy="farm", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $plots;
+
+    /**
+     * @ORM\OneToOne(targetEntity="UserBundle\Entity\User", inversedBy="farm", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $farmer;
 
     /**
      * Get id
@@ -61,6 +78,68 @@ class Farm
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add plot
+     *
+     * @param \AppBundle\Entity\Plot $plot
+     * @return Farm
+     */
+    public function addPlot(\AppBundle\Entity\Plot $plot)
+    {
+        $this->plots[] = $plot;
+
+        // We also add the current farm to the plot
+        $plot->setFarm($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove plot
+     *
+     * @param \AppBundle\Entity\Plot $plot
+     */
+    public function removePlot(\AppBundle\Entity\Plot $plot)
+    {
+        $this->plots->removeElement($plot);
+    }
+
+    /**
+     * Get plots
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlots()
+    {
+        return $this->plots;
+    }
+
+    /**
+     * Set farmer
+     *
+     * @param \UserBundle\Entity\User $farmer
+     * @return Farm
+     */
+    public function setFarmer(\UserBundle\Entity\User $farmer)
+    {
+        $this->farmer = $farmer;
+
+        // With also add this farm to current user
+        $farmer->setFarm($this);
+
+        return $this;
+    }
+
+    /**
+     * Get farmer
+     *
+     * @return \UserBundle\Entity\User
+     */
+    public function getFarmer()
+    {
+        return $this->farmer;
     }
 }
 

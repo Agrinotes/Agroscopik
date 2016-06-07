@@ -8,11 +8,13 @@ Feature: List Farms
 
   @admin_fixtures
   Scenario: List all farms
-    Given I am on "admin/farm/list"
+    Given I am on "farm/list"
     Then I should see "Liste des exploitations"
+    And I should see "Farm 1"
+    And I should see "farmer_first_name farmer_last_name"
 
   @admin_fixtures
   Scenario: Show a single farm data
-    Given I am on "admin/farm/list"
+    Given I am on "farm/list"
     When I follow "Farm 1"
     Then I should see "Nom de la ferme"
