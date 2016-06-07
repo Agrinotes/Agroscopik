@@ -9,6 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Plot;
 use AppBundle\Form\PlotType;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 /**
  * Plot controller.
@@ -17,6 +20,7 @@ use AppBundle\Form\PlotType;
  */
 class PlotController extends Controller
 {
+
     /**
      * Lists all Plot entities.
      * @Security("has_role('ROLE_ADMIN')")
@@ -43,10 +47,8 @@ class PlotController extends Controller
      */
     public function newAction(Request $request)
     {
-        $user = $this->getUser();
-        $farm = $user->getFarm();
-
         $plot = new Plot();
+
         $form = $this->createForm('AppBundle\Form\PlotType', $plot);
         $form->handleRequest($request);
 
@@ -54,6 +56,27 @@ class PlotController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($plot);
             $em->flush();
+
+            // Create the ACL
+            $aclProvider = $this->get('security.acl.provider');
+            $objectIdentity = ObjectIdentity::fromDomainObject($plot);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // Retrieve the security identity of the current user
+            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
+
+            // Create Access Mask
+            $builder = new MaskBuilder();
+            $builder
+                ->add('view')
+                ->add('edit')
+                ->add('delete')
+            ;
+            $mask = $builder->get();
+
+            // Grant access
+            $acl->insertObjectAce($securityIdentity, $mask);
+            $aclProvider->updateAcl($acl);
 
             return $this->redirectToRoute('plot_show', array('id' => $plot->getId()));
         }
@@ -67,8 +90,11 @@ class PlotController extends Controller
     /**
      * Finds and displays a Plot entity.
      *
+     * @Security("is_granted('VIEW') or has_role('ROLE_ADMIN')")
      * @Route("/{id}", name="plot_show")
      * @Method("GET")
+     * @param Plot $plot
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Plot $plot)
     {
@@ -142,4 +168,8 @@ class PlotController extends Controller
             ->getForm()
         ;
     }
+
+
+
+
 }

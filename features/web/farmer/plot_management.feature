@@ -5,13 +5,7 @@ Feature: Plot management
 
   Scenario: Create a plot on current farm
     Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
-    And I am on "/"
-    When I follow "Parcelles"
-    Then I should see "Vous n'avez pas encore enregistré de parcelle"
-    When I press "Ajouter"
-    Then I should be on "plot/new"
-    And I fill in "Nom" with "Parcelle A"
-    And I fill in "Surface" with "2"
-    And I press "Enregister"
+    And I am on "plot/new"
+    When I fill in "Nom" with "Parcelle A"
+    And I press "Enregistrer"
     Then I should see "Parcelle A"
-    And I should see "2ha"

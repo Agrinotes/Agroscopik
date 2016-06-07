@@ -65,6 +65,17 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
         $em->persist($user);
         $em->flush();
 
+        $user->addRole('ROLE_FARMER');
+
+        $farm = new \AppBundle\Entity\Farm();
+        $farm->setName('Farm 1');
+        $farm->setFarmer($user);
+
+        $em->persist($user);
+        $em->persist($farm);
+
+        $em->flush();
+
         return $user;
     }
 
@@ -78,6 +89,9 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
         $this->getPage()->fillField('E-mail', $email);
         $this->getPage()->fillField('Mot de passe', $password);
         $this->getPage()->pressButton('Se connecter');
+        $this->visitPath('/farm/new');
+        $this->getPage()->fillField('Nom de la ferme', 'Farm 1');
+        $this->getPage()->pressButton('Enregistrer');
     }
 
     /**
