@@ -11,6 +11,7 @@ Feature: Admin authentication
     And I press "Se connecter"
     Then I should see "Connecté"
 
+  @admin_fixtures
   Scenario: Logging in with bad credentials
     Given I am on "/login"
     When I fill in "E-mail" with "admin@repair.nc"

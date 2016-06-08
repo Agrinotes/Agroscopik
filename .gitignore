@@ -1,6 +1,9 @@
 # Email spool folder
 /app/spool/*
 
+#JetBrainStorm
+.idea/workspace.xml
+
 # Cache, session files and logs (Symfony3)
 /var/cache/*
 /var/logs/*
@@ -91,3 +94,4 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+src/UserBundle/Controller/

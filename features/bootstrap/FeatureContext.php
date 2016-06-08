@@ -126,5 +126,15 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
         $this->getPage()->pressButton('Se connecter');
     }
 
+    /**
+     * @Given I have a plot :plot
+     */
+    public function iHaveAPlot($plot)
+    {
+        $this->visitPath('/plot/new');
+        $this->getPage()->fillField('Nom', $plot);
+        $this->getPage()->pressButton('Enregistrer');
+    }
+
 
 }

@@ -15,6 +15,7 @@ use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\RoleSecurityIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
@@ -66,7 +67,13 @@ class FarmController extends Controller
         $em->flush();
 
         // Force refresh of user roles
-        $token = $this->get('security.token_storage')->getToken()->setAuthenticated(false);
+        $token = new UsernamePasswordToken(
+            $user,
+            null,
+            'main',
+            $user->getRoles()
+        );
+        $this->container->get('security.token_storage')->setToken($token);
 
         // Set Farmer on created farm to make it easier to retrieve later
         $farm->setFarmer($user);
