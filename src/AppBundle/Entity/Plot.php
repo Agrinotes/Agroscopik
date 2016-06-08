@@ -30,7 +30,7 @@ class Plot
     private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Farm", inversedBy="plots", cascade={"persist","remove"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Farm", inversedBy="plots", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $farm;

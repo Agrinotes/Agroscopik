@@ -35,7 +35,7 @@ class Farm
     private $name;
 
     /**
-     * @ORM\OneToMany (targetEntity="AppBundle\Entity\Plot", mappedBy="farm", cascade={"persist"})
+     * @ORM\OneToMany (targetEntity="AppBundle\Entity\Plot", mappedBy="farm", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $plots;

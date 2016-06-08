@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Farm;
 use AppBundle\Form\FarmType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
@@ -47,6 +48,10 @@ class FarmController extends Controller
      */
     public function newAction(Request $request)
     {
+        if($this->getUser()->getFarm() instanceof Farm){
+            throw new AccessDeniedException();
+        }
+
         $farm = new Farm();
 
         // Grant ROLE_FARMER to current user
@@ -135,7 +140,7 @@ class FarmController extends Controller
             $em->persist($farm);
             $em->flush();
 
-            return $this->redirectToRoute('farm_edit', array('id' => $farm->getId()));
+            return $this->redirectToRoute('farm_show', array('id' => $farm->getId()));
         }
 
         return $this->render('AppBundle:farm:edit.html.twig', array(
@@ -148,7 +153,7 @@ class FarmController extends Controller
     /**
      * Deletes a Farm entity.
      *
-     * @Route("/{id}", name="farm_delete")
+     * @Route("/delete/{id}", name="farm_delete")
      * @Method("DELETE")
      * @Security("is_granted('DELETE', farm) or is_granted('ROLE_ADMIN')")
      */

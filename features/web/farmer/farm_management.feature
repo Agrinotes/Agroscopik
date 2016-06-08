@@ -4,16 +4,16 @@ Feature: Farm management
   I need to be able to edit my farm's information
 
   Background:
+    Given I am logged in as a user with email "user@repair.nc" and password "user"
 
-  Scenario: Create and edit farm information
-    Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
+  Scenario: Create farm information
     When I am on "/farm/new"
-    And I fill in "Nom de la ferme" with "MyFarm"
+    And I fill in "Nom de la ferme" with "Farm A"
     And I press "Enregistrer"
-    Then I should see "MyFarm"
+    Then I should see "Farm A"
     When I follow "Editer"
-    And I fill in "Nom de la ferme" with "Agronomik"
+    And I fill in "Nom de la ferme" with "Farm B"
     And I press "Enregistrer"
-    Then I should see "Agronomik"
+    Then I should see "Farm B"
 
 

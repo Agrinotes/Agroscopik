@@ -15,7 +15,7 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 /**
  * Plot controller.
- *
+ * @Security("has_role('ROLE_USER)")
  * @Route("/plot")
  */
 class PlotController extends Controller
@@ -23,6 +23,7 @@ class PlotController extends Controller
 
     /**
      * Lists all Plot entities.
+     *
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/", name="plot_index")
      * @Method("GET")
@@ -33,7 +34,7 @@ class PlotController extends Controller
 
         $plots = $em->getRepository('AppBundle:Plot')->findAll();
 
-        return $this->render('plot/index.html.twig', array(
+        return $this->render('AppBundle:plot:index.html.twig', array(
             'plots' => $plots,
         ));
     }
@@ -81,7 +82,7 @@ class PlotController extends Controller
             return $this->redirectToRoute('plot_show', array('id' => $plot->getId()));
         }
 
-        return $this->render('plot/new.html.twig', array(
+        return $this->render('AppBundle:plot:new.html.twig', array(
             'plot' => $plot,
             'form' => $form->createView(),
         ));
@@ -100,7 +101,7 @@ class PlotController extends Controller
     {
         $deleteForm = $this->createDeleteForm($plot);
 
-        return $this->render('plot/show.html.twig', array(
+        return $this->render('AppBundle:plot:show.html.twig', array(
             'plot' => $plot,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -109,8 +110,12 @@ class PlotController extends Controller
     /**
      * Displays a form to edit an existing Plot entity.
      *
+     * @Security("is_granted('EDIT') or has_role('ROLE_ADMIN')")
      * @Route("/{id}/edit", name="plot_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param Plot $plot
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Plot $plot)
     {
@@ -126,7 +131,7 @@ class PlotController extends Controller
             return $this->redirectToRoute('plot_edit', array('id' => $plot->getId()));
         }
 
-        return $this->render('plot/edit.html.twig', array(
+        return $this->render('AppBundle:plot:edit.html.twig', array(
             'plot' => $plot,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -136,6 +141,7 @@ class PlotController extends Controller
     /**
      * Deletes a Plot entity.
      *
+     * @Security("is_granted('DELETE', farm) or is_granted('ROLE_ADMIN')")
      * @Route("/{id}", name="plot_delete")
      * @Method("DELETE")
      */

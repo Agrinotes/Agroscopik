@@ -3,7 +3,7 @@ Feature: Plot management
   As a farmer
   I need to be able to create/show/edit/delete plots
 
-  Scenario: Create a plot on current farm
+  Scenario: Create and edit a plot on current farm
     Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
     And I am on "plot/new"
     When I fill in "Nom" with "Parcelle A"

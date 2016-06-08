@@ -50,6 +50,37 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     }
 
     /**
+     * @Given there is a user with email :email and password :password
+     */
+    public function thereIsAUserWithEmailAndPassword($email, $password)
+    {
+        $user = new \UserBundle\Entity\User();
+        $user->setFirstName("user_first_name");
+        $user->setLastName("user_last_name");
+        $user->setEmail($email);
+        $user->setPlainPassword($password);
+        $user->setEnabled(true);
+
+        $em = $this->getContainer()->get('doctrine')->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return $user;
+    }
+
+    /**
+     * @Given I am logged in as a user with email :email and password :password
+     */
+    public function iAmLoggedInAsAUser($email, $password)
+    {
+        $this->thereIsAUserWithEmailAndPassword($email,$password);
+        $this->visitPath('/login');
+        $this->getPage()->fillField('E-mail', $email);
+        $this->getPage()->fillField('Mot de passe', $password);
+        $this->getPage()->pressButton('Se connecter');
+    }
+
+    /**
      * @Given there is a farmer with email :email and password :password
      */
     public function thereIsAFarmerWithEmailAndPassword($email, $password)
@@ -89,9 +120,6 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
         $this->getPage()->fillField('E-mail', $email);
         $this->getPage()->fillField('Mot de passe', $password);
         $this->getPage()->pressButton('Se connecter');
-        $this->visitPath('/farm/new');
-        $this->getPage()->fillField('Nom de la ferme', 'Farm 1');
-        $this->getPage()->pressButton('Enregistrer');
     }
 
     /**
