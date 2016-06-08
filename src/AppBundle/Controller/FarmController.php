@@ -100,10 +100,6 @@ class FarmController extends Controller
             // Grant access to current user
             $acl->insertObjectAce($securityIdentity, $mask);
 
-            // Grant full access to administrators
-            $securityIdentity = new RoleSecurityIdentity('ROLE_ADMIN');
-            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_MASTER);
-
             // Update ACL
             $aclProvider->updateAcl($acl);
 
@@ -121,7 +117,8 @@ class FarmController extends Controller
      *
      * @Route("/{id}", name="farm_show")
      * @Method("GET")
-     * @Security("is_granted('VIEW', farm)")
+     * @Security("is_granted('VIEW', farm) or has_role('ROLE_ADMIN')")
+     *
      */
     public function showAction(Farm $farm)
     {
@@ -142,7 +139,7 @@ class FarmController extends Controller
      *
      * @Route("/{id}/edit", name="farm_edit")
      * @Method({"GET", "POST"})
-     * @Security("is_granted('EDIT', farm)")
+     * @Security("is_granted('EDIT', farm) or has_role('ROLE_ADMIN')")
      */
     public function editAction(Request $request, Farm $farm)
     {
@@ -170,7 +167,7 @@ class FarmController extends Controller
      *
      * @Route("/delete/{id}", name="farm_delete")
      * @Method("DELETE")
-     * @Security("is_granted('DELETE', farm)")
+     * @Security("is_granted('DELETE', farm) or has_role('ROLE_ADMIN')")
      */
     public function deleteAction(Request $request, Farm $farm)
     {

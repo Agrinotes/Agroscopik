@@ -15,7 +15,7 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 /**
  * Plot controller.
- * @Security("has_role('ROLE_USER')")
+ * @Security("has_role('ROLE_FARMER')")
  * @Route("/plot")
  */
 class PlotController extends Controller
@@ -23,8 +23,8 @@ class PlotController extends Controller
 
     /**
      * Lists current farm Plot entities.
+     *
      * @Route("/", name="plot_index")
-     * @Security("has_role('ROLE_FARMER')")
      * @Method("GET")
      */
     public function indexAction()
@@ -90,7 +90,7 @@ class PlotController extends Controller
     /**
      * Finds and displays a Plot entity.
      *
-     * @Security("is_granted('VIEW', plot)")
+     * @Security("is_granted('VIEW', plot) or is_granted('ROLE_ADMIN')")
      * @Route("/{id}", name="plot_show")
      * @Method("GET")
      * @param Plot $plot
@@ -140,7 +140,7 @@ class PlotController extends Controller
     /**
      * Deletes a Plot entity.
      *
-     * @Security("is_granted('DELETE', plot)")
+     * @Security("is_granted('DELETE', plot) or has_role('ROLE_ADMIN')")
      * @Route("/{id}", name="plot_delete")
      * @Method("DELETE")
      */

@@ -4,7 +4,6 @@
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" afterPath="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,30 +35,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlotController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PlotController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.2">
-              <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.7033898">
+              <caret line="142" column="68" selection-start-line="142" selection-start-column="68" selection-end-line="142" selection-end-column="68" />
               <folding>
-                <element signature="e#982#998#1#PHP" expanded="true" />
+                <element signature="e#40#102#0#PHP" expanded="true" />
+                <element signature="e#947#963#1#PHP" expanded="true" />
+                <element signature="e#1007#1039#0#PHP" expanded="true" />
+                <element signature="e#2447#2458#0#PHP" expanded="true" />
+                <element signature="e#3078#3109#0#PHP" expanded="true" />
+                <element signature="e#4074#4085#0#PHP" expanded="true" />
+                <element signature="e#4159#4190#0#PHP" expanded="true" />
+                <element signature="e#4924#4936#1#PHP" expanded="true" />
+                <element signature="e#5258#5271#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FarmController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FarmController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23728813">
-              <caret line="67" column="34" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
+            <state vertical-scroll-proportion="1.6">
+              <caret line="170" column="7" selection-start-line="170" selection-start-column="7" selection-end-line="170" selection-end-column="7" />
               <folding>
                 <element signature="e#40#108#0#PHP" expanded="true" />
                 <element signature="e#1208#1224#1#PHP" expanded="true" />
                 <element signature="e#1760#1772#1#PHP" expanded="true" />
-                <element signature="e#3723#3734#0#PHP" expanded="true" />
-                <element signature="e#3808#3838#0#PHP" expanded="true" />
-                <element signature="e#4251#4267#1#PHP" expanded="true" />
+                <element signature="e#3519#3530#0#PHP" expanded="true" />
+                <element signature="e#3604#3634#0#PHP" expanded="true" />
+                <element signature="e#4080#4096#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -192,8 +199,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadFarm.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/DataFixtures/ORM/LoadAdminUser.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php" />
       </list>
     </option>
   </component>
@@ -856,27 +863,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.2">
-          <caret line="26" column="39" selection-start-line="26" selection-start-column="39" selection-end-line="26" selection-end-column="39" />
-          <folding>
-            <element signature="e#982#998#1#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23728813">
-          <caret line="67" column="34" selection-start-line="67" selection-start-column="34" selection-end-line="67" selection-end-column="34" />
+        <state vertical-scroll-proportion="1.6">
+          <caret line="170" column="7" selection-start-line="170" selection-start-column="7" selection-end-line="170" selection-end-column="7" />
           <folding>
             <element signature="e#40#108#0#PHP" expanded="true" />
             <element signature="e#1208#1224#1#PHP" expanded="true" />
             <element signature="e#1760#1772#1#PHP" expanded="true" />
-            <element signature="e#3723#3734#0#PHP" expanded="true" />
-            <element signature="e#3808#3838#0#PHP" expanded="true" />
-            <element signature="e#4251#4267#1#PHP" expanded="true" />
+            <element signature="e#3519#3530#0#PHP" expanded="true" />
+            <element signature="e#3604#3634#0#PHP" expanded="true" />
+            <element signature="e#4080#4096#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7033898">
+          <caret line="142" column="68" selection-start-line="142" selection-start-column="68" selection-end-line="142" selection-end-column="68" />
+          <folding>
+            <element signature="e#40#102#0#PHP" expanded="true" />
+            <element signature="e#947#963#1#PHP" expanded="true" />
+            <element signature="e#1007#1039#0#PHP" expanded="true" />
+            <element signature="e#2447#2458#0#PHP" expanded="true" />
+            <element signature="e#3078#3109#0#PHP" expanded="true" />
+            <element signature="e#4074#4085#0#PHP" expanded="true" />
+            <element signature="e#4159#4190#0#PHP" expanded="true" />
+            <element signature="e#4924#4936#1#PHP" expanded="true" />
+            <element signature="e#5258#5271#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
