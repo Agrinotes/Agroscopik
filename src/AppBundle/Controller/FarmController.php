@@ -12,6 +12,7 @@ use AppBundle\Entity\Farm;
 use AppBundle\Form\FarmType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\RoleSecurityIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
@@ -19,6 +20,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 /**
  * Farm controller.
  *
+ * @Security("has_role('ROLE_USER)")
  * @Route("/farm")
  */
 class FarmController extends Controller
@@ -34,7 +36,7 @@ class FarmController extends Controller
         $em = $this->getDoctrine()->getManager();
         $farms = $em->getRepository('AppBundle:Farm')->findAll();
 
-        return $this->render('AppBundle:admin:farm_list.html.twig',array(
+        return $this->render('AppBundle:admin:farm_list.html.twig', array(
             'farms' => $farms
         ));
     }
@@ -49,8 +51,8 @@ class FarmController extends Controller
     public function newAction(Request $request)
     {
         // If current user already have a farm, redirect it to his farm
-        if($this->getUser()->getFarm() instanceof Farm){
-            return $this->redirectToRoute('farm_show', array('id' => $this->getUser()->getFarm()->getId()));
+        if ($this->getUser()->getFarm() instanceof Farm) {
+            return $this->redirectToRoute('plot_index');
         }
 
         // Create a farm
@@ -59,9 +61,12 @@ class FarmController extends Controller
         // Grant ROLE_FARMER to current user
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $user->addRole("ROLE_ADMIN");
-        $em->persist($user); // Could be removed because Farm cascade persist User but I keep it to code defensively
+        $user->addRole("ROLE_FARMER");
+        $em->persist($user);
         $em->flush();
+
+        // Force refresh of user roles
+        $token = $this->get('security.token_storage')->getToken()->setAuthenticated(false);
 
         // Set Farmer on created farm to make it easier to retrieve later
         $farm->setFarmer($user);
@@ -84,7 +89,7 @@ class FarmController extends Controller
             // Retrieve the security identity of the current user
             $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
 
-            // Create Access Mask
+            // Create Access Mask for current user
             $builder = new MaskBuilder();
             $builder
                 ->add('create')
@@ -92,8 +97,14 @@ class FarmController extends Controller
                 ->add('edit');
             $mask = $builder->get();
 
-            // Grant access
+            // Grant access to current user
             $acl->insertObjectAce($securityIdentity, $mask);
+
+            // Grant full access to administrators
+            $securityIdentity = new RoleSecurityIdentity('ROLE_ADMIN');
+            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_MASTER);
+
+            // Update ACL
             $aclProvider->updateAcl($acl);
 
             return $this->redirectToRoute('farm_show', array('id' => $farm->getId()));
@@ -110,7 +121,7 @@ class FarmController extends Controller
      *
      * @Route("/{id}", name="farm_show")
      * @Method("GET")
-     * @Security("is_granted('VIEW', farm) or is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('VIEW', farm)")
      */
     public function showAction(Farm $farm)
     {
@@ -131,7 +142,7 @@ class FarmController extends Controller
      *
      * @Route("/{id}/edit", name="farm_edit")
      * @Method({"GET", "POST"})
-     * @Security("is_granted('EDIT', farm) or is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('EDIT', farm)")
      */
     public function editAction(Request $request, Farm $farm)
     {
@@ -159,7 +170,7 @@ class FarmController extends Controller
      *
      * @Route("/delete/{id}", name="farm_delete")
      * @Method("DELETE")
-     * @Security("is_granted('DELETE', farm) or is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('DELETE', farm)")
      */
     public function deleteAction(Request $request, Farm $farm)
     {
@@ -187,7 +198,6 @@ class FarmController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('farm_delete', array('id' => $farm->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

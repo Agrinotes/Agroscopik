@@ -106,6 +106,7 @@ class User extends BaseUser
         return $fullName;
     }
 
+
     /**
      * Set farm
      * @param \AppBundle\Entity\Farm $farm
