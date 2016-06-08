@@ -49,6 +49,8 @@ class PlotController extends Controller
     public function newAction(Request $request)
     {
         $plot = new Plot();
+        $farm = $this->getUser()->getFarm();
+        $farm->addPlot($plot);
 
         $form = $this->createForm('AppBundle\Form\PlotType', $plot);
         $form->handleRequest($request);
@@ -128,7 +130,7 @@ class PlotController extends Controller
             $em->persist($plot);
             $em->flush();
 
-            return $this->redirectToRoute('plot_edit', array('id' => $plot->getId()));
+            return $this->redirectToRoute('plot_show', array('id' => $plot->getId()));
         }
 
         return $this->render('AppBundle:plot:edit.html.twig', array(

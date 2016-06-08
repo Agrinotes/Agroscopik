@@ -6,7 +6,7 @@ Feature: Farm management
   Background:
     Given I am logged in as a user with email "user@repair.nc" and password "user"
 
-  Scenario: Create farm information
+  Scenario: Create and edit farm information
     When I am on "/farm/new"
     And I fill in "Nom de la ferme" with "Farm A"
     And I press "Enregistrer"

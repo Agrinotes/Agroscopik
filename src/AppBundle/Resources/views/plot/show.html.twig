@@ -10,7 +10,7 @@
                 <td>{{ plot.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>Nom de la parcelle</th>
                 <td>{{ plot.name }}</td>
             </tr>
         </tbody>
@@ -20,12 +20,14 @@
         <li>
             <a href="{{ path('plot_index') }}">Back to the list</a>
         </li>
+        {% if is_granted('EDIT', plot) or is_granted('ROLE_ADMIN') %}
         <li>
-            <a href="{{ path('plot_edit', { 'id': plot.id }) }}">Edit</a>
+            <a href="{{ path('plot_edit', { 'id': plot.id }) }}">Editer</a>
         </li>
+        {% endif %}
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
