@@ -47,6 +47,10 @@ class PlotController extends Controller
     public function newAction(Request $request)
     {
         $plot = new Plot();
+
+        // Get Entity Manager
+        $em = $this->getDoctrine()->getManager();
+
         $farm = $this->getUser()->getFarm();
         $farm->addPlot($plot);
 
@@ -54,12 +58,15 @@ class PlotController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+
+            // Store plot in the database
             $em->persist($plot);
             $em->flush();
 
-            // Create the ACL
+            // Call ACL service
             $aclProvider = $this->get('security.acl.provider');
+
+            // Create the ACL for current Plot $plot
             $objectIdentity = ObjectIdentity::fromDomainObject($plot);
             $acl = $aclProvider->createAcl($objectIdentity);
 
@@ -74,9 +81,13 @@ class PlotController extends Controller
                 ->add('delete');
             $mask = $builder->get();
 
-            // Grant access
+            // Insert Object Access Entry
             $acl->insertObjectAce($securityIdentity, $mask);
+
+            // Update ACL
             $aclProvider->updateAcl($acl);
+
+
 
             return $this->redirectToRoute('plot_show', array('id' => $plot->getId()));
         }

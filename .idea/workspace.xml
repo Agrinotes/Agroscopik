@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/features/web/farmer/cropcycle_management.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" afterPath="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features/web/admin/admin_authentication.feature" afterPath="$PROJECT_DIR$/features/web/admin/admin_authentication.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,32 +34,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlotController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PlotController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.4">
-              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.6008584">
+              <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
               <folding>
                 <element signature="e#40#102#0#PHP" expanded="true" />
                 <element signature="e#947#963#1#PHP" expanded="true" />
                 <element signature="e#1007#1039#0#PHP" expanded="true" />
-                <element signature="e#2447#2458#0#PHP" expanded="true" />
-                <element signature="e#3078#3109#0#PHP" expanded="true" />
-                <element signature="e#4074#4085#0#PHP" expanded="true" />
-                <element signature="e#4159#4190#0#PHP" expanded="true" />
-                <element signature="e#4924#4936#1#PHP" expanded="true" />
-                <element signature="e#5258#5271#0#PHP" expanded="true" />
+                <element signature="e#2617#2628#0#PHP" expanded="true" />
+                <element signature="e#3248#3279#0#PHP" expanded="true" />
+                <element signature="e#4244#4255#0#PHP" expanded="true" />
+                <element signature="e#4329#4360#0#PHP" expanded="true" />
+                <element signature="e#5094#5106#1#PHP" expanded="true" />
+                <element signature="e#5428#5441#0#PHP" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FarmController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54077256">
-              <caret line="74" column="10" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -127,7 +112,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadFarm.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/DataFixtures/ORM/LoadAdminUser.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Entity/User.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
         <option value="$PROJECT_DIR$/features/web/farmer/authentication.feature" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/edit.html.twig" />
@@ -138,6 +122,7 @@
         <option value="$PROJECT_DIR$/features/web/farmer/cropcycle_management.feature" />
         <option value="$PROJECT_DIR$/features/bootstrap/FeatureContext.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php" />
       </list>
     </option>
   </component>
@@ -871,29 +856,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.36051503">
+          <caret line="74" column="10" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.4">
-          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.6008584">
+          <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
           <folding>
             <element signature="e#40#102#0#PHP" expanded="true" />
             <element signature="e#947#963#1#PHP" expanded="true" />
             <element signature="e#1007#1039#0#PHP" expanded="true" />
-            <element signature="e#2447#2458#0#PHP" expanded="true" />
-            <element signature="e#3078#3109#0#PHP" expanded="true" />
-            <element signature="e#4074#4085#0#PHP" expanded="true" />
-            <element signature="e#4159#4190#0#PHP" expanded="true" />
-            <element signature="e#4924#4936#1#PHP" expanded="true" />
-            <element signature="e#5258#5271#0#PHP" expanded="true" />
+            <element signature="e#2617#2628#0#PHP" expanded="true" />
+            <element signature="e#3248#3279#0#PHP" expanded="true" />
+            <element signature="e#4244#4255#0#PHP" expanded="true" />
+            <element signature="e#4329#4360#0#PHP" expanded="true" />
+            <element signature="e#5094#5106#1#PHP" expanded="true" />
+            <element signature="e#5428#5441#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54077256">
-          <caret line="74" column="10" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
