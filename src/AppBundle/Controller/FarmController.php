@@ -48,10 +48,12 @@ class FarmController extends Controller
      */
     public function newAction(Request $request)
     {
+        // If current user already have a farm, redirect it to his farm
         if($this->getUser()->getFarm() instanceof Farm){
-            throw new AccessDeniedException();
+            return $this->redirectToRoute('farm_show', array('id' => $this->getUser()->getFarm()->getId()));
         }
 
+        // Create a farm
         $farm = new Farm();
 
         // Grant ROLE_FARMER to current user

@@ -91,7 +91,7 @@ class PlotController extends Controller
     /**
      * Finds and displays a Plot entity.
      *
-     * @Security("is_granted('VIEW') or has_role('ROLE_ADMIN')")
+     * @Security("is_granted('VIEW', plot) or has_role('ROLE_ADMIN')")
      * @Route("/{id}", name="plot_show")
      * @Method("GET")
      * @param Plot $plot
@@ -110,7 +110,7 @@ class PlotController extends Controller
     /**
      * Displays a form to edit an existing Plot entity.
      *
-     * @Security("is_granted('EDIT') or has_role('ROLE_ADMIN')")
+     * @Security("is_granted('EDIT', plot) or has_role('ROLE_ADMIN')")
      * @Route("/{id}/edit", name="plot_edit")
      * @Method({"GET", "POST"})
      * @param Request $request
@@ -141,7 +141,7 @@ class PlotController extends Controller
     /**
      * Deletes a Plot entity.
      *
-     * @Security("is_granted('DELETE', farm) or is_granted('ROLE_ADMIN')")
+     * @Security("is_granted('DELETE', plot) or is_granted('ROLE_ADMIN')")
      * @Route("/{id}", name="plot_delete")
      * @Method("DELETE")
      */
