@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Plot list</h1>
+    <h1>Liste des parcelles</h1>
 
     <table>
         <thead>
@@ -13,6 +13,7 @@
         </thead>
         <tbody>
         {% for plot in plots %}
+            {% if is_granted('VIEW', plot) or is_granted('ROLE_ADMIN') %}
             <tr>
                 <td><a href="{{ path('plot_show', { 'id': plot.id }) }}">{{ plot.id }}</a></td>
                 <td>{{ plot.name }}</td>
@@ -27,6 +28,7 @@
                     </ul>
                 </td>
             </tr>
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>

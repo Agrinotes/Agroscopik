@@ -3,7 +3,7 @@ Feature: Plot management
   As a farmer
   I need to be able to create/show/edit/delete plots
 
-  Scenario: Create and edit a plot on current farm
+  Scenario: Create, Show, Edit and delete a plot on current farm
     Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
     And I am on "plot/new"
     And I fill in "Nom" with "Parcelle A"
@@ -13,5 +13,10 @@ Feature: Plot management
     And I fill in "Nom" with "Parcelle B"
     When I press "Enregistrer"
     Then I should see "Parcelle B"
+    When I press "Supprimer"
+    Then I should see "Liste des parcelles"
+    And I should not see "Parcelle B"
+
+
 
 

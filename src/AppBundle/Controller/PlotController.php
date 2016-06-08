@@ -22,9 +22,9 @@ class PlotController extends Controller
 {
 
     /**
-     * Lists all Plot entities.
+     * Lists current farm Plot entities.
      *
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_FARMER')")
      * @Route("/", name="plot_index")
      * @Method("GET")
      */
@@ -73,8 +73,7 @@ class PlotController extends Controller
             $builder
                 ->add('view')
                 ->add('edit')
-                ->add('delete')
-            ;
+                ->add('delete');
             $mask = $builder->get();
 
             // Grant access
@@ -173,11 +172,8 @@ class PlotController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('plot_delete', array('id' => $plot->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
-
-
 
 
 }
