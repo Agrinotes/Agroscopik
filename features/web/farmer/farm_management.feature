@@ -4,10 +4,10 @@ Feature: Farm management
   I need to be able to edit my farm's information
 
   Background:
-    Given I am logged in as a user with email "user@repair.nc" and password "user"
+    Given I am logged in with email "user@repair.nc" and password "user"
 
   Scenario: Create and edit farm information
-    When I am on "/farm/new"
+    And I am on "/farm/new"
     And I fill in "Nom de la ferme" with "Farm A"
     And I press "Enregistrer"
     Then I should see "Farm A"
@@ -15,5 +15,6 @@ Feature: Farm management
     And I fill in "Nom de la ferme" with "Farm B"
     And I press "Enregistrer"
     Then I should see "Farm B"
+
 
 

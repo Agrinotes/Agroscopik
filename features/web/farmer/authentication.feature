@@ -4,7 +4,7 @@ Feature: Authentication
   I need to be able to login and logout
 
   Background:
-    Given there is a farmer with email "farmer@repair.nc" and password "farmer"
+    Given there is a user with email "farmer@repair.nc" and password "farmer"
 
   Scenario: Logging in
     Given I am on "/login"

@@ -54,24 +54,19 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function thereIsAUserWithEmailAndPassword($email, $password)
     {
-        $user = new \UserBundle\Entity\User();
-        $user->setFirstName("user_first_name");
-        $user->setLastName("user_last_name");
-        $user->setEmail($email);
-        $user->setPlainPassword($password);
-        $user->setEnabled(true);
-
-        $em = $this->getContainer()->get('doctrine')->getManager();
-        $em->persist($user);
-        $em->flush();
-
-        return $user;
+        $this->visitPath('/register');
+        $this->getPage()->fillField('Prénom', "farmer_first_name");
+        $this->getPage()->fillField('Nom', "farmer_last_name");
+        $this->getPage()->fillField('E-mail', $email);
+        $this->getPage()->fillField('Mot de passe', $password);
+        $this->getPage()->pressButton('Créer un compte');
+        $this->visitPath('/logout');
     }
 
     /**
-     * @Given I am logged in as a user with email :email and password :password
+     * @Given I am logged in with email :email and password :password
      */
-    public function iAmLoggedInAsAUser($email, $password)
+    public function iAmLoggedInWithAndPassword($email, $password)
     {
         $this->thereIsAUserWithEmailAndPassword($email,$password);
         $this->visitPath('/login');
@@ -85,41 +80,21 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function thereIsAFarmerWithEmailAndPassword($email, $password)
     {
-        $user = new \UserBundle\Entity\User();
-        $user->setFirstName("farmer_first_name");
-        $user->setLastName("farmer_last_name");
-        $user->setEmail($email);
-        $user->setPlainPassword($password);
-        $user->setEnabled(true);
-
-        $em = $this->getContainer()->get('doctrine')->getManager();
-        $em->persist($user);
-        $em->flush();
-
-        $user->addRole('ROLE_FARMER');
-
-        $farm = new \AppBundle\Entity\Farm();
-        $farm->setName('Farm 1');
-        $farm->setFarmer($user);
-
-        $em->persist($user);
-        $em->persist($farm);
-
-        $em->flush();
-
-        return $user;
+        $this->thereIsAUserWithEmailAndPassword($email, $password);
+        $this->iAmLoggedInWithAndPassword($email, $password);
+        $this->visitPath('/farm/new'); // I should be able to remove that one
+        $this->getPage()->fillField('Nom', "Farm 1");
+        $this->getPage()->pressButton('Enregistrer');
+        $this->visitPath('logout');
     }
 
     /**
      * @Given I am logged in as a farmer with email :email and password :password
      */
-    public function iAmLoggedInAsAFarmer($email, $password)
+    public function iAmLoggedInAsAFarmerWithEmailAndPassword($email, $password)
     {
         $this->thereIsAFarmerWithEmailAndPassword($email,$password);
-        $this->visitPath('/login');
-        $this->getPage()->fillField('E-mail', $email);
-        $this->getPage()->fillField('Mot de passe', $password);
-        $this->getPage()->pressButton('Se connecter');
+        $this->iAmLoggedInWithAndPassword($email,$password);
     }
 
     /**
@@ -144,6 +119,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
      */
     public function iAmLoggedInAsAnAdminWithEmailAndPassword($email, $password)
     {
+        // I should be able to create the admin right here...
         $this->visitPath('/login');
         $this->getPage()->fillField('E-mail', $email);
         $this->getPage()->fillField('Mot de passe', $password);
