@@ -57,8 +57,11 @@ class FarmController extends Controller
         $farm = new Farm();
 
         // Grant ROLE_FARMER to current user
+        $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
-        $user->addRole('ROLE_FARMER');
+        $user->addRole("ROLE_ADMIN");
+        $em->persist($user); // Could be removed because Farm cascade persist User but I keep it to code defensively
+        $em->flush();
 
         // Set Farmer on created farm to make it easier to retrieve later
         $farm->setFarmer($user);
@@ -71,7 +74,6 @@ class FarmController extends Controller
             // Store Farm in database and update User Roles
             $em = $this->getDoctrine()->getManager();
             $em->persist($farm);
-            $em->persist($user); // Could be removed because Farm cascade persist User but I keep it to code defensively
             $em->flush();
 
             // Create the ACL

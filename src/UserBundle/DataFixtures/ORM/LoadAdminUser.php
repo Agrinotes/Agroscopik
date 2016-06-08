@@ -15,11 +15,8 @@ class LoadAdminUser implements FixtureInterface
         $user->setEmail("admin@repair.nc");
         $user->setPlainPassword("admin");
         $user->setEnabled(true);
+        $user->addRole("ROLE_ADMIN");
 
-        $em->persist($user);
-        $em->flush();
-
-        $user->setRoles(array('ROLE_ADMIN'));
         $em->persist($user);
         $em->flush();
     }

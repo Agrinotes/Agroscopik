@@ -33,11 +33,6 @@ class LoadFarm implements FixtureInterface, ContainerAwareInterface
         $user->setEmail("farmer@repair.nc");
         $user->setPlainPassword("farmer");
         $user->setEnabled(true);
-
-        $em->persist($user);
-        $em->flush();
-
-        // Add ROLE_FARMER to current user
         $user->setRoles(array('ROLE_FARMER'));
         $em->persist($user);
 
@@ -45,6 +40,8 @@ class LoadFarm implements FixtureInterface, ContainerAwareInterface
         $farm = new Farm();
         $farm->setName('Farm 1');
         $farm->setFarmer($user);
+        $em->persist($farm);
+        $em->flush();
 
         // Create the ACL
         $aclProvider = $this->container->get('security.acl.provider');
@@ -65,8 +62,5 @@ class LoadFarm implements FixtureInterface, ContainerAwareInterface
         // Grant access
         $acl->insertObjectAce($securityIdentity, $mask);
         $aclProvider->updateAcl($acl);
-
-        $em->persist($farm);
-        $em->flush();
     }
 }
