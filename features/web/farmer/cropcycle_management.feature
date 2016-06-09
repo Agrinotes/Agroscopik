@@ -7,7 +7,7 @@ Feature: Crop Cycle Management
     Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
     And I have a plot "Parcelle A"
 
-  Scenario: Create/Edit/Delete a crop cycle and list current farm cropCycles
+  Scenario: Create/Edit/Delete a crop cycle
     Given I should see "Parcelle A"
     And I follow "Ajouter une culture"
     And I fill in "Nom" with "Cycle 1"
@@ -17,7 +17,8 @@ Feature: Crop Cycle Management
     And I fill in "Nom" with "Cycle 2"
     When I press "Enregistrer"
     Then I should see "Cycle 2"
-    When I follow "Supprimer"
+    When I follow "Editer"
+    When I press "Supprimer"
     Then I should not see "Cycle 2"
 
 

@@ -1,13 +1,11 @@
-{% extends 'base.html.twig' %}
 
-{% block body %}
     <h1>Liste des parcelles</h1>
 
     <table>
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,10 +18,10 @@
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('plot_show', { 'id': plot.id }) }}">show</a>
+                            <a href="{{ path('plot_show', { 'id': plot.id }) }}">Voir</a>
                         </li>
                         <li>
-                            <a href="{{ path('plot_edit', { 'id': plot.id }) }}">edit</a>
+                            <a href="{{ path('plot_edit', { 'id': plot.id }) }}">Editer</a>
                         </li>
                     </ul>
                 </td>
@@ -35,7 +33,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('plot_new') }}">Create a new entry</a>
+            <a href="{{ path('plot_new') }}">Ajouter une parcelle</a>
         </li>
     </ul>
-{% endblock %}
+

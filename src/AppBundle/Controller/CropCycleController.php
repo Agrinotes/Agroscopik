@@ -9,26 +9,36 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\CropCycle;
 use AppBundle\Form\CropCycleType;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 /**
  * CropCycle controller.
  *
+ * @Security("has_role('ROLE_FARMER')")
  */
 class CropCycleController extends Controller
 {
     /**
-     * Lists all CropCycle entities.
-     *
-     * @Route("/cropcycle", name="cropcycle_index")
+     * Lists all CropCycle entities
+     * .
+     * @Route("/plot/{id}/cropcycles", name="cropcycle_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findAll();
+        // Get current plot
+        $plot = $this->getDoctrine()->getManager()->getRepository('AppBundle:Plot')->find($id);
 
-        return $this->render('cropcycle/index.html.twig', array(
+        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findBy(array('plot' => $plot));
+
+        return $this->render('@App/cropcycle/index.html.twig', array(
+            'plot' => $plot,
             'cropCycles' => $cropCycles,
         ));
     }
@@ -58,10 +68,34 @@ class CropCycleController extends Controller
             $em->persist($cropCycle);
             $em->flush();
 
+            // Call ACL service
+            $aclProvider = $this->get('security.acl.provider');
+
+            // Create the ACL for current CropCycle $cropCycle
+            $objectIdentity = ObjectIdentity::fromDomainObject($cropCycle);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // Retrieve the security identity of the current user
+            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
+
+            // Create Access Mask
+            $builder = new MaskBuilder();
+            $builder
+                ->add('view')
+                ->add('edit')
+                ->add('delete');
+            $mask = $builder->get();
+
+            // Insert Object Access Entry
+            $acl->insertObjectAce($securityIdentity, $mask);
+
+            // Update ACL
+            $aclProvider->updateAcl($acl);
+
             return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
         }
 
-        return $this->render('cropcycle/new.html.twig', array(
+        return $this->render('@App/cropcycle/new.html.twig', array(
             'plot' => $plot,
             'cropCycle' => $cropCycle,
             'form' => $form->createView(),
@@ -73,12 +107,15 @@ class CropCycleController extends Controller
      *
      * @Route("/cropcycle/{id}", name="cropcycle_show")
      * @Method("GET")
+     * @param CropCycle $cropCycle
+     * @Security("is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN')")
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(CropCycle $cropCycle)
     {
         $deleteForm = $this->createDeleteForm($cropCycle);
 
-        return $this->render('cropcycle/show.html.twig', array(
+        return $this->render('@App/cropcycle/show.html.twig', array(
             'cropCycle' => $cropCycle,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -89,6 +126,10 @@ class CropCycleController extends Controller
      *
      * @Route("/cropcycle/{id}/edit", name="cropcycle_edit")
      * @Method({"GET", "POST"})
+     * @param Request $request
+     * @param CropCycle $cropCycle
+     * @Security("is_granted('EDIT', cropCycle) or is_granted('ROLE_ADMIN')")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, CropCycle $cropCycle)
     {
@@ -101,10 +142,10 @@ class CropCycleController extends Controller
             $em->persist($cropCycle);
             $em->flush();
 
-            return $this->redirectToRoute('cropcycle_edit', array('id' => $cropCycle->getId()));
+            return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
         }
 
-        return $this->render('cropcycle/edit.html.twig', array(
+        return $this->render('@App/cropcycle/edit.html.twig', array(
             'cropCycle' => $cropCycle,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -116,11 +157,17 @@ class CropCycleController extends Controller
      *
      * @Route("/cropcycle/{id}", name="cropcycle_delete")
      * @Method("DELETE")
+     * @param Request $request
+     * @param CropCycle $cropCycle
+     * @Security("is_granted('DELETE', cropCycle) or is_granted('ROLE_ADMIN')")
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, CropCycle $cropCycle)
     {
         $form = $this->createDeleteForm($cropCycle);
         $form->handleRequest($request);
+
+        $plot_id = $cropCycle->getPlot()->getId();
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -128,7 +175,9 @@ class CropCycleController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('cropcycle_index');
+        return $this->redirectToRoute('plot_show', array(
+            'id' => $plot_id
+        ));
     }
 
     /**
@@ -143,7 +192,6 @@ class CropCycleController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('cropcycle_delete', array('id' => $cropCycle->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

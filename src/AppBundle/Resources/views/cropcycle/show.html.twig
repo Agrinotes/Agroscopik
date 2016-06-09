@@ -18,7 +18,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('cropcycle_index') }}">Back to the list</a>
+            <a href="{{ path('plot_show',{'id': cropCycle.plot.id }) }}">Retourner à la parcelle</a>
         </li>
         {% if is_granted('EDIT', cropCycle) or is_granted('ROLE_ADMIN') %}
         <li>

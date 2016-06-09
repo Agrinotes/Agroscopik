@@ -1,0 +1,38 @@
+    <h1>Liste des cultures</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cropCycle in cropCycles %}
+            {% if is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN') %}
+                <tr>
+                    <td><a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.id }}</a></td>
+                    <td>{{ cropCycle.name }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">Voir</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('cropcycle_edit', { 'id': cropCycle.id }) }}">Editer</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cropcycle_new', { 'id': plot.id }) }}">Ajouter une culture</a>
+        </li>
+    </ul>
+

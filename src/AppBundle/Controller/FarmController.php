@@ -29,6 +29,24 @@ class FarmController extends Controller
     /**
      * List all Farm entities
      *
+     * @Security("has_role('ROLE_FARMER')")
+     * @Route("/")
+     */
+    public function showCurrentAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $farmId = $this->getUser()->getFarm()->getId();
+
+        $farm = $em->getRepository('AppBundle:Farm')->findOneById($farmId);
+
+        return $this->render('@App/farm/show.html.twig', array(
+            'farm' => $farm
+        ));
+    }
+
+    /**
+     * List all Farm entities
+     *
      * @Security("has_role('ROLE_ADMIN')")
      * @Route("/list")
      */
@@ -67,12 +85,15 @@ class FarmController extends Controller
         $em->flush();
 
         // Force refresh of user roles
+
+
         $token = new UsernamePasswordToken(
             $user,
             null,
             'main',
             $user->getRoles()
         );
+
         $this->container->get('security.token_storage')->setToken($token);
 
         // Set Farmer on created farm to make it easier to retrieve later
@@ -140,6 +161,8 @@ class FarmController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
+
 
     /**
      * Displays a form to edit an existing Farm entity.

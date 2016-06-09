@@ -15,7 +15,9 @@ Feature: Plot management
     And I fill in "Nom" with "Parcelle B"
     When I press "Enregistrer"
     Then I should see "Parcelle B"
-    When I press "Supprimer"
+    And I should not see "Supprimer"
+    When I follow "Editer"
+    And I press "Supprimer"
     Then I should see "Liste des parcelles"
     And I should not see "Parcelle B"
 

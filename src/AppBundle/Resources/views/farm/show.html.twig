@@ -16,9 +16,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('plot_new') }}">
-       Ajouter une parcelle
-    </a>
+    {{ render(controller('AppBundle:Plot:index')) }}
 
     <ul>
         {% if is_granted('EDIT',farm) or is_granted('ROLE_ADMIN') %}
