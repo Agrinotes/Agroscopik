@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>CropCycle list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cropCycle in cropCycles %}
+            <tr>
+                <td><a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.id }}</a></td>
+                <td>{{ cropCycle.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cropcycle_edit', { 'id': cropCycle.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cropcycle_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

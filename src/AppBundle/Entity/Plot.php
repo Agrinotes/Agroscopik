@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Farm;
 
@@ -13,6 +14,14 @@ use AppBundle\Entity\Farm;
  */
 class Plot
 {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cropCycles = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -35,6 +44,10 @@ class Plot
      */
     private $farm;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\CropCycle", mappedBy="plot", cascade={"persist","remove"})
+     */
+    private $cropCycles;
 
     /**
      * Get id
@@ -91,6 +104,42 @@ class Plot
     public function getFarm()
     {
         return $this->farm;
+    }
+
+    /**
+     * Add CropCycle
+     *
+     * @param \AppBundle\Entity\CropCycle $cropCycle
+     * @return Plot
+     */
+    public function addCropCycle(\AppBundle\Entity\CropCycle $cropCycle)
+    {
+        $this->cropCycles[] = $cropCycle;
+
+        // We also add the current plot to the cropCycle
+        $cropCycle->setPlot($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove CropCycles
+     *
+     * @param \AppBundle\Entity\CropCycle $cropCycles
+     */
+    public function removeCropCycle(\AppBundle\Entity\CropCycle $cropCycles)
+    {
+        $this->cropCycles->removeElement($cropCycles);
+    }
+
+    /**
+     * Get CropCycles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCropCycles()
+    {
+        return $this->cropCycles;
     }
 }
 
