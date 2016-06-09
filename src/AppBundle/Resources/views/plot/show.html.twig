@@ -1,21 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Parcelle</h1>
+    <h1>Parcelle {{ plot.id }}</h1>
 
-    <table>
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ plot.id }}</td>
-        </tr>
-        <tr>
-            <th>Nom de la parcelle</th>
-            <td>{{ plot.name }}</td>
-        </tr>
-        </tbody>
-    </table>
-
+    <h2>Nom de la parcelle</h2>
+    <p>{{ plot.name }}</p>
 
     <ul>
         <li>
