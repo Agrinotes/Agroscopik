@@ -16,6 +16,10 @@
         </tbody>
     </table>
 
+    <a href="{{ path('plot_new') }}">
+       Ajouter une parcelle
+    </a>
+
     <ul>
         {% if is_granted('EDIT',farm) or is_granted('ROLE_ADMIN') %}
         <li>

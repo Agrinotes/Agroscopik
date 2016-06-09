@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Plot;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -12,14 +13,13 @@ use AppBundle\Form\CropCycleType;
 /**
  * CropCycle controller.
  *
- * @Route("/cropcycle")
  */
 class CropCycleController extends Controller
 {
     /**
      * Lists all CropCycle entities.
      *
-     * @Route("/", name="cropcycle_index")
+     * @Route("/cropcycle", name="cropcycle_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -36,12 +36,20 @@ class CropCycleController extends Controller
     /**
      * Creates a new CropCycle entity.
      *
-     * @Route("/new", name="cropcycle_new")
+     * @Route("/plot/{id}/cropcycle/new", name="cropcycle_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
         $cropCycle = new CropCycle();
+
+        // Get current plot
+        $plot = $this->getDoctrine()->getManager()->getRepository('AppBundle:Plot')->find($id);
+        $plot->addCropCycle($cropCycle); // Which also setPlot($plot) on $cropCycle
+
+        // Get Entity Manager
+        $em = $this->getDoctrine()->getManager();
+
         $form = $this->createForm('AppBundle\Form\CropCycleType', $cropCycle);
         $form->handleRequest($request);
 
@@ -54,6 +62,7 @@ class CropCycleController extends Controller
         }
 
         return $this->render('cropcycle/new.html.twig', array(
+            'plot' => $plot,
             'cropCycle' => $cropCycle,
             'form' => $form->createView(),
         ));
@@ -62,7 +71,7 @@ class CropCycleController extends Controller
     /**
      * Finds and displays a CropCycle entity.
      *
-     * @Route("/{id}", name="cropcycle_show")
+     * @Route("/cropcycle/{id}", name="cropcycle_show")
      * @Method("GET")
      */
     public function showAction(CropCycle $cropCycle)
@@ -78,7 +87,7 @@ class CropCycleController extends Controller
     /**
      * Displays a form to edit an existing CropCycle entity.
      *
-     * @Route("/{id}/edit", name="cropcycle_edit")
+     * @Route("/cropcycle/{id}/edit", name="cropcycle_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, CropCycle $cropCycle)
@@ -105,7 +114,7 @@ class CropCycleController extends Controller
     /**
      * Deletes a CropCycle entity.
      *
-     * @Route("/{id}", name="cropcycle_delete")
+     * @Route("/cropcycle/{id}", name="cropcycle_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, CropCycle $cropCycle)

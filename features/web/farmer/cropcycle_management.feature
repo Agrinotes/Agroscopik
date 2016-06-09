@@ -7,11 +7,17 @@ Feature: Crop Cycle Management
     Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
     And I have a plot "Parcelle A"
 
-  Scenario: Create a crop cycle on current plot
+  Scenario: Create/Edit/Delete a crop cycle and list current farm cropCycles
     Given I should see "Parcelle A"
-    And I press "Ajouter une culture"
-    Then I should be on "cropcycle/new"
-    And I select "Tomate" from "Culture(s)"
-    And I check "Sur toute la surface de la parcelle"
+    And I follow "Ajouter une culture"
+    And I fill in "Nom" with "Cycle 1"
     When I press "Enregistrer"
-    Then I should see "Vous pouvez commencer à ajouter des interventions"
+    Then I should see "Cycle 1"
+    When I follow "Editer"
+    And I fill in "Nom" with "Cycle 2"
+    When I press "Enregistrer"
+    Then I should see "Cycle 2"
+    When I follow "Supprimer"
+    Then I should not see "Cycle 2"
+
+
