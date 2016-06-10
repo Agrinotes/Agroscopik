@@ -45,7 +45,7 @@ class InterventionCategory
     private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Intervention", mappedBy="interventionCategory", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Intervention", mappedBy="actions", cascade={"persist","remove"})
      */
     private $interventions;
 

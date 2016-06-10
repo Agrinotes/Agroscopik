@@ -35,6 +35,12 @@ class Action
     private $cropCycle;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Intervention", inversedBy="cropCycleInterventions",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $intervention;
+
+    /**
      * Get id
      *
      * @return int
@@ -89,6 +95,31 @@ class Action
     public function getCropCycle()
     {
         return $this->cropCycle;
+    }
+
+    /**
+     * Set intervention
+     *
+     * @param \AppBundle\Entity\Intervention $intervention
+     * @return Action
+     */
+    public function setIntervention(Intervention $intervention)
+    {
+        $this->intervention = $intervention;
+
+        $intervention->addAction($this);
+
+        return $this;
+    }
+
+    /**
+     * Get intervention
+     *
+     * @return \AppBundle\Entity\Intervention
+     */
+    public function getIntervention()
+    {
+        return $this->intervention;
     }
 }
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Intervention
 {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->actions = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -33,6 +42,11 @@ class Intervention
      * @ORM\JoinColumn(nullable=false)
      */
     private $interventionCategory;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Action", mappedBy="intervention", cascade={"persist","remove"})
+     */
+    private $actions;
 
     /**
      * Get id
@@ -90,5 +104,41 @@ class Intervention
     {
         return $this->interventionCategory;
     }
+
+    /**
+     * Add action
+     *
+     * @param \AppBundle\Entity\Action $action
+     * @return Intervention
+     */
+    public function addAction(Action $action)
+    {
+        $this->actions[] = $action;
+
+        $action->setIntervention($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove action
+     *
+     * @param \AppBundle\Entity\Action $action
+     */
+    public function removeAction(Action $action)
+    {
+        $this->actions->removeElement($action);
+    }
+
+    /**
+     * Get actions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActions()
+    {
+        return $this->actions;
+    }
+
 }
 
