@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des interventions</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for intervention in interventions %}
+            <tr>
+                <td><a href="{{ path('intervention_show', { 'id': intervention.id }) }}">{{ intervention.id }}</a></td>
+                <td>{{ intervention.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('intervention_show', { 'id': intervention.id }) }}">Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('intervention_edit', { 'id': intervention.id }) }}">Editer</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('intervention_new') }}">Ajouter une intervention</a>
+        </li>
+    </ul>
+{% endblock %}

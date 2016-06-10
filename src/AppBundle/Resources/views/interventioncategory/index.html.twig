@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des catégories d'intervention</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Référence</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for interventionCategory in interventionCategories %}
+            <tr>
+                <td><a href="{{ path('interventioncategory_show', { 'id': interventionCategory.id }) }}">{{ interventionCategory.id }}</a></td>
+                <td>{{ interventionCategory.name }}</td>
+                <td>{{ interventionCategory.slug }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('interventioncategory_show', { 'id': interventionCategory.id }) }}">Voir</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('interventioncategory_edit', { 'id': interventionCategory.id }) }}">Editer</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('interventioncategory_new') }}">Ajouter une catégorie</a>
+        </li>
+    </ul>
+{% endblock %}

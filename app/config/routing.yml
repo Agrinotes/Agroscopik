@@ -1,3 +1,11 @@
+app_intervention:
+    resource: "@AppBundle/Controller/InterventionController.php"
+    type:     annotation
+
+app_intervention_category:
+    resource: "@AppBundle/Controller/InterventionCategoryController.php"
+    type:     annotation
+
 app_crop_cycle:
     resource: "@AppBundle/Controller/CropCycleController.php"
     type:     annotation

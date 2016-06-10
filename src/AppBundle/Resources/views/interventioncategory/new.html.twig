@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ajouter une catégorie d'intervention</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Enregistrer" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('interventioncategory_index') }}">Liste des catégories d'intervention</a>
+        </li>
+    </ul>
+{% endblock %}
