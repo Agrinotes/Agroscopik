@@ -1,3 +1,7 @@
+app_action:
+    resource: "@AppBundle/Controller/ActionController.php"
+    type:     annotation
+
 app_intervention:
     resource: "@AppBundle/Controller/InterventionController.php"
     type:     annotation

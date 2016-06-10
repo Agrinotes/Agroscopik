@@ -33,4 +33,6 @@
         </li>
         {% endif %}
     </ul>
+
+    {{ render(controller('AppBundle:Action:index',{'id': cropCycle.id } )) }}
 {% endblock %}
