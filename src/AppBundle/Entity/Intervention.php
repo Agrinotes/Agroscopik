@@ -115,8 +115,6 @@ class Intervention
     {
         $this->actions[] = $action;
 
-        $action->setIntervention($this);
-
         return $this;
     }
 

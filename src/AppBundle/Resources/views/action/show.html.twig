@@ -18,10 +18,10 @@
 
     <ul>
         <li>
-            <a href="{{ path('action_index') }}">Back to the list</a>
+            <a href="{{ path('action_index', { 'id': action.cropCycle.id }) }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('action_edit', { 'id': action.id }) }}">Edit</a>
+            <a href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
