@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class CropCycle
 {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->actions = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -34,6 +43,10 @@ class CropCycle
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Action", mappedBy="cropCycle", cascade={"persist","remove"})
+     */
+    private $actions;
 
     /**
      * Get id
@@ -75,14 +88,12 @@ class CropCycle
      * @param \AppBundle\Entity\Plot $plot
      * @return CropCycle
      */
-    public function setPlot(\AppBundle\Entity\Plot $plot)
+    public function setPlot(Plot $plot)
     {
         $this->plot = $plot;
 
         return $this;
     }
-
-
 
     /**
      * Get plot
@@ -92,6 +103,44 @@ class CropCycle
     public function getPlot()
     {
         return $this->plot;
+    }
+
+    /**
+     * Add action
+     *
+     * @param \AppBundle\Entity\Action $action
+     * @return CropCycle
+     */
+    public function addAction(Action $action)
+    {
+        $this->actions[] = $action;
+
+        // We also add the current cropCycle to the action
+        $action->setCropCycle($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove action
+     *
+     * @param \AppBundle\Entity\Action $action
+     */
+    public function removeAction(Action $action)
+    {
+        $this->actions->removeElement($action);
+
+        // I should do something here
+    }
+
+    /**
+     * Get action
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActions()
+    {
+        return $this->actions;
     }
 }
 
