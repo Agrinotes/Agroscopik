@@ -3,7 +3,7 @@ Feature: Admin authentication
   As a admin
   I need to be able to login and logout
 
-  @admin_fixtures
+  @clear_data @load_admin_fixtures
   Scenario: Logging in
     Given I am on "/login"
     When I fill in "E-mail" with "admin@repair.nc"
@@ -11,7 +11,7 @@ Feature: Admin authentication
     And I press "Se connecter"
     Then I should see "Connecté"
 
-  @admin_fixtures
+  @clear_data @load_admin_fixtures
   Scenario: Logging in with bad credentials
     Given I am on "/login"
     When I fill in "E-mail" with "admin@repair.nc"

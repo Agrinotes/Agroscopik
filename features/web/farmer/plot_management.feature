@@ -6,6 +6,7 @@ Feature: Plot management
   Background:
     Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
 
+  @clear_data
   Scenario: Create, Show, Edit and delete a plot on current farm
     And I am on "plot/new"
     And I fill in "Nom" with "Parcelle A"

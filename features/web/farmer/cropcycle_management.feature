@@ -7,6 +7,7 @@ Feature: Crop Cycle Management
     Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
     And I have a plot "Parcelle A"
 
+  @clear_data
   Scenario: Create/Edit/Delete a crop cycle
     Given I should see "Parcelle A"
     And I follow "Ajouter une culture"

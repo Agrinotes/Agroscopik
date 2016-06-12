@@ -6,6 +6,7 @@ Feature: Farm management
   Background:
     Given I am logged in with email "user@repair.nc" and password "user"
 
+  @clear_data
   Scenario: Create and edit farm information
     And I am on "/farm/new"
     And I fill in "Nom de la ferme" with "Farm A"

@@ -3,6 +3,7 @@ Feature: Registration
   As a farmer
   I need to be able to register
 
+  @clear_data
   Scenario: Register
     Given I am on "/register"
     When I fill in "E-mail" with "farmer@repair.nc"

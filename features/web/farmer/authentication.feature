@@ -6,6 +6,7 @@ Feature: Authentication
   Background:
     Given there is a user with email "farmer@repair.nc" and password "farmer"
 
+  @clear_data
   Scenario: Logging in
     Given I am on "/login"
     When I fill in "E-mail" with "farmer@repair.nc"
@@ -13,6 +14,7 @@ Feature: Authentication
     And I press "Se connecter"
     Then I should see "Connecté"
 
+  @clear_data
   Scenario: Logging in with bad credentials
     Given I am on "/login"
     When I fill in "E-mail" with "farmer@repair.nc"

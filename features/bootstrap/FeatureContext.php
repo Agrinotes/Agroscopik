@@ -29,7 +29,7 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     private $currentUser;
 
     /**
-     * @BeforeScenario
+     * @BeforeScenario @clear_data
      */
     public function clearData()
     {
@@ -38,13 +38,26 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     }
 
     /**
-     * @BeforeScenario @admin_fixtures
+     * @BeforeScenario @load_admin_fixtures
      */
     public function loadFixtures()
     {
         $loader = new ContainerAwareLoader($this->getContainer());
         $loader->loadFromDirectory(__DIR__.'/../../src/UserBundle/DataFixtures');
         $loader->loadFromDirectory(__DIR__.'/../../src/AppBundle/DataFixtures');
+        $executor = new ORMExecutor($this->getEntityManager());
+        $executor->execute($loader->getFixtures(), true);
+    }
+
+
+    /**
+     * @BeforeScenario @loadInterventions
+     */
+    public function loadInterventions()
+    {
+        $loader = new ContainerAwareLoader($this->getContainer());
+        $loader->loadFromFile(__DIR__.'/../../src/AppBundle/DataFixtures/ORM/LoadInterventionCategories.php');
+        $loader->loadFromFile(__DIR__.'/../../src/AppBundle/DataFixtures/ORM/LoadInterventions.php');
         $executor = new ORMExecutor($this->getEntityManager());
         $executor->execute($loader->getFixtures(), true);
     }
@@ -133,6 +146,17 @@ class FeatureContext extends RawMinkContext implements Context, SnippetAccepting
     {
         $this->visitPath('/plot/new');
         $this->getPage()->fillField('Nom', $plot);
+        $this->getPage()->pressButton('Enregistrer');
+    }
+
+    /**
+     * @Given I have a crop cycle :cropcycle on plot :plot
+     */
+    public function iHaveACropCycleOnPlot($cropcycle, $plot)
+    {
+        $this->iHaveAPlot($plot);
+        $this->getPage()->clickLink("Ajouter une culture");
+        $this->getPage()->fillField('Nom', $cropcycle);
         $this->getPage()->pressButton('Enregistrer');
     }
 
