@@ -31,7 +31,7 @@ class ActionController extends Controller
 
         $cropCycle = $this->getDoctrine()->getManager()->getRepository('AppBundle:CropCycle')->find($id);
 
-        $actions = $em->getRepository('AppBundle:Action')->findAll();
+        $actions = $em->getRepository('AppBundle:Action')->findAll();//for current cropCycle
 
         return $this->render('@App/action/index.html.twig', array(
             'actions' => $actions,
@@ -152,13 +152,15 @@ class ActionController extends Controller
         $form = $this->createDeleteForm($action);
         $form->handleRequest($request);
 
+        $id = $action->getCropCycle()->getId();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($action);
             $em->flush();
         }
 
-        return $this->redirectToRoute('action_index');
+        return $this->redirectToRoute('action_index', array('id' => $id));
     }
 
     /**
