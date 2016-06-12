@@ -3,10 +3,12 @@ Feature: Actions management
   As a farmer
   I need to be able to read/create/edit/delete/list my actions
 
-  @clear_data @loadInterventions
-  Scenario: Create/Edit/Delete an action for a specific crop cycle
+  Background:
     Given I am logged in as a farmer with email "farmer@repair.nc" and password "farmer"
-    And I have a crop cycle "Ananas 1" on plot "Parcelle A"
+
+  @clear_data @loadInterventions
+  Scenario: Create/Show/Edit/Delete an action for a specific crop cycle
+    Given I have a crop cycle "Ananas 1" on plot "Parcelle A"
     When I follow "Ajouter une intervention"
     And I fill in "Nom" with "Labour #1"
     And I select "Labour" from "Intervention"
@@ -20,5 +22,24 @@ Feature: Actions management
     When I press "Supprimer"
     Then I should see "Interventions culturales"
     And I should not see "Labour #2"
+
+  Scenario: List actions for a specific cropCycle
+    Given I have a crop cycle "Ananas 1" on plot "Parcelle A"
+    When I follow "Ajouter une intervention"
+    And I fill in "Nom" with "Labour sur Ananas 1"
+    And I select "Labour" from "Intervention"
+    And I press "Enregistrer"
+    Given I follow "Voir la parcelle"
+    And I fill in "Nom" with "Labour sur Ananas 2"
+    And I select "Labour" from "Intervention"
+    And I press "Enregistrer"
+    When I follow "Liste des interventions"
+    Then I should see "Interventions culturales"
+    And I should not see "Labour sur Ananas 1"
+    And I should see "Labour sur Ananas 2"
+
+
+
+
 
 

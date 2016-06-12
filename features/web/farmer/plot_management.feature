@@ -19,7 +19,7 @@ Feature: Plot management
     And I should not see "Supprimer"
     When I follow "Editer"
     And I press "Supprimer"
-    Then I should see "Liste des parcelles"
+    Then I should see "Parcelles"
     And I should not see "Parcelle B"
 
 

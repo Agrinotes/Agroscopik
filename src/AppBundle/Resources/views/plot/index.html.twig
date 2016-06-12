@@ -1,10 +1,9 @@
 
-    <h1>Liste des parcelles</h1>
+    <h2>Parcelles</h2>
 
     <table>
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Nom</th>
                 <th>Actions</th>
             </tr>
@@ -13,18 +12,7 @@
         {% for plot in plots %}
             {% if is_granted('VIEW', plot) or is_granted('ROLE_ADMIN') %}
             <tr>
-                <td><a href="{{ path('plot_show', { 'id': plot.id }) }}">{{ plot.id }}</a></td>
-                <td>{{ plot.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('plot_show', { 'id': plot.id }) }}">Voir</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('plot_edit', { 'id': plot.id }) }}">Editer</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a href="{{ path('plot_show', { 'id': plot.id }) }}">{{ plot.name }}</a></td>
             </tr>
             {% endif %}
         {% endfor %}

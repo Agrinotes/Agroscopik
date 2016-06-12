@@ -1,14 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Parcelle {{ plot.id }}</h1>
-
-    <h2>Nom de la parcelle</h2>
-    <p>{{ plot.name }}</p>
+    <h1>{{ plot.name }}</h1>
 
     <ul>
         <li>
-            <a href="{{ path('plot_index') }}">Liste des parcelles</a>
+            <a href="{{ path('farm_show_current') }}">Liste des parcelles</a>
         </li>
         {% if is_granted('EDIT', plot) or is_granted('ROLE_ADMIN') %}
             <li>

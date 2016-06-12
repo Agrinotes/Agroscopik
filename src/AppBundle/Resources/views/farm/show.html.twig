@@ -1,35 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Farm</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ farm.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom de la ferme</th>
-                <td>{{ farm.name }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    {{ render(controller('AppBundle:Plot:index')) }}
+    <h1>{{ farm.name }}</h1>
 
     <ul>
         {% if is_granted('EDIT',farm) or is_granted('ROLE_ADMIN') %}
-        <li>
-            <a href="{{ path('farm_edit', { 'id': farm.id }) }}">Editer</a>
-        </li>
+            <li>
+                <a class="btn" href="{{ path('farm_edit', { 'id': farm.id }) }}">Editer</a>
+            </li>
         {% endif %}
-        {% if is_granted('DELETE',farm) or is_granted('ROLE_ADMIN') %}
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+        {% if is_granted('DELETE', farm) or is_granted('ROLE_ADMIN') %}
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer">
+                {{ form_end(delete_form) }}
+            </li>
         {% endif %}
     </ul>
+
+    {{ render(controller('AppBundle:Plot:index')) }}
+
 {% endblock %}

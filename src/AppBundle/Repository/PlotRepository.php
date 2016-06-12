@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class PlotRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllForCurrentFarm ($id)
+    {
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->where('p.farm = :farm')
+            ->setParameter('farm', $id)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

@@ -22,33 +22,41 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  * Farm controller.
  *
  * @Security("has_role('ROLE_USER)")
- * @Route("/farm")
  */
 class FarmController extends Controller
 {
+
     /**
-     * List all Farm entities
+     * Finds and displays current user Farm entity.
      *
+     * @Route("/farm", name="farm_show_current")
      * @Security("has_role('ROLE_FARMER')")
-     * @Route("/")
+     * @Method("GET")
+     *
      */
     public function showCurrentAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $farmId = $this->getUser()->getFarm()->getId();
+        $repository = $em->getRepository('AppBundle:Farm');
+        $id = $this->getUser()->getFarm()->getId();
+        $farm = $repository->find($id);
 
-        $farm = $em->getRepository('AppBundle:Farm')->findOneById($farmId);
+        $deleteForm = $this->createDeleteForm($farm);
 
-        return $this->render('@App/farm/show.html.twig', array(
-            'farm' => $farm
+        return $this->render('AppBundle:farm:show.html.twig', array(
+            'farm' => $farm,
+            'delete_form' => $deleteForm->createView(),
         ));
     }
+
 
     /**
      * List all Farm entities
      *
      * @Security("has_role('ROLE_ADMIN')")
-     * @Route("/list")
+     * @Route("/farm/list")
+     * @param Request $request
+     * @return Response
      */
     public function farmListAction(Request $request)
     {
@@ -63,7 +71,7 @@ class FarmController extends Controller
     /**
      * Creates a new Farm entity.
      *
-     * @Route("/new", name="farm_new")
+     * @Route("/farm/new", name="farm_new")
      * @Method({"GET", "POST"})
      * @Security("has_role('ROLE_USER')")
      */
@@ -143,7 +151,7 @@ class FarmController extends Controller
     /**
      * Finds and displays a Farm entity.
      *
-     * @Route("/{id}", name="farm_show")
+     * @Route("/farm/{id}", name="farm_show")
      * @Method("GET")
      * @Security("is_granted('VIEW', farm) or has_role('ROLE_ADMIN')")
      *
@@ -164,10 +172,11 @@ class FarmController extends Controller
 
 
 
+
     /**
      * Displays a form to edit an existing Farm entity.
      *
-     * @Route("/{id}/edit", name="farm_edit")
+     * @Route("/farm/{id}/edit", name="farm_edit")
      * @Method({"GET", "POST"})
      * @Security("is_granted('EDIT', farm) or has_role('ROLE_ADMIN')")
      */
@@ -195,7 +204,7 @@ class FarmController extends Controller
     /**
      * Deletes a Farm entity.
      *
-     * @Route("/delete/{id}", name="farm_delete")
+     * @Route("/farm/delete/{id}", name="farm_delete")
      * @Method("DELETE")
      * @Security("is_granted('DELETE', farm) or has_role('ROLE_ADMIN')")
      */

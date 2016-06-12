@@ -30,8 +30,9 @@ class PlotController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $farm_id = $this->getUser()->getFarm()->getId();
 
-        $plots = $em->getRepository('AppBundle:Plot')->findAll();
+        $plots = $em->getRepository('AppBundle:Plot')->findAllForCurrentFarm($farm_id);
 
         return $this->render('AppBundle:plot:index.html.twig', array(
             'plots' => $plots,
