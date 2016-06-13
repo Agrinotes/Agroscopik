@@ -1,37 +1,27 @@
-    <h1>Interventions culturales</h1>
+<h1>Interventions culturales</h1>
 
-    <table>
-        <thead>
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for action in actions %}
+        {% if is_granted('VIEW', action) or is_granted('ROLE_ADMIN') %}
             <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for action in actions %}{% if is_granted('VIEW', action) or is_granted('ROLE_ADMIN') %}
-        <tr>
-                <td><a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.id }}</a></td>
-                <td>{{ action.name }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('action_show', { 'id': action.id }) }}">Voir</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
-                        </li>
-                    </ul>
+                    <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
                 </td>
             </tr>
         {% endif %}
-        {% endfor %}
-        </tbody>
-    </table>
+    {% endfor %}
+    </tbody>
+</table>
 
-    <ul>
-        <li>
-            <a href="{{ path('action_new', { 'id': cropCycle.id }) }}">Ajouter une intervention</a>
-        </li>
-    </ul>
+<ul>
+    <li>
+        <a href="{{ path('action_new', { 'id': cropCycle.id }) }}">Ajouter une intervention</a>
+    </li>
+</ul>
 

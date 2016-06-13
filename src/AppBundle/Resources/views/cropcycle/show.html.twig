@@ -1,20 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Cycle de culture</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ cropCycle.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ cropCycle.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h1>{{ cropCycle.name }}</h1>
 
     <ul>
         <li>

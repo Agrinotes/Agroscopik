@@ -3,27 +3,14 @@
     <table>
         <thead>
         <tr>
-            <th>Id</th>
             <th>Nom</th>
-            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         {% for cropCycle in cropCycles %}
             {% if is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN') %}
                 <tr>
-                    <td><a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.id }}</a></td>
-                    <td>{{ cropCycle.name }}</td>
-                    <td>
-                        <ul>
-                            <li>
-                                <a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">Voir</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('cropcycle_edit', { 'id': cropCycle.id }) }}">Editer</a>
-                            </li>
-                        </ul>
-                    </td>
+                    <td><a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.name }}</a></td>
                 </tr>
             {% endif %}
         {% endfor %}

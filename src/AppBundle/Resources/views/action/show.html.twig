@@ -1,32 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Action</h1>
-
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ action.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ action.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <h1>{{ action.name }}</h1>
 
     <ul>
         <li>
-            <a href="{{ path('action_index', { 'id': action.cropCycle.id }) }}">Back to the list</a>
+            <a href="{{ path('cropcycle_show', { 'id': action.cropCycle.id }) }}">Retour à liste des interventions</a>
         </li>
-        <li>
-            <a href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
+        {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
+            </li>
+        {% endif %}
+        {% if is_granted('DELETE', action) or is_granted('ROLE_ADMIN') %}
+            <li>
+                {{ form_start(delete_form) }}
                 <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
+                {{ form_end(delete_form) }}
+            </li>
+        {% endif %}
     </ul>
 {% endblock %}

@@ -13,10 +13,7 @@ class MenuBuilder implements ContainerAwareInterface
     {
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
-        $menu->addChild('Ferme', array('route' => 'farm_show_current'))
-            ->setAttribute('icon', 'fa fa-list');
-        $menu->addChild('Accueil', array('route' => 'homepage'))
-            ->setAttribute('icon', 'fa fa-group');
+        $menu->addChild('Parcelles', array('route' => 'farm_show_current'));
         return $menu;
     }
 }

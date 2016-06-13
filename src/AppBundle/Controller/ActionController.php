@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\CropCycle;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -11,10 +12,13 @@ use AppBundle\Form\ActionType;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Action controller.
  *
+ * @Security("has_role('ROLE_USER')")
  * @Route("/")
  */
 class ActionController extends Controller
@@ -49,12 +53,20 @@ class ActionController extends Controller
     {
         $action = new Action();
 
-        // Get current cropCycle
-        $cropCycle = $this->getDoctrine()->getManager()->getRepository('AppBundle:CropCycle')->find($id);
-        $cropCycle->addAction($action); // Which also setCropcycle($this) on $action
-
         // Get Entity Manager
         $em = $this->getDoctrine()->getManager();
+
+        // Get current cropCycle
+        $cropCycle = $em->getRepository('AppBundle:CropCycle')->find($id);
+
+        // Check for edit access
+        $authorizationChecker = $this->get('security.authorization_checker');
+        if (false === $authorizationChecker->isGranted('EDIT', $cropCycle)) {
+            throw new AccessDeniedException();
+        }
+
+        // Link this action to current crop cycle
+        $cropCycle->addAction($action); // Which also setCropcycle($this) on $action
 
         $form = $this->createForm('AppBundle\Form\ActionType', $action);
         $form->handleRequest($request);
@@ -88,7 +100,7 @@ class ActionController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
-            return $this->redirectToRoute('action_show', array('id' => $action->getId()));
+            return $this->redirectToRoute('cropcycle_show', array('id' => $action->getCropCycle()->getId()));
         }
 
         return $this->render('@App/action/new.html.twig', array(
@@ -160,7 +172,7 @@ class ActionController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('action_index', array('id' => $id));
+        return $this->redirectToRoute('cropcycle_show', array('id' => $id));
     }
 
     /**
