@@ -23,4 +23,20 @@ class ActionRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByInterventionCategory($id)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->join('a.intervention', 'int')
+            ->addSelect('int')
+            ->join('int.interventionCategory', 'cat')
+            ->addSelect('cat')
+            ->where('cat.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
 }

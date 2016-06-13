@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\CropCycle;
+use AppBundle\Entity\InterventionCategory;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -47,6 +48,27 @@ class ActionController extends Controller
         return $this->render('@App/action/index.html.twig', array(
             'actions' => $actions,
             'cropCycle' => $cropCycle,
+        ));
+    }
+
+    /**
+     * Lists all Action entities for a specific crop cycle
+     *
+     * @Route("/action/category/{id}", name="action_by_category")
+     * @Method("GET")
+     */
+    public function listByCategoryAction(Request $request, InterventionCategory $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $category = $this->getDoctrine()->getManager()->getRepository('AppBundle:InterventionCategory')->find($id);
+
+        // Find actions for current intervention category
+        $actions = $em->getRepository('AppBundle:Action')->findByInterventionCategory($id);
+
+        return $this->render('@App/action/listByCategory.html.twig', array(
+            'actions' => $actions,
+            'category' => $category,
         ));
     }
 

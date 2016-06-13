@@ -35,7 +35,7 @@ class Action
     private $cropCycle;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Intervention", inversedBy="cropCycleInterventions",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Intervention", inversedBy="actions",cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $intervention;

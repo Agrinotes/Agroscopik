@@ -40,8 +40,6 @@ Feature: Actions management
     And I should not see "Labour sur Ananas 1"
     But I should see "Labour sur Ananas 2"
 
-  @clear_data @loadInterventions
-  Scenario: List actions for a specific intervention category
 
 
 

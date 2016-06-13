@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+<h1>{{ category.name }}</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for action in actions %}
+        {% if is_granted('VIEW', action) or is_granted('ROLE_ADMIN') %}
+            <tr>
+                <td>
+                    <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+
