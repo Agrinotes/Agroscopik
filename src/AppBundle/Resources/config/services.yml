@@ -1,0 +1,7 @@
+services:
+    app.menu.voter.request:
+        class: AppBundle\Menu\RequestVoter
+        arguments:
+            - "@service_container"
+        tags:
+            - { name: knp_menu.voter }
