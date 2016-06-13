@@ -41,7 +41,8 @@ class ActionController extends Controller
             throw new AccessDeniedException();
         }
 
-        $actions = $em->getRepository('AppBundle:Action')->findAll();//for current cropCycle
+        // Find actions for current cropCycle
+        $actions = $em->getRepository('AppBundle:Action')->findByCropCycle($id);
 
         return $this->render('@App/action/index.html.twig', array(
             'actions' => $actions,

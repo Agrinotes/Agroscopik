@@ -12,6 +12,7 @@
                 <a href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
             </li>
         {% endif %}
+
         {% if is_granted('DELETE', action) or is_granted('ROLE_ADMIN') %}
             <li>
                 {{ form_start(delete_form) }}

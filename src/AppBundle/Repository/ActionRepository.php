@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class ActionRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByCropCycle($id)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->join('a.cropCycle', 'cropCycle')
+            ->addSelect('cropCycle')
+            ->where('cropCycle.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
 }

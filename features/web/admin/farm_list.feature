@@ -17,4 +17,4 @@ Feature: List Farms
   Scenario: Show a single farm data
     Given I am on "farm/list"
     When I follow "Farm 1"
-    Then I should see "Nom de la ferme"
+    Then I should see "Farm 1"
