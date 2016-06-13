@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -12,6 +13,7 @@ use AppBundle\Form\InterventionType;
 /**
  * Intervention controller.
  *
+ * @Security("is_granted('ROLE_USER')")
  * @Route("/intervention")
  */
 class InterventionController extends Controller
@@ -78,6 +80,7 @@ class InterventionController extends Controller
     /**
      * Displays a form to edit an existing Intervention entity.
      *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/{id}/edit", name="intervention_edit")
      * @Method({"GET", "POST"})
      */
@@ -105,6 +108,7 @@ class InterventionController extends Controller
     /**
      * Deletes a Intervention entity.
      *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/{id}", name="intervention_delete")
      * @Method("DELETE")
      */

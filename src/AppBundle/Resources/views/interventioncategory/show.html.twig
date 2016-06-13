@@ -9,10 +9,9 @@
                 <th>Nom</th>
                 <td>{{ interventionCategory.name }}</td>
             </tr>
-
         </tbody>
     </table>
-
+{% if is_granted('ROLE_ADMIN') %}
     <ul>
         <li>
             <a href="{{ path('interventioncategory_index') }}">Liste des catégories d'intervention</a>
@@ -20,10 +19,12 @@
         <li>
             <a href="{{ path('interventioncategory_edit', { 'id': interventionCategory.id }) }}">Editer</a>
         </li>
+
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
         </li>
     </ul>
+{% endif %}
 {% endblock %}

@@ -23,6 +23,7 @@ class InterventionCategoryController extends Controller
     /**
      * Lists all InterventionCategory entities.
      *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/", name="interventioncategory_index")
      * @Method("GET")
      */
@@ -40,6 +41,7 @@ class InterventionCategoryController extends Controller
     /**
      * Creates a new InterventionCategory entity.
      *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/new", name="interventioncategory_new")
      * @Method({"GET", "POST"})
      */
@@ -66,6 +68,7 @@ class InterventionCategoryController extends Controller
     /**
      * Finds and displays a InterventionCategory entity.
      *
+     * @Security("is_granted('ROLE_USER)")
      * @Route("/{id}", name="interventioncategory_show")
      * @Method("GET")
      */
@@ -82,6 +85,7 @@ class InterventionCategoryController extends Controller
     /**
      * Displays a form to edit an existing InterventionCategory entity.
      *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/{id}/edit", name="interventioncategory_edit")
      * @Method({"GET", "POST"})
      */
@@ -109,6 +113,7 @@ class InterventionCategoryController extends Controller
     /**
      * Deletes a InterventionCategory entity.
      *
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Route("/{id}", name="interventioncategory_delete")
      * @Method("DELETE")
      */

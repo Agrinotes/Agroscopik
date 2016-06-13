@@ -24,7 +24,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 class ActionController extends Controller
 {
     /**
-     * Lists all Action entities.
+     * Lists all Action entities for a specific crop cycle
      *
      * @Route("/cropcycle/{id}/action", name="action_index")
      * @Method("GET")
@@ -34,6 +34,12 @@ class ActionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $cropCycle = $this->getDoctrine()->getManager()->getRepository('AppBundle:CropCycle')->find($id);
+
+        // Check for edit access
+        $authorizationChecker = $this->get('security.authorization_checker');
+        if (false === $authorizationChecker->isGranted('VIEW', $cropCycle)) {
+            throw new AccessDeniedException();
+        }
 
         $actions = $em->getRepository('AppBundle:Action')->findAll();//for current cropCycle
 
@@ -113,6 +119,7 @@ class ActionController extends Controller
     /**
      * Finds and displays a Action entity.
      *
+     * @Security("is_granted('VIEW', action) or is_granted('ROLE_ADMIN')")
      * @Route("/action/{id}", name="action_show")
      * @Method("GET")
      */
@@ -129,6 +136,7 @@ class ActionController extends Controller
     /**
      * Displays a form to edit an existing Action entity.
      *
+     * @Security("is_granted('EDIT', action) or is_granted('ROLE_ADMIN')")
      * @Route("/action/{id}/edit", name="action_edit")
      * @Method({"GET", "POST"})
      */
@@ -156,7 +164,9 @@ class ActionController extends Controller
     /**
      * Deletes a Action entity.
      *
-     * @Route("/action/{id}", name="action_delete")
+     *
+     * @Route("/action/delete/{id}", name="action_delete")
+     * @Security("is_granted('DELETE', action) or is_granted('ROLE_ADMIN')")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Action $action)
