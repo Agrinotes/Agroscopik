@@ -38,13 +38,6 @@ class CropCycle
     private $plot;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true)
-     */
-    private $name;
-
-    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Action", mappedBy="cropCycle", cascade={"persist","remove"})
      */
     private $actions;
@@ -66,27 +59,18 @@ class CropCycle
     }
 
     /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return CropCycle
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
      * Get name
      *
      * @return string
      */
     public function getName()
     {
-        return $this->name;
+        $name = "";
+        $crops = $this->getCrops();
+        foreach ($crops as $crop) {
+            $name = $name.$crop->getName();
+        }
+        return $name;
     }
 
     /**
