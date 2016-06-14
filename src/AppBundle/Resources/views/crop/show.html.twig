@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ crop.name }}</h1>
+
+    <ul>
+        {% if is_granted('ROLE_ADMIN') %}
+        <li>
+            <a href="{{ path('cropcycle_edit', { 'id': cropCycle.id }) }}">Editer</a>
+        </li>
+        <li>
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Supprimer">
+                {{ form_end(delete_form) }}
+        </li>
+        {% endif %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,27 @@
+<h1>Liste des cultures</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nom</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for crop in crops %}
+        {% if is_granted('ROLE_USER') %}
+            <tr>
+                <td><a href="{{ path('crop_show', { 'id': crop.id }) }}">{{ crop.name }}</a></td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    {% if is_granted('ROLE_ADMIN') %}
+        <li>
+            <a href="{{ path('crop_new') }}">Ajouter une culture</a>
+        </li>
+    {% endif %}
+</ul>
+

@@ -19,6 +19,7 @@ class CropCycle
     public function __construct()
     {
         $this->actions = new ArrayCollection();
+        $this->crops = new ArrayCollection();
     }
 
     /**
@@ -47,6 +48,12 @@ class CropCycle
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Action", mappedBy="cropCycle", cascade={"persist","remove"})
      */
     private $actions;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Crop", inversedBy="cropCycles", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $crops;
 
     /**
      * Get id
@@ -141,6 +148,43 @@ class CropCycle
     public function getActions()
     {
         return $this->actions;
+    }
+
+    /**
+     * Add crop
+     *
+     * @param \AppBundle\Entity\Crop $crop
+     * @return CropCycle
+     */
+    public function addCrop(Crop $crop)
+    {
+        $this->crops[] = $crop;
+
+        $crop->addCropCycle($this); // Bidirectionnality
+
+        return $this;
+    }
+
+    /**
+     * Remove crops
+     *
+     * @param \AppBundle\Entity\Crop $crop
+     */
+    public function removeCrop(Crop $crop)
+    {
+        $this->crops->removeElement($crop);
+
+        $crop->removeCropCycle($this); // This must be verified
+    }
+
+    /**
+     * Get crops
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCrops()
+    {
+        return $this->crops;
     }
 }
 
