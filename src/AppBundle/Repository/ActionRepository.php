@@ -39,4 +39,20 @@ class ActionRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findByCrop($id)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->join('a.cropCycle', 'cycle')
+            ->addSelect('cycle')
+            ->join('cycle.crops', 'crops')
+            ->addSelect('crops')
+            ->where('crops.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
 }

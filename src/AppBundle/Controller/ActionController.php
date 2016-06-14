@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Crop;
 use AppBundle\Entity\CropCycle;
 use AppBundle\Entity\InterventionCategory;
 use Symfony\Component\HttpFoundation\Request;
@@ -52,7 +53,7 @@ class ActionController extends Controller
     }
 
     /**
-     * Lists all Action entities for a specific crop cycle
+     * Lists all Action entities for a specific intervention category
      *
      * @Route("/action/category/{id}", name="action_by_category")
      * @Method("GET")
@@ -69,6 +70,27 @@ class ActionController extends Controller
         return $this->render('@App/action/listByCategory.html.twig', array(
             'actions' => $actions,
             'category' => $category,
+        ));
+    }
+
+    /**
+     * Lists all Action entities for a specific crop
+     *
+     * @Route("/action/crop/{id}", name="action_by_crop")
+     * @Method("GET")
+     */
+    public function listByCropAction(Request $request, Crop $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $crop = $this->getDoctrine()->getManager()->getRepository('AppBundle:Crop')->find($id);
+
+        // Find actions for current intervention category
+        $actions = $em->getRepository('AppBundle:Action')->findByCrop($id);
+
+        return $this->render('@App/action/listByCrop.html.twig', array(
+            'actions' => $actions,
+            'crop' => $crop,
         ));
     }
 
