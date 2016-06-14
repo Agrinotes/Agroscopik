@@ -28,7 +28,8 @@ class ActionType extends AbstractType
             ->add('periods', CollectionType::class , array(
                 'entry_type'         => EventType::class,
                 'allow_add'    => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'by_reference' => false,
             ))
         ;
     }
