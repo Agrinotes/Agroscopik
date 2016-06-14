@@ -16,8 +16,21 @@ class EventType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('startDatetime',DateTimeType::class)
-            ->add('endDatetime', DateTimeType::class)
+            ->add('startDatetime',DateTimeType::class, array(
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text',
+                'html5'   => false,
+                'data' => new \DateTime(),
+                'required' => true,
+                'attr' => array('class' => 'here')
+            ))
+            ->add('endDatetime', DateTimeType::class, array(
+                'date_widget' => 'single_text',
+                'time_widget' => 'single_text',
+                'html5'   => false,
+                'data' => new \DateTime(),
+                'required' => true,
+            ))
         ;
     }
     

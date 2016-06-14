@@ -13,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
 class Event
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->startDatetime = new \DateTime('now');
+        $this->endDatetime = new \DateTime('now');
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
