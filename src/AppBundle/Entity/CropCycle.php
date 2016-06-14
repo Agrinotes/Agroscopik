@@ -10,6 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="crop_cycle")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CropCycleRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class CropCycle
 {

@@ -13,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
 class Action
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+    }
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -34,6 +41,11 @@ class Action
     private $intervention;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="action", cascade={"persist","remove"})
+     */
+    private $periods;
+
+    /**
      * Get id
      *
      * @return int
@@ -42,7 +54,6 @@ class Action
     {
         return $this->id;
     }
-
 
     /**
      * Get name
@@ -100,6 +111,44 @@ class Action
     public function getIntervention()
     {
         return $this->intervention;
+    }
+
+    /**
+     * Add period
+     *
+     * @param \AppBundle\Entity\Event $period
+     * @return Action
+     */
+    public function addPeriod(Event $period)
+    {
+        $this->periods[] = $period;
+
+        // We also add the current action to the period
+        $period->setAction($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove period
+     *
+     * @param \AppBundle\Entity\Event $period
+     */
+    public function removePeriod(Event $period)
+    {
+        $this->periods->removeElement($period);
+
+        // I should do something here to remove the Event $period from the database
+    }
+
+    /**
+     * Get action
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPeriods()
+    {
+        return $this->periods;
     }
 }
 
