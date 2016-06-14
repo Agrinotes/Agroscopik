@@ -130,5 +130,25 @@ class Event
     {
         return $this->action;
     }
+
+    /**
+     * Get status
+     *
+     */
+    public function getStatus()
+    {
+        $today = new \DateTime('now');
+
+        if($today > $this->endDatetime){
+            return 'CompletedAction';
+        }
+        elseif ($today >= $this->startDatetime && $today <=$this->endDatetime){
+            return 'ActiveAction';
+        }
+        elseif ($today < $this->startDatetime){
+            return 'PotentialAction';
+        }
+    }
+
 }
 

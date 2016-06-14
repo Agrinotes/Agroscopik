@@ -1,10 +1,11 @@
 <h1>Interventions culturales</h1>
 
-<table>
+<table class="table table-hover">
     <thead>
     <tr>
         <th>Nom</th>
         <th>Date</th>
+        <th>Status</th>
     </tr>
     </thead>
     <tbody>
@@ -15,7 +16,14 @@
                     <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
                 </td>
                 <td>
-                    Date comming soon
+                    {% for period in action.periods %}
+                        {{ period.startDateTime | date('d/m/Y') }}
+                    {% endfor %}
+                </td>
+                <td>
+                    {% for period in action.periods %}
+                        {{ period.status }}
+                    {% endfor %}
                 </td>
             </tr>
         {% endif %}
@@ -23,9 +31,7 @@
     </tbody>
 </table>
 
-<ul>
-    <li>
-        <a href="{{ path('action_new', { 'id': cropCycle.id }) }}">Ajouter une intervention</a>
-    </li>
-</ul>
+
+<a class="btn btn-primary" href="{{ path('action_new', { 'id': cropCycle.id }) }}">Ajouter une intervention</a>
+
 
