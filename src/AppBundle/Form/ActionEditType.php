@@ -21,37 +21,18 @@ class ActionEditType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('intervention', EntityType::class, array(
-                'class' => 'AppBundle:Intervention',
-                'choice_label' => 'name',
-            ))
+            ->remove('periods')
             ->add('periods', CollectionType::class, array(
                 'entry_type' => EventEditType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
             ))
-            ->add('tractors', EntityType::class, array(
-                'class' => 'AppBundle:Tractor',
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-            ))
-            ->add('implements', EntityType::class, array(
-                'class' => 'AppBundle:Implement',
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => false,
-            ));
+;
     }
 
-    /**
-     * @param OptionsResolver $resolver
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function getParent()
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Action'
-        ));
+        return ActionType::class;
     }
 }

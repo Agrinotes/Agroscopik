@@ -10,20 +10,6 @@ namespace AppBundle\Repository;
  */
 class TractorRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllForCurrentFarm ($id)
-    {
-        $qb = $this->createQueryBuilder('t');
-
-        $qb->where('t.farm = :farm')
-            ->setParameter('farm', $id)
-        ;
-
-        return $qb
-            ->getQuery()
-            ->getResult()
-            ;
-    }
-
     public function qbFindAllForCurrentFarm ($id)
     {
         $qb = $this->createQueryBuilder('t');
@@ -34,4 +20,16 @@ class TractorRepository extends \Doctrine\ORM\EntityRepository
 
         return $qb;
     }
+
+    public function findAllForCurrentFarm ($id)
+    {
+        $qb = $this->qbFindAllForCurrentFarm($id);
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
 }

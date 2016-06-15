@@ -10,13 +10,20 @@ namespace AppBundle\Repository;
  */
 class ImplementRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllForCurrentFarm ($id)
+    public function qbFindAllForCurrentFarm ($id)
     {
         $qb = $this->createQueryBuilder('i');
 
         $qb->where('i.farm = :farm')
             ->setParameter('farm', $id)
         ;
+
+        return $qb;
+    }
+
+    public function findAllForCurrentFarm ($id)
+    {
+        $qb = $this->qbFindAllForCurrentFarm($id);
 
         return $qb
             ->getQuery()

@@ -42,13 +42,6 @@ class ActionType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ))
-            ->add('implements', EntityType::class, array(
-                'class' => 'AppBundle:Implement',
-                'choice_label' => 'name',
-                'multiple' => true,
-                'required' => false,
-                'expanded' => false,
-            ))
         ;
 
         // grab the user, do a quick sanity check that one exists
@@ -64,7 +57,7 @@ class ActionType extends AbstractType
             function (FormEvent $event) use ($farm) {
                 $form = $event->getForm();
 
-                $formOptions = array(
+                $tractorsOptions = array(
                     'class' => 'AppBundle:Tractor',
                     'choice_label' => 'name',
                     'required' => false,
@@ -75,9 +68,20 @@ class ActionType extends AbstractType
                     },
                 );
 
-                // create the field, this is similar the $builder->add()
-                // field name, field type, data, options
-                $form->add('tractors', EntityType::class, $formOptions);
+                $form->add('tractors', EntityType::class, $tractorsOptions);
+
+                $implementsOptions = array(
+                    'class' => 'AppBundle:Implement',
+                    'choice_label' => 'name',
+                    'required' => false,
+                    'multiple' => true,
+                    'expanded' => false,
+                    'query_builder' => function (EntityRepository $er) use ($farm) {
+                        return $er->qbFindAllForCurrentFarm($farm);
+                    },
+                );
+
+                $form->add('implements', EntityType::class, $implementsOptions);
             }
         );
     }
