@@ -42,16 +42,11 @@ class ActionType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ))
-            ->add('tractors', EntityType::class, array(
-                'class' => 'AppBundle:Tractor',
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded' => true,
-            ))
             ->add('implements', EntityType::class, array(
                 'class' => 'AppBundle:Implement',
                 'choice_label' => 'name',
                 'multiple' => true,
+                'required' => false,
                 'expanded' => false,
             ))
         ;
@@ -72,6 +67,7 @@ class ActionType extends AbstractType
                 $formOptions = array(
                     'class' => 'AppBundle:Tractor',
                     'choice_label' => 'name',
+                    'required' => false,
                     'multiple' => true,
                     'expanded' => true,
                     'query_builder' => function (EntityRepository $er) use ($farm) {
