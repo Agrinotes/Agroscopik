@@ -16,6 +16,8 @@ class Farm
     public function __construct()
     {
         $this->plots = new ArrayCollection();
+        $this->tractors = new ArrayCollection();
+
     }
 
         /**
@@ -45,6 +47,12 @@ class Farm
      * @ORM\JoinColumn(nullable=true)
      */
     private $farmer;
+
+    /**
+     * @ORM\OneToMany (targetEntity="AppBundle\Entity\Tractor", mappedBy="farm", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $tractors;
 
     /**
      * Get id
@@ -140,6 +148,42 @@ class Farm
     public function getFarmer()
     {
         return $this->farmer;
+    }
+
+    /**
+     * Add tractor
+     *
+     * @param \AppBundle\Entity\Tractor $tractor
+     * @return Farm
+     */
+    public function addTractor(Tractor $tractor)
+    {
+        $this->tractors[] = $tractor;
+
+        // We also add the current farm to the tractor
+        $tractor->setFarm($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove tractor
+     *
+     * @param \AppBundle\Entity\Tractor $tractor
+     */
+    public function removeTractor(\AppBundle\Entity\Tractor $tractor)
+    {
+        $this->tractors->removeElement($tractor);
+    }
+
+    /**
+     * Get tractors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTractors()
+    {
+        return $this->tractors;
     }
 }
 

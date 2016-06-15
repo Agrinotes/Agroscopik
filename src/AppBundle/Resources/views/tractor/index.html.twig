@@ -13,7 +13,9 @@
         </thead>
         <tbody>
         {% for tractor in tractors %}
-            <tr>
+        {% if is_granted('VIEW', tractor) or is_granted('ROLE_ADMIN') %}
+
+        <tr>
                 <td><a href="{{ path('tractor_show', { 'id': tractor.id }) }}">{{ tractor.id }}</a></td>
                 <td>{{ tractor.name }}</td>
                 <td>
@@ -27,6 +29,7 @@
                     </ul>
                 </td>
             </tr>
+        {% endif %}
         {% endfor %}
         </tbody>
     </table>

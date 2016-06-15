@@ -8,16 +8,23 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Tractor;
 use AppBundle\Form\TractorType;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use AppBundle\Entity\Farm;
+
 
 /**
  * Tractor controller.
  *
+ * @Security("has_role('ROLE_USER')")
  * @Route("/tractor")
  */
 class TractorController extends Controller
 {
     /**
-     * Lists all Tractor entities.
+     * Lists all Tractor entities for current Farm
      *
      * @Route("/", name="tractor_index")
      * @Method("GET")
@@ -28,7 +35,7 @@ class TractorController extends Controller
 
         $tractors = $em->getRepository('AppBundle:Tractor')->findAll();
 
-        return $this->render('tractor/index.html.twig', array(
+        return $this->render('@App/tractor/index.html.twig', array(
             'tractors' => $tractors,
         ));
     }
@@ -37,23 +44,54 @@ class TractorController extends Controller
      * Creates a new Tractor entity.
      *
      * @Route("/new", name="tractor_new")
+     * @Security("is_granted('ROLE_FARMER')")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $tractor = new Tractor();
+
+        // Get Entity Manager
+        $em = $this->getDoctrine()->getManager();
+
+        $farm = $this->getUser()->getFarm();
+        $farm->addTractor($tractor);
+
         $form = $this->createForm('AppBundle\Form\TractorType', $tractor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $em->persist($tractor);
             $em->flush();
+
+            // Call ACL service
+            $aclProvider = $this->get('security.acl.provider');
+
+            // Create the ACL for current Action $action
+            $objectIdentity = ObjectIdentity::fromDomainObject($tractor);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // Retrieve the security identity of the current user
+            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
+
+            // Create Access Mask
+            $builder = new MaskBuilder();
+            $builder
+                ->add('view')
+                ->add('edit')
+                ->add('delete');
+            $mask = $builder->get();
+
+            // Insert Object Access Entry
+            $acl->insertObjectAce($securityIdentity, $mask);
+
+            // Update ACL
+            $aclProvider->updateAcl($acl);
 
             return $this->redirectToRoute('tractor_show', array('id' => $tractor->getId()));
         }
 
-        return $this->render('tractor/new.html.twig', array(
+        return $this->render('@App/tractor/new.html.twig', array(
             'tractor' => $tractor,
             'form' => $form->createView(),
         ));
@@ -62,6 +100,7 @@ class TractorController extends Controller
     /**
      * Finds and displays a Tractor entity.
      *
+     * @Security("is_granted('VIEW', tractor) or is_granted('ROLE_ADMIN')")
      * @Route("/{id}", name="tractor_show")
      * @Method("GET")
      */
@@ -69,7 +108,7 @@ class TractorController extends Controller
     {
         $deleteForm = $this->createDeleteForm($tractor);
 
-        return $this->render('tractor/show.html.twig', array(
+        return $this->render('@App/tractor/show.html.twig', array(
             'tractor' => $tractor,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -78,6 +117,7 @@ class TractorController extends Controller
     /**
      * Displays a form to edit an existing Tractor entity.
      *
+     * @Security("is_granted('EDIT', tractor) or is_granted('ROLE_ADMIN')")
      * @Route("/{id}/edit", name="tractor_edit")
      * @Method({"GET", "POST"})
      */
@@ -92,10 +132,10 @@ class TractorController extends Controller
             $em->persist($tractor);
             $em->flush();
 
-            return $this->redirectToRoute('tractor_edit', array('id' => $tractor->getId()));
+            return $this->redirectToRoute('tractor_show', array('id' => $tractor->getId()));
         }
 
-        return $this->render('tractor/edit.html.twig', array(
+        return $this->render('@App/tractor/edit.html.twig', array(
             'tractor' => $tractor,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -105,7 +145,8 @@ class TractorController extends Controller
     /**
      * Deletes a Tractor entity.
      *
-     * @Route("/{id}", name="tractor_delete")
+     * @Security("is_granted('DELETE', action) or is_granted('ROLE_ADMIN')")
+     * @Route("/{id}/delete", name="tractor_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Tractor $tractor)
@@ -134,7 +175,6 @@ class TractorController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('tractor_delete', array('id' => $tractor->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

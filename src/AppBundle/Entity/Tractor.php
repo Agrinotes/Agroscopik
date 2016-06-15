@@ -43,6 +43,12 @@ class Tractor
     private $actions;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Farm", inversedBy="tractors", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $farm;
+
+    /**
      * Get id
      *
      * @return int
@@ -107,6 +113,29 @@ class Tractor
     public function getActions()
     {
         return $this->actions;
+    }
+
+    /**
+     * Set farm
+     *
+     * @param \AppBundle\Entity\Farm $farm
+     * @return Plot
+     */
+    public function setFarm(Farm $farm)
+    {
+        $this->farm = $farm;
+
+        return $this;
+    }
+
+    /**
+     * Get farm
+     *
+     * @return \AppBundle\Entity\Farm
+     */
+    public function getFarm()
+    {
+        return $this->farm;
     }
 }
 
