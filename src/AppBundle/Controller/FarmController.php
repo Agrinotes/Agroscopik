@@ -79,7 +79,7 @@ class FarmController extends Controller
     {
         // If current user already have a farm, redirect it to his farm
         if ($this->getUser()->getFarm() instanceof Farm) {
-            return $this->redirectToRoute('plot_index');
+            return $this->redirectToRoute('farm_show_current');
         }
 
         // Get entity manager
@@ -141,7 +141,7 @@ class FarmController extends Controller
             $em->persist($farm);
             $em->flush();
 
-            return $this->redirectToRoute('farm_show', array('id' => $farm->getId()));
+            return $this->redirectToRoute('farm_show_current', array('id' => $farm->getId()));
         }
 
         return $this->render('AppBundle:farm:new.html.twig', array(

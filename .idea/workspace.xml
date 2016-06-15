@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/FarmType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/FarmType.php" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,10 +27,11 @@
       <file leaf-file-name="FarmController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3559322">
-              <caret line="91" column="57" selection-start-line="91" selection-start-column="57" selection-end-line="91" selection-end-column="57" />
+            <state vertical-scroll-proportion="0.8601695">
+              <caret line="81" column="60" selection-start-line="81" selection-start-column="60" selection-end-line="81" selection-end-column="60" />
               <folding>
-                <element signature="e#2578#2590#1#PHP" expanded="true" />
+                <element signature="e#2578#2597#1#PHP" expanded="true" />
+                <element signature="e#4405#4424#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -914,10 +913,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3559322">
-          <caret line="91" column="57" selection-start-line="91" selection-start-column="57" selection-end-line="91" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.8601695">
+          <caret line="81" column="60" selection-start-line="81" selection-start-column="60" selection-end-line="81" selection-end-column="60" />
           <folding>
-            <element signature="e#2578#2590#1#PHP" expanded="true" />
+            <element signature="e#2578#2597#1#PHP" expanded="true" />
+            <element signature="e#4405#4424#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
