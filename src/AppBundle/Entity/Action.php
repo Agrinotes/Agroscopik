@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="action")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ActionRepository")
- * @ORM\HasLifecycleCallbacks()
  */
 class Action
 {
@@ -23,8 +22,6 @@ class Action
         $this->tractors = new ArrayCollection();
         $this->implements = new ArrayCollection();
     }
-
-
 
     /**
      * @var int
@@ -61,20 +58,6 @@ class Action
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Implement",inversedBy="actions" ,cascade={"persist"})
      */
     private $implements;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="startDatetime", type="datetime",nullable=true)
-     */
-    private $startDatetime;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="endDatetime", type="datetime",nullable=true)
-     */
-    private $endDatetime;
 
     /**
      * Get id
@@ -260,53 +243,7 @@ class Action
         return $this->implements;
     }
 
-    /**
-     * Set startDatetime
-     *
-     * @param \DateTime $startDatetime
-     *
-     * @return Action
-     */
-    public function setStartDatetime($startDatetime)
-    {
-        $this->startDatetime = $startDatetime;
 
-        return $this;
-    }
-
-    /**
-     * Get startDatetime
-     *
-     * @return \DateTime
-     */
-    public function getStartDatetime()
-    {
-        return $this->startDatetime;
-    }
-
-    /**
-     * Set endDatetime
-     *
-     * @param \DateTime $endDatetime
-     *
-     * @return Action
-     */
-    public function setEndDatetime($endDatetime)
-    {
-        $this->endDatetime = $endDatetime;
-
-        return $this;
-    }
-
-    /**
-     * Get endDatetime
-     *
-     * @return \DateTime
-     */
-    public function getEndDatetime()
-    {
-        return $this->endDatetime;
-    }
 
     /**
      * Get progress
@@ -329,6 +266,50 @@ class Action
         }
 
         return array('completed_actions' => $completed_actions, 'count_actions' => $count_actions);
+    }
+
+    /**
+     * Get startDatetime
+     *
+     * @return \DateTime
+     */
+    public function getStartDatetime()
+    {
+        $periods = $this->getPeriods();
+
+        $startDatetime = "";
+
+        foreach($periods as $period){
+            if($startDatetime == ""){
+                $startDatetime = $period->getStartDateTime();
+            }
+            elseif($startDatetime > $period->getStartDateTime()){
+                $startDatetime = $period->getStartDateTime();
+            }
+        }
+        return $startDatetime;
+    }
+
+    /**
+     * Get endDatetime
+     *
+     * @return \DateTime
+     */
+    public function getEndDatetime()
+    {
+        $periods = $this->getPeriods();
+
+        $endDatetime = "";
+
+        foreach($periods as $period){
+            if($endDatetime == ""){
+                $endDatetime = $period->getEndDateTime();
+            }
+            elseif($endDatetime > $period->getEndDateTime()){
+                $endDatetime = $period->getEndDateTime();
+            }
+        }
+        return $endDatetime;
     }
 }
 
