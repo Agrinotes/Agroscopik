@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 class MenuBuilder implements ContainerAwareInterface
 {
+
     use ContainerAwareTrait;
 
     public function mainMenu(FactoryInterface $factory, array $options)
