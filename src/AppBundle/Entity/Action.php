@@ -152,5 +152,28 @@ class Action
     {
         return $this->periods;
     }
+
+    /**
+     * Get progress
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProgress()
+    {
+
+        $completed_actions = 0;
+        $count_actions = 0;
+
+        foreach($this->periods as $period){
+
+            if($period->getStatus()  == "CompletedAction"){
+                $completed_actions++;
+            }
+
+            $count_actions++;
+        }
+
+        return array('completed_actions' => $completed_actions, 'count_actions' => $count_actions);
+    }
 }
 

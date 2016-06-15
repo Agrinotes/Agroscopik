@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Crop;
 use AppBundle\Entity\CropCycle;
 use AppBundle\Entity\InterventionCategory;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -187,11 +188,29 @@ class ActionController extends Controller
      */
     public function editAction(Request $request, Action $action)
     {
+        $em = $this->getDoctrine()->getEntityManager();
+
         $deleteForm = $this->createDeleteForm($action);
-        $editForm = $this->createForm('AppBundle\Form\ActionType', $action);
+
+        $originalPeriods = new ArrayCollection();
+
+        // Create an ArrayCollection of the current Action->periods objects in the database
+        foreach ($action->getPeriods() as $period) {
+            $originalPeriods->add($period);
+        }
+
+        $editForm = $this->createForm('AppBundle\Form\ActionEditType', $action);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            // remove the relationship between the Period and the Action
+            foreach ($originalPeriods as $period) {
+                if (false === $action->getPeriods()->contains($period)) {
+                    $em->remove($period);
+                }
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($action);
             $em->flush();

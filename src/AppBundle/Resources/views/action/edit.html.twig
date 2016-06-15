@@ -3,9 +3,12 @@
 {% block body %}
     <h1>Editer l'intervention</h1>
 
+    <a href="#" id="add_period" class="btn btn-default">Ajouter une période</a>
+
+
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Enregistrer" />
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="Enregistrer"/>
     {{ form_end(edit_form) }}
 
     <ul>
@@ -13,11 +16,61 @@
             <a href="{{ path('action_show',{'id': action.id }) }}">Annuler</a>
         </li>
         {% if is_granted('DELETE', action) or is_granted('ROLE_ADMIN') %}
-        <li>
-            {{ form_start(delete_form) }}
+            <li>
+                {{ form_start(delete_form) }}
                 <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
+                {{ form_end(delete_form) }}
+            </li>
         {% endif %}
     </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $container = $('div#action_edit_periods');
+            var index = $container.children().length;
+            $('#add_period').click(function (e) {
+                addPeriod($container);
+
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+
+            $container.children('div').each(function () {
+                addDeleteLink($(this));
+            });
+
+
+            function addPeriod($container) {
+                var template = $container.attr('data-prototype')
+                        .replace(/__name__label__/g, 'Période ' + (index + 1))
+                        .replace(/__name__/g, index)
+                        ;
+
+                var $prototype = $(template);
+                addDeleteLink($prototype);
+                $container.append($prototype);
+
+                index++;
+            }
+
+            function addDeleteLink($prototype) {
+                var $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+                $prototype.append($deleteLink);
+                $deleteLink.click(function (e) {
+                    $prototype.remove();
+
+                    index--;
+
+                    e.preventDefault();
+                    return false;
+                });
+            }
+        });
+
+    </script>
 {% endblock %}
