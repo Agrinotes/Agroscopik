@@ -1,3 +1,7 @@
+app_tractor:
+    resource: "@AppBundle/Controller/TractorController.php"
+    type:     annotation
+
 app_event:
     resource: "@AppBundle/Controller/EventController.php"
     type:     annotation

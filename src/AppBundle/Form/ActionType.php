@@ -31,6 +31,12 @@ class ActionType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ))
+            ->add('tractors', EntityType::class,array(
+                'class'=> 'AppBundle:Tractor',
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+            ))
         ;
     }
 

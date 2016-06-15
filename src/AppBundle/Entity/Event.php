@@ -33,14 +33,14 @@ class Event
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="startDatetime", type="datetimetz")
+     * @ORM\Column(name="startDatetime", type="datetime")
      */
     private $startDatetime;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="endDatetime", type="datetimetz")
+     * @ORM\Column(name="endDatetime", type="datetime")
      */
     private $endDatetime;
 

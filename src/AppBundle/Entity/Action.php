@@ -19,6 +19,7 @@ class Action
     public function __construct()
     {
         $this->periods = new ArrayCollection();
+        $this->tractors = new ArrayCollection();
     }
 
     /**
@@ -46,6 +47,11 @@ class Action
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="action", cascade={"persist","remove"})
      */
     private $periods;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tractor",inversedBy="actions" ,cascade={"persist"})
+     */
+    private $tractors;
 
     /**
      * Get id
@@ -151,6 +157,45 @@ class Action
     public function getPeriods()
     {
         return $this->periods;
+    }
+
+    /**
+     * Add tractor
+     *
+     * @param \AppBundle\Entity\Tractor $tractor
+     * @return Action
+     */
+    public function addTractor(Tractor $tractor)
+    {
+        $this->tractors[] = $tractor;
+
+        // We also add the current action to the tractor
+        $tractor->addAction($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove tractor
+     *
+     * @param \AppBundle\Entity\Tractor $tractor
+     */
+    public function removeTractor(Tractor $tractor)
+    {
+        $this->tractors->removeElement($tractor);
+
+        $tractor->removeAction($this); // Should be verified
+
+    }
+
+    /**
+     * Get tractors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTractors()
+    {
+        return $this->tractors;
     }
 
     /**
