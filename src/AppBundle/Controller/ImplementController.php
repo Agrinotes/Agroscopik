@@ -32,7 +32,9 @@ class ImplementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $implements = $em->getRepository('AppBundle:Implement')->findAll();
+        $farm = $this->getUser()->getFarm()->getId();
+
+        $implements = $em->getRepository('AppBundle:Implement')->findAllForCurrentFarm($farm);
 
         return $this->render('@App/implement/index.html.twig', array(
             'implements' => $implements,

@@ -5,3 +5,8 @@ services:
             - "@service_container"
         tags:
             - { name: knp_menu.voter }
+    app.form.action:
+        class: AppBundle\Form\ActionType
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: form.type }

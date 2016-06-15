@@ -33,7 +33,9 @@ class TractorController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $tractors = $em->getRepository('AppBundle:Tractor')->findAll();
+        $farm = $this->getUser()->getFarm()->getId();
+
+        $tractors = $em->getRepository('AppBundle:Tractor')->findAllForCurrentFarm($farm);
 
         return $this->render('@App/tractor/index.html.twig', array(
             'tractors' => $tractors,

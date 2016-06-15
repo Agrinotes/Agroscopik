@@ -86,7 +86,7 @@ class Tractor
      * Add action
      *
      * @param \AppBundle\Entity\Action $action
-     * @return CropCycle
+     * @return Tractor
      */
     public function addAction(Action $action)
     {
@@ -106,7 +106,7 @@ class Tractor
     }
 
     /**
-     * Get action
+     * Get actions
      *
      * @return \Doctrine\Common\Collections\Collection
      */

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Implement
 {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->actions = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -33,6 +42,11 @@ class Implement
      * @ORM\JoinColumn(nullable=false)
      */
     private $farm;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Action", mappedBy="implements", cascade={"persist"})
+     */
+    private $actions;
 
     /**
      * Get id
@@ -89,6 +103,39 @@ class Implement
     public function getFarm()
     {
         return $this->farm;
+    }
+
+    /**
+     * Add action
+     *
+     * @param \AppBundle\Entity\Action $action
+     * @return Implement
+     */
+    public function addAction(Action $action)
+    {
+        $this->actions[] = $action;
+
+        return $this;
+    }
+
+    /**
+     * Remove action
+     *
+     * @param \AppBundle\Entity\Action $action
+     */
+    public function removeAction(Action $action)
+    {
+        $this->actions->removeElement($action);
+    }
+
+    /**
+     * Get actions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActions()
+    {
+        return $this->actions;
     }
 }
 

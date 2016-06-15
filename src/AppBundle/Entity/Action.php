@@ -20,6 +20,7 @@ class Action
     {
         $this->periods = new ArrayCollection();
         $this->tractors = new ArrayCollection();
+        $this->implements = new ArrayCollection();
     }
 
     /**
@@ -52,6 +53,11 @@ class Action
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tractor",inversedBy="actions" ,cascade={"persist"})
      */
     private $tractors;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Implement",inversedBy="actions" ,cascade={"persist"})
+     */
+    private $implements;
 
     /**
      * Get id
@@ -196,6 +202,45 @@ class Action
     public function getTractors()
     {
         return $this->tractors;
+    }
+
+    /**
+     * Add implement
+     *
+     * @param \AppBundle\Entity\Implement $implement
+     * @return Action
+     */
+    public function addImplement(Implement $implement)
+    {
+        $this->implements[] = $implement;
+
+        // We also add the current action to the implement
+        $implement->addAction($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove implement
+     *
+     * @param \AppBundle\Entity\Implement $implement
+     */
+    public function removeImplement(Implement $implement)
+    {
+        $this->implements->removeElement($implement);
+
+        $implement->removeAction($this); // Should be verified
+
+    }
+
+    /**
+     * Get implements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImplements()
+    {
+        return $this->implements;
     }
 
     /**

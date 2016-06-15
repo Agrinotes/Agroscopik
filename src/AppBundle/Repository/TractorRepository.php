@@ -14,9 +14,7 @@ class TractorRepository extends \Doctrine\ORM\EntityRepository
     {
         $qb = $this->createQueryBuilder('t');
 
-        $qb->join('t.farm','f')
-            ->addSelect('f')
-            ->where('f.id = :farm')
+        $qb->where('t.farm = :farm')
             ->setParameter('farm', $id)
         ;
 
@@ -24,5 +22,16 @@ class TractorRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult()
             ;
+    }
+
+    public function qbFindAllForCurrentFarm ($id)
+    {
+        $qb = $this->createQueryBuilder('t');
+
+        $qb->where('t.farm = :farm')
+            ->setParameter('farm', $id)
+        ;
+
+        return $qb;
     }
 }

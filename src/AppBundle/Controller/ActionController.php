@@ -120,7 +120,7 @@ class ActionController extends Controller
         // Link this action to current crop cycle
         $cropCycle->addAction($action); // Which also setCropcycle($this) on $action
 
-        $form = $this->createForm('AppBundle\Form\ActionType', $action);
+        $form = $this->createForm(ActionType::class, $action);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
