@@ -82,62 +82,64 @@ class FarmController extends Controller
             return $this->redirectToRoute('plot_index');
         }
 
-        // Create a farm
-        $farm = new Farm();
-
-        // Grant ROLE_FARMER to current user
+        // Get entity manager
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
+
+        // Create a farm
+        $farm = new Farm();
+        $farm->setFarmer($user);
+        $farm->setName('Ferme de '.$user->getFullName());
+        $em->persist($farm);
+
+        // Grant ROLE_FARMER to current user
         $user->addRole("ROLE_FARMER");
         $em->persist($user);
         $em->flush();
 
-        // Force refresh of user roles
+        // Create the ACL
+        $aclProvider = $this->get('security.acl.provider');
+        $objectIdentity = ObjectIdentity::fromDomainObject($farm);
+        $acl = $aclProvider->createAcl($objectIdentity);
+
+        // Retrieve the security identity of the current user
+        $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+        // Create Access Mask for current user
+        $builder = new MaskBuilder();
+        $builder
+            ->add('create')
+            ->add('view')
+            ->add('edit');
+        $mask = $builder->get();
+
+        // Grant access to current user
+        $acl->insertObjectAce($securityIdentity, $mask);
+
+        // Update ACL
+        $aclProvider->updateAcl($acl);
 
 
+
+        // Refresh user roles
         $token = new UsernamePasswordToken(
             $user,
             null,
             'main',
             $user->getRoles()
         );
-
         $this->container->get('security.token_storage')->setToken($token);
 
-        // Set Farmer on created farm to make it easier to retrieve later
-        $farm->setFarmer($user);
 
         // Create form and handle it
         $form = $this->createForm('AppBundle\Form\FarmType', $farm);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Store Farm in database and update User Roles
+            // Store Farm in database
             $em = $this->getDoctrine()->getManager();
             $em->persist($farm);
             $em->flush();
-
-            // Create the ACL
-            $aclProvider = $this->get('security.acl.provider');
-            $objectIdentity = ObjectIdentity::fromDomainObject($farm);
-            $acl = $aclProvider->createAcl($objectIdentity);
-
-            // Retrieve the security identity of the current user
-            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
-
-            // Create Access Mask for current user
-            $builder = new MaskBuilder();
-            $builder
-                ->add('create')
-                ->add('view')
-                ->add('edit');
-            $mask = $builder->get();
-
-            // Grant access to current user
-            $acl->insertObjectAce($securityIdentity, $mask);
-
-            // Update ACL
-            $aclProvider->updateAcl($acl);
 
             return $this->redirectToRoute('farm_show', array('id' => $farm->getId()));
         }
