@@ -17,7 +17,7 @@ class Farm
     {
         $this->plots = new ArrayCollection();
         $this->tractors = new ArrayCollection();
-
+        $this->implements = new ArrayCollection();
     }
 
         /**
@@ -53,6 +53,12 @@ class Farm
      * @ORM\JoinColumn(nullable=false)
      */
     private $tractors;
+
+    /**
+     * @ORM\OneToMany (targetEntity="AppBundle\Entity\Implement", mappedBy="farm", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $implements;
 
     /**
      * Get id
@@ -151,11 +157,11 @@ class Farm
     }
 
     /**
-     * Add tractor
-     *
-     * @param \AppBundle\Entity\Tractor $tractor
-     * @return Farm
-     */
+ * Add tractor
+ *
+ * @param \AppBundle\Entity\Tractor $tractor
+ * @return Farm
+ */
     public function addTractor(Tractor $tractor)
     {
         $this->tractors[] = $tractor;
@@ -184,6 +190,42 @@ class Farm
     public function getTractors()
     {
         return $this->tractors;
+    }
+
+    /**
+     * Add implement
+     *
+     * @param \AppBundle\Entity\Implement $implement
+     * @return Farm
+     */
+    public function addImplement(Implement $implement)
+    {
+        $this->implements[] = $implement;
+
+        // We also add the current farm to the tractor
+        $implement->setFarm($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove implement
+     *
+     * @param \AppBundle\Entity\Implement $implement
+     */
+    public function removeImplement(Implement $implement)
+    {
+        $this->implements->removeElement($implement);
+    }
+
+    /**
+     * Get implements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImplements()
+    {
+        return $this->implements;
     }
 }
 

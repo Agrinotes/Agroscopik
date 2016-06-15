@@ -6,69 +6,67 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Entity\Tractor;
-use AppBundle\Form\TractorType;
+use AppBundle\Entity\Implement;
+use AppBundle\Form\ImplementType;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use AppBundle\Entity\Farm;
 
 
 /**
- * Tractor controller.
+ * Implement controller.
  *
  * @Security("has_role('ROLE_USER')")
- * @Route("/tractor")
+ * @Route("/implement")
  */
-class TractorController extends Controller
+class ImplementController extends Controller
 {
     /**
-     * Lists all Tractor entities for current Farm
+     * Lists all Implement entities.
      *
-     * @Route("/", name="tractor_index")
+     * @Route("/", name="implement_index")
      * @Method("GET")
      */
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
 
-        $tractors = $em->getRepository('AppBundle:Tractor')->findAll();
+        $implements = $em->getRepository('AppBundle:Implement')->findAll();
 
-        return $this->render('@App/tractor/index.html.twig', array(
-            'tractors' => $tractors,
+        return $this->render('@App/implement/index.html.twig', array(
+            'implements' => $implements,
         ));
     }
 
     /**
-     * Creates a new Tractor entity.
+     * Creates a new Implement entity.
      *
-     * @Route("/new", name="tractor_new")
      * @Security("is_granted('ROLE_FARMER')")
+     * @Route("/new", name="implement_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
-        $tractor = new Tractor();
+        $implement = new Implement();
 
-        // Get Entity Manager
         $em = $this->getDoctrine()->getManager();
 
         $farm = $this->getUser()->getFarm();
-        $farm->addTractor($tractor);
+        $farm->addImplement($implement);
 
-        $form = $this->createForm('AppBundle\Form\TractorType', $tractor);
+        $form = $this->createForm('AppBundle\Form\ImplementType', $implement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($tractor);
+            $em->persist($implement);
             $em->flush();
 
             // Call ACL service
             $aclProvider = $this->get('security.acl.provider');
 
-            // Create the ACL for current Action $action
-            $objectIdentity = ObjectIdentity::fromDomainObject($tractor);
+            // Create the ACL for current Implement $implement
+            $objectIdentity = ObjectIdentity::fromDomainObject($implement);
             $acl = $aclProvider->createAcl($objectIdentity);
 
             // Retrieve the security identity of the current user
@@ -88,93 +86,94 @@ class TractorController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
-            return $this->redirectToRoute('tractor_show', array('id' => $tractor->getId()));
+            return $this->redirectToRoute('implement_show', array('id' => $implement->getId()));
         }
 
-        return $this->render('@App/tractor/new.html.twig', array(
-            'tractor' => $tractor,
+        return $this->render('@App/implement/new.html.twig', array(
+            'implement' => $implement,
             'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a Tractor entity.
+     * Finds and displays a Implement entity.
      *
-     * @Security("is_granted('VIEW', tractor) or is_granted('ROLE_ADMIN')")
-     * @Route("/{id}", name="tractor_show")
+     * @Security("is_granted('VIEW', implement) or is_granted('ROLE_ADMIN')")
+     * @Route("/{id}", name="implement_show")
      * @Method("GET")
      */
-    public function showAction(Tractor $tractor)
+    public function showAction(Implement $implement)
     {
-        $deleteForm = $this->createDeleteForm($tractor);
+        $deleteForm = $this->createDeleteForm($implement);
 
-        return $this->render('@App/tractor/show.html.twig', array(
-            'tractor' => $tractor,
+        return $this->render('@App/implement/show.html.twig', array(
+            'implement' => $implement,
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Displays a form to edit an existing Tractor entity.
+     * Displays a form to edit an existing Implement entity.
      *
-     * @Security("is_granted('EDIT', tractor) or is_granted('ROLE_ADMIN')")
-     * @Route("/{id}/edit", name="tractor_edit")
+     * @Security("is_granted('EDIT', implement) or is_granted('ROLE_ADMIN')")
+     * @Route("/{id}/edit", name="implement_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Tractor $tractor)
+    public function editAction(Request $request, Implement $implement)
     {
-        $deleteForm = $this->createDeleteForm($tractor);
-        $editForm = $this->createForm('AppBundle\Form\TractorType', $tractor);
+        $deleteForm = $this->createDeleteForm($implement);
+        $editForm = $this->createForm('AppBundle\Form\ImplementType', $implement);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($tractor);
+            $em->persist($implement);
             $em->flush();
 
-            return $this->redirectToRoute('tractor_show', array('id' => $tractor->getId()));
+            return $this->redirectToRoute('implement_edit', array('id' => $implement->getId()));
         }
 
-        return $this->render('@App/tractor/edit.html.twig', array(
-            'tractor' => $tractor,
+        return $this->render('@App/implement/edit.html.twig', array(
+            'implement' => $implement,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-     * Deletes a Tractor entity.
+     * Deletes a Implement entity.
      *
-     * @Security("is_granted('DELETE', tractor) or is_granted('ROLE_ADMIN')")
-     * @Route("/{id}/delete", name="tractor_delete")
+     * @Security("is_granted('DELETE', implement) or is_granted('ROLE_ADMIN')")
+     * @Route("/{id}/delete", name="implement_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Tractor $tractor)
+    public function deleteAction(Request $request, Implement $implement)
     {
-        $form = $this->createDeleteForm($tractor);
+        $form = $this->createDeleteForm($implement);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->remove($tractor);
+            $em->remove($implement);
             $em->flush();
         }
 
-        return $this->redirectToRoute('tractor_index');
+        return $this->redirectToRoute('implement_index');
     }
 
     /**
-     * Creates a form to delete a Tractor entity.
+     * Creates a form to delete a Implement entity.
      *
-     * @param Tractor $tractor The Tractor entity
+     * @param Implement $implement The Implement entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Tractor $tractor)
+    private function createDeleteForm(Implement $implement)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('tractor_delete', array('id' => $tractor->getId())))
+            ->setAction($this->generateUrl('implement_delete', array('id' => $implement->getId())))
             ->setMethod('DELETE')
-            ->getForm();
+            ->getForm()
+        ;
     }
 }

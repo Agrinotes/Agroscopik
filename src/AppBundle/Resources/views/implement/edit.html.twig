@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Editer l'outil</h1>
+
+    {{ form_start(edit_form) }}
+    {{ form_widget(edit_form) }}
+    <input type="submit" value="Enregistrer"/>
+    {{ form_end(edit_form) }}
+
+
+    <a href="{{ path('implement_show', { 'id': implement.id }) }}}">Annuler</a>
+
+    {% if is_granted('DELETE', implement) or is_granted('ROLE_ADMIN') %}
+
+        {{ form_start(delete_form) }}
+        <input type="submit" value="Supprimer">
+        {{ form_end(delete_form) }}
+    {% endif %}
+
+{% endblock %}

@@ -2,25 +2,16 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tractor
+ * Implement
  *
- * @ORM\Table(name="tractor")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TractorRepository")
+ * @ORM\Table(name="implement")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ImplementRepository")
  */
-class Tractor
+class Implement
 {
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->actions = new ArrayCollection();
-    }
-
     /**
      * @var int
      *
@@ -38,12 +29,7 @@ class Tractor
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Action", mappedBy="tractors", cascade={"persist"})
-     */
-    private $actions;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Farm", inversedBy="tractors", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Farm", inversedBy="implements", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $farm;
@@ -63,7 +49,7 @@ class Tractor
      *
      * @param string $name
      *
-     * @return Tractor
+     * @return Implement
      */
     public function setName($name)
     {
@@ -83,43 +69,10 @@ class Tractor
     }
 
     /**
-     * Add action
-     *
-     * @param \AppBundle\Entity\Action $action
-     * @return CropCycle
-     */
-    public function addAction(Action $action)
-    {
-        $this->actions[] = $action;
-
-        return $this;
-    }
-
-    /**
-     * Remove action
-     *
-     * @param \AppBundle\Entity\Action $action
-     */
-    public function removeAction(Action $action)
-    {
-        $this->actions->removeElement($action);
-    }
-
-    /**
-     * Get action
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getActions()
-    {
-        return $this->actions;
-    }
-
-    /**
      * Set farm
      *
      * @param \AppBundle\Entity\Farm $farm
-     * @return Tractor
+     * @return Implement
      */
     public function setFarm(Farm $farm)
     {

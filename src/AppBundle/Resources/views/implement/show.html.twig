@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ implement.name }}</h1>
+
+    <a class="btn btn-default" href="{{ path('implement_index') }}">Retour à la liste des outils</a>
+
+    {% if is_granted('EDIT', implement) or is_granted('ROLE_ADMIN') %}
+        <a class="btn btn-default" href="{{ path('implement_edit', { 'id': implement.id }) }}">Editer</a>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        {{ form_start(delete_form) }}
+        <input class="btn btn-default" type="submit" value="Supprimer">
+        {{ form_end(delete_form) }}
+    {% endif %}
+
+{% endblock %}

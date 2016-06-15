@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Liste des outils</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Nom</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for implement in implements %}
+            {% if is_granted('VIEW', implement) or is_granted('ROLE_ADMIN') %}
+
+                <tr>
+                    <td><a href="{{ path('implement_show', { 'id': implement.id }) }}">{{ implement.name }}</a></td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <a class="btn btn-default" href="{{ path('implement_new') }}">Ajouter un outil</a>
+
+{% endblock %}

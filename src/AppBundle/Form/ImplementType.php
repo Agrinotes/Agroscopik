@@ -7,7 +7,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TractorType extends AbstractType
+class ImplementType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -18,16 +18,17 @@ class TractorType extends AbstractType
         $builder
             ->add('name', TextType::class, array(
                 'label' => 'Nom'
-            ));
+            ))
+        ;
     }
-
+    
     /**
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Tractor'
+            'data_class' => 'AppBundle\Entity\Implement'
         ));
     }
 }
