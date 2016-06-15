@@ -1,32 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Tractor</h1>
+    <h1>{{ tractor.name }}</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ tractor.id }}</td>
-            </tr>
-            <tr>
-                <th>Name</th>
-                <td>{{ tractor.name }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('tractor_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('tractor_edit', { 'id': tractor.id }) }}">Edit</a>
-        </li>
-        <li>
+            <a class="btn btn-default" href="{{ path('tractor_index') }}">Liste des tracteurs</a>
+
+        {% if is_granted('EDIT', tractor) or is_granted('ROLE_ADMIN') %}
+
+            <a class="btn btn-primary" href="{{ path('tractor_edit', { 'id': tractor.id }) }}">Editer</a>
+
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input class="btn btn-danger" type="submit" value="Supprimer">
             {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
+        {% endif %}
+
 {% endblock %}

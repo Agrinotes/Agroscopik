@@ -1,42 +1,26 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Tractor list</h1>
+    <h1>Liste des tracteurs</h1>
 
-    <table>
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
+        <tr>
+            <th>Nom</th>
+        </tr>
         </thead>
         <tbody>
         {% for tractor in tractors %}
-        {% if is_granted('VIEW', tractor) or is_granted('ROLE_ADMIN') %}
-
-        <tr>
-                <td><a href="{{ path('tractor_show', { 'id': tractor.id }) }}">{{ tractor.id }}</a></td>
-                <td>{{ tractor.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('tractor_show', { 'id': tractor.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('tractor_edit', { 'id': tractor.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endif %}
+            {% if is_granted('VIEW', tractor) or is_granted('ROLE_ADMIN') %}
+                <tr>
+                    <td><a href="{{ path('tractor_show', { 'id': tractor.id }) }}">{{ tractor.name }}</a></td>
+                </tr>
+            {% endif %}
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('tractor_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+
+    <a class="btn btn-primary" href="{{ path('tractor_new') }}">Ajouter un tracteur</a>
+
 {% endblock %}
