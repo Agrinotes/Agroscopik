@@ -3,16 +3,35 @@
 {% block body %}
     <h1>{{ crop.name }}</h1>
 
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Cycle</th>
+            <th>Parcelle</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cycle in crop.cropCycles %}
+            <tr>
+                <td><a href="{{ path('cropcycle_show',{ 'id': cycle.id }) }}">{{ cycle.name }}</a></td>
+                <td><a href="{{ path('plot_show',{ 'id': cycle.plot.id }) }}">{{ cycle.plot.name }}</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('action_by_crop',{'id':crop.id}) }}">Voir toutes les interventions réalisées sur cette culture</a>
+
     <ul>
         {% if is_granted('ROLE_ADMIN') %}
-        <li>
-            <a href="{{ path('cropcycle_edit', { 'id': cropCycle.id }) }}">Editer</a>
-        </li>
-        <li>
+            <li>
+                <a href="{{ path('cropcycle_edit', { 'id': cropCycle.id }) }}">Editer</a>
+            </li>
+            <li>
                 {{ form_start(delete_form) }}
-                    <input type="submit" value="Supprimer">
+                <input type="submit" value="Supprimer">
                 {{ form_end(delete_form) }}
-        </li>
+            </li>
         {% endif %}
     </ul>
 {% endblock %}

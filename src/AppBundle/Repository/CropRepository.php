@@ -10,4 +10,21 @@ namespace AppBundle\Repository;
  */
 class CropRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByFarm($id)
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->join('c.cropCycles', 'cycles')
+            ->addSelect('cycles')
+            ->join('cycles.plot', 'plots')
+            ->addSelect('plots')
+            ->join('plots.farm', 'farm')
+            ->addSelect('farm')
+            ->where('farm.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
 }

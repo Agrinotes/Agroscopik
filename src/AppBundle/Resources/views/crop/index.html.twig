@@ -1,27 +1,35 @@
-<h1>Liste des cultures</h1>
+{% extends 'base.html.twig' %}
 
-<table>
-    <thead>
-    <tr>
-        <th>Nom</th>
-    </tr>
-    </thead>
-    <tbody>
+{% block body %}
+    <h1>Liste des cultures</h1>
+
     {% for crop in crops %}
-        {% if is_granted('ROLE_USER') %}
-            <tr>
-                <td><a href="{{ path('crop_show', { 'id': crop.id }) }}">{{ crop.name }}</a></td>
-            </tr>
-        {% endif %}
-    {% endfor %}
-    </tbody>
-</table>
+            <h3>
+                <a href="{{ path('crop_show', { 'id': crop.id }) }}">{{ crop.name }}</a>
+            </h3>
+        <table class="table table_hover">
 
-<ul>
-    {% if is_granted('ROLE_ADMIN') %}
-        <li>
-            <a href="{{ path('crop_new') }}">Ajouter une culture</a>
-        </li>
-    {% endif %}
-</ul>
+        {% for cycle in crop.cropcycles %}
+            <tr>
+                <td>
+                    {{ cycle.name }}
+                </td>
+                <td>
+                    {{ cycle.plot.name }}
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% endfor %}
+
+
+    <ul>
+        {% if is_granted('ROLE_ADMIN') %}
+            <li>
+                <a href="{{ path('crop_new') }}">Ajouter une culture</a>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}
+
 

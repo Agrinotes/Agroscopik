@@ -15,6 +15,7 @@ class MenuBuilder implements ContainerAwareInterface
         $menu = $factory->createItem('root');
         $menu->setChildrenAttribute('class', 'nav navbar-nav');
         $menu->addChild('Parcelles', array('route' => 'farm_show_current'));
+        $menu->addChild('Cultures', array('route' => 'crop_index'));
         $menu->addChild('Tracteurs', array('route' => 'tractor_index'));
         $menu->addChild('Outils', array('route' => 'implement_index'));
 

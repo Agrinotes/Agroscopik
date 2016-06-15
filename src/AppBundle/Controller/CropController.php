@@ -24,6 +24,24 @@ class CropController extends Controller
     /**
      * Lists all Crop entities
      * .
+     * @Route("/crop/list", name="crop_list")
+     * @Method("GET")
+     */
+    public function listAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+
+        $crops = $em->getRepository('AppBundle:Crop')->findAll();
+
+        return $this->render('@App/crop/index.html.twig', array(
+            'crops' => $crops,
+        ));
+    }
+
+    /**
+     * Lists all Crop entities for current farm
+     * .
      * @Route("/crop", name="crop_index")
      * @Method("GET")
      */
@@ -31,8 +49,9 @@ class CropController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $id = $this->getUser()->getFarm()->getId();
 
-        $crops = $em->getRepository('AppBundle:Crop')->findAll();
+        $crops = $em->getRepository('AppBundle:Crop')->findByFarm($id);
 
         return $this->render('@App/crop/index.html.twig', array(
             'crops' => $crops,
