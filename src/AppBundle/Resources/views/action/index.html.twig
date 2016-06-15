@@ -4,8 +4,8 @@
     <thead>
     <tr>
         <th>Nom</th>
-        <th>Date</th>
-        <th>Status</th>
+        <th>Début</th>
+        <th>Fin</th>
     </tr>
     </thead>
     <tbody>
@@ -16,14 +16,10 @@
                     <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
                 </td>
                 <td>
-                    {% for period in action.periods %}
-                        {{ period.startDateTime | date('d/m/Y') }}
-                    {% endfor %}
+                        {{ action.startDateTime ? action.startDateTime | date('d/m/Y') }}
                 </td>
                 <td>
-                    {% for period in action.periods %}
-                        {{ period.status }}
-                    {% endfor %}
+                        {{ action.endDateTime ? action.endDateTime | date('d/m/Y') }}
                 </td>
             </tr>
         {% endif %}
