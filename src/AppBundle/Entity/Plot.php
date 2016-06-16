@@ -50,6 +50,20 @@ class Plot
     private $cropCycles;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="latLngs", type="text", nullable=true)
+     */
+    private $latLngs;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="area", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $area;
+
+    /**
      * Get id
      *
      * @return int
@@ -140,6 +154,52 @@ class Plot
     public function getCropCycles()
     {
         return $this->cropCycles;
+    }
+
+    /**
+     * Set latLngs
+     *
+     * @param string $latLngs
+     * @return Plot
+     */
+    public function setLatLngs($latLngs)
+    {
+        $this->latLngs = $latLngs;
+
+        return $this;
+    }
+
+    /**
+     * Get latLngs
+     *
+     * @return string
+     */
+    public function getLatLngs()
+    {
+        return $this->latLngs;
+    }
+
+    /**
+     * Set area
+     *
+     * @param string $area
+     * @return Plot
+     */
+    public function setArea($area)
+    {
+        $this->area = $area;
+
+        return $this;
+    }
+
+    /**
+     * Get area
+     *
+     * @return string
+     */
+    public function getArea()
+    {
+        return $this->area;
     }
 }
 
