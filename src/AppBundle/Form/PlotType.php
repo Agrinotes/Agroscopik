@@ -17,7 +17,18 @@ class PlotType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,array(
-                'label'=>'Nom'
+                'attr' => array('class' => 'form-control'),
+                'label' => "Nom de la parcelle",
+                'required' => true,
+                'label_attr' => array('class' => 'control-label')
+            ))
+            ->add('area',TextType::class,array(
+                'attr' => array('class' => 'hidden'),
+                'label_attr' => array('class' => 'hidden'),
+            ))
+            ->add('latLngs',TextType::class,array(
+                'attr' => array('class' => 'hidden'),
+                'label_attr' => array('class' => 'hidden'),
             ))
             ;
     }

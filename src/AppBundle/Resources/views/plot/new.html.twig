@@ -1,16 +1,69 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Nouvelle parcelle</h1>
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet'
+          xmlns="http://www.w3.org/1999/html"/>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Enregistrer" />
-    {{ form_end(form) }}
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
 
-    <ul>
-        <li>
-            <a href="{{ path('farm_show_current') }}">Annuler</a>
-        </li>
-    </ul>
 {% endblock %}
+
+{% block page %}
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Ajouter une parcelle</h3>
+                </div>
+                <div class="panel-body">
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="form-group form-material col-lg-4">
+                            {{ form_label(form.name) }}
+                            {{ form_errors(form.name) }}
+                            {{ form_widget(form.name) }}
+                        </div>
+                        <div class="hidden">
+                            {{ form_label(form.area) }}
+                            {{ form_errors(form.area) }}
+                            {{ form_widget(form.area) }}
+                            {{ form_label(form.latLngs) }}
+                            {{ form_errors(form.latLngs) }}
+                            {{ form_widget(form.latLngs) }}
+                        </div>
+                    </div>
+                    <div class="row" id="map" style="height: 60vh;"></div>
+                    <a class="btn btn-default" style="display:none" onclick="endEditing()" id="plot_end_editing"
+                       href="#">Terminer l'édition</a>
+
+                    {{ form_widget(form) }}
+
+                </div>
+                <div class="panel-footer">
+                        <a class="btn btn-default" href="{{ path('farm_show_current') }}">Annuler</a>
+
+                        <button class="btn btn-danger margin-10" type="submit">Enregistrer</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block core_plugin %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/mapbox.js/mapbox.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/mapbox.js/plugins/leaflet.markercluster.js') }}"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+    <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
+    <script src="{{ asset('front/agroscopik/assets/js/form_new.js') }}"></script>
+
+{% endblock %}
+
+
