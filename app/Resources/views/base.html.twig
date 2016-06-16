@@ -13,8 +13,9 @@
         {# Bootstrap and site stylesheets #}
         <link rel="stylesheet" href="{{ asset('front/global/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('front/global/css/bootstrap-extend.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('front/mmenu/assets/css/site.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('front/mmenu/assets/css/site.css') }}">
         {# Necessary plugin stylesheets #}
+         {% block plugin_stylesheets %}
         <link rel="stylesheet" href="{{ asset('front/global/vendor/animsition/animsition.css') }}">
         <link rel="stylesheet" href="{{ asset('front/global/vendor/asscrollable/asScrollable.css') }}">
         <link rel="stylesheet" href="{{ asset('front/global/vendor/switchery/switchery.css') }}">
@@ -22,7 +23,9 @@
         <link rel="stylesheet" href="{{ asset('front/global/vendor/jquery-mmenu/jquery-mmenu.css') }}">
         <link rel="stylesheet" href="{{ asset('front/global/vendor/flag-icon-css/flag-icon.css') }}">
         <link rel="stylesheet" href="{{ asset('front/global/vendor/waves/waves.css') }}">
+        {% endblock %}
         {# Font stylesheets #}
+        <link rel="stylesheet" href="{{ asset('front/global/fonts/font-awesome/font-awesome.css') }}">
         <link rel="stylesheet" href="{{ asset('front/global/fonts/material-design/material-design.min.css') }}">
         <link rel="stylesheet" href="{{ asset('front/global/fonts/web-icons/web-icons.min.css') }}">
         <link rel="stylesheet" href="{{ asset('front/global/fonts/brand-icons/brand-icons.min.css') }}">
@@ -49,7 +52,7 @@
 
 </head>
 
-<body class="site-navbar-small site-menubar-unfold site-menubar-keep">
+<body class="{% block body_class %}site-navbar-small site-menubar-unfold site-menubar-keep{% endblock %}">
 
 <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
@@ -123,6 +126,12 @@
 
 <div class="site-menubar site-menubar-dark">
     <ul class="site-menu">
+        <li class="site-menu-item">
+            <a class="animsition-link" href="{{ path('farm_show_current') }}">
+                <i class="site-menu-icon md-dashboard" aria-hidden="true"></i>
+                <span class="site-menu-title">Tableau de bord</span>
+            </a>
+        </li>
         <li class="site-menu-item">
             <a class="animsition-link" href="{{ path('farm_show_current') }}">
                 <i class="site-menu-icon md-layers" aria-hidden="true"></i>
@@ -316,10 +325,8 @@
     </ul>
 </div>
 
+{% block page %}
 <div class="page animsition">
-    <div class="page-header">
-        <h1 class="page-title">Menu Collapsed</h1>
-    </div>
     <div class="page-content">
         <div class="panel">
             <div class="panel-heading">
@@ -327,15 +334,17 @@
             </div>
             <div class="panel-body">
 
-
                 {% block body %}
                     {% block fos_user_content %}
                     {% endblock fos_user_content %}
                 {% endblock %}
             </div>
+
         </div>
     </div>
 </div>
+{% endblock %}
+
 
 <footer class="site-footer">
     <div class="site-footer-legal">© 2016 <a
@@ -347,6 +356,7 @@
 
 {% block javascripts %}
     {# Core and plugin dependencies #}
+    {% block core_plugin %}
     <script src="{{ asset('front/global/vendor/jquery/jquery.js') }}"></script>
     <script src="{{ asset('front/global/vendor/bootstrap/bootstrap.js') }}"></script>
     <script src="{{ asset('front/global/vendor/animsition/animsition.js') }}"></script>
@@ -360,6 +370,7 @@
     <script src="{{ asset('front/global/vendor/intro-js/intro.js') }}"></script>
     <script src="{{ asset('front/global/vendor/screenfull/screenfull.js') }}"></script>
     <script src="{{ asset('front/global/vendor/slidepanel/jquery-slidePanel.js') }}"></script>
+    {% endblock %}
     {# Template relating scripts #}
     <script src="{{ asset('front/global/js/core.js') }}"></script>
     <script src="{{ asset('front/mmenu/assets/js/site.js') }}"></script>
@@ -368,6 +379,7 @@
     <script src="{{ asset('front/mmenu/assets/js/sections/gridmenu.js') }}"></script>
     <script src="{{ asset('front/mmenu/assets/js/sections/sidebar.js') }}"></script>
     {# Template config scripts #}
+    {% block template_config %}
     <script src="{{ asset('front/global/js/configs/config-colors.js') }}"></script>
     <script src="{{ asset('front/mmenu/assets/js/configs/config-tour.js') }}"></script>
     <script src="{{ asset('front/global/js/components/asscrollable.js') }}"></script>
@@ -375,7 +387,7 @@
     <script src="{{ asset('front/global/js/components/slidepanel.js') }}"></script>
     <script src="{{ asset('front/global/js/components/switchery.js') }}"></script>
     <script src="{{ asset('front/global/js/components/tabs.js') }}"></script>
-
+    {% endblock %}
     {# Template initialise script #}
     <script>
         (function (document, window, $) {
