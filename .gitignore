@@ -4,9 +4,6 @@
 #JetBrainStorm
 .idea/workspace.xml
 
-#Front-end
-web/front/*
-
 # Cache, session files and logs (Symfony3)
 /var/cache/*
 /var/logs/*
