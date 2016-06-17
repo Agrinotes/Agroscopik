@@ -9,6 +9,24 @@
             // Create the map
             var map = L.mapbox.map('map', 'mapbox.streets-satellite').setView([38.97416, -95.23252], 15);
 
+            // Add GeoRep
+            var georep = L.tileLayer.wms('https://carto10.gouv.nc/arcgis/services/fond_imagerie/MapServer/WMSServer', {
+                format: 'img/png',
+                transparent: true,
+                layers: 16,
+                maxZoom: 26
+            });
+
+            // Display GeoRep according to zoom level
+            map.on('zoomend', function () {
+                if (map.getZoom() > 9 && map.hasLayer(georep) == false) {
+                    map.addLayer(georep);
+                }
+                if (map.getZoom() < 9 && map.hasLayer(georep)) {
+                    map.removeLayer(georep);
+                }
+            });
+
             // Where the polygons are stored
             var featureGroup = L.featureGroup().addTo(map);
 

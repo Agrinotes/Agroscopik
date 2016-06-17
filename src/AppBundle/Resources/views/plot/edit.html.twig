@@ -1,23 +1,154 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Editer la parcelle</h1>
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet'
+          xmlns="http://www.w3.org/1999/html"/>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Enregistrer" />
-    {{ form_end(edit_form) }}
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
 
-    <ul>
-        <li>
-            <a href="{{ path('plot_index') }}">Retourner à la parcelle</a>
-        </li>
-        {% if is_granted('DELETE', plot) or is_granted('ROLE_ADMIN') %}
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
-            {{ form_end(delete_form) }}
-        </li>
-        {% endif %}
-    </ul>
+{% endblock %}
+
+{% block page %}
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Modifier la parcelle</h3>
+                </div>
+                <div class="panel-body">
+                    {{ form_start(edit_form) }}
+                    <div class="row">
+                        <div class="form-group form-material col-lg-4">
+                            {{ form_label(edit_form.name) }}
+                            {{ form_errors(edit_form.name) }}
+                            {{ form_widget(edit_form.name) }}
+                        </div>
+                        <div class="">
+                            {{ form_label(edit_form.area) }}
+                            {{ form_errors(edit_form.area) }}
+                            {{ form_widget(edit_form.area) }}
+                            {{ form_label(edit_form.latLngs) }}
+                            {{ form_errors(edit_form.latLngs) }}
+                            {{ form_widget(edit_form.latLngs) }}
+                        </div>
+                    </div>
+                    <div class="row" id="map" style="height: 60vh;"></div>
+
+                    {{ form_widget(edit_form) }}
+
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-default" href="{{ path('plot_show', { 'id': plot.id }) }}">Annuler</a>
+
+                    <button class="btn btn-danger margin-10" type="submit">Enregistrer</button>
+
+                    {% if is_granted('DELETE', plot) or is_granted('ROLE_ADMIN') %}
+                            {{ form_start(delete_form) }}
+                            <button class="btn btn-info margin-10 pull-right" type="submit">Supprimer</button>
+                            {{ form_end(delete_form) }}
+                    {% endif %}
+                </div>
+                {{ form_end(edit_form) }}
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block core_plugin %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/mapbox.js/mapbox.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/mapbox.js/plugins/leaflet.markercluster.js') }}"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+    <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
+    <script>
+        // Mapbox access token
+        L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
+
+        // Create the map
+        var map = L.mapbox.map('map', 'mapbox.streets-satellite');
+
+        // Where the polygons are stored
+        var featureGroup = L.geoJson({{plot.latLngs|raw}}).addTo(map);
+
+        // Zoom on plot bounds
+        var bounds = featureGroup.getBounds();
+        map.fitBounds(bounds);
+
+        // Enable drawing polygons
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: featureGroup,
+                selectedPathOptions: {
+                    dashArray: "8,6",
+                    color: 'white',
+                    opacity: 0.8,
+                    weight: 1.5
+                }
+            },
+            draw: {
+                polyline: false,
+                circle: false,
+                marker: false,
+                rectangle: false,
+                polygon: {
+                    shapeOptions: {
+                        dashArray: "8,6",
+                        color: 'white',
+                        opacity: 0.8,
+                        weight: 1.5
+                    }
+                }
+            }
+        }).addTo(map);
+
+        // On draw created, add polygon values to the form
+        map.on('draw:created', function (e) {
+            var layer = e.layer;
+            featureGroup.clearLayers();
+            featureGroup.addLayer(layer);
+            $("#plot_area").val(getPolygonArea(layer));
+            var latLngs = JSON.stringify(layer.toGeoJSON());
+            $("#plot_latLngs").val(latLngs);
+            map.fitBounds(layer.getBounds());
+        });
+
+        // On draw created, add polygon values to the form
+        map.on('draw:edited', function (e) {
+            e.layers.eachLayer(function (layer) {
+                featureGroup.clearLayers();
+                featureGroup.addLayer(layer);
+                $("#plot_area").val(getPolygonArea(layer));
+                var latLngs = JSON.stringify(layer.toGeoJSON());
+                $("#plot_latLngs").val(latLngs);
+            });
+        });
+
+        // On draw start, delete previous plot
+        map.on('draw:drawstart', function (e) {
+            featureGroup.clearLayers();
+            $("#plot_latLngs").val("");
+            $("#plot_area").val("");
+        });
+
+        // On draw start, delete previous plot
+        map.on('draw:deletestop', function (e) {
+            featureGroup.clearLayers();
+            $("#plot_latLngs").val("");
+            $("#plot_area").val("");
+        });
+
+        // Get Polygon Area
+        function getPolygonArea(layer) {
+            var area = LGeo.area(layer) / 10000;
+            return area.toFixed(3) ;
+        }
+</script>
+
 {% endblock %}

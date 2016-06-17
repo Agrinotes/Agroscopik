@@ -39,76 +39,25 @@
                 <div data-role="container">
                     <div data-role="content">
                         <div class="list-group row">
-                            <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="f_1">
-                                <div class="widget widget-shadow">
-                                    <div class="widget-content text-center bg-white padding-20">
-                                        <a href="#" class="avatar margin-bottom-5">
-                                            <img class="img-responsive" src="../../../../global/portraits/1.jpg" alt="Adam_photo"
-                                            />
+                            <div class="col-lg-12 padding-right-0">
+                                        <a href="{{ path('plot_new') }}" class="btn btn-info btn-block">
+                                            Ajouter une parcelle
                                         </a>
-                                        <div class="friend-name">Adam</div>
-                                        <div class="friend-title margin-bottom-20 blue-grey-400">
-                                            Hi~ I&#x27;m Adam.
-                                        </div>
-                                        <ul class="list-inline font-size-17 margin-bottom-5">
-                                            <li>
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="badge up badge-success">1</span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="f_2">
+                        </div>
+                        <div class="list-group row">
+
+                        {% for plot in farm.plots %}
+                                                        <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="f_{{ loop.index }}">
                                 <div class="widget widget-shadow">
                                     <div class="widget-content text-center bg-white padding-20">
                                         <a href="#" class="avatar margin-bottom-5">
-                                            <img class="img-responsive" src="../../../../global/portraits/2.jpg" alt="Fanny_photo"
+                                            <img class="img-responsive" src="{{ asset('front/global/portraits/9.jpg') }}" alt="Allen_photo"
                                             />
                                         </a>
-                                        <div class="friend-name">Fanny</div>
+                                        <div class="friend-name">Hugo</div>
                                         <div class="friend-title margin-bottom-20 blue-grey-400">
-                                            Hi~ I&#x27;m Fanny.
-                                        </div>
-                                        <ul class="list-inline font-size-17 margin-bottom-5">
-                                            <li>
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="badge up badge-success"></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li>
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="f_3">
-                                <div class="widget widget-shadow">
-                                    <div class="widget-content text-center bg-white padding-20">
-                                        <a href="#" class="avatar margin-bottom-5">
-                                            <img class="img-responsive" src="../../../../global/portraits/9.jpg" alt="Allen_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Allen</div>
-                                        <div class="friend-title margin-bottom-20 blue-grey-400">
-                                            Hi~ I&#x27;m Allen.
+                                            Hi I am Hugo.
                                         </div>
                                         <ul class="list-inline font-size-17 margin-bottom-5">
                                             <li>
@@ -129,6 +78,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

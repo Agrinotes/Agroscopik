@@ -34,8 +34,6 @@
                         </div>
                     </div>
                     <div class="row" id="map" style="height: 60vh;"></div>
-                    <a class="btn btn-default" style="display:none" onclick="endEditing()" id="plot_end_editing"
-                       href="#">Terminer l'édition</a>
 
                     {{ form_widget(form) }}
 
@@ -62,7 +60,7 @@
 {% block template_config %}
     {{ parent() }}
     <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
-    <script src="{{ asset('front/agroscopik/assets/js/form_new.js') }}"></script>
+    <script src="{{ asset('front/agroscopik/assets/js/plot_new.js') }}"></script>
 
 {% endblock %}
 
