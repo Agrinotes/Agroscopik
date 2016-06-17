@@ -7,14 +7,37 @@
 
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
 
+    <style>
+
+        .leaflet-editing-icon{
+            border-radius: 100%;
+            opacity: 1;
+        }
+
+
+        .created-div {
+            border: 10px solid white;
+            -webkit-border-radius: 30px;
+            height: 20px;
+            width: 20px;
+            -webkit-animation: hugo 0.5s;
+            transform-origin: center;
+            /*opacity: 0.0*/
+        }
+
+        @keyframes hugo {
+            from { transform: scale(3); }
+            to { transform: none; }
+        }
+            </style>
 {% endblock %}
 
 {% block page %}
     <div class="page animsition">
         <div class="page-content">
-            <div class="panel">
+            <div class="panel panel-bordered">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Ajouter une parcelle</h3>
+                    <h3 class="panel-title">Ajouter une parcelle <div class="pull-right" style="color:grey;display: inline;"><span id="display_area">0</span> ha</div></h3>
                 </div>
                 <div class="panel-body">
                     {{ form_start(form) }}
@@ -32,6 +55,7 @@
                             {{ form_errors(form.latLngs) }}
                             {{ form_widget(form.latLngs) }}
                         </div>
+
                     </div>
                     <div class="row" id="map" style="height: 60vh;"></div>
 

@@ -7,14 +7,39 @@
 
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
 
+    <style>
+
+        .leaflet-editing-icon{
+            border-radius: 100%;
+            opacity: 1;
+        }
+
+
+        .created-div {
+            border: 10px solid white;
+            -webkit-border-radius: 30px;
+            height: 20px;
+            width: 20px;
+            -webkit-animation: hugo 0.5s;
+            transform-origin: center;
+            /*opacity: 0.0*/
+        }
+
+        @keyframes hugo {
+            from { transform: scale(3); }
+            to { transform: none; }
+        }
+    </style>
 {% endblock %}
 
 {% block page %}
     <div class="page animsition">
         <div class="page-content">
-            <div class="panel">
+            <div class="panel panel-bordered">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Modifier la parcelle</h3>
+                    <h3 class="panel-title">Modifier la parcelle
+                        <div class="pull-right" style="color:grey;display: inline;"><span id="display_area">{{ plot.area }}</span> ha</div>
+                    </h3>
                 </div>
                 <div class="panel-body">
                     {{ form_start(edit_form) }}
@@ -42,15 +67,22 @@
                     <a class="btn btn-default" href="{{ path('plot_show', { 'id': plot.id }) }}">Annuler</a>
 
                     <button class="btn btn-danger margin-10" type="submit">Enregistrer</button>
-
-                    {% if is_granted('DELETE', plot) or is_granted('ROLE_ADMIN') %}
-                            {{ form_start(delete_form) }}
-                            <button class="btn btn-info margin-10 pull-right" type="submit">Supprimer</button>
-                            {{ form_end(delete_form) }}
-                    {% endif %}
+                    {{ form_end(edit_form) }}
                 </div>
-                {{ form_end(edit_form) }}
+            </div>
 
+
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Actions sensibles</h3>
+            </div>
+            <div class="panel-body">
+
+                {% if is_granted('DELETE', plot) or is_granted('ROLE_ADMIN') %}
+                    {{ form_start(delete_form) }}
+                    <button class="btn btn-info margin-10" type="submit">Supprimer</button>
+                    {{ form_end(delete_form) }}
+                {% endif %}
             </div>
         </div>
     </div>
@@ -98,6 +130,11 @@
                 marker: false,
                 rectangle: false,
                 polygon: {
+                    icon: new L.DivIcon({
+                        iconSize: new L.Point(20, 20),
+                        className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                        html: '<div class="created-div"></div>'
+                    }),
                     shapeOptions: {
                         dashArray: "8,6",
                         color: 'white',
@@ -114,6 +151,7 @@
             featureGroup.clearLayers();
             featureGroup.addLayer(layer);
             $("#plot_area").val(getPolygonArea(layer));
+            $("#display_area").html(getPolygonArea(layer));
             var latLngs = JSON.stringify(layer.toGeoJSON());
             $("#plot_latLngs").val(latLngs);
             map.fitBounds(layer.getBounds());
@@ -125,23 +163,19 @@
                 featureGroup.clearLayers();
                 featureGroup.addLayer(layer);
                 $("#plot_area").val(getPolygonArea(layer));
+                $("#display_area").html(getPolygonArea(layer));
                 var latLngs = JSON.stringify(layer.toGeoJSON());
                 $("#plot_latLngs").val(latLngs);
             });
         });
 
-        // On draw start, delete previous plot
-        map.on('draw:drawstart', function (e) {
-            featureGroup.clearLayers();
-            $("#plot_latLngs").val("");
-            $("#plot_area").val("");
-        });
 
-        // On draw start, delete previous plot
+        // On draw deletestop, delete previous plot
         map.on('draw:deletestop', function (e) {
             featureGroup.clearLayers();
             $("#plot_latLngs").val("");
             $("#plot_area").val("");
+            $("#display_area").html("0");
         });
 
         // Get Polygon Area

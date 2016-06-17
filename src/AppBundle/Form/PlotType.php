@@ -23,12 +23,12 @@ class PlotType extends AbstractType
                 'label_attr' => array('class' => 'control-label')
             ))
             ->add('area',TextType::class,array(
-                'attr' => array('class' => ''),
-                'label_attr' => array('class' => ''),
+                'attr' => array('class' => 'hidden'),
+                'label_attr' => array('class' => 'hidden'),
             ))
             ->add('latLngs',TextType::class,array(
-                'attr' => array('class' => ''),
-                'label_attr' => array('class' => ''),
+                'attr' => array('class' => 'hidden'),
+                'label_attr' => array('class' => 'hidden'),
             ))
             ;
     }

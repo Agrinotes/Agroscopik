@@ -30,6 +30,17 @@
             // Where the polygons are stored
             var featureGroup = L.featureGroup().addTo(map);
 
+            // Change icon styles
+            L.Edit.Poly = L.Edit.Poly.extend({
+                options: {
+                    icon: new L.DivIcon({
+                        iconSize: new L.Point(20, 20),
+                        className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                        html: '<div class="inside-div"></div>'
+                    })
+                }
+            });
+
             // Enable drawing polygons
             var drawControl = new L.Control.Draw({
                 edit: {
@@ -47,6 +58,11 @@
                     marker: false,
                     rectangle: false,
                     polygon: {
+                        icon: new L.DivIcon({
+                            iconSize: new L.Point(20, 20),
+                            className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                            html: '<div class="created-div"></div>'
+                        }),
                         shapeOptions: {
                             dashArray: "8,6",
                             color: 'white',
@@ -146,26 +162,41 @@
                 }
             };
 
+            // Enable drawing polygons on ready
+            new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
+
+
             // On draw created, add polygon values to the form
             map.on('draw:created', function (e) {
                 var layer = e.layer;
                 featureGroup.clearLayers();
                 featureGroup.addLayer(layer);
                 $("#plot_area").val(getPolygonArea(layer));
+                $("#display_area").html(getPolygonArea(layer));
                 var latLngs = JSON.stringify(layer.toGeoJSON());
                 $("#plot_latLngs").val(latLngs);
                 map.fitBounds(layer.getBounds());
             });
 
-            // On draw created, add polygon values to the form
+            // On draw edited, update polygon values to the form
             map.on('draw:edited', function (e) {
                 e.layers.eachLayer(function (layer) {
                     featureGroup.clearLayers();
                     featureGroup.addLayer(layer);
                     $("#plot_area").val(getPolygonArea(layer));
+                    $("#display_area").html(getPolygonArea(layer));
                     var latLngs = JSON.stringify(layer.toGeoJSON());
                     $("#plot_latLngs").val(latLngs);
                 });
+            });
+
+            // On draw deletestop, delete previous plot
+            map.on('draw:deletestop', function (e) {
+                featureGroup.clearLayers();
+                $("#plot_latLngs").val("");
+                $("#plot_area").val("");
+                $("#display_area").html("0");
+
             });
 
             // Get Polygon Area

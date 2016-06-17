@@ -167,7 +167,7 @@ class PlotController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('plot_index');
+        return $this->redirectToRoute('farm_show_current');
     }
 
     /**

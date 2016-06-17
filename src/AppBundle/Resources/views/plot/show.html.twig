@@ -1,25 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>{{ plot.name }}</h1>
+{% block page %}
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="panel panel-bordered">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ plot.name }}</h3>
 
-    <ul>
-        <li>
-            <a href="{{ path('farm_show_current') }}">Liste des parcelles</a>
-        </li>
-        {% if is_granted('EDIT', plot) or is_granted('ROLE_ADMIN') %}
-            <li>
-                <a href="{{ path('plot_edit', { 'id': plot.id }) }}">Editer</a>
-            </li>
-        {% endif %}
-        {% if is_granted('ROLE_ADMIN') %}
-            <li>
-                {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
-                {{ form_end(delete_form) }}
-            </li>
-        {% endif %}
-    </ul>
+                    <div class="panel-actions">
+                        <a class="btn btn-flat btn-default btn-block" href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button" type="button">
+                            Editer
+                        </a>
+                    </div>
+                </div>
 
-    {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id } )) }}
+                <div class="panel-body">
+
+
+                    {% if is_granted('EDIT', plot) or is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-info btn-xs waves-effect waves-light"
+                           href="{{ path('plot_edit', { 'id': plot.id }) }}">Editer</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            {{ form_start(delete_form) }}
+                            <input type="submit" value="Supprimer">
+                            {{ form_end(delete_form) }}
+                        </li>
+                    {% endif %}
+
+                    {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id } )) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+
