@@ -22,6 +22,7 @@
             <!-- Search Panel -->
             <div class="search-friends panel">
                 <div class="panel-heading">
+                {#
                     <div class="panel-actions">
                         <div class="input-search input-group-sm">
                             <button type="submit" class="input-search-btn">
@@ -29,7 +30,7 @@
                             </button>
                             <input type="text" class="form-control" name="" placeholder="Chercher...">
                         </div>
-                    </div>
+                    </div>#}
                     <h3 class="panel-title">Parcelles</h3>
                 </div>
             </div>
@@ -47,16 +48,13 @@
                         </div>
                         <div class="list-group row">
                         {% for plot in farm.plots %}
-                        <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="f_{{ loop.index }}">
+                            <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="f_{{ loop.index }}">
                                 <div class="widget widget-shadow">
                                     <div class="widget-content text-center bg-white padding-20">
-                                        <a href="#" class="avatar margin-bottom-5">
-                                            <img class="img-responsive" src="{{ asset('front/global/portraits/9.jpg') }}" alt="Allen_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">{{ plot.name }}</div>
-                                        <div class="friend-title margin-bottom-20 blue-grey-400">
-                                            {{ plot.area }} ha
+                                        <div class="friend-name" style="font-weight:800">{{ plot.name | capitalize }}
+                                        </div>
+                                        <div class="friend-title blue-grey-400">
+                                            {{ plot.area|number_format(2, ',', ' ') }} ha
                                         </div>
                                     </div>
                                 </div>
@@ -98,10 +96,13 @@
             // this accessToken, you can get it to here ==> [ https://www.mapbox.com ]
             L.mapbox.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
 
+            //Create map
             var map = L.mapbox.map('map', 'mapbox.streets-satellite');
 
+            // Create FeatureGroup
             var featureGroup = L.featureGroup();
 
+           //Drawing polygons
           {% for plot in app.user.farm.plots %}
             {% if plot.latLngs is not empty %}
             var layer = L.geoJson({{ plot.latLngs | raw }});
@@ -111,6 +112,8 @@
             {% endif %}
             {% endfor %}
             featureGroup.addTo(map);
+
+            //Zoom to farm bounds
             var bounds = featureGroup.getBounds();
             map.fitBounds(bounds);
     </script>
