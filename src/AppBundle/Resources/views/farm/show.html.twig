@@ -22,7 +22,6 @@
             <!-- Search Panel -->
             <div class="search-friends panel">
                 <div class="panel-heading">
-                {#
                     <div class="panel-actions">
                         <div class="input-search input-group-sm">
                             <button type="submit" class="input-search-btn">
@@ -30,7 +29,7 @@
                             </button>
                             <input type="text" class="form-control" name="" placeholder="Chercher...">
                         </div>
-                    </div>#}
+                    </div>
                     <h3 class="panel-title">Parcelles</h3>
                 </div>
             </div>
@@ -48,7 +47,7 @@
                         </div>
                         <div class="list-group row">
                         {% for plot in farm.plots %}
-                            <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="f_{{ loop.index }}">
+                            <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="{{ loop.index }}">
                                 <div class="widget widget-shadow">
                                     <div class="widget-content text-center bg-white padding-20">
                                         <div class="friend-name" style="font-weight:800">{{ plot.name | capitalize }}
@@ -86,35 +85,145 @@
     {{ parent() }}
     <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
     <script>
-     // Set default map height
+    window.YouSite = Site.extend({
+   handleMap: function() {
+
+            var self = this;
+            /* set default map height */
             var navbarH = $(".site-navbar").outerHeight();
             var footerH = $(".site-footer").outerHeight();
             var mapH = $(window).height() - navbarH - footerH;
 
             $(".page-main").outerHeight(mapH);
 
-            // this accessToken, you can get it to here ==> [ https://www.mapbox.com ]
+            var $allMarkers = $(".app-location .friend-info");
+            $allMarkers.each(function() {
+                self.allMarkers.push($(this));
+            });
+
             L.mapbox.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
 
-            //Create map
+            /* format map */
             var map = L.mapbox.map('map', 'mapbox.streets-satellite');
 
-            // Create FeatureGroup
-            var featureGroup = L.featureGroup();
+            /* get all friend's ID input [allFriendId] array */
+            $allMarkers.each(function() {
+                self.allFriendId.push($(this).attr("data-friend-id"));
+            });
 
-           //Drawing polygons
-          {% for plot in app.user.farm.plots %}
-            {% if plot.latLngs is not empty %}
-            var layer = L.geoJson({{ plot.latLngs | raw }});
-            layer.setStyle({color: "white", opacity: 0.8, weight: 1.5});
-            layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | capitalize }}"+"</h3><p class=\"margin-top-10\"><a type=\"button\" href=\"{{ path('plot_show',{'id':plot.id}) }}\" style=\"color:\"white\";\" class=\"btn btn-default btn-sm waves-effect waves-light\">Afficher</a></p></div>", {closeButton: false});
-            featureGroup.addLayer(layer);
-            {% endif %}
-            {% endfor %}
-            featureGroup.addTo(map);
 
-            //Zoom to farm bounds
-            var bounds = featureGroup.getBounds();
-            map.fitBounds(bounds);
-    </script>
+            function addPlots() {
+                // Create FeatureGroup
+                var featureGroup = L.featureGroup();
+
+                //Drawing polygons
+                {% for plot in app.user.farm.plots %}
+                {% if plot.latLngs is not empty %}
+                // Add current polygon and add an attribute alt
+                var layer = L.geoJson({{ plot.latLngs | raw }}, {
+                       onEachFeature: function (feature, layer) {
+                        self.coords.push(layer.getBounds());
+                    }
+                });
+
+                //Set style
+                layer.setStyle({color: "white", opacity: 0.8, weight: 1.5});
+
+                //Add a popup
+                layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | capitalize }}"+"</h3><p class=\"margin-top-10\"><a type=\"button\" href=\"{{ path('plot_show',{'id':plot.id}) }}\" style=\"color:\"white\";\" class=\"btn btn-default btn-sm waves-effect waves-light\">Afficher</a></p></div>", {closeButton: false});
+
+                // Add current polygon to featureGroup
+                featureGroup.addLayer(layer);
+
+                // Add it inside allMarkers array
+                self.allMarkers.push(layer);
+
+                console.log(self.allMarkers);
+
+                {% endif %}
+                {% endfor %}
+                featureGroup.addTo(map);
+                        //Zoom to farm bounds
+                        var bounds = featureGroup.getBounds();
+                        map.fitBounds(bounds);                }
+
+            /* Add markers to map */
+            addPlots();
+
+            this.handleClickAction(map);
+
+        },
+   handleFind: function() {
+            var self = this;
+
+            $(".search-friends input").on("focus", function() {
+                $(this).on("keyup", function() {
+                    var inputName = $(".search-friends input").val();
+
+                    for (var i = 0; i < self.inListFriends.length; i++) {
+
+                        /* Gets the text for each of the input boxes */
+                        var friendName = self.inListFriends[i].find(".friend-name").html();
+
+                        if (inputName.length <= friendName.length) {
+                            for (var j = 1; j <= inputName.length; j++) {
+                                if (inputName.substring(0, j).toLowerCase() === friendName.substring(0, j).toLowerCase()) {
+                                    self.inListFriends[i].show();
+                                } else {
+                                    self.inListFriends[i].hide();
+                                }
+                            }
+                        } else {
+                            self.inListFriends[i].hide();
+                        }
+                    }
+                    if (inputName === "")
+                        for (var i = 0; i < self.inListFriends.length; i++) {
+                            self.inListFriends[i].show();
+                        }
+                });
+
+            });
+            $(".search-friends input").on("focusout", function() {
+                $(this).off("keyup");
+            })
+        },
+   handleResize: function() {
+            $(window).on("resize", function() {
+                var navbarH = $(".site-navbar").outerHeight();
+                var footerH = $(".site-footer").outerHeight();
+                var mapH = $(window).height() - navbarH - footerH;
+
+                $(".page-main").outerHeight(mapH);
+            });
+        },
+   handleClickAction: function(map) {
+            var self = this;
+
+            $(".app-location .page-aside .list-group").on("click", ".widget-content", function() {
+
+                var thisId = $(this).parents(".friend-info").attr("data-friend-id");
+
+                map.fitBounds(self.coords[thisId]);
+
+                self.allMarkers[thisId].openPopup();
+            });
+        },
+        run: function() {
+            this.allFriends = [];
+            this.allFriendId = [];
+            this.allMarkers = [];
+            this.inListFriends = [];
+            this.coords = [];
+
+            this.handleMap();
+            this.handleResize();
+            this.handleFind();
+        }
+    });
+
+$(document).ready(function(){
+  YouSite.run();
+});
+</script>
 {% endblock %}
