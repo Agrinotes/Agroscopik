@@ -13,6 +13,7 @@ use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 
 /**
@@ -23,23 +24,31 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class CropCycleController extends Controller
 {
     /**
-     * Lists all CropCycle entities
+     * Lists all CropCycle entities for a specific campaign
      * .
-     * @Route("/plot/{id}/cropcycles", name="cropcycle_index")
+     * @Route("/parcelle/{id}/cultures/campagne/{year}", name="cropcycle_index", requirements={"year" = "\d+"}, defaults={"year" = 2016})
      * @Method("GET")
      */
-    public function indexAction(Request $request, $id)
+    public function indexAction(Request $request, $id, $year)
     {
         $em = $this->getDoctrine()->getManager();
 
         // Get current plot
         $plot = $this->getDoctrine()->getManager()->getRepository('AppBundle:Plot')->find($id);
 
+        // Create campaign date
+        $startCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-01-01 00:00:00");
+        $endCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-12-31 23:59:59");
+
         $cropCycles = $em->getRepository('AppBundle:CropCycle')->findBy(array('plot' => $plot));
 
         return $this->render('@App/cropcycle/index.html.twig', array(
             'plot' => $plot,
             'cropCycles' => $cropCycles,
+            'startCampaignDate' => $startCampaignDate,
+            'endCampaignDate' => $endCampaignDate,
+
+
         ));
     }
 

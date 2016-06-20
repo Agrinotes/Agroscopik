@@ -1,25 +1,37 @@
-    <h2>Liste des cultures</h2>
+<h3>Cycles de cultures</h3>
 
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>Nom</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for cropCycle in cropCycles %}
-            {% if is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN') %}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Périodes</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {{ startCampaignDate|date('d/m/Y') }} à {{ endCampaignDate|date('d/m/Y') }}
+    {% for cropCycle in cropCycles %}
+        {% if is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN') %}
+            {% if cropCycle.actions is empty %}
                 <tr>
                     <td><a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.name }}</a></td>
+                    <td>Pas encore d'interventions</td>
+                </tr>
+
+            {% elseif (startCampaignDate < cropCycle.startDatetime and endCampaignDate > cropCycle.startDatetime ) or (startCampaignDate < cropCycle.endDatetime and endCampaignDate > cropCycle.endDatetime) %}
+                <tr>
+                    <td><a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.name }}</a></td>
+                    <td>{{ cropCycle.startDatetime|date('F Y') }}</td>
                 </tr>
             {% endif %}
-        {% endfor %}
-        </tbody>
-    </table>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
 
-    <ul>
-        <li>
-            <a href="{{ path('cropcycle_new', { 'id': plot.id }) }}">Ajouter une culture</a>
-        </li>
-    </ul>
+<ul>
+    <li>
+        <a href="{{ path('cropcycle_new', { 'id': plot.id }) }}">Ajouter une culture</a>
+    </li>
+</ul>
 

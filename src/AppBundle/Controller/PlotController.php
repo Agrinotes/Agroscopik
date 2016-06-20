@@ -16,7 +16,7 @@ use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 /**
  * Plot controller.
  * @Security("has_role('ROLE_FARMER')")
- * @Route("/plot")
+ * @Route("/parcelle")
  */
 class PlotController extends Controller
 {
@@ -103,18 +103,19 @@ class PlotController extends Controller
      * Finds and displays a Plot entity.
      *
      * @Security("is_granted('VIEW', plot) or is_granted('ROLE_ADMIN')")
-     * @Route("/{id}", name="plot_show")
+     * @Route("/{id}/campagne/{year}", name="plot_show", requirements={"year" = "\d+"}, defaults={"year" = 2016})
      * @Method("GET")
      * @param Plot $plot
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction(Plot $plot)
+    public function showAction(Plot $plot, $year)
     {
         $deleteForm = $this->createDeleteForm($plot);
 
         return $this->render('AppBundle:plot:show.html.twig', array(
             'plot' => $plot,
             'delete_form' => $deleteForm->createView(),
+            'year' => $year,
         ));
     }
 

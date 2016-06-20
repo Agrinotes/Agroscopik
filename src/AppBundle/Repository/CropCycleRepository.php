@@ -10,4 +10,23 @@ namespace AppBundle\Repository;
  */
 class CropCycleRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByPlotAndCampaign($plot, $year)
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->join('c.actions','a')
+            ->addSelect('a')
+            ->join('a.periods','p')
+            ->addSelect('p')
+            ->where('c.plot = :plot')
+            ->setParameter('plot', $plot)
+            ->andWhere(':year BETWEEN c.startDateTime AND c.endDateTime')
+            ->setParameter('year', $year)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

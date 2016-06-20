@@ -171,5 +171,49 @@ class CropCycle
     {
         return $this->crops;
     }
+
+    /**
+     * Get startDatetime
+     *
+     * @return \DateTime
+     */
+    public function getStartDatetime()
+    {
+        $actions = $this->getActions();
+
+        $startDatetime = "";
+
+        foreach($actions as $action){
+            if($startDatetime == ""){
+                $startDatetime = $action->getStartDateTime();
+            }
+            elseif($startDatetime > $action->getStartDateTime()){
+                $startDatetime = $action->getStartDateTime();
+            }
+        }
+        return $startDatetime;
+    }
+
+    /**
+     * Get endDatetime
+     *
+     * @return \DateTime
+     */
+    public function getEndDatetime()
+    {
+        $actions = $this->getActions();
+
+        $endDatetime = "";
+
+        foreach($actions as $action){
+            if($endDatetime == ""){
+                $endDatetime = $action->getEndDateTime();
+            }
+            elseif($endDatetime < $action->getEndDateTime()){
+                $endDatetime = $action->getEndDateTime();
+            }
+        }
+        return $endDatetime;
+    }
 }
 

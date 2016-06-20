@@ -16,11 +16,14 @@
 
                 <div class="panel-body">
 
+                    <div class="pull-right">
+                        <div class="btn-group" aria-label="Basic example" role="group">
+                            <a type="button" href="{{ path('plot_show',{'id':plot.id,'year':year-1}) }}" class="btn btn-default waves-effect waves-light"><i class="icon md-chevron-left margin-0" aria-hidden="true"></i></a>
+                            <a type="button" href="#" class="btn btn-default waves-effect waves-light">{{ year }}</a>
+                            <a type="button" href="{{ path('plot_show',{'id':plot.id,'year':year+1}) }}" class="btn btn-default waves-effect waves-light"><i class="icon md-chevron-right margin-0" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
 
-                    {% if is_granted('EDIT', plot) or is_granted('ROLE_ADMIN') %}
-                        <a class="btn btn-info btn-xs waves-effect waves-light"
-                           href="{{ path('plot_edit', { 'id': plot.id }) }}">Editer</a>
-                    {% endif %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li>
                             {{ form_start(delete_form) }}
@@ -29,7 +32,7 @@
                         </li>
                     {% endif %}
 
-                    {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id } )) }}
+                    {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id,'year':year} )) }}
                 </div>
 
             </div>
