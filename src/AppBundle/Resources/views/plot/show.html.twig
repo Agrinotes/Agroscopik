@@ -3,36 +3,60 @@
 {% block page %}
     <div class="page animsition">
         <div class="page-content">
-            <div class="panel panel-bordered">
-                <div class="panel-heading">
-                    <h3 class="panel-title">{{ plot.name }}</h3>
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ plot.name }}</h3>
+                            <div class="panel-actions">
 
-                    <div class="panel-actions">
-                        <a class="btn btn-flat btn-default btn-block" href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button" type="button">
-                            Editer
-                        </a>
+                            </div>
+                        </div>
+
+                        <div class="panel-body">
+
+
+
+
+                            {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id,'year':year} )) }}
+
+                            <ul>
+                                <li>
+                                    <a href="{{ path('cropcycle_new', { 'id': plot.id }) }}">Ajouter une culture</a>
+                                </li>
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
 
-                <div class="panel-body">
-
-                    <div class="pull-right">
-                        <div class="btn-group" aria-label="Basic example" role="group">
-                            <a type="button" href="{{ path('plot_show',{'id':plot.id,'year':year-1}) }}" class="btn btn-default waves-effect waves-light"><i class="icon md-chevron-left margin-0" aria-hidden="true"></i></a>
-                            <a type="button" href="#" class="btn btn-default waves-effect waves-light">{{ year }}</a>
-                            <a type="button" href="{{ path('plot_show',{'id':plot.id,'year':year+1}) }}" class="btn btn-default waves-effect waves-light"><i class="icon md-chevron-right margin-0" aria-hidden="true"></i></a>
+                <div class="col-lg-3">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ plot.name }}</h3>
+                            <div class="panel-actions">
+                                <a class="btn btn-flat btn-default btn-block"
+                                   href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button" type="button">
+                                    Editer
+                                </a>
+                            </div>
                         </div>
+
+                        <div class="panel-body">
+                            <div class="btn-group" aria-label="Basic example" role="group">
+                                <a type="button" href="{{ path('plot_show',{'id':plot.id,'year':year-1}) }}"
+                                   class="btn btn-default waves-effect waves-light"><i
+                                            class="icon md-chevron-left margin-0" aria-hidden="true"></i></a>
+                                <a type="button" href="#"
+                                   class="btn btn-default waves-effect waves-light">{{ year }}</a>
+                                <a type="button" href="{{ path('plot_show',{'id':plot.id,'year':year+1}) }}"
+                                   class="btn btn-default waves-effect waves-light"><i
+                                            class="icon md-chevron-right margin-0" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+
                     </div>
 
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li>
-                            {{ form_start(delete_form) }}
-                            <input type="submit" value="Supprimer">
-                            {{ form_end(delete_form) }}
-                        </li>
-                    {% endif %}
-
-                    {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id,'year':year} )) }}
                 </div>
 
             </div>
