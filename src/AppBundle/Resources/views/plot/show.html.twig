@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block page %}
     <div class="page animsition">
         <div class="page-content">
@@ -8,23 +13,61 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ plot.name }}</h3>
+
                             <div class="panel-actions">
 
                             </div>
                         </div>
 
                         <div class="panel-body">
+                            <!-- Example Tabs Line -->
+                            <div class="example-wrap margin-lg-0">
+                                <div class="nav-tabs-horizontal">
+                                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
+                                        <li class="active" role="presentation"><a data-toggle="tab"
+                                                                                  href="#exampleTabsLineOne"
+                                                                                  aria-controls="exampleTabsLineOne"
+                                                                                  role="tab" style="font-size: 16px;">Cycles de culture</a></li>
+                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
+                                                                   aria-controls="exampleTabsLineTwo"
+                                                                   role="tab" style="font-size: 16px;">Activités</a></li>
+                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineThree"
+                                                                   aria-controls="exampleTabsLineThree"
+                                                                   role="tab" style="font-size: 16px;">Calendrier</a></li>
+
+                                    </ul>
+                                    </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
+                                            {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id,'year':year} )) }}
+                                            <a class="btn btn-primary" href="{{ path('cropcycle_new', { 'id': plot.id }) }}">
+                                                Ajouter une culture
+                                            </a>
+                                        </div>
+                                        <div class="tab-pane padding-top-20" id="exampleTabsLineTwo" role="tabpanel">
+                                            Sole, latinas incurreret optari vivatur, porro delectu epicurus cadere
+                                            impedit
+                                            fit ferreum concludaturque varias, omnium gloriosis vivendo
+                                            via filio contentam expeteretur fonte expectata, quosque
+                                            praetor quid iucunditatis fortitudinem esse.
+                                        </div>
+                                        <div class="tab-pane" id="exampleTabsLineThree" role="tabpanel">
+                                            Maestitiam quamquam iudicare veterum contineri ipse cognoscerem se
+                                            omittantur dialectica,
+                                            dixit poterit nondum tempora corpora claudicare ratione percipitur.
+                                            Earum comprehenderit laudem platonis allevatio graeci, invidus
+                                            coercendi valetudinis numen deseruisse.
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Example Tabs Line With JS -->
 
 
 
 
-                            {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id,'year':year} )) }}
-
-                            <ul>
-                                <li>
-                                    <a href="{{ path('cropcycle_new', { 'id': plot.id }) }}">Ajouter une culture</a>
-                                </li>
-                            </ul>
                         </div>
 
                     </div>
@@ -34,6 +77,7 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ plot.name }}</h3>
+
                             <div class="panel-actions">
                                 <a class="btn btn-flat btn-default btn-block"
                                    href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button" type="button">
@@ -62,6 +106,13 @@
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+
+    <script src="{{ asset('front/global/js/plugins/responsive-tabs.js') }}"></script>
+    <script src="{{ asset('front/global/js/plugins/closeable-tabs.js') }}"></script>
 {% endblock %}
 
 

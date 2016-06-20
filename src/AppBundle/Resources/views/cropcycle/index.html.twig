@@ -1,24 +1,45 @@
 <table class="table table-hover">
-    <thead>
-    <tr>
-        <th>Nom</th>
-        <th>Périodes</th>
-
-    </tr>
-    </thead>
     <tbody>
     {% for cropCycle in cropCycles %}
         {% if is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN') %}
             {% if cropCycle.actions is empty %}
                 <tr>
-                    <td><a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.name }}</a></td>
-                    <td>Pas encore d'interventions</td>
+                    <td class="cell-60 responsive-hide">
+                        <a class="avatar padding-top-5" href="javascript:void(0)">
+                            <img class="img-responsive" src="{{ asset('front/global/portraits/1.jpg') }}" alt="...">
+                        </a>
+                    </td>
+                    <td>
+                        <div class="content">
+                            <div class="title">
+                                <a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.name }}</a>
+                            </div>
+                            <div class="metas">
+                                <span class="started">Pas encore d'intervention</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="pull-right label label-info margin-top-10 margin-right-10px">En cours</span>
+                    </td>
                 </tr>
-
             {% elseif (startCampaignDate < cropCycle.startDatetime and endCampaignDate > cropCycle.startDatetime ) or (startCampaignDate < cropCycle.endDatetime and endCampaignDate > cropCycle.endDatetime) %}
                 <tr>
-                    <td><a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.name }}</a></td>
-                    <td>{{ cropCycle.startDatetime|date('F Y') }}</td>
+                    <td class="cell-60 responsive-hide">
+                        <a class="avatar padding-top-5" href="javascript:void(0)">
+                            <img class="img-responsive" src="{{ asset('front/global/portraits/1.jpg') }}" alt="...">
+                        </a>
+                    </td>
+                    <td>
+                        <div class="content">
+                            <div class="title">
+                                <a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.name }}</a>
+                            </div>
+                            <div class="metas">
+                                <span class="started">{{ cropCycle.startDatetime|date('F Y') }} - {{ cropCycle.endDatetime|date('F Y') }}</span>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             {% endif %}
         {% endif %}
