@@ -35,6 +35,8 @@ class ActionType extends AbstractType
             ->add('intervention', EntityType::class, array(
                 'class' => 'AppBundle:Intervention',
                 'choice_label' => 'name',
+                'attr' => array('class'=>'form-control','data-plugin'=>'select2'),
+                'group_by' => 'interventionCategory.name'
             ))
             ->add('periods', CollectionType::class, array(
                 'entry_type' => EventType::class,
