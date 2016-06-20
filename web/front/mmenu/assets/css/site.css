@@ -166,6 +166,7 @@ body {
 }
 .site-menu-title {
   display: inline-block;
+  font-size: 17px;
   max-width: 160px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -243,6 +244,8 @@ body {
 .site-menu > .site-menu-item > a {
   padding: 0 25px;
   line-height: 46px;
+  font-size: 17px;
+
 }
 .site-menu > .site-menu-item.active {
   border-top: 1px solid rgba(0, 0, 0, .04);
@@ -1295,10 +1298,11 @@ body.layout-full {
   margin-left: 325px;
 }
 .site-menubar-fold .site-menu > .site-menu-item {
-  font-size: 14px;
+  font-size: 17px;
 }
 .site-menubar-fold .site-menu > .site-menu-item > a {
   height: 46px;
+  font-size: 17px;
 }
 .site-menubar-fold .site-menu > .site-menu-item > a .site-menu-title,
 .site-menubar-fold .site-menu > .site-menu-item > a .site-menu-arrow,

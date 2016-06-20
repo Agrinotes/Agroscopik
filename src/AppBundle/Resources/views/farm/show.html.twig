@@ -180,13 +180,15 @@
                         var friendName = self.inListFriends[i].find(".friend-name").html();
 
                         if (inputName.length <= friendName.length) {
-                            for (var j = 1; j <= inputName.length; j++) {
-                                if (inputName.substring(0, j).toLowerCase() === friendName.substring(0, j).toLowerCase()) {
+
+                                if (friendName.toLowerCase().search(inputName.toLowerCase()) > -1) {
                                     self.inListFriends[i].show();
-                                } else {
+                                }else {
                                     self.inListFriends[i].hide();
                                 }
-                            }
+
+
+
                         } else {
                             self.inListFriends[i].hide();
                         }
