@@ -138,6 +138,7 @@
             var self = this;
 
             $(".search-friends input").on("focus", function() {
+                console.log('Here');
                 $(this).on("keyup", function() {
                     var inputName = $(".search-friends input").val();
 

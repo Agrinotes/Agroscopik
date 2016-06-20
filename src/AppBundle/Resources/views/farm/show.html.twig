@@ -46,8 +46,9 @@
                             </div>
                         </div>
                         <div class="list-group row">
+                        {% if farm.plots is not empty %}
                         {% for plot in farm.plots %}
-                            <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="{{ loop.index }}">
+                            <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="{{ loop.index0 }}">
                                 <div class="widget widget-shadow">
                                     <div class="widget-content text-center bg-white padding-20">
                                         <div class="friend-name" style="font-weight:800">{{ plot.name | capitalize }}
@@ -59,6 +60,8 @@
                                 </div>
                             </div>
                         {% endfor %}
+                                                {% endif %}
+
                         </div>
                     </div>
                 </div>
@@ -84,6 +87,9 @@
 {% block template_config %}
     {{ parent() }}
     <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
+
+    {% if farm.plots is not empty %}
+
     <script>
     window.YouSite = Site.extend({
    handleMap: function() {
@@ -156,9 +162,17 @@
    handleFind: function() {
             var self = this;
 
+            $(".app-location .friend-info").each(function() {
+                self.inListFriends.push($(this));
+             });
+
             $(".search-friends input").on("focus", function() {
+
+            console.log('1');
                 $(this).on("keyup", function() {
                     var inputName = $(".search-friends input").val();
+                                console.log(self.inListFriends);
+
 
                     for (var i = 0; i < self.inListFriends.length; i++) {
 
@@ -205,8 +219,6 @@
                 var thisId = $(this).parents(".friend-info").attr("data-friend-id");
 
                 map.fitBounds(self.coords[thisId]);
-
-                self.allMarkers[thisId].openPopup();
             });
         },
         run: function() {
@@ -226,4 +238,5 @@ $(document).ready(function(){
   YouSite.run();
 });
 </script>
+{% endif %}
 {% endblock %}

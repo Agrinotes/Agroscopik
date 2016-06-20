@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/backup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/show.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/front/agroscopik/assets/js/farm_show.js" afterPath="$PROJECT_DIR$/web/front/agroscopik/assets/js/farm_show.js" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,14 +28,13 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.39469808">
-              <caret line="208" column="52" selection-start-line="208" selection-start-column="52" selection-end-line="208" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.116347566">
+              <caret line="165" column="16" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="16" />
               <folding>
                 <element signature="e#1823#1831#0#Twig" expanded="true" />
-                <element signature="e#2505#2528#0#HTML" expanded="true" />
-                <element signature="e#5559#5568#0#Twig" expanded="true" />
-                <element signature="e#6383#7852#0#HTML" expanded="false" />
-                <element signature="e#7882#8202#0#HTML" expanded="false" />
+                <element signature="e#2563#2586#0#HTML" expanded="true" />
+                <element signature="e#5717#5726#0#Twig" expanded="true" />
+                <element signature="e#8267#8587#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -58,11 +56,10 @@
       <file leaf-file-name="farm_show.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/front/agroscopik/assets/js/farm_show.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.3448277">
-              <caret line="194" column="40" selection-start-line="194" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+            <state vertical-scroll-proportion="-16.48276">
+              <caret line="130" column="23" selection-start-line="128" selection-start-column="20" selection-end-line="131" selection-end-column="23" />
               <folding>
-                <element signature="e#5544#7013#0" expanded="false" />
-                <element signature="e#7048#7368#0" expanded="false" />
+                <element signature="e#7085#7405#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -131,8 +128,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/new.html.twig" />
         <option value="$PROJECT_DIR$/web/front/agroscopik/assets/js/plot_new.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/edit.html.twig" />
-        <option value="$PROJECT_DIR$/web/front/agroscopik/assets/js/farm_show.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/backup.js" />
+        <option value="$PROJECT_DIR$/web/front/agroscopik/assets/js/farm_show.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/show.html.twig" />
       </list>
     </option>
@@ -595,7 +592,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/web/front/agroscopik/assets/js/farm_show.js</url>
+          <line>136</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -949,25 +953,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/front/agroscopik/assets/js/farm_show.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3448277">
-          <caret line="194" column="40" selection-start-line="194" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+        <state vertical-scroll-proportion="-16.48276">
+          <caret line="130" column="23" selection-start-line="128" selection-start-column="20" selection-end-line="131" selection-end-column="23" />
           <folding>
-            <element signature="e#5544#7013#0" expanded="false" />
-            <element signature="e#7048#7368#0" expanded="false" />
+            <element signature="e#7085#7405#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39469808">
-          <caret line="208" column="52" selection-start-line="208" selection-start-column="52" selection-end-line="208" selection-end-column="52" />
+        <state vertical-scroll-proportion="0.116347566">
+          <caret line="165" column="16" selection-start-line="165" selection-start-column="16" selection-end-line="165" selection-end-column="16" />
           <folding>
             <element signature="e#1823#1831#0#Twig" expanded="true" />
-            <element signature="e#2505#2528#0#HTML" expanded="true" />
-            <element signature="e#5559#5568#0#Twig" expanded="true" />
-            <element signature="e#6383#7852#0#HTML" expanded="false" />
-            <element signature="e#7882#8202#0#HTML" expanded="false" />
+            <element signature="e#2563#2586#0#HTML" expanded="true" />
+            <element signature="e#5717#5726#0#Twig" expanded="true" />
+            <element signature="e#8267#8587#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
