@@ -12,13 +12,18 @@
                 <div class="col-lg-9">
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{ plot.name }} <span style="color:lightgrey">{{ plot.area }} ha</span></h3>
+                            <h3 class="panel-title">{{ plot.name }} <span style="color:lightgrey">{{ plot.area }}
+                                    ha</span></h3>
 
                             <div class="panel-actions">
-                                <a class="btn btn-flat btn-default btn-block"
-                                   href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button" type="button">
-                                    Editer
-                                </a>
+                                {% if is_granted('EDIT', plot) or is_granted('ROLE_ADMIN') %}
+
+                                    <a class="btn btn-flat btn-default btn-block"
+                                       href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button"
+                                       type="button">
+                                        Editer
+                                    </a>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -30,7 +35,8 @@
                                         <li class="active" role="presentation"><a data-toggle="tab"
                                                                                   href="#exampleTabsLineOne"
                                                                                   aria-controls="exampleTabsLineOne"
-                                                                                  role="tab" style="font-size: 16px;">Cycles de culture</a></li>
+                                                                                  role="tab" style="font-size: 16px;">Cycles
+                                                de culture</a></li>
                                         <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
                                                                    aria-controls="exampleTabsLineTwo"
                                                                    role="tab" style="font-size: 16px;">Activité</a></li>
@@ -42,40 +48,45 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
                                             {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id,'year':year} )) }}
-                                            <a class="btn btn-primary" href="{{ path('cropcycle_new', { 'id': plot.id }) }}">
+                                            <a class="btn btn-primary"
+                                               href="{{ path('cropcycle_new', { 'id': plot.id }) }}">
                                                 Ajouter une culture
                                             </a>
                                         </div>
                                         <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
                                             <table class="table table-hover">
                                                 <tbody>
-                                            {% for cycle in plot.cropCycles %}
-                                                {% for action in cycle.actions %}
-                                                    {% for period in action.periods %}
-                                                        <tr>
-                                                            <td class="cell-60 responsive-hide">
-                                                                <a class="avatar padding-top-5" href="javascript:void(0)">
-                                                                    <img class="img-responsive" src="{{ asset('front/global/portraits/1.jpg') }}" alt="...">
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                <div class="content">
-                                                                    <div class="title">
-                                                                        <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
+                                                {% for cycle in plot.cropCycles %}
+                                                    {% for action in cycle.actions %}
+                                                        {% for period in action.periods %}
+                                                            <tr>
+                                                                <td class="cell-60 responsive-hide">
+                                                                    <a class="avatar padding-top-5"
+                                                                       href="javascript:void(0)">
+                                                                        <img class="img-responsive"
+                                                                             src="{{ asset('front/global/portraits/1.jpg') }}"
+                                                                             alt="...">
+                                                                    </a>
+                                                                </td>
+                                                                <td>
+                                                                    <div class="content">
+                                                                        <div class="title">
+                                                                            <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
+                                                                        </div>
+                                                                        <div class="metas">
+                                                                            <span class="started">{{ action.cropCycle.name }}
+                                                                                le {{ period.startDateTime | date ('d/m/Y') }}</span>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="metas">
-                                                                        <span class="started">{{ action.cropCycle.name }} le {{ period.startDateTime | date ('d/m/Y') }}</span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-              </td>
-                                                        </tr>
+                                                                </td>
+                                                                <td>
+                                                                </td>
+                                                            </tr>
+                                                        {% endfor %}
+
                                                     {% endfor %}
 
                                                 {% endfor %}
-
-                                            {% endfor %}
                                                 </tbody>
                                             </table>
                                         </div>
@@ -85,8 +96,6 @@
                                 </div>
                             </div>
                             <!-- End Example Tabs Line With JS -->
-
-
 
 
                         </div>

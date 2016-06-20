@@ -1,31 +1,101 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>{{ cropCycle.name }}</h1>
-    {{ form_start(edit_form) }}
-    <div class="hidden">    {{ form_widget(edit_form.crops) }}
-    </div>
-    {{ form_widget(edit_form.status) }}
-    <input type="submit" value="Enregistrer">
-    {{ form_end(edit_form) }}
-    <ul>
-        <li>
-            <a href="{{ path('plot_show',{'id': cropCycle.plot.id }) }}">Retourner à la parcelle</a>
-        </li>
-        {% if is_granted('EDIT', cropCycle) or is_granted('ROLE_ADMIN') %}
-        <li>
-            <a href="{{ path('cropcycle_edit', { 'id': cropCycle.id }) }}">Editer</a>
-        </li>
-        {% endif %}
-        {% if is_granted('ROLE_ADMIN') %}
-        <li>
-                {{ form_start(delete_form) }}
-                    <input type="submit" value="Supprimer">
-                {{ form_end(delete_form) }}
-        </li>
-        {% endif %}
-    </ul>
-
-
-    {{ render(controller('AppBundle:Action:index',{'id': cropCycle.id } )) }}
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
+
+{% block page %}
+
+    <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('farm_show_current') }}">Parcelles</a></li>
+                <li><a href="{{ path('plot_show',{'id':cropCycle.plot.id}) }}">{{ cropCycle.plot.name }}</a></li>
+                <li class="active">{{ cropCycle.name }}</li>
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ cropCycle.name }}</h3>
+
+                            <div class="panel-actions">
+                                {% if is_granted('EDIT', cropCycle) or is_granted('ROLE_ADMIN') %}
+                                    <a class="btn btn-flat btn-default btn-block"
+                                       href="{{ path('cropcycle_edit', {'id': cropCycle.id }) }}" id="edit_plot_button"
+                                       type="button">
+                                        Editer
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- Example Tabs Line -->
+                            <div class="example-wrap margin-lg-0">
+                                <div class="nav-tabs-horizontal">
+                                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
+                                        <li class="active" role="presentation"><a data-toggle="tab"
+                                                                                  href="#exampleTabsLineOne"
+                                                                                  aria-controls="exampleTabsLineOne"
+                                                                                  role="tab" style="font-size: 16px;">Interventions</a></li>
+                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
+                                                                   aria-controls="exampleTabsLineTwo"
+                                                                   role="tab" style="font-size: 16px;">Activité</a></li>
+
+
+                                    </ul>
+                                    </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
+                                            {{ render(controller('AppBundle:Action:index',{'id': cropCycle.id } )) }}
+                                            <a class="btn btn-primary"
+                                               href="{{ path('action_new', { 'id': cropCycle.id }) }}">
+                                                Ajouter une intervention
+                                            </a>
+                                        </div>
+                                        <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Example Tabs Line With JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Statut du cycle</h3>
+                        </div>
+                        <div class="panel-body">
+                            {% form_theme edit_form '@App/form/radio.html.twig' %}
+
+                            {{ form_start(edit_form) }}
+
+                            <div class="hidden">
+                                {{ form_widget(edit_form.crops) }}
+                            </div>
+
+                            {{ form_widget(edit_form.status) }}
+                            <button class="btn btn-primary" type="submit">Enregistrer</button>
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+
+    <script src="{{ asset('front/global/js/plugins/responsive-tabs.js') }}"></script>
+    <script src="{{ asset('front/global/js/plugins/closeable-tabs.js') }}"></script>
+{% endblock %}
+
+

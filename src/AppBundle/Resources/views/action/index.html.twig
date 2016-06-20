@@ -1,33 +1,25 @@
-<h2>Interventions culturales</h2>
-
 <table class="table table-hover">
-    <thead>
-    <tr>
-        <th>Nom</th>
-        <th>Début</th>
-        <th>Fin</th>
-    </tr>
-    </thead>
     <tbody>
     {% for action in actions %}
         {% if is_granted('VIEW', action) or is_granted('ROLE_ADMIN') %}
             <tr>
+
                 <td>
-                    <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
+                    <div class="content">
+                        <div class="title">
+                            <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
+                        </div>
+                        <div class="metas">
+                            <span class="started">{{ action.startDateTime ? action.startDateTime | date('d/m/Y') }}
+                            </span>
+                        </div>
+                    </div>
                 </td>
-                <td>
-                        {{ action.startDateTime ? action.startDateTime | date('d/m/Y') }}
-                </td>
-                <td>
-                        {{ action.endDateTime ? action.endDateTime | date('d/m/Y') }}
-                </td>
+
             </tr>
         {% endif %}
     {% endfor %}
     </tbody>
 </table>
-
-
-<a class="btn btn-primary" href="{{ path('action_new', { 'id': cropCycle.id }) }}">Ajouter une intervention</a>
 
 
