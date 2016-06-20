@@ -115,18 +115,32 @@ class CropCycleController extends Controller
      * Finds and displays a CropCycle entity.
      *
      * @Route("/cropcycle/{id}", name="cropcycle_show")
-     * @Method("GET")
+     * @Method({"GET", "POST"})
+     * @param Request $request
      * @param CropCycle $cropCycle
-     * @Security("is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN')")
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN')")
      */
-    public function showAction(CropCycle $cropCycle)
+    public function showAction(Request $request, CropCycle $cropCycle)
     {
+        $editForm = $this->createForm('AppBundle\Form\CropCycleType', $cropCycle);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($cropCycle);
+            $em->flush();
+
+            return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
+        }
+
         $deleteForm = $this->createDeleteForm($cropCycle);
 
         return $this->render('@App/cropcycle/show.html.twig', array(
             'cropCycle' => $cropCycle,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+
         ));
     }
 

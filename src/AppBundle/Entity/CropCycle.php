@@ -21,6 +21,7 @@ class CropCycle
     {
         $this->actions = new ArrayCollection();
         $this->crops = new ArrayCollection();
+        $this->status = "ActiveAction";
     }
 
     /**
@@ -48,6 +49,11 @@ class CropCycle
      * @ORM\JoinColumn(nullable=false)
      */
     private $crops;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $status;
 
     /**
      * Get id
@@ -214,6 +220,22 @@ class CropCycle
             }
         }
         return $endDatetime;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
     }
 }
 

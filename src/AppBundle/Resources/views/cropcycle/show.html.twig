@@ -2,7 +2,12 @@
 
 {% block body %}
     <h1>{{ cropCycle.name }}</h1>
-
+    {{ form_start(edit_form) }}
+    <div class="hidden">    {{ form_widget(edit_form.crops) }}
+    </div>
+    {{ form_widget(edit_form.status) }}
+    <input type="submit" value="Enregistrer">
+    {{ form_end(edit_form) }}
     <ul>
         <li>
             <a href="{{ path('plot_show',{'id': cropCycle.plot.id }) }}">Retourner à la parcelle</a>
@@ -20,6 +25,7 @@
         </li>
         {% endif %}
     </ul>
+
 
     {{ render(controller('AppBundle:Action:index',{'id': cropCycle.id } )) }}
 {% endblock %}

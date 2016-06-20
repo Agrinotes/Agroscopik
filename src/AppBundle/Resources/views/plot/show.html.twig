@@ -15,7 +15,10 @@
                             <h3 class="panel-title">{{ plot.name }}</h3>
 
                             <div class="panel-actions">
-
+                                <a class="btn btn-flat btn-default btn-block"
+                                   href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button" type="button">
+                                    Editer
+                                </a>
                             </div>
                         </div>
 
@@ -30,10 +33,8 @@
                                                                                   role="tab" style="font-size: 16px;">Cycles de culture</a></li>
                                         <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
                                                                    aria-controls="exampleTabsLineTwo"
-                                                                   role="tab" style="font-size: 16px;">Activités</a></li>
-                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineThree"
-                                                                   aria-controls="exampleTabsLineThree"
-                                                                   role="tab" style="font-size: 16px;">Calendrier</a></li>
+                                                                   role="tab" style="font-size: 16px;">Activité</a></li>
+
 
                                     </ul>
                                     </li>
@@ -45,20 +46,40 @@
                                                 Ajouter une culture
                                             </a>
                                         </div>
-                                        <div class="tab-pane padding-top-20" id="exampleTabsLineTwo" role="tabpanel">
-                                            Sole, latinas incurreret optari vivatur, porro delectu epicurus cadere
-                                            impedit
-                                            fit ferreum concludaturque varias, omnium gloriosis vivendo
-                                            via filio contentam expeteretur fonte expectata, quosque
-                                            praetor quid iucunditatis fortitudinem esse.
+                                        <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                            {% for cycle in plot.cropCycles %}
+                                                {% for action in cycle.actions %}
+                                                    {% for period in action.periods %}
+                                                        <tr>
+                                                            <td class="cell-60 responsive-hide">
+                                                                <a class="avatar padding-top-5" href="javascript:void(0)">
+                                                                    <img class="img-responsive" src="{{ asset('front/global/portraits/1.jpg') }}" alt="...">
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <div class="content">
+                                                                    <div class="title">
+                                                                        <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
+                                                                    </div>
+                                                                    <div class="metas">
+                                                                        <span class="started">{{ action.cropCycle.name }} le {{ period.startDateTime | date ('d/m/Y') }}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+              </td>
+                                                        </tr>
+                                                    {% endfor %}
+
+                                                {% endfor %}
+
+                                            {% endfor %}
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div class="tab-pane" id="exampleTabsLineThree" role="tabpanel">
-                                            Maestitiam quamquam iudicare veterum contineri ipse cognoscerem se
-                                            omittantur dialectica,
-                                            dixit poterit nondum tempora corpora claudicare ratione percipitur.
-                                            Earum comprehenderit laudem platonis allevatio graeci, invidus
-                                            coercendi valetudinis numen deseruisse.
-                                        </div>
+
 
                                     </div>
                                 </div>
@@ -76,13 +97,10 @@
                 <div class="col-lg-3">
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{ plot.name }}</h3>
+                            <h3 class="panel-title">Campagne</h3>
 
                             <div class="panel-actions">
-                                <a class="btn btn-flat btn-default btn-block"
-                                   href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button" type="button">
-                                    Editer
-                                </a>
+
                             </div>
                         </div>
 

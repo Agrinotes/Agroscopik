@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -23,6 +24,13 @@ class CropCycleType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true
             ))
+            ->add('status', ChoiceType::class, array(
+                'multiple'=>false,
+                'expanded'=>true,
+                'choices'  => array(
+                    'En cours' => 'ActiveAction',
+                    'Terminé' => 'CompletedAction',
+                )))
 
         ;
     }

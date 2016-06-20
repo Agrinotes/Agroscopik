@@ -20,8 +20,11 @@
                         </div>
                     </td>
                     <td>
-                        <span class="pull-right label label-info margin-top-10 margin-right-10px">En cours</span>
-                    </td>
+                        {% if cropCycle.status == "ActiveAction" %}
+                            <span class="pull-right label label-warning margin-top-10 margin-right-10px">En cours</span>
+                        {% elseif cropCycle.status == "CompletedAction" %}
+                            <span class="pull-right label label-info margin-top-10 margin-right-10px">Terminé</span>
+                        {% endif %}                    </td>
                 </tr>
             {% elseif (startCampaignDate < cropCycle.startDatetime and endCampaignDate > cropCycle.startDatetime ) or (startCampaignDate < cropCycle.endDatetime and endCampaignDate > cropCycle.endDatetime) %}
                 <tr>
@@ -39,6 +42,13 @@
                                 <span class="started">{{ cropCycle.startDatetime|date('F Y') }} - {{ cropCycle.endDatetime|date('F Y') }}</span>
                             </div>
                         </div>
+                    </td>
+                    <td>
+                        {% if cropCycle.status == "ActiveAction" %}
+                        <span class="pull-right label label-warning margin-top-10 margin-right-10px">En cours</span>
+                        {% elseif cropCycle.status == "CompletedAction" %}
+                            <span class="pull-right label label-info margin-top-10 margin-right-10px">Terminé</span>
+                        {% endif %}
                     </td>
                 </tr>
             {% endif %}
