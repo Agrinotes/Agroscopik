@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Form\Type\DatepickerType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,14 +20,15 @@ class EventType extends AbstractType
             ->add('startDatetime',DateTimeType::class, array(
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
+                'date_format' => 'dd/MM/yyyy',
                 'html5'   => false,
                 'data' => new \DateTime(),
                 'required' => true,
-                'attr' => array('class' => 'here')
             ))
             ->add('endDatetime', DateTimeType::class, array(
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
+                'date_format' => 'dd/MM/yyyy',
                 'html5'   => false,
                 'data' => new \DateTime(),
                 'required' => true,

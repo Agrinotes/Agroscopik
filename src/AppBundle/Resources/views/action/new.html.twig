@@ -3,6 +3,9 @@
 {% block plugin_stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('front/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
+    {#<link rel="stylesheet" href="{{ asset('front/global/vendor/clockpicker/clockpicker.css') }}">#}
 {% endblock %}
 
 {% block head_javascripts %}
@@ -30,14 +33,15 @@
                         <div class="panel-body">
                             {{ form_start(form) }}
                             <div class="row">
-                            <div class="col-lg-4">
-                                <h4 class="example-title">
-                                    {{ form_label(form.intervention) }}
-                                </h4>
-                            {{ form_widget(form.intervention) }}
+                                <div class="col-lg-4">
+                                    <h4 class="example-title">
+                                        {{ form_label(form.intervention) }}
+                                    </h4>
+                                    {{ form_widget(form.intervention) }}
+                                </div>
                             </div>
-                            </div>
-                            <div>
+                            <div class="row">
+                                {% form_theme form 'AppBundle:form:datetime.html.twig' %}
                                 {{ form_widget(form.periods) }}
                                 <a href="#" id="add_period" class="btn btn-default">Ajouter une période</a>
                             </div>
@@ -69,6 +73,21 @@
     {{ parent() }}
     <script src="{{ asset('front/global/vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('front/global/js/components/select2.js') }}"></script>
+
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/jquery.datepair.min.js') }}"></script>
+
+    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
+
+    {#
+    <script src="{{ asset('front/global/vendor/clockpicker/bootstrap-clockpicker.min.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/clockpicker.js') }}"></script>
+    #}
 {% endblock %}
 
 {% block javascripts %}
@@ -87,6 +106,7 @@
 
             if (index == 0) {
                 addPeriod($container);
+
             } else {
                 $container.children('div').each(function () {
                     addDeleteLink($(this));
@@ -104,6 +124,31 @@
                 $container.append($prototype);
 
                 index++;
+
+                $('input[id*="startDatetime_time"]').addClass("time start");
+                $('input[id*="startDatetime_date"]').addClass("date start");
+                $('input[id*="endDatetime_time"]').addClass("time end");
+                $('input[id*="endDatetime_date"]').addClass("date end");
+
+                    // initialize input widgets first
+                $('.time').timepicker({
+                    'showDuration': true,
+                    'timeFormat': 'G:i',
+                    'show2400': true
+                });
+
+                $('.date').datepicker({
+                    'format': 'dd/mm/yyyy',
+                    'startView':'months',
+                    'minView':'days',
+                    'language': 'fr',
+                    'autoclose': true
+                });
+
+                // initialize datepair
+                var basicExampleEl = document.getElementById('action_periods_0');
+                var datepair = new Datepair(basicExampleEl);
+
             }
 
             function addDeleteLink($prototype) {
@@ -120,7 +165,11 @@
             }
         });
 
+
+
+
     </script>
 {% endblock %}
+
 
 

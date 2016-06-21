@@ -25,10 +25,10 @@
 		pm: 'pm',
 		AM: 'AM',
 		PM: 'PM',
-		decimal: '.',
-		mins: 'mins',
-		hr: 'hr',
-		hrs: 'hrs'
+		decimal: ',',
+		mins: 'min',
+		hr: 'h',
+		hrs: 'h'
 	};
 
 	var methods = {
@@ -1204,13 +1204,13 @@
 		},
 		scrollDefault: null,
 		selectOnBlur: false,
-		show2400: false,
+		show2400: true,
 		showDuration: false,
 		showOn: ['click', 'focus'],
 		showOnFocus: true,
 		step: 30,
 		stopScrollPropagation: false,
-		timeFormat: 'g:ia',
+		timeFormat: 'G:i',
 		typeaheadHighlight: true,
 		useSelect: false
 	};
