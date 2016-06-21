@@ -88,6 +88,7 @@
             <input type="{{ type }}" {{ block('widget_attributes') }}
                    class="form-control" {% if value is not empty %}value="{{ value }}" {% endif %}/>
         </div>
+
     {% else -%}
         {% set attr = attr|merge({class: (attr.class|default('') ~ ' form-inline')|trim}) -%}
         {% if datetime is not defined or false == datetime -%}
