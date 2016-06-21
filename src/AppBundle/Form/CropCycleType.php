@@ -18,33 +18,33 @@ class CropCycleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('crops',EntityType::class,array(
-                'label'=>'Culture ou association de cultures',
+            ->add('crops', EntityType::class, array(
+                'label' => 'Culture ou association de cultures',
                 'class' => 'AppBundle:Crop',
                 'choice_label' => 'name',
-                'multiple' => true
+                'multiple' => true,
+                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+
             ))
-            ->add('area',TextType::class,array(
+            ->add('area', TextType::class, array(
                 'attr' => array('class' => 'hidden'),
                 'label_attr' => array('class' => 'hidden'),
-                'required'=>false,
+                'required' => false,
             ))
-            ->add('latLngs',TextType::class,array(
+            ->add('latLngs', TextType::class, array(
                 'attr' => array('class' => 'hidden'),
                 'label_attr' => array('class' => 'hidden'),
-                'required'=>false,
+                'required' => false,
             ))
             ->add('status', ChoiceType::class, array(
-                'multiple'=>false,
-                'expanded'=>true,
-                'choices'  => array(
+                'multiple' => false,
+                'expanded' => true,
+                'choices' => array(
                     'En cours' => 'ActiveAction',
                     'Terminé' => 'CompletedAction',
-                )))
-
-        ;
+                )));
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
