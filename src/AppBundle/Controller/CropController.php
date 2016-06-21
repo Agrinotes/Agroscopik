@@ -42,14 +42,12 @@ class CropController extends Controller
     /**
      * Lists all Crop entities for current farm
      * .
-     * @Route("/crop", name="crop_index")
+     * @Route("farm/{id}/crop", name="crop_current_index")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
-
-        $id = $this->getUser()->getFarm()->getId();
 
         $crops = $em->getRepository('AppBundle:Crop')->findByFarm($id);
 

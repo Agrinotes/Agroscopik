@@ -1,35 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Liste des cultures</h1>
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block page %}
+<div class="page animsition">
+
+    <div class="page-content">
+        <div class="row">
 
     {% for crop in crops %}
-            <h3>
-                <a href="{{ path('crop_show', { 'id': crop.id }) }}">{{ crop.name }}</a>
-            </h3>
-        <table class="table table_hover">
-
-        {% for cycle in crop.cropcycles %}
-            <tr>
-                <td>
-                    {{ cycle.name }}
-                </td>
-                <td>
-                    {{ cycle.plot.name }}
-                </td>
-            </tr>
-        {% endfor %}
-        </table>
+        <div class="col-xlg-6 col-md-6">
+            <div class="panel panel-bordered panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><a href="{{ path('crop_show', { 'id': crop.id }) }}">{{ crop.name }}</a></h3>
+                </div>
+                <table class="table table-hover">
+                    <tbody>
+                    {% for cycle in crop.cropcycles %}
+                        <tr>
+                            <td>
+                               <a href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.plot.name }}</a>
+                            </td>
+                            <td>
+                                {% if cycle.status == "ActiveAction" %}
+                                    <span class="pull-right label label-warning  margin-right-10px">En cours</span>
+                                {% elseif cycle.status == "CompletedAction" %}
+                                    <span class="pull-right label label-info  margin-right-10px">Terminé</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
     {% endfor %}
 
-
-    <ul>
         {% if is_granted('ROLE_ADMIN') %}
             <li>
                 <a href="{{ path('crop_new') }}">Ajouter une culture</a>
             </li>
         {% endif %}
-    </ul>
+        </div>
+    </div></div>
 {% endblock %}
 
 
