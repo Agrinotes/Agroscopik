@@ -24,6 +24,16 @@ class CropCycleType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true
             ))
+            ->add('area',TextType::class,array(
+                'attr' => array('class' => 'hidden'),
+                'label_attr' => array('class' => 'hidden'),
+                'required'=>false,
+            ))
+            ->add('latLngs',TextType::class,array(
+                'attr' => array('class' => 'hidden'),
+                'label_attr' => array('class' => 'hidden'),
+                'required'=>false,
+            ))
             ->add('status', ChoiceType::class, array(
                 'multiple'=>false,
                 'expanded'=>true,

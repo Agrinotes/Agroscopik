@@ -1,16 +1,79 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Ajouter un cycle de culture sur {{ plot.name }}</h1>
-
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Enregistrer" />
-    {{ form_end(form) }}
-
-    <ul>
-        <li>
-            <a href="{{ path('plot_show',{'id': plot.id }) }}">Retourner à la parcelle</a>
-        </li>
-    </ul>
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
+
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/select2/select2.css') }}">
+{% endblock %}
+
+{% block page %}
+
+    <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('plot_show',{'id':plot.id}) }}">{{ plot.name | capitalize }}</a></li>
+                <li class="active">Ajouter un cycle de culture</li>
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Ajouter un cycle de culture</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    {{ form_start(form) }}
+
+                                    <h4 class="example-title">
+                                        {{ form_label(form.crops) }}
+                                    </h4>
+
+                                    {{ form_errors(form.crops) }}
+                                    {{ form_widget(form.crops) }}
+                                </div>
+                            </div>
+                            <div class="row margin-top-20">
+                                <div class="col-lg-12">
+                                    <div class="hidden">
+                                        {{ form_widget(form.status) }}
+                                    </div>
+                                    <div>
+                                        <h4 class="example-title">
+                                            Surface attribuée (ha)
+                                        </h4>
+
+                                        {{ form_errors(form.area) }}
+                                        {{ form_widget(form.area) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a class="btn btn-default btn-flat"
+                               href="{{ path('plot_show',{'id': plot.id }) }}">Annuler</a>
+                            <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/select2.js') }}"></script>
+
+{% endblock %}
+
+

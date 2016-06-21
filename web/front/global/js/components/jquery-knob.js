@@ -10,6 +10,6 @@ $.components.register("knob", {
     max: 50,
     width: 120,
     height: 120,
-    thickness: ".1"
+    thickness: ".1",
   }
 });
