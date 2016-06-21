@@ -89,7 +89,7 @@ class CropCycle
         $name = "";
         $crops = $this->getCrops();
         foreach ($crops as $crop) {
-            $name = $name.$crop->getName();
+            $name = $name." ".$crop->getName();
         }
         return $name;
     }

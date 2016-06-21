@@ -9,7 +9,6 @@
 <div class="page animsition">
 
     <div class="page-content">
-        <div class="row">
 
     {% for crop in crops %}
         <div class="col-xlg-6 col-md-6">
@@ -23,6 +22,8 @@
                         <tr>
                             <td>
                                <a href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.plot.name }}</a>
+                                {{ cycle.startDateTime | date('F Y') }} - {{ cycle.endDateTime | date('F Y') }}<br/>
+                                {{ cycle.area | number_format(2, ',', ' ') }} ha
                             </td>
                             <td>
                                 {% if cycle.status == "ActiveAction" %}
@@ -45,7 +46,7 @@
             </li>
         {% endif %}
         </div>
-    </div></div>
+    </div>
 {% endblock %}
 
 
