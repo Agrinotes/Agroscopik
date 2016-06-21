@@ -8,6 +8,7 @@
 {% block plugin_stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('front/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/asrange/asRange.css') }}">
 {% endblock %}
 
 {% block page %}
@@ -47,11 +48,10 @@
                                     </div>
                                     <div>
                                         <h4 class="example-title">
-                                            Surface attribuée (ha)
+                                            Surface attribuée
                                         </h4>
-
+                                        {{ form_widget(form.area, { 'attr':{'data-max':plot.area,'value': plot.area} }) }}
                                         {{ form_errors(form.area) }}
-                                        {{ form_widget(form.area) }}
                                     </div>
                                 </div>
                             </div>
@@ -74,6 +74,8 @@
     <script src="{{ asset('front/global/vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('front/global/js/components/select2.js') }}"></script>
 
+    <script src="{{ asset('front/global/vendor/asrange/jquery-asRange.min.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/asrange.js') }}"></script>
 {% endblock %}
 
 

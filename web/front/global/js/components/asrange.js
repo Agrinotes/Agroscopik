@@ -6,7 +6,10 @@
 $.components.register("asRange", {
   mode: "default",
   defaults: {
-    tip: false,
-    scale: false
+    tip: true,
+    scale: false,
+    format: function(value) {
+      return value + 'ha';
+    },
   }
 });

@@ -27,7 +27,7 @@ class CropCycleType extends AbstractType
 
             ))
             ->add('area', TextType::class, array(
-                'attr' => array('class' => 'hidden'),
+                'attr' => array('class' => 'asRange','data-plugin'=>'asRange','data-step'=>'0.01','data-min'=>'0', 'data-tip'=>'true','data-namespace'=>'rangeUi'),
                 'label_attr' => array('class' => 'hidden'),
                 'required' => false,
             ))
