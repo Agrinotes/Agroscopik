@@ -123,7 +123,7 @@
                 addDeleteLink($prototype);
                 $container.append($prototype);
 
-                index++;
+
 
                 $('input[id*="startDatetime_time"]').addClass("time start");
                 $('input[id*="startDatetime_date"]').addClass("date start");
@@ -146,9 +146,10 @@
                 });
 
                 // initialize datepair
-                var basicExampleEl = document.getElementById('action_periods_0');
+                var basicExampleEl = document.getElementById('action_periods_'+(index));
                 var datepair = new Datepair(basicExampleEl);
 
+                index++;
             }
 
             function addDeleteLink($prototype) {
@@ -164,10 +165,6 @@
                 });
             }
         });
-
-
-
-
     </script>
 {% endblock %}
 
