@@ -62,6 +62,7 @@ class ActionType extends AbstractType
                 $tractorsOptions = array(
                     'class' => 'AppBundle:Tractor',
                     'choice_label' => 'name',
+                    'label'=>'Tracteurs',
                     'required' => false,
                     'multiple' => true,
                     'expanded' => true,
@@ -75,9 +76,10 @@ class ActionType extends AbstractType
                 $implementsOptions = array(
                     'class' => 'AppBundle:Implement',
                     'choice_label' => 'name',
+                    'label'=>'Outils',
                     'required' => false,
                     'multiple' => true,
-                    'expanded' => false,
+                    'expanded' => true,
                     'query_builder' => function (EntityRepository $er) use ($farm) {
                         return $er->qbFindAllForCurrentFarm($farm);
                     },
