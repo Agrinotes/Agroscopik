@@ -42,17 +42,24 @@ class CropController extends Controller
     /**
      * Lists all Crop entities for current farm
      * .
-     * @Route("farm/{id}/crop", name="crop_current_index")
+     * @Route("ferme/{id}/cultures/campagne/{year}", name="crop_current_index", requirements={"year" = "\d+"}, defaults={"year" = 2016})
      * @Method("GET")
      */
-    public function indexAction(Request $request, $id)
+    public function indexAction(Request $request, $id, $year)
     {
         $em = $this->getDoctrine()->getManager();
 
         $crops = $em->getRepository('AppBundle:Crop')->findByFarm($id);
 
+        // Create campaign date
+        $startCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-01-01 00:00:00");
+        $endCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-12-31 23:59:59");
+
         return $this->render('@App/crop/index.html.twig', array(
             'crops' => $crops,
+            'year' => $year,
+            'startCampaignDate' => $startCampaignDate,
+            'endCampaignDate' => $endCampaignDate,
         ));
     }
 

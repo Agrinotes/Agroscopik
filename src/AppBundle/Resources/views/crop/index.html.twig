@@ -6,47 +6,92 @@
 {% endblock %}
 
 {% block page %}
-<div class="page animsition">
-
-    <div class="page-content">
-
-    {% for crop in crops %}
-        <div class="col-xlg-6 col-md-6">
-            <div class="panel panel-bordered panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><a href="{{ path('crop_show', { 'id': crop.id }) }}">{{ crop.name }}</a></h3>
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-9"></div>
+                <div class="col-lg-3">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Campagne</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="btn-group" aria-label="Basic example" role="group">
+                                <a type="button"
+                                   href="{{ path('crop_current_index',{'id':app.user.farm.id,'year':year-1}) }}"
+                                   class="btn btn-default waves-effect waves-light"><i
+                                   class="icon md-chevron-left margin-0" aria-hidden="true"></i></a>
+                                <a type="button" href="#"
+                                   class="btn btn-default waves-effect waves-light">{{ year }}</a>
+                                <a type="button"
+                                   href="{{ path('crop_current_index',{'id':app.user.farm.id,'year':year+1}) }}"
+                                   class="btn btn-default waves-effect waves-light"><i
+                                   class="icon md-chevron-right margin-0" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <table class="table table-hover">
-                    <tbody>
-                    {% for cycle in crop.cropcycles %}
-                        <tr>
-                            <td>
-                               <a href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.plot.name }}</a>
-                                {{ cycle.startDateTime | date('F Y') }} - {{ cycle.endDateTime | date('F Y') }}<br/>
-                                {{ cycle.area | number_format(2, ',', ' ') }} ha
-                            </td>
-                            <td>
-                                {% if cycle.status == "ActiveAction" %}
-                                    <span class="pull-right label label-warning  margin-right-10px">En cours</span>
-                                {% elseif cycle.status == "CompletedAction" %}
-                                    <span class="pull-right label label-info  margin-right-10px">Terminé</span>
+            </div>
+            <div class ="row">
+
+            {% for crop in crops %}
+                {% set cumulated = 0 %}
+                <div class="col-xlg-6 col-md-6">
+                    <div class="panel panel-bordered panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><a
+                                        href="{{ path('crop_show', { 'id': crop.id }) }}">{{ crop.name }}</a></h3>
+                        </div>
+                        <table class="table table-hover">
+                            <tbody>
+                            {% for cycle in crop.cropcycles %}
+                                {% set cumulated = cumulated + cycle.area %}
+                                {% if cycle.actions is empty %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.plot.name }}</a>
+                                            <br/>
+                                            {{ cycle.area | number_format(2, ',', ' ') }} ha
+                                        </td>
+                                        <td>
+                                            <span class="pull-right label label-default  margin-right-10px">A renseigner</span>
+                                        </td>
+                                    </tr>
+                                {% elseif (startCampaignDate < cycle.startDatetime and endCampaignDate > cycle.startDatetime ) or (startCampaignDate < cycle.endDatetime and endCampaignDate > cycle.endDatetime) %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.plot.name }}</a>
+                                            {{ cycle.startDateTime | date('F Y') }}
+                                            - {{ cycle.endDateTime | date('F Y') }}<br/>
+                                            {{ cycle.area | number_format(2, ',', ' ') }} ha
+                                        </td>
+                                        <td>
+                                            {% if cycle.status == "ActiveAction" %}
+                                                <span class="pull-right label label-warning  margin-right-10px">En cours</span>
+                                            {% elseif cycle.status == "CompletedAction" %}
+                                                <span class="pull-right label label-info  margin-right-10px">Terminé</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
                                 {% endif %}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                            {% endfor %}
+                            <tr>
+                                <td><strong>Surface cumulée</strong><br/>
+                                    {{ cumulated | number_format(2, ',', ' ') }} ha
+                                </td>
+                                <td>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {% endfor %}
             </div>
         </div>
-    {% endfor %}
-
-        {% if is_granted('ROLE_ADMIN') %}
-            <li>
-                <a href="{{ path('crop_new') }}">Ajouter une culture</a>
-            </li>
-        {% endif %}
-        </div>
     </div>
+
 {% endblock %}
 
 
