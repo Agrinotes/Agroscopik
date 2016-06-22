@@ -330,5 +330,37 @@ class Action
     {
         return $this->endDatetime;
     }
+
+    public function updateStartDatetime(){
+        $periods = $this->getPeriods();
+        $i = 0;
+        foreach($periods as $period){
+            if($i == 0){
+                $earliest = $period->getStartDatetime();
+                $i++;
+            }else{
+                if($period->getStartDatetime()< $earliest){
+                    $earliest = $period->getStartDatetime();
+                }
+            }
+        }
+        $this->setStartDatetime($earliest);
+    }
+
+    public function updateEndDatetime(){
+        $periods = $this->getPeriods();
+        $i = 0;
+        foreach($periods as $period){
+            if($i == 0){
+                $oldest = $period->getEndDatetime();
+                $i++;
+            }else{
+                if($period->getEndDatetime()> $oldest){
+                    $oldest = $period->getEndDatetime();
+                }
+            }
+        }
+        $this->setEndDatetime($oldest);
+    }
 }
 

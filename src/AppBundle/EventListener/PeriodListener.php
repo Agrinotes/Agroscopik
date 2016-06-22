@@ -25,7 +25,12 @@ class PeriodListener
             }
 
             $action = $entity->getAction();
-            $action->setStartDatetime($entity->getStartDatetime());
+            $periods = $action->getPeriods();
+
+            // Setting StartDatetime
+            $action->updateStartDatetime();
+
+            // Setting EndDatetime
             $action->setEndDatetime($entity->getEndDatetime());
 
             $em->persist($action);
