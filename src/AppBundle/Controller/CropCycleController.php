@@ -62,8 +62,9 @@ class CropCycleController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+        $farm = $em->getRepository('AppBundle:Farm')->find($this->getUser()->getFarm()->getId());
         // Get cropCycles for current crop and campaign
-        $cropCycles = $this->getDoctrine()->getManager()->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($id,$year);
+        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($id,$year,$farm);
 
         // Create campaign date
         $startCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-01-01 00:00:00");
@@ -73,6 +74,7 @@ class CropCycleController extends Controller
             'cropCycles' => $cropCycles,
             'startCampaignDate' => $startCampaignDate,
             'endCampaignDate' => $endCampaignDate,
+            'year'=>$year,
         ));
     }
 

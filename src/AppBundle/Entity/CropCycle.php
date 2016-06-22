@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * CropCycle
@@ -22,6 +23,8 @@ class CropCycle
         $this->actions = new ArrayCollection();
         $this->crops = new ArrayCollection();
         $this->status = "ActiveAction";
+        $this->startDatetime = new \DateTime('now');
+        $this->endDatetime = new \DateTime('now');
     }
 
     /**
