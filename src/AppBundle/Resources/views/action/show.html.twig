@@ -1,44 +1,123 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>{{ action.name }}</h1>
-
-    <span class="label label-info">{{action.progress['completed_actions']}}/{{action.progress['count_actions']}}</span>
-
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>Périodes</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for period in action.periods %}
-            <tr>
-                <td>{{ period.startDateTime |date('d/m/Y') }} au {{ period.endDateTime |date('d/m/Y') }}</td>
-                <td><span class="label label-info">{{ period.getStatus }}</span>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('cropcycle_show', { 'id': action.cropCycle.id }) }}">Retour à liste des interventions</a>
-        </li>
-        {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
-            <li>
-                <a href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
-            </li>
-        {% endif %}
-
-        {% if is_granted('DELETE', action) or is_granted('ROLE_ADMIN') %}
-            <li>
-                {{ form_start(delete_form) }}
-                <input type="submit" value="Supprimer">
-                {{ form_end(delete_form) }}
-            </li>
-        {% endif %}
-    </ul>
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
+
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <style>
+
+        table.table-hover td:hover .icon {
+            visibility: visible;
+        }
+
+        table.table-hover td .icon {
+            visibility: hidden;
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+
+    <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{{ path('plot_show',{'id':action.cropCycle.plot.id}) }}">{{ action.cropCycle.plot.name }}</a>
+                </li>
+                <li><a href="{{ path('cropcycle_show',{'id':action.cropCycle.id}) }}">{{ action.cropCycle.name }}</a>
+                </li>
+                <li class="active">{{ action.name }}</li>
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ action.name }}</h3>
+                        </div>
+                        <div class="panel-body">
+                            <h4 class="example-title">
+                                Matériel utilisé
+                            </h4>
+                            {% if action.tractors is not empty and action.implements is not empty %}
+                                <ul>
+                                    {% for tractor in action.tractors %}
+                                        <li>
+                                            {{ tractor.name }}
+                                        </li>
+                                    {% endfor %}
+                                    {% for implement in action.implements %}
+                                        <li>
+                                            {{ implement.name }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>
+                                    Aucun matériel renseigné
+                                </p>
+                            {% endif %}
+
+                            <h4 class="example-title margin-top-30">
+                                Périodes d'intervention
+                                <span class="label label-info">
+                                    {{ action.progress['completed_actions'] }}
+                                    / {{ action.progress['count_actions'] }}
+                                </span>
+                            </h4>
+                            <table class="table table-hover">
+                                <tbody>
+                                {% for period in action.periods %}
+                                    <tr>
+                                        <td>Du {{ period.startDateTime |date('d/m/Y') }}
+                                            au {{ period.endDateTime |date('d/m/Y') }}
+                                            <a href="{{ path('event_edit',{'id':period.id}) }}">
+                                                <i class="icon md-edit margin-left-10" style="color:darkgrey" aria-hidden="true">
+                                                </i>
+                                            </a>
+                                        </td>
+                                        <td>
+
+                                            {% if period.status == "ActiveAction" %}
+                                                <span class="pull-right label label-warning  margin-right-10px">En cours</span>
+                                            {% elseif period.status == "CompletedAction" %}
+                                                <span class="pull-right label label-info  margin-right-10px">Terminée</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Actions
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
+                                <a class="btn btn-default margin-bottom-10"
+                                   href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
+                            {% endif %}
+
+                            {% if is_granted('DELETE', action) or is_granted('ROLE_ADMIN') %}
+                                {{ form_start(delete_form) }}
+                                <button type="submit" class="btn btn-danger">Supprimer</button>
+                                {{ form_end(delete_form) }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
