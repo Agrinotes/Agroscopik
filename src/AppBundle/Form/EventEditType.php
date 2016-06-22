@@ -18,15 +18,20 @@ class EventEditType extends AbstractType
         $builder
             ->add('startDatetime',DateTimeType::class, array(
                 'date_widget' => 'single_text',
+                'label'=>'Début d\'intervention',
                 'time_widget' => 'single_text',
+                'date_format' => 'dd/MM/yyyy',
                 'html5'   => false,
+                'data' => new \DateTime(),
                 'required' => true,
-                'attr' => array('class' => 'here')
             ))
             ->add('endDatetime', DateTimeType::class, array(
                 'date_widget' => 'single_text',
+                'label'=>'Fin d\'intervention',
                 'time_widget' => 'single_text',
+                'date_format' => 'dd/MM/yyyy',
                 'html5'   => false,
+                'data' => new \DateTime(),
                 'required' => true,
             ))
         ;

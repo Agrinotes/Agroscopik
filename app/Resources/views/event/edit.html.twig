@@ -1,21 +1,112 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Event edit</h1>
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
+{% endblock %}
 
-    <ul>
-        <li>
-            <a href="{{ path('event_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block page %}
+    <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{{ path('plot_show',{'id':event.action.cropCycle.plot.id}) }}">{{ event.action.cropCycle.plot.name }}</a>
+                </li>
+                <li>
+                    <a href="{{ path('cropcycle_show',{'id':event.action.cropCycle.id}) }}">{{ event.action.cropCycle.name }}</a>
+                </li>
+                <li><a href="{{ path('action_show',{'id':event.action.id}) }}">{{ event.action.name }}</a>
+                </li>
+                <li class="active">Editer une période d'intervention</li>
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Editer une période d'intervention</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ form_start(edit_form) }}
+                            {% form_theme edit_form 'AppBundle:form:datetime.html.twig' %}
+
+                            {{ form_widget(edit_form) }}
+                        </div>
+                        <div class="panel-footer">
+                            <a class="btn btn-default"
+                               href="{{ path('action_show',{'id':event.action.id}) }}">Annuler</a>
+                            <button type="submit" class="btn btn-primary margin-left-10">Enregistrer</button>
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Actions sensibles
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            {{ form_start(delete_form) }}
+                            <button class="btn btn-danger" type="submit">Supprimer</button>
+                            {{ form_end(delete_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/jquery.datepair.min.js') }}"></script>
+
+    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#event_startDatetime_time').addClass("time start");
+            $('#event_startDatetime_date').addClass("date start");
+            $('#event_endDatetime_time').addClass("time end");
+            $('#event_endDatetime_date').addClass("date end");
+
+            // initialize input widgets first
+            $('.time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'G:i',
+                'show2400': true,
+            });
+
+            $('.date').datepicker({
+                'format': 'dd/mm/yyyy',
+                'startView': 'months',
+                'minView': 'days',
+                'language': 'fr',
+                'autoclose': true,
+            });
+
+            // initialize datepair
+            var basicExampleEl = document.getElementById('event');
+            var datepair = new Datepair(basicExampleEl);
+        });
+    </script>
 {% endblock %}

@@ -81,11 +81,12 @@
                                             </a>
                                         </td>
                                         <td>
-
                                             {% if period.status == "ActiveAction" %}
                                                 <span class="pull-right label label-warning  margin-right-10px">En cours</span>
                                             {% elseif period.status == "CompletedAction" %}
                                                 <span class="pull-right label label-info  margin-right-10px">Terminée</span>
+                                            {% elseif period.status == "PotentialAction" %}
+                                                <span class="pull-right label label-default  margin-right-10px">A venir</span>
                                             {% endif %}
                                         </td>
                                     </tr>

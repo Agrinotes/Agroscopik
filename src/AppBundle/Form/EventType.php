@@ -18,6 +18,7 @@ class EventType extends AbstractType
     {
         $builder
             ->add('startDatetime',DateTimeType::class, array(
+                'label'=>'Début d\'intervention',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
                 'date_format' => 'dd/MM/yyyy',
@@ -26,6 +27,7 @@ class EventType extends AbstractType
                 'required' => true,
             ))
             ->add('endDatetime', DateTimeType::class, array(
+                'label'=>'Fin d\'intervention',
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
                 'date_format' => 'dd/MM/yyyy',
