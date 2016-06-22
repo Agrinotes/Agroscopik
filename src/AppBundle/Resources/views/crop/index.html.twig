@@ -39,7 +39,7 @@
                     <div class="panel panel-bordered panel-primary">
                         <div class="panel-heading">
                             <h3 class="panel-title"><a
-                                        href="{{ path('cropcycle_cropcampaign_index', { 'id': crop.id,'year':year }) }}">{{ crop.name }}</a></h3>
+                                        href="{{ path('cropcycle_cropcampaign_index', { 'id': crop.id,'year':year }) }}">{{ crop.name }}</a></h3><div class="panel-actions">{{ render(controller('AppBundle:Crop:getCumulatedArea',{'farm':app.user.farm.id,'crop':crop.id,'year':year})) }}</div>
                         </div>
                         {{ render(controller('AppBundle:CropCycle:indexCropCampaign',{'id': crop.id,'year':year } )) }}
                     </div>

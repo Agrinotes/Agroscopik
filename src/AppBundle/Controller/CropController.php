@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Form\CropType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
@@ -21,6 +22,29 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class CropController extends Controller
 {
+    /**
+     * Get cumulated area a a crop for a specific year
+     * .
+     * @Route("ferme/{farm}/crop/{crop}/campagne/{year)", name="cumulated_area", requirements={"year" = "\d+"}, defaults={"year" = 2016}))
+     * @Method("GET")
+     */
+    public function getCumulatedAreaAction($crop, $year, $farm){
+        $em = $this->getDoctrine()->getManager();
+
+        // Create campaign date
+        $startDatetime    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-01-01 00:00:00");
+        $endDatetime    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-12-31 23:59:59");
+
+        // Get cropCycles for current crop and campaign
+        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($crop, $startDatetime, $endDatetime,$farm);
+        $area = "";
+        foreach ($cropCycles as $cropCycle) {
+            $area += $cropCycle->getArea();
+        }
+        return new Response(str_replace('.',',',$area).' ha cumulés');
+    }
+
+
     /**
      * Lists all Crop entities
      * .
