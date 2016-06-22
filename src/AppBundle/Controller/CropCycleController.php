@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class CropCycleController extends Controller
 {
     /**
-     * Lists all CropCycle entities for a specific campaign
+     * Lists all CropCycle entities for a specific plot and a campaign
      * .
      * @Route("/parcelle/{id}/cultures/campagne/{year}", name="cropcycle_index", requirements={"year" = "\d+"}, defaults={"year" = 2016})
      * @Method("GET")
@@ -49,6 +49,30 @@ class CropCycleController extends Controller
             'endCampaignDate' => $endCampaignDate,
 
 
+        ));
+    }
+
+    /**
+     * Lists all CropCycle entities for a specific crop and campaign on all plots
+     * .
+     * @Route("/culture/{id}/campagne/{year}", name="cropcycle_cropcampaign_index", requirements={"year" = "\d+"}, defaults={"year" = 2016})
+     * @Method("GET")
+     */
+    public function indexCropCampaignAction(Request $request, $id, $year)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Get cropCycles for current crop and campaign
+        $cropCycles = $this->getDoctrine()->getManager()->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($id,$year);
+
+        // Create campaign date
+        $startCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-01-01 00:00:00");
+        $endCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-12-31 23:59:59");
+
+        return $this->render('@App/cropcycle/crop_campaign_index.html.twig', array(
+            'cropCycles' => $cropCycles,
+            'startCampaignDate' => $startCampaignDate,
+            'endCampaignDate' => $endCampaignDate,
         ));
     }
 

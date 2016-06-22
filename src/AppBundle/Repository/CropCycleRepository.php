@@ -10,18 +10,24 @@ namespace AppBundle\Repository;
  */
 class CropCycleRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findByPlotAndCampaign($plot, $year)
+    public function findByCropAndCampaign($crop, $year)
     {
+
+        $yearStart =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-01-01 00:00:00");
+        $yearEnd =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-12-31 23:59:59");
+
         $qb = $this->createQueryBuilder('c');
 
-        $qb->join('c.actions','a')
-            ->addSelect('a')
-            ->join('a.periods','p')
-            ->addSelect('p')
-            ->where('c.plot = :plot')
-            ->setParameter('plot', $plot)
-            ->andWhere(':year BETWEEN c.startDateTime AND c.endDateTime')
-            ->setParameter('year', $year)
+        $qb->join('c.crops','crops')
+            ->addSelect('crops')
+            ->andWhere('crops.id = :crop AND c.startDatetime BETWEEN :yearStart AND :yearEnd')
+            ->setParameter('crop', $crop)
+            ->setParameter('yearStart', $yearStart)
+            ->setParameter('yearEnd', $yearEnd)
+            ->orWhere('crops.id = :crop AND c.endDatetime BETWEEN :yearStart AND :yearEnd')
+            ->setParameter('crop', $crop)
+            ->setParameter('yearStart', $yearStart)
+            ->setParameter('yearEnd', $yearEnd)
         ;
 
         return $qb
@@ -29,4 +35,6 @@ class CropCycleRepository extends \Doctrine\ORM\EntityRepository
             ->getResult()
             ;
     }
+
+    // Create findByPlotAndCampaign()
 }

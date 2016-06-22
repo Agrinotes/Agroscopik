@@ -1,0 +1,34 @@
+<table class="table table-hover">
+    <tbody>
+    {% for cycle in cropCycles %}
+        {% if cycle.actions is empty %}
+            <tr>
+                <td>
+                    <a href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.plot.name }}</a>
+                    <br/>
+                    {{ cycle.area | number_format(2, ',', ' ') }} ha
+                </td>
+                <td>
+                    <span class="pull-right label label-default  margin-right-10px">A renseigner</span>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td>
+                    <a href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.plot.name }}</a>
+                    {{ cycle.startDateTime | date('F Y') }}
+                    - {{ cycle.endDateTime | date('F Y') }}<br/>
+                    {{ cycle.area | number_format(2, ',', ' ') }} ha
+                </td>
+                <td>
+                    {% if cycle.status == "ActiveAction" %}
+                        <span class="pull-right label label-warning  margin-right-10px">En cours</span>
+                    {% elseif cycle.status == "CompletedAction" %}
+                        <span class="pull-right label label-info  margin-right-10px">Terminé</span>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
