@@ -37,7 +37,7 @@ class CropController extends Controller
 
         // Get cropCycles for current crop and campaign
         $cropCycles = $em->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($crop, $startDatetime, $endDatetime,$farm);
-        $area = "";
+        $area = 0;
         foreach ($cropCycles as $cropCycle) {
             $area += $cropCycle->getArea();
         }
