@@ -70,6 +70,20 @@ class CropCycle
     private $area;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="startDatetime", type="datetime",nullable=true)
+     */
+    private $startDatetime;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="endDatetime", type="datetime",nullable=true)
+     */
+    private $endDatetime;
+
+    /**
      * Get id
      *
      * @return int
@@ -89,7 +103,7 @@ class CropCycle
         $name = "";
         $crops = $this->getCrops();
         foreach ($crops as $crop) {
-            $name = $name." ".$crop->getName();
+            $name = $name . " " . $crop->getName();
         }
         return $name;
     }
@@ -192,49 +206,6 @@ class CropCycle
         return $this->crops;
     }
 
-    /**
-     * Get startDatetime
-     *
-     * @return \DateTime
-     */
-    public function getStartDatetime()
-    {
-        $actions = $this->getActions();
-
-        $startDatetime = "";
-
-        foreach($actions as $action){
-            if($startDatetime == ""){
-                $startDatetime = $action->getStartDateTime();
-            }
-            elseif($startDatetime > $action->getStartDateTime()){
-                $startDatetime = $action->getStartDateTime();
-            }
-        }
-        return $startDatetime;
-    }
-
-    /**
-     * Get endDatetime
-     *
-     * @return \DateTime
-     */
-    public function getEndDatetime()
-    {
-        $actions = $this->getActions();
-
-        $endDatetime = "";
-
-        foreach($actions as $action){
-            if($endDatetime == ""){
-                $endDatetime = $action->getEndDateTime();
-            }
-            elseif($endDatetime < $action->getEndDateTime()){
-                $endDatetime = $action->getEndDateTime();
-            }
-        }
-        return $endDatetime;
-    }
 
     /**
      * @return mixed
@@ -296,6 +267,81 @@ class CropCycle
     public function getArea()
     {
         return $this->area;
+    }
+
+
+    /**
+     * @param \DateTime $startDatetime
+     * @return CropCycle
+     */
+    public function setStartDatetime($startDatetime)
+    {
+        $this->startDatetime = $startDatetime;
+        return $this;
+    }
+
+    /**
+     * Get startDatetime
+     *
+     * @return \DateTime
+     */
+    public function getStartDatetime()
+    {
+
+        return $this->startDatetime;
+    }
+
+    /**
+     * @param \DateTime $endDatetime
+     * @return CropCycle
+     */
+    public function setEndDatetime($endDatetime)
+    {
+        $this->endDatetime = $endDatetime;
+        return $this;
+    }
+
+    /**
+     * Get endDatetime
+     *
+     * @return \DateTime
+     */
+    public function getEndDatetime()
+    {
+
+        return $this->endDatetime;
+    }
+
+    public function updateStartDatetime(){
+        $actions = $this->getActions();
+        $i = 0;
+        foreach($actions as $action){
+            if($i == 0){
+                $earliest = $action->getStartDatetime();
+                $i++;
+            }else{
+                if($action->getStartDatetime()< $earliest){
+                    $earliest = $action->getStartDatetime();
+                }
+            }
+        }
+        $this->setStartDatetime($earliest);
+    }
+
+    public function updateEndDatetime(){
+        $actions = $this->getActions();
+        $i = 0;
+        foreach($actions as $action){
+            if($i == 0){
+                $oldest = $action->getEndDatetime();
+                $i++;
+            }else{
+                if($action->getEndDatetime()> $oldest){
+                    $oldest = $action->getEndDatetime();
+                }
+            }
+        }
+        $this->setEndDatetime($oldest);
     }
 }
 

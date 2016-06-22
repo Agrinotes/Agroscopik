@@ -24,6 +24,7 @@ class PeriodListener
                 continue;
             }
 
+            // Update action
             $action = $entity->getAction();
             $periods = $action->getPeriods();
 
@@ -31,11 +32,24 @@ class PeriodListener
             $action->updateStartDatetime();
 
             // Setting EndDatetime
-            $action->setEndDatetime($entity->getEndDatetime());
+            $action->updateEndDatetime();
 
             $em->persist($action);
             $md = $em->getClassMetadata('AppBundle\Entity\Action');
             $uow->recomputeSingleEntityChangeSet($md, $action);
+
+            // Update cropCycle
+            $cycle = $action->getCropCycle();
+
+            // Setting StartDatetime
+            $cycle->updateStartDatetime();
+
+            // Setting EndDatetime
+            $cycle->updateEndDatetime();
+            $em->persist($cycle);
+
+            $meta = $em->getClassMetadata('AppBundle\Entity\CropCycle');
+            $uow->recomputeSingleEntityChangeSet($meta, $cycle);
         }
     }
 }
