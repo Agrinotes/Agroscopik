@@ -139,13 +139,13 @@ class Event
      */
     public function getStatus()
     {
-        $today = new \DateTime('now');
+        $now = new \DateTime('now');
 
-        if ($today > $this->endDatetime) {
+        if ($now > $this->endDatetime) {
             return 'CompletedAction';
-        } elseif ($today >= $this->startDatetime && $today <= $this->endDatetime) {
+        } elseif ($now >= $this->startDatetime && $now <= $this->endDatetime) {
             return 'ActiveAction';
-        } elseif ($today < $this->startDatetime) {
+        } elseif ($now < $this->startDatetime) {
             return 'PotentialAction';
         }
     }
