@@ -91,6 +91,9 @@ class EventController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($event);
             $em->flush();
+            $em->persist($event->getAction());
+            $em->flush();
+
 
             return $this->redirectToRoute('event_edit', array('id' => $event->getId()));
         }

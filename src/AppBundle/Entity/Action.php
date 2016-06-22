@@ -60,6 +60,21 @@ class Action
     private $implements;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="startDatetime", type="datetime")
+     */
+    private $startDatetime;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="endDatetime", type="datetime")
+     */
+    private $endDatetime;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -269,25 +284,41 @@ class Action
     }
 
     /**
+     * Set startDatetime
+     *
+     * @param \DateTime $startDatetime
+     *
+     * @return Event
+     */
+    public function setStartDatetime($startDatetime)
+    {
+        $this->startDatetime = $startDatetime;
+
+        return $this;
+    }
+
+    /**
      * Get startDatetime
      *
      * @return \DateTime
      */
     public function getStartDatetime()
     {
-        $periods = $this->getPeriods();
+        return $this->startDatetime;
+    }
 
-        $startDatetime = "";
+    /**
+     * Set endDatetime
+     *
+     * @param \DateTime $endDatetime
+     *
+     * @return Event
+     */
+    public function setEndDatetime($endDatetime)
+    {
+        $this->endDatetime = $endDatetime;
 
-        foreach($periods as $period){
-            if($startDatetime == ""){
-                $startDatetime = $period->getStartDateTime();
-            }
-            elseif($startDatetime > $period->getStartDateTime()){
-                $startDatetime = $period->getStartDateTime();
-            }
-        }
-        return $startDatetime;
+        return $this;
     }
 
     /**
@@ -297,19 +328,7 @@ class Action
      */
     public function getEndDatetime()
     {
-        $periods = $this->getPeriods();
-
-        $endDatetime = "";
-
-        foreach($periods as $period){
-            if($endDatetime == ""){
-                $endDatetime = $period->getEndDateTime();
-            }
-            elseif($endDatetime > $period->getEndDateTime()){
-                $endDatetime = $period->getEndDateTime();
-            }
-        }
-        return $endDatetime;
+        return $this->endDatetime;
     }
 }
 

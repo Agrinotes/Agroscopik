@@ -10,3 +10,7 @@ services:
         arguments: ['@security.token_storage']
         tags:
             - { name: form.type }
+    app.period.listener:
+        class: AppBundle\EventListener\PeriodListener
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }

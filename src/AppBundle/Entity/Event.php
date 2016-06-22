@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="event")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EventRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Event
 {
@@ -20,6 +21,7 @@ class Event
         $this->startDatetime = new \DateTime('now');
         $this->endDatetime = new \DateTime('now');
     }
+
 
     /**
      * @var int
@@ -139,13 +141,11 @@ class Event
     {
         $today = new \DateTime('now');
 
-        if($today > $this->endDatetime){
+        if ($today > $this->endDatetime) {
             return 'CompletedAction';
-        }
-        elseif ($today >= $this->startDatetime && $today <=$this->endDatetime){
+        } elseif ($today >= $this->startDatetime && $today <= $this->endDatetime) {
             return 'ActiveAction';
-        }
-        elseif ($today < $this->startDatetime){
+        } elseif ($today < $this->startDatetime) {
             return 'PotentialAction';
         }
     }
