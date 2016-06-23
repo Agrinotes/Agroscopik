@@ -406,7 +406,7 @@ $endTime = $endTime->add($period->getDuration());
      */
     public function getDurationLabel(){
         $diff  = $this->getDuration();
-        $duration = $this->format_interval($diff);
+        $duration = $this->format_duration($diff);
 
         return $duration;
     }
@@ -418,7 +418,7 @@ $endTime = $endTime->add($period->getDuration());
      *
      * @return string Formatted interval string.
      */
-    function format_interval(DateInterval $interval) {
+    function format_duration(DateInterval $interval) {
         $result = "";
 
         // Years

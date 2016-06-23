@@ -22,32 +22,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
  */
 class CropController extends Controller
 {
-    /**
-     * Get cumulated area a a crop for a specific year
-     * .
-     * @Route("ferme/{farm}/crop/{crop}/campagne/{year)", name="cumulated_area", requirements={"year" = "\d+"}, defaults={"year" = 2016}))
-     * @Method("GET")
-     */
-    public function getCumulatedAreaAction($crop, $year, $farm){
-        $em = $this->getDoctrine()->getManager();
-
-        // Create campaign date
-        $startDatetime    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-01-01 00:00:00");
-        $endDatetime    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-12-31 23:59:59");
-
-        // Get cropCycles for current crop and campaign
-        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($crop, $startDatetime, $endDatetime,$farm);
-        $area = 0;
-        foreach ($cropCycles as $cropCycle) {
-            $area += $cropCycle->getArea();
-        }
-        return new Response(str_replace('.',',',$area).' ha cumulés');
-    }
-
 
     /**
      * Lists all Crop entities
-     * .
+     *
      * @Route("/crop/list", name="crop_list")
      * @Method("GET")
      */
@@ -76,14 +54,43 @@ class CropController extends Controller
         $crops = $em->getRepository('AppBundle:Crop')->findByFarm($id);
 
         // Create campaign date
-        $startCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-01-01 00:00:00");
-        $endCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-12-31 23:59:59");
+        $startCampaignDate = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-01-01 00:00:00");
+        $endCampaignDate = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-12-31 23:59:59");
 
         return $this->render('@App/crop/index.html.twig', array(
             'crops' => $crops,
             'year' => $year,
             'startCampaignDate' => $startCampaignDate,
             'endCampaignDate' => $endCampaignDate,
+        ));
+    }
+
+    /**
+     * Finds and displays crop related informations for a farm and campaign
+     * .
+     * @Route("/ferme/{farm}/culture/{crop}/campagne/{year}", name="crop_campaign_show", requirements={"year" = "\d+"}, defaults={"year" = 2016})
+     * @Method("GET")
+     */
+    public function showCropCampaignAction(Request $request, $farm, $crop, $year)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $farm = $em->getRepository('AppBundle:Farm')->find($farm);
+        $crop = $em->getRepository('AppBundle:Crop')->find($crop);
+
+        // Create campaign date
+        $startDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-01-01 00:00:00");
+        $endDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-12-31 23:59:59");
+
+        // Get cropCycles for current farm, crop and campaign
+        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($crop->getId(), $startDatetime, $endDatetime, $farm->getId());
+
+        return $this->render('@App/crop/campaign_show.html.twig', array(
+            'crop' => $crop,
+            'cropCycles' => $cropCycles,
+            'startCampaignDate' => $startDatetime,
+            'endCampaignDate' => $endDatetime,
+            'year' => $year,
         ));
     }
 
@@ -200,5 +207,28 @@ class CropController extends Controller
             ->setAction($this->generateUrl('crop_delete', array('id' => $crop->getId())))
             ->setMethod('DELETE')
             ->getForm();
+    }
+
+    /**
+     * Get cumulated area a a crop for a specific year
+     *
+     * @Route("ferme/{farm}/crop/{crop}/campagne/{year)", name="cumulated_area", requirements={"year" = "\d+"}, defaults={"year" = 2016}))
+     * @Method("GET")
+     */
+    public function getCumulatedAreaAction($crop, $year, $farm)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Create campaign date
+        $startDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-01-01 00:00:00");
+        $endDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-12-31 23:59:59");
+
+        // Get cropCycles for current crop and campaign
+        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($crop, $startDatetime, $endDatetime, $farm);
+        $area = 0;
+        foreach ($cropCycles as $cropCycle) {
+            $area += $cropCycle->getArea();
+        }
+        return new Response(str_replace('.', ',', $area) . ' ha cumulés');
     }
 }

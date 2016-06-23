@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use DateInterval;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints\DateTime;
@@ -315,6 +317,10 @@ class CropCycle
         return $this->endDatetime;
     }
 
+
+    /**
+     *Update StartDatetime
+     */
     public function updateStartDatetime(){
         $actions = $this->getActions();
         $i = 0;
@@ -331,6 +337,9 @@ class CropCycle
         $this->setStartDatetime($earliest);
     }
 
+    /**
+     * Update endDatetime
+     */
     public function updateEndDatetime(){
         $actions = $this->getActions();
         $i = 0;
@@ -347,6 +356,11 @@ class CropCycle
         $this->setEndDatetime($oldest);
     }
 
+    /**
+     * Get a label for cropcycle DateInterval
+     *
+     * @return mixed|string
+     */
     public function getIntervalLabel(){
         $start = $this->startDatetime->format('U');
         $end = $this->endDatetime->format('U');
@@ -379,5 +393,81 @@ class CropCycle
 
         return $label;
     }
+
+    /**
+     * Get duration
+     * Loops through associated \Action $action to get crop cycle duration
+     */
+    public function getDuration(){
+        $actions = $this->getActions();
+
+        $reference = new DateTimeImmutable;
+        $endTime = clone $reference;
+
+        foreach($actions as $action){
+            $endTime = $endTime->add($action->getDuration());
+        }
+
+        return $reference->diff($endTime);
+    }
+
+    /**
+     * Get duration label
+     *
+     */
+    public function getDurationLabel(){
+        $diff  = $this->getDuration();
+        $duration = $this->format_duration($diff);
+
+        return $duration;
+    }
+
+    /**
+     * Format an interval to show all existing components.
+     *
+     * @param DateInterval $interval The interval
+     *
+     * @return string Formatted interval string.
+     */
+    function format_duration(DateInterval $interval) {
+        $result = "";
+
+        // Years
+        if ($interval->y) {
+            if($interval->y == 1){
+                $result .= $interval->format("%y an ");
+            }else{
+                $result .= $interval->format("%y ans ");
+            }
+        }
+
+        // Months
+        if ($interval->m) {
+            $result .= $interval->format("%m mois ");
+        }
+
+        // Days
+        if ($interval->d) {
+            if($interval->d == 1){
+                $result .= $interval->format("%d jour ");
+            }else{
+                $result .= $interval->format("%d jours ");
+            }
+        }
+
+        // Hours
+        if ($interval->h) {
+            $result .= $interval->format("%hh");
+        }
+
+        // Minutes
+        if ($interval->i) {
+            $result .= $interval->format("%im ");
+        }
+
+        return $result;
+    }
+
+
 }
 
