@@ -9,11 +9,11 @@
     {{ parent() }}
     <style>
 
-        table.table-hover td:hover .icon {
+        table.table-hover td:hover .appear {
             visibility: visible;
         }
 
-        table.table-hover td .icon {
+        table.table-hover td .appear {
             visibility: hidden;
         }
     </style>
@@ -75,10 +75,17 @@
                                     <tr>
                                         <td>Du {{ period.startDateTime |date('d/m/Y') }}
                                             au {{ period.endDateTime |date('d/m/Y') }}
+
+
                                             <a href="{{ path('event_edit',{'id':period.id}) }}">
-                                                <i class="icon md-edit margin-left-10" style="color:darkgrey" aria-hidden="true">
+                                                <i class="icon appear md-edit margin-left-10" style="color:darkgrey"
+                                                   aria-hidden="true">
                                                 </i>
                                             </a>
+                                        </td>
+                                        <td>
+                                            <i class="icon md-time-interval" aria-hidden="true"></i>
+                                            {{ period.duration }}
                                         </td>
                                         <td>
                                             {% if period.status == "ActiveAction" %}

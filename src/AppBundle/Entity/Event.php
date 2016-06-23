@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use DateInterval;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -149,6 +150,67 @@ class Event
             return 'PotentialAction';
         }
     }
+
+    /**
+     * Get duration
+     *
+     */
+    public function getDuration(){
+        $diff  = $this->endDatetime->diff($this->startDatetime);
+        $duration = $this->format_interval($diff);
+
+        return $duration;
+    }
+
+    /**
+     * Format an interval to show all existing components.
+     * If the interval doesn't have a time component (years, months, etc)
+     * That component won't be displayed.
+     *
+     * @param DateInterval $interval The interval
+     *
+     * @return string Formatted interval string.
+     */
+    function format_interval(DateInterval $interval) {
+        $result = "";
+
+        // Years
+        if ($interval->y) {
+            if($interval->y == 1){
+                $result .= $interval->format("%y an ");
+            }else{
+                $result .= $interval->format("%y ans ");
+            }
+        }
+
+        // Months
+        if ($interval->m) {
+            $result .= $interval->format("%m mois ");
+        }
+
+        // Days
+        if ($interval->d) {
+            if($interval->d == 1){
+                $result .= $interval->format("%d jour ");
+            }else{
+                $result .= $interval->format("%d jours ");
+            }
+        }
+
+        // Hours
+        if ($interval->h) {
+            $result .= $interval->format("%hh");
+        }
+
+        // Minutes
+        if ($interval->i) {
+            $result .= $interval->format("%im ");
+        }
+
+        return $result;
+    }
+
+
 
 }
 
