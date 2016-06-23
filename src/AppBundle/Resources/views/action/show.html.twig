@@ -16,6 +16,8 @@
         table.table-hover td .appear {
             visibility: hidden;
         }
+
+
     </style>
 {% endblock %}
 
@@ -93,7 +95,7 @@
                                         </td>
                                         <td>
                                             {% if period.status == "ActiveAction" %}
-                                                <span class="pull-right label label-warning  margin-right-10px">En cours</span>
+                                                <span class="pull-right label label-danger  margin-right-10px">En cours</span>
                                             {% elseif period.status == "CompletedAction" %}
                                                 <span class="pull-right label label-info  margin-right-10px">Terminée</span>
                                             {% elseif period.status == "PotentialAction" %}

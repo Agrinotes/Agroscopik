@@ -3,19 +3,32 @@
     {% for action in actions %}
         {% if is_granted('VIEW', action) or is_granted('ROLE_ADMIN') %}
             <tr>
-
                 <td>
                     <div class="content">
                         <div class="title">
                             <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
                         </div>
                         <div class="metas">
-                            <span class="started">{{ action.startDateTime ? action.startDateTime | date('d/m/Y') }}
+                            <span class="started">
+                                <i class="icon md-calendar" aria-hidden="true"> </i>
+                                {{ action.intervalLabel}}
+                                {% if action.duration != '' %}
+                                <i class="icon md-time-interval margin-left-10" aria-hidden="true"></i>
+                                {{ action.duration }}
+                                {% endif %}
                             </span>
                         </div>
                     </div>
                 </td>
-
+                <td>
+                    {% if action.status == "ActiveAction" %}
+                        <span class="pull-right label label-danger  margin-right-10px">En cours</span>
+                    {% elseif action.status == "CompletedAction" %}
+                        <span class="pull-right label label-info  margin-right-10px">Terminé</span>
+                    {% elseif action.status == "PotentialAction" %}
+                        <span class="pull-right label label-default  margin-right-10px">A venir</span>
+                    {% endif %}
+                </td>
             </tr>
         {% endif %}
     {% endfor %}

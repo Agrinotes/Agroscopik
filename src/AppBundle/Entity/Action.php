@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use DateInterval;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -362,5 +363,113 @@ class Action
         }
         $this->setEndDatetime($oldest);
     }
+
+    /**
+     * Get status
+     *
+     */
+    public function getStatus()
+    {
+        $now = new \DateTime('now');
+
+        if ($now > $this->endDatetime) {
+            return 'CompletedAction';
+        } elseif ($now >= $this->startDatetime && $now <= $this->endDatetime) {
+            return 'ActiveAction';
+        } elseif ($now < $this->startDatetime) {
+            return 'PotentialAction';
+        }
+    }
+
+    /**
+     * Get duration
+     *
+     */
+    public function getDuration(){
+        $diff  = $this->endDatetime->diff($this->startDatetime);
+        $duration = $this->format_interval($diff);
+
+        return $duration;
+    }
+
+    /**
+     * Format an interval to show all existing components.
+     *
+     * @param DateInterval $interval The interval
+     *
+     * @return string Formatted interval string.
+     */
+    function format_interval(DateInterval $interval) {
+        $result = "";
+
+        // Years
+        if ($interval->y) {
+            if($interval->y == 1){
+                $result .= $interval->format("%y an ");
+            }else{
+                $result .= $interval->format("%y ans ");
+            }
+        }
+
+        // Months
+        if ($interval->m) {
+            $result .= $interval->format("%m mois ");
+        }
+
+        // Days
+        if ($interval->d) {
+            if($interval->d == 1){
+                $result .= $interval->format("%d jour ");
+            }else{
+                $result .= $interval->format("%d jours ");
+            }
+        }
+
+        // Hours
+        if ($interval->h) {
+            $result .= $interval->format("%hh");
+        }
+
+        // Minutes
+        if ($interval->i) {
+            $result .= $interval->format("%im ");
+        }
+
+        return $result;
+    }
+
+    public function getIntervalLabel(){
+        $start = $this->startDatetime->format('U');
+        $end = $this->endDatetime->format('U');
+
+        $startDay = date('d',$start);
+        $startMonth = date('F',$start);
+        $startYear = date('Y',$start);
+
+        $endDay = date('d',$end);
+        $endMonth = date('F',$end);
+        $endYear = date('Y',$end);
+
+        //For different years
+        if($startYear < $endYear){
+            $label = "".$startDay."/".$startMonth."/".$startYear." au ".$endDay."/".$endMonth."/".$endYear;
+        }elseif($startMonth < $endMonth){
+            // For different months years
+            $label = "".$startDay." ".$startMonth." au ".$endDay." ".$endMonth." ".$endYear;
+        }elseif($startDay < $endDay){
+            // For different days
+            $label = "".$startDay." au ".$endDay." ".$endMonth." ".$endYear;
+        }else{
+            $label = "".$startDay." ".$startMonth." ".$startYear;
+        }
+
+        $english = array('January','February','March','April','May','June','July','August','September','October','November','December');
+        $french = array('Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre');
+
+        $label = str_replace($english, $french, $label);
+
+        return $label;
+    }
+
 }
 
