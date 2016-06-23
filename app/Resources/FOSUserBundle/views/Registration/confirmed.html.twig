@@ -1,13 +1,74 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends '::base.html.twig' %}
+
+{% block body_class %}
+    page-forgot-password layout-full
+{% endblock %}
+
+{% block plugin_stylesheets %}
+    {{ parent('') }}
+    <link rel="stylesheet" href="{{ asset('front/mmenu/assets/examples/css/pages/forgot-password.css') }}">
+{% endblock %}
+
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block site_navbar %}
+{% endblock %}
+
+{% block site_menubar %}
+{% endblock %}
+
+{% block page %}
+    <div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
+         data-animsition-out="fade-out">
+        <div class="page-content vertical-align-middle">
+            <h2>Félicitations !</h2>
+
+            <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+
+            <hr/>
+
+            <h4>Quel type d'utilisateur êtes-vous ?</h4>
+
+            <div class="row">
+                <a class="btn btn-primary btn-block" href="{{ path('farm_new') }}" name="me" title="me" alt="me">Agricultrice ou
+                    Agriculteur</a>
+            </div>
+            <div class="row margin-top-10">
+                <a class="btn btn-primary btn-block" href="#">Conseillère ou conseiller agricole</a>
+            </div>
+            <footer class="page-copyright page-copyright-inverse">
+                <p>© 2016, Agroscopik créé par Hugo Lehoux pour REPAIR.</p>
+            </footer>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block core_plugin %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/jquery-placeholder/jquery.placeholder.js') }}"></script>
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/js/components/jquery-placeholder.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/material.js') }}"></script>
+{% endblock %}
+
+
+
 
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block fos_user_content %}
 
-    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
-    {% if targetUrl %}
-    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
-    {% endif %}
+    <p></p>
 
     <a href="{{ path('farm_new') }}" name="me" title="me" alt="me">Agricultrice ou Agriculteur</a>
 

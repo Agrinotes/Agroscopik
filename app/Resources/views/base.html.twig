@@ -38,6 +38,14 @@
             .table td:hover a{
                 text-decoration: underline;
             }
+            input:-webkit-autofill {
+                -webkit-box-shadow:0 0 0 50px white inset !important; /* Change the color to your own background color */
+                -webkit-text-fill-color: #333;
+            }
+            input:-webkit-autofill:focus {
+                -webkit-box-shadow: /*your box-shadow*/,0 0 0 50px white inset !important;
+                -webkit-text-fill-color: #333;
+            }
         </style>
     {% endblock %}
 
@@ -63,7 +71,7 @@
 
 <body class="{% block body_class %}site-navbar-small site-menubar-unfold site-menubar-keep{% endblock %}">
 
-
+{% block site_navbar %}
 <nav class="site-navbar navbar navbar-inverse navbar-fixed-top navbar-mega bg-red-600" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle hamburger hamburger-close navbar-toggle-left hided"
@@ -128,7 +136,9 @@
         <!-- End Navbar Collapse -->
     </div>
 </nav>
+{% endblock %}
 
+{% block site_menubar %}
 <div class="site-menubar site-menubar-dark">
     <ul class="site-menu">
         <li class="site-menu-item">
@@ -171,13 +181,14 @@
 
     </ul>
 </div>
+{% endblock %}
 
 {% block page %}
     <div class="page animsition">
         <div class="page-content">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">DEMO CONTENT</h3>
+                    <h3 class="panel-title">Agroscopik | Page en construction</h3>
                 </div>
                 <div class="panel-body">
 
@@ -193,13 +204,15 @@
 {% endblock %}
 
 </body>
+{% block footer %}
 <footer class="site-footer">
     <div class="site-footer-legal">© 2016 <a
-                href="http://themeforest.net/item/remark-responsive-bootstrap-admin-template/11989202">Remark</a></div>
+                href="#">Agroscopik</a></div>
     <div class="site-footer-right">
         Fait avec <i class="red-600 icon md-favorite"></i> par <a href="#">Hugo Lehoux pour REPAIR</a>
     </div>
 </footer>
+{% endblock %}
 
 {% block javascripts %}
     {# Core and plugin dependencies #}

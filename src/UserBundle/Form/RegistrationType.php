@@ -13,24 +13,36 @@ class RegistrationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->remove('username')
+            ->add('firstName', TextType::class, array(
+                    'label' => 'Prénom',
+                    'required' => false,
+                    'attr' => array('class' => 'form-control'),
+                    'label_attr' => array('class' => 'floating-label'),
+                )
+            )
+            ->add('lastName', TextType::class, array(
+                    'label' => 'Nom',
+                    'required' => false,
+                    'attr' => array('class' => 'form-control'),
+                    'label_attr' => array('class' => 'floating-label'),
+                )
+            )
             ->remove('email')
-            ->add('email',EmailType::class,array(
-                'label'=>'E-mail'
-            ))
-            ->add('firstName', TextType::class,
-            array(
-                'label'=>'Prénom'
-            ))
-            ->add('lastName', TextType::class,
-                array(
-                    'label'=>'Nom'
-                ))
-
+            ->add('email', EmailType::class, array(
+                    'label' => 'Email',
+                    'required' => false,
+                    'attr' => array('class' => 'form-control'),
+                    'label_attr' => array('class' => 'floating-label'),
+                )
+            )
             ->remove('plainPassword')
-            ->add('plainPassword', PasswordType::class,
-                array(
-                    'label'=>'Mot de passe'
-                ));
+            ->add('plainPassword', PasswordType::class, array(
+                    'label' => 'Mot de passe',
+                    'required' => false,
+                    'attr' => array('class' => 'form-control'),
+                    'label_attr' => array('class' => 'floating-label'),
+                )
+            );
     }
 
     public function getParent()
