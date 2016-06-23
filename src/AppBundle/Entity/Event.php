@@ -151,6 +151,39 @@ class Event
         }
     }
 
+    public function getLabel(){
+        $start = $this->startDatetime->format('U');
+        $end = $this->endDatetime->format('U');
+
+        $startDay = date('d',$start);
+        $startMonth = date('F',$start);
+        $startYear = date('Y',$start);
+
+        $endDay = date('d',$end);
+        $endMonth = date('F',$end);
+        $endYear = date('Y',$end);
+
+        //For different years
+        if($startYear < $endYear){
+            $label = "Du ".$startDay."/".$startMonth."/".$startYear." au ".$endDay."/".$endMonth."/".$endYear;
+        }elseif($startMonth < $endMonth){
+            // For different months years
+            $label = "Du ".$startDay." ".$startMonth." au ".$endDay." ".$endMonth." ".$endYear;
+        }elseif($startDay < $endDay){
+            // For different days
+            $label = "Du ".$startDay." au ".$endDay." ".$endMonth." ".$endYear;
+        }else{
+            $label = "Le ".$startDay." ".$startMonth." ".$startYear;
+        }
+
+        $english = array('January','February','March','April','May','June','July','August','September','October','November','December');
+        $french = array('Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre');
+
+        $label = str_replace($english, $french, $label);
+
+        return $label;
+    }
+
     /**
      * Get duration
      *

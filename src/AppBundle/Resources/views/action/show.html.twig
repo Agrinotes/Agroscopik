@@ -38,6 +38,12 @@
                     <div class="panel panel-bordered">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ action.name }}</h3>
+                            <div class="panel-actions">
+                                {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
+                                    <a class="btn btn-default btn-flat"
+                                       href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
+                                {% endif %}
+                            </div>
                         </div>
                         <div class="panel-body">
                             <h4 class="example-title">
@@ -73,9 +79,7 @@
                                 <tbody>
                                 {% for period in action.periods %}
                                     <tr>
-                                        <td>Du {{ period.startDateTime |date('d/m/Y') }}
-                                            au {{ period.endDateTime |date('d/m/Y') }}
-
+                                        <td>{{ period.label}}
 
                                             <a href="{{ path('event_edit',{'id':period.id}) }}">
                                                 <i class="icon appear md-edit margin-left-10" style="color:darkgrey"
@@ -107,14 +111,11 @@
                     <div class="panel">
                         <div class="panel-heading">
                             <div class="panel-title">
-                                Actions
+                                Actions sensibles
                             </div>
                         </div>
                         <div class="panel-body">
-                            {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
-                                <a class="btn btn-default margin-bottom-10"
-                                   href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
-                            {% endif %}
+
 
                             {% if is_granted('DELETE', action) or is_granted('ROLE_ADMIN') %}
                                 {{ form_start(delete_form) }}
