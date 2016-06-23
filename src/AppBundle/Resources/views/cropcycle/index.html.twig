@@ -39,7 +39,7 @@
                                 <a href="{{ path('cropcycle_show', { 'id': cropCycle.id }) }}">{{ cropCycle.name }}</a>
                             </div>
                             <div class="metas">
-                                <span class="started">{{ cropCycle.startDatetime|date('F Y') }} - {{ cropCycle.endDatetime|date('F Y') }}</span>
+                                <span class="started">{{ cropCycle.intervalLabel }}</span>
                             </div>
                         </div>
                     </td>

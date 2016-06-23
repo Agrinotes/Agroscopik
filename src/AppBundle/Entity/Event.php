@@ -236,6 +236,7 @@ class Event
 
         // Days
         if ($interval->d) {
+
             if($interval->d == 1){
                 $result .= $interval->format("%d jour ");
             }else{

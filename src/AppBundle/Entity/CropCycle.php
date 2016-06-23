@@ -346,5 +346,38 @@ class CropCycle
         }
         $this->setEndDatetime($oldest);
     }
+
+    public function getIntervalLabel(){
+        $start = $this->startDatetime->format('U');
+        $end = $this->endDatetime->format('U');
+
+        $startDay = date('d',$start);
+        $startMonth = date('F',$start);
+        $startYear = date('Y',$start);
+
+        $endDay = date('d',$end);
+        $endMonth = date('F',$end);
+        $endYear = date('Y',$end);
+
+        //For different years
+        if($startYear < $endYear){
+            $label = "".$startDay."/".$startMonth."/".$startYear." au ".$endDay."/".$endMonth."/".$endYear;
+        }elseif($startMonth < $endMonth){
+            // For different months years
+            $label = "".$startDay." ".$startMonth." au ".$endDay." ".$endMonth." ".$endYear;
+        }elseif($startDay < $endDay){
+            // For different days
+            $label = "".$startDay." au ".$endDay." ".$endMonth." ".$endYear;
+        }else{
+            $label = "".$startDay." ".$startMonth." ".$startYear;
+        }
+
+        $english = array('January','February','March','April','May','June','July','August','September','October','November','December');
+        $french = array('Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre');
+
+        $label = str_replace($english, $french, $label);
+
+        return $label;
+    }
 }
 

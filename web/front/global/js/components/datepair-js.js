@@ -9,6 +9,7 @@ $.components.register("datepair", {
     startClass: 'datepair-start',
     endClass: 'datepair-end',
     timeClass: 'datepair-time',
-    dateClass: 'datepair-date'
+    dateClass: 'datepair-date',
+    anchor:'null',
   }
 });

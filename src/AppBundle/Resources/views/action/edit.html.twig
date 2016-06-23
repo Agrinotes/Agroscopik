@@ -176,7 +176,9 @@
 
                 // initialize datepair
                 var basicExampleEl = document.getElementById('action_edit_periods_' + (index));
-                var datepair = new Datepair(basicExampleEl);
+                var datepair = new Datepair(basicExampleEl,{
+                    anchor: 'null'
+                });
 
                 index++;
             }

@@ -16,8 +16,7 @@
             <tr>
                 <td>
                     <a href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.plot.name }}</a>
-                    {{ cycle.startDateTime ? cycle.startDateTime | date('F Y') }}
-                    - {{ cycle.endDateTime ? cycle.endDateTime | date('F Y') }}<br/>
+                    {{ cycle.intervalLabel}}<br/>
                     {{ cycle.area | number_format(2, ',', ' ') }} ha
                 </td>
                 <td>
