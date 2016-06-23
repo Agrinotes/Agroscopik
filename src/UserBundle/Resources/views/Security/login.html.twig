@@ -1,24 +1,66 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% trans_default_domain 'FOSUserBundle' %}
+{% block body_class %}
+    page-login-v3 layout-full
+{% endblock %}
 
-{% block fos_user_content %}
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('front/mmenu/assets/examples/css/pages/login-v3.css') }}">
+{% endblock %}
 
-    <form action="{{ path("fos_user_security_check") }}" method="post">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+{% block site_navbar %}
+{% endblock %}
 
-        <label for="username">E-mail</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+{% block site_menubar %}
+{% endblock %}
 
-        <label for="password">{{ 'security.login.password'|trans }}</label>
-        <input type="password" id="password" name="_password" required="required" />
+{% block page %}
+<div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
+     data-animsition-out="fade-out">>
+    <div class="page-content vertical-align-middle">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="brand">
+                    <img class="brand-img" src="{{ asset('front/mmenu/assets/images/logo-blue.png') }}" alt="Logo">
+                    <h2 class="brand-text font-size-18">Agroscopik</h2>
+                </div>
+                {{ include('FOSUserBundle:Security:login_content.html.twig') }}
 
-        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                <p>Pas encore de compte ? <a href="{{ path('fos_user_registration_register') }}">Créer un compte</a></p>
+            </div>
+        </div>
+        <footer class="page-copyright page-copyright-inverse">
 
-        <input type="submit" id="_submit" name="_submit" value="Se connecter" />
-    </form>
-{% endblock fos_user_content %}
+            <p>© 2016, Agroscopik créé par Hugo Lehoux pour REPAIR.</p>
+
+            <div class="social">
+                <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                    <i class="icon bd-twitter" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                    <i class="icon bd-facebook" aria-hidden="true"></i>
+                </a>
+                <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                    <i class="icon bd-google-plus" aria-hidden="true"></i>
+                </a>
+            </div>
+        </footer>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block core_plugin %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/jquery-placeholder/jquery.placeholder.js') }}"></script>
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/js/components/jquery-placeholder.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/material.js') }}"></script>
+{% endblock %}
+
