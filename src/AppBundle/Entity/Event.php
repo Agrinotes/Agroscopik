@@ -23,7 +23,6 @@ class Event
         $this->endDatetime = new \DateTime('now');
     }
 
-
     /**
      * @var int
      *
@@ -151,7 +150,11 @@ class Event
         }
     }
 
-    public function getLabel(){
+    /**
+     * Get a label for the DateInterval
+     *
+     */
+    public function getIntervalLabel(){
         $start = $this->startDatetime->format('U');
         $end = $this->endDatetime->format('U');
 
@@ -190,6 +193,16 @@ class Event
      */
     public function getDuration(){
         $diff  = $this->endDatetime->diff($this->startDatetime);
+
+        return $diff;
+    }
+
+    /**
+     * Get duration label
+     *
+     */
+    public function getDurationLabel(){
+        $diff  = $this->getDuration();
         $duration = $this->format_interval($diff);
 
         return $duration;

@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use DateInterval;
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -383,10 +385,27 @@ class Action
 
     /**
      * Get duration
-     *
+     * Loops through associated \Event $periods to get action duration
      */
     public function getDuration(){
-        $diff  = $this->endDatetime->diff($this->startDatetime);
+        $periods = $this->getPeriods();
+
+        $reference = new DateTimeImmutable;
+        $endTime = clone $reference;
+
+        foreach($periods as $period){
+$endTime = $endTime->add($period->getDuration());
+        }
+
+        return $reference->diff($endTime);
+    }
+
+    /**
+     * Get duration label
+     *
+     */
+    public function getDurationLabel(){
+        $diff  = $this->getDuration();
         $duration = $this->format_interval($diff);
 
         return $duration;

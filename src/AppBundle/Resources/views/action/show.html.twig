@@ -81,7 +81,7 @@
                                 <tbody>
                                 {% for period in action.periods %}
                                     <tr>
-                                        <td>{{ period.label}}
+                                        <td>{{ period.intervalLabel}}
 
                                             <a href="{{ path('event_edit',{'id':period.id}) }}">
                                                 <i class="icon appear md-edit margin-left-10" style="color:darkgrey"
@@ -91,7 +91,7 @@
                                         </td>
                                         <td>
                                             <i class="icon md-time-interval" aria-hidden="true"></i>
-                                            {{ period.duration }}
+                                            {{ period.durationLabel }}
                                         </td>
                                         <td>
                                             {% if period.status == "ActiveAction" %}
