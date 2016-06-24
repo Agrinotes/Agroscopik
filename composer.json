@@ -36,7 +36,8 @@
         "stof/doctrine-extensions-bundle": "^1.2",
         "knplabs/knp-menu-bundle": "^2.1",
         "mopa/bootstrap-bundle": "^3.0",
-        "twbs/bootstrap": "^3.3"
+        "twbs/bootstrap": "^3.3",
+        "coresphere/console-bundle": "^0.4.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

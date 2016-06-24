@@ -25,7 +25,6 @@
 /vendor/
 
 # Assets and user uploads
-/web/bundles/
 /web/uploads/
 
 # Assets managed by Bower
@@ -94,4 +93,3 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
-src/UserBundle/Controller/
