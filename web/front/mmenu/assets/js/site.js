@@ -81,13 +81,13 @@
               position: 'bottom',
               content: [
                 '<div class="site-menubar-footer">' +
-                '<a href="javascript: void(0);" class="fold-show" data-placement="top" data-toggle="tooltip" data-original-title="Settings">' +
+                '<a href="/profile/edit" class="fold-show" data-placement="top" data-toggle="tooltip" data-original-title="Settings">' +
                 '<span class="icon md-settings" aria-hidden="true"></span>' +
                 '</a>' +
                 '<a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Lock">' +
                 '<span class="icon md-eye" aria-hidden="true"></span>' +
                 '</a>' +
-                '<a href="javascript: void(0);" data-placement="top" data-toggle="tooltip" data-original-title="Logout">' +
+                '<a href="/logout" data-placement="top" data-toggle="tooltip" data-original-title="Logout">' +
                 '<span class="icon md-power" aria-hidden="true"></span>' +
                 '</a>' +
                 '</div>'

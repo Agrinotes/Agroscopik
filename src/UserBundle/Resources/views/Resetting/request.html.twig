@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('front/mmenu/assets/examples/css/pages/forgot-password.css') }}">
+{% endblock %}
+
+{% block site_navbar %}
+{% endblock %}
+
+{% block site_menubar %}
+{% endblock %}
+
+{% block body_class %}
+    page-forgot-password layout-full
+{% endblock %}
+
+{% block page %}
+    <!-- Page -->
+    <div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
+         data-animsition-out="fade-out">
+        <div class="page-content vertical-align-middle">
+            <h2>Mot de passe oublié ?</h2>
+
+            <p>Pas de stress, on vous en renvoie un tout de suite !</p>
+            {{ include('@User/Resetting/request_content.html.twig') }}
+            <footer class="page-copyright">
+
+                <p>© 2016, Agroscopik créé par Hugo Lehoux pour REPAIR.</p>
+
+                <div class="social">
+                    <a href="javascript:void(0)">
+                        <i class="icon bd-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <i class="icon bd-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a href="javascript:void(0)">
+                        <i class="icon bd-dribbble" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- End Page -->
+
+{% endblock %}
+
+{% block core_plugin %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/jquery-placeholder/jquery.placeholder.js') }}"></script>
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/js/components/jquery-placeholder.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/animate-list.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/material.js') }}"></script>
+{% endblock %}
