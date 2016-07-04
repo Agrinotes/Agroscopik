@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/new.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/new.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/front/agroscopik/assets/js/plot_new.js" afterPath="$PROJECT_DIR$/web/front/agroscopik/assets/js/plot_new.js" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,13 +39,13 @@
       <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/plot/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.556701">
-              <caret line="137" column="41" selection-start-line="137" selection-start-column="41" selection-end-line="137" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.814433">
+              <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
-                <element signature="e#13203#13669#0#HTML" expanded="false" />
-                <element signature="e#13793#14270#0#HTML" expanded="false" />
-                <element signature="e#14389#14600#0#HTML" expanded="false" />
+                <element signature="e#13315#13781#0#HTML" expanded="false" />
+                <element signature="e#13905#14382#0#HTML" expanded="false" />
+                <element signature="e#14501#14712#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -873,13 +872,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/plot/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.556701">
-          <caret line="137" column="41" selection-start-line="137" selection-start-column="41" selection-end-line="137" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.814433">
+          <caret line="51" column="34" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
           <folding>
             <element signature="e#12#26#0#Twig" expanded="true" />
-            <element signature="e#13203#13669#0#HTML" expanded="false" />
-            <element signature="e#13793#14270#0#HTML" expanded="false" />
-            <element signature="e#14389#14600#0#HTML" expanded="false" />
+            <element signature="e#13315#13781#0#HTML" expanded="false" />
+            <element signature="e#13905#14382#0#HTML" expanded="false" />
+            <element signature="e#14501#14712#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
