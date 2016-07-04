@@ -56,6 +56,7 @@
                                         <div class="friend-title blue-grey-400">
                                             {{ plot.area|number_format(2, ',', ' ') }} ha
                                         </div>
+                                        <a class="btn btn-block btn-sm margin-top-20 btn-default" href="{{ path('plot_show',{'id':plot.id}) }}">Afficher</a>
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +134,7 @@
                 });
 
                 //Set style
-                layer.setStyle({color: "white", opacity: 0.8, weight: 1.5});
+                layer.setStyle({color: "white", Opacity:0.9, fillOpacity: 0.5, weight: 1.5});
 
                 //Add a popup
                 layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | capitalize }}"+"</h3><p class=\"margin-top-10\"><a type=\"button\" href=\"{{ path('plot_show',{'id':plot.id}) }}\" style=\"color:\"white\";\" class=\"btn btn-default btn-sm waves-effect waves-light\">Afficher</a></p></div>", {closeButton: false});
