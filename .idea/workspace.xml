@@ -27,8 +27,8 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3328424">
-              <caret line="58" column="83" selection-start-line="58" selection-start-column="83" selection-end-line="58" selection-end-column="83" />
+            <state vertical-scroll-proportion="0.30191457">
+              <caret line="138" column="281" selection-start-line="138" selection-start-column="281" selection-end-line="138" selection-end-column="281" />
               <folding>
                 <element signature="e#12#26#0#Twig" expanded="true" />
                 <element signature="e#2994#3003#0#Twig" expanded="true" />
@@ -786,8 +786,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3328424">
-          <caret line="58" column="83" selection-start-line="58" selection-start-column="83" selection-end-line="58" selection-end-column="83" />
+        <state vertical-scroll-proportion="0.30191457">
+          <caret line="138" column="281" selection-start-line="138" selection-start-column="281" selection-end-line="138" selection-end-column="281" />
           <folding>
             <element signature="e#12#26#0#Twig" expanded="true" />
             <element signature="e#2994#3003#0#Twig" expanded="true" />

@@ -61,8 +61,7 @@
                                 </div>
                             </div>
                         {% endfor %}
-                                                {% endif %}
-
+                        {% endif %}
                         </div>
                     </div>
                 </div>
@@ -137,7 +136,7 @@
                 layer.setStyle({color: "white", Opacity:0.9, fillOpacity: 0.5, weight: 1.5});
 
                 //Add a popup
-                layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | capitalize }}"+"</h3><p class=\"margin-top-10\"><a type=\"button\" href=\"{{ path('plot_show',{'id':plot.id}) }}\" style=\"color:\"white\";\" class=\"btn btn-default btn-sm waves-effect waves-light\">Afficher</a></p></div>", {closeButton: false});
+                layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | capitalize }}"+"</h3><p class=\"margin-top-10\"><a type=\"button\" href=\"{{ path('plot_show',{'id':plot.id}) }}\" style=\"color:#757575;\" class=\"btn btn-default btn-block btn-sm waves-effect waves-light\">Afficher</a></p></div>", {closeButton: false});
 
                 // Add current polygon to featureGroup
                 featureGroup.addLayer(layer);
