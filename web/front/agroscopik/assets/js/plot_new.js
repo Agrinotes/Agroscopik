@@ -7,7 +7,7 @@
             L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
 
             // Create the map
-            var map = L.mapbox.map('map', 'mapbox.streets-satellite').setView([38.97416, -95.23252], 15);
+            var map = L.mapbox.map('map', 'mapbox.streets-satellite').setView([-21.20000, 166.00000], 7);
 
             // Add GeoRep
             var georep = L.tileLayer.wms('https://carto10.gouv.nc/arcgis/services/fond_imagerie/MapServer/WMSServer', {
@@ -26,6 +26,11 @@
                     map.removeLayer(georep);
                 }
             });
+
+            // Locate current user
+            var lc = L.control.locate().addTo(map);
+            lc.start();
+            $('.leaflet-control-locate').hide();
 
             // Where the polygons are stored
             var featureGroup = L.featureGroup().addTo(map);
@@ -102,9 +107,9 @@
                         },
                         polygon: {
                             tooltip: {
-                                start: 'Cliquez pour commencer à dessiner la parcelle.',
-                                cont: 'Cliquez pour continuer à dessiner la parcelle.',
-                                end: 'Cliquez sur le premier point pour fermer cette parcelle.'
+                                start: 'Vous pouvez commencer à dessiner votre parcelle.',
+                                cont: 'Vous pouvez continuer à dessiner votre parcelle',
+                                end: 'Cliquez sur votre premier point quand vous avez terminé.'
                             }
                         },
                         polyline: {
@@ -131,31 +136,31 @@
                     toolbar: {
                         actions: {
                             save: {
-                                title: 'Sauvegardez les changements.',
-                                text: 'Sauver'
+                                title: 'Enregistrer les changements.',
+                                text: 'Enregistrer'
                             },
                             cancel: {
-                                title: 'Annulez l\'édition, ignorer tous les changements.',
+                                title: 'Annuler les modifications.',
                                 text: 'Annuler'
                             }
                         },
                         buttons: {
-                            edit: 'Editer la parcelle.',
-                            editDisabled: 'Pas de parcelle à éditer.',
+                            edit: 'Modifier la parcelle.',
+                            editDisabled: 'Aucune parcelle à modifier.',
                             remove: 'Supprimer la parcelle.',
-                            removeDisabled: 'Pas de parcelle à supprimer.'
+                            removeDisabled: 'Aucune parcelle à supprimer.'
                         }
                     },
                     handlers: {
                         edit: {
                             tooltip: {
-                                text: 'Déplacez les points pour éditer la parcelle.',
-                                subtext: 'Cliquez sur Annuler pour revenir sur les changements.'
+                                text: 'Déplacez les points pour modifier la parcelle.',
+                                subtext: ''
                             }
                         },
                         remove: {
                             tooltip: {
-                                text: 'Cliquez sur l\'objet à enlever'
+                                text: 'Cliquez sur la parcelle à supprimer'
                             }
                         }
                     }
