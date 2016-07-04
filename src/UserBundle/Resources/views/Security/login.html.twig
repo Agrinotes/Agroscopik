@@ -16,38 +16,41 @@
 {% endblock %}
 
 {% block page %}
-<div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
-     data-animsition-out="fade-out">>
-    <div class="page-content vertical-align-middle">
-        <div class="panel">
-            <div class="panel-body">
-                <div class="brand">
-                    <img class="brand-img" src="{{ asset('front/mmenu/assets/images/logo-blue.png') }}" alt="Logo">
-                    <h2 class="brand-text font-size-18">Agroscopik</h2>
+    <div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
+         data-animsition-out="fade-out">>
+        <div class="page-content vertical-align-middle">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="brand">
+                        <img class="brand-img" src="{{ asset('front/mmenu/assets/images/logo-blue.png') }}" alt="Logo">
+
+                        <h2 class="brand-text font-size-18">Agroscopik</h2>
+                    </div>
+                    {{ include('FOSUserBundle:Security:login_content.html.twig') }}
+
+                    <a class="btn btn-danger btn-lg btn-block"
+                       href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
+
                 </div>
-                {{ include('FOSUserBundle:Security:login_content.html.twig') }}
-
-                <p>Pas encore de compte ? <a href="{{ path('fos_user_registration_register') }}">Créer un compte</a></p>
             </div>
+            <footer class="page-copyright page-copyright-inverse">
+
+                <p>© 2016, Agroscopik créé par Hugo Lehoux pour REPAIR.</p>
+
+                <div class="social">
+                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                        <i class="icon bd-twitter" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                        <i class="icon bd-facebook" aria-hidden="true"></i>
+                    </a>
+                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
+                        <i class="icon bd-google-plus" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </footer>
         </div>
-        <footer class="page-copyright page-copyright-inverse">
-
-            <p>© 2016, Agroscopik créé par Hugo Lehoux pour REPAIR.</p>
-
-            <div class="social">
-                <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-                    <i class="icon bd-twitter" aria-hidden="true"></i>
-                </a>
-                <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-                    <i class="icon bd-facebook" aria-hidden="true"></i>
-                </a>
-                <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-                    <i class="icon bd-google-plus" aria-hidden="true"></i>
-                </a>
-            </div>
-        </footer>
     </div>
-</div>
 {% endblock %}
 
 {% block footer %}
