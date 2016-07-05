@@ -13,6 +13,12 @@
 
 {% block page %}
     <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('farm_show_current') }}">Parcelles</a></li>
+                <li class="active">{{ plot.name }}</li>
+            </ol>
+        </div>
         <div class="page-content">
             <div class="row">
                 <div class="col-lg-9">

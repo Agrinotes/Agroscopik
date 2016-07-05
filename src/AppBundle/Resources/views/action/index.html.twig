@@ -24,8 +24,8 @@
                     {% if action.status == "ActiveAction" %}
                         <span class="pull-right label label-danger  margin-right-10px">En cours</span>
                     {% elseif action.status == "CompletedAction" %}
-                        <span class="pull-right label label-info  margin-right-10px">Terminé</span>
-                    {% elseif action.status == "PotentialAction" %}
+                        <button type="button" class="btn pull-right btn-pure btn-info icon md-check-circle waves-effect waves-circle waves-classic"></button>
+                     {% elseif action.status == "PotentialAction" %}
                         <span class="pull-right label label-default  margin-right-10px">A venir</span>
                     {% endif %}
                 </td>
