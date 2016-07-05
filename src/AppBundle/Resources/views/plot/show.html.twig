@@ -5,6 +5,12 @@
     <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet'
+          xmlns="http://www.w3.org/1999/html"/>
+{% endblock %}
+
 {% block page %}
     <div class="page animsition">
         <div class="page-content">
@@ -12,18 +18,10 @@
                 <div class="col-lg-9">
                     <div class="panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{ plot.name }} <span style="color:lightgrey">{{ plot.area }}
-                                    ha</span></h3>
+                            <h3 class="panel-title">{{ plot.name }} </h3>
 
                             <div class="panel-actions">
-                                {% if is_granted('EDIT', plot) or is_granted('ROLE_ADMIN') %}
 
-                                    <a class="btn btn-flat btn-default btn-block"
-                                       href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button"
-                                       type="button">
-                                        Editer
-                                    </a>
-                                {% endif %}
                             </div>
                         </div>
 
@@ -127,7 +125,31 @@
                         </div>
 
                     </div>
+                    <div class="panel">
+                        <div class="panel-body padding-top-0 padding-left-0 padding-right-0">
+                            <div>
+                                <img src="" class="img-responsive" id="plot_map"/>
+                            </div>
+                            <div class="" style="width: 100%;">                            {% if is_granted('EDIT', plot) or is_granted('ROLE_ADMIN') %}
+                                    <a class="btn btn-raised btn-icon btn-danger btn-round waves-effect waves-round waves-light"
+                                       href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button"
+                                       type="button" style="position: absolute; top: 10px; right:10px;">
+                                        <i class="icon md-edit" aria-hidden="true"></i>
+                                    </a>
+                                {% endif %}</div>
 
+                            <div class="row padding-top-15 padding-right-15 padding-left-15">
+                                <div class="col-lg-12">
+                                    <span class="example-title">Surface
+
+                                    </span>
+                                                                            <span class="padding-left-20">{{ plot.area }}
+                                                                                ha</span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -135,11 +157,58 @@
     </div>
 {% endblock %}
 
+{% block core_plugin %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/mapbox.js/mapbox.js') }}"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/geo-viewport/v0.1.1/geo-viewport.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/geojson-extent/v0.0.1/geojson-extent.js'></script>
+{% endblock %}
+
 {% block template_config %}
     {{ parent() }}
 
     <script src="{{ asset('front/global/js/plugins/responsive-tabs.js') }}"></script>
     <script src="{{ asset('front/global/js/plugins/closeable-tabs.js') }}"></script>
+
+    <script>
+        window.AppPlotNew = Site.extend({
+            createMap: function () {
+                // Mapbox access token
+                L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
+
+                // Create the map
+
+                var layerGroup = L.featureGroup();
+                var layer = L.geoJson({{ plot.latLngs | raw }});
+                layer.setStyle({color: "white", opacity: 0.8, weight: 1.5});
+                layerGroup.addLayer(layer);
+                var bounds = layerGroup.getBounds();
+                bounds = new L.latLngBounds(bounds);
+                // The size of the desired map.
+                var size = [600, 600];
+
+                bounds = bounds.toBBoxString().split(',').map(Number);
+
+                // Calculate a zoom level and centerpoint for this map.
+                var vp = geoViewport.viewport(bounds, size);
+
+                $("#plot_map").attr("src", 'https://api.mapbox.com/v4/mapbox.streets/geojson({{ plot.latLngs| url_encode }})/' +
+                        vp.center.join(',') + ',' +
+                        vp.zoom + '/' +
+                        size.join('x') + '@2x.png' +
+                        '?access_token=' + L.mapbox.accessToken);
+            }
+            ,
+            run: function () {
+                this.createMap();
+            }
+        });
+
+        $(document).ready(function ($) {
+            AppPlotNew.run();
+        })
+    </script>
+
 {% endblock %}
 
 
