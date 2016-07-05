@@ -23,7 +23,7 @@ class EventType extends AbstractType
                 'time_widget' => 'single_text',
                 'date_format' => 'dd/MM/yyyy',
                 'html5'   => false,
-                'data' => new \DateTime(),
+                'data' => new \DateTime('now',new \DateTimeZone('Pacific/Noumea')),
                 'required' => true,
             ))
             ->add('endDatetime', DateTimeType::class, array(
@@ -32,7 +32,7 @@ class EventType extends AbstractType
                 'time_widget' => 'single_text',
                 'date_format' => 'dd/MM/yyyy',
                 'html5'   => false,
-                'data' => new \DateTime(),
+                'data' => new \DateTime('now',new \DateTimeZone('Pacific/Noumea')),
                 'required' => true,
             ))
         ;

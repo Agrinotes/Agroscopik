@@ -22,7 +22,6 @@ class EventEditType extends AbstractType
                 'time_widget' => 'single_text',
                 'date_format' => 'dd/MM/yyyy',
                 'html5'   => false,
-                'data' => new \DateTime(),
                 'required' => true,
             ))
             ->add('endDatetime', DateTimeType::class, array(
@@ -31,7 +30,6 @@ class EventEditType extends AbstractType
                 'time_widget' => 'single_text',
                 'date_format' => 'dd/MM/yyyy',
                 'html5'   => false,
-                'data' => new \DateTime(),
                 'required' => true,
             ))
         ;
