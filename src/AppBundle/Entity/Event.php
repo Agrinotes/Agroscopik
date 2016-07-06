@@ -204,12 +204,12 @@ class Event
         return $diff;
     }
 
-    /**
-     * Get working duration
-     *
-     */
-    public function getWorkingDuration()
-    {
+    public function getWorkingDuration(){
+
+        // Set up variables needed to calculate the duration
+        $reference = new \DateTimeImmutable;
+        $endTime = clone $reference;
+
         // Define beginning and end of a regular working day
         $dayStart = 6;
         $dayEnd = 18;
@@ -217,41 +217,41 @@ class Event
         //Full Period Duration
         $duration = $this->getDuration();
 
-        // Could be largely improved...
-        if($duration->format('%d') == 0 and $duration->format('%h') < ($dayEnd-$dayStart) ){
-            return $this->format_duration($duration);
-        }else{
-        // If more than a day, calculate approximate duration time
+        // Get start and endDatetime of the period
         $start = $this->startDatetime;
         $end = $this->endDatetime;
-        $oneHour = new DateInterval('PT1H');
 
-        $hours = 0;
+        // Create one hour Interval
+        $oneHour = new \DateInterval('PT1H');
 
-        /* Iterate from $start up to $end+1 hour, one hour in each iteration.
-           We add one hour to the $end date, because the DatePeriod only iterates up to,
-           not including, the end date. */
-        foreach (new \DatePeriod($start, $oneHour, $end->add($oneHour)) as $hour) {
-            $hour_num = $hour->format("H");
-            if ($hour_num > $dayStart && $hour_num < $dayEnd + 1) {
-                $hours++;
+        // Could be largely improved...
+        if($duration->format('%d') == 0 and $duration->format('%h') < ($dayEnd-$dayStart) ){
+            return $this->getDuration();
+        }else{        $hours = 0;
+
+            /* Iterate from $start up to $end+1 hour, one hour in each iteration.
+               We add one hour to the $end date, because the DatePeriod only iterates up to,
+               not including, the end date. */
+            foreach (new \DatePeriod($start, $oneHour, $end->add($oneHour)) as $hour) {
+                $hour_num = $hour->format("H");
+                if ($hour_num > $dayStart && $hour_num < $dayEnd + 1) {
+                    $hours++;
+                }
             }
-        }
-        return $hours . 'h';
-        }
 
+            return new DateInterval('PT'.$hours.'H');
+        }
     }
 
     /**
-     * Get duration label
+     * Get working duration label
      *
      */
     public function getDurationLabel()
     {
-        $label = $this->getWorkingDuration();
-
-        return $label;
+        return $this->format_duration($this->getWorkingDuration());
     }
+
 
     /**
      * Format an interval to show all existing components.
