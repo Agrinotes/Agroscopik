@@ -26,6 +26,11 @@ class CropCycleType extends AbstractType
                 'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
 
             ))
+            ->add('varieties',TextType::class,array(
+                'label' => 'Variété(s)',
+                'attr' => array('class' => 'form-control','placeholder' => 'Exemple : Coeur de boeuf...'),
+                'required'=> false,
+            ))
             ->add('area', TextType::class, array(
                 'attr' => array('class' => 'asRange','data-plugin'=>'asRange','data-step'=>'0.01','data-min'=>'0', 'data-tip'=>'true','data-namespace'=>'rangeUi'),
                 'label_attr' => array('class' => 'hidden'),

@@ -58,6 +58,11 @@ class CropCycle
     /**
      * @ORM\Column(type="string", length=50)
      */
+    private $varieties;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
     private $status;
 
     /**
@@ -546,6 +551,21 @@ class CropCycle
         return new DateInterval('PT'.$result.'H');
     }
 
+    /**
+     * @return mixed
+     */
+    public function getVarieties()
+    {
+        return $this->varieties;
+    }
+
+    /**
+     * @param mixed $varieties
+     */
+    public function setVarieties($varieties)
+    {
+        $this->varieties = $varieties;
+    }
 
 
 }
