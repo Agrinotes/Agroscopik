@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use DateInterval;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -140,12 +141,16 @@ class Event
     public function getStatus()
     {
         $now = new \DateTime('now');
+        $now->add(new DateInterval('PT9H'));
 
-        if ($now > $this->endDatetime) {
+        $start = $this->startDatetime;
+        $end = $this->endDatetime;
+
+        if ($now > $end) {
             return 'CompletedAction';
-        } elseif ($now >= $this->startDatetime && $now <= $this->endDatetime) {
+        } elseif ($now >= $start && $now <= $end) {
             return 'ActiveAction';
-        } elseif ($now < $this->startDatetime) {
+        } elseif ($now < $start) {
             return 'PotentialAction';
         }
     }
@@ -154,33 +159,34 @@ class Event
      * Get a label for the DateInterval
      *
      */
-    public function getIntervalLabel(){
+    public function getIntervalLabel()
+    {
         $start = $this->startDatetime->format('U');
         $end = $this->endDatetime->format('U');
 
-        $startDay = date('d',$start);
-        $startMonth = date('F',$start);
-        $startYear = date('Y',$start);
+        $startDay = date('d', $start);
+        $startMonth = date('F', $start);
+        $startYear = date('Y', $start);
 
-        $endDay = date('d',$end);
-        $endMonth = date('F',$end);
-        $endYear = date('Y',$end);
+        $endDay = date('d', $end);
+        $endMonth = date('F', $end);
+        $endYear = date('Y', $end);
 
         //For different years
-        if($startYear < $endYear){
-            $label = "Du ".$startDay."/".$startMonth."/".$startYear." au ".$endDay."/".$endMonth."/".$endYear;
-        }elseif($startMonth < $endMonth){
+        if ($startYear < $endYear) {
+            $label = "Du " . $startDay . "/" . $startMonth . "/" . $startYear . " au " . $endDay . "/" . $endMonth . "/" . $endYear;
+        } elseif ($startMonth < $endMonth) {
             // For different months years
-            $label = "Du ".$startDay." ".$startMonth." au ".$endDay." ".$endMonth." ".$endYear;
-        }elseif($startDay < $endDay){
+            $label = "Du " . $startDay . " " . $startMonth . " au " . $endDay . " " . $endMonth . " " . $endYear;
+        } elseif ($startDay < $endDay) {
             // For different days
-            $label = "Du ".$startDay." au ".$endDay." ".$endMonth." ".$endYear;
-        }else{
-            $label = "Le ".$startDay." ".$startMonth." ".$startYear;
+            $label = "Du " . $startDay . " au " . $endDay . " " . $endMonth . " " . $endYear;
+        } else {
+            $label = "Le " . $startDay . " " . $startMonth . " " . $startYear;
         }
 
-        $english = array('January','February','March','April','May','June','July','August','September','October','November','December');
-        $french = array('Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre');
+        $english = array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
+        $french = array('Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre');
 
         $label = str_replace($english, $french, $label);
 
@@ -191,21 +197,56 @@ class Event
      * Get duration
      *
      */
-    public function getDuration(){
-        $diff  = $this->endDatetime->diff($this->startDatetime);
+    public function getDuration()
+    {
+        $diff = $this->endDatetime->diff($this->startDatetime);
 
         return $diff;
+    }
+
+    /**
+     * Get working duration
+     *
+     */
+    public function getWorkingDuration()
+    {
+        // Define beginning and end of a regular working day
+        $dayStart = 6;
+        $dayEnd = 18;
+
+        // If more than a day, calculate approximate duration time
+        if($this->getDuration()> new DateInterval("PT24H")){
+        $start = $this->startDatetime;
+        $end = $this->endDatetime;
+        $oneHour = new DateInterval('PT1H');
+
+        $hours = 0;
+
+        /* Iterate from $start up to $end+1 hour, one hour in each iteration.
+           We add one hour to the $end date, because the DatePeriod only iterates up to,
+           not including, the end date. */
+        foreach (new \DatePeriod($start, $oneHour, $end->add($oneHour)) as $hour) {
+            $hour_num = $hour->format("H");
+            if ($hour_num > $dayStart && $hour_num < $dayEnd) {
+                $hours++;
+            }
+        }
+        return $hours.'h';
+        }else{
+            // If less than a day calculate exact duration
+            return $this->format_duration($this->getDuration());
+        }
     }
 
     /**
      * Get duration label
      *
      */
-    public function getDurationLabel(){
-        $diff  = $this->getDuration();
-        $duration = $this->format_duration($diff);
+    public function getDurationLabel()
+    {
+        $label = $this->getWorkingDuration();
 
-        return $duration;
+        return $label;
     }
 
     /**
@@ -217,14 +258,15 @@ class Event
      *
      * @return string Formatted interval string.
      */
-    function format_duration(DateInterval $interval) {
+    function format_duration(DateInterval $interval)
+    {
         $result = "";
 
         // Years
         if ($interval->y) {
-            if($interval->y == 1){
+            if ($interval->y == 1) {
                 $result .= $interval->format("%y an ");
-            }else{
+            } else {
                 $result .= $interval->format("%y ans ");
             }
         }
@@ -237,9 +279,9 @@ class Event
         // Days
         if ($interval->d) {
 
-            if($interval->d == 1){
+            if ($interval->d == 1) {
                 $result .= $interval->format("%d jour ");
-            }else{
+            } else {
                 $result .= $interval->format("%d jours ");
             }
         }
@@ -256,7 +298,6 @@ class Event
 
         return $result;
     }
-
 
 
 }

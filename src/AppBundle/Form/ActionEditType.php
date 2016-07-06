@@ -22,12 +22,7 @@ class ActionEditType extends AbstractType
     {
         $builder
             ->remove('periods')
-            ->add('periods', CollectionType::class, array(
-                'entry_type' => EventEditType::class,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'by_reference' => false,
-            ))
+
 ;
     }
 

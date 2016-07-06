@@ -373,12 +373,16 @@ class Action
     public function getStatus()
     {
         $now = new \DateTime('now');
+        $now->add(new DateInterval('PT9H'));
 
-        if ($now > $this->endDatetime) {
+        $start = $this->startDatetime;
+        $end = $this->endDatetime;
+
+        if ($now > $end) {
             return 'CompletedAction';
-        } elseif ($now >= $this->startDatetime && $now <= $this->endDatetime) {
+        } elseif ($now >= $start && $now <= $end) {
             return 'ActiveAction';
-        } elseif ($now < $this->startDatetime) {
+        } elseif ($now < $start) {
             return 'PotentialAction';
         }
     }
