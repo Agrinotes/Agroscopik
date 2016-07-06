@@ -375,6 +375,7 @@ class Action
         $now = new \DateTime('now');
         $now->add(new DateInterval('PT9H'));
 
+
         $start = $this->startDatetime;
         $end = $this->endDatetime;
 
@@ -403,6 +404,8 @@ $endTime = $endTime->add($period->getDuration());
 
         return $reference->diff($endTime);
     }
+
+
 
     /**
      * Get duration label
@@ -459,6 +462,85 @@ $endTime = $endTime->add($period->getDuration());
         }
 
         return $result;
+    }
+
+
+    /**
+     * Get working duration
+     * Loops through associated \Event $periods to get action duration
+     */
+    public function getWorkingDuration(){
+        $periods = $this->getPeriods();
+
+        $reference = new DateTimeImmutable;
+        $endTime = clone $reference;
+
+        foreach($periods as $period){
+            $endTime = $endTime->add($period->getWorkingDuration());
+        }
+
+        return $reference->diff($endTime);
+    }
+
+    /**
+     * Get working duration label
+     *
+     */
+    public function getWorkingDurationLabel(){
+        $diff  = $this->getWorkingDuration();
+        $duration = $this->format_duration_to_hours($diff);
+
+        return $duration;
+    }
+
+
+
+    /**
+     * Format an interval to show all existing components.
+     *
+     * @param DateInterval $interval The interval
+     *
+     * @return string Formatted interval string.
+     */
+    function format_duration_to_hours(DateInterval $interval) {
+        $result = 0;
+
+        // Years
+        if ($interval->y) {
+            if ($interval->y != 0) {
+                $result += $interval->y * 365 * 24;
+            }
+        }
+
+        // Months
+        if ($interval->m) {
+            if ($interval->m != 0) {
+                $result += $interval->m * 30 * 24;
+            }
+        }
+
+        // Days
+        if ($interval->d) {
+            if ($interval->d != 0) {
+                $result += $interval->d * 24;
+            }
+        }
+
+        // Hours
+        if ($interval->h) {
+            if ($interval->h != 0) {
+                $result += $interval->h;
+            }
+        }
+
+        // Hours
+        if ($interval->m) {
+            if ($interval->m != 0) {
+                $result += 1;
+            }
+        }
+
+        return $result."h";
     }
 
     public function getIntervalLabel(){

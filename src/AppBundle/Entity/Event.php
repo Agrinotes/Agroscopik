@@ -204,11 +204,17 @@ class Event
         return $diff;
     }
 
+    /**
+     * Get working duration
+     *
+     * @return bool|DateInterval
+     */
     public function getWorkingDuration(){
 
         // Set up variables needed to calculate the duration
         $reference = new \DateTimeImmutable;
         $endTime = clone $reference;
+        $oneHour = new \DateInterval('PT1H');
 
         // Define beginning and end of a regular working day
         $dayStart = 6;
@@ -221,20 +227,18 @@ class Event
         $start = $this->startDatetime;
         $end = $this->endDatetime;
 
-        // Create one hour Interval
-        $oneHour = new \DateInterval('PT1H');
-
         // Could be largely improved...
         if($duration->format('%d') == 0 and $duration->format('%h') < ($dayEnd-$dayStart) ){
             return $this->getDuration();
-        }else{        $hours = 0;
+        }else{
+            $hours = 0;
 
             /* Iterate from $start up to $end+1 hour, one hour in each iteration.
                We add one hour to the $end date, because the DatePeriod only iterates up to,
                not including, the end date. */
-            foreach (new \DatePeriod($start, $oneHour, $end->add($oneHour)) as $hour) {
+            foreach (new \DatePeriod($start, $oneHour, $end) as $hour) {
                 $hour_num = $hour->format("H");
-                if ($hour_num > $dayStart && $hour_num < $dayEnd + 1) {
+                if ($hour_num >= $dayStart && $hour_num < $dayEnd) {
                     $hours++;
                 }
             }
