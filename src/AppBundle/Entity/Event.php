@@ -214,8 +214,14 @@ class Event
         $dayStart = 6;
         $dayEnd = 18;
 
+        //Full Period Duration
+        $duration = $this->getDuration();
+
+        // Could be largely improved...
+        if($duration->format('%d') == 0 and $duration->format('%h') < ($dayEnd-$dayStart) ){
+            return $this->format_duration($duration);
+        }else{
         // If more than a day, calculate approximate duration time
-        if($this->getDuration()> new DateInterval("PT24H")){
         $start = $this->startDatetime;
         $end = $this->endDatetime;
         $oneHour = new DateInterval('PT1H');
@@ -227,15 +233,13 @@ class Event
            not including, the end date. */
         foreach (new \DatePeriod($start, $oneHour, $end->add($oneHour)) as $hour) {
             $hour_num = $hour->format("H");
-            if ($hour_num > $dayStart && $hour_num < $dayEnd) {
+            if ($hour_num > $dayStart && $hour_num < $dayEnd + 1) {
                 $hours++;
             }
         }
-        return $hours.'h';
-        }else{
-            // If less than a day calculate exact duration
-            return $this->format_duration($this->getDuration());
+        return $hours . 'h';
         }
+
     }
 
     /**
@@ -301,4 +305,3 @@ class Event
 
 
 }
-
