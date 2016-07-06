@@ -5,48 +5,85 @@
     <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
+{% block body_class %}
+    dashboard
+{% endblock %}
+
 {% block page %}
     <div class="page animsition">
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-9"></div>
-                <div class="col-lg-3">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Campagne</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="btn-group" aria-label="Basic example" role="group">
-                                <a type="button"
-                                   href="{{ path('crop_current_index',{'id':app.user.farm.id,'year':year-1}) }}"
-                                   class="btn btn-default waves-effect waves-light"><i
-                                            class="icon md-chevron-left margin-0" aria-hidden="true"></i></a>
-                                <a type="button" href="#"
-                                   class="btn btn-default waves-effect waves-light">{{ year }}</a>
-                                <a type="button"
-                                   href="{{ path('crop_current_index',{'id':app.user.farm.id,'year':year+1}) }}"
-                                   class="btn btn-default waves-effect waves-light"><i
-                                            class="icon md-chevron-right margin-0" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-                    </div>
+        <div class="page-header height-300 margin-bottom-30">
+            <div class="text-center blue-grey-800 margin-top-50 margin-xs-0">
+                <div class="font-size-50 margin-bottom-30 blue-grey-800">Cultures</div>
+                <div class="btn-group" aria-label="Basic example" role="group">
+                    <a type="button"
+                       href="{{ path('crop_current_index',{'id':app.user.farm.id,'year':year-1}) }}"
+                       class="btn btn-default waves-effect waves-light"><i
+                                class="icon md-chevron-left margin-0" aria-hidden="true"></i></a>
+                    <a type="button" href="#"
+                       class="btn btn-default waves-effect waves-light">{{ year }}</a>
+                    <a type="button"
+                       href="{{ path('crop_current_index',{'id':app.user.farm.id,'year':year+1}) }}"
+                       class="btn btn-default waves-effect waves-light"><i
+                                class="icon md-chevron-right margin-0" aria-hidden="true"></i></a>
                 </div>
             </div>
+        </div>
+        <div class="page-content">
             <div class="row">
                 {% for crop in crops %}
-                    <div class="col-xlg-6 col-md-6">
-                        <div class="panel panel-bordered panel-primary">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    {{ crop.name }}
-                                    <a href="{{ path('crop_campaign_show', { 'farm':app.user.farm.id,'crop': crop.id,'year':year }) }}">
-                                        <i class="icon md-plus-circle-o" aria-hidden="true"></i>
-                                    </a>
-                                </h3>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widget" id="widgetUserList">
+                            <div class="widget-header cover overlay">
+                                <img class="cover-image height-100"
+                                     src="{{ asset('front/mmenu/assets/examples/images/dashboard-header.jpg') }}"
+                                     alt="...">
 
-                                <div class="panel-actions">{{ render(controller('AppBundle:Crop:getCumulatedArea',{'farm':app.user.farm.id,'crop':crop.id,'year':year})) }}</div>
+                                <div class="overlay-panel vertical-align overlay-background" style="
+    background-color: rgba(103,58,183,.8)">
+                                    <div class="vertical-align-middle">
+                                        <div class="pull-left">
+                                            <div class="font-size-20">{{ crop.name }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            {{ render(controller('AppBundle:CropCycle:indexCropCampaign',{'id': crop.id,'year':year } )) }}
+                            <div class="widget-content padding-horizontal-20">
+                                <button type="button"
+                                        class="btn-raised btn btn-danger btn-floating waves-effect waves-light" style="position: absolute;
+    top: 70;
+    right: 20px;">
+                                    <i class="icon md-plus" aria-hidden="true"></i>
+                                </button>
+                                <div class="row text-center margin-bottom-20 padding-top-20 padding-bottom-20">
+                                    <div class="col-xs-6 padding-top-10 padding-bottom-10">
+                                        <div class="counter">
+                                            <div class="counter-label total-completed">Surface cumulée</div>
+                                            <div class="counter-number">{{ render(controller('AppBundle:Crop:getCumulatedArea',{'farm':app.user.farm.id,'crop':crop.id,'year':year})) }}</div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 padding-top-10 padding-bottom-10">
+                                        <div class="counter">
+                                            <div class="counter-label">Cycles</div>
+                                            <div class="counter-number">3</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 padding-top-10 padding-bottom-10">
+                                        <div class="counter">
+                                            <div class="counter-label">Temps de travail</div>
+                                            <div class="counter-number ">10h</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 padding-top-10 padding-bottom-10">
+                                        <div class="counter">
+                                            <div class="counter-label">Marge brute</div>
+                                            <div class="counter-number ">100 000 CFP</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 {% endfor %}

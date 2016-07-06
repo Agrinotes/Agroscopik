@@ -229,6 +229,6 @@ class CropController extends Controller
         foreach ($cropCycles as $cropCycle) {
             $area += $cropCycle->getArea();
         }
-        return new Response(str_replace('.', ',', $area) . ' ha cumulés');
+        return new Response(str_replace('.', ',', $area) . ' ha');
     }
 }
