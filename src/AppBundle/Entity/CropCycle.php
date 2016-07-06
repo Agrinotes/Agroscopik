@@ -468,6 +468,85 @@ class CropCycle
         return $result;
     }
 
+    /**
+     * Get working duration
+     * Loops through associated \Action $action to get crop cycle duration
+     */
+    public function getWorkingDuration(){
+        $actions = $this->getActions();
+
+        $reference = new DateTimeImmutable;
+        $endTime = clone $reference;
+
+        foreach($actions as $action){
+            $action_duration = $action->getWorkingDuration();
+            $action_duration = $this->format_duration_to_hours($action_duration);
+            $endTime = $endTime->add($action_duration);
+        }
+
+        return $reference->diff($endTime);
+    }
+
+    /**
+     * Get working duration label
+     *
+     */
+    public function getWorkingDurationLabel(){
+        $diff  = $this->getWorkingDuration();
+        $duration = $this->format_duration_to_hours($diff);
+
+        return $duration->h.'h';
+    }
+
+    /**
+     * Format an interval to show all existing components.
+     *
+     * @param DateInterval $interval The interval
+     *
+     * @return string Formatted interval string.
+     */
+    function format_duration_to_hours(DateInterval $interval) {
+        $result = 0;
+
+        // Years
+        if ($interval->y) {
+            if ($interval->y != 0) {
+                $result += $interval->y * 365 * 24;
+            }
+        }
+
+        // Months
+        if ($interval->m) {
+            if ($interval->m != 0) {
+                $result += $interval->m * 30 * 24;
+            }
+        }
+
+        // Days
+        if ($interval->d) {
+            if ($interval->d != 0) {
+                $result += $interval->d * 24;
+            }
+        }
+
+        // Hours
+        if ($interval->h) {
+            if ($interval->h != 0) {
+                $result += $interval->h;
+            }
+        }
+
+        // Minutes
+        if ($interval->i) {
+            if ($interval->i != 0) {
+                $result += 1;
+            }
+        }
+
+        return new DateInterval('PT'.$result.'H');
+    }
+
+
 
 }
 
