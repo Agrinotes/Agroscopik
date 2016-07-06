@@ -405,8 +405,6 @@ $endTime = $endTime->add($period->getDuration());
         return $reference->diff($endTime);
     }
 
-
-
     /**
      * Get duration label
      *
@@ -472,11 +470,14 @@ $endTime = $endTime->add($period->getDuration());
     public function getWorkingDuration(){
         $periods = $this->getPeriods();
 
-        $reference = new DateTimeImmutable;
+        // Create variables to calculate the working duration
+        $reference = new \DateTimeImmutable;
         $endTime = clone $reference;
 
         foreach($periods as $period){
-            $endTime = $endTime->add($period->getWorkingDuration());
+            $period_duration = $period->getWorkingDuration();
+            $period_duration = $this->format_duration_to_hours($period_duration);
+            $endTime = $endTime->add($period_duration);
         }
 
         return $reference->diff($endTime);
@@ -490,7 +491,7 @@ $endTime = $endTime->add($period->getDuration());
         $diff  = $this->getWorkingDuration();
         $duration = $this->format_duration_to_hours($diff);
 
-        return $duration;
+        return $duration->h.'h';
     }
 
 
@@ -533,14 +534,14 @@ $endTime = $endTime->add($period->getDuration());
             }
         }
 
-        // Hours
-        if ($interval->m) {
-            if ($interval->m != 0) {
+        // Minutes
+        if ($interval->i) {
+            if ($interval->i != 0) {
                 $result += 1;
             }
         }
 
-        return $result."h";
+        return new DateInterval('PT'.$result.'H');
     }
 
     public function getIntervalLabel(){
