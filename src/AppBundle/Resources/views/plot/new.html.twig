@@ -122,7 +122,7 @@
                 L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
 
                 // Create the map
-                var map = L.mapbox.map('map', 'mapbox.streets-satellite').setView([-21.20000, 166.00000], 7);
+                var map = L.mapbox.map('map', 'mapbox.streets').setView([-21.20000, 166.00000], 7);
 
                 // Add GeoRep
                 var georep = L.tileLayer.wms('https://carto10.gouv.nc/arcgis/services/fond_imagerie/MapServer/WMSServer', {
@@ -134,10 +134,10 @@
 
                 // Display GeoRep according to zoom level
                 map.on('zoomend', function () {
-                    if (map.getZoom() > 9 && map.hasLayer(georep) == false) {
+                    if (map.getZoom() > 14 && map.hasLayer(georep) == false) {
                         map.addLayer(georep);
                     }
-                    if (map.getZoom() < 9 && map.hasLayer(georep)) {
+                    if (map.getZoom() < 14 && map.hasLayer(georep)) {
                         map.removeLayer(georep);
                     }
                     if (map.getZoom() > 14) {

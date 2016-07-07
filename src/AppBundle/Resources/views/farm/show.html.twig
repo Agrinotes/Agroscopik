@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block page %}
-<div class="page animsition">
+<div class="page ">
     <!-- Plot Sidebar -->
     <div class="page-aside">
         <div class="page-aside-switch">
@@ -110,7 +110,7 @@
             L.mapbox.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
 
             /* format map */
-            var map = L.mapbox.map('map', 'mapbox.streets-satellite');
+            var map = L.mapbox.map('map', 'mapbox.streets');
 
                             // Add GeoRep
                 var georep = L.tileLayer.wms('https://carto10.gouv.nc/arcgis/services/fond_imagerie/MapServer/WMSServer', {
@@ -122,16 +122,11 @@
 
                 // Display GeoRep according to zoom level
                 map.on('zoomend', function () {
-                    if (map.getZoom() > 9 && map.hasLayer(georep) == false) {
+                    if (map.getZoom() > 14 && map.hasLayer(georep) == false) {
                         map.addLayer(georep);
                     }
-                    if (map.getZoom() < 9 && map.hasLayer(georep)) {
+                    if (map.getZoom() < 14 && map.hasLayer(georep)) {
                         map.removeLayer(georep);
-                    }
-                    if (map.getZoom() > 14) {
-                        $('.leaflet-label').css('display', 'block');
-                    } else {
-                        $('.leaflet-label').css('display', 'none');
                     }
                 });
 
