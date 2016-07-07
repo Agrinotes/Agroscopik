@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>TractorBrand list</h1>
+    <h1>TractorModel list</h1>
 
     <table>
         <thead>
@@ -14,19 +14,19 @@
             </tr>
         </thead>
         <tbody>
-        {% for tractorBrand in tractorBrands %}
+        {% for tractorModel in tractorModels %}
             <tr>
-                <td><a href="{{ path('tractorbrand_show', { 'id': tractorBrand.id }) }}">{{ tractorBrand.id }}</a></td>
-                <td>{{ tractorBrand.brand }}</td>
-                <td>{{ tractorBrand.name }}</td>
-                <td>{{ tractorBrand.power }}</td>
+                <td><a href="{{ path('tractormodel_show', { 'id': tractorModel.id }) }}">{{ tractorModel.id }}</a></td>
+                <td>{{ tractorModel.brand }}</td>
+                <td>{{ tractorModel.name }}</td>
+                <td>{{ tractorModel.power }}</td>
                 <td>
                     <ul>
                         <li>
-                            <a href="{{ path('tractorbrand_show', { 'id': tractorBrand.id }) }}">show</a>
+                            <a href="{{ path('tractormodel_show', { 'id': tractorModel.id }) }}">show</a>
                         </li>
                         <li>
-                            <a href="{{ path('tractorbrand_edit', { 'id': tractorBrand.id }) }}">edit</a>
+                            <a href="{{ path('tractormodel_edit', { 'id': tractorModel.id }) }}">edit</a>
                         </li>
                     </ul>
                 </td>
@@ -37,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('tractorbrand_new') }}">Create a new entry</a>
+            <a href="{{ path('tractormodel_new') }}">Create a new entry</a>
         </li>
     </ul>
 {% endblock %}

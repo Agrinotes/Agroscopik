@@ -1,5 +1,5 @@
-app_tractor_brand:
-    resource: "@AppBundle/Controller/TractorBrandController.php"
+app_tractor_model:
+    resource: "@AppBundle/Controller/TractorModelController.php"
     type:     annotation
 
 app_implement:

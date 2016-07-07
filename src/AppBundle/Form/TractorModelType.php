@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TractorBrandType extends AbstractType
+class TractorModelType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -27,7 +27,7 @@ class TractorBrandType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\TractorBrand'
+            'data_class' => 'AppBundle\Entity\TractorModel'
         ));
     }
 }

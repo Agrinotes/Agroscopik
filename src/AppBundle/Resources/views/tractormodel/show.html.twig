@@ -1,35 +1,35 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>TractorBrand</h1>
+    <h1>TractorModel</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ tractorBrand.id }}</td>
+                <td>{{ tractorModel.id }}</td>
             </tr>
             <tr>
                 <th>Brand</th>
-                <td>{{ tractorBrand.brand }}</td>
+                <td>{{ tractorModel.brand }}</td>
             </tr>
             <tr>
                 <th>Name</th>
-                <td>{{ tractorBrand.name }}</td>
+                <td>{{ tractorModel.name }}</td>
             </tr>
             <tr>
                 <th>Power</th>
-                <td>{{ tractorBrand.power }}</td>
+                <td>{{ tractorModel.power }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('tractorbrand_index') }}">Back to the list</a>
+            <a href="{{ path('tractormodel_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('tractorbrand_edit', { 'id': tractorBrand.id }) }}">Edit</a>
+            <a href="{{ path('tractormodel_edit', { 'id': tractorModel.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
