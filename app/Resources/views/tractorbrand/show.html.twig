@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>TractorBrand</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tractorBrand.id }}</td>
+            </tr>
+            <tr>
+                <th>Brand</th>
+                <td>{{ tractorBrand.brand }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ tractorBrand.name }}</td>
+            </tr>
+            <tr>
+                <th>Power</th>
+                <td>{{ tractorBrand.power }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tractorbrand_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('tractorbrand_edit', { 'id': tractorBrand.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

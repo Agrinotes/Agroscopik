@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>TractorBrand list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Brand</th>
+                <th>Name</th>
+                <th>Power</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tractorBrand in tractorBrands %}
+            <tr>
+                <td><a href="{{ path('tractorbrand_show', { 'id': tractorBrand.id }) }}">{{ tractorBrand.id }}</a></td>
+                <td>{{ tractorBrand.brand }}</td>
+                <td>{{ tractorBrand.name }}</td>
+                <td>{{ tractorBrand.power }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tractorbrand_show', { 'id': tractorBrand.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tractorbrand_edit', { 'id': tractorBrand.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tractorbrand_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
