@@ -31,15 +31,15 @@ class CropCycleType extends AbstractType
                 'attr' => array('class' => 'form-control','placeholder' => 'Exemple : Coeur de boeuf...'),
                 'required'=> false,
             ))
-            ->add('area', TextType::class, array(
-                'attr' => array('class' => 'asRange','data-plugin'=>'asRange','data-step'=>'0.01','data-min'=>'0', 'data-tip'=>'true','data-namespace'=>'rangeUi'),
-                'label_attr' => array('class' => 'hidden'),
-                'required' => false,
-            ))
-            ->add('latLngs', TextType::class, array(
+            ->add('area',TextType::class,array(
                 'attr' => array('class' => 'hidden'),
                 'label_attr' => array('class' => 'hidden'),
-                'required' => false,
+                'required' =>'false'
+            ))
+            ->add('latLngs',TextType::class,array(
+                'attr' => array('class' => 'hidden'),
+                'label_attr' => array('class' => 'hidden'),
+                'required' =>'false'
             ))
             ->add('status', ChoiceType::class, array(
                 'multiple' => false,

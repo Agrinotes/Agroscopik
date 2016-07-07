@@ -216,7 +216,6 @@ class CropCycle
         return $this->crops;
     }
 
-
     /**
      * @return mixed
      */
