@@ -13,7 +13,7 @@
         {% for tractor in tractors %}
             {% if is_granted('VIEW', tractor) or is_granted('ROLE_ADMIN') %}
                 <tr>
-                    <td><a href="{{ path('tractor_show', { 'id': tractor.id }) }}">{{ tractor.name }}</a></td>
+                    <td><a href="{{ path('tractor_show', { 'id': tractor.id }) }}">{{ tractor.model.label }}</a></td>
                 </tr>
             {% endif %}
         {% endfor %}

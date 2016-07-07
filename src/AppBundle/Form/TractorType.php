@@ -20,11 +20,8 @@ class TractorType extends AbstractType
             ->add('model',EntityType::class,array(
 'class'=>'AppBundle\Entity\TractorModel',
                 'choice_label'=>'label',
-                'attr' => array('class'=>'form-control'),
+                'attr' => array('class'=>'form-control','data-plugin'=>'select2'),
                 'group_by' => 'brand'
-            ))
-            ->add('name', TextType::class, array(
-                'label' => 'Nom'
             ));
     }
 

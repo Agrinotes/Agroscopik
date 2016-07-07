@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/select2/select2.css') }}">
+{% endblock %}
+
 {% block body %}
     <h1>Ajouter un tracteur</h1>
 
@@ -11,4 +16,10 @@
 
             <a class="btn btn-default" href="{{ path('tractor_index') }}">Retourner à la liste des outils</a>
 
+{% endblock %}
+
+{% block template_config %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/select2.js') }}"></script>
 {% endblock %}

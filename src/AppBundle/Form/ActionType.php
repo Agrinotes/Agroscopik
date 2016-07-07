@@ -61,7 +61,7 @@ class ActionType extends AbstractType
 
                 $tractorsOptions = array(
                     'class' => 'AppBundle:Tractor',
-                    'choice_label' => 'name',
+                    'choice_label' => 'model.label',
                     'label'=>'Tracteurs',
                     'required' => false,
                     'multiple' => true,

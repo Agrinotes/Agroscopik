@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ tractor.name }}</h1>
+    <h1>{{ tractor.model.label }}</h1>
 
 
             <a class="btn btn-default" href="{{ path('tractor_index') }}">Liste des tracteurs</a>
