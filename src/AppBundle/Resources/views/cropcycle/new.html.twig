@@ -96,6 +96,7 @@
                                     <h4 class="example-title">
                                         {{ form_label(form.varieties) }}
                                     </h4>
+
                                     <div class="form-group form-material">
                                         {{ form_errors(form.varieties) }}
                                         {{ form_widget(form.varieties) }}
@@ -114,7 +115,7 @@
                                         <h4 class="example-title">
                                             Zone de culture
                                         </h4>
-                                        <div class="row" id="map" style="height: 60vh;"></div>
+                                        <div  id="map" style="height: 60vh;"></div>
                                         {{ form_label(form.area) }}
                                         {{ form_widget(form.area) }}
                                         {{ form_errors(form.area) }}
@@ -342,14 +343,14 @@
                 map.on('draw:created', function (e) {
                     var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
                     var layer = e.layer;
-                    if(assertContains(parent,layer)){
-                    featureGroup.clearLayers();
-                    featureGroup.addLayer(layer);
-                    $("#crop_cycle_area").val(getPolygonArea(layer));
-                    var latLngs = JSON.stringify(layer.toGeoJSON());
-                    $("#crop_cycle_latLngs").val(latLngs);
-                    map.fitBounds(layer.getBounds());
-                    }else{
+                    if (assertContains(parent, layer)) {
+                        featureGroup.clearLayers();
+                        featureGroup.addLayer(layer);
+                        $("#crop_cycle_area").val(getPolygonArea(layer));
+                        var latLngs = JSON.stringify(layer.toGeoJSON());
+                        $("#crop_cycle_latLngs").val(latLngs);
+                        map.fitBounds(layer.getBounds());
+                    } else {
                         $("#crop_cycle_latLngs").val("");
                         $("#crop_cycle_area").val("");
                         alert("Votre zone de culture n'est pas du tout dans la parcelle sélectionnée. Veuillez réessayer :)");
@@ -362,12 +363,13 @@
                     e.layers.eachLayer(function (layer) {
                         var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
                         featureGroup.clearLayers();
-                        if(assertContains(parent,layer)){
-                        featureGroup.addLayer(layer);
-                        $("#crop_cycle_area").val(getPolygonArea(layer));
-                        var latLngs = JSON.stringify(layer.toGeoJSON());
-                        $("#crop_cycle_latLngs").val(latLngs);}
-                        else{
+                        if (assertContains(parent, layer)) {
+                            featureGroup.addLayer(layer);
+                            $("#crop_cycle_area").val(getPolygonArea(layer));
+                            var latLngs = JSON.stringify(layer.toGeoJSON());
+                            $("#crop_cycle_latLngs").val(latLngs);
+                        }
+                        else {
                             $("#crop_cycle_latLngs").val("");
                             $("#crop_cycle_area").val("");
                             alert("Votre zone de culture n'est pas du tout dans la parcelle sélectionnée. Veuillez réessayer :)");
@@ -389,22 +391,24 @@
                     return area.toFixed(3);
                 }
 
-                function assertContains(parent, child){
+                function assertContains(parent, child) {
                     return parent.getBounds().contains(child.getBounds());
                 }
             }
             ,
             run: function () {
                 this.createMap();
-                window.scrollTo(0, 0);
-
             }
         });
+
+
+
 
         $(document).ready(function ($) {
             AppPlotNew.run();
         })
     </script>
+
 
 {% endblock %}
 
