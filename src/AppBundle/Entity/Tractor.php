@@ -38,6 +38,12 @@ class Tractor
     private $name;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\TractorModel", inversedBy="tractors", cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $model;
+
+    /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Action", mappedBy="tractors", cascade={"persist"})
      */
     private $actions;
@@ -136,6 +142,24 @@ class Tractor
     public function getFarm()
     {
         return $this->farm;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getModel()
+    {
+        return $this->model;
+    }
+
+    /**
+     * @param mixed $model
+     */
+    public function setModel($model)
+    {
+        $this->model = $model;
+
+        $model->addTractor($this);
     }
 }
 

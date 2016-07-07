@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,6 +17,12 @@ class TractorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('model',EntityType::class,array(
+'class'=>'AppBundle\Entity\TractorModel',
+                'choice_label'=>'label',
+                'attr' => array('class'=>'form-control'),
+                'group_by' => 'brand'
+            ))
             ->add('name', TextType::class, array(
                 'label' => 'Nom'
             ));

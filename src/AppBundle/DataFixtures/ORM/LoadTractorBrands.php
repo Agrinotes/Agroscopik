@@ -1,14 +1,14 @@
 <?php
 namespace AppBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\TractorBrand;
+use AppBundle\Entity\TractorModel;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
-class LoadTractorBrands extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
+class LoadTractorModels extends AbstractFixture implements FixtureInterface, OrderedFixtureInterface
 {
 
     /**
@@ -3991,7 +3991,7 @@ class LoadTractorBrands extends AbstractFixture implements FixtureInterface, Ord
 
         foreach ($tractors as $brand) {
             foreach ($brand[1] as $model) {
-                $tractor = new TractorBrand();
+                $tractor = new TractorModel();
                 $tractor->setBrand($brand[0]);
                 $tractor->setName($model[0]);
                 $tractor->setPower($model[1]);
@@ -4005,6 +4005,6 @@ class LoadTractorBrands extends AbstractFixture implements FixtureInterface, Ord
 
     public function getOrder()
     {
-        return 5;
+        return 4;
     }
 }

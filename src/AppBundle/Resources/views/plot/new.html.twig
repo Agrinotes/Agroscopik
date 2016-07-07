@@ -41,15 +41,15 @@
             }
         }
 
-        .leaflet-label-right:before{
+        .leaflet-label-right:before {
             display: none;
         }
 
-        .leaflet-label{
-            border:none;
+        .leaflet-label {
+            border: none;
         }
 
-        .leaflet-control-locate a span{
+        .leaflet-control-locate a span {
             padding-left: 7px;
             padding-top: 2px;
         }
@@ -140,10 +140,10 @@
                     if (map.getZoom() < 9 && map.hasLayer(georep)) {
                         map.removeLayer(georep);
                     }
-                    if (map.getZoom()> 14){
-                        $('.leaflet-label').css('display','block');
-                    }else{
-                        $('.leaflet-label').css('display','none');
+                    if (map.getZoom() > 14) {
+                        $('.leaflet-label').css('display', 'block');
+                    } else {
+                        $('.leaflet-label').css('display', 'none');
                     }
                 });
 
@@ -154,19 +154,20 @@
                 var featureGroup = L.featureGroup().addTo(map);
 
                 // Add farm plots or locate user if not plots
-                {%  if app.user.farm.plots is not empty %}
+                {%   if app.user.farm.plots |length > 1 %}
                 var layerGroup = L.featureGroup();
                 {% for plot in app.user.farm.plots %}
                 {% if plot.latLngs is not empty %}
                 var layer = L.geoJson({{ plot.latLngs | raw }});
                 layer.setStyle({color: "white", opacity: 0.8, weight: 1.5});
-                var label = new LeafletLabel({direction: 'center'
+                var label = new LeafletLabel({
+                    direction: 'center'
                 });
                 label.setContent("{{ plot.name | capitalize }}");
                 label.setLatLng(layer.getBounds().getCenter());
                 map.showLabel(label);
                 layerGroup.addLayer(layer);
-                                {% endif %}
+                {% endif %}
                 {% endfor %}
                 layerGroup.addTo(map);
                 var bounds = layerGroup.getBounds();
@@ -174,7 +175,7 @@
                 {% else %}
                 lc.start();
                 $('.leaflet-control-locate').hide();
-                {% endif %}
+                {%  endif %}
 
                 // Change icon styles
                 L.Edit.Poly = L.Edit.Poly.extend({
@@ -310,7 +311,6 @@
 
                 // Enable drawing polygons on ready
                 new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-
 
                 // On draw created, add polygon values to the form
                 map.on('draw:created', function (e) {
