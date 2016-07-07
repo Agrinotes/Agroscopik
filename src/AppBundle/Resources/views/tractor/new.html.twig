@@ -3,23 +3,106 @@
 {% block plugin_stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('front/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
 {% endblock %}
 
-{% block body %}
-    <h1>Ajouter un tracteur</h1>
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Enregistrer" />
-    {{ form_end(form) }}
+{% block page %}
+
+    <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('tractor_index') }}">Tracteurs</a></li>
+                <li class="active">Ajouter un tracteur</li>
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Ajouter un tracteur</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="example-title">{{ form_label(form.model) }}</h4>
 
 
-            <a class="btn btn-default" href="{{ path('tractor_index') }}">Retourner à la liste des outils</a>
+                                    {{ form_errors(form.model) }}
+                                    {{ form_widget(form.model) }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 margin-top-15">
+                                    <h4 class="example-title">{{ form_label(form.startDatetime) }}</h4>
 
+                                    <div class="form-group">
+
+                                        <div class="input-group">
+                                            {{ form_errors(form.startDatetime) }}
+
+                                            <span class="input-group-addon"><span class="icon md-calendar" aria-hidden="true"></span></span>
+                                            {{ form_widget(form.startDatetime) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 margin-top-15">
+                                    <div class="form-group form-material">
+                                        <h4 class="example-title">{{ form_label(form.price) }}</h4>
+
+
+                                        {{ form_errors(form.price) }}
+                                        {{ form_widget(form.price) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <a class="btn btn-default"
+                               href="{{ path('tractor_index') }}">Annuler</a>
+                            <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 {% block template_config %}
     {{ parent() }}
     <script src="{{ asset('front/global/vendor/select2/select2.min.js') }}"></script>
     <script src="{{ asset('front/global/js/components/select2.js') }}"></script>
+
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.date').datepicker({
+            'format': 'mm/yyyy',
+            'startView': 'decade',
+            'minViewMode': 'months',
+            'language': 'fr',
+            'orientation':'bottom',
+            'autoclose': true
+        });
+
+            }
+    );
+</script>
 {% endblock %}

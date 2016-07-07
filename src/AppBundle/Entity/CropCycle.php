@@ -56,7 +56,7 @@ class CropCycle
     private $crops;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=250, nullable=true)
      */
     private $varieties;
 

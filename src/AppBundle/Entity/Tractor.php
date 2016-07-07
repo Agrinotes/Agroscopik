@@ -48,6 +48,18 @@ class Tractor
     private $farm;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="startDatetime", type="datetime",nullable=true)
+     */
+    private $startDatetime;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $price;
+
+    /**
      * Get id
      *
      * @return int
@@ -130,6 +142,38 @@ class Tractor
         $this->model = $model;
 
         $model->addTractor($this);
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartDatetime()
+    {
+        return $this->startDatetime;
+    }
+
+    /**
+     * @param \DateTime $startDatetime
+     */
+    public function setStartDatetime($startDatetime)
+    {
+        $this->startDatetime = $startDatetime;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
     }
 }
 

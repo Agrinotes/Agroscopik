@@ -170,5 +170,16 @@ class TractorModel
 
         return $label;
     }
+
+    public function getLabelWithPower(){
+
+        $label = $this->brand." - ".$this->name;
+
+        if($this->power != ""){
+            $label = $label." (".$this->power."cv)";
+        }
+
+        return $label;
+    }
 }
 
