@@ -1,26 +1,101 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Liste des tracteurs</h1>
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
 
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th>Nom</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for tractor in tractors %}
-            {% if is_granted('VIEW', tractor) or is_granted('ROLE_ADMIN') %}
-                <tr>
-                    <td><a href="{{ path('tractor_show', { 'id': tractor.id }) }}">{{ tractor.model.label }}</a></td>
-                </tr>
-            {% endif %}
-        {% endfor %}
-        </tbody>
-    </table>
+{% block page %}
+    <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li class="active">Tracteurs</li>
 
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Liste des tracteurs</h3>
 
-    <a class="btn btn-primary" href="{{ path('tractor_new') }}">Ajouter un tracteur</a>
+                            <div class="panel-actions">
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- Example Tabs Line -->
+                            <div class="example-wrap margin-lg-0">
+                                <div class="nav-tabs-horizontal">
+                                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
+                                        <li class="active" role="presentation"><a data-toggle="tab"
+                                                                                  href="#exampleTabsLineOne"
+                                                                                  aria-controls="exampleTabsLineOne"
+                                                                                  role="tab" style="font-size: 16px;">Tracteurs</a>
+                                        </li>
+                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
+                                                                   aria-controls="exampleTabsLineTwo"
+                                                                   role="tab" style="font-size: 16px;">Entretien</a>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
+                                            <table class="table table-hover">
+                                                <tbody>
+                                                {% for tractor in tractors %}
+                                                    {% if is_granted('VIEW', tractor) or is_granted('ROLE_ADMIN') %}
+                                                        <tr>
+                                                            <td>
+                                                                <div class="content">
+                                                                    <div class="title">
+                                                                        <a href="{{ path('tractor_show', { 'id': tractor.id }) }}">{{ tractor.model.label }}</a>
+                                                                    </div>
+                                                                    <div class="metas">
+                            <span class="started">
+                                <i class="icon md-calendar" aria-hidden="true"> </i>
+                                {{ tractor.startDatetime | date('m/Y') }}
+                                {% if tractor.price != '' %}
+                                    <i class="icon md-money-box margin-left-10" aria-hidden="true"></i>
+                                    {{ tractor.price |number_format(0, ',', ' ')  }} CFP
+                                {% endif %}
+                            </span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <a class="btn btn-primary"
+                                               href="{{ path('tractor_new') }}">
+                                                Ajouter un tracteur
+                                            </a>
+                                        </div>
+                                        <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
+                                            <p class="margin-top-20">Cette fonctionnalité pourra être développée à l'avenir</p>
+                                            <a class="btn btn-primary"
+                                               href="javascript:void(0)">
+                                                Ajouter une intervention d'entretien
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Example Tabs Line With JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
+{% block template_config %}
+    {{ parent() }}
+
+<script src="{{ asset('front/global/js/plugins/responsive-tabs.js') }}"></script>
+<script src="{{ asset('front/global/js/plugins/closeable-tabs.js') }}"></script>
 {% endblock %}
