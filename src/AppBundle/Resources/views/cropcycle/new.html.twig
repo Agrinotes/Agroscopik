@@ -115,7 +115,8 @@
                                         <h4 class="example-title">
                                             Zone de culture
                                         </h4>
-                                        <div  id="map" style="height: 60vh;"></div>
+
+                                        <div id="map" style="height: 60vh;"></div>
                                         {{ form_label(form.area) }}
                                         {{ form_widget(form.area) }}
                                         {{ form_errors(form.area) }}
@@ -149,6 +150,9 @@
     <script src="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.js"
             charset="utf-8"></script>
     <script src="{{ asset('front/global/vendor/leaflet-label/leaflet.label.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.geometryutil.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script>
 {% endblock %}
 
 {% block template_config %}
@@ -192,17 +196,23 @@
                 // Locate current user
                 var lc = L.control.locate().addTo(map);
 
-                // Where the polygons are stored
-                var featureGroup = L.featureGroup().addTo(map);
-
                 // Add cropcycle plot
-                var layerGroup = L.featureGroup();
-                var layer = L.geoJson({{ cropCycle.plot.latLngs | raw }});
+                var layer = L.geoJson({{ cropCycle.plot.latLngs | raw }},
+                        {
+                            color: "white",
+                            opacity: 0.8,
+                            weight: 1.5
+                        }
+                ).addTo(map);
+                var guideLayers = [layer];
+
+
+                // Zoom on plot
                 var bounds = layer.getBounds();
-                layer.setStyle({color: "white", opacity: 0.8, weight: 1.5});
-                layerGroup.addLayer(layer);
-                layerGroup.addTo(map);
                 map.fitBounds(bounds);
+
+                // Where the cropcycle zone will be stored
+                var featureGroup = L.featureGroup().addTo(map);
 
                 // Change icon styles
                 L.Edit.Poly = L.Edit.Poly.extend({
@@ -214,6 +224,7 @@
                         })
                     }
                 });
+
 
                 // Enable drawing polygons
                 var drawControl = new L.Control.Draw({
@@ -232,6 +243,7 @@
                         marker: false,
                         rectangle: false,
                         polygon: {
+                            guideLayers: guideLayers, snapDistance: 10,
                             icon: new L.DivIcon({
                                 iconSize: new L.Point(20, 20),
                                 className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
@@ -246,6 +258,7 @@
                         }
                     }
                 }).addTo(map);
+
 
                 // Change Leaflet draw messages
                 L.drawLocal = {
@@ -338,7 +351,7 @@
 
                 // Enable drawing polygons on ready
                 new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-
+                
                 // On draw created, add polygon values to the form
                 map.on('draw:created', function (e) {
                     var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
@@ -402,12 +415,12 @@
         });
 
 
-
-
         $(document).ready(function ($) {
             AppPlotNew.run();
         })
     </script>
+
+
 
 
 {% endblock %}
