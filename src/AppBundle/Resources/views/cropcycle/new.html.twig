@@ -383,18 +383,18 @@
                     // Get vertices from the drawn polygon
                     var numNewVertices = layer.getLatLngs().length;
                     for (var i = 0; i < numNewVertices; i++) {
-                        if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat) == false) {
+                        if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat,i) == false) {
                             $("#crop_cycle_latLngs").val("");
                             $("#crop_cycle_area").val("");
                             swal({
-                                        title: "Oups...",
-                                        text: "La zone de culture dessinée est hors de la parcelle !",
-                                        type: "warning",
-                                        showCancelButton: false,
-                                        confirmButtonColor: '#009688',
-                                        confirmButtonText: 'Recommencer',
-                                        closeOnConfirm: true
-                                    });
+                                title: "Oups...",
+                                text: "La zone de culture dessinée est hors de la parcelle !",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: '#009688',
+                                confirmButtonText: 'Recommencer',
+                                closeOnConfirm: true
+                            });
                             featureGroup.clearLayers();
 
                             new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
@@ -423,7 +423,7 @@
                         // Get vertices from the drawn polygon
                         var numNewVertices = layer.getLatLngs().length;
                         for (var i = 0; i < numNewVertices; i++) {
-                            if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat) == false) {
+                            if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat,i) == false) {
                                 $("#crop_cycle_latLngs").val("");
                                 $("#crop_cycle_area").val("");
                                 swal({
@@ -468,14 +468,30 @@
                     return parent.getBounds().contains(child.getBounds());
                 }
 
-                function isInPolygon(points_polygon, vertices_x, vertices_y, longitude_x, latitude_y) {
+                function isInPolygon(points_polygon, vertices_x, vertices_y, longitude_x, latitude_y, num) {
+                    console.log("Point "+ (num));
                     var i = 0;
                     var j = 0;
                     var c = false;
 
                     for (i = 0, j = points_polygon - 1; i < points_polygon; j = i++) {
-                        if ((vertices_y[i] > latitude_y != (vertices_y[j] > latitude_y)) && (longitude_x < (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i])) {
-                            c = !c;
+
+                        console.log(i + " "+ j + " " + longitude_x + " " + ((vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i]  + 0.000001) +" ("+ (vertices_y[i] > latitude_y != (vertices_y[j] > latitude_y))+")");
+
+
+                        if ((vertices_y[i] >= latitude_y != (vertices_y[j] > latitude_y)) &&
+                                (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.000001)) {
+
+                            console.log(" OK ");
+
+                            c = true;
+
+                            return c;
+
+
+
+                            console.log(c);
+
                         }
                     }
 
