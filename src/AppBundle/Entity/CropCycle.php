@@ -252,6 +252,9 @@ class CropCycle
      */
     public function getLatLngs()
     {
+        if($this->latLngs == ""){
+            return $this->getPlot()->getLatLngs();
+        }
         return $this->latLngs;
     }
 
@@ -275,6 +278,10 @@ class CropCycle
      */
     public function getArea()
     {
+        if($this->latLngs == "" or $this->latLngs == 0 ){
+            return $this->getPlot()->getArea();
+        }
+
         return $this->area;
     }
 
