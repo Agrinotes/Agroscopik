@@ -514,7 +514,7 @@
 
                     for (i = 0, j = points_polygon - 1; i < points_polygon; j = i++) {
 
-
+                        {#
                         console.log("A " + i + " " + j + " (" +
                                 (vertices_y[i] > latitude_y) + " =! " +
                                 (vertices_y[j] > latitude_y) + ") = " +
@@ -531,7 +531,7 @@
                                 (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.00001 ) + " = " +
                                 ((vertices_y[i] >= latitude_y != (vertices_y[j] > latitude_y)) &&
                                 (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.00001 )) + "\n" + longitude_x + " <= " + ((vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.00001 )
-                        );
+                        );#}
 
 
                         //Add a small offset if necessary

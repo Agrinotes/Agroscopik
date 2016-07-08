@@ -28,9 +28,11 @@
       <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.728813">
-              <caret line="457" column="25" selection-start-line="457" selection-start-column="25" selection-end-line="457" selection-end-column="25" />
-              <folding />
+            <state vertical-scroll-proportion="0.084745765">
+              <caret line="508" column="0" selection-start-line="508" selection-start-column="0" selection-end-line="556" selection-end-column="17" />
+              <folding>
+                <element signature="e#22892#26053#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -38,9 +40,11 @@
       <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.94067794">
-              <caret line="478" column="25" selection-start-line="478" selection-start-column="25" selection-end-line="478" selection-end-column="25" />
-              <folding />
+            <state vertical-scroll-proportion="0.3997175">
+              <caret line="578" column="17" selection-start-line="578" selection-start-column="17" selection-end-line="578" selection-end-column="17" />
+              <folding>
+                <element signature="e#23537#26698#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -820,28 +824,32 @@
         <state vertical-scroll-proportion="-4.9322033">
           <caret line="45" column="30" selection-start-line="45" selection-start-column="30" selection-end-line="45" selection-end-column="30" />
           <folding>
-            <element signature="e#40#108#0#PHP" expanded="true" />
-            <element signature="e#1356#1372#1#PHP" expanded="true" />
-            <element signature="e#2021#2037#1#PHP" expanded="true" />
-            <element signature="e#2578#2597#1#PHP" expanded="true" />
-            <element signature="e#4977#4993#1#PHP" expanded="true" />
+            <element signature="e#40#108#0#PHP" expanded="false" />
+            <element signature="e#1356#1372#1#PHP" expanded="false" />
+            <element signature="e#2021#2037#1#PHP" expanded="false" />
+            <element signature="e#2578#2597#1#PHP" expanded="false" />
+            <element signature="e#4977#4993#1#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.728813">
-          <caret line="457" column="25" selection-start-line="457" selection-start-column="25" selection-end-line="457" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.084745765">
+          <caret line="508" column="0" selection-start-line="508" selection-start-column="0" selection-end-line="556" selection-end-column="17" />
+          <folding>
+            <element signature="e#22892#26053#0#HTML" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94067794">
-          <caret line="478" column="25" selection-start-line="478" selection-start-column="25" selection-end-line="478" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.3997175">
+          <caret line="578" column="17" selection-start-line="578" selection-start-column="17" selection-end-line="578" selection-end-column="17" />
+          <folding>
+            <element signature="e#23537#26698#0#HTML" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
