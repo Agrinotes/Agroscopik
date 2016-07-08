@@ -39,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/new.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35051546">
-              <caret line="478" column="200" selection-start-line="478" selection-start-column="200" selection-end-line="478" selection-end-column="200" />
+            <state vertical-scroll-proportion="-0.8305085">
+              <caret line="470" column="0" selection-start-line="470" selection-start-column="0" selection-end-line="491" selection-end-column="17" />
               <folding>
                 <element signature="e#10259#10622#0#HTML" expanded="false" />
                 <element signature="e#12101#16377#0#HTML" expanded="false" />
@@ -52,15 +52,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.1">
-              <caret line="497" column="0" selection-start-line="497" selection-start-column="0" selection-end-line="497" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.94067794">
+              <caret line="512" column="17" selection-start-line="512" selection-start-column="17" selection-end-line="512" selection-end-column="17" />
               <folding>
-                <element signature="e#12#26#0#Twig" expanded="false" />
-                <element signature="e#1987#1996#0#Twig" expanded="false" />
-                <element signature="e#5157#5166#0#Twig" expanded="false" />
                 <element signature="e#12887#17163#0#HTML" expanded="false" />
               </folding>
             </state>
@@ -131,8 +128,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Form/CropCycleType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/edit.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig" />
       </list>
     </option>
   </component>
@@ -886,26 +883,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.1">
-          <caret line="497" column="0" selection-start-line="497" selection-start-column="0" selection-end-line="497" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.8305085">
+          <caret line="470" column="0" selection-start-line="470" selection-start-column="0" selection-end-line="491" selection-end-column="17" />
           <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-            <element signature="e#1987#1996#0#Twig" expanded="false" />
-            <element signature="e#5157#5166#0#Twig" expanded="false" />
-            <element signature="e#12887#17163#0#HTML" expanded="false" />
+            <element signature="e#10259#10622#0#HTML" expanded="false" />
+            <element signature="e#12101#16377#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/new.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35051546">
-          <caret line="478" column="200" selection-start-line="478" selection-start-column="200" selection-end-line="478" selection-end-column="200" />
+        <state vertical-scroll-proportion="0.94067794">
+          <caret line="512" column="17" selection-start-line="512" selection-start-column="17" selection-end-line="512" selection-end-column="17" />
           <folding>
-            <element signature="e#10259#10622#0#HTML" expanded="false" />
-            <element signature="e#12101#16377#0#HTML" expanded="false" />
+            <element signature="e#12887#17163#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>

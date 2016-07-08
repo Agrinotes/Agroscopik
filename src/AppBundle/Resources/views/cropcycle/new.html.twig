@@ -476,22 +476,15 @@
 
                     for (i = 0, j = points_polygon - 1; i < points_polygon; j = i++) {
 
-                        console.log(i + " "+ j + " " + longitude_x + " " + ((vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i]  + 0.000001) +" ("+ (vertices_y[i] > latitude_y != (vertices_y[j] > latitude_y))+")");
-
+                        {#  console.log(i + " "+ j + " " + longitude_x + " " + ((vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i]  + 0.000001) +" ("+ (vertices_y[i] > latitude_y != (vertices_y[j] > latitude_y))+")");
+#}
 
                         if ((vertices_y[i] >= latitude_y != (vertices_y[j] > latitude_y)) &&
                                 (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.000001)) {
 
                             console.log(" OK ");
-
                             c = true;
-
                             return c;
-
-
-
-                            console.log(c);
-
                         }
                     }
 
