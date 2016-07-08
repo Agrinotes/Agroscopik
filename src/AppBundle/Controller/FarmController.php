@@ -119,8 +119,6 @@ class FarmController extends Controller
         // Update ACL
         $aclProvider->updateAcl($acl);
 
-
-
         // Refresh user roles
         $token = new UsernamePasswordToken(
             $user,
