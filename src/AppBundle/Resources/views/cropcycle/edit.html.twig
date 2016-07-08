@@ -399,6 +399,26 @@
                 map.on('draw:created', function (e) {
                     var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
                     var layer = e.layer;
+
+                    if(assertContains(parent,layer)==false){
+                        $("#crop_cycle_latLngs").val("");
+                        $("#crop_cycle_area").val("");
+                        swal({
+                            title: "Oups...",
+                            text: "La zone de culture dessinée est hors de la parcelle !",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: '#009688',
+                            confirmButtonText: 'Recommencer',
+                            closeOnConfirm: true
+                        });
+                        featureGroup.clearLayers();
+
+                        new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
+                        return;
+
+                    }
+
                     var layerLatLngs = layer.getLatLngs();
                     // Get vertices from the drawn polygon
                     var numNewVertices = layer.getLatLngs().length;
@@ -438,6 +458,25 @@
                     e.layers.eachLayer(function (layer) {
                         var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
                         featureGroup.clearLayers();
+
+                        if(assertContains(parent,layer)==false){
+                            $("#crop_cycle_latLngs").val("");
+                            $("#crop_cycle_area").val("");
+                            swal({
+                                title: "Oups...",
+                                text: "La zone de culture dessinée est hors de la parcelle !",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: '#009688',
+                                confirmButtonText: 'Recommencer',
+                                closeOnConfirm: true
+                            });
+                            featureGroup.clearLayers();
+
+                            new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
+                            return;
+
+                        }
 
                         var layerLatLngs = layer.getLatLngs();
                         // Get vertices from the drawn polygon
