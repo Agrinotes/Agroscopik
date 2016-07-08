@@ -152,7 +152,7 @@
                 // Calculate a zoom level and centerpoint for this map.
                 var vp = geoViewport.viewport(bounds, size);
 
-                $("#cropcycle_map").attr("src", 'https://api.mapbox.com/v4/mapbox.streets/geojson({{ cropCycle.plot.latLngs| url_encode }})/' +
+                $("#cropcycle_map").attr("src", 'https://api.mapbox.com/v4/mapbox.streets/geojson({{ cropCycle.latLngs| url_encode }})/' +
                         vp.center.join(',') + ',' +
                         vp.zoom + '/' +
                         size.join('x') + '@2x.png' +

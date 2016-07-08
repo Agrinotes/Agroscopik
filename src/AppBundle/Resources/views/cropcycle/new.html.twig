@@ -206,6 +206,26 @@
                 ).addTo(map);
                 var guideLayers = [layer];
 
+                // Store vertices lat lngs in arrays to check if new drawn crop cycle area is contained in this plot
+                var plotVerticesX = [];
+                var plotVerticesY = [];
+                var numVertices = 0;
+
+                // I need to duplicate it otherwise can't fit plot bounds... Don't know why...
+                var duplicateFeatureGroup = L.geoJson({{plot.latLngs|raw}},
+                        {
+                            onEachFeature: onEachFeature
+                        }
+                );
+
+                function onEachFeature(feature, layer) {
+                    numVertices = feature.geometry.coordinates[0].length;
+                    for (var indexVertice = 0; indexVertice < numVertices; indexVertice++) {
+                        plotVerticesX.push(feature.geometry.coordinates[0][indexVertice][0]);
+                        plotVerticesY.push(feature.geometry.coordinates[0][indexVertice][1]);
+
+                    }
+                };
 
                 // Zoom on plot
                 var bounds = layer.getBounds();
@@ -351,24 +371,35 @@
 
                 // Enable drawing polygons on ready
                 new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-                
+
                 // On draw created, add polygon values to the form
                 map.on('draw:created', function (e) {
                     var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
                     var layer = e.layer;
-                    if (assertContains(parent, layer)) {
-                        featureGroup.clearLayers();
-                        featureGroup.addLayer(layer);
-                        $("#crop_cycle_area").val(getPolygonArea(layer));
-                        var latLngs = JSON.stringify(layer.toGeoJSON());
-                        $("#crop_cycle_latLngs").val(latLngs);
-                        map.fitBounds(layer.getBounds());
-                    } else {
-                        $("#crop_cycle_latLngs").val("");
-                        $("#crop_cycle_area").val("");
-                        alert("Votre zone de culture n'est pas du tout dans la parcelle sélectionnée. Veuillez réessayer :)");
-                        new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
+                    var layerLatLngs = layer.getLatLngs();
+                    // Get vertices from the drawn polygon
+                    var numNewVertices = layer.getLatLngs().length;
+                    for (var i = 0; i < numNewVertices; i++) {
+                        if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat) == false) {
+                            $("#crop_cycle_latLngs").val("");
+                            $("#crop_cycle_area").val("");
+                            alert("Votre zone de culture n'est pas dans la parcelle. Veuillez réessayer :)");
+                            featureGroup.clearLayers();
+
+                            new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
+                            return;
+
+                        }
                     }
+
+                    // If all vertices are in plot area
+                    featureGroup.clearLayers();
+                    featureGroup.addLayer(layer);
+                    $("#crop_cycle_area").val(getPolygonArea(layer));
+                    var latLngs = JSON.stringify(layer.toGeoJSON());
+                    $("#crop_cycle_latLngs").val(latLngs);
+                    map.fitBounds(layer.getBounds());
+
                 });
 
                 // On draw edited, update polygon values to the form
@@ -376,18 +407,28 @@
                     e.layers.eachLayer(function (layer) {
                         var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
                         featureGroup.clearLayers();
-                        if (assertContains(parent, layer)) {
-                            featureGroup.addLayer(layer);
-                            $("#crop_cycle_area").val(getPolygonArea(layer));
-                            var latLngs = JSON.stringify(layer.toGeoJSON());
-                            $("#crop_cycle_latLngs").val(latLngs);
+
+                        var layerLatLngs = layer.getLatLngs();
+                        // Get vertices from the drawn polygon
+                        var numNewVertices = layer.getLatLngs().length;
+                        for (var i = 0; i < numNewVertices; i++) {
+                            if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat) == false) {
+                                $("#crop_cycle_latLngs").val("");
+                                $("#crop_cycle_area").val("");
+                                alert("Votre zone de culture n'est pas dans la parcelle. Veuillez réessayer :)");
+                                featureGroup.clearLayers();
+
+                                new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
+                                return;
+
+                            }
                         }
-                        else {
-                            $("#crop_cycle_latLngs").val("");
-                            $("#crop_cycle_area").val("");
-                            alert("Votre zone de culture n'est pas du tout dans la parcelle sélectionnée. Veuillez réessayer :)");
-                            new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-                        }
+
+                        featureGroup.addLayer(layer);
+                        $("#crop_cycle_area").val(getPolygonArea(layer));
+                        var latLngs = JSON.stringify(layer.toGeoJSON());
+                        $("#crop_cycle_latLngs").val(latLngs);
+
                     });
                 });
 
@@ -406,6 +447,20 @@
 
                 function assertContains(parent, child) {
                     return parent.getBounds().contains(child.getBounds());
+                }
+
+                function isInPolygon(points_polygon, vertices_x, vertices_y, longitude_x, latitude_y) {
+                    var i = 0;
+                    var j = 0;
+                    var c = false;
+
+                    for (i = 0, j = points_polygon - 1; i < points_polygon; j = i++) {
+                        if ((vertices_y[i] > latitude_y != (vertices_y[j] > latitude_y)) && (longitude_x < (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i])) {
+                            c = !c;
+                        }
+                    }
+
+                    return c;
                 }
             }
             ,
