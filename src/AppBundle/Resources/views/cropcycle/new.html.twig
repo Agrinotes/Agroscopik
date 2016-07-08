@@ -434,7 +434,8 @@
                                     confirmButtonColor: '#009688',
                                     confirmButtonText: 'Recommencer',
                                     closeOnConfirm: true
-                                });                                featureGroup.clearLayers();
+                                });
+                                featureGroup.clearLayers();
 
                                 new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
                                 return;

@@ -13,6 +13,7 @@
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.geosearch/0.1/css/l.geosearch.css">
     <link rel="stylesheet" href="{{ asset('front/global/vendor/leaflet-label/leaflet.label.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.css') }}">
 
 
     <style>
@@ -162,12 +163,12 @@
     <script src="{{ asset('front/global/vendor/leaflet-label/leaflet.label.js') }}"></script>
     <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.geometryutil.js') }}"></script>
     <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.js') }}"></script>
 {% endblock %}
 
 {% block template_config %}
     {{ parent() }}
-
+    <script src="{{ asset('front/global/js/components/bootstrap-sweetalert.js') }}"></script>
 
     <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
     <script>
@@ -405,7 +406,15 @@
                         if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat) == false) {
                             $("#crop_cycle_latLngs").val("");
                             $("#crop_cycle_area").val("");
-                            alert("Votre zone de culture n'est pas dans la parcelle. Veuillez réessayer :)");
+                            swal({
+                                title: "Oups...",
+                                text: "La zone de culture dessinée est hors de la parcelle !",
+                                type: "warning",
+                                showCancelButton: false,
+                                confirmButtonColor: '#009688',
+                                confirmButtonText: 'Recommencer',
+                                closeOnConfirm: true
+                            });
                             featureGroup.clearLayers();
 
                             new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
@@ -437,7 +446,15 @@
                             if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat) == false) {
                                 $("#crop_cycle_latLngs").val("");
                                 $("#crop_cycle_area").val("");
-                                alert("Votre zone de culture n'est pas dans la parcelle. Veuillez réessayer :)");
+                                swal({
+                                    title: "Oups...",
+                                    text: "La zone de culture dessinée est hors de la parcelle !",
+                                    type: "warning",
+                                    showCancelButton: false,
+                                    confirmButtonColor: '#009688',
+                                    confirmButtonText: 'Recommencer',
+                                    closeOnConfirm: true
+                                });
                                 featureGroup.clearLayers();
 
                                 new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
