@@ -399,6 +399,7 @@
                 map.on('draw:created', function (e) {
                     var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
                     var layer = e.layer;
+                    var layerLatLngs = layer.getLatLngs();
 
                     if(assertContains(parent,layer)==false){
                         $("#crop_cycle_latLngs").val("");
@@ -415,15 +416,19 @@
                         featureGroup.clearLayers();
 
                         new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-                        return;
-
+                    }else{
+                        // If all vertices are in plot area
+                        featureGroup.clearLayers();
+                        featureGroup.addLayer(layer);
+                        $("#crop_cycle_area").val(getPolygonArea(layer));
+                        var latLngs = JSON.stringify(layer.toGeoJSON());
+                        $("#crop_cycle_latLngs").val(latLngs);
+                        map.fitBounds(layer.getBounds());
                     }
-
-                    var layerLatLngs = layer.getLatLngs();
-                    // Get vertices from the drawn polygon
+                    {#// Get vertices from the drawn polygon
                     var numNewVertices = layer.getLatLngs().length;
                     for (var i = 0; i < numNewVertices; i++) {
-                        if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat) == false) {
+                        if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat, i) == false) {
                             $("#crop_cycle_latLngs").val("");
                             $("#crop_cycle_area").val("");
                             swal({
@@ -442,14 +447,7 @@
 
                         }
                     }
-
-                    // If all vertices are in plot area
-                    featureGroup.clearLayers();
-                    featureGroup.addLayer(layer);
-                    $("#crop_cycle_area").val(getPolygonArea(layer));
-                    var latLngs = JSON.stringify(layer.toGeoJSON());
-                    $("#crop_cycle_latLngs").val(latLngs);
-                    map.fitBounds(layer.getBounds());
+#}
 
                 });
 
@@ -474,15 +472,18 @@
                             featureGroup.clearLayers();
 
                             new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-                            return;
-
+                        }else{
+                            featureGroup.addLayer(layer);
+                            $("#crop_cycle_area").val(getPolygonArea(layer));
+                            var latLngs = JSON.stringify(layer.toGeoJSON());
+                            $("#crop_cycle_latLngs").val(latLngs);
                         }
-
+                        {#
                         var layerLatLngs = layer.getLatLngs();
                         // Get vertices from the drawn polygon
                         var numNewVertices = layer.getLatLngs().length;
                         for (var i = 0; i < numNewVertices; i++) {
-                            if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat) == false) {
+                            if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat, i) == false) {
                                 $("#crop_cycle_latLngs").val("");
                                 $("#crop_cycle_area").val("");
                                 swal({
@@ -501,11 +502,8 @@
 
                             }
                         }
+#}
 
-                        featureGroup.addLayer(layer);
-                        $("#crop_cycle_area").val(getPolygonArea(layer));
-                        var latLngs = JSON.stringify(layer.toGeoJSON());
-                        $("#crop_cycle_latLngs").val(latLngs);
 
                     });
                 });

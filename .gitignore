@@ -30,7 +30,8 @@
 # Assets managed by Bower
 /web/assets/vendor/
 
-# PHPUnit
+# PHP
+nit
 /app/phpunit.xml
 /phpunit.xml
 
