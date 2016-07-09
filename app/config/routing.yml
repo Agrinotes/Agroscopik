@@ -38,11 +38,6 @@ app_plot:
     resource: "@AppBundle/Controller/PlotController.php"
     type:     annotation
 
-user:
-    resource: "@UserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
