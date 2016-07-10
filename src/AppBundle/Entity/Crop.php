@@ -44,6 +44,13 @@ class Crop
     private $cropCycles;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="color", type="string", length=7, unique=false)
+     */
+    private $color;
+
+    /**
      * Get id
      *
      * @return int
@@ -108,6 +115,22 @@ class Crop
     public function getCropCycles()
     {
         return $this->cropCycles;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
     }
 }
 
