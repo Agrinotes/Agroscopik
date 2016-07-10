@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Crop;
+use DateInterval;
+use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -212,7 +214,7 @@ class CropController extends Controller
     /**
      * Get cumulated area a a crop for a specific year
      *
-     * @Route("ferme/{farm}/crop/{crop}/campagne/{year)", name="cumulated_area", requirements={"year" = "\d+"}, defaults={"year" = 2016}))
+     * @Route("ferme/{farm}/crop/{crop}/campagne/{year)/area", name="cumulated_area", requirements={"year" = "\d+"}, defaults={"year" = 2016}))
      * @Method("GET")
      */
     public function getCumulatedAreaAction($crop, $year, $farm)
@@ -231,4 +233,83 @@ class CropController extends Controller
         }
         return new Response(str_replace('.', ',', $area) . ' ha');
     }
+
+    /**
+     * Get cumulated working time a a crop for a specific year
+     *
+     * @Route("ferme/{farm}/crop/{crop}/campagne/{year)/time", name="cumulated_time", requirements={"year" = "\d+"}, defaults={"year" = 2016}))
+     * @Method("GET")
+     */
+    public function getCumulatedWorkingTimeAction($crop, $year, $farm)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Create campaign date
+        $startDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-01-01 00:00:00");
+        $endDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-12-31 23:59:59");
+
+        // Get cropCycles for current crop and campaign
+        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($crop, $startDatetime, $endDatetime, $farm);
+
+        //Calculate duration
+        $reference = new DateTimeImmutable;
+        $endTime = clone $reference;
+
+        foreach ($cropCycles as $cropCycle) {
+            $cycle_duration = $cropCycle->getWorkingDuration();
+            $cycle_duration = $this->format_duration_to_hours($cycle_duration);
+            $endTime = $endTime->add($cycle_duration);
+        }
+        $time = $reference->diff($endTime);
+        return new Response(str_replace('.', ',', $time->format('%h')) . ' h');
+    }
+
+    /**
+     * Format an interval to show all existing components.
+     *
+     * @param DateInterval $interval The interval
+     *
+     * @return string Formatted interval string.
+     */
+    function format_duration_to_hours(DateInterval $interval) {
+        $result = 0;
+
+        // Years
+        if ($interval->y) {
+            if ($interval->y != 0) {
+                $result += $interval->y * 365 * 24;
+            }
+        }
+
+        // Months
+        if ($interval->m) {
+            if ($interval->m != 0) {
+                $result += $interval->m * 30 * 24;
+            }
+        }
+
+        // Days
+        if ($interval->d) {
+            if ($interval->d != 0) {
+                $result += $interval->d * 24;
+            }
+        }
+
+        // Hours
+        if ($interval->h) {
+            if ($interval->h != 0) {
+                $result += $interval->h;
+            }
+        }
+
+        // Minutes
+        if ($interval->i) {
+            if ($interval->i != 0) {
+                $result += 1;
+            }
+        }
+
+        return new DateInterval('PT'.$result.'H');
+    }
+
 }
