@@ -312,4 +312,28 @@ class CropController extends Controller
         return new DateInterval('PT'.$result.'H');
     }
 
+    /**
+     * Get cumulated working time a a crop for a specific year
+     *
+     * @Route("ferme/{farm}/crop/{crop}/campagne/{year)/cycleCount", name="cumulated_cycles", requirements={"year" = "\d+"}, defaults={"year" = 2016}))
+     * @Method("GET")
+     */
+    public function getCycleCountAction($crop, $year, $farm)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Create campaign date
+        $startDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-01-01 00:00:00");
+        $endDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-12-31 23:59:59");
+
+        // Get cropCycles for current crop and campaign
+        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($crop, $startDatetime, $endDatetime, $farm);
+
+        $cycles = 0;
+        foreach ($cropCycles as $cropCycle) {
+            $cycles++;
+        }
+        return new Response($cycles);
+    }
+
 }

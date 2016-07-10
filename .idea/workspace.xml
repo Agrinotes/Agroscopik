@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/CropController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/CropController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig" />
     </list>
@@ -48,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.4">
-              <caret line="76" column="133" selection-start-line="76" selection-start-column="133" selection-end-line="76" selection-end-column="133" />
+            <state vertical-scroll-proportion="2.4915254">
+              <caret line="82" column="80" selection-start-line="82" selection-start-column="80" selection-end-line="82" selection-end-column="80" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -61,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CropController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CropController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CropController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7330508">
-              <caret line="263" column="67" selection-start-line="263" selection-start-column="67" selection-end-line="263" selection-end-column="67" />
+            <state vertical-scroll-proportion="2.3">
+              <caret line="317" column="91" selection-start-line="317" selection-start-column="91" selection-end-line="317" selection-end-column="91" />
               <folding>
                 <element signature="e#1034#1050#1#PHP" expanded="true" />
                 <element signature="e#1567#1583#1#PHP" expanded="true" />
@@ -75,6 +74,7 @@
                 <element signature="e#7498#7519#1#PHP" expanded="true" />
                 <element signature="e#8482#8503#1#PHP" expanded="true" />
                 <element signature="e#9263#10158#0#PHP" expanded="false" />
+                <element signature="e#10858#10879#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -176,8 +176,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Crop.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadCrops.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/CropController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig" />
       </list>
     </option>
   </component>
@@ -852,17 +852,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.4">
-          <caret line="76" column="133" selection-start-line="76" selection-start-column="133" selection-end-line="76" selection-end-column="133" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/crop/campaign_show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -875,8 +864,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CropController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7330508">
-          <caret line="263" column="67" selection-start-line="263" selection-start-column="67" selection-end-line="263" selection-end-column="67" />
+        <state vertical-scroll-proportion="2.3">
+          <caret line="317" column="91" selection-start-line="317" selection-start-column="91" selection-end-line="317" selection-end-column="91" />
           <folding>
             <element signature="e#1034#1050#1#PHP" expanded="true" />
             <element signature="e#1567#1583#1#PHP" expanded="true" />
@@ -886,6 +875,18 @@
             <element signature="e#7498#7519#1#PHP" expanded="true" />
             <element signature="e#8482#8503#1#PHP" expanded="true" />
             <element signature="e#9263#10158#0#PHP" expanded="false" />
+            <element signature="e#10858#10879#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.4915254">
+          <caret line="82" column="80" selection-start-line="82" selection-start-column="80" selection-end-line="82" selection-end-column="80" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
