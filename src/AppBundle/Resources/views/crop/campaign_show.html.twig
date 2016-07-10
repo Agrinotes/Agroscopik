@@ -17,7 +17,7 @@
                                             href="{{ path('cropcycle_cropcampaign_index', { 'id': crop.id,'year':year }) }}">{{ crop.name }}</a>
                                 </h3>
 
-                                <div class="panel-actions">{{ render(controller('AppBundle:Crop:getCumulatedArea',{'farm':app.user.farm.id,'crop':crop.id,'year':year})) }}</div>
+                                <div class="panel-actions"></div>
                             </div>
                             <table class="table table-hover">
                                 <tbody>
@@ -34,10 +34,12 @@
                                                 <td>
                                                     <div class="content">
                                                         <div class="title">
-                                                            <a href="{{ path('cropcycle_show', { 'id': cycle.id }) }}">{{ cycle.name }}</a>
+                                                            <a href="{{ path('cropcycle_show', { 'id': cycle.id }) }}">{{ cycle.plot.name }}</a>
                                                         </div>
                                                         <div class="metas">
-                                                            <i class="icon md-calendar" aria-hidden="true"> </i>
+                                                            <i class="icon md-layers" aria-hidden="true"> </i>
+                                                            {{ cycle.area |number_format(2, ',', ' ') }}ha
+                                                            <i class="icon md-calendar margin-left-10" aria-hidden="true"> </i>
                                                             {{ cycle.intervalLabel }}
                                                             {% if cycle.durationLabel != '' %}
                                                                 <i class="icon md-time-interval margin-left-10"
