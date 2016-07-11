@@ -142,7 +142,13 @@
 <div class="site-menubar site-menubar-dark">
     <ul class="site-menu">
         <li class="site-menu-item">
-            <a class="animsition-link" href="#">
+            <a class="animsition-link" href="{{ path('farm_show_current') }}">
+                <i class="site-menu-icon md-pin" aria-hidden="true"></i>
+                <span class="site-menu-title">Carte</span>
+            </a>
+        </li>
+        <li class="site-menu-item">
+            <a class="animsition-link" href="{{ path('plot_index') }}">
                 <i class="site-menu-icon md-layers" aria-hidden="true"></i>
                 <span class="site-menu-title">Parcelles</span>
             </a>
@@ -172,18 +178,6 @@
                     </a>
                 </li>
             </ul>
-        </li>
-        <li class="site-menu-item">
-            <a class="animsition-link" href="{{ path('farm_show_current') }}">
-                <i class="site-menu-icon md-pin" aria-hidden="true"></i>
-                <span class="site-menu-title">Carte</span>
-            </a>
-        </li>
-        <li class="site-menu-item">
-            <a class="animsition-link" href="#">
-                <i class="site-menu-icon md-calendar" aria-hidden="true"></i>
-                <span class="site-menu-title">Calendrier</span>
-            </a>
         </li>
     </ul>
 </div>

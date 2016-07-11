@@ -1,24 +1,108 @@
+{% extends 'base.html.twig' %}
 
-    <h2>Parcelles</h2>
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
 
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Nom</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for plot in plots %}
-            {% if is_granted('VIEW', plot) or is_granted('ROLE_ADMIN') %}
-            <tr>
-                <td><a href="{{ path('plot_show', { 'id': plot.id }) }}">{{ plot.name }}</a></td>
-            </tr>
-            {% endif %}
-        {% endfor %}
-        </tbody>
-    </table>
+{% block body_class %}
+    dashboard
+{% endblock %}
 
+{% block page %}
+    <div class="page animsition">
+        <div class="page-header height-300 margin-bottom-30" style="background-image: url({{ asset('front/agroscopik/assets/img/fougere.jpg') }});
+                -webkit-background-size: cover;
+                background-size: cover;">
+            <div class="text-center blue-grey-800 margin-top-30 margin-xs-0">
+                <div class="font-size-50 margin-bottom-20"><span style="color: #FFF;">Parcelles</span></div>
+                <div class="btn-group" aria-label="Basic example" role="group">
+                    <a type="button"
+                       href="{{ path('plot_index',{'year':year-1}) }}"
+                       class="btn btn-default waves-effect waves-light"><i
+                                class="icon md-chevron-left margin-0" aria-hidden="true"></i></a>
+                    <a type="button" href=""
+                       class="btn btn-default waves-effect waves-light">{{ year }}</a>
+                    <a type="button"
+                       href="{{ path('plot_index',{'year':year+1}) }}"
+                       class="btn btn-default waves-effect waves-light"><i
+                                class="icon md-chevron-right margin-0" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                {% for plot in plots %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="widget" id="widgetUserList">
+                            <div class="widget-header cover overlay">
+                                <img class="cover-image height-100"
+                                     src="{{ asset('front/mmenu/assets/examples/images/dashboard-header.jpg') }}"
+                                     alt="...">
 
-            <a class="btn btn-primary" href="{{ path('plot_new') }}">Ajouter une parcelle</a>
+                                <div class="overlay-panel vertical-align overlay-background" style="
+                                        background-color: #000 ;opacity: 0.5">
+                                    <div class="vertical-align-middle">
+                                        <div class="pull-left">
+                                            <div class="font-size-20">{{ plot.name }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="widget-content padding-horizontal-20">
+                                <a type="button" href="{{ path('plot_show',{'id':plot.id,'year':year}) }}"
+                                   class="btn-raised btn btn-danger btn-floating waves-effect waves-light" style="position: absolute;
+    top: 70;
+    right: 20px;">
+                                    <i class="icon md-plus" aria-hidden="true"></i>
+                                </a>
+                                <div class="row text-center margin-bottom-20 padding-top-20 padding-bottom-20">
+                                    <div class="col-xs-6 padding-top-10 padding-bottom-10">
+                                        <div class="counter">
+                                            <div class="counter-label total-completed">Surface</div>
+                                            <div class="counter-number">{{ plot.area }} ha</div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 padding-top-10 padding-bottom-10">
+                                        <div class="counter">
+                                            <div class="counter-label">Cycles</div>
+                                            <div class="counter-number">
+                                                {% set counter = 0 %}
+                                                {% for cycle in cropCycles %}
+                                                    {% if cycle.plot == plot  %}
+                                                        {% set counter = counter+1 %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                                {{ counter }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 padding-top-10 padding-bottom-10">
+                                        <div class="counter">
+                                            <div class="counter-label">Temps de travail</div>
+                                            <div class="counter-number ">
+                                                {{ render(controller('AppBundle:Plot:getCumulatedWorkingTime',{'plot':plot.id,'year':year})) }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6 padding-top-10 padding-bottom-10">
+                                        <div class="counter">
+                                            <div class="counter-label">Marge brute</div>
+                                            <div class="counter-number ">#</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
 
 

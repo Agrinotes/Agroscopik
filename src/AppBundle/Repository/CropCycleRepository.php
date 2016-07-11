@@ -39,5 +39,50 @@ class CropCycleRepository extends \Doctrine\ORM\EntityRepository
             ;
     }
 
-    // Create findByPlotAndCampaign()
-}
+    public function findByPlotAndCampaign($plot, $startDatetime,$endDatetime)
+    {
+
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->join('c.plot','p')
+            ->addSelect('p')
+            ->where('p.id = :plot AND c.startDatetime BETWEEN :yearStart AND :yearEnd')
+            ->setParameter('plot', $plot)
+            ->setParameter('yearStart', $startDatetime)
+            ->setParameter('yearEnd', $endDatetime)
+            ->orWhere('p.id = :plot AND c.endDatetime BETWEEN :yearStart AND :yearEnd')
+            ->setParameter('plot', $plot)
+            ->setParameter('yearStart', $startDatetime)
+            ->setParameter('yearEnd', $endDatetime)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findAllByCampaign($startDatetime,$endDatetime, $farm)
+    {
+
+        $qb = $this->createQueryBuilder('c');
+
+        $qb->join('c.plot','p')
+            ->addSelect('p')
+            ->join('p.farm','farm')
+            ->addSelect('farm')
+            ->where('farm.id =:farm AND c.startDatetime BETWEEN :yearStart AND :yearEnd')
+            ->setParameter('farm', $farm)
+            ->setParameter('yearStart', $startDatetime)
+            ->setParameter('yearEnd', $endDatetime)
+            ->orWhere('farm.id =:farm  AND c.endDatetime BETWEEN :yearStart AND :yearEnd')
+            ->setParameter('farm', $farm)
+            ->setParameter('yearStart', $startDatetime)
+            ->setParameter('yearEnd', $endDatetime)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }}
