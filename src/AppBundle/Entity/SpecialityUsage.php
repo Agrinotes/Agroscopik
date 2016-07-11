@@ -56,9 +56,9 @@ class SpecialityUsage
     private $maxCropStage;
 
     /**
-     * @var boolean
+     * @var string
      *
-     * @ORM\Column(name="status", type="boolean", length=255, nullable=true)
+     * @ORM\Column(name="status", type="string", length=255, nullable=true)
      */
     private $status;
 
@@ -75,6 +75,13 @@ class SpecialityUsage
      * @ORM\Column(name="doseUnit", type="string", length=255, nullable=true)
      */
     private $doseUnit;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="doseUnit2", type="string", length=255, nullable=true)
+     */
+    private $doseUnit2;
 
     /**
      * @var int
@@ -226,29 +233,6 @@ class SpecialityUsage
         return $this->maxCropStage;
     }
 
-    /**
-     * Set status
-     *
-     * @param string $status
-     *
-     * @return SpecialityUsage
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
 
     /**
      * Set dose
@@ -296,6 +280,22 @@ class SpecialityUsage
     public function getDoseUnit()
     {
         return $this->doseUnit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDoseUnit2()
+    {
+        return $this->doseUnit2;
+    }
+
+    /**
+     * @param string $doseUnit2
+     */
+    public function setDoseUnit2($doseUnit2)
+    {
+        $this->doseUnit2 = $doseUnit2;
     }
 
     /**
@@ -457,5 +457,23 @@ class SpecialityUsage
     {
         $this->speciality = $speciality;
     }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+
 }
 

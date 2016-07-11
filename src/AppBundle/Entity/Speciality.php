@@ -132,5 +132,9 @@ class Speciality
     {
         $this->usages->removeElement($usage);
     }
+
+    public function getUsages(){
+        return $this->usages;
+    }
 }
 

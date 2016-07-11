@@ -1,3 +1,7 @@
+app_speciality_usage:
+    resource: "@AppBundle/Controller/SpecialityUsageController.php"
+    type:     annotation
+
 app_speciality:
     resource: "@AppBundle/Controller/SpecialityController.php"
     type:     annotation

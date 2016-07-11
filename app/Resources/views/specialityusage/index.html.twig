@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>SpecialityUsage list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Usageid</th>
+                <th>Name</th>
+                <th>Mincropstage</th>
+                <th>Maxcropstage</th>
+                <th>Status</th>
+                <th>Dose</th>
+                <th>Doseunit</th>
+                <th>Doseunit2</th>
+                <th>Dar</th>
+                <th>Maxactions</th>
+                <th>Conditions</th>
+                <th>Zntwater</th>
+                <th>Zntarthropodes</th>
+                <th>Zntplants</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for specialityUsage in specialityUsages %}
+            <tr>
+                <td><a href="{{ path('specialityusage_show', { 'id': specialityUsage.id }) }}">{{ specialityUsage.id }}</a></td>
+                <td>{{ specialityUsage.usageId }}</td>
+                <td>{{ specialityUsage.name }}</td>
+                <td>{{ specialityUsage.minCropStage }}</td>
+                <td>{{ specialityUsage.maxCropStage }}</td>
+                <td>{{ specialityUsage.status }}</td>
+                <td>{{ specialityUsage.dose }}</td>
+                <td>{{ specialityUsage.doseUnit }}</td>
+                <td>{{ specialityUsage.doseUnit2 }}</td>
+                <td>{{ specialityUsage.dAR }}</td>
+                <td>{{ specialityUsage.maxActions }}</td>
+                <td>{{ specialityUsage.conditions }}</td>
+                <td>{{ specialityUsage.zNTwater }}</td>
+                <td>{{ specialityUsage.zNTarthropodes }}</td>
+                <td>{{ specialityUsage.zNTplants }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('specialityusage_show', { 'id': specialityUsage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('specialityusage_edit', { 'id': specialityUsage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('specialityusage_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1986,9 +1986,11 @@ class LoadSpecialities extends AbstractFixture implements OrderedFixtureInterfac
             $speciality->setAmm($name[0]);
             $speciality->setName($name[1]);
             $manager->persist($speciality);
+            $this->addReference($name[0], $speciality);
         }
 
         $manager->flush();
+
     }
 
     public function getOrder()

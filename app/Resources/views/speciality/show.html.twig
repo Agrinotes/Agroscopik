@@ -33,4 +33,8 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
+    {% for usage in speciality.usages %}
+{{ usage.name }}
+{% endfor %}
 {% endblock %}
