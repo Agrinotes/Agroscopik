@@ -61,7 +61,7 @@
                                     <div class="col-xs-6 padding-top-10 padding-bottom-10">
                                         <div class="counter">
                                             <div class="counter-label total-completed">Surface</div>
-                                            <div class="counter-number">{{ plot.area }} ha</div>
+                                            <div class="counter-number">{{ plot.area|number_format(2, ',', ' ')  }} ha</div>
 
                                         </div>
                                     </div>
