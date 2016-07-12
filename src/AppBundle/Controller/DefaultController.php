@@ -14,6 +14,6 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         // replace this example code with whatever you need
-        return $this->render('AppBundle:default:index.html.twig');
+        return $this->redirectToRoute('fos_user_registration_register');
     }
 }

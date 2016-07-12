@@ -6,9 +6,9 @@
           xmlns="http://www.w3.org/1999/html"/>
 
     <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
-    {#<link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.geosearch/0.1/css/l.geosearch.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.geosearch/0.1/css/l.geosearch.css">
     <link rel="stylesheet" href="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.css"/>
-    #}
+
     <link rel="stylesheet" href="{{ asset('front/global/vendor/leaflet-label/leaflet.label.css') }}"/>
 
 
@@ -111,11 +111,11 @@
     <script src="{{ asset('front/global/vendor/mapbox.js/plugins/leaflet.markercluster.js') }}"></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
-    {#
+
     <script src="https://cdn.jsdelivr.net/g/leaflet.geosearch@0.1(js/l.control.geosearch.js+js/l.geosearch.provider.google.js)"></script>
     <script src="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.js"
             charset="utf-8"></script>
-            #}
+
     <script src="{{ asset('front/global/vendor/leaflet-label/leaflet.label.js') }}"></script>
 {% endblock %}
 
@@ -131,6 +131,10 @@
                 // Create the map
                 var map = L.mapbox.map('map', 'mapbox.streets').setView([-21.20000, 166.00000], 7);
 
+                /*new L.Control.GeoSearch({
+                    provider: new L.GeoSearch.Provider.Google()
+                }).addTo(map);
+*/
                 // Add GeoRep
                 var georep = L.tileLayer.wms('https://carto10.gouv.nc/arcgis/services/fond_imagerie/MapServer/WMSServer', {
                     format: 'img/png',
@@ -366,6 +370,7 @@
 
         $(document).ready(function ($) {
             AppPlotNew.run();
+
         })
     </script>
 
