@@ -17,7 +17,9 @@ class ImplementType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, array(
-                'label' => 'Nom'
+                'label' => 'Entrer le nom de l\'outil',
+                'attr' => array('class'=>'form-control'),
+                'label_attr' => array('class'=>'control-label'),
             ))
         ;
     }
