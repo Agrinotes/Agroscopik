@@ -19,15 +19,15 @@ class CropCycleType extends AbstractType
     {
         $builder
             ->add('crops', EntityType::class, array(
-                'label' => 'Culture ou association de cultures',
+                'label' => 'Choisir votre culture ou mélange de cultures',
                 'class' => 'AppBundle:Crop',
                 'choice_label' => 'name',
                 'multiple' => true,
-                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2','placeholder' => 'Ananas'),
 
             ))
             ->add('varieties',TextType::class,array(
-                'label' => 'Variété(s)',
+                'label' => 'Entrer la ou les variétés (facultatif)',
                 'attr' => array('class' => 'form-control','placeholder' => 'Exemple : Coeur de boeuf...'),
                 'required'=> false,
             ))

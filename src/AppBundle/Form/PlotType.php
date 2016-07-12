@@ -18,7 +18,7 @@ class PlotType extends AbstractType
         $builder
             ->add('name',TextType::class,array(
                 'attr' => array('class' => 'form-control','placeholder'=>'Exemple : Parcelle 6, Le pré froid...'),
-                'label' => "Nom de la parcelle",
+                'label' => "Entrer le nom de la parcelle",
                 'required' => true,
                 'label_attr' => array('class' => 'control-label')
             ))
