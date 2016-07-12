@@ -90,7 +90,7 @@ class TractorController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
-            return $this->redirectToRoute('tractor_show', array('id' => $tractor->getId()));
+            return $this->redirectToRoute('tractor_index');
         }
 
         return $this->render('@App/tractor/new.html.twig', array(
