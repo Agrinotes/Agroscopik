@@ -61,7 +61,15 @@
                                 </div>
                             </div>
                         {% endfor %}
-                        {% endif %}
+                        {% else %}
+                                                    {% if farm.plots is empty %}
+                                                    <div class="col-lg-offset-1">
+                            <h3>Bienvenue sur Agroscopik !</h3>
+                            <p>Ce logiciel vous permet d'enregistrer vos parcelles et les interventions réalisées sur ces parcelles. Avant de commencer : <ul><li>Vous pouvez commencer par découvrir les différents menus dans la partie gauche de cette fenêtre.</li><li>Ensuite, il est bon de renseigner votre parc de matériel dans le menu <a href="{{ path('tractor_new') }}">Matériel</a>.</li> <li>Puis, vous pouvez commencer par ajouter une première parcelle depuis le menu <a href="{{ path('plot_index') }}">Parcelle</a> ou <a href="{{ path('farm_show_current') }}">Carte</a>.</li> </p>
+                            </div>
+                            {% endif %}
+                            {% endif
+                             %}
                         </div>
                     </div>
                 </div>
@@ -72,7 +80,10 @@
     <!-- End Plot Sidebar -->
 
     <div class="page-main">
+
+
         <div id="map">
+
         </div>
     </div>
 
