@@ -40,7 +40,7 @@ class LoadInterventions extends AbstractFixture implements OrderedFixtureInterfa
             array('Désherbage mécanique','amenagements-ecologiques-et-entretien'),
             array('Evacuation des déchets organiques','amenagements-ecologiques-et-entretien'),
             array('Enfouissement des résidus de culture','amenagements-ecologiques-et-entretien'),
-            array('Arrachage des cultures','amenagements-ecologiques-et-entretien'),
+            array('Arrachage/Destruction des cultures','amenagements-ecologiques-et-entretien'),
             array('Plantation de haie ou bosquet fleuri','amenagements-ecologiques-et-entretien'),
             array('Création de bande fleurie','amenagements-ecologiques-et-entretien'),
             array('Taille des arbres','amenagements-ecologiques-et-entretien'),

@@ -152,7 +152,9 @@ class ActionController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
-            return $this->redirectToRoute('cropcycle_show', array('id' => $action->getCropCycle()->getId()));
+            $request->getSession()->getFlashBag()->add('success', 'Une intervention '.$action->getName().' a été ajoutée avec succès le '.$action->getStartDatetime()->format('d/m/Y').' !');
+
+            return $this->redirectToRoute('action_new', array('id' => $action->getCropCycle()->getId()));
         }
 
         return $this->render('@App/action/new.html.twig', array(
@@ -214,6 +216,8 @@ class ActionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($action);
             $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'L\'intervention '.$action->getName().' a été modifiée avec succès !');
 
             return $this->redirectToRoute('action_show', array('id' => $action->getId()));
         }

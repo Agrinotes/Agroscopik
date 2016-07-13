@@ -132,6 +132,8 @@ class CropCycleController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
+            $request->getSession()->getFlashBag()->add('success', 'Votre culture a été ajoutée avec succès ! ('.$cropCycle->getName().' - '.str_replace('.', ',', $cropCycle->getArea()).'ha)');
+
             return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
         }
 
@@ -195,6 +197,8 @@ class CropCycleController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($cropCycle);
             $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Votre culture a été modifée avec succès ! ('.$cropCycle->getName().' - '.str_replace('.', ',', $cropCycle->getArea()).'ha)');
 
             return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
         }

@@ -278,7 +278,7 @@ class CropCycle
      */
     public function getArea()
     {
-        if($this->latLngs == "" or $this->latLngs == 0 ){
+        if($this->area == ""){
             return $this->getPlot()->getArea();
         }
 
