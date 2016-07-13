@@ -10,7 +10,9 @@
         <div class="page-header padding-top-20 padding-bottom-10">
             <ol class="breadcrumb">
                 <li><a href="#">Ressources</a></li>
-                <li class="active">Produits phytosanitaires</li>
+                <li><a href="{{ path('speciality_index') }}">Produits phytosanitaires</a></li>
+                <li class="active">{{ speciality.name }}</li>
+
             </ol>
         </div>
         <div class="page-content">
@@ -19,8 +21,11 @@
                     <div class="panel panel-bordered">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ speciality.name }}</h3>
+
                             <div class="panel-actions">
-                                <a style="color: white !important;" class="btn btn-primary" href="https://ephy.anses.fr/resultats_recherche/ppp?search_api_aggregation_3={{ speciality.amm }}&sort_by=search_api_relevance&sort_order=ASC">Voir ce produit sur le site de l'ANSES</a>                            </div>
+                                <a style="color: white !important;" class="btn btn-primary"
+                                   href="https://ephy.anses.fr/resultats_recherche/ppp?search_api_aggregation_3={{ speciality.amm }}&sort_by=search_api_relevance&sort_order=ASC">Voir
+                                    ce produit sur le site de l'ANSES</a></div>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -29,26 +34,58 @@
                                     <thead>
                                     <tr>
                                         <th>Usages</th>
-                                        <th>Dose homologuée</th>
                                         <th>FR</th>
                                         <th>NC</th>
+                                        <th>Dose homologuée</th>
+                                        <th>DAR</th>
+                                        <th>ZNT aquatique</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for usage in speciality.usages %}
                                         <tr>
-                                            <td><a href="{{ path('specialityusage_show', { 'id': usage.id }) }}">{{ usage.name }}</a></td>
-                                            <td>{{ usage.dose }} {{ usage.doseUnit }}/{{ usage.doseUnit2 }}</td>
+                                            <td>
+                                                <a href="{{ path('specialityusage_show', { 'id': usage.id }) }}">{{ usage.name }}</a>
+                                            </td>
                                             <td>{% if usage.status =="TRUE" %}
-                                                    <button type="button" class="btn btn-pure btn-info icon md-check-circle waves-effect waves-circle waves-classic" data-toggle="tooltip" data-placement="bottom" data-trigger="click" data-original-title="Cet usage est autorisé par la réglementation Française. Veuillez vous référer à la réglementation de Nouvelle-Calédonie pour l'application de vos produits." title=""></button>
+                                                    <button type="button"
+                                                            class="btn btn-pure btn-info icon md-check-circle waves-effect waves-circle waves-classic"
+                                                            data-toggle="tooltip" data-placement="bottom"
+                                                            data-trigger="click"
+                                                            data-original-title="Cet usage est autorisé par la réglementation Française. Veuillez vous référer à la réglementation de Nouvelle-Calédonie pour l'application de vos produits."
+                                                            title=""></button>
                                                 {% else %}
-                                                    <button type="button" class="btn btn-pure btn-danger icon md-close-circle-o waves-effect waves-circle waves-classic" data-toggle="tooltip" data-placement="bottom" data-trigger="click" data-original-title="Cet usage n'est plus autorisé par la réglementation Française. Veuillez vous référer à la réglementation de Nouvelle-Calédonie pour l'application de vos produits." title=""></button>
+                                                    <button type="button"
+                                                            class="btn btn-pure btn-danger icon md-close-circle-o waves-effect waves-circle waves-classic"
+                                                            data-toggle="tooltip" data-placement="bottom"
+                                                            data-trigger="click"
+                                                            data-original-title="Cet usage n'est plus autorisé par la réglementation Française. Veuillez vous référer à la réglementation de Nouvelle-Calédonie pour l'application de vos produits."
+                                                            title=""></button>
                                                 {% endif %}</td>
                                             <td>
-                                                    <button type="button" class="btn btn-pure btn-default icon md-help-outline
-  waves-effect waves-circle waves-classic" data-toggle="tooltip" data-placement="bottom" data-trigger="click" data-original-title="L'information concernant cet usage en Nouvelle-Calédonie n'a pas été renseigné" title=""></button>
+                                                <button type="button" class="btn btn-pure btn-default icon md-help-outline
+  waves-effect waves-circle waves-classic" data-toggle="tooltip" data-placement="bottom" data-trigger="click"
+                                                        data-original-title="L'information concernant cet usage en Nouvelle-Calédonie n'a pas été renseigné"
+                                                        title=""></button>
 
-</td>
+                                            <td>
+                                                {% if usage.status =="TRUE" %}
+                                                    {{ usage.dose }} {{ usage.doseUnit }}/{{ usage.doseUnit2 }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if usage.status =="TRUE" %}
+                                                    {{ usage.DAR }} {% if usage.DAR == 1 %}jour{% else %}jours{% endif %}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if usage.status =="TRUE" %}
+                                                    {{ usage.zNTwater }}m
+                                                {% endif %}
+                                            </td>
+
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -56,11 +93,13 @@
                             </div>
                         </div>
                         <div class="panel-footer">
-                            <a class="btn btn-default" href="{{ path('speciality_index') }}">Liste des produits phytosanitaires</a>
+                            <a class="btn btn-default" href="{{ path('speciality_index') }}">Liste des produits
+                                phytosanitaires</a>
 
                             {% if is_granted('ROLE_ADMIN') %}
 
-                                <a class="btn btn-primary margin-left-10" href="{{ path('speciality_edit', { 'id': speciality.id }) }}">Modifier</a>
+                                <a class="btn btn-primary margin-left-10"
+                                   href="{{ path('speciality_edit', { 'id': speciality.id }) }}">Modifier</a>
                             {% endif %}
                         </div>
                     </div>
@@ -78,7 +117,6 @@
                                 {{ form_start(delete_form) }}
                                 <input class="btn btn-danger" type="submit" value="Supprimer">
                                 {{ form_end(delete_form) }}
-
 
 
                             </div>
