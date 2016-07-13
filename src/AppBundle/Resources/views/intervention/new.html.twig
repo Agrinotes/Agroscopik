@@ -30,7 +30,7 @@
                         <div class="panel-body">
                             {{ form_start(form) }}
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <h4 class="example-title">{{ form_label(form.name) }}</h4>
 
 
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <div class="row margin-top-20">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <h4 class="example-title">{{ form_label(form.interventionCategory) }}</h4>
 
                                     <div class="form-group">
@@ -52,7 +52,7 @@
                         </div>
                         <div class="panel-footer">
                             <a class="btn btn-default"
-                               href="{{ path('tractor_index') }}">Annuler</a>
+                               href="{{ path('intervention_index') }}">Liste des interventions disponibles</a>
                             <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button>
                             {{ form_end(form) }}
                         </div>

@@ -38,7 +38,7 @@ class CropController extends Controller
 
         $crops = $em->getRepository('AppBundle:Crop')->findAll();
 
-        return $this->render('@App/crop/index.html.twig', array(
+        return $this->render('@App/crop/list.html.twig', array(
             'crops' => $crops,
         ));
     }

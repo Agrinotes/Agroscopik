@@ -1,39 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Liste des interventions</h1>
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for intervention in interventions %}
-            <tr>
-                <td><a href="{{ path('intervention_show', { 'id': intervention.id }) }}">{{ intervention.id }}</a></td>
-                <td>{{ intervention.name }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('intervention_show', { 'id': intervention.id }) }}">Voir</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('intervention_edit', { 'id': intervention.id }) }}">Editer</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('intervention_new') }}">Ajouter une intervention</a>
-        </li>
-    </ul>
+{% block page %}
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Liste des interventions disponibles</h3>
+                </div>
+                <div class="panel-body">
+                    <a class="btn btn-primary" href="{{ path('intervention_new') }}">Ajouter une intervention</a>
+
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Catégorie</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for intervention in interventions %}
+                            <tr>
+                                <td><a href="{{ path('intervention_show', { 'id': intervention.id }) }}">{{ intervention.name }}</a></td>
+                                <td>
+                                    {{ intervention.interventionCategory.name }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

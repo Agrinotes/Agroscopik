@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/list.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/InterventionType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/InterventionType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/CropController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/CropController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/index.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" />
     </list>
     <ignored path="agroscopik.iws" />
@@ -26,34 +31,146 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/tractor/new.html.twig">
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.7">
-              <caret line="12" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.033334">
-              <caret line="32" column="52" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
+            <state vertical-scroll-proportion="-7.7">
+              <caret line="11" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="14" />
               <folding>
-                <element signature="e#676#694#0#Twig" expanded="true" />
+                <element signature="e#12#26#0#Twig" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22580644">
-              <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+            <state vertical-scroll-proportion="-8.4">
+              <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+              <folding>
+                <element signature="e#10020#10038#0#Twig" expanded="true" />
+                <element signature="e#10274#10283#0#Twig" expanded="true" />
+                <element signature="e#10514#10530#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.3">
+              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="37" selection-end-column="33" />
+              <folding>
+                <element signature="e#1383#1398#0#Twig" expanded="false" />
+                <element signature="e#1515#1530#0#Twig" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-2.3559322">
+              <caret line="22" column="66" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#1992#2012#0#Twig" expanded="true" />
+                <element signature="e#4031#4047#0#Twig" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpecialityController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SpecialityController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.19354838">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.6">
+              <caret line="78" column="76" selection-start-line="78" selection-start-column="76" selection-end-line="78" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActionController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.066668">
+              <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
+              <folding>
+                <element signature="e#1268#1289#1#PHP" expanded="true" />
+                <element signature="e#1635#1653#1#PHP" expanded="true" />
+                <element signature="e#2232#2264#1#PHP" expanded="true" />
+                <element signature="e#2375#2393#1#PHP" expanded="true" />
+                <element signature="e#2941#2957#1#PHP" expanded="true" />
+                <element signature="e#3068#3086#1#PHP" expanded="true" />
+                <element signature="e#3662#3683#1#PHP" expanded="true" />
+                <element signature="e#5433#5445#0#PHP" expanded="true" />
+                <element signature="e#5537#5564#0#PHP" expanded="true" />
+                <element signature="e#6059#6087#0#PHP" expanded="true" />
+                <element signature="e#7645#7658#0#PHP" expanded="true" />
+                <element signature="e#7734#7762#0#PHP" expanded="true" />
+                <element signature="e#8586#8602#0#PHP" expanded="true" />
+                <element signature="e#8956#8971#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.0">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="157" />
+              <folding>
+                <element signature="e#320#331#0#Twig" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CropController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CropController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.566667">
+              <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+              <folding>
+                <element signature="e#1034#1050#1#PHP" expanded="true" />
+                <element signature="e#1566#1582#1#PHP" expanded="true" />
+                <element signature="e#2527#2543#1#PHP" expanded="true" />
+                <element signature="e#2594#2610#1#PHP" expanded="true" />
+                <element signature="e#2953#2974#1#PHP" expanded="true" />
+                <element signature="e#7497#7518#1#PHP" expanded="true" />
+                <element signature="e#8481#8502#1#PHP" expanded="true" />
+                <element signature="e#10857#10878#1#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/crop/list.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.6">
+              <caret line="8" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="36" selection-end-column="14" />
+              <folding>
+                <element signature="e#12#26#0#Twig" expanded="true" />
+                <element signature="e#580#588#0#Twig" expanded="true" />
+                <element signature="e#1006#1015#0#Twig" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -73,12 +190,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/config/parameters.yml.dist" />
-        <option value="$PROJECT_DIR$/app/config/routing.yml" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Crop.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/CropController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/campaign_show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/campaign_show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig" />
@@ -88,7 +201,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/SpecialityUsageController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages2.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/index.html.twig" />
@@ -123,7 +235,12 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/CropCycleController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/InterventionType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/list.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/CropController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig" />
       </list>
     </option>
   </component>
@@ -379,7 +496,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="intervention" />
+              <option name="myItemId" value="cropcycle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -402,6 +519,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -438,6 +577,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="speciality" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -617,69 +782,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/plot/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2580645">
-          <caret line="13" column="133" selection-start-line="13" selection-start-column="133" selection-end-line="13" selection-end-column="133" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.8709676">
-          <caret line="90" column="25" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/CropCycleType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.14746544">
-          <caret line="25" column="110" selection-start-line="25" selection-start-column="110" selection-end-line="25" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.6">
-          <caret line="117" column="100" selection-start-line="117" selection-start-column="100" selection-end-line="117" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/tractor/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/tractor/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/implement/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.1525424">
-          <caret line="79" column="64" selection-start-line="79" selection-start-column="64" selection-end-line="79" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/implement/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.8">
-          <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ImplementType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.2">
-          <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -848,29 +950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.933333">
-          <caret line="219" column="132" selection-start-line="219" selection-start-column="132" selection-end-line="219" selection-end-column="132" />
-          <folding>
-            <element signature="e#1268#1289#1#PHP" expanded="true" />
-            <element signature="e#1635#1653#1#PHP" expanded="true" />
-            <element signature="e#2232#2264#1#PHP" expanded="true" />
-            <element signature="e#2375#2393#1#PHP" expanded="true" />
-            <element signature="e#2941#2957#1#PHP" expanded="true" />
-            <element signature="e#3068#3086#1#PHP" expanded="true" />
-            <element signature="e#3662#3683#1#PHP" expanded="true" />
-            <element signature="e#5433#5445#0#PHP" expanded="true" />
-            <element signature="e#5537#5564#0#PHP" expanded="true" />
-            <element signature="e#6059#6087#0#PHP" expanded="true" />
-            <element signature="e#7645#7658#0#PHP" expanded="true" />
-            <element signature="e#7734#7762#0#PHP" expanded="true" />
-            <element signature="e#8586#8602#0#PHP" expanded="true" />
-            <element signature="e#8956#8971#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.2">
@@ -994,37 +1073,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.2">
-          <caret line="34" column="67" selection-start-line="34" selection-start-column="67" selection-end-line="34" selection-end-column="67" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-            <element signature="e#602#619#0#Twig" expanded="false" />
-            <element signature="e#683#692#0#Twig" expanded="false" />
-            <element signature="e#5064#5074#0#Twig" expanded="false" />
-            <element signature="e#6992#7017#0#Twig" expanded="false" />
-            <element signature="e#8385#8399#0#Twig" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CropCycleController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.766666">
           <caret line="172" column="119" selection-start-line="172" selection-start-column="119" selection-end-line="172" selection-end-column="119" />
           <folding>
-            <element signature="e#1254#1270#1#PHP" expanded="true" />
-            <element signature="e#1561#1582#1#PHP" expanded="true" />
-            <element signature="e#2321#2337#1#PHP" expanded="true" />
-            <element signature="e#2709#2730#1#PHP" expanded="true" />
-            <element signature="e#3415#3431#1#PHP" expanded="true" />
-            <element signature="e#6367#6383#0#PHP" expanded="true" />
-            <element signature="e#6522#6553#0#PHP" expanded="true" />
-            <element signature="e#7847#7863#0#PHP" expanded="true" />
-            <element signature="e#7942#7973#0#PHP" expanded="true" />
-            <element signature="e#8948#8959#0#PHP" expanded="true" />
-            <element signature="e#9358#9376#0#PHP" expanded="true" />
+            <element signature="e#1254#1270#1#PHP" expanded="false" />
+            <element signature="e#1561#1582#1#PHP" expanded="false" />
+            <element signature="e#2321#2337#1#PHP" expanded="false" />
+            <element signature="e#2709#2730#1#PHP" expanded="false" />
+            <element signature="e#3415#3431#1#PHP" expanded="false" />
+            <element signature="e#6367#6383#0#PHP" expanded="false" />
+            <element signature="e#6522#6553#0#PHP" expanded="false" />
+            <element signature="e#7847#7863#0#PHP" expanded="false" />
+            <element signature="e#7942#7973#0#PHP" expanded="false" />
+            <element signature="e#8948#8959#0#PHP" expanded="false" />
+            <element signature="e#9358#9376#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1058,33 +1122,170 @@
         <state vertical-scroll-proportion="-18.9">
           <caret line="31" column="4" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="4" />
           <folding>
-            <element signature="e#34#83#0#PHP" expanded="true" />
+            <element signature="e#34#83#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4577573">
+          <caret line="32" column="53" selection-start-line="32" selection-start-column="53" selection-end-line="32" selection-end-column="53" />
+          <folding>
+            <element signature="e#676#694#0#Twig" expanded="true" />
+            <element signature="e#2433#2451#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/tractor/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7">
-          <caret line="12" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.6">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.033334">
-          <caret line="32" column="52" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
+        <state vertical-scroll-proportion="-7.7">
+          <caret line="11" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="14" />
           <folding>
-            <element signature="e#676#694#0#Twig" expanded="true" />
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CropController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.566667">
+          <caret line="40" column="44" selection-start-line="40" selection-start-column="44" selection-end-line="40" selection-end-column="44" />
+          <folding>
+            <element signature="e#1034#1050#1#PHP" expanded="true" />
+            <element signature="e#1566#1582#1#PHP" expanded="true" />
+            <element signature="e#2527#2543#1#PHP" expanded="true" />
+            <element signature="e#2594#2610#1#PHP" expanded="true" />
+            <element signature="e#2953#2974#1#PHP" expanded="true" />
+            <element signature="e#7497#7518#1#PHP" expanded="true" />
+            <element signature="e#8481#8502#1#PHP" expanded="true" />
+            <element signature="e#10857#10878#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22580644">
-          <caret line="7" column="39" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
+        <state vertical-scroll-proportion="-8.4">
+          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+          <folding>
+            <element signature="e#10020#10038#0#Twig" expanded="true" />
+            <element signature="e#10274#10283#0#Twig" expanded="true" />
+            <element signature="e#10514#10530#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.8">
+          <caret line="34" column="39" selection-start-line="0" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/crop/list.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6">
+          <caret line="8" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="36" selection-end-column="14" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+            <element signature="e#580#588#0#Twig" expanded="true" />
+            <element signature="e#1006#1015#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/tractor/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.032258">
+          <caret line="22" column="14" selection-start-line="0" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.3">
+          <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="37" selection-end-column="33" />
+          <folding>
+            <element signature="e#1383#1398#0#Twig" expanded="false" />
+            <element signature="e#1515#1530#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6">
+          <caret line="78" column="76" selection-start-line="78" selection-start-column="76" selection-end-line="78" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.066668">
+          <caret line="49" column="30" selection-start-line="49" selection-start-column="30" selection-end-line="49" selection-end-column="30" />
+          <folding>
+            <element signature="e#1268#1289#1#PHP" expanded="true" />
+            <element signature="e#1635#1653#1#PHP" expanded="true" />
+            <element signature="e#2232#2264#1#PHP" expanded="true" />
+            <element signature="e#2375#2393#1#PHP" expanded="true" />
+            <element signature="e#2941#2957#1#PHP" expanded="true" />
+            <element signature="e#3068#3086#1#PHP" expanded="true" />
+            <element signature="e#3662#3683#1#PHP" expanded="true" />
+            <element signature="e#5433#5445#0#PHP" expanded="true" />
+            <element signature="e#5537#5564#0#PHP" expanded="true" />
+            <element signature="e#6059#6087#0#PHP" expanded="true" />
+            <element signature="e#7645#7658#0#PHP" expanded="true" />
+            <element signature="e#7734#7762#0#PHP" expanded="true" />
+            <element signature="e#8586#8602#0#PHP" expanded="true" />
+            <element signature="e#8956#8971#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.0">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="157" />
+          <folding>
+            <element signature="e#320#331#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.3559322">
+          <caret line="22" column="66" selection-start-line="22" selection-start-column="66" selection-end-line="22" selection-end-column="66" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#1992#2012#0#Twig" expanded="true" />
+            <element signature="e#4031#4047#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SpecialityController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.19354838">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

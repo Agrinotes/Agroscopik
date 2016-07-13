@@ -11,30 +11,21 @@
         <div class="page-content">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Liste des produits phytosanitaires
-
-                    </h3>
-
+                    <h3 class="panel-title">Liste des cultures disponibles</h3>
                 </div>
                 <div class="panel-body">
-                    <p>
-                        Cette liste est extraite depuis le site E-phy de l'ANSES puis adaptée au contexte calédonien. Dernière mise à jour le 13/07/2016.
-                    </p>
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <a class="btn btn-primary" href="{{ path('speciality_new') }}">Ajouter un produit phytosanitaire</a>
-{% endif %}
+                    <a class="btn btn-primary" href="{{ path('crop_new') }}">Ajouter une culture</a>
+
                     <table class="table table-hover">
                         <thead>
                         <tr>
                             <th>Nom</th>
-                            <th>Information</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for speciality in specialities %}
+                        {% for crop in crops %}
                             <tr>
-                                <td><a href="{{ path('speciality_show', { 'id': speciality.id }) }}">{{ speciality.name }}</a></td>
-                                <td><a href="{{ path('speciality_show', { 'id': speciality.id }) }}">Voir la fiche technique</a></td>
+                                <td><a href="{{ path('crop_show', { 'id': crop.id }) }}">{{ crop.name }}</a></td>
                             </tr>
                         {% endfor %}
                         </tbody>
