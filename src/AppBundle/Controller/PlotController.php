@@ -101,6 +101,8 @@ class PlotController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
+            $request->getSession()->getFlashBag()->add('success', array('title' => 'Votre parcelle '.$plot->getName().' ('.number_format($plot->getArea(), 2, ',', ' ').'ha)'.' a été ajoutée avec succès !', 'message' => 'Ajouter une autre parcelle') );
+
 
 
             return $this->redirectToRoute('plot_show', array('id' => $plot->getId()));

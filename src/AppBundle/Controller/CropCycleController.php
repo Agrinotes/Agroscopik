@@ -132,7 +132,7 @@ class CropCycleController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
-            $request->getSession()->getFlashBag()->add('success', 'Votre culture a été ajoutée avec succès ! ('.$cropCycle->getName().' - '.str_replace('.', ',', $cropCycle->getArea()).'ha)');
+            $request->getSession()->getFlashBag()->add('success', 'Votre culture a été ajoutée avec succès ! ('.$cropCycle->getName().' - '.number_format($cropCycle->getArea(), 2, ',', ' ').'ha)');
 
             return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
         }
@@ -163,6 +163,14 @@ class CropCycleController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($cropCycle);
             $em->flush();
+
+            if($cropCycle->getStatus()=="ActiveAction"){
+                $statusLabel="en cours";
+            }else{
+                $statusLabel="terminé";
+            };
+
+            $request->getSession()->getFlashBag()->add('info', 'Votre cycle de culture est bien enregistré comme étant '.$statusLabel.' !');
 
             return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
         }
@@ -198,7 +206,7 @@ class CropCycleController extends Controller
             $em->persist($cropCycle);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Votre culture a été modifée avec succès ! ('.$cropCycle->getName().' - '.str_replace('.', ',', $cropCycle->getArea()).'ha)');
+            $request->getSession()->getFlashBag()->add('success', 'Votre culture a été modifée avec succès ! ('.$cropCycle->getName().' - '.number_format($cropCycle->getArea(), 2, ',', ' ').'ha)');
 
             return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
         }

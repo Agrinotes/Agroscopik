@@ -22,6 +22,18 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-lg-9">
+                    {% for flash_message in app.session.flashBag.get('success') %}
+                        <div class="alert dark alert-alt alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            {{ flash_message.title }}
+                            <a href="{{ path('plot_new') }}" style="margin-left:10px;text-decoration: underline">
+                                {{ flash_message.message }}
+
+                            </a>
+                        </div>
+                    {% endfor %}
                     <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ plot.name }} </h3>
@@ -43,7 +55,7 @@
                                                 de culture</a></li>
                                         <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
                                                                    aria-controls="exampleTabsLineTwo"
-                                                                   role="tab" style="font-size: 16px;">Activité</a></li>
+                                                                   role="tab" style="font-size: 16px;">Interventions récentes</a></li>
 
 
                                     </ul>
@@ -51,7 +63,13 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
+                                            {% if plot.cropCycles is empty %}
+                                                <p class="margin-top-20">
+                                                    Aucune culture enregistrée.
+                                                </p>
+                                            {% else %}
                                             {{ render(controller('AppBundle:CropCycle:index',{'id': plot.id,'year':year} )) }}
+                                            {% endif %}
                                             <a class="btn btn-primary"
                                                href="{{ path('cropcycle_new', { 'id': plot.id }) }}">
                                                 Ajouter une culture

@@ -31,6 +31,14 @@
                             {{ flash_message }}
                         </div>
                     {% endfor %}
+                    {% for flash_message in app.session.flashBag.get('info') %}
+                        <div class="alert dark alert-alt alert-info alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
                     <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ cropCycle.name }}</h3>
@@ -49,7 +57,13 @@
                                                                                   role="tab" style="font-size: 16px;">Interventions</a></li>
                                         <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
                                                                    aria-controls="exampleTabsLineTwo"
-                                                                   role="tab" style="font-size: 16px;">Activité</a></li>
+                                                                   role="tab" style="font-size: 16px;">Traitements phytosanitaires</a></li>
+                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineThree"
+                                                                   aria-controls="exampleTabsLineThree"
+                                                                   role="tab" style="font-size: 16px;">Fertilisation </a></li>
+                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineFour"
+                                                                   aria-controls="exampleTabsLineFour"
+                                                                   role="tab" style="font-size: 16px;">Irrigation </a></li>
 
 
                                     </ul>
@@ -57,13 +71,33 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
+                                            {% if cropCycle.actions is empty %}
+                                            <p class="margin-top-20">
+                                                Aucune intervention enregistrée.
+                                                </p>
+                                            {% else %}
                                             {{ render(controller('AppBundle:Action:index',{'id': cropCycle.id } )) }}
+                                            {% endif %}
+
                                             <a class="btn btn-primary"
                                                href="{{ path('action_new', { 'id': cropCycle.id }) }}">
                                                 Ajouter une intervention
                                             </a>
                                         </div>
                                         <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
+                                            <p class="margin-top-20">
+                                                Cette fonctionnalité pourra être développée à l'avenir
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane" id="exampleTabsLineThree" role="tabpanel">
+                                            <p class="margin-top-20">
+                                            Cette fonctionnalité pourra être développée à l'avenir
+                                            </p>
+                                        </div>
+                                        <div class="tab-pane" id="exampleTabsLineFour" role="tabpanel">
+                                            <p class="margin-top-20">
+                                                Cette fonctionnalité pourra être développée à l'avenir
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +146,7 @@
                                     <span class="example-title">Surface
 
                                     </span>
-                                                                            <span class="padding-left-20">{{ cropCycle.area }}
+                                                                            <span class="padding-left-20">{{ cropCycle.area |number_format(2, ',', ' ') }}
                                                                                 ha</span>
 
                                 </div>
