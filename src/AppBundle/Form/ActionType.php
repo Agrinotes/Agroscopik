@@ -36,13 +36,15 @@ class ActionType extends AbstractType
                 'class' => 'AppBundle:Intervention',
                 'choice_label' => 'name',
                 'attr' => array('class'=>'form-control','data-plugin'=>'select2'),
-                'group_by' => 'interventionCategory.name'
+                'group_by' => 'interventionCategory.name',
+                'label'=>'Choisir une intervention'
             ))
             ->add('periods', CollectionType::class, array(
                 'entry_type' => EventType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
+                'label'=>'Définir une ou plusieurs périodes d\'intervention',
             ))
         ;
 
@@ -62,10 +64,11 @@ class ActionType extends AbstractType
                 $tractorsOptions = array(
                     'class' => 'AppBundle:Tractor',
                     'choice_label' => 'model.label',
-                    'label'=>'Tracteurs',
+                    'label'=>'Choisir les tracteurs utilisés',
+                    'attr' => array('class'=>'form-control','data-plugin'=>'select2'),
                     'required' => false,
                     'multiple' => true,
-                    'expanded' => true,
+                    'expanded' => false,
                     'query_builder' => function (EntityRepository $er) use ($farm) {
                         return $er->qbFindAllForCurrentFarm($farm);
                     },
@@ -76,7 +79,8 @@ class ActionType extends AbstractType
                 $implementsOptions = array(
                     'class' => 'AppBundle:Implement',
                     'choice_label' => 'name',
-                    'label'=>'Outils',
+                    'attr' => array('class'=>'form-control','data-plugin'=>'select2'),
+                    'label'=>'Choisir les outils utilisés',
                     'required' => false,
                     'multiple' => true,
                     'expanded' => true,
