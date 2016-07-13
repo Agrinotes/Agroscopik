@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php" />
     </list>
     <ignored path="agroscopik.iws" />
@@ -58,8 +57,8 @@
       <file leaf-file-name="LoadTractorBrands.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.5192926">
-              <caret line="3905" column="46" selection-start-line="3905" selection-start-column="46" selection-end-line="3905" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.8987138">
+              <caret line="3950" column="44" selection-start-line="3950" selection-start-column="44" selection-end-line="3950" selection-end-column="44" />
               <folding />
             </state>
           </provider>
@@ -1146,8 +1145,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.5192926">
-          <caret line="3905" column="46" selection-start-line="3905" selection-start-column="46" selection-end-line="3905" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.8987138">
+          <caret line="3950" column="44" selection-start-line="3950" selection-start-column="44" selection-end-line="3950" selection-end-column="44" />
           <folding />
         </state>
       </provider>
