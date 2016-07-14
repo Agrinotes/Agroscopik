@@ -18,6 +18,7 @@ class Farm
         $this->plots = new ArrayCollection();
         $this->tractors = new ArrayCollection();
         $this->implements = new ArrayCollection();
+        $this->farmSpecialities = new ArrayCollection();
     }
 
         /**
@@ -59,6 +60,12 @@ class Farm
      * @ORM\JoinColumn(nullable=false)
      */
     private $implements;
+
+    /**
+     * @ORM\OneToMany (targetEntity="AppBundle\Entity\FarmSpeciality", mappedBy="farm", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $farmSpecialities;
 
     /**
      * Get id
@@ -226,6 +233,42 @@ class Farm
     public function getImplements()
     {
         return $this->implements;
+    }
+
+    /**
+     * Add farm speciality
+     *
+     * @param \AppBundle\Entity\FarmSpeciality $speciality
+     * @return Farm
+     */
+    public function addFarmSpeciality(FarmSpeciality $speciality)
+    {
+        $this->farmSpecialities[] = $speciality;
+
+        // We also add the current farm to the tractor
+        $speciality->setFarm($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove farm speciality
+     *
+     * @param \AppBundle\Entity\FarmSpeciality $speciality
+     */
+    public function removeFarmSpeciality(FarmSpeciality $speciality)
+    {
+        $this->farmSpecialities->removeElement($speciality);
+    }
+
+    /**
+     * Get farm Specialities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFarmSpecialities()
+    {
+        return $this->farmSpecialities;
     }
 }
 

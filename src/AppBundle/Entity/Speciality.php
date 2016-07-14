@@ -20,6 +20,7 @@ class Speciality
     public function __construct()
     {
         $this->usages = new ArrayCollection();
+        $this->farmSpecialities = new ArrayCollection();
     }
 
     /**
@@ -49,6 +50,12 @@ class Speciality
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\SpecialityUsage", mappedBy="speciality", cascade={"persist","remove"})
      */
     private $usages;
+
+    /**
+     * @ORM\OneToMany (targetEntity="AppBundle\Entity\FarmSpeciality", mappedBy="speciality", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $farmSpecialities;
 
     /**
      * Get id
@@ -135,6 +142,42 @@ class Speciality
 
     public function getUsages(){
         return $this->usages;
+    }
+
+    /**
+     * Add farm speciality
+     *
+     * @param \AppBundle\Entity\FarmSpeciality $speciality
+     * @return Speciality
+     */
+    public function addFarmSpeciality(FarmSpeciality $speciality)
+    {
+        $this->farmSpecialities[] = $speciality;
+
+        // We also add the current speciality to the farmSpeciality
+        $speciality->setSpeciality($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove farm speciality
+     *
+     * @param \AppBundle\Entity\FarmSpeciality $speciality
+     */
+    public function removeFarmSpeciality(FarmSpeciality $speciality)
+    {
+        $this->farmSpecialities->removeElement($speciality);
+    }
+
+    /**
+     * Get farm Specialities
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFarmSpecialities()
+    {
+        return $this->farmSpecialities;
     }
 }
 
