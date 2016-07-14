@@ -34,6 +34,11 @@ class FarmSpeciality
     private $speciality;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FarmSpecialityMvt", mappedBy="speciality", cascade={"persist","remove"})
+     */
+    private $movements;
+
+    /**
      * Get id
      *
      * @return int
@@ -88,5 +93,41 @@ class FarmSpeciality
     {
         return $this->speciality;
     }
+
+    /**
+     * Add movement
+     *
+     * @param \AppBundle\Entity\FarmSpecialityMvt $movement
+     * @return FarmSpeciality
+     */
+    public function addMovement(FarmSpecialityMvt $movement)
+    {
+        $this->movements[] = $movement;
+
+        return $this;
+    }
+
+    /**
+     * Remove movement
+     *
+     * @param \AppBundle\Entity\FarmSpecialityMvt $movement
+     */
+    public function removeMovement(FarmSpecialityMvt $movement)
+    {
+        $this->movements->removeElement($movement);
+
+        $movement->setCategory(""); // That's a problem because its Category cannot be null... Should be resolved soon
+    }
+
+    /**
+     * Get movements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMovements()
+    {
+        return $this->movements;
+    }
+
 }
 

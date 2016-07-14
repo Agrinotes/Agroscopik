@@ -22,6 +22,25 @@ class FarmSpecialityMvt
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FarmSpecialityMvtCategory", inversedBy="movements",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FarmSpeciality", inversedBy="movements",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $speciality;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datetime", type="datetime")
+     */
+    private $datetime;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="amount", type="float", nullable=true)
@@ -51,6 +70,82 @@ class FarmSpecialityMvt
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \AppBundle\Entity\FarmSpecialityMvtCategory $category
+     * @return FarmSpecialityMvt
+     */
+    public function setCategory(FarmSpecialityMvtCategory $category)
+    {
+        $this->category = $category;
+
+        // Bidirectionnality
+        $category->addMovement($this);
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \AppBundle\Entity\FarmSpecialityMvt
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set speciality
+     *
+     * @param \AppBundle\Entity\FarmSpeciality $speciality
+     * @return FarmSpecialityMvt
+     */
+    public function setSpeciality(FarmSpeciality $speciality)
+    {
+        $this->speciality = $speciality;
+
+        // Bidirectionnality
+        $speciality->addMovement($this);
+
+        return $this;
+    }
+
+    /**
+     * Get speciality
+     *
+     * @return \AppBundle\Entity\FarmSpecialityMvt
+     */
+    public function getSpeciality()
+    {
+        return $this->speciality;
+    }
+
+    /**
+     * Set datetime
+     *
+     * @param \DateTime $datetime
+     *
+     * @return Event
+     */
+    public function setDatetime($datetime)
+    {
+        $this->datetime = $datetime;
+
+        return $this;
+    }
+
+    /**
+     * Get datetime
+     *
+     * @return \DateTime
+     */
+    public function getDatetime()
+    {
+        return $this->datetime;
     }
 
     /**
@@ -124,5 +219,7 @@ class FarmSpecialityMvt
     {
         return $this->pricePerUnit;
     }
+
+
 }
 
