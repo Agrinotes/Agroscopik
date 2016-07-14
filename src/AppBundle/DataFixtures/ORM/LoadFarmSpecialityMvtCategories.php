@@ -35,6 +35,6 @@ class LoadFarmSpecialityMvtCategories extends AbstractFixture implements Fixture
 
     public function getOrder()
     {
-        return 1;
+        return 9;
     }
 }

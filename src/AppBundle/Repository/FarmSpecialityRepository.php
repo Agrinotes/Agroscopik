@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class FarmSpecialityRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllForCurrentFarm ($id)
+    {
+        $qb = $this->createQueryBuilder('s');
+
+        $qb->where('s.farm = :farm')
+            ->setParameter('farm', $id)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

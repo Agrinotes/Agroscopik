@@ -1,3 +1,15 @@
+app_farm_speciality_mvt:
+    resource: "@AppBundle/Controller/FarmSpecialityMvtController.php"
+    type:     annotation
+
+app_farm_speciality_mvt_category:
+    resource: "@AppBundle/Controller/FarmSpecialityMvtCategoryController.php"
+    type:     annotation
+
+app_farm_speciality:
+    resource: "@AppBundle/Controller/FarmSpecialityController.php"
+    type:     annotation
+
 app_speciality_usage:
     resource: "@AppBundle/Controller/SpecialityUsageController.php"
     type:     annotation

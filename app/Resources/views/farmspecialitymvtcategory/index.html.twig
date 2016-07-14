@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FarmSpecialityMvtCategory list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for farmSpecialityMvtCategory in farmSpecialityMvtCategories %}
+            <tr>
+                <td><a href="{{ path('farmspecialitymvtcategory_show', { 'id': farmSpecialityMvtCategory.id }) }}">{{ farmSpecialityMvtCategory.id }}</a></td>
+                <td>{{ farmSpecialityMvtCategory.name }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('farmspecialitymvtcategory_show', { 'id': farmSpecialityMvtCategory.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('farmspecialitymvtcategory_edit', { 'id': farmSpecialityMvtCategory.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('farmspecialitymvtcategory_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

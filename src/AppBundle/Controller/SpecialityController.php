@@ -8,11 +8,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Speciality;
 use AppBundle\Form\SpecialityType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Speciality controller.
  *
  * @Route("/speciality")
+ * @Security("has_role('ROLE_USER')")
  */
 class SpecialityController extends Controller
 {
@@ -79,6 +81,7 @@ class SpecialityController extends Controller
      * Displays a form to edit an existing Speciality entity.
      *
      * @Route("/{id}/edit", name="speciality_edit")
+     * @Security("has_role('ROLE_ADMIN')")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Speciality $speciality)
@@ -106,6 +109,7 @@ class SpecialityController extends Controller
      * Deletes a Speciality entity.
      *
      * @Route("/{id}", name="speciality_delete")
+     * @Security("has_role('ROLE_ADMIN')")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Speciality $speciality)
