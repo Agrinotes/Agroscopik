@@ -10,4 +10,17 @@ namespace AppBundle\Repository;
  */
 class FarmSpecialityMvtRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAllByFarmSpeciality ($id)
+    {
+        $qb = $this->createQueryBuilder('m');
+
+        $qb->where('m.speciality = :speciality')
+            ->setParameter('speciality', $id)
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }

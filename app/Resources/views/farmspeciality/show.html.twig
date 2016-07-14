@@ -1,16 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>FarmSpeciality</h1>
+    <h1>{{ farmSpeciality.speciality.name }}</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ farmSpeciality.id }}</td>
-            </tr>
-        </tbody>
-    </table>
+    Stock : {{ farmSpeciality.stock }} L
 
     <ul>
         <li>
@@ -25,4 +18,9 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+
+    <h4>Historique des mouvements de stock</h4>
+    {{ render(controller('AppBundle:FarmSpecialityMvt:list',{'id': farmSpeciality.id } )) }}
+
+
 {% endblock %}

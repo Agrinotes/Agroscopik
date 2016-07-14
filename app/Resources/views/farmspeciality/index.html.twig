@@ -7,23 +7,13 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for farmSpeciality in farmSpecialities %}
             <tr>
-                <td><a href="{{ path('farmspeciality_show', { 'id': farmSpeciality.id }) }}">{{ farmSpeciality.id }}</a></td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('farmspeciality_show', { 'id': farmSpeciality.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('farmspeciality_edit', { 'id': farmSpeciality.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
+                <td><a href="{{ path('farmspecialitymvt_list', { 'id': farmSpeciality.id }) }}">{{ farmSpeciality.speciality.name }}</a></td>
+
             </tr>
         {% endfor %}
         </tbody>

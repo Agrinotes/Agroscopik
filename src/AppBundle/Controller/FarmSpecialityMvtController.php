@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\FarmSpeciality;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -12,15 +13,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * FarmSpecialityMvt controller.
- *
- * @Route("/farmspecialitymvt")
+ * @Security("has_role('ROLE_USER')")
+ * @Route("/")
  */
 class FarmSpecialityMvtController extends Controller
 {
     /**
      * Lists all FarmSpecialityMvt entities.
      *
-     * @Route("/", name="farmspecialitymvt_index")
+     * @Route("/farmspecialitymvt", name="farmspecialitymvt_index")
+     *
      * @Method("GET")
      */
     public function indexAction()
@@ -35,9 +37,30 @@ class FarmSpecialityMvtController extends Controller
     }
 
     /**
+     * Lists all FarmSpecialityMvt for a specific FarmSpeciality.
+     *
+     * @Route("/farmspeciality/{id}/movements", name="farmspecialitymvt_list")
+     *
+     * @Method("GET")
+     */
+    public function listAction(Request $request,$id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $farmSpeciality = $em->getRepository('AppBundle:FarmSpeciality')->find($id);
+
+        $farmSpecialityMvts = $em->getRepository('AppBundle:FarmSpecialityMvt')->findAllByFarmSpeciality($id);
+
+        return $this->render('farmspecialitymvt/list.html.twig', array(
+            'farmSpecialityMvts' => $farmSpecialityMvts,
+            'farmSpeciality' => $farmSpeciality
+        ));
+    }
+
+    /**
      * Creates a new FarmSpecialityMvt entity.
      *
-     * @Route("/new", name="farmspecialitymvt_new")
+     * @Route("/farmspecialitymvt/new", name="farmspecialitymvt_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -63,7 +86,7 @@ class FarmSpecialityMvtController extends Controller
     /**
      * Finds and displays a FarmSpecialityMvt entity.
      *
-     * @Route("/{id}", name="farmspecialitymvt_show")
+     * @Route("/farmspecialitymvt/{id}", name="farmspecialitymvt_show")
      * @Method("GET")
      */
     public function showAction(FarmSpecialityMvt $farmSpecialityMvt)
@@ -79,7 +102,7 @@ class FarmSpecialityMvtController extends Controller
     /**
      * Displays a form to edit an existing FarmSpecialityMvt entity.
      *
-     * @Route("/{id}/edit", name="farmspecialitymvt_edit")
+     * @Route("/farmspecialitymvt/{id}/edit", name="farmspecialitymvt_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, FarmSpecialityMvt $farmSpecialityMvt)
@@ -106,7 +129,7 @@ class FarmSpecialityMvtController extends Controller
     /**
      * Deletes a FarmSpecialityMvt entity.
      *
-     * @Route("/{id}", name="farmspecialitymvt_delete")
+     * @Route("/farmspecialitymvt/{id}", name="farmspecialitymvt_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, FarmSpecialityMvt $farmSpecialityMvt)
