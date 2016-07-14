@@ -105,6 +105,7 @@ class FarmSpecialityController extends Controller
      * Finds and displays a FarmSpeciality entity.
      *
      * @Route("/{id}", name="farmspeciality_show")
+     * @Security("is_granted('VIEW', farmSpeciality) or is_granted('ROLE_ADMIN')")
      * @Method("GET")
      */
     public function showAction(FarmSpeciality $farmSpeciality)
@@ -119,7 +120,7 @@ class FarmSpecialityController extends Controller
 
     /**
      * Displays a form to edit an existing FarmSpeciality entity.
-     *
+     * @Security("is_granted('EDIT', farmSpeciality) or has_role('ROLE_ADMIN')")
      * @Route("/{id}/edit", name="farmspeciality_edit")
      * @Method({"GET", "POST"})
      */
@@ -146,7 +147,7 @@ class FarmSpecialityController extends Controller
 
     /**
      * Deletes a FarmSpeciality entity.
-     *
+     * @Security("is_granted('DELETE', farmSpeciality) or has_role('ROLE_ADMIN')")
      * @Route("/{id}", name="farmspeciality_delete")
      * @Method("DELETE")
      */
