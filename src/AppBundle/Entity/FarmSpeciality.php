@@ -129,5 +129,58 @@ class FarmSpeciality
         return $this->movements;
     }
 
+    /**
+     * Get stock
+     *
+     */
+    public function getStock()
+    {
+        $movements = $this->getMovements();
+
+        $stock = 0;
+
+        // Should be improved according to units used by the user in its movements... For testing purpose.
+        foreach ($movements as $movement) {
+            $stock += $movement->getAmount();
+        }
+
+        return $stock;
+    }
+
+    /**
+     * Get value
+     *
+     */
+    public function getValue()
+    {
+        $movements = $this->getMovements();
+
+        $value = 0;
+
+        foreach ($movements as $movement) {
+            $value += $movement->getValue();
+        }
+
+        return $value;
+    }
+
+    /**
+     * Get value
+     *
+     */
+    public function getMaxUnitPrice()
+    {
+        $movements = $this->getMovements();
+
+        $price = 0;
+
+        foreach($movements as $movement){
+            if($movement->getPricePerUnit()>$price){
+                $price = $movement->getPricePerUnit();
+            }
+        }
+
+        return $price;
+    }
 }
 

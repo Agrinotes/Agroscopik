@@ -220,6 +220,15 @@ class FarmSpecialityMvt
         return $this->pricePerUnit;
     }
 
+    /**
+     * Get stock
+     *
+     */
+    public function getValue()
+    {
+        $value = $this->getAmount() * $this->getPricePerUnit();
 
+        return $value;
+    }
 }
 
