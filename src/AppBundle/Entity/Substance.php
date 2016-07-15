@@ -22,11 +22,17 @@ class Substance
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Speciality", inversedBy="substances",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $speciality;
+
+    /**
      * @var float
      *
-     * @ORM\Column(name="amout", type="float", nullable=true)
+     * @ORM\Column(name="amount", type="float", nullable=true)
      */
-    private $amout;
+    private $amount;
 
     /**
      * @var string
@@ -75,27 +81,27 @@ class Substance
     }
 
     /**
-     * Set amout
+     * Set amount
      *
-     * @param float $amout
+     * @param float $amount
      *
      * @return Substance
      */
-    public function setAmout($amout)
+    public function setAmount($amount)
     {
-        $this->amout = $amout;
+        $this->amount = $amount;
 
         return $this;
     }
 
     /**
-     * Get amout
+     * Get amount
      *
      * @return float
      */
-    public function getAmout()
+    public function getAmount()
     {
-        return $this->amout;
+        return $this->amount;
     }
 
     /**
@@ -216,6 +222,22 @@ class Substance
     public function getCAS()
     {
         return $this->cAS;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpeciality()
+    {
+        return $this->speciality;
+    }
+
+    /**
+     * @param mixed $speciality
+     */
+    public function setSpeciality(Speciality $speciality)
+    {
+        $this->speciality = $speciality;
     }
 }
 

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Substance list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Amount</th>
+                <th>Fullunit</th>
+                <th>Unit1</th>
+                <th>Unit2</th>
+                <th>Name</th>
+                <th>Cas</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for substance in substances %}
+            <tr>
+                <td><a href="{{ path('substance_show', { 'id': substance.id }) }}">{{ substance.id }}</a></td>
+                <td>{{ substance.amount }}</td>
+                <td>{{ substance.fullUnit }}</td>
+                <td>{{ substance.unit1 }}</td>
+                <td>{{ substance.unit2 }}</td>
+                <td>{{ substance.name }}</td>
+                <td>{{ substance.cAS }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('substance_show', { 'id': substance.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('substance_edit', { 'id': substance.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('substance_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

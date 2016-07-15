@@ -20,6 +20,7 @@ class Speciality
     public function __construct()
     {
         $this->usages = new ArrayCollection();
+        $this->substances = new ArrayCollection();
         $this->farmSpecialities = new ArrayCollection();
     }
 
@@ -50,6 +51,11 @@ class Speciality
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\SpecialityUsage", mappedBy="speciality", cascade={"persist","remove"})
      */
     private $usages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Substance", mappedBy="speciality", cascade={"persist","remove"})
+     */
+    private $substances;
 
     /**
      * @ORM\OneToMany (targetEntity="AppBundle\Entity\FarmSpeciality", mappedBy="speciality", cascade={"persist","remove"})
@@ -143,6 +149,47 @@ class Speciality
     public function getUsages(){
         return $this->usages;
     }
+
+    /**
+     * Add substance
+     *
+     * @param \AppBundle\Entity\Substance $substance
+     * @return Speciality
+     */
+    public function addSubstance(Substance $substance)
+    {
+        $this->substances[] = $substance;
+
+        //Bidirectionnality
+        $substance->setSpeciality($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove substance
+     *
+     * @param \AppBundle\Entity\Substance $substance
+     */
+    public function removeSubstance(Substance $substance)
+    {
+        $this->substances->removeElement($substance);
+
+        $substance->setSpeciality(""); // That's a problem because Speciality cannot be null
+    }
+
+    /**
+     * Get substances
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubstances()
+    {
+        return $this->substances;
+    }
+
+
+
 
     /**
      * Add farm speciality

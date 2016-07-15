@@ -92,6 +92,7 @@ class Intervention
     {
         $this->interventionCategory = $interventionCategory;
 
+
         return $this;
     }
 
