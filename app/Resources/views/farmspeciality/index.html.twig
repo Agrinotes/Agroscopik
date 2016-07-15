@@ -1,19 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>FarmSpeciality list</h1>
+    <h1>Local phytosanitaire</h1>
 
-    <table>
+    <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Id</th>
-            </tr>
+        <tr>
+            <th>Nom de produit</th>
+            <th>Stock</th>
+            <th>Valeur du stock</th>
+        </tr>
         </thead>
         <tbody>
         {% for farmSpeciality in farmSpecialities %}
             <tr>
-                <td><a href="{{ path('farmspecialitymvt_list', { 'id': farmSpeciality.id }) }}">{{ farmSpeciality.speciality.name }}</a></td>
-
+                <td>
+                    <a href="{{ path('farmspecialitymvt_list', { 'id': farmSpeciality.id }) }}">{{ farmSpeciality.speciality.name }}</a>
+                </td>
+<td>{{ farmSpeciality.stock }}</td>
             </tr>
         {% endfor %}
         </tbody>
