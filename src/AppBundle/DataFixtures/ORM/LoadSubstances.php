@@ -28509,6 +28509,8 @@ class LoadSubstances extends AbstractFixture implements OrderedFixtureInterface
                 $substance->setUnit1($name[3]);
                 $substance->setUnit2($name[4]);
                 $substance->setName($name[5]);
+                $substance->setCAS($name[6]);
+
                 $manager->persist($substance);
                 if (($i % $batchSize) == 0) {
                     $manager->flush();

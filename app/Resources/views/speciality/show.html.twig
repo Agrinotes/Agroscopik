@@ -29,67 +29,103 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
+                                <div class="col-lg-12">
 
-                                <table class="table table-hover">
-                                    <thead>
-                                    <tr>
-                                        <th>Usages</th>
-                                        <th>FR</th>
-                                        <th>NC</th>
-                                        <th>Dose homologuée</th>
-                                        <th>DAR</th>
-                                        <th>ZNT aquatique</th>
+                                    {% if speciality.substances is not empty %}
+                                        <h4 class="example-title">
+                                            Matières actives
+                                        </h4>
+                                        <table class="table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Teneur</th>
+                                                <th>N° CAS</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for substance in speciality.substances %}
+                                                <tr>
+                                                    <td>{{ substance.name }}</td>
+                                                    <td>                                          {% if substance.amount is not empty %}
+                                                            {{ substance.amount }} {{ substance.fullUnit }}
+                                                        {% endif %}</td>
+                                                    <td>
+                                                        {{ substance.CAS }}
+                                                    </td>
+                                                </tr>
 
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for usage in speciality.usages %}
+                                            {% endfor %}
+                                            </tbody>
+
+                                        </table>
+                                    {% endif %}
+
+                                    <h4 class="example-title">
+                                        Liste des usages
+                                    </h4>
+                                    <table class="table table-hover">
+                                        <thead>
                                         <tr>
-                                            <td>
-                                                <a href="{{ path('specialityusage_show', { 'id': usage.id }) }}">{{ usage.name }}</a>
-                                            </td>
-                                            <td>{% if usage.status =="TRUE" %}
-                                                    <button type="button"
-                                                            class="btn btn-pure btn-info icon md-check-circle waves-effect waves-circle waves-classic"
-                                                            data-toggle="tooltip" data-placement="bottom"
-                                                            data-trigger="click"
-                                                            data-original-title="Cet usage est autorisé par la réglementation Française. Veuillez vous référer à la réglementation de Nouvelle-Calédonie pour l'application de vos produits."
-                                                            title=""></button>
-                                                {% else %}
-                                                    <button type="button"
-                                                            class="btn btn-pure btn-danger icon md-close-circle-o waves-effect waves-circle waves-classic"
-                                                            data-toggle="tooltip" data-placement="bottom"
-                                                            data-trigger="click"
-                                                            data-original-title="Cet usage n'est plus autorisé par la réglementation Française. Veuillez vous référer à la réglementation de Nouvelle-Calédonie pour l'application de vos produits."
-                                                            title=""></button>
-                                                {% endif %}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-pure btn-default icon md-help-outline
-  waves-effect waves-circle waves-classic" data-toggle="tooltip" data-placement="bottom" data-trigger="click"
-                                                        data-original-title="L'information concernant cet usage en Nouvelle-Calédonie n'a pas été renseigné"
-                                                        title=""></button>
+                                            <th>Usages</th>
+                                            <th>FR</th>
+                                            <th>NC</th>
+                                            <th>Dose homologuée</th>
+                                            <th>DAR</th>
+                                            <th>ZNT aquatique</th>
 
-                                            <td>
-                                                {% if usage.status =="TRUE" %}
-                                                    {{ usage.dose }} {{ usage.doseUnit }}/{{ usage.doseUnit2 }}
-                                                {% endif %}
-                                            </td>
-                                            <td>
-                                                {% if usage.status =="TRUE" %}
-                                                    {{ usage.DAR }} {% if usage.DAR == 1 %}jour{% else %}jours{% endif %}
-                                                {% endif %}
-                                            </td>
-                                            <td>
-                                                {% if usage.status =="TRUE" %}
-                                                    {{ usage.zNTwater }}m
-                                                {% endif %}
-                                            </td>
-
-                                            </td>
                                         </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+
+                                        {% for usage in speciality.usages %}
+                                            <tr>
+                                                <td>
+                                                    <a href="{{ path('specialityusage_show', { 'id': usage.id }) }}">{{ usage.name }}</a>
+                                                </td>
+                                                <td>{% if usage.status =="TRUE" %}
+                                                        <button type="button"
+                                                                class="btn btn-pure btn-info icon md-check-circle waves-effect waves-circle waves-classic"
+                                                                data-toggle="tooltip" data-placement="bottom"
+                                                                data-trigger="click"
+                                                                data-original-title="Cet usage est autorisé par la réglementation Française. Veuillez vous référer à la réglementation de Nouvelle-Calédonie pour l'application de vos produits."
+                                                                title=""></button>
+                                                    {% else %}
+                                                        <button type="button"
+                                                                class="btn btn-pure btn-danger icon md-close-circle-o waves-effect waves-circle waves-classic"
+                                                                data-toggle="tooltip" data-placement="bottom"
+                                                                data-trigger="click"
+                                                                data-original-title="Cet usage n'est plus autorisé par la réglementation Française. Veuillez vous référer à la réglementation de Nouvelle-Calédonie pour l'application de vos produits."
+                                                                title=""></button>
+                                                    {% endif %}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-pure btn-default icon md-help-outline
+  waves-effect waves-circle waves-classic" data-toggle="tooltip" data-placement="bottom" data-trigger="click"
+                                                            data-original-title="L'information concernant cet usage en Nouvelle-Calédonie n'a pas été renseigné"
+                                                            title=""></button>
+
+                                                <td>
+                                                    {% if usage.status =="TRUE" %}
+                                                        {{ usage.dose }} {{ usage.doseUnit }}/{{ usage.doseUnit2 }}
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% if usage.status =="TRUE" %}
+                                                        {{ usage.DAR }} {% if usage.DAR == 1 %}jour{% else %}jours{% endif %}
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    {% if usage.status =="TRUE" %}
+                                                        {{ usage.zNTwater }}m
+                                                    {% endif %}
+                                                </td>
+
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <div class="panel-footer">
