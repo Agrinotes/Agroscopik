@@ -1,39 +1,25 @@
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Datetime</th>
-                <th>Amount</th>
-                <th>Unit</th>
-                <th>Priceperunit</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+    <table class="table table-hover">
         <tbody>
         {% for farmSpecialityMvt in farmSpecialityMvts %}
-            <tr>
-                <td><a href="{{ path('farmspecialitymvt_show', { 'id': farmSpecialityMvt.id }) }}">{{ farmSpecialityMvt.id }}</a></td>
-                <td>{% if farmSpecialityMvt.datetime %}{{ farmSpecialityMvt.datetime|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ farmSpecialityMvt.amount }}</td>
-                <td>{{ farmSpecialityMvt.unit }}</td>
-                <td>{{ farmSpecialityMvt.pricePerUnit }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('farmspecialitymvt_show', { 'id': farmSpecialityMvt.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('farmspecialitymvt_edit', { 'id': farmSpecialityMvt.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
+                <tr>
+
+                    <td>
+                        <a href="{{ path('farmspecialitymvt_show', { 'id': farmSpecialityMvt.id }) }}">{{ farmSpecialityMvt.category.name }} le
+                        {% if farmSpecialityMvt.datetime %} {{ farmSpecialityMvt.datetime|date('d/m/Y') }}{% endif %}</a>
+                    </td>
+                    <td>
+                        {{ farmSpecialityMvt.amount |number_format(2,',',' ') }} {{ farmSpecialityMvt.unit }}
+
+                    </td>
+                    <td>
+                        {{ farmSpecialityMvt.pricePerUnit }} CFP
+
+                    </td>
+
+                </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('farmspecialitymvt_new') }}">Ajuster le stock</a>
-        </li>
-    </ul>
+
+

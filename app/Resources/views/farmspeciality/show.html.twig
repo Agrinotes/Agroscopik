@@ -1,26 +1,102 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>{{ farmSpeciality.speciality.name }}</h1>
-
-    Stock : {{ farmSpeciality.stock }} L
-
-    <ul>
-        <li>
-            <a href="{{ path('farmspeciality_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('farmspeciality_edit', { 'id': farmSpeciality.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-
-    <h4>Historique des mouvements de stock</h4>
-    {{ render(controller('AppBundle:FarmSpecialityMvt:list',{'id': farmSpeciality.id } )) }}
-
-
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
+
+
+{% block page %}
+    <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('farmspeciality_index') }}">Local phytosanitaire</a></li>
+                <li class="active">{{ farmSpeciality.speciality.name }}</li>
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="row">
+
+                <div class="col-lg-9">
+                    {% for flash_message in app.session.flashBag.get('success') %}
+                        <div class="alert dark alert-alt alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ farmSpeciality.speciality.name }}</h3>
+
+                            <div class="panel-actions">
+                                <a class="btn btn-default"  href="{{ path('speciality_show',{'id':farmSpeciality.speciality.id}) }}">Voir les usages autorisés</a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- Example Tabs Line -->
+                            <div class="example-wrap margin-lg-0">
+                                <div class="nav-tabs-horizontal">
+                                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
+                                        <li class="active" role="presentation"><a data-toggle="tab"
+                                                                                  href="#exampleTabsLineOne"
+                                                                                  aria-controls="exampleTabsLineOne"
+                                                                                  role="tab" style="font-size: 16px;">Historique
+                                                Stock</a></li>
+                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
+                                                                   aria-controls="exampleTabsLineTwo"
+                                                                   role="tab" style="font-size: 16px;">Traitements</a>
+                                        </li>
+
+
+
+                                    </ul>
+                                    </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
+                                            {% if farmSpeciality.movements is empty %}
+                                                <p class="margin-top-20">
+                                                    Aucun mouvement de stock enregistré.
+                                                </p>
+                                            {% else %}
+                                                {{ render(controller('AppBundle:FarmSpecialityMvt:list',{'id': farmSpeciality.id } )) }}
+                                            {% endif %}
+
+
+                                        </div>
+                                        <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
+                                            <p class="margin-top-20">
+                                                Cette fonctionnalité pourra être développée à l'avenir
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Example Tabs Line With JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="widget margin-bottom-10">
+                        <div class="widget-content padding-30 bg-cyan-700">
+                            <div class="counter counter-lg counter-inverse">
+                                <div class="counter-label text-uppercase">Stock</div>
+                                <div class="counter-number-group">
+                                    <span class="counter-number">{{ farmSpeciality.stock |number_format(2,',',' ') }}</span>
+                                    <span class="counter-number-related font-size-14">{{ farmSpeciality.unit}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-info btn-block" href="{{ path('farmspecialitymvt_new') }}">Ajuster le stock</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
