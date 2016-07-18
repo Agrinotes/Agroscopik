@@ -164,6 +164,15 @@ class FarmSpeciality
         return $value;
     }
 
+    public function getUnit(){
+        $movements = $this->getMovements();
+        $unit="";
+        foreach($movements as $movement){
+            if($unit == ""){$unit = $movement->getUnit();}
+        }
+        return $unit;
+    }
+
     /**
      * Get value
      *
