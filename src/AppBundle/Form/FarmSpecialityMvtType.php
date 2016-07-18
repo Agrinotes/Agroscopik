@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,7 +18,9 @@ class FarmSpecialityMvtType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('datetime', DateTimeType::class)
+            ->add('datetime', DateTimeType::class,array(
+                'attr'=>array('class'=>'date')
+            ))
             ->add('speciality', EntityType::class, array(
                 'class' => 'AppBundle:FarmSpeciality',
                 'choice_label' => 'speciality.name',
@@ -36,7 +39,9 @@ class FarmSpecialityMvtType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ))
-            ->add('amount')
+            ->add('amount',IntegerType::class,array(
+                'label'=>'Entrer la quantité correspondante',
+            ))
             ->add('unit')
             ->add('pricePerUnit');
     }
