@@ -63,18 +63,32 @@ class SpecialityUsage
     private $dose;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="doseUnit", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unit")
+     * @ORM\JoinColumn(nullable=true)
      */
-    private $doseUnit;
+    private $unit1;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="amountUnit2", type="integer", nullable=true)
+     */
+    private $amountUnit2;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unit")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $unit2;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="doseUnit2", type="string", length=255, nullable=true)
+     * @ORM\Column(name="fullUnit", type="string", length=255, nullable=true)
      */
-    private $doseUnit2;
+    private $fullUnit;
+
+
 
     /**
      * @var int
@@ -229,44 +243,9 @@ class SpecialityUsage
     }
 
     /**
-     * Set doseUnit
-     *
-     * @param string $doseUnit
-     *
-     * @return SpecialityUsage
-     */
-    public function setDoseUnit($doseUnit)
-    {
-        $this->doseUnit = $doseUnit;
 
-        return $this;
-    }
 
-    /**
-     * Get doseUnit
-     *
-     * @return string
-     */
-    public function getDoseUnit()
-    {
-        return $this->doseUnit;
-    }
 
-    /**
-     * @return string
-     */
-    public function getDoseUnit2()
-    {
-        return $this->doseUnit2;
-    }
-
-    /**
-     * @param string $doseUnit2
-     */
-    public function setDoseUnit2($doseUnit2)
-    {
-        $this->doseUnit2 = $doseUnit2;
-    }
 
     /**
      * Set dAR
@@ -442,6 +421,70 @@ class SpecialityUsage
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUnit1()
+    {
+        return $this->unit1;
+    }
+
+    /**
+     * @param mixed $unit1
+     */
+    public function setUnit1($unit1)
+    {
+        $this->unit1 = $unit1;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUnit2()
+    {
+        return $this->unit2;
+    }
+
+    /**
+     * @param mixed $unit2
+     */
+    public function setUnit2($unit2)
+    {
+        $this->unit2 = $unit2;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAmountUnit2()
+    {
+        return $this->amountUnit2;
+    }
+
+    /**
+     * @param int $amountUnit2
+     */
+    public function setAmountUnit2($amountUnit2)
+    {
+        $this->amountUnit2 = $amountUnit2;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullUnit()
+    {
+        return $this->fullUnit;
+    }
+
+    /**
+     * @param string $fullUnit
+     */
+    public function setFullUnit($fullUnit)
+    {
+        $this->fullUnit = $fullUnit;
     }
 
 

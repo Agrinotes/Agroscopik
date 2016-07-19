@@ -41,19 +41,21 @@ class Substance
      */
     private $fullUnit;
 
+
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="unit1", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unit")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $unit1;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="unit2", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unit")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $unit2;
+
+
 
     /**
      * @var string
