@@ -45,6 +45,6 @@ class LoadInterventionCategories extends AbstractFixture implements FixtureInter
 
     public function getOrder()
     {
-        return 1;
+        return 3;
     }
 }

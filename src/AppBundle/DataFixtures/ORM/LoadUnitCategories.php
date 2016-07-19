@@ -64,6 +64,6 @@ class LoadUnitCategories extends AbstractFixture implements FixtureInterface, Or
 
     public function getOrder()
     {
-        return 9;
+        return 1;
     }
 }

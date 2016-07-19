@@ -83,6 +83,6 @@ class LoadInterventions extends AbstractFixture implements OrderedFixtureInterfa
     {
         // the order in which fixtures will be loaded
         // the lower the number, the sooner that this fixture is loaded
-        return 2;
+        return 4;
     }
 }
