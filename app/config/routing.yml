@@ -1,3 +1,11 @@
+app_unit:
+    resource: "@AppBundle/Controller/UnitController.php"
+    type:     annotation
+
+app_unit_category:
+    resource: "@AppBundle/Controller/UnitCategoryController.php"
+    type:     annotation
+
 app_substance:
     resource: "@AppBundle/Controller/SubstanceController.php"
     type:     annotation
