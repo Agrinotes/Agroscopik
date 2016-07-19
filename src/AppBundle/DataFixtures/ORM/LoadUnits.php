@@ -137,9 +137,14 @@ class LoadUnits extends AbstractFixture implements OrderedFixtureInterface
             $unit->setC($name[5]);
             $unit->setSymbol($name[6]);
             $manager->persist($unit);
+
+            // Needed to link this data to the other fixtures loaded
+            $this->addReference($name[2], $unit);
         }
 
         $manager->flush();
+
+
     }
 
     public function getOrder()
