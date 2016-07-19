@@ -25,13 +25,15 @@ class FarmSpecialityMvtType extends AbstractType
                 'class' => 'AppBundle:FarmSpecialityMvtCategory',
                 'choice_label' => 'name',
                 'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
-                'label' => 'Choisir la catégorie',
+                'label' => 'Choisir le type d\'ajustement',
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,
             ))
             ->add('amount',NumberType::class,array(
                 'label'=>'Entrer la quantité correspondante',
+                'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
+
             ))
             ->add('unit',EntityType::class,array(
                 'class' => 'AppBundle:Unit',
@@ -42,7 +44,10 @@ class FarmSpecialityMvtType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ))
-            ->add('pricePerUnit');
+            ->add('pricePerUnit',NumberType::class,array(
+                'label'=>'Entrer le prix correspondant',
+                'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
+            ));
     }
 
     /**

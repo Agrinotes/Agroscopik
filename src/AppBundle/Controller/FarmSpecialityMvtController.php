@@ -77,12 +77,15 @@ class FarmSpecialityMvtController extends Controller
             $em->persist($farmSpecialityMvt);
             $em->flush();
 
-            return $this->redirectToRoute('farmspecialitymvt_show', array('id' => $farmSpecialityMvt->getId()));
+            $request->getSession()->getFlashBag()->add('success', 'Le stock de '.$speciality->getSpeciality()->getName().' a bien été mis à jour avec succès !');
+
+            return $this->redirectToRoute('farmspeciality_show', array('id' => $speciality->getId()));
         }
 
-        return $this->render('farmspecialitymvt/new.html.twig', array(
+        return $this->render('farmspecialitymvt/new_modal.html.twig', array(
             'farmSpecialityMvt' => $farmSpecialityMvt,
-            'form' => $form->createView(),
+            'farmSpeciality' => $speciality,
+            'modal_form' => $form->createView(),
         ));
     }
 

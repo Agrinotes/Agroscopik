@@ -19,9 +19,9 @@ class LoadFarmSpecialityMvtCategories extends AbstractFixture implements Fixture
     public function load(ObjectManager $em)
     {
         $names = array(
-            array('Achat', 'buyAction'),
-            array('Utilisation', 'useAction'),
-            array('Mise à jour de l\'inventaire', 'updateStockAction'),
+            array('Nouvel achat de produit', 'buyAction'),
+            array('Utilisation du produit', 'useAction'),
+            array('Mise à jour de l\'inventaire pour ce produit', 'updateStockAction'),
         );
 
         foreach ($names as $name) {

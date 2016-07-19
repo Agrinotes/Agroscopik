@@ -89,7 +89,14 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-info btn-block" href="{{ path('farmspecialitymvt_new',{'id':farmSpeciality.id}) }}">Ajuster le stock</a>
+
+                    <button class="btn btn-info waves-effect waves-light btn-block" data-target="#exampleNiftyFlipVertical" data-toggle="modal" type="button">Ajuster le stock</button>
+
+                    <div class="modal fade modal-3d-flip-vertical modal-info" id="exampleNiftyFlipVertical" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" style="display: none;">
+                        <div class="modal-dialog">
+                            {{ render(controller('AppBundle:FarmSpecialityMvt:new',{'id': farmSpeciality.id } )) }}
+                        </div>
+                    </div>
 
                 </div>
             </div>
