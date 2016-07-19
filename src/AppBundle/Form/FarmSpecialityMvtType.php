@@ -4,6 +4,7 @@ namespace AppBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -42,7 +43,15 @@ class FarmSpecialityMvtType extends AbstractType
             ->add('amount',IntegerType::class,array(
                 'label'=>'Entrer la quantité correspondante',
             ))
-            ->add('unit')
+            ->add('unit',EntityType::class,array(
+                'class' => 'AppBundle:Unit',
+                'choice_label' => 'name',
+                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                'label' => 'Choisir l\'unité',
+                'required' => true,
+                'multiple' => false,
+                'expanded' => false,
+            ))
             ->add('pricePerUnit');
     }
 

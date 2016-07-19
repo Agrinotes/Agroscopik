@@ -47,10 +47,9 @@ class FarmSpecialityMvt
      */
     private $amount;
 
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="unit", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unit")
      */
     private $unit;
 
