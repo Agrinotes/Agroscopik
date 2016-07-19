@@ -148,7 +148,7 @@ class FarmSpeciality
             $factor = $unit->getA();
 
             if($factor!=0){
-                $correctedAmount = $rawAmount/$factor;
+                $correctedAmount = $rawAmount*$factor;
             }else{
                 $correctedAmount = $rawAmount;
             }
