@@ -64,6 +64,12 @@ class Speciality
     private $farmSpecialities;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\UnitCategory")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $unitCategory;
+
+    /**
      * Get id
      *
      * @return int
@@ -225,6 +231,22 @@ class Speciality
     public function getFarmSpecialities()
     {
         return $this->farmSpecialities;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUnitCategory()
+    {
+        return $this->unitCategory;
+    }
+
+    /**
+     * @param mixed $unitCategory
+     */
+    public function setUnitCategory($unitCategory)
+    {
+        $this->unitCategory = $unitCategory;
     }
 }
 

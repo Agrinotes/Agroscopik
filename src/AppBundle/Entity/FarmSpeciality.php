@@ -136,12 +136,27 @@ class FarmSpeciality
     public function getStock()
     {
         $movements = $this->getMovements();
-
+        $cat = $this->getSpeciality()->getUnitCategory()->getSlug();
         $stock = 0;
 
-        // Should be improved according to units used by the user in its movements... For testing purpose.
         foreach ($movements as $movement) {
-            $stock += $movement->getAmount();
+            // Get original values
+            $unit = $movement->getUnit();
+            $rawAmount = $movement->getAmount();
+
+            // Get proper factor
+            $factor = $unit->getA();
+
+            if($factor!=0){
+                $correctedAmount = $rawAmount/$factor;
+            }else{
+                $correctedAmount = $rawAmount;
+            }
+            $stock += $correctedAmount;
+        }
+
+        if($cat == "volume"){
+            $stock /= 1000;
         }
 
         return $stock;

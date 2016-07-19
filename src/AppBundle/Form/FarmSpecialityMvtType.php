@@ -40,7 +40,22 @@ class FarmSpecialityMvtType extends AbstractType
                 'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
 
             ))
-            ->add('unit',EntityType::class,array(
+
+            ->add('pricePerUnit',NumberType::class, array(
+                'label'=>'Entrer le prix correspondant',
+                'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
+            ));
+
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+            $mvt = $event->getData();
+            $form = $event->getForm();
+
+            $cat = $mvt->getSpeciality()->getSpeciality()->getUnitCategory()->getSlug();
+
+
+
+            if($cat == "mass"){
+            $form->add('unit',EntityType::class, array(
                 'class' => 'AppBundle:Unit',
                 'choice_label' => 'name',
                 'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
@@ -54,16 +69,49 @@ class FarmSpecialityMvtType extends AbstractType
                         ->addSelect('cat')
                         ->where('cat.slug = :slug')
                         ->setParameter('slug','mass')
-                        ->orWhere('cat.slug = :slug2')
-                        ->setParameter('slug2','volume')
-
                         ;
                 },
-            ))
-            ->add('pricePerUnit',NumberType::class, array(
-                'label'=>'Entrer le prix correspondant',
-                'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
             ));
+            }elseif($cat == "volume"){
+                $form->add('unit',EntityType::class, array(
+                    'class' => 'AppBundle:Unit',
+                    'choice_label' => 'name',
+                    'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                    'label' => 'Choisir l\'unité',
+                    'required' => true,
+                    'multiple' => false,
+                    'expanded' => false,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('u')
+                            ->join('u.unitCategory', 'cat')
+                            ->addSelect('cat')
+                            ->where('cat.slug = :slug')
+                            ->setParameter('slug','volume')
+                            ;
+                    },
+                ));
+            }else{
+                $form->add('unit',EntityType::class, array(
+                    'class' => 'AppBundle:Unit',
+                    'choice_label' => 'name',
+                    'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                    'label' => 'Choisir l\'unité',
+                    'required' => true,
+                    'multiple' => false,
+                    'expanded' => false,
+                    'query_builder' => function (EntityRepository $er) {
+                        return $er->createQueryBuilder('u')
+                            ->join('u.unitCategory', 'cat')
+                            ->addSelect('cat')
+                            ->where('cat.slug = :slug')
+                            ->setParameter('slug','mass')
+                            ->orWhere('cat.slug = :slug2')
+                            ->setParameter('slug2','volume')
+                            ;
+                    },
+                ));
+            }
+        });
 
     }
 
