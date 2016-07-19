@@ -22,8 +22,8 @@
                 <td><a href="{{ path('substance_show', { 'id': substance.id }) }}">{{ substance.id }}</a></td>
                 <td>{{ substance.amount }}</td>
                 <td>{{ substance.fullUnit }}</td>
-                <td>{{ substance.unit1 }}</td>
-                <td>{{ substance.unit2 }}</td>
+                <td>{{ substance.unit1.name }}</td>
+                <td>{{ substance.unit2.name }}</td>
                 <td>{{ substance.name }}</td>
                 <td>{{ substance.cAS }}</td>
                 <td>

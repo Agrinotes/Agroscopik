@@ -17,6 +17,7 @@
         <div class="page-content">
             <div class="row">
                 <div class="col-lg-9">
+                    {% if app.session.flashBag.get('success') is not empty %}
                     {% for flash_message in app.session.flashBag.get('success') %}
                         <div class="alert dark alert-alt alert-success alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -25,6 +26,7 @@
                             {{ flash_message }}
                         </div>
                     {% endfor %}
+                    {% endif %}
                     <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ farmSpeciality.speciality.name }}</h3>
