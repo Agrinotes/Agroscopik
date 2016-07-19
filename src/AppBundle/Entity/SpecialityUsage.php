@@ -28,13 +28,6 @@ class SpecialityUsage
     private $speciality;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="usage_id", type="integer", nullable=true)
-     */
-    private $usageId;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -136,29 +129,6 @@ class SpecialityUsage
         return $this->id;
     }
 
-    /**
-     * Set usageId
-     *
-     * @param integer $usageId
-     *
-     * @return SpecialityUsage
-     */
-    public function setUsageId($usageId)
-    {
-        $this->usageId = $usageId;
-
-        return $this;
-    }
-
-    /**
-     * Get usageId
-     *
-     * @return int
-     */
-    public function getUsageId()
-    {
-        return $this->usageId;
-    }
 
     /**
      * Set name

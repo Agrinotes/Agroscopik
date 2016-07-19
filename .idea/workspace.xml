@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="" />
+    <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/data/9F9DB610" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/data/full.xlsx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/data/specialities.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/data/temp.xlsx" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/specialityusage/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/specialityusage/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialities.php" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialities.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages.php" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/SpecialityUsageType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/SpecialityUsageType.php" />
+    </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -21,30 +31,7 @@
     <favorites_list name="agroscopik" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="FarmSpecialityMvtType.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/FarmSpecialityMvtType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8064516">
-              <caret line="46" column="51" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
-              <folding>
-                <element signature="e#34#68#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="new_modal.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspecialitymvt/new_modal.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.2">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -59,9 +46,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/InterventionType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/list.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/CropController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
@@ -89,7 +73,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSubstances1a.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSubstances2.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSubstances.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/FarmSpecialityController.php" />
@@ -110,6 +93,10 @@
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadFarmSpecialityMvtCategories.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/FarmSpecialityMvtType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmspecialitymvt/new_modal.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/specialityusage/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/SpecialityUsageType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages.php" />
       </list>
     </option>
   </component>
@@ -153,6 +140,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -306,6 +294,76 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Form" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Entity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DataFixtures" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ORM" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -354,7 +412,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="farmspecialitymvt" />
+              <option name="myItemId" value="specialityusage" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -378,7 +436,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -468,7 +525,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.235" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.235" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.07441253" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -637,7 +694,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.032258064">
           <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -653,10 +709,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.933333">
           <caret line="38" column="51" selection-start-line="38" selection-start-column="51" selection-end-line="38" selection-end-column="51" />
-          <folding>
-            <element signature="e#1065#1091#1#PHP" expanded="false" />
-            <element signature="e#5629#5651#1#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -671,9 +723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -681,9 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.7">
           <caret line="21" column="21" selection-start-line="0" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
-          <folding>
-            <element signature="e#320#331#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -691,12 +737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#830#850#0#Twig" expanded="false" />
-            <element signature="e#1830#1850#0#Twig" expanded="false" />
-            <element signature="e#2001#2021#0#Twig" expanded="false" />
-            <element signature="e#2267#2286#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -704,13 +744,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.533334">
           <caret line="83" column="137" selection-start-line="0" selection-start-column="0" selection-end-line="172" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-            <element signature="e#455#471#0#Twig" expanded="false" />
-            <element signature="e#4348#4368#0#Twig" expanded="false" />
-            <element signature="e#8293#8309#0#Twig" expanded="false" />
-            <element signature="e#8575#8590#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -718,12 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.0">
           <caret line="35" column="82" selection-start-line="35" selection-start-column="82" selection-end-line="35" selection-end-column="82" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-            <element signature="e#864#878#0#Twig" expanded="false" />
-            <element signature="e#1383#1398#0#Twig" expanded="false" />
-            <element signature="e#1515#1530#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -731,25 +758,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding>
-            <marker date="1468887515864" expanded="true" signature="0:305" placeholder="app_substance:" />
-            <marker date="1468887515864" expanded="true" signature="306:426" placeholder="app_farm_speciality_mvt:" />
-            <marker date="1468887515864" expanded="true" signature="427:564" placeholder="app_farm_speciality_mvt_category:" />
-            <marker date="1468887515864" expanded="true" signature="565:678" placeholder="app_farm_speciality:" />
-            <marker date="1468887515864" expanded="true" signature="679:794" placeholder="app_speciality_usage:" />
-            <marker date="1468887515864" expanded="true" signature="795:899" placeholder="app_speciality:" />
-            <marker date="1468887515864" expanded="true" signature="900:1009" placeholder="app_tractor_model:" />
-            <marker date="1468887515864" expanded="true" signature="1010:1112" placeholder="app_implement:" />
-            <marker date="1468887515864" expanded="true" signature="1113:1211" placeholder="app_tractor:" />
-            <marker date="1468887515864" expanded="true" signature="1212:1306" placeholder="app_event:" />
-            <marker date="1468887515864" expanded="true" signature="1307:1403" placeholder="app_action:" />
-            <marker date="1468887515864" expanded="true" signature="1404:1512" placeholder="app_intervention:" />
-            <marker date="1468887515864" expanded="true" signature="1513:1638" placeholder="app_intervention_category:" />
-            <marker date="1468887515864" expanded="true" signature="1639:1742" placeholder="app_crop_cycle:" />
-            <marker date="1468887515864" expanded="true" signature="1743:1835" placeholder="app_farm:" />
-            <marker date="1468887515864" expanded="true" signature="1836:1928" placeholder="app_plot:" />
-            <marker date="1468887515864" expanded="true" signature="1929:2003" placeholder="fos_user:" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -773,9 +781,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.2">
           <caret line="16" column="34" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#40#85#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -783,9 +788,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.6">
           <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-          <folding>
-            <element signature="e#40#85#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -793,7 +795,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38709676">
           <caret line="17" column="7" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -832,7 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.48387095">
           <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="58" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -840,23 +840,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.83870965">
           <caret line="141" column="39" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44546852">
-          <caret line="5005" column="0" selection-start-line="5005" selection-start-column="0" selection-end-line="5005" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.1290324">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,7 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.67741936">
           <caret line="21" column="50" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,7 +862,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3548387">
           <caret line="10" column="113" selection-start-line="10" selection-start-column="113" selection-end-line="10" selection-end-column="113" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -904,11 +885,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.2">
           <caret line="31" column="150" selection-start-line="31" selection-start-column="150" selection-end-line="31" selection-end-column="150" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-            <element signature="e#709#727#0#Twig" expanded="false" />
-            <element signature="e#1571#1590#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -924,9 +900,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.5">
           <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="189" />
-          <folding>
-            <element signature="e#40#66#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -934,16 +907,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.983051">
           <caret line="79" column="130" selection-start-line="79" selection-start-column="130" selection-end-line="79" selection-end-column="130" />
-          <folding>
-            <element signature="e#2178#2204#1#PHP" expanded="false" />
-            <element signature="e#2798#2819#0#PHP" expanded="false" />
-            <element signature="e#2899#2938#0#PHP" expanded="false" />
-            <element signature="e#3458#3492#0#PHP" expanded="false" />
-            <element signature="e#4369#4393#0#PHP" expanded="false" />
-            <element signature="e#4480#4514#0#PHP" expanded="false" />
-            <element signature="e#5297#5322#1#PHP" expanded="false" />
-            <element signature="e#5722#5748#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -951,14 +914,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-5.4666667">
           <caret line="78" column="68" selection-start-line="78" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-            <element signature="e#602#619#0#Twig" expanded="false" />
-            <element signature="e#683#692#0#Twig" expanded="false" />
-            <element signature="e#5064#5074#0#Twig" expanded="false" />
-            <element signature="e#6992#7017#0#Twig" expanded="false" />
-            <element signature="e#8385#8399#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -966,11 +921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32258064">
           <caret line="94" column="76" selection-start-line="94" selection-start-column="76" selection-end-line="94" selection-end-column="76" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="false" />
-            <element signature="e#404#424#0#Twig" expanded="false" />
-            <element signature="e#1501#1516#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -978,13 +928,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.37327188">
           <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspecialitymvt/new_modal.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.2">
+        <state vertical-scroll-proportion="0.516129">
           <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
@@ -992,11 +941,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/FarmSpecialityMvtType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8064516">
+        <state vertical-scroll-proportion="-19.033333">
           <caret line="46" column="51" selection-start-line="46" selection-start-column="51" selection-end-line="46" selection-end-column="51" />
           <folding>
-            <element signature="e#34#68#0#PHP" expanded="true" />
+            <element signature="e#34#68#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/specialityusage/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.0">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+          <folding>
+            <element signature="e#12#26#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/SpecialityUsageType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.5">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19354838">
+          <caret line="129" column="5" selection-start-line="129" selection-start-column="5" selection-end-line="129" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40032154">
+          <caret line="4967" column="261" selection-start-line="4967" selection-start-column="261" selection-end-line="4967" selection-end-column="261" />
+          <folding />
         </state>
       </provider>
     </entry>

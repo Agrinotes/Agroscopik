@@ -15,7 +15,6 @@ class SpecialityUsageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('usageId')
             ->add('name')
             ->add('minCropStage')
             ->add('maxCropStage')
