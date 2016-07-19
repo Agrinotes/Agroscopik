@@ -29,7 +29,7 @@
 
                              <div class="category">
                                  <h4>{{ farmSpeciality.speciality.name }}</h4>
-                                 <span class="grey-700 font-size-30">{{ farmSpeciality.stock | number_format(2,',',' ') }} {{ farmSpeciality.unit }}</span>
+                                 <span class="grey-700 font-size-30">{{ farmSpeciality.stock | number_format(2,',',' ') }} {{ farmSpeciality.unit.name }}</span>
 
                                  <a type="button" style="position: absolute;bottom: -5px;right: 0px;" class="btn-raised btn btn-info btn-floating waves-effect waves-light"
                                     href="{{ path('farmspeciality_show',{ 'id': farmSpeciality.id }) }}">

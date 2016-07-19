@@ -13,6 +13,14 @@ use Doctrine\ORM\Mapping as ORM;
 class FarmSpecialityMvt
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->datetime = new \DateTime();
+
+    }
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")

@@ -60,12 +60,15 @@ class FarmSpecialityMvtController extends Controller
     /**
      * Creates a new FarmSpecialityMvt entity.
      *
-     * @Route("/farmspecialitymvt/new", name="farmspecialitymvt_new")
+     * @Route("/farmspeciality/{id}/mvt/new", name="farmspecialitymvt_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
         $farmSpecialityMvt = new FarmSpecialityMvt();
+        $em = $this->getDoctrine()->getManager();
+        $speciality = $em->getRepository('AppBundle:FarmSpeciality')->find($id);
+        $farmSpecialityMvt->setSpeciality($speciality);
         $form = $this->createForm('AppBundle\Form\FarmSpecialityMvtType', $farmSpecialityMvt);
         $form->handleRequest($request);
 

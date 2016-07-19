@@ -8,7 +8,7 @@
                         {% if farmSpecialityMvt.datetime %} {{ farmSpecialityMvt.datetime|date('d/m/Y') }}{% endif %}</a>
                     </td>
                     <td>
-                        {{ farmSpecialityMvt.amount |number_format(2,',',' ') }} {{ farmSpecialityMvt.unit }}
+                        {{ farmSpecialityMvt.amount |number_format(2,',',' ') }} {{ farmSpecialityMvt.unit.symbol }}
 
                     </td>
                     <td>

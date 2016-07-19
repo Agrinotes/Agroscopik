@@ -2,11 +2,13 @@
 
 namespace AppBundle\Form;
 
+use Doctrine\DBAL\Types\FloatType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,18 +21,6 @@ class FarmSpecialityMvtType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('datetime', DateTimeType::class,array(
-                'attr'=>array('class'=>'date')
-            ))
-            ->add('speciality', EntityType::class, array(
-                'class' => 'AppBundle:FarmSpeciality',
-                'choice_label' => 'speciality.name',
-                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
-                'label' => 'Choisir le produit sur lequel se fait la transaction',
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-            ))
             ->add('category', EntityType::class, array(
                 'class' => 'AppBundle:FarmSpecialityMvtCategory',
                 'choice_label' => 'name',
@@ -40,7 +30,7 @@ class FarmSpecialityMvtType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ))
-            ->add('amount',IntegerType::class,array(
+            ->add('amount',NumberType::class,array(
                 'label'=>'Entrer la quantité correspondante',
             ))
             ->add('unit',EntityType::class,array(
