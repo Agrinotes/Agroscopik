@@ -11,10 +11,9 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="col-xlg-12 col-md-12">
-                        <div class="panel panel-bordered">
+                        <div class="panel panel-bordered panel-primary">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><a
-                                            href="{{ path('cropcycle_cropcampaign_index', { 'id': crop.id,'year':year }) }}">{{ crop.name }}</a>
+                                <h3 class="panel-title">{{ crop.name }}
                                 </h3>
 
                                 <div class="panel-actions"></div>
@@ -25,12 +24,6 @@
                                     {% if is_granted('VIEW', cycle) or is_granted('ROLE_ADMIN') %}
                                         {% if (startCampaignDate < cycle.startDatetime and endCampaignDate > cycle.startDatetime ) or (startCampaignDate < cycle.endDatetime and endCampaignDate > cycle.endDatetime) %}
                                             <tr>
-                                                <td class="cell-60 responsive-hide">
-                                                    <a class="avatar padding-top-5" href="javascript:void(0)">
-                                                        <img class="img-responsive"
-                                                             src="{{ asset('front/global/portraits/1.jpg') }}" alt="...">
-                                                    </a>
-                                                </td>
                                                 <td>
                                                     <div class="content">
                                                         <div class="title">
@@ -41,11 +34,6 @@
                                                             {{ cycle.area |number_format(2, ',', ' ') }}ha
                                                             <i class="icon md-calendar margin-left-10" aria-hidden="true"> </i>
                                                             {{ cycle.intervalLabel }}
-                                                            {% if cycle.durationLabel != '' %}
-                                                                <i class="icon md-time-interval margin-left-10"
-                                                                   aria-hidden="true"></i>
-                                                                {{ cycle.durationLabel }}
-                                                            {% endif %}
                                                         </div>
                                                     </div>
                                                 </td>

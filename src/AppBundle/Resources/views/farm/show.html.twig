@@ -1,280 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block plugin_stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/mapbox.js/mapbox.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/mmenu/assets/examples/css/apps/location.css') }}">
-{% endblock %}
+
 
 {% block body_class %}
-    site-navbar-small app-location page-aside-scroll
+    site-navbar-small
 {% endblock %}
 
 {% block page %}
-<div class="page ">
-    <!-- Plot Sidebar -->
-    <div class="page-aside">
-        <div class="page-aside-switch">
-            <i class="icon md-chevron-left" aria-hidden="true"></i>
-            <i class="icon md-chevron-right" aria-hidden="true"></i>
-        </div>
-        <div class="page-aside-inner">
-            <!-- Search Panel -->
-            <div class="search-friends panel">
-                <div class="panel-heading">
-                    <div class="panel-actions">
-                        <div class="input-search input-group-sm">
-                            <button type="submit" class="input-search-btn">
-                                <i class="icon md-search" aria-hidden="true"></i>
-                            </button>
-                            <input type="text" class="form-control" name="" placeholder="Chercher...">
-                        </div>
-                    </div>
-                    <h3 class="panel-title">Parcelles</h3>
+    <div class="page animsition">
+
+        <div class="page-content">
+
+            {% for flash_message in app.session.flashBag.get('success') %}
+                <div class="hidden" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    {{ flash_message }}
                 </div>
-            </div>
-            <!-- End Search Panel -->
-            <!-- Plot List -->
-            <div class="app-location-list" data-plugin="pageAsideScroll">
-                <div data-role="container">
-                    <div data-role="content">
-                        <div class="list-group row">
-                            <div class="col-lg-12 padding-right-0">
-                                        <a href="{{ path('plot_new') }}" class="btn btn-info btn-block">
-                                            Ajouter une parcelle
-                                        </a>
-                            </div>
+            {% endfor %}
+            <div class="row">
+                <div class="col-lg-offset-3 col-lg-6">
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Bienvenue sur Agroscopik !</h3>
                         </div>
-                        <div class="list-group row">
-                        {% if farm.plots is not empty %}
-                        {% for plot in farm.plots %}
-                            <div class="list-group-item col-xlg-6 col-lg-12 friend-info" data-friend-id="{{ loop.index0 }}">
-                                <div class="widget widget-shadow">
-                                    <div class="widget-content text-center bg-white padding-20">
-                                        <div class="friend-name" style="font-weight:800">{{ plot.name | capitalize }}
-                                        </div>
-                                        <div class="friend-title blue-grey-400">
-                                            {{ plot.area|number_format(2, ',', ' ') }} ha
-                                        </div>
-                                        <a class="btn btn-block btn-sm margin-top-20 btn-default" href="{{ path('plot_show',{'id':plot.id}) }}">Afficher</a>
-                                    </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p>Ce logiciel vous permet d'enregistrer vos parcelles et les interventions
+                                        réalisées
+                                        sur
+                                        ces parcelles. Avant de commencer :
+                                    <ul>
+                                        <li>Vous pouvez commencer par découvrir les différents menus dans la partie
+                                            gauche
+                                            de
+                                            cette fenêtre.
+                                        </li>
+                                        <li>Ensuite, il est bon de renseigner votre parc de matériel dans le menu <a
+                                                    href="{{ path('tractor_new') }}">Matériel</a> et faire l'inventaire
+                                            dans
+                                            votre <a href="{{ path('farmspeciality_index') }}">Local phytosanitaire
+                                                virtuel</a>.
+                                        </li>
+                                        <li>Puis, vous pouvez commencer par ajouter une première parcelle depuis le menu
+                                            <a
+                                                    href="{{ path('plot_index') }}">Parcelle</a> ou <a
+                                                    href="{{ path('farm_show_current') }}">Carte</a>.
+                                        </li>
+                                    </p>
                                 </div>
                             </div>
-                        {% endfor %}
-                        {% else %}
-                                                    {% if farm.plots is empty %}
-                                                    <div class="margin-15">
-                            <h3>Bienvenue sur Agroscopik !</h3>
-                            <p>Ce logiciel vous permet d'enregistrer vos parcelles et les interventions réalisées sur ces parcelles. Avant de commencer : <ul><li>Vous pouvez commencer par découvrir les différents menus dans la partie gauche de cette fenêtre.</li><li>Ensuite, il est bon de renseigner votre parc de matériel dans le menu <a href="{{ path('tractor_new') }}">Matériel</a>.</li> <li>Puis, vous pouvez commencer par ajouter une première parcelle depuis le menu <a href="{{ path('plot_index') }}">Parcelle</a> ou <a href="{{ path('farm_show_current') }}">Carte</a>.</li> </p>
-                            </div>
-                            {% endif %}
-                            {% endif
-                             %}
                         </div>
+
                     </div>
                 </div>
             </div>
-            <!-- End Plot List -->
         </div>
-    </div>
-    <!-- End Plot Sidebar -->
 
-    <div class="page-main">
-
-                    {% for flash_message in app.session.flashBag.get('success') %}
-                        <div class="alert dark alert-alt alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            {{ flash_message }}
-                        </div>
-                    {% endfor %}
-        <div id="map">
-
-        </div>
     </div>
 
 {% endblock %}
 
-{% block core_plugin %}
-    {{ parent() }}
-    <script src="{{ asset('front/global/vendor/mapbox.js/mapbox.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/mapbox.js/plugins/leaflet.markercluster.js') }}"></script>
-{% endblock %}
-
-{% block template_config %}
-    {{ parent() }}
-    <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
-
-    {% if farm.plots is not empty %}
-
-    <script>
-    window.YouSite = Site.extend({
-   handleMap: function() {
-
-            var self = this;
-            /* set default map height */
-            var navbarH = $(".site-navbar").outerHeight();
-            var footerH = $(".site-footer").outerHeight();
-            var mapH = $(window).height() - navbarH - footerH;
-
-            $(".page-main").outerHeight(mapH);
-
-            var $allMarkers = $(".app-location .friend-info");
-            $allMarkers.each(function() {
-                self.allMarkers.push($(this));
-            });
-
-            L.mapbox.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
-
-            /* format map */
-            var map = L.mapbox.map('map', 'mapbox.streets');
-
-                            // Add GeoRep
-                var georep = L.tileLayer.wms('https://carto10.gouv.nc/arcgis/services/fond_imagerie/MapServer/WMSServer', {
-                    format: 'img/png',
-                    transparent: true,
-                    layers: 16,
-                    maxZoom: 26
-                });
-
-                // Display GeoRep according to zoom level
-                map.on('zoomend', function () {
-                    if (map.getZoom() > 14 && map.hasLayer(georep) == false) {
-                        map.addLayer(georep);
-                    }
-                    if (map.getZoom() < 14 && map.hasLayer(georep)) {
-                        map.removeLayer(georep);
-                    }
-                });
-
-            /* get all friend's ID input [allFriendId] array */
-            $allMarkers.each(function() {
-                self.allFriendId.push($(this).attr("data-friend-id"));
-            });
-
-
-            function addPlots() {
-                // Create FeatureGroup
-                var featureGroup = L.featureGroup();
-
-                //Drawing polygons
-                {% for plot in app.user.farm.plots %}
-                {% if plot.latLngs is not empty %}
-                // Add current polygon and add an attribute alt
-                var layer = L.geoJson({{ plot.latLngs | raw }}, {
-                       onEachFeature: function (feature, layer) {
-                        self.coords.push(layer.getBounds());
-                    }
-                });
-
-                //Set style
-                layer.setStyle({color: "white", Opacity:0.9, fillOpacity: 0.5, weight: 1.5});
-
-                //Add a popup
-                layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | capitalize }}"+"</h3><p class=\"margin-top-10\"><a type=\"button\" href=\"{{ path('plot_show',{'id':plot.id}) }}\" style=\"color:#757575;\" class=\"btn btn-default btn-block btn-sm waves-effect waves-light\">Afficher</a></p></div>", {closeButton: false});
-
-                // Add current polygon to featureGroup
-                featureGroup.addLayer(layer);
-
-                // Add it inside allMarkers array
-                self.allMarkers.push(layer);
-
-                console.log(self.allMarkers);
-
-                {% endif %}
-                {% endfor %}
-                featureGroup.addTo(map);
-                        //Zoom to farm bounds
-                        var bounds = featureGroup.getBounds();
-                        map.fitBounds(bounds);                }
-
-            /* Add markers to map */
-            addPlots();
-
-            this.handleClickAction(map);
-
-        },
-   handleFind: function() {
-            var self = this;
-
-            $(".app-location .friend-info").each(function() {
-                self.inListFriends.push($(this));
-             });
-
-            $(".search-friends input").on("focus", function() {
-
-            console.log('1');
-                $(this).on("keyup", function() {
-                    var inputName = $(".search-friends input").val();
-                                console.log(self.inListFriends);
-
-
-                    for (var i = 0; i < self.inListFriends.length; i++) {
-
-                        /* Gets the text for each of the input boxes */
-                        var friendName = self.inListFriends[i].find(".friend-name").html();
-
-                        if (inputName.length <= friendName.length) {
-
-                                if (friendName.toLowerCase().search(inputName.toLowerCase()) > -1) {
-                                    self.inListFriends[i].show();
-                                }else {
-                                    self.inListFriends[i].hide();
-                                }
-
-
-
-                        } else {
-                            self.inListFriends[i].hide();
-                        }
-                    }
-                    if (inputName === "")
-                        for (var i = 0; i < self.inListFriends.length; i++) {
-                            self.inListFriends[i].show();
-                        }
-                });
-
-            });
-            $(".search-friends input").on("focusout", function() {
-                $(this).off("keyup");
-            })
-        },
-   handleResize: function() {
-            $(window).on("resize", function() {
-                var navbarH = $(".site-navbar").outerHeight();
-                var footerH = $(".site-footer").outerHeight();
-                var mapH = $(window).height() - navbarH - footerH;
-
-                $(".page-main").outerHeight(mapH);
-            });
-        },
-   handleClickAction: function(map) {
-            var self = this;
-
-            $(".app-location .page-aside .list-group").on("click", ".widget-content", function() {
-
-                var thisId = $(this).parents(".friend-info").attr("data-friend-id");
-
-                map.fitBounds(self.coords[thisId]);
-            });
-        },
-        run: function() {
-            this.allFriends = [];
-            this.allFriendId = [];
-            this.allMarkers = [];
-            this.inListFriends = [];
-            this.coords = [];
-
-            this.handleMap();
-            this.handleResize();
-            this.handleFind();
-        }
-    });
-
-$(document).ready(function(){
-  YouSite.run();
-});
-</script>
-{% endif %}
-{% endblock %}

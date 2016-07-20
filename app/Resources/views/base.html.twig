@@ -69,7 +69,7 @@
 
 </head>
 
-<body class="{% block body_class %}site-navbar-small site-menubar-unfold site-menubar-keep{% endblock %}">
+<body class="{% block body_class %}site-navbar-small{% endblock %}">
 
 {% block site_navbar %}
 <nav class="site-navbar navbar navbar-inverse navbar-fixed-top navbar-mega bg-red-600" role="navigation">
@@ -150,7 +150,14 @@
 {% block site_menubar %}
 <div class="site-menubar site-menubar-dark">
     <ul class="site-menu">
+        <li class="site-menu-item">
+            <a class="animsition-link" href="{{ path('farm_show_current') }}">
+                <i class="site-menu-icon md-view-dashboard
 
+" aria-hidden="true"></i>
+                <span class="site-menu-title">Tableau de bord</span>
+            </a>
+        </li>
         <li class="site-menu-item">
             <a class="animsition-link" href="{{ path('plot_index') }}">
                 <i class="site-menu-icon md-layers" aria-hidden="true"></i>
@@ -165,7 +172,7 @@
             </a>
         </li>
         <li class="site-menu-item">
-            <a class="animsition-link" href="{{ path('farm_show_current') }}">
+            <a class="animsition-link" href="{{ path('farm_map') }}">
                 <i class="site-menu-icon md-pin" aria-hidden="true"></i>
                 <span class="site-menu-title">Carte</span>
             </a>

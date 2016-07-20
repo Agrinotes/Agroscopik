@@ -157,7 +157,7 @@ class ActionController extends Controller
             return $this->redirectToRoute('action_new', array('id' => $action->getCropCycle()->getId()));
         }
 
-        return $this->render('@App/action/new.html.twig', array(
+        return $this->render('@App/action/new2.html.twig', array(
             'cropCycle' => $cropCycle,
             'action' => $action,
             'form' => $form->createView(),

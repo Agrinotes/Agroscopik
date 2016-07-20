@@ -49,6 +49,29 @@ class FarmController extends Controller
         ));
     }
 
+    /**
+     * Finds and displays current user Farm entity.
+     *
+     * @Route("/map", name="farm_map")
+     * @Security("has_role('ROLE_FARMER')")
+     * @Method("GET")
+     *
+     */
+    public function mapAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Farm');
+        $id = $this->getUser()->getFarm()->getId();
+        $farm = $repository->find($id);
+
+        $deleteForm = $this->createDeleteForm($farm);
+
+        return $this->render('AppBundle:farm:map.html.twig', array(
+            'farm' => $farm,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
 
     /**
      * List all Farm entities

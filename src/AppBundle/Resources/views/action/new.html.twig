@@ -44,7 +44,7 @@
                                 <div class="col-lg-12">
                                     <h4 class="example-title">
 
-                                    {{ form_label(form.intervention) }}
+                                        {{ form_label(form.intervention) }}
                                     </h4>
                                     {{ form_widget(form.intervention) }}
                                     <small><a href="{{ path('intervention_new') }}">Mon intervention n'est pas dans la liste déroulante</a></small>
@@ -72,9 +72,9 @@
 " id="add_period"><i class="icon md-plus-circle-o" aria-hidden="true"></i></a>
                                     </h4>
                                     {% if app.user.farm.tractors is not empty %}
-                                    {{ form_errors(form.tractors) }}
-                                    {{ form_widget(form.tractors) }}
-                                        {% else %}
+                                        {{ form_errors(form.tractors) }}
+                                        {{ form_widget(form.tractors) }}
+                                    {% else %}
                                         <p>
                                             Vous n'avez pas enregistrer de tracteur sur l'exploitation
                                         </p>
@@ -87,8 +87,8 @@
 " id="add_period"><i class="icon md-plus-circle-o" aria-hidden="true"></i></a>
                                     </h4>
                                     {% if app.user.farm.implements is not empty %}
-                                    {{ form_errors(form.implements) }}
-                                    {{ form_widget(form.implements) }}
+                                        {{ form_errors(form.implements) }}
+                                        {{ form_widget(form.implements) }}
                                     {% else %}
                                         <p>
                                             Vous n'avez pas enregistrer d'outils sur l'exploitation
@@ -214,6 +214,5 @@
         });
     </script>
 {% endblock %}
-
 
 
