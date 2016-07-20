@@ -42,6 +42,12 @@ class FarmSpecialityMvt
     private $speciality;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Action", inversedBy="farmSpecialityMvts",cascade={"persist"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $action;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="datetime", type="datetime")
@@ -129,6 +135,31 @@ class FarmSpecialityMvt
     public function getSpeciality()
     {
         return $this->speciality;
+    }
+
+    /**
+     * Set action
+     *
+     * @param \AppBundle\Entity\Action $action
+     * @return FarmSpecialityMvt
+     */
+    public function setAction(Action $action)
+    {
+        $this->action = $action;
+
+        // Or maybe here
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return \AppBundle\Entity\FarmSpecialityMvt
+     */
+    public function getAction()
+    {
+        return $this->action;
     }
 
     /**

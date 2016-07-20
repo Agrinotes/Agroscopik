@@ -76,6 +76,10 @@ class Action
      */
     private $endDatetime;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FarmSpecialityMvt", mappedBy="action", cascade={"persist","remove"})
+     */
+    private $farmSpecialityMvts;
 
     /**
      * Get id
@@ -284,6 +288,43 @@ class Action
         }
 
         return array('completed_actions' => $completed_actions, 'count_actions' => $count_actions);
+    }
+
+    /**
+     * Add pesticide movement
+     *
+     * @param \AppBundle\Entity\FarmSpecialityMvt $movement
+     * @return Action
+     */
+    public function addFarmSpecialityMvt(FarmSpecialityMvt $movement)
+    {
+        $this->farmSpecialityMvts[] = $movement;
+
+        $movement->setAction($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove pesticide movement
+     *
+     * @param \AppBundle\Entity\FarmSpecialityMvt $movement
+     */
+    public function removeFarmSpecialityMvt(FarmSpecialityMvt $movement)
+    {
+        $this->farmSpecialityMvts->removeElement($movement);
+
+        $movement->setAction("");
+    }
+
+    /**
+     * Get movements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFarmSpecialityMvts()
+    {
+        return $this->farmSpecialityMvts;
     }
 
     /**

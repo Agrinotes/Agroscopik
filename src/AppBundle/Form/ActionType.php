@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Form\ActionFarmSpecialityMvtType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -45,6 +46,13 @@ class ActionType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'label'=>'Définir une ou plusieurs périodes d\'intervention',
+            ))
+            ->add('farmSpecialityMvts', CollectionType::class, array(
+                'entry_type' => ActionFarmSpecialityMvtType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label'=>'Définir les produits utilisés',
             ))
         ;
 

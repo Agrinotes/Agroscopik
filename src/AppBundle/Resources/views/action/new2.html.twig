@@ -58,6 +58,26 @@
                 </div>
                 <div class="panel">
                     <div class="panel-heading">
+                        <h3 class="panel-title">
+                            {{ form_label(form.farmSpecialityMvts) }}
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                {{ form_errors(form.farmSpecialityMvts) }}
+                                {{ form_widget(form.farmSpecialityMvts) }}
+                                <a class="pull-right" href="#" id="add_mvt"><i class="icon md-plus-circle-o"
+                                                                               aria-hidden="true"></i> Ajouter un autre
+                                    produit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
                         <h3 class="panel-title">Définir les périodes d'intervention
                         </h3>
 
@@ -72,11 +92,11 @@
                             <div class="col-lg-12">
 
 
-
                                 {% form_theme form 'AppBundle:form:datetime.html.twig' %}
                                 {{ form_widget(form.periods) }}
                                 <a class="pull-right" href="#" id="add_period"><i class="icon md-plus-circle-o"
-                                                                                  aria-hidden="true"></i> Ajouter une autre
+                                                                                  aria-hidden="true"></i> Ajouter une
+                                    autre
                                     période</a>
 
                             </div>
@@ -91,7 +111,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
-                                    {{ form_label(form.tractors) }}
+                                {{ form_label(form.tractors) }}
 
 
                                 {% if app.user.farm.tractors is not empty %}
@@ -108,7 +128,7 @@
                                 {% endif %}
                             </div>
                             <div class="col-lg-12 margin-top-10">
-                                    {{ form_label(form.implements) }}
+                                {{ form_label(form.implements) }}
 
                                 {% if app.user.farm.implements is not empty %}
                                     {{ form_errors(form.implements) }}
@@ -245,6 +265,57 @@
                 }
             });
         </script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var $container2 = $('div#action_farmSpecialityMvts');
+                var index2 = $container2.find(':input').length;
+                $('#add_mvt').click(function (e) {
+                    addMvt($container2);
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+
+                if (index2 == 0) {
+                    addMvt($container2);
+
+                } else {
+                    $container2.children('div').each(function () {
+                        addDeleteLink2($(this));
+                    });
+                }
+
+                function addMvt($container2) {
+                    var template2 = $container2.attr('data-prototype')
+                            .replace(/__name__label__/g, '')
+                            .replace(/__name__/g, index2)
+                            .replace(/form-group/g, "form-group col-lg-6")
+
+
+                            ;
+
+                    var $prototype2 = $(template2);
+                    addDeleteLink2($prototype2);
+                    $container2.append($prototype2);
+
+                    index2++;
+                }
+
+                function addDeleteLink2($prototype2) {
+                    var $deleteLink2 = $('<a href="#" style="margin: none; position: relative;top: -4px;right: 2px;"><i class="btn btn-pure btn-danger icon waves-effect waves-circle waves-classicr md-close-circle-o" aria-hidden="true"></i></a>');
+                    $prototype2.append($deleteLink2);
+                    $deleteLink2.click(function (e) {
+                        $prototype2.remove();
+
+                        index2--;
+
+                        e.preventDefault();
+                        return false;
+                    });
+                }
+            });
+        </script>
+
     {% endblock %}
 
 
