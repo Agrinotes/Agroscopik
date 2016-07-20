@@ -179,6 +179,10 @@ class FarmSpeciality
         return $value;
     }
 
+    /**
+     * Get preferred Unit
+     *
+     */
     public function getUnit(){
         $movements = $this->getMovements();
         $unit="";
@@ -188,23 +192,5 @@ class FarmSpeciality
         return $unit;
     }
 
-    /**
-     * Get value
-     *
-     */
-    public function getMaxUnitPrice()
-    {
-        $movements = $this->getMovements();
-
-        $price = 0;
-
-        foreach($movements as $movement){
-            if($movement->getPricePerUnit()>$price){
-                $price = $movement->getPricePerUnit();
-            }
-        }
-
-        return $price;
-    }
 }
 

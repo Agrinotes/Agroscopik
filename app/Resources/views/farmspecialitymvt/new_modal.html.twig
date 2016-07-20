@@ -26,14 +26,17 @@
             </div>
         </div>
 
-        <div class="form-group">
-            {{ form_label(modal_form.pricePerUnit) }}
-            {{ form_errors(modal_form.pricePerUnit) }}
+        <div class="form-group" id="togglePrice">
+            {{ form_label(modal_form.price) }}
+            {{ form_errors(modal_form.price) }}
             <div class="input-group">
 
-                {{ form_widget(modal_form.pricePerUnit) }}
+                {{ form_widget(modal_form.price) }}
                 <span class="input-group-addon">CFP</span>
+
             </div>
+            {{ farmSpeciality.unitPrice}} CFP/{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif %}
+
         </div>
 
         {{ form_widget(modal_form) }}
@@ -48,4 +51,5 @@
         {{ form_end(modal_form) }}
 
     </div>
+
 </div>

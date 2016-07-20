@@ -38,6 +38,13 @@ class FarmSpecialityMvtCategory
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\FarmSpecialityMvt", mappedBy="category", cascade={"persist","remove"})
      */
     private $movements;
@@ -109,6 +116,22 @@ class FarmSpecialityMvtCategory
     public function getMovements()
     {
         return $this->movements;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param mixed $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }
 

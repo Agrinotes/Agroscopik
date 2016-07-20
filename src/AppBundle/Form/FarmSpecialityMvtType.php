@@ -41,9 +41,10 @@ class FarmSpecialityMvtType extends AbstractType
 
             ))
 
-            ->add('pricePerUnit',NumberType::class, array(
-                'label'=>'Entrer le prix correspondant',
+            ->add('price',NumberType::class, array(
+                'label'=>'Entrer le prix d\'achat',
                 'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
+                'required'=>false,
             ));
 
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

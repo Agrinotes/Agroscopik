@@ -89,7 +89,7 @@ class FarmSpecialityController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
-            $request->getSession()->getFlashBag()->add('success', array('title' => 'Vous avez ajouté le produit '.$farmSpeciality->getSpeciality()->getName().' avec succès !', 'message' => 'Ajouter un autre produit') );
+            $request->getSession()->getFlashBag()->add('success', 'Vous avez ajouté le produit '.$farmSpeciality->getSpeciality()->getName().' avec succès !');
 
 
             return $this->redirectToRoute('farmspeciality_show', array('id' => $farmSpeciality->getId()));

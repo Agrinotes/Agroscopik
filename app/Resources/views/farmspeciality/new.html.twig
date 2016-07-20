@@ -14,3 +14,65 @@
         </li>
     </ul>
 {% endblock %}
+
+{% extends 'base.html.twig' %}
+
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block page %}
+
+    <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('farmspeciality_index') }}">Local phytosanitaire</a></li>
+                <li class="active">Ajouter un produit</li>
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    {% for flash_message in app.session.flashBag.get('success') %}
+                        <div class="alert dark alert-alt alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                    <div class="panel panel-bordered">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Ajouter un produit dans le local phytosanitaire</h3>
+                        </div>
+                        <div class="panel-body">
+                            {{ form_start(form) }}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4 class="example-title">
+
+                                        {{ form_label(form.speciality) }}
+                                    </h4>
+                                    {{ form_widget(form.speciality) }}
+                                    {{ form_errors(form.speciality) }}
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="panel-footer">
+                            <a class="btn btn-default"
+                               href="{{ path('farmspeciality_index') }}">Annuler</a>
+                            <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+

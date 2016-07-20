@@ -64,9 +64,9 @@ class FarmSpecialityMvt
     /**
      * @var float
      *
-     * @ORM\Column(name="pricePerUnit", type="float", nullable=true)
+     * @ORM\Column(name="price", type="float", nullable=true)
      */
-    private $pricePerUnit;
+    private $price;
 
 
     /**
@@ -206,36 +206,27 @@ class FarmSpecialityMvt
     /**
      * Set pricePerUnit
      *
-     * @param float $pricePerUnit
+     * @param float $price
      *
      * @return FarmSpecialityMvt
      */
-    public function setPricePerUnit($pricePerUnit)
+    public function setPrice($price)
     {
-        $this->pricePerUnit = $pricePerUnit;
+        $this->price = $price;
 
         return $this;
     }
 
     /**
-     * Get pricePerUnit
+     * Get price
      *
      * @return float
      */
-    public function getPricePerUnit()
+    public function getPrice()
     {
-        return $this->pricePerUnit;
+        return $this->price;
     }
 
-    /**
-     * Get stock
-     *
-     */
-    public function getValue()
-    {
-        $value = $this->getAmount() * $this->getPricePerUnit();
 
-        return $value;
-    }
 }
 

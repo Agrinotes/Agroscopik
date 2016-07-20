@@ -27,6 +27,8 @@ class LoadFarmSpecialityMvtCategories extends AbstractFixture implements Fixture
         foreach ($names as $name) {
             $category = new FarmSpecialityMvtCategory();
             $category->setName($name[0]);
+            $category->setSlug($name[1]);
+
             $em->persist($category);
         }
 
