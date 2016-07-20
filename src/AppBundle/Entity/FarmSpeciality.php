@@ -156,7 +156,7 @@ class FarmSpeciality
         }
 
         if($cat == "volume"){
-            $stock /= 1000;
+            $stock *= 1000;
         }
 
         return $stock;
