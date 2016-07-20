@@ -227,6 +227,5 @@ class FarmSpecialityMvt
         return $this->price;
     }
 
-
 }
 

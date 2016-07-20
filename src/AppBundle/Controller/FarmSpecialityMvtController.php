@@ -78,7 +78,7 @@ class FarmSpecialityMvtController extends Controller
             $em->flush();
 
 
-            $request->getSession()->getFlashBag()->add('success', 'Le stock de '.$speciality->getSpeciality()->getName().' a bien été mis à jour avec succès !');
+            $request->getSession()->getFlashBag()->add('success', 'Le stock de '.$speciality->getSpeciality()->getName().' a été mis à jour avec succès !');
 
             return $this->redirectToRoute('farmspeciality_show', array('id' => $speciality->getId()));
         }

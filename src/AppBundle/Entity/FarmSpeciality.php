@@ -192,5 +192,40 @@ class FarmSpeciality
         return $unit;
     }
 
+    public function getUnitPrice(){
+        $movements = $this->getMovements();
+        $cat = $this->getSpeciality()->getUnitCategory()->getSlug();
+        $stock = 0;
+        $price =0;
+
+        foreach ($movements as $movement) {
+            if($movement->getPrice()){
+            // Get original values
+            $unit = $movement->getUnit();
+            $rawAmount = $movement->getAmount();
+
+            // Get proper factor
+            $factor = $unit->getA();
+
+            if($factor!=0){
+                $correctedAmount = $rawAmount*$factor;
+            }else{
+                $correctedAmount = $rawAmount;
+            }
+            $stock += $correctedAmount;
+            $price += $movement->getPrice();
+            }
+        }
+
+        if($cat == "volume"){
+            $stock *= 1000;
+        }
+        if($stock!=0){
+        $unitPrice = $price/$stock;
+        }else{
+            $unitPrice=0;
+        }
+        return $unitPrice;
+    }
 }
 

@@ -35,8 +35,6 @@
                 <span class="input-group-addon">CFP</span>
 
             </div>
-            {{ farmSpeciality.unitPrice}} CFP/{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif %}
-
         </div>
 
         {{ form_widget(modal_form) }}

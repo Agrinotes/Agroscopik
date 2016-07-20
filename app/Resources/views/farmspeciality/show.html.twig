@@ -89,6 +89,7 @@
                                     <span class="counter-number">{{ farmSpeciality.stock |number_format(2,',',' ') }}</span>
                                     <span class="counter-number-related font-size-14">{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif %}</span>
                                 </div>
+                                <div>{{ farmSpeciality.unitPrice |number_format(0,',',' ') }} CFP/{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif %}</div>
                             </div>
                         </div>
                     </div>

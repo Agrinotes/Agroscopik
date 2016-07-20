@@ -12,7 +12,9 @@
 
                     </td>
                     <td>
+                        {% if farmSpecialityMvt.price != 0 %}
                         {{ farmSpecialityMvt.price |number_format(0,',',' ') }} CFP
+                        {% endif %}
                     </td>
                 </tr>
         {% endfor %}
