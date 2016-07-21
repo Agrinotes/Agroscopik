@@ -115,6 +115,9 @@ class CropCycle
         foreach ($crops as $crop) {
             $name = $name . " " . $crop->getName();
         }
+        if($this->getVarieties()){
+            $name = $name." (".ucfirst($this->getVarieties()).")";
+        }
         return $name;
     }
 
