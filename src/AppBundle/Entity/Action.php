@@ -82,6 +82,11 @@ class Action
     private $farmSpecialityMvts;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\HarvestProduct", mappedBy="action", cascade={"persist","remove"})
+     */
+    private $harvestProducts;
+
+    /**
      * Get id
      *
      * @return int
@@ -327,6 +332,44 @@ class Action
         return $this->farmSpecialityMvts;
     }
 
+
+    /**
+     * Add harvest  product
+     *
+     * @param \AppBundle\Entity\HarvestProduct $product
+     * @return Action
+     */
+    public function addHarvestProduct(HarvestProduct $product)
+    {
+        $this->harvestProducts[] = $product;
+
+        //Bidirectionnality
+        $product->setAction($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove harvest product
+     *
+     * @param \AppBundle\Entity\HarvestProduct $product
+     */
+    public function removeHarvestProduct(HarvestProduct $product)
+    {
+        $this->harvestProducts->removeElement($product);
+
+        $product->setAction(""); // That's a problem
+    }
+
+    /**
+     * Get harvest products
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHarvestProducts()
+    {
+        return $this->harvestProducts;
+    }
 
     /**
      * Set startDatetime

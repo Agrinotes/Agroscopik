@@ -148,8 +148,6 @@ class FarmSpecialityMvt
     {
         $this->action = $action;
 
-        // Or maybe here
-
         return $this;
     }
 
