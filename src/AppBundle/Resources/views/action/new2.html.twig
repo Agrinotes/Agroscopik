@@ -393,12 +393,14 @@
 
                 $('#action_intervention').on('change', function() {
                     if($("#action_intervention").select2('data')[0]['text']=="Traitement phytosanitaire"){
-                        $('#farmSpecialities').show("slow");
                         $('#harvestProducts').hide("slow");
+                        $('#farmSpecialities').show("slow");
+
 
                     }else if($("#action_intervention").select2('data')[0]['text']=="Récolte"){
-                        $('#harvestProducts').show("slow");
                         $('#farmSpecialities').hide("slow");
+                        $('#harvestProducts').show("slow");
+
 
                     }else{
                         $('#farmSpecialities').hide("slow");
