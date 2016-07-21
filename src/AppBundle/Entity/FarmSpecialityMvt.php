@@ -20,6 +20,7 @@ class FarmSpecialityMvt
         $this->datetime = new \DateTime();
 
     }
+
     /**
      * @var int
      *
@@ -208,6 +209,18 @@ class FarmSpecialityMvt
     public function getAmount()
     {
         return $this->amount;
+    }
+
+    public function getDose()
+    {
+        if ($this->getAction()) {
+            $area = $this->getAction()->getCropCycle()->getArea();
+            $amount = $this->getAmount();
+            $dose = $amount / $area;
+
+            return $dose;
+        }
+        return "";
     }
 
     /**

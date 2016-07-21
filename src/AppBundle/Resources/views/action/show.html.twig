@@ -50,33 +50,41 @@
                             <h3 class="panel-title">{{ action.name }}</h3>
                             <div class="panel-actions">
                                 {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
-                                    <a class="btn btn-default btn-flat"
-                                       href="{{ path('action_edit', { 'id': action.id }) }}">Editer</a>
+                                    <a class="btn btn-default"
+                                       href="{{ path('action_edit', { 'id': action.id }) }}">Modifier</a>
                                 {% endif %}
                             </div>
                         </div>
                         <div class="panel-body">
-                            <h4 class="example-title">
-                                Matériel utilisé
+
+
+                            {% if action.intervention.interventionCategory.slug == "protection-des-cultures" and action.farmSpecialityMvts is not empty %}
+
+                                <h4 class="example-title">
+                                Produits utilisés
                             </h4>
-                            {% if action.tractors is not empty and action.implements is not empty %}
-                                <ul>
-                                    {% for tractor in action.tractors %}
-                                        <li>
-                                            {{ tractor.name }}
-                                        </li>
+                                <table class="table table-hover">
+                                    <div class="table-body">
+
+                                    </div>
+                                    {% for mvt in action.farmSpecialityMvts %}
+                                        <tr>
+                                            <td>
+                                                {{ mvt.speciality.speciality.name }}
+
+                                            </td>
+                                            <td>                                            {{ mvt.amount }}{{ mvt.unit.symbol }} (soit {{ mvt.dose|number_format(2,',',' ') }}{{ mvt.unit.symbol }}/ha)
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-sm btn-default pull-right" href="{{ path('speciality_show',{'id':mvt.speciality.speciality.id}) }}">Voir usages et doses autorisées</a>
+
+                                            </td>
+                                        </tr>
                                     {% endfor %}
-                                    {% for implement in action.implements %}
-                                        <li>
-                                            {{ implement.name }}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            {% else %}
-                                <p>
-                                    Aucun matériel renseigné
-                                </p>
+                                </table>
+
                             {% endif %}
+
 
                             <h4 class="example-title margin-top-30">
                                 Périodes d'intervention
@@ -114,6 +122,28 @@
                                 {% endfor %}
                                 </tbody>
                             </table>
+
+                            <h4 class="example-title margin-top-30">
+                                Matériel utilisé
+                            </h4>
+                            {% if action.tractors is not empty and action.implements is not empty %}
+                                <ul>
+                                    {% for tractor in action.tractors %}
+                                        <li>
+                                            {{ tractor.name }}
+                                        </li>
+                                    {% endfor %}
+                                    {% for implement in action.implements %}
+                                        <li>
+                                            {{ implement.name }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>
+                                    Aucun matériel renseigné
+                                </p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
