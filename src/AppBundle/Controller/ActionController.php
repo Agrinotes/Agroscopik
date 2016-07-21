@@ -139,6 +139,15 @@ class ActionController extends Controller
                 $em->flush();
             }
 
+            // Remove harvest products added to wrong categories
+            if($action->getIntervention()->getInterventionCategory()->getSlug() != 'recolte'){
+                $products = $action->getHarvestProducts();
+                foreach($products as $product){
+                    $em->remove($product);
+                }
+                $em->flush();
+            }
+
             // Call ACL service
             $aclProvider = $this->get('security.acl.provider');
 

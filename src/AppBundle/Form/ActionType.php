@@ -54,6 +54,13 @@ class ActionType extends AbstractType
                 'by_reference' => false,
                 'label'=>'Définir les produits utilisés',
             ))
+            ->add('harvestProducts', CollectionType::class, array(
+                'entry_type' => HarvestProductType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label'=>'Définir les quantités récoltées',
+            ))
         ;
 
         // grab the user, do a quick sanity check that one exists

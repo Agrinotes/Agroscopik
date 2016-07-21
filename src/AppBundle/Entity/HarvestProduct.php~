@@ -40,6 +40,11 @@ class HarvestProduct
     private $unit;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unit")
+     */
+    private $unit2;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="price", type="float", nullable=true)
@@ -149,6 +154,21 @@ class HarvestProduct
         $this->price = $price;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getUnit2()
+    {
+        return $this->unit2;
+    }
+
+    /**
+     * @param mixed $unit2
+     */
+    public function setUnit2($unit2)
+    {
+        $this->unit2 = $unit2;
+    }
 
     /**
      * @return mixed
@@ -182,3 +202,4 @@ class HarvestProduct
         $this->action = $action;
     }
 }
+

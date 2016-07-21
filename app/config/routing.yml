@@ -1,3 +1,7 @@
+app_harvest_product:
+    resource: "@AppBundle/Controller/HarvestProductController.php"
+    type:     annotation
+
 app_unit:
     resource: "@AppBundle/Controller/UnitController.php"
     type:     annotation

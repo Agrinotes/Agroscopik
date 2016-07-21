@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>HarvestProduct list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Comment</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for harvestProduct in harvestProducts %}
+            <tr>
+                <td><a href="{{ path('harvestproduct_show', { 'id': harvestProduct.id }) }}">{{ harvestProduct.id }}</a></td>
+                <td>{{ harvestProduct.qty }}</td>
+                <td>{{ harvestProduct.price }}</td>
+                <td>{{ harvestProduct.comment }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('harvestproduct_show', { 'id': harvestProduct.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('harvestproduct_edit', { 'id': harvestProduct.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('harvestproduct_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
