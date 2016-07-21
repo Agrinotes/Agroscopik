@@ -125,8 +125,19 @@ class ActionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($action);
+
             $em->flush();
+
+            // Remove specialities added to wrong categories    
+            if($action->getIntervention()->getInterventionCategory()->getSlug() != 'protection-des-cultures'){
+                $mvts = $action->getFarmSpecialityMvts();
+                foreach($mvts as $mvt){
+                    $em->remove($mvt);
+                }
+                $em->flush();
+            }
 
             // Call ACL service
             $aclProvider = $this->get('security.acl.provider');
