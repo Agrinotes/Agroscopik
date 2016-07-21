@@ -144,6 +144,10 @@ class FarmSpeciality
             $unit = $movement->getUnit();
             $rawAmount = $movement->getAmount();
 
+            if($movement->getCategory()->getSlug()=="useAction"){
+                $rawAmount = -1 * abs($rawAmount);
+            }
+
             // Get proper factor
             $factor = $unit->getA();
 

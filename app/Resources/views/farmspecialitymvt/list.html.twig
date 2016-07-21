@@ -7,8 +7,10 @@
                         <a href="{{ path('farmspecialitymvt_show', { 'id': farmSpecialityMvt.id }) }}">{{ farmSpecialityMvt.category.name }} le
                         {% if farmSpecialityMvt.datetime %} {{ farmSpecialityMvt.datetime|date('d/m/Y') }}{% endif %}</a>
                     </td>
-                    <td>
-                        {{ farmSpecialityMvt.amount |number_format(1,',',' ') }} {{ farmSpecialityMvt.unit.symbol }}
+                    <td style="text-align: right">
+                        {% if farmSpecialityMvt.category.slug == "useAction" or farmSpecialityMvt.amount < 0 %}-{% endif %}
+                        {{ farmSpecialityMvt.amount|abs|number_format(1,',',' ') }}
+                        {{ farmSpecialityMvt.unit.symbol }}
 
                     </td>
                     <td>
