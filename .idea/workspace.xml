@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadCrops.php" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadCrops.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/ActionFarmSpecialityMvtType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ActionFarmSpecialityMvtType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/map.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/map.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/front/global/vendor/mapbox.js/mapbox.css" afterPath="$PROJECT_DIR$/web/front/global/vendor/mapbox.js/mapbox.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +23,39 @@
     <favorites_list name="agroscopik" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Action.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="13.132769">
+              <caret line="681" column="7" selection-start-line="681" selection-start-column="7" selection-end-line="681" selection-end-column="7" />
+              <folding>
+                <element signature="e#8404#8510#0#PHP" expanded="false" />
+                <element signature="e#8515#8637#0#PHP" expanded="false" />
+                <element signature="e#8714#8793#0#PHP" expanded="false" />
+                <element signature="e#8799#9267#0#PHP" expanded="false" />
+                <element signature="e#9273#9723#0#PHP" expanded="false" />
+                <element signature="e#9729#9765#0#PHP" expanded="false" />
+                <element signature="e#9770#10203#0#PHP" expanded="false" />
+                <element signature="e#10209#10311#0#PHP" expanded="false" />
+                <element signature="e#10316#10617#0#PHP" expanded="false" />
+                <element signature="e#10623#10667#0#PHP" expanded="false" />
+                <element signature="e#10672#10830#0#PHP" expanded="false" />
+                <element signature="e#10836#11019#0#PHP" expanded="false" />
+                <element signature="e#11024#11928#0#PHP" expanded="false" />
+                <element signature="e#11935#12045#0#PHP" expanded="false" />
+                <element signature="e#12050#12571#0#PHP" expanded="false" />
+                <element signature="e#12577#12629#0#PHP" expanded="false" />
+                <element signature="e#12634#12822#0#PHP" expanded="false" />
+                <element signature="e#12832#13015#0#PHP" expanded="false" />
+                <element signature="e#13020#13915#0#PHP" expanded="false" />
+                <element signature="e#13921#15232#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -45,7 +70,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSubstances1a.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSubstances2.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSubstances.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig" />
@@ -96,6 +120,7 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadCrops.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php" />
       </list>
     </option>
   </component>
@@ -199,133 +224,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="action" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DataFixtures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ORM" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -438,7 +337,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.235" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -505,13 +404,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/TractorModelRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/TractorRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -532,13 +424,6 @@
         <state vertical-scroll-proportion="0.7419355">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="27" selection-end-column="26" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadUnits.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.7096775">
-          <caret line="117" column="45" selection-start-line="117" selection-start-column="45" selection-end-line="117" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -908,35 +793,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7627119">
-          <caret line="681" column="7" selection-start-line="681" selection-start-column="7" selection-end-line="681" selection-end-column="7" />
-          <folding>
-            <element signature="e#8404#8510#0#PHP" expanded="false" />
-            <element signature="e#8515#8637#0#PHP" expanded="false" />
-            <element signature="e#8714#8793#0#PHP" expanded="false" />
-            <element signature="e#8799#9267#0#PHP" expanded="false" />
-            <element signature="e#9273#9723#0#PHP" expanded="false" />
-            <element signature="e#9729#9765#0#PHP" expanded="false" />
-            <element signature="e#9770#10203#0#PHP" expanded="false" />
-            <element signature="e#10209#10311#0#PHP" expanded="false" />
-            <element signature="e#10316#10617#0#PHP" expanded="false" />
-            <element signature="e#10623#10667#0#PHP" expanded="false" />
-            <element signature="e#10672#10830#0#PHP" expanded="false" />
-            <element signature="e#10836#11019#0#PHP" expanded="false" />
-            <element signature="e#11024#11928#0#PHP" expanded="false" />
-            <element signature="e#11935#12045#0#PHP" expanded="false" />
-            <element signature="e#12050#12571#0#PHP" expanded="false" />
-            <element signature="e#12577#12629#0#PHP" expanded="false" />
-            <element signature="e#12634#12822#0#PHP" expanded="false" />
-            <element signature="e#12832#13015#0#PHP" expanded="false" />
-            <element signature="e#13020#13915#0#PHP" expanded="false" />
-            <element signature="e#13921#15232#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionFarmSpecialityMvtType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4957627">
@@ -971,6 +827,54 @@
         <state vertical-scroll-proportion="0.7711864">
           <caret line="101" column="26" selection-start-line="101" selection-start-column="26" selection-end-line="101" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9072165">
+          <caret line="3988" column="50" selection-start-line="3988" selection-start-column="50" selection-end-line="3988" selection-end-column="50" />
+          <folding>
+            <element signature="e#132868#154750#1#PHP" expanded="false" />
+            <element signature="e#154809#171673#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadUnits.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59745765">
+          <caret line="116" column="60" selection-start-line="116" selection-start-column="60" selection-end-line="116" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="13.132769">
+          <caret line="681" column="7" selection-start-line="681" selection-start-column="7" selection-end-line="681" selection-end-column="7" />
+          <folding>
+            <element signature="e#8404#8510#0#PHP" expanded="false" />
+            <element signature="e#8515#8637#0#PHP" expanded="false" />
+            <element signature="e#8714#8793#0#PHP" expanded="false" />
+            <element signature="e#8799#9267#0#PHP" expanded="false" />
+            <element signature="e#9273#9723#0#PHP" expanded="false" />
+            <element signature="e#9729#9765#0#PHP" expanded="false" />
+            <element signature="e#9770#10203#0#PHP" expanded="false" />
+            <element signature="e#10209#10311#0#PHP" expanded="false" />
+            <element signature="e#10316#10617#0#PHP" expanded="false" />
+            <element signature="e#10623#10667#0#PHP" expanded="false" />
+            <element signature="e#10672#10830#0#PHP" expanded="false" />
+            <element signature="e#10836#11019#0#PHP" expanded="false" />
+            <element signature="e#11024#11928#0#PHP" expanded="false" />
+            <element signature="e#11935#12045#0#PHP" expanded="false" />
+            <element signature="e#12050#12571#0#PHP" expanded="false" />
+            <element signature="e#12577#12629#0#PHP" expanded="false" />
+            <element signature="e#12634#12822#0#PHP" expanded="false" />
+            <element signature="e#12832#13015#0#PHP" expanded="false" />
+            <element signature="e#13020#13915#0#PHP" expanded="false" />
+            <element signature="e#13921#15232#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
