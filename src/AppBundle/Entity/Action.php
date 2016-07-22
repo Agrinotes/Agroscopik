@@ -94,6 +94,18 @@ class Action
     private $comment;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="density", type="float", nullable=true)
+     */
+    private $density;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unit")
+     */
+    private $densityUnit;
+
+    /**
      * Get id
      *
      * @return int
@@ -685,6 +697,38 @@ $endTime = $endTime->add($period->getDuration());
     public function setComment($comment)
     {
         $this->comment = $comment;
+    }
+
+    /**
+     * @return float
+     */
+    public function getDensity()
+    {
+        return $this->density;
+    }
+
+    /**
+     * @param float $density
+     */
+    public function setDensity($density)
+    {
+        $this->density = $density;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDensityUnit()
+    {
+        return $this->densityUnit;
+    }
+
+    /**
+     * @param mixed $densityUnit
+     */
+    public function setDensityUnit($densityUnit)
+    {
+        $this->densityUnit = $densityUnit;
     }
 
 }

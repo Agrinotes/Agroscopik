@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadUnits.php" afterPath="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadUnits.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,33 +27,87 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Action.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Action.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="13.132769">
-              <caret line="681" column="7" selection-start-line="681" selection-start-column="7" selection-end-line="681" selection-end-column="7" />
+            <state vertical-scroll-proportion="-60.7">
+              <caret line="723" column="5" selection-start-line="723" selection-start-column="5" selection-end-line="723" selection-end-column="5" />
               <folding>
-                <element signature="e#8404#8510#0#PHP" expanded="false" />
-                <element signature="e#8515#8637#0#PHP" expanded="false" />
-                <element signature="e#8714#8793#0#PHP" expanded="false" />
-                <element signature="e#8799#9267#0#PHP" expanded="false" />
-                <element signature="e#9273#9723#0#PHP" expanded="false" />
-                <element signature="e#9729#9765#0#PHP" expanded="false" />
-                <element signature="e#9770#10203#0#PHP" expanded="false" />
-                <element signature="e#10209#10311#0#PHP" expanded="false" />
-                <element signature="e#10316#10617#0#PHP" expanded="false" />
-                <element signature="e#10623#10667#0#PHP" expanded="false" />
-                <element signature="e#10672#10830#0#PHP" expanded="false" />
-                <element signature="e#10836#11019#0#PHP" expanded="false" />
-                <element signature="e#11024#11928#0#PHP" expanded="false" />
-                <element signature="e#11935#12045#0#PHP" expanded="false" />
-                <element signature="e#12050#12571#0#PHP" expanded="false" />
-                <element signature="e#12577#12629#0#PHP" expanded="false" />
-                <element signature="e#12634#12822#0#PHP" expanded="false" />
-                <element signature="e#12832#13015#0#PHP" expanded="false" />
-                <element signature="e#13020#13915#0#PHP" expanded="false" />
-                <element signature="e#13921#15232#0#PHP" expanded="false" />
+                <element signature="e#8635#8741#0#PHP" expanded="false" />
+                <element signature="e#8746#8868#0#PHP" expanded="false" />
+                <element signature="e#8945#9024#0#PHP" expanded="false" />
+                <element signature="e#9030#9498#0#PHP" expanded="false" />
+                <element signature="e#9504#9954#0#PHP" expanded="false" />
+                <element signature="e#9960#9996#0#PHP" expanded="false" />
+                <element signature="e#10001#10434#0#PHP" expanded="false" />
+                <element signature="e#10440#10542#0#PHP" expanded="false" />
+                <element signature="e#10547#10848#0#PHP" expanded="false" />
+                <element signature="e#10854#10898#0#PHP" expanded="false" />
+                <element signature="e#10903#11061#0#PHP" expanded="false" />
+                <element signature="e#11067#11250#0#PHP" expanded="false" />
+                <element signature="e#11255#12159#0#PHP" expanded="false" />
+                <element signature="e#12166#12276#0#PHP" expanded="false" />
+                <element signature="e#12281#12802#0#PHP" expanded="false" />
+                <element signature="e#12808#12860#0#PHP" expanded="false" />
+                <element signature="e#12865#13053#0#PHP" expanded="false" />
+                <element signature="e#13063#13246#0#PHP" expanded="false" />
+                <element signature="e#13251#14146#0#PHP" expanded="false" />
+                <element signature="e#14152#15463#0#PHP" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HarvestProduct.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/HarvestProduct.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.6">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="39" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActionType.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.40677965">
+              <caret line="79" column="57" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoadUnits.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadUnits.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-13.3">
+              <caret line="122" column="88" selection-start-line="122" selection-start-column="66" selection-end-line="122" selection-end-column="88" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new2.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-11.433333">
+              <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
+              <folding>
+                <marker date="1469155250886" expanded="true" signature="14208:14248" placeholder="..." />
+                <marker date="1469155250886" expanded="true" signature="16094:16148" placeholder="..." />
+                <marker date="1469155250886" expanded="true" signature="18012:18066" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HarvestProductType.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/HarvestProductType.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.0">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="45" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -87,7 +144,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/substance/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadUnits.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/FarmSpecialityController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/index2.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadFarmSpecialityMvtCategories.php" />
@@ -115,12 +171,13 @@
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/map.html.twig" />
         <option value="$PROJECT_DIR$/web/front/global/vendor/mapbox.js/mapbox.css" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionFarmSpecialityMvtType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadCrops.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadTractorBrands.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadUnits.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
       </list>
     </option>
   </component>
@@ -224,7 +281,71 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="action" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -239,10 +360,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -732,14 +849,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/HarvestProduct.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.7">
@@ -775,16 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/HarvestProductType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.7">
-          <caret line="71" column="59" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
-          <folding>
-            <element signature="e#34#68#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.15819208">
@@ -797,27 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4957627">
           <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="55" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.94067794">
-          <caret line="179" column="59" selection-start-line="179" selection-start-column="59" selection-end-line="179" selection-end-column="59" />
-          <folding>
-            <element signature="n#div#7;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <marker date="1469152841818" expanded="true" signature="13204:13244" placeholder="..." />
-            <marker date="1469152841818" expanded="true" signature="15090:15144" placeholder="..." />
-            <marker date="1469152841818" expanded="true" signature="17008:17062" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.9">
-          <caret line="65" column="48" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -841,40 +919,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadUnits.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59745765">
-          <caret line="116" column="60" selection-start-line="116" selection-start-column="60" selection-end-line="116" selection-end-column="60" />
+        <state vertical-scroll-proportion="-60.7">
+          <caret line="723" column="5" selection-start-line="723" selection-start-column="5" selection-end-line="723" selection-end-column="5" />
+          <folding>
+            <element signature="e#8635#8741#0#PHP" expanded="false" />
+            <element signature="e#8746#8868#0#PHP" expanded="false" />
+            <element signature="e#8945#9024#0#PHP" expanded="false" />
+            <element signature="e#9030#9498#0#PHP" expanded="false" />
+            <element signature="e#9504#9954#0#PHP" expanded="false" />
+            <element signature="e#9960#9996#0#PHP" expanded="false" />
+            <element signature="e#10001#10434#0#PHP" expanded="false" />
+            <element signature="e#10440#10542#0#PHP" expanded="false" />
+            <element signature="e#10547#10848#0#PHP" expanded="false" />
+            <element signature="e#10854#10898#0#PHP" expanded="false" />
+            <element signature="e#10903#11061#0#PHP" expanded="false" />
+            <element signature="e#11067#11250#0#PHP" expanded="false" />
+            <element signature="e#11255#12159#0#PHP" expanded="false" />
+            <element signature="e#12166#12276#0#PHP" expanded="false" />
+            <element signature="e#12281#12802#0#PHP" expanded="false" />
+            <element signature="e#12808#12860#0#PHP" expanded="false" />
+            <element signature="e#12865#13053#0#PHP" expanded="false" />
+            <element signature="e#13063#13246#0#PHP" expanded="false" />
+            <element signature="e#13251#14146#0#PHP" expanded="false" />
+            <element signature="e#14152#15463#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/HarvestProduct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.6">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="39" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/HarvestProductType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="13.132769">
-          <caret line="681" column="7" selection-start-line="681" selection-start-column="7" selection-end-line="681" selection-end-column="7" />
+        <state vertical-scroll-proportion="-5.0">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="45" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadUnits.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.3">
+          <caret line="122" column="88" selection-start-line="122" selection-start-column="66" selection-end-line="122" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.433333">
+          <caret line="71" column="28" selection-start-line="71" selection-start-column="28" selection-end-line="71" selection-end-column="28" />
           <folding>
-            <element signature="e#8404#8510#0#PHP" expanded="false" />
-            <element signature="e#8515#8637#0#PHP" expanded="false" />
-            <element signature="e#8714#8793#0#PHP" expanded="false" />
-            <element signature="e#8799#9267#0#PHP" expanded="false" />
-            <element signature="e#9273#9723#0#PHP" expanded="false" />
-            <element signature="e#9729#9765#0#PHP" expanded="false" />
-            <element signature="e#9770#10203#0#PHP" expanded="false" />
-            <element signature="e#10209#10311#0#PHP" expanded="false" />
-            <element signature="e#10316#10617#0#PHP" expanded="false" />
-            <element signature="e#10623#10667#0#PHP" expanded="false" />
-            <element signature="e#10672#10830#0#PHP" expanded="false" />
-            <element signature="e#10836#11019#0#PHP" expanded="false" />
-            <element signature="e#11024#11928#0#PHP" expanded="false" />
-            <element signature="e#11935#12045#0#PHP" expanded="false" />
-            <element signature="e#12050#12571#0#PHP" expanded="false" />
-            <element signature="e#12577#12629#0#PHP" expanded="false" />
-            <element signature="e#12634#12822#0#PHP" expanded="false" />
-            <element signature="e#12832#13015#0#PHP" expanded="false" />
-            <element signature="e#13020#13915#0#PHP" expanded="false" />
-            <element signature="e#13921#15232#0#PHP" expanded="false" />
+            <marker date="1469155250886" expanded="true" signature="14208:14248" placeholder="..." />
+            <marker date="1469155250886" expanded="true" signature="16094:16148" placeholder="..." />
+            <marker date="1469155250886" expanded="true" signature="18012:18066" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40677965">
+          <caret line="79" column="57" selection-start-line="79" selection-start-column="57" selection-end-line="79" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>

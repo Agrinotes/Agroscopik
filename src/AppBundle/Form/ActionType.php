@@ -8,6 +8,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -66,6 +68,30 @@ class ActionType extends AbstractType
                 'label'=>'Ajouter un commentaire',
                 'attr' => array('class' => 'form-control'),
                 'required'=>false,
+            ))
+            ->add('density',IntegerType::class,array(
+                'label' => 'Définir la densité de semis ou plantation (facultatif)',
+                'attr' => array('class' => 'form-control'),
+                'required' => false,
+            ))
+            ->add('densityUnit',EntityType::class, array(
+                'class' => 'AppBundle:Unit',
+                'choice_label' => 'symbol',
+                'attr' => array('class' => 'form-control'),
+                'label' => 'Choisir l\'unité',
+                'required' => true,
+                'multiple' => false,
+                'expanded' => false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->where('u.slug = :slug')
+                        ->setParameter('slug','unity')
+                        ->orWhere('u.slug = :slug2')
+                        ->setParameter('slug2','unity_per_hectare')
+                        ->orWhere('u.slug = :slug3')
+                        ->setParameter('slug3','unity_per_square_meter')
+                        ;
+                },
             ))
         ;
 
