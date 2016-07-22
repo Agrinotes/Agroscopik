@@ -51,6 +51,7 @@ class ActionFarmSpecialityMvtType extends AbstractType
             ->add('amount',NumberType::class,array(
                 'label'=>'Entrer la quantité correspondante',
                 'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
+                'required'=>false,
 
             ))
             ->add('unit',EntityType::class, array(
@@ -71,7 +72,7 @@ class ActionFarmSpecialityMvtType extends AbstractType
                     ->setParameter('slug2','volume')
                     ;
             },
-        ));;
+        ));
 
     }
 

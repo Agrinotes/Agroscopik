@@ -1010,11 +1010,12 @@
 /* END [Leaflet Markercluster] Plugin */
 /* remark revise */
 .leaflet-popup-pane {
-  left: 38px;
+  left: 6px;
   cursor: pointer;
+  top:5px;
 }
 .leaflet-popup-pane .leaflet-popup-content-wrapper {
-  width: 170px;
+  width: 250px;
   padding: 0;
 }
 .leaflet-popup-pane .leaflet-popup-content-wrapper .leaflet-popup-content {

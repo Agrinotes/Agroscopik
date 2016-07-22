@@ -88,7 +88,8 @@
                                 {{ form_errors(form.harvestProducts) }}
                                 {{ form_widget(form.harvestProducts) }}
                                 <a class="pull-right" href="#" id="add_harvest"><i class="icon md-plus-circle-o"
-                                                                               aria-hidden="true"></i> Ajouter un autre
+                                                                                   aria-hidden="true"></i> Ajouter un
+                                    autre
                                     produit récolté</a>
                             </div>
                         </div>
@@ -165,6 +166,23 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            {{ form_label(form.comment) }}
+                        </h3>
+                        </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                {{ form_errors(form.comment) }}
+                                {{ form_widget(form.comment) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 <div class="panel">
                     <div class="panel-body">
@@ -391,18 +409,18 @@
                 $('#farmSpecialities').hide();
                 $('#harvestProducts').hide();
 
-                $('#action_intervention').on('change', function() {
-                    if($("#action_intervention").select2('data')[0]['text']=="Traitement phytosanitaire"){
+                $('#action_intervention').on('change', function () {
+                    if ($("#action_intervention").select2('data')[0]['text'] == "Traitement phytosanitaire") {
                         $('#harvestProducts').hide("slow");
                         $('#farmSpecialities').show("slow");
 
 
-                    }else if($("#action_intervention").select2('data')[0]['text']=="Récolte"){
+                    } else if ($("#action_intervention").select2('data')[0]['text'] == "Récolte") {
                         $('#farmSpecialities').hide("slow");
                         $('#harvestProducts').show("slow");
 
 
-                    }else{
+                    } else {
                         $('#farmSpecialities').hide("slow");
                         $('#harvestProducts').hide("slow");
                     }

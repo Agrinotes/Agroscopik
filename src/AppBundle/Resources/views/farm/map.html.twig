@@ -2,6 +2,11 @@
 
     {% extends 'base.html.twig' %}
 
+    {% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block plugin_stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('front/global/vendor/mapbox.js/mapbox.css') }}">
@@ -155,10 +160,7 @@
                 });
 
                 //Set style
-                layer.setStyle({color: "white", Opacity:0.9, fillOpacity: 0.5, weight: 1.5});
-
-                //Add a popup
-                layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | capitalize }}"+"</h3><p class=\"margin-top-10\"><a type=\"button\" href=\"{{ path('plot_show',{'id':plot.id}) }}\" style=\"color:#757575;\" class=\"btn btn-default btn-block btn-sm waves-effect waves-light\">Afficher</a></p></div>", {closeButton: false});
+                layer.setStyle({color: "white", Opacity:0.9, fillOpacity: 0.3, weight: 1.5});
 
                 // Add current polygon to featureGroup
                 featureGroup.addLayer(layer);
@@ -177,6 +179,44 @@
 
             /* Add markers to map */
             addPlots();
+
+
+                        function addCropCycles() {
+                // Create FeatureGroup
+                var featureGroup2 = L.featureGroup();
+
+                //Drawing polygons
+                {% for plot in app.user.farm.plots %}
+                {% for cycle in plot.cropCycles %}
+                {% if cycle.latLngs is not empty and cycle.status == "ActiveAction"%}
+                // Add current polygon and add an attribute alt
+                var layer2 = L.geoJson({{ cycle.latLngs | raw }}, {
+                       onEachFeature: function (feature, layer) {
+                        self.coords.push(layer.getBounds());
+                    }
+                });
+
+                var color = "red";
+                {% for crop in cycle.crops %}
+                var color = "{{ crop.color }}";
+
+                {% endfor %}
+
+                //Set style
+                layer2.setStyle({color: color, Opacity:1, fillOpacity: 0.6, weight: 1.5});
+
+                //Add a popup
+                layer2.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ cycle.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ cycle.name | upper }}"+"</h3><p class=\"margin-top-10\"><a type=\"button\" href=\"{{ path('cropcycle_show',{'id':cycle.id}) }}\" style=\"color:#757575;\" class=\"btn btn-default btn-block btn-sm waves-effect waves-light\">Afficher</a><a type=\"button\" href=\"{{ path('action_new',{'id':cycle.id}) }}\" style=\"color:white;\" class=\"btn btn-primary btn-block btn-sm waves-effect waves-light\">Ajouter une intervention</a></p></div>", {closeButton: false});
+
+                // Add current polygon to featureGroup
+                featureGroup2.addLayer(layer2);
+                {% endif %}
+                {% endfor %}
+                {% endfor %}
+                featureGroup2.addTo(map);
+         }
+
+addCropCycles();
 
             this.handleClickAction(map);
 

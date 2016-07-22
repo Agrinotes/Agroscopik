@@ -87,6 +87,13 @@ class Action
     private $harvestProducts;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="comment", type="text", nullable=true)
+     */
+    private $comment;
+
+    /**
      * Get id
      *
      * @return int
@@ -662,6 +669,22 @@ $endTime = $endTime->add($period->getDuration());
         $label = str_replace($english, $french, $label);
 
         return $label;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
     }
 
 }

@@ -99,6 +99,8 @@ class LoadCrops extends AbstractFixture implements OrderedFixtureInterface
             array('Oignon','#558B2F'),
             array('Orange','#EF6C00'),
             array('Orge','#558B2F'),
+            array('Palmier','#7CB342'),
+            array('Pamplemousse','#ff9800'),
             array('Papaye','#F57F17'),
             array('Patate douce','#F9A825'),
             array('Pastèque','#F44336'),
