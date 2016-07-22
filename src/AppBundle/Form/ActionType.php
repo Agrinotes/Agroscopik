@@ -70,8 +70,8 @@ class ActionType extends AbstractType
                 'required'=>false,
             ))
             ->add('density',IntegerType::class,array(
-                'label' => 'Définir la densité de semis ou plantation (facultatif)',
-                'attr' => array('class' => 'form-control'),
+                'label' => 'Définir la densité de semis/plantation',
+                'attr' => array('class' => 'form-control','min'=>0,'placeholder'=>'0'),
                 'required' => false,
             ))
             ->add('densityUnit',EntityType::class, array(

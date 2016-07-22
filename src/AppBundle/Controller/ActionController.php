@@ -148,6 +148,13 @@ class ActionController extends Controller
                 $em->flush();
             }
 
+            // Remove harvest products added to wrong categories
+            if($action->getIntervention()->getInterventionCategory()->getSlug() != 'semis-et-plantation'){
+                $action->setDensity("");
+                $action->setDensityUnit("");
+                $em->flush();
+            }
+
             // Call ACL service
             $aclProvider = $this->get('security.acl.provider');
 

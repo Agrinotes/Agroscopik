@@ -7,6 +7,8 @@ use DateTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Action
@@ -97,6 +99,7 @@ class Action
      * @var float
      *
      * @ORM\Column(name="density", type="float", nullable=true)
+     *
      */
     private $density;
 
