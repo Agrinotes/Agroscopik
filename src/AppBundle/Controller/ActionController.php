@@ -293,6 +293,6 @@ class ActionController extends Controller
             ->setAction($this->generateUrl('action_delete', array('id' => $action->getId())))
             ->setMethod('DELETE')
             ->getForm()
-        ;
+            ;
     }
 }

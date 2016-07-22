@@ -109,6 +109,11 @@ class Action
     private $densityUnit;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Insect")
+     */
+    private $auxiliary;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="aim", type="text", nullable=true)
@@ -755,6 +760,22 @@ $endTime = $endTime->add($period->getDuration());
     public function setAim($aim)
     {
         $this->aim = $aim;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAuxiliary()
+    {
+        return $this->auxiliary;
+    }
+
+    /**
+     * @param mixed $auxiliary
+     */
+    public function setAuxiliary($auxiliary)
+    {
+        $this->auxiliary = $auxiliary;
     }
 
 }

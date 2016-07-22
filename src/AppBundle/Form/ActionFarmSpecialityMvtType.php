@@ -56,24 +56,24 @@ class ActionFarmSpecialityMvtType extends AbstractType
 
             ))
             ->add('unit',EntityType::class, array(
-            'class' => 'AppBundle:Unit',
-            'choice_label' => 'name',
-            'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
-            'label' => 'Choisir l\'unité',
-            'required' => true,
-            'multiple' => false,
-            'expanded' => false,
-            'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('u')
-                    ->join('u.unitCategory', 'cat')
-                    ->addSelect('cat')
-                    ->where('cat.slug = :slug')
-                    ->setParameter('slug','mass')
-                    ->orWhere('cat.slug = :slug2')
-                    ->setParameter('slug2','volume')
-                    ;
-            },
-        ));
+                'class' => 'AppBundle:Unit',
+                'choice_label' => 'name',
+                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                'label' => 'Choisir l\'unité',
+                'required' => true,
+                'multiple' => false,
+                'expanded' => false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->join('u.unitCategory', 'cat')
+                        ->addSelect('cat')
+                        ->where('cat.slug = :slug')
+                        ->setParameter('slug','mass')
+                        ->orWhere('cat.slug = :slug2')
+                        ->setParameter('slug2','volume')
+                        ;
+                },
+            ));
 
     }
 
