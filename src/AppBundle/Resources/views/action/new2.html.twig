@@ -81,18 +81,20 @@
                 <div class="panel" id="farmSpecialities">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            {{ form_label(form.farmSpecialityMvts) }}
+                            Définir les produits utilisés
                         </h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
+
                             <div class="col-lg-12">
+                                {% if app.user.farm.farmSpecialities is not empty %}
+
                                 {{ form_label(form.aim) }}
                                 {{ form_errors(form.aim) }}
                                 {{ form_widget(form.aim) }}
 
                                 <div class="margin-10"></div>
-
                                 {{ form_errors(form.farmSpecialityMvts) }}
                                 {{ form_widget(form.farmSpecialityMvts) }}
 
@@ -101,6 +103,12 @@
                                 <a class="pull-right" href="#" id="add_mvt"><i class="icon md-plus-circle-o"
                                                                                aria-hidden="true"></i> Ajouter un autre
                                     produit</a>
+                                {% else %}
+                                    <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
+                                        Vous devez avoir au moins un produit dans votre <a style="text-decoration: underline" href="{{ path('farmspeciality_new') }}">local phytosanitaire virtuel</a> pour pouvoir faire des traitements phytosanitaires.
+                                    </div>
+
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -335,7 +343,7 @@
                 }
             });
         </script>
-
+    {% if app.user.farm.farmSpecialities is not empty %}
         <script type="text/javascript">
             $(document).ready(function () {
                 var $container2 = $('div#action_farmSpecialityMvts');
@@ -385,6 +393,7 @@
                 }
             });
         </script>
+    {% endif %}
 
         <script type="text/javascript">
             $(document).ready(function () {

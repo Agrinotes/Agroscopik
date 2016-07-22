@@ -39,47 +39,47 @@ class ActionType extends AbstractType
             ->add('intervention', EntityType::class, array(
                 'class' => 'AppBundle:Intervention',
                 'choice_label' => 'name',
-                'attr' => array('class'=>'form-control','data-plugin'=>'select2'),
+                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
                 'group_by' => 'interventionCategory.name',
-                'label'=>'Choisir une intervention'
+                'label' => 'Choisir une intervention'
             ))
             ->add('periods', CollectionType::class, array(
                 'entry_type' => EventType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'label'=>'Définir une ou plusieurs périodes d\'intervention',
+                'label' => 'Définir une ou plusieurs périodes d\'intervention',
             ))
             ->add('farmSpecialityMvts', CollectionType::class, array(
                 'entry_type' => ActionFarmSpecialityMvtType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'label'=>'Définir les produits utilisés',
+                'label' => 'Définir les produits utilisés',
             ))
             ->add('harvestProducts', CollectionType::class, array(
                 'entry_type' => HarvestProductType::class,
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'label'=>'Définir les quantités récoltées',
+                'label' => 'Définir les quantités récoltées',
             ))
-            ->add('aim',TextType::class,array(
-                'label'=>'Cible(s) du traitement',
+            ->add('aim', TextType::class, array(
+                'label' => 'Cible(s) du traitement',
                 'attr' => array('class' => 'form-control'),
-                'required'=>false,
-            ))
-            ->add('comment',TextareaType::class,array(
-                'label'=>'Ajouter un commentaire',
-                'attr' => array('class' => 'form-control'),
-                'required'=>false,
-            ))
-            ->add('density',IntegerType::class,array(
-                'label' => 'Définir la densité de semis/plantation',
-                'attr' => array('class' => 'form-control','min'=>0,'placeholder'=>'0'),
                 'required' => false,
             ))
-            ->add('densityUnit',EntityType::class, array(
+            ->add('comment', TextareaType::class, array(
+                'label' => 'Ajouter un commentaire',
+                'attr' => array('class' => 'form-control'),
+                'required' => false,
+            ))
+            ->add('density', IntegerType::class, array(
+                'label' => 'Définir la densité de semis/plantation',
+                'attr' => array('class' => 'form-control', 'min' => 0, 'placeholder' => '0'),
+                'required' => false,
+            ))
+            ->add('densityUnit', EntityType::class, array(
                 'class' => 'AppBundle:Unit',
                 'choice_label' => 'symbol',
                 'attr' => array('class' => 'form-control'),
@@ -90,15 +90,13 @@ class ActionType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->where('u.slug = :slug')
-                        ->setParameter('slug','unity')
+                        ->setParameter('slug', 'unity')
                         ->orWhere('u.slug = :slug2')
-                        ->setParameter('slug2','unity_per_hectare')
+                        ->setParameter('slug2', 'unity_per_hectare')
                         ->orWhere('u.slug = :slug3')
-                        ->setParameter('slug3','unity_per_square_meter')
-                        ;
+                        ->setParameter('slug3', 'unity_per_square_meter');
                 },
-            ))
-        ;
+            ));
 
         // grab the user, do a quick sanity check that one exists
         $farm = $this->tokenStorage->getToken()->getUser()->getFarm()->getId();
@@ -116,8 +114,8 @@ class ActionType extends AbstractType
                 $tractorsOptions = array(
                     'class' => 'AppBundle:Tractor',
                     'choice_label' => 'model.label',
-                    'label'=>'Choisir les tracteurs utilisés',
-                    'attr' => array('class'=>'form-control','data-plugin'=>'select2'),
+                    'label' => 'Choisir les tracteurs utilisés',
+                    'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
                     'required' => false,
                     'multiple' => true,
                     'expanded' => false,
@@ -131,8 +129,8 @@ class ActionType extends AbstractType
                 $implementsOptions = array(
                     'class' => 'AppBundle:Implement',
                     'choice_label' => 'name',
-                    'attr' => array('class'=>'form-control','data-plugin'=>'select2'),
-                    'label'=>'Choisir les outils utilisés',
+                    'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                    'label' => 'Choisir les outils utilisés',
                     'required' => false,
                     'multiple' => true,
                     'expanded' => true,
@@ -144,6 +142,21 @@ class ActionType extends AbstractType
                 $form->add('implements', EntityType::class, $implementsOptions);
             }
         );
+
+        $specs = $this->tokenStorage->getToken()->getUser()->getFarm()->getFarmSpecialities();
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($specs) {
+                $form = $event->getForm();
+                if (!count($specs) > 0) {
+                    $form->remove('farmSpecialityMvts');
+                    $form->remove('aim');
+
+                }
+            }
+        );
+
     }
 
     /**
