@@ -87,9 +87,17 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
+                                {{ form_label(form.aim) }}
+                                {{ form_errors(form.aim) }}
+                                {{ form_widget(form.aim) }}
+
+                                <div class="margin-10"></div>
 
                                 {{ form_errors(form.farmSpecialityMvts) }}
                                 {{ form_widget(form.farmSpecialityMvts) }}
+
+                                <div class="margin-10"></div>
+
                                 <a class="pull-right" href="#" id="add_mvt"><i class="icon md-plus-circle-o"
                                                                                aria-hidden="true"></i> Ajouter un autre
                                     produit</a>
@@ -109,6 +117,7 @@
 
                                 {{ form_errors(form.harvestProducts) }}
                                 {{ form_widget(form.harvestProducts) }}
+
                                 <a class="pull-right" href="#" id="add_harvest"><i class="icon md-plus-circle-o"
                                                                                    aria-hidden="true"></i> Ajouter un
                                     autre
@@ -136,6 +145,7 @@
 
                                 {% form_theme form 'AppBundle:form:datetime.html.twig' %}
                                 {{ form_widget(form.periods) }}
+
                                 <a class="pull-right" href="#" id="add_period"><i class="icon md-plus-circle-o"
                                                                                   aria-hidden="true"></i> Ajouter une
                                     autre
@@ -258,6 +268,7 @@
 
                 if (index == 0) {
                     addPeriod($container);
+                    $("#action_periods > div > a").remove();
 
                 } else {
                     $container.children('div').each(function () {
@@ -337,7 +348,7 @@
 
                 if (index2 == 0) {
                     addMvt($container2);
-
+                    $("#action_farmSpecialityMvts > div > a").remove();
                 } else {
                     $container2.children('div').each(function () {
                         addDeleteLink2($(this));
@@ -387,6 +398,7 @@
 
                 if (index3 == 0) {
                     addHarvest($container3);
+                    $("#action_harvestProducts > div > a").remove();
 
                 } else {
                     $container3.children('div').each(function () {

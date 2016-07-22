@@ -109,6 +109,13 @@ class Action
     private $densityUnit;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="aim", type="text", nullable=true)
+     */
+    private $aim;
+
+    /**
      * Get id
      *
      * @return int
@@ -732,6 +739,22 @@ $endTime = $endTime->add($period->getDuration());
     public function setDensityUnit($densityUnit)
     {
         $this->densityUnit = $densityUnit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAim()
+    {
+        return $this->aim;
+    }
+
+    /**
+     * @param string $aim
+     */
+    public function setAim($aim)
+    {
+        $this->aim = $aim;
     }
 
 }

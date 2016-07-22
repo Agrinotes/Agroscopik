@@ -44,6 +44,7 @@ class ActionFarmSpecialityMvtType extends AbstractType
                 'choice_label' => 'speciality.name',
                 'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
                 'label' => 'Choisir le nom du produit',
+                'label_attr' => array('class'=>'margin-top-30'),
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,

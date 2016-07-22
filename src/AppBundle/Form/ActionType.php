@@ -64,6 +64,11 @@ class ActionType extends AbstractType
                 'by_reference' => false,
                 'label'=>'Définir les quantités récoltées',
             ))
+            ->add('aim',TextType::class,array(
+                'label'=>'Cible(s) du traitement',
+                'attr' => array('class' => 'form-control'),
+                'required'=>false,
+            ))
             ->add('comment',TextareaType::class,array(
                 'label'=>'Ajouter un commentaire',
                 'attr' => array('class' => 'form-control'),
