@@ -151,7 +151,7 @@ class ActionController extends Controller
             // Remove harvest products added to wrong categories
             if($action->getIntervention()->getInterventionCategory()->getSlug() != 'semis-et-plantation'){
                 $action->setDensity("");
-                $action->setDensityUnit("");
+                $action->setDensityUnit(null);
                 $em->flush();
             }
 

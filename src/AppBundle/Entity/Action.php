@@ -730,21 +730,7 @@ $endTime = $endTime->add($period->getDuration());
         $this->density = $density;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDensityUnit()
-    {
-        return $this->densityUnit;
-    }
 
-    /**
-     * @param mixed $densityUnit
-     */
-    public function setDensityUnit($densityUnit)
-    {
-        $this->densityUnit = $densityUnit;
-    }
 
     /**
      * @return string
@@ -776,6 +762,22 @@ $endTime = $endTime->add($period->getDuration());
     public function setAuxiliary($auxiliary)
     {
         $this->auxiliary = $auxiliary;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDensityUnit()
+    {
+        return $this->densityUnit;
+    }
+
+    /**
+     * @param mixed $densityUnit
+     */
+    public function setDensityUnit($densityUnit)
+    {
+        $this->densityUnit = $densityUnit;
     }
 
 }
