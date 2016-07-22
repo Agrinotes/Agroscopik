@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" />
     </list>
@@ -26,13 +25,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ActionType.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ActionType.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.2">
-              <caret line="153" column="38" selection-start-line="153" selection-start-column="38" selection-end-line="153" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.4661017">
+              <caret line="80" column="39" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
               <folding>
-                <element signature="e#4473#6056#0#PHP" expanded="false" />
+                <element signature="e#4885#6468#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -90,22 +89,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new2.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="new2.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7113402">
-              <caret line="106" column="96" selection-start-line="106" selection-start-column="96" selection-end-line="106" selection-end-column="96" />
+            <state vertical-scroll-proportion="-7.3898306">
+              <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
               <folding>
                 <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="e#5381#5399#0#Twig" expanded="true" />
-                <element signature="e#7209#7242#0#Twig" expanded="true" />
-                <element signature="e#10814#10828#0#Twig" expanded="true" />
+                <element signature="n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+                <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#4;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="e#6043#6061#0#Twig" expanded="true" />
+                <element signature="e#7871#7904#0#Twig" expanded="true" />
+                <element signature="e#11476#11490#0#Twig" expanded="true" />
                 <element signature="n#script#11;n#div#0;n#!!top" expanded="false" />
                 <element signature="n#script#12;n#div#0;n#!!top" expanded="false" />
-                <marker date="1469165798617" expanded="true" signature="15215:15255" placeholder="..." />
-                <marker date="1469165798617" expanded="true" signature="17228:17282" placeholder="..." />
-                <marker date="1469165798617" expanded="true" signature="19231:19285" placeholder="..." />
+                <marker date="1469166415180" expanded="true" signature="15877:15917" placeholder="..." />
+                <marker date="1469166415180" expanded="true" signature="17890:17944" placeholder="..." />
+                <marker date="1469166415180" expanded="true" signature="19893:19947" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -229,9 +229,9 @@
         <option value="$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadInsects.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionFarmSpecialityMvtType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
       </list>
     </option>
   </component>
@@ -1015,16 +1015,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.2">
-          <caret line="153" column="38" selection-start-line="153" selection-start-column="38" selection-end-line="153" selection-end-column="38" />
-          <folding>
-            <element signature="e#4473#6056#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.3">
@@ -1050,19 +1040,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new2.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7113402">
-          <caret line="106" column="96" selection-start-line="106" selection-start-column="96" selection-end-line="106" selection-end-column="96" />
+        <state vertical-scroll-proportion="-7.3898306">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
           <folding>
             <element signature="n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="e#5381#5399#0#Twig" expanded="true" />
-            <element signature="e#7209#7242#0#Twig" expanded="true" />
-            <element signature="e#10814#10828#0#Twig" expanded="true" />
+            <element signature="n#div#3;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#a#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#4;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#6043#6061#0#Twig" expanded="true" />
+            <element signature="e#7871#7904#0#Twig" expanded="true" />
+            <element signature="e#11476#11490#0#Twig" expanded="true" />
             <element signature="n#script#11;n#div#0;n#!!top" expanded="false" />
             <element signature="n#script#12;n#div#0;n#!!top" expanded="false" />
-            <marker date="1469165798617" expanded="true" signature="15215:15255" placeholder="..." />
-            <marker date="1469165798617" expanded="true" signature="17228:17282" placeholder="..." />
-            <marker date="1469165798617" expanded="true" signature="19231:19285" placeholder="..." />
+            <marker date="1469166415180" expanded="true" signature="15877:15917" placeholder="..." />
+            <marker date="1469166415180" expanded="true" signature="17890:17944" placeholder="..." />
+            <marker date="1469166415180" expanded="true" signature="19893:19947" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4661017">
+          <caret line="80" column="39" selection-start-line="80" selection-start-column="39" selection-end-line="80" selection-end-column="39" />
+          <folding>
+            <element signature="e#4885#6468#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

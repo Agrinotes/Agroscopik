@@ -74,6 +74,15 @@ class ActionType extends AbstractType
                 'attr' => array('class' => 'form-control'),
                 'required' => false,
             ))
+            ->add('auxiliary', EntityType::class, array(
+                'class' => 'AppBundle:Insect',
+                'choice_label' => 'name',
+                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                'label' => 'Choisir l\'auxiliaire',
+                'required' => false,
+                'multiple' => false,
+                'expanded' => false,
+            ))
             ->add('density', IntegerType::class, array(
                 'label' => 'Définir la densité de semis/plantation',
                 'attr' => array('class' => 'form-control', 'min' => 0, 'placeholder' => '0'),
