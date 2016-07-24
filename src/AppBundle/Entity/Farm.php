@@ -19,6 +19,8 @@ class Farm
         $this->tractors = new ArrayCollection();
         $this->implements = new ArrayCollection();
         $this->farmSpecialities = new ArrayCollection();
+        $this->farmFertilizers = new ArrayCollection();
+
     }
 
         /**
@@ -66,6 +68,12 @@ class Farm
      * @ORM\JoinColumn(nullable=false)
      */
     private $farmSpecialities;
+
+    /**
+     * @ORM\OneToMany (targetEntity="AppBundle\Entity\FarmFertilizer", mappedBy="farm", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $farmFertilizers;
 
     /**
      * Get id
@@ -269,6 +277,42 @@ class Farm
     public function getFarmSpecialities()
     {
         return $this->farmSpecialities;
+    }
+
+    /**
+     * Add farm fertilizer
+     *
+     * @param \AppBundle\Entity\FarmFertilizer $fertilizer
+     * @return Farm
+     */
+    public function addFarmFertilizer(FarmFertilizer $fertilizer)
+    {
+        $this->farmFertilizers[] = $fertilizer;
+
+        // We also add the current farm to the tractor
+        $fertilizer->setFarm($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove farm fertilizer
+     *
+     * @param \AppBundle\Entity\FarmFertilizer $fertilizer
+     */
+    public function removeFarmFertilizer(FarmFertilizer $fertilizer)
+    {
+        $this->farmFertilizers->removeElement($fertilizer);
+    }
+
+    /**
+     * Get farm fertilizers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFarmFertilizers()
+    {
+        return $this->farmFertilizers;
     }
 }
 

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,15 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Fertilizer
 {
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->farmFertilizers = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -20,6 +30,12 @@ class Fertilizer
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany (targetEntity="AppBundle\Entity\FarmFertilizer", mappedBy="fertilizer", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $farmFertilizers;
 
     /**
      * @var string
@@ -487,6 +503,43 @@ class Fertilizer
     public function setType($type)
     {
         $this->type = $type;
+    }
+
+
+    /**
+     * Add farm fertilizer
+     *
+     * @param \AppBundle\Entity\FarmFertilizer $fertilizer
+     * @return Fertilizer
+     */
+    public function addFarmFertilizer(FarmFertilizer $fertilizer)
+    {
+        $this->farmFertilizers[] = $fertilizer;
+
+        // We also add the current speciality to the farmSpeciality
+        $fertilizer->setFertilizer($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove farm fertilizer
+     *
+     * @param \AppBundle\Entity\FarmFertilizer $fertilizer
+     */
+    public function removeFarmFertilizer(FarmFertilizer $fertilizer)
+    {
+        $this->farmFertilizers->removeElement($fertilizer);
+    }
+
+    /**
+     * Get farm fertilizers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFarmFertilizers()
+    {
+        return $this->farmFertilizers;
     }
 }
 
