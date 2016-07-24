@@ -31,6 +31,13 @@ class Fertilizer
     /**
      * @var string
      *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="formula", type="string", length=255, nullable=true)
      */
     private $formula;
@@ -464,6 +471,22 @@ class Fertilizer
     public function getComment()
     {
         return $this->comment;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 }
 

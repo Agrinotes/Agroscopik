@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fertilizer</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fertilizer.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ fertilizer.name }}</td>
+            </tr>
+            <tr>
+                <th>Formula</th>
+                <td>{{ fertilizer.formula }}</td>
+            </tr>
+            <tr>
+                <th>N</th>
+                <td>{{ fertilizer.n }}</td>
+            </tr>
+            <tr>
+                <th>P2o5</th>
+                <td>{{ fertilizer.p2O5 }}</td>
+            </tr>
+            <tr>
+                <th>K2o</th>
+                <td>{{ fertilizer.k2O }}</td>
+            </tr>
+            <tr>
+                <th>Cao</th>
+                <td>{{ fertilizer.caO }}</td>
+            </tr>
+            <tr>
+                <th>Mgo</th>
+                <td>{{ fertilizer.mgO }}</td>
+            </tr>
+            <tr>
+                <th>Fe</th>
+                <td>{{ fertilizer.fe }}</td>
+            </tr>
+            <tr>
+                <th>So3</th>
+                <td>{{ fertilizer.sO3 }}</td>
+            </tr>
+            <tr>
+                <th>Zn</th>
+                <td>{{ fertilizer.zn }}</td>
+            </tr>
+            <tr>
+                <th>B</th>
+                <td>{{ fertilizer.b }}</td>
+            </tr>
+            <tr>
+                <th>Mn</th>
+                <td>{{ fertilizer.mn }}</td>
+            </tr>
+            <tr>
+                <th>Cu</th>
+                <td>{{ fertilizer.cu }}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ fertilizer.comment }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fertilizer_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fertilizer_edit', { 'id': fertilizer.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

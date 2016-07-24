@@ -1,3 +1,7 @@
+app_fertilizer:
+    resource: "@AppBundle/Controller/FertilizerController.php"
+    type:     annotation
+
 app_insect:
     resource: "@AppBundle/Controller/InsectController.php"
     type:     annotation
