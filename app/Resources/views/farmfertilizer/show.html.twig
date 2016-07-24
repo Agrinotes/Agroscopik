@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+
+{% block page %}
+    <div class="page animsition">
+        <div class="page-header padding-top-20 padding-bottom-10">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('farmfertilizer_index') }}">Stock d'engrais et amendements</a></li>
+                <li class="active">{{ farmFertilizer.fertilizer.name | capitalize }}</li>
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="row">
+                <div class="col-lg-9">
+                    {% for type, messages in app.session.flashbag.all() %}
+                        {% for message in messages %}
+                            <div class="alert dark alert-alt alert-{{ type }} alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                {{ message}}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{{ farmFertilizer.fertilizer.name | capitalize }}</h3>
+
+                            <div class="panel-actions">
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <!-- Example Tabs Line -->
+                            <div class="example-wrap margin-lg-0">
+                                <div class="nav-tabs-horizontal">
+                                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
+                                        <li class="active" role="presentation"><a data-toggle="tab"
+                                                                                  href="#exampleTabsLineOne"
+                                                                                  aria-controls="exampleTabsLineOne"
+                                                                                  role="tab" style="font-size: 16px;">Historique
+                                                Stock</a></li>
+                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
+                                                                   aria-controls="exampleTabsLineTwo"
+                                                                   role="tab" style="font-size: 16px;">Utilisations</a>
+                                        </li>
+
+
+
+                                    </ul>
+                                    </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
+                                            {# if farmFertilizer.movements is empty %}
+                                                <p class="margin-top-20">
+                                                    Aucun mouvement de stock enregistré.
+                                                </p>
+                                            {% else %}
+                                                {{ render(controller('AppBundle:FarmSpecialityMvt:list',{'id': farmSpeciality.id } )) }}
+                                            {% endif #}
+
+
+                                        </div>
+                                        <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
+                                            <p class="margin-top-20">
+                                                Cette fonctionnalité pourra être développée à l'avenir
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Example Tabs Line With JS -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="widget margin-bottom-10">
+                        <div class="widget-content padding-30 bg-cyan-700">
+                            <div class="counter counter-lg counter-inverse">
+                                <div class="counter-label text-uppercase">Stock</div>
+                                <div class="counter-number-group">
+                                    <span class="counter-number">{#  farmSpeciality.stock |number_format(2,',',' ') }}</span>
+                                    <span class="counter-number-related font-size-14">{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif %}</span>
+                                </div>
+                                <div>{{ farmSpeciality.unitPrice |number_format(0,',',' ') }} CFP/{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif #}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-info waves-effect waves-light btn-block" data-target="#exampleNiftyFlipVertical" data-toggle="modal" type="button">Ajuster le stock</button>
+
+                    <div class="modal fade modal-3d-flip-vertical modal-info" id="exampleNiftyFlipVertical" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" style="display: none;">
+                        <div class="modal-dialog">
+                            {# render(controller('AppBundle:FarmSpecialityMvt:new',{'id': farmSpeciality.id } )) #}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            $('#farm_speciality_mvt_category').on('change', function() {
+                if($("#farm_speciality_mvt_category option:selected").text()=="Nouvel achat de produit"){
+                    $('#togglePrice').show();
+
+                }else{
+                    $('#togglePrice').hide();
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+
+
