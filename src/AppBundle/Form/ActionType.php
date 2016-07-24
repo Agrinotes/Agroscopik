@@ -50,6 +50,11 @@ class ActionType extends AbstractType
                 'by_reference' => false,
                 'label' => 'Définir une ou plusieurs périodes d\'intervention',
             ))
+            ->add('nbWorkers', IntegerType::class, array(
+                'required' => false,
+                'label' => 'Définir le nombre de personnes pour cette intervention',
+                'attr' => array('class' => 'form-control', 'min' => 0, 'placeholder' => '1'),
+            ))
             ->add('farmSpecialityMvts', CollectionType::class, array(
                 'entry_type' => ActionFarmSpecialityMvtType::class,
                 'allow_add' => true,

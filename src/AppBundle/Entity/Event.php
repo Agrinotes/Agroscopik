@@ -229,7 +229,8 @@ class Event
 
         // Could be largely improved...
         if($duration->format('%d') == 0 and $duration->format('%h') < ($dayEnd-$dayStart) ){
-            return $this->getDuration();
+            $hours = $duration->format('%h');
+            return new DateInterval('PT'.$hours.'H');
         }else{
             $hours = 0;
 
@@ -242,7 +243,6 @@ class Event
                     $hours++;
                 }
             }
-
             return new DateInterval('PT'.$hours.'H');
         }
     }

@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('front/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
     {#<link rel="stylesheet" href="{{ asset('front/global/vendor/clockpicker/clockpicker.css') }}">#}
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/asspinner/asSpinner.css') }}">
+
 {% endblock %}
 
 {% block head_javascripts %}
@@ -181,6 +183,34 @@
                 </div>
                 <div class="panel">
                     <div class="panel-heading">
+                        <h3 class="panel-title">{{ form_label(form.nbWorkers) }}
+                        </h3>
+
+                        <div class="panel-actions">
+
+                        </div>
+
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="input-group">
+
+                                {{ form_widget(form.nbWorkers) }}
+                                {{ form_errors(form.nbWorkers) }}
+                                    <span class="input-group-addon">
+                      personnes
+                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-heading">
                         <h3 class="panel-title">Choisir le matériel utilisé
                         </h3>
                     </div>
@@ -265,10 +295,14 @@
         <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
         <script src="{{ asset('front/global/vendor/datepair-js/datepair.min.js') }}"></script>
         <script src="{{ asset('front/global/vendor/datepair-js/jquery.datepair.min.js') }}"></script>
+        <script src="{{ asset('front/global/vendor/asspinner/jquery-asSpinner.min.js') }}"></script>
+
 
         <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
         <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
         <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
+        <script src="{{ asset('front/global/js/components/asspinner.js') }}"></script>
+
 
         {#
         <script src="{{ asset('front/global/vendor/clockpicker/bootstrap-clockpicker.min.js') }}"></script>

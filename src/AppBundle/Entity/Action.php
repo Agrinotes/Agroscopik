@@ -120,6 +120,14 @@ class Action
      */
     private $aim;
 
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="nbWorkers", type="integer", nullable=true)
+     */
+    private $nbWorkers;
+
     /**
      * Get id
      *
@@ -581,7 +589,6 @@ $endTime = $endTime->add($period->getDuration());
         return $result;
     }
 
-
     /**
      * Get working duration
      * Loops through associated \Event $periods to get action duration
@@ -595,7 +602,7 @@ $endTime = $endTime->add($period->getDuration());
 
         foreach($periods as $period){
             $period_duration = $period->getWorkingDuration();
-            $period_duration = $this->format_duration_to_hours($period_duration);
+            $period_duration = $this->format_duration_to_hours_1($period_duration);
             $endTime = $endTime->add($period_duration);
         }
 
@@ -613,9 +620,56 @@ $endTime = $endTime->add($period->getDuration());
         return $duration->h.'h';
     }
 
+    /**
+     * Format an interval to show all existing components.
+     *
+     * @param DateInterval $interval The interval
+     *
+     * @return string Formatted interval string.
+     */
+    function format_duration_to_hours_1(DateInterval $interval) {
+        $result = 0;
 
+        // Years
+        if ($interval->y) {
+            if ($interval->y != 0) {
+                $result += $interval->y * 365 * 24;
+            }
+        }
 
+        // Months
+        if ($interval->m) {
+            if ($interval->m != 0) {
+                $result += $interval->m * 30 * 24;
+            }
+        }
 
+        // Days
+        if ($interval->d) {
+            if ($interval->d != 0) {
+                $result += $interval->d * 24;
+            }
+        }
+
+        // Hours
+        if ($interval->h) {
+            if ($interval->h != 0) {
+                $result += $interval->h;
+            }
+        }
+
+        // Minutes
+        if ($interval->i) {
+            if ($interval->i != 0) {
+                $result += 1;
+            }
+        }
+
+        if($this->getNbWorkers()!=0){
+            $result*=$this->getNbWorkers();
+        }
+        return new DateInterval('PT'.$result.'H');
+    }
 
     /**
      * Format an interval to show all existing components.
@@ -778,6 +832,22 @@ $endTime = $endTime->add($period->getDuration());
     public function setDensityUnit($densityUnit)
     {
         $this->densityUnit = $densityUnit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbWorkers()
+    {
+        return $this->nbWorkers;
+    }
+
+    /**
+     * @param int $nbWorkers
+     */
+    public function setNbWorkers($nbWorkers)
+    {
+        $this->nbWorkers = $nbWorkers;
     }
 
 }
