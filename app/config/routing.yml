@@ -1,3 +1,7 @@
+app_expense:
+    resource: "@AppBundle/Controller/ExpenseController.php"
+    type:     annotation
+
 app_farm_fertilizer_mvt:
     resource: "@AppBundle/Controller/FarmFertilizerMvtController.php"
     type:     annotation

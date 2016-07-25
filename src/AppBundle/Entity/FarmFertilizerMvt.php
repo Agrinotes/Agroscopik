@@ -52,7 +52,7 @@ class FarmFertilizerMvt
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datetime", type="datetimetz")
+     * @ORM\Column(name="datetime", type="datetime")
      */
     private $datetime;
 
