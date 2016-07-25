@@ -57,13 +57,13 @@
                                     </ul>
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
-                                            {# if farmFertilizer.movements is empty %}
+                                            {% if farmFertilizer.movements is empty %}
                                                 <p class="margin-top-20">
                                                     Aucun mouvement de stock enregistré.
                                                 </p>
                                             {% else %}
-                                                {{ render(controller('AppBundle:FarmSpecialityMvt:list',{'id': farmSpeciality.id } )) }}
-                                            {% endif #}
+                                                {{ render(controller('AppBundle:FarmFertilizerMvt:list',{'id': farmFertilizer.id.id } )) }}
+                                            {% endif %}
 
 
                                         </div>
@@ -97,7 +97,7 @@
 
                     <div class="modal fade modal-3d-flip-vertical modal-info" id="exampleNiftyFlipVertical" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" style="display: none;">
                         <div class="modal-dialog">
-                            {# render(controller('AppBundle:FarmSpecialityMvt:new',{'id': farmSpeciality.id } )) #}
+                            {{  render(controller('AppBundle:FarmFertilizerMvt:new',{'id': farmFertilizer.id } )) }}
                         </div>
                     </div>
 
@@ -107,24 +107,6 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-
-            $('#farm_speciality_mvt_category').on('change', function() {
-                if($("#farm_speciality_mvt_category option:selected").text()=="Nouvel achat de produit"){
-                    $('#togglePrice').show();
-
-                }else{
-                    $('#togglePrice').hide();
-                }
-            });
-        });
-    </script>
-{% endblock %}
 
 
 

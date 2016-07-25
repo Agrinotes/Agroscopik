@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FarmFertilizerMvt list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Datetime</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for farmFertilizerMvt in farmFertilizerMvts %}
+            <tr>
+                <td><a href="{{ path('farmfertilizermvt_show', { 'id': farmFertilizerMvt.id }) }}">{{ farmFertilizerMvt.id }}</a></td>
+                <td>{{ farmFertilizerMvt.datetime }}</td>
+                <td>{{ farmFertilizerMvt.amount }}</td>
+                <td>{{ farmFertilizerMvt.price }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('farmfertilizermvt_show', { 'id': farmFertilizerMvt.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('farmfertilizermvt_edit', { 'id': farmFertilizerMvt.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('farmfertilizermvt_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

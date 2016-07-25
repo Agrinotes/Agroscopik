@@ -84,6 +84,11 @@ class Action
     private $farmSpecialityMvts;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FarmFertilizerMvt", mappedBy="action", cascade={"persist","remove"})
+     */
+    private $farmFertilizerMvts;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\HarvestProduct", mappedBy="action", cascade={"persist","remove"})
      */
     private $harvestProducts;
@@ -374,6 +379,43 @@ class Action
         return $this->farmSpecialityMvts;
     }
 
+
+    /**
+     * Add fertilizer movement
+     *
+     * @param \AppBundle\Entity\FarmFertilizerMvt $movement
+     * @return Action
+     */
+    public function addFarmFertilizerMvt(FarmFertilizerMvt $movement)
+    {
+        $this->farmFertilizerMvts[] = $movement;
+
+        $movement->setAction($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove fertilizer movement
+     *
+     * @param \AppBundle\Entity\FarmFertilizerMvt $movement
+     */
+    public function removeFarmFertilizerMvt(FarmFertilizerMvt $movement)
+    {
+        $this->farmFertilizerMvts->removeElement($movement);
+
+        $movement->setAction("");
+    }
+
+    /**
+     * Get fertilizer movements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFarmFertilizerMvts()
+    {
+        return $this->farmFertilizerMvts;
+    }
 
     /**
      * Add harvest  product

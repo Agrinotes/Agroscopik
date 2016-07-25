@@ -2,16 +2,25 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * FarmFertilizer
+ * FarmFertilizerMvtCategory
  *
- * @ORM\Table(name="farm_fertilizer")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\FarmFertilizerRepository")
+ * @ORM\Table(name="farm_fertilizer_mvt_category")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FarmFertilizerMvtCategoryRepository")
  */
-class FarmFertilizer
+class FarmFertilizerMvtCategory
 {
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->movements = new ArrayCollection();
+    }
+
     /**
      * @var int
      *
@@ -22,19 +31,21 @@ class FarmFertilizer
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Farm", inversedBy="farmFertilizers",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
-    private $farm;
+    private $name;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Fertilizer", inversedBy="farmFertilizers",cascade={"persist"})
-     * @ORM\JoinColumn(nullable=false)
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255)
      */
-    private $fertilizer;
+    private $slug;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FarmFertilizerMvt", mappedBy="fertilizer", cascade={"persist","remove"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FarmFertilizerMvt", mappedBy="category", cascade={"persist","remove"})
      */
     private $movements;
 
@@ -49,58 +60,58 @@ class FarmFertilizer
     }
 
     /**
-     * Set farm
+     * Set name
      *
-     * @param \AppBundle\Entity\Farm $farm
-     * @return \AppBundle\Entity\FarmFertilizer
+     * @param string $name
+     *
+     * @return FarmFertilizerMvtCategory
      */
-    public function setFarm(Farm $farm)
+    public function setName($name)
     {
-        $this->farm = $farm;
+        $this->name = $name;
 
         return $this;
     }
 
     /**
-     * Get farm
+     * Get name
      *
-     * @return \AppBundle\Entity\FarmFertilizer
+     * @return string
      */
-    public function getFarm()
+    public function getName()
     {
-        return $this->farm;
+        return $this->name;
     }
 
     /**
-     * Set fertilizer
+     * Set slug
      *
-     * @param \AppBundle\Entity\Fertilizer $fertilizer
-     * @return \AppBundle\Entity\FarmFertilizer
+     * @param string $slug
+     *
+     * @return FarmFertilizerMvtCategory
      */
-    public function setFertilizer(Fertilizer $fertilizer)
+    public function setSlug($slug)
     {
-        $this->fertilizer = $fertilizer;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get fertilizer
+     * Get slug
      *
-     * @return \AppBundle\Entity\FarmFertilizer
+     * @return string
      */
-    public function getFertilizer()
+    public function getSlug()
     {
-        return $this->fertilizer;
+        return $this->slug;
     }
-
-
 
     /**
      * Add movement
      *
      * @param \AppBundle\Entity\FarmFertilizerMvt $movement
-     * @return FarmFertilizer
+     * @return FarmFertilizerMvtCategory
      */
     public function addMovement(FarmFertilizerMvt $movement)
     {

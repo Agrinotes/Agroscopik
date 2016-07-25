@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FarmFertilizerMvtCategory list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for farmFertilizerMvtCategory in farmFertilizerMvtCategories %}
+            <tr>
+                <td><a href="{{ path('farmfertilizermvtcategory_show', { 'id': farmFertilizerMvtCategory.id }) }}">{{ farmFertilizerMvtCategory.id }}</a></td>
+                <td>{{ farmFertilizerMvtCategory.name }}</td>
+                <td>{{ farmFertilizerMvtCategory.slug }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('farmfertilizermvtcategory_show', { 'id': farmFertilizerMvtCategory.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('farmfertilizermvtcategory_edit', { 'id': farmFertilizerMvtCategory.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('farmfertilizermvtcategory_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

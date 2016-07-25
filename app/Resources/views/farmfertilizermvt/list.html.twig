@@ -1,0 +1,27 @@
+<table class="table table-hover">
+    <tbody>
+    {% for farmFertilizerMvt in farmFertilizerMvts %}
+        <tr>
+
+            <td>
+                <a href="{{ path('farmfertilizermvt_show', { 'id': farmFertilizerMvt.id }) }}">{{ farmFertilizerMvt.category.name }} le
+                    {% if farmFertilizerMvt.datetime %} {{ farmFertilizerMvt.datetime|date('d/m/Y') }}{% endif %}</a>
+            </td>
+            <td style="text-align: right">
+                {% if farmFertilizerMvt.category.slug == "useAction" or farmFertilizerMvt.amount < 0 %}-{% endif %}
+                {{ farmFertilizerMvt.amount|abs|number_format(1,',',' ') }}
+                {{ farmFertilizerMvt.unit.symbol }}
+
+            </td>
+            <td>
+                {% if farmFertilizerMvt.price != 0 %}
+                    {{ farmFertilizerMvt.price |number_format(0,',',' ') }} CFP
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+
