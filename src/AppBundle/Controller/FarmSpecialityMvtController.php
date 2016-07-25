@@ -66,9 +66,11 @@ class FarmSpecialityMvtController extends Controller
     public function newAction(Request $request, $id)
     {
         $farmSpecialityMvt = new FarmSpecialityMvt();
+
         $em = $this->getDoctrine()->getManager();
         $speciality = $em->getRepository('AppBundle:FarmSpeciality')->find($id);
         $farmSpecialityMvt->setSpeciality($speciality);
+
         $form = $this->createForm('AppBundle\Form\FarmSpecialityMvtType', $farmSpecialityMvt);
         $form->handleRequest($request);
 

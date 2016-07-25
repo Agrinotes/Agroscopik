@@ -131,6 +131,38 @@
                         </div>
                     </div>
                 </div>
+                <div class="panel" id="farmFertilizers">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Définir les engrais et amendements utilisés
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                {% if app.user.farm.farmFertilizers is not empty %}
+
+                                    <div class="margin-10"></div>
+                                    {{ form_errors(form.farmFertilizerMvts) }}
+                                    {{ form_widget(form.farmFertilizerMvts) }}
+
+                                    <div class="margin-10"></div>
+
+                                    <a class="pull-right" href="#" id="add_ferti_mvt"><i class="icon md-plus-circle-o"
+                                                                                   aria-hidden="true"></i> Ajouter un autre
+                                        engrais ou amendement</a>
+                                {% else %}
+                                    <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
+                                        Vous devez avoir au moins un engrais ou amendement dans votre <a style="text-decoration: underline" href="{{ path('farmfertilizer_new') }}">stock d'engrais virtuel</a> pour pouvoir faire des opérations de fertilisation ou amendement.
+                                    </div>
+
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="panel" id="harvestProducts">
                     <div class="panel-heading">
                         <h3 class="panel-title">
@@ -194,7 +226,7 @@
                     <div class="panel-body">
 
                         <div class="row">
-                            <div class="col-lg-4">
+                            <div class="col-md-12 col-lg-6">
                                 <div class="input-group">
 
                                 {{ form_widget(form.nbWorkers) }}
@@ -445,6 +477,58 @@
         </script>
     {% endif %}
 
+        {% if app.user.farm.farmFertilizers is not empty %}
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var $container4 = $('div#action_farmFertilizerMvts');
+                var index4 = $container4.find(':input').length;
+                $('#add_ferti_mvt').click(function (e) {
+                    addFertiMvt($container4);
+                    e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                    return false;
+                });
+
+                if (index4 == 0) {
+                    addFertiMvt($container4);
+                    $("#action_farmFertilizerMvts > div > a").remove();
+                } else {
+                    $container4.children('div').each(function () {
+                        addDeleteLink4($(this));
+                    });
+                }
+
+                function addFertiMvt($container4) {
+                    var template4 = $container4.attr('data-prototype')
+                            .replace(/__name__label__/g, '')
+                            .replace(/__name__/g, index4)
+                            .replace(/form-group/g, "form-group col-lg-6")
+
+
+                            ;
+
+                    var $prototype4 = $(template4);
+                    addDeleteLink4($prototype4);
+                    $container4.append($prototype4);
+
+                    index4++;
+                }
+
+                function addDeleteLink4($prototype4) {
+                    var $deleteLink4 = $('<a href="#" style="margin: none; position: relative;top: -4px;right: 2px;"><i class="btn btn-pure btn-danger icon waves-effect waves-circle waves-classicr md-close-circle-o" aria-hidden="true"></i></a>');
+                    $prototype4.append($deleteLink4);
+                    $deleteLink4.click(function (e) {
+                        $prototype4.remove();
+
+                        index4--;
+
+                        e.preventDefault();
+                        return false;
+                    });
+                }
+            });
+        </script>
+        {% endif %}
+
         <script type="text/javascript">
             $(document).ready(function () {
                 var $container3 = $('div#action_harvestProducts');
@@ -500,6 +584,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#farmSpecialities').hide();
+                $('#farmFertilizers').hide();
                 $('#harvestProducts').hide();
                 $('#density').hide();
                 $('#auxiliary').hide();
@@ -509,13 +594,24 @@
                         $('#density').hide("slow");
                         $('#harvestProducts').hide("slow");
                         $('#auxiliary').hide("slow");
+                        $('#farmFertilizers').hide("slow");
+
 
                         $('#farmSpecialities').show("slow");
 
-                    } else if ($("#action_intervention").select2('data')[0]['text'] == "Récolte") {
+                    } else if ($("#action_intervention").select2('data')[0]['text'] == "Fertilisation") {
                         $('#density').hide("slow");
                         $('#farmSpecialities').hide("slow");
                         $('#auxiliary').hide("slow");
+                        $('#harvestProducts').hide("slow");
+
+                        $('#farmFertilizers').show("slow");
+
+                    }else if ($("#action_intervention").select2('data')[0]['text'] == "Récolte") {
+                        $('#density').hide("slow");
+                        $('#farmSpecialities').hide("slow");
+                        $('#auxiliary').hide("slow");
+                        $('#farmFertilizers').hide("slow");
 
                         $('#harvestProducts').show("slow");
 
@@ -524,6 +620,7 @@
                         $('#density').hide("slow");
                         $('#farmSpecialities').hide("slow");
                         $('#harvestProducts').hide("slow");
+                        $('#farmFertilizers').hide("slow");
 
                         $('#auxiliary').show("slow");
                     }
@@ -533,6 +630,7 @@
                         $('#farmSpecialities').hide("slow");
                         $('#harvestProducts').hide("slow");
                         $('#auxiliary').hide("slow");
+                        $('#farmFertilizers').hide("slow");
 
                         $('#density').show("slow");
 
@@ -541,6 +639,7 @@
                         $('#farmSpecialities').hide("slow");
                         $('#harvestProducts').hide("slow");
                         $('#auxiliary').hide("slow");
+                        $('#farmFertilizers').hide("slow");
 
                     }
                 });

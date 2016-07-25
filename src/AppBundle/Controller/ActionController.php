@@ -139,6 +139,15 @@ class ActionController extends Controller
                 $em->flush();
             }
 
+            // Remove fertilizers added to wrong categories
+            if($action->getFarmFertilizerMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'fertilisation'){
+                $mvts = $action->getFarmFertilizerMvts();
+                foreach($mvts as $mvt){
+                    $em->remove($mvt);
+                }
+                $em->flush();
+            }
+
             // Remove harvest products added to wrong categories
             if($action->getIntervention()->getInterventionCategory()->getSlug() != 'recolte'){
                 $products = $action->getHarvestProducts();
@@ -148,7 +157,7 @@ class ActionController extends Controller
                 $em->flush();
             }
 
-            // Remove harvest products added to wrong categories
+            // Remove seeds or plant density products added to wrong categories
             if($action->getIntervention()->getInterventionCategory()->getSlug() != 'semis-et-plantation'){
                 $action->setDensity("");
                 $action->setDensityUnit(null);

@@ -15,7 +15,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ActionFarmSpecialityMvtType extends AbstractType
+class ActionFarmFertilizerMvtType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -27,7 +27,7 @@ class ActionFarmSpecialityMvtType extends AbstractType
 
         $builder
             ->add('category', EntityType::class, array(
-                'class' => 'AppBundle:FarmSpecialityMvtCategory',
+                'class' => 'AppBundle:FarmFertilizerMvtCategory',
                 'choice_label' => 'name',
                 'label_attr' => array('class' => 'hidden'),
                 'attr' => array('class' => 'hidden'),
@@ -39,12 +39,12 @@ class ActionFarmSpecialityMvtType extends AbstractType
                         ->where("c.slug = 'useAction'");
                 },
             ))
-            ->add('speciality', EntityType::class,array(
-                'class' => 'AppBundle:FarmSpeciality',
-                'choice_label' => 'speciality.name',
+            ->add('fertilizer', EntityType::class,array(
+                'class' => 'AppBundle:FarmFertilizer',
+                'choice_label' => 'fertilizer.name',
                 'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
-                'label' => 'Choisir le nom du produit',
-                'label_attr' => array('class'=>'margin-top-30'),
+                'label' => 'Choisir le nom de l\'engrais ou amendement',
+                'label_attr' => array('class'=>''),
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,
@@ -87,7 +87,7 @@ class ActionFarmSpecialityMvtType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\FarmSpecialityMvt'
+            'data_class' => 'AppBundle\Entity\FarmFertilizerMvt'
         ));
     }
 }

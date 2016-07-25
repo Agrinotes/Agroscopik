@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use AppBundle\Form\ActionFarmSpecialityMvtType;
+use AppBundle\Form\ActionFarmFertilizerMvtType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -61,6 +62,13 @@ class ActionType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
                 'label' => 'Définir les produits utilisés',
+            ))
+            ->add('farmFertilizerMvts', CollectionType::class, array(
+                'entry_type' => ActionFarmFertilizerMvtType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label' => 'Définir les engrais et amendements utilisés',
             ))
             ->add('harvestProducts', CollectionType::class, array(
                 'entry_type' => HarvestProductType::class,
@@ -167,6 +175,18 @@ class ActionType extends AbstractType
                     $form->remove('farmSpecialityMvts');
                     $form->remove('aim');
 
+                }
+            }
+        );
+
+        $fertis = $this->tokenStorage->getToken()->getUser()->getFarm()->getFarmFertilizers();
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($fertis) {
+                $form = $event->getForm();
+                if (!count($fertis) > 0) {
+                    $form->remove('farmFertilizerMvts');
                 }
             }
         );
