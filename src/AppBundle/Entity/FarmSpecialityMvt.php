@@ -209,18 +209,6 @@ class FarmSpecialityMvt
         return $this->amount;
     }
 
-    public function getDose()
-    {
-        if ($this->getAction()) {
-            $area = $this->getAction()->getCropCycle()->getArea();
-            $amount = $this->getAmount();
-            $dose = $amount / $area;
-
-            return $dose;
-        }
-        return "";
-    }
-
     /**
      * Set unit
      *

@@ -71,10 +71,6 @@ class ActionFarmSpecialityMvtType extends AbstractType
                         ->setParameter('slug','mass')
                         ->orWhere('cat.slug = :slug2')
                         ->setParameter('slug2','volume')
-                        ->orWhere('cat.slug = :slug3')
-                        ->setParameter('slug3','mass_area_density')
-                        ->orWhere('cat.slug = :slug4')
-                        ->setParameter('slug4','volume_area_density')
                         ;
                 },
             ));

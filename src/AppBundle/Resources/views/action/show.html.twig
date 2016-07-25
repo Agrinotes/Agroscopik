@@ -73,10 +73,37 @@
                                                 {{ mvt.speciality.speciality.name }}
 
                                             </td>
-                                            <td>                                            {{ mvt.amount }}{{ mvt.unit.symbol }} (soit {{ mvt.dose|number_format(2,',',' ') }}{{ mvt.unit.symbol }}/ha)
+                                            <td>                                            {{ mvt.amount }}{{ mvt.unit.symbol }}
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-default pull-right" href="{{ path('speciality_show',{'id':mvt.speciality.speciality.id}) }}">Voir usages et doses autorisées</a>
+
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+
+                            {% endif %}
+
+                            {% if action.intervention.interventionCategory.slug == "fertilisation" and action.farmFertilizerMvts is not empty %}
+
+                                <h4 class="example-title">
+                                    Engrais et amendements utilisés
+                                </h4>
+                                <table class="table table-hover">
+                                    <div class="table-body">
+
+                                    </div>
+                                    {% for mvt in action.farmFertilizerMvts %}
+                                        <tr>
+                                            <td>
+                                                {{ mvt.fertilizer.fertilizer.name }}
+
+                                            </td>
+                                            <td>                                            {{ mvt.amount }}{{ mvt.unit.symbol }} (soit {{ mvt.dose|number_format(2,',',' ') }}{{ mvt.unit.symbol }}/ha)
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-sm btn-default pull-right" href="{{ path('speciality_show',{'id':mvt.fertilizer.fertilizer.id}) }}">Voir la composition de l'engrais</a>
 
                                             </td>
                                         </tr>
