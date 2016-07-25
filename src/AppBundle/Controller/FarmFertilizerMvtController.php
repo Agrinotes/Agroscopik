@@ -76,9 +76,9 @@ class FarmFertilizerMvtController extends Controller
             $em->persist($farmFertilizerMvt);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'Le stock de '.$fertilizer->getFertilizery()->getName().' a été mis à jour avec succès !');
+            $request->getSession()->getFlashBag()->add('success', 'Le stock de '.$fertilizer->getFertilizer()->getName().' a été mis à jour avec succès !');
 
-            return $this->redirectToRoute('farmfertilizermvt_show', array('id' => $farmFertilizerMvt->getId()));
+            return $this->redirectToRoute('farmfertilizer_show', array('id' => $fertilizer->getId()));
         }
 
         return $this->render('farmfertilizermvt/new_modal.html.twig', array(

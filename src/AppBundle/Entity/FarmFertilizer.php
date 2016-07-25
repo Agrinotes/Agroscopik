@@ -130,5 +130,77 @@ class FarmFertilizer
     {
         return $this->movements;
     }
+
+    /**
+     * Get stock
+     *
+     */
+    public function getStock()
+    {
+        $movements = $this->getMovements();
+        $stock = 0;
+
+        foreach ($movements as $movement) {
+            // Get original values
+            $unit = $movement->getUnit();
+            $rawAmount = $movement->getAmount();
+
+            if($movement->getCategory()->getSlug()=="useAction"){
+                $rawAmount = -1 * abs($rawAmount);
+            }
+
+            // Get proper factor
+            $factor = $unit->getA();
+
+            if($factor!=0){
+                $correctedAmount = $rawAmount*$factor;
+            }else{
+                $correctedAmount = $rawAmount;
+            }
+            $stock += $correctedAmount;
+        }
+
+        if($this->getFertilizer()->getFormula() == "liquide"){
+            $stock *= 1000;
+        }
+
+        return $stock;
+    }
+
+    public function getUnitPrice(){
+        $movements = $this->getMovements();
+        $stock = 0;
+        $price =0;
+
+        foreach ($movements as $movement) {
+            if($movement->getPrice()){
+                // Get original values
+                $unit = $movement->getUnit();
+                $rawAmount = $movement->getAmount();
+
+                // Get proper factor
+                $factor = $unit->getA();
+
+                if($factor!=0){
+                    $correctedAmount = $rawAmount*$factor;
+                }else{
+                    $correctedAmount = $rawAmount;
+                }
+                $stock += $correctedAmount;
+                $price += $movement->getPrice();
+            }
+        }
+
+        if($this->getFertilizer()->getFormula() == "liquide"){
+            $stock *= 1000;
+        }
+        if($stock!=0){
+            $unitPrice = $price/$stock;
+        }else{
+            $unitPrice=0;
+        }
+        return $unitPrice;
+    }
+
 }
 

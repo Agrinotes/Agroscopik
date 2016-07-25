@@ -62,7 +62,7 @@
                                                     Aucun mouvement de stock enregistré.
                                                 </p>
                                             {% else %}
-                                                {{ render(controller('AppBundle:FarmFertilizerMvt:list',{'id': farmFertilizer.id.id } )) }}
+                                                {{ render(controller('AppBundle:FarmFertilizerMvt:list',{'id': farmFertilizer.id} )) }}
                                             {% endif %}
 
 
@@ -85,10 +85,10 @@
                             <div class="counter counter-lg counter-inverse">
                                 <div class="counter-label text-uppercase">Stock</div>
                                 <div class="counter-number-group">
-                                    <span class="counter-number">{#  farmSpeciality.stock |number_format(2,',',' ') }}</span>
-                                    <span class="counter-number-related font-size-14">{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif %}</span>
+                                    <span class="counter-number">{{   farmFertilizer.stock |number_format(2,',',' ') }}</span>
+                                    <span class="counter-number-related font-size-14">{%  if farmFertilizer.fertilizer.formula == "liquide" %}L{% elseif farmFertilizer.fertilizer.formula is not empty %}kg{% else %}{% endif %}</span>
                                 </div>
-                                <div>{{ farmSpeciality.unitPrice |number_format(0,',',' ') }} CFP/{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif #}</div>
+                                <div>{{ farmFertilizer.unitPrice |number_format(0,',',' ') }} CFP/{%  if farmFertilizer.fertilizer.formula == "liquide" %}L{% elseif farmFertilizer.fertilizer.formula is not empty %}kg{% else %}{% endif %} </div>
                             </div>
                         </div>
                     </div>

@@ -21,7 +21,7 @@ class FarmFertilizerMvtType extends AbstractType
     {
         $builder
             ->add('category', EntityType::class, array(
-                'class' => 'AppBundle:FarmSpecialityMvtCategory',
+                'class' => 'AppBundle:FarmFertilizerMvtCategory',
                 'choice_label' => 'name',
                 'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
                 'label' => 'Choisir le type d\'ajustement',
