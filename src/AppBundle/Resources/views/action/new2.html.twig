@@ -600,6 +600,10 @@
 
                         $('#farmSpecialities').show("slow");
 
+                        $('#periods').show("slow");
+                        $('#nbWorkers').show("slow");
+                        $('#tractors').show("slow");
+
                     } else if ($("#action_intervention").select2('data')[0]['text'] == "Fertilisation") {
                         $('#density').hide("slow");
                         $('#farmSpecialities').hide("slow");
@@ -607,6 +611,10 @@
                         $('#harvestProducts').hide("slow");
 
                         $('#farmFertilizers').show("slow");
+
+                        $('#periods').show("slow");
+                        $('#nbWorkers').show("slow");
+                        $('#tractors').show("slow");
 
                     }else if ($("#action_intervention").select2('data')[0]['text'] == "Récolte") {
                         $('#density').hide("slow");
@@ -616,6 +624,10 @@
 
                         $('#harvestProducts').show("slow");
 
+                        $('#periods').show("slow");
+                        $('#nbWorkers').show("slow");
+                        $('#tractors').show("slow");
+
 
                     }else if($("#action_intervention").select2('data')[0]['text'].indexOf('auxiliaire') > -1) {
                         $('#density').hide("slow");
@@ -624,6 +636,10 @@
                         $('#farmFertilizers').hide("slow");
 
                         $('#auxiliary').show("slow");
+
+                        $('#periods').show("slow");
+                        $('#nbWorkers').show("slow");
+                        $('#tractors').show("slow");
                     }
                     else if ($("#action_intervention").select2('data')[0]['text'] == "Semis direct" ||
                             $("#action_intervention").select2('data')[0]['text'] == "Semis pépinière" ||
@@ -635,12 +651,19 @@
 
                         $('#density').show("slow");
 
+                        $('#periods').show("slow");
+                        $('#nbWorkers').show("slow");
+                        $('#tractors').show("slow");
+
                     } else if($("#action_intervention").select2('data')[0]['text'] == "Observation") {
                         $('#density').hide("slow");
                         $('#farmSpecialities').hide("slow");
                         $('#harvestProducts').hide("slow");
                         $('#farmFertilizers').hide("slow");
                         $('#auxiliary').hide("slow");
+                        $('#periods').hide("slow");
+                        $('#nbWorkers').hide("slow");
+
                         $('#tractors').hide("slow");
                     }else {
                         $('#density').hide("slow");
@@ -648,6 +671,10 @@
                         $('#harvestProducts').hide("slow");
                         $('#auxiliary').hide("slow");
                         $('#farmFertilizers').hide("slow");
+
+                        $('#periods').show("slow");
+                        $('#nbWorkers').show("slow");
+                        $('#tractors').show("slow");
 
                     }
                 });

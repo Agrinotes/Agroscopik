@@ -314,5 +314,22 @@ class Farm
     {
         return $this->farmFertilizers;
     }
+
+    /**
+     * Get total area
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArea()
+    {
+        $plots = $this->getPlots();
+        $area = 0;
+        foreach($plots as $plot){
+            $plotArea = $plot->getArea();
+            $area+=$plotArea;
+        }
+        return $area;
+    }
+
 }
 

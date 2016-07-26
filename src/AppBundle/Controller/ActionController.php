@@ -12,6 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Action;
 use AppBundle\Form\ActionType;
+use AppBundle\Form\ActionModalType;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
@@ -131,34 +132,34 @@ class ActionController extends Controller
             $em->flush();
 
             // Remove specialities added to wrong categories
-            if($action->getFarmSpecialityMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'protection-des-cultures'){
+            if ($action->getFarmSpecialityMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'protection-des-cultures') {
                 $mvts = $action->getFarmSpecialityMvts();
-                foreach($mvts as $mvt){
+                foreach ($mvts as $mvt) {
                     $em->remove($mvt);
                 }
                 $em->flush();
             }
 
             // Remove fertilizers added to wrong categories
-            if($action->getFarmFertilizerMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'fertilisation'){
+            if ($action->getFarmFertilizerMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'fertilisation') {
                 $mvts = $action->getFarmFertilizerMvts();
-                foreach($mvts as $mvt){
+                foreach ($mvts as $mvt) {
                     $em->remove($mvt);
                 }
                 $em->flush();
             }
 
             // Remove harvest products added to wrong categories
-            if($action->getIntervention()->getInterventionCategory()->getSlug() != 'recolte'){
+            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'recolte') {
                 $products = $action->getHarvestProducts();
-                foreach($products as $product){
+                foreach ($products as $product) {
                     $em->remove($product);
                 }
                 $em->flush();
             }
 
             // Remove seeds or plant density products added to wrong categories
-            if($action->getIntervention()->getInterventionCategory()->getSlug() != 'semis-et-plantation'){
+            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'semis-et-plantation') {
                 $action->setDensity("");
                 $action->setDensityUnit(null);
                 $em->flush();
@@ -188,7 +189,7 @@ class ActionController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
-            $request->getSession()->getFlashBag()->add('success', 'Une intervention '.$action->getName().' a été ajoutée avec succès le '.$action->getStartDatetime()->format('d/m/Y').' !');
+            $request->getSession()->getFlashBag()->add('success', 'Une intervention ' . $action->getName() . ' a été ajoutée avec succès le ' . $action->getStartDatetime()->format('d/m/Y') . ' !');
 
             return $this->redirectToRoute('action_new', array('id' => $action->getCropCycle()->getId()));
         }
@@ -199,6 +200,8 @@ class ActionController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
 
     /**
      * Finds and displays a Action entity.
@@ -253,7 +256,7 @@ class ActionController extends Controller
             $em->persist($action);
             $em->flush();
 
-            $request->getSession()->getFlashBag()->add('success', 'L\'intervention '.$action->getName().' a été modifiée avec succès !');
+            $request->getSession()->getFlashBag()->add('success', 'L\'intervention ' . $action->getName() . ' a été modifiée avec succès !');
 
             return $this->redirectToRoute('action_show', array('id' => $action->getId()));
         }
@@ -301,7 +304,6 @@ class ActionController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('action_delete', array('id' => $action->getId())))
             ->setMethod('DELETE')
-            ->getForm()
-            ;
+            ->getForm();
     }
 }

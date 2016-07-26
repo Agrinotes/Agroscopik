@@ -56,4 +56,22 @@ class ActionRepository extends \Doctrine\ORM\EntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function findForFarm($id)
+    {
+        $qb = $this->createQueryBuilder('a');
+
+        $qb->join('a.cropCycle', 'c')
+            ->addSelect('c')
+            ->join('c.plot','p')
+            ->addSelect('p')
+            ->join('p.farm','farm')
+            ->addSelect('farm')
+            ->where('farm.id = :id')
+            ->setParameter('id', $id);
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
 }

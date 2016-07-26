@@ -41,11 +41,16 @@ class FarmController extends Controller
         $id = $this->getUser()->getFarm()->getId();
         $farm = $repository->find($id);
 
+        $repository2 = $em->getRepository('AppBundle:Action');
+
+        $actions = $repository2->findForFarm($id);
+
         $deleteForm = $this->createDeleteForm($farm);
 
         return $this->render('AppBundle:farm:show.html.twig', array(
             'farm' => $farm,
             'delete_form' => $deleteForm->createView(),
+            'actions'=>$actions,
         ));
     }
 
@@ -69,6 +74,31 @@ class FarmController extends Controller
         return $this->render('AppBundle:farm:map.html.twig', array(
             'farm' => $farm,
             'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays current user calednar entity.
+     *
+     * @Route("/calendar", name="farm_calendar")
+     * @Security("has_role('ROLE_FARMER')")
+     * @Method("GET")
+     *
+     */
+    public function calendarAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Farm');
+        $id = $this->getUser()->getFarm()->getId();
+        $farm = $repository->find($id);
+
+        $repository2 = $em->getRepository('AppBundle:Action');
+
+        $actions = $repository2->findForFarm($id);
+
+        return $this->render('AppBundle:farm:calendar.html.twig', array(
+            'farm' => $farm,
+            'actions' => $actions,
         ));
     }
 

@@ -1,6 +1,21 @@
 {% extends 'base.html.twig' %}
 
-
+{% block plugin_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/mapbox.js/mapbox.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/leaflet-label/leaflet.label.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/fullcalendar/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/mmenu/assets/examples/css/apps/calendar.css') }}">
+    <style>
+        .leaflet-popup-tip{
+            display: none;
+        }
+    </style>
+{% endblock %}
+    {% block head_javascripts %}
+        {{ parent() }}
+        <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+    {% endblock %}
 
 {% block body_class %}
     site-navbar-small
@@ -20,46 +35,377 @@
                 </div>
             {% endfor %}
             <div class="row">
-                <div class="col-lg-offset-3 col-lg-6">
-                    <div class="panel panel-bordered">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Bienvenue sur Agroscopik !</h3>
+                {% if farm.plots is empty %}
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <div class="panel panel-bordered">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Bienvenue sur Agroscopik !</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <p>Ce logiciel vous permet d'enregistrer vos parcelles et les interventions
+                                            réalisées
+                                            sur
+                                            ces parcelles. Avant de commencer :
+                                        <ul>
+                                            <li>Vous pouvez commencer par découvrir les différents menus dans la partie
+                                                gauche
+                                                de
+                                                cette fenêtre.
+                                            </li>
+                                            <li>Ensuite, il est bon de renseigner votre parc de matériel dans le menu <a
+                                                        href="{{ path('tractor_new') }}">Matériel</a> et faire
+                                                l'inventaire
+                                                dans
+                                                votre <a href="{{ path('farmspeciality_index') }}">Local phytosanitaire
+                                                    virtuel</a>.
+                                            </li>
+                                            <li>Puis, vous pouvez commencer par ajouter une première parcelle depuis le
+                                                menu
+                                                <a
+                                                        href="{{ path('plot_index') }}">Parcelle</a> ou <a
+                                                        href="{{ path('farm_show_current') }}">Carte</a>.
+                                            </li>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p>Ce logiciel vous permet d'enregistrer vos parcelles et les interventions
-                                        réalisées
-                                        sur
-                                        ces parcelles. Avant de commencer :
-                                    <ul>
-                                        <li>Vous pouvez commencer par découvrir les différents menus dans la partie
-                                            gauche
-                                            de
-                                            cette fenêtre.
-                                        </li>
-                                        <li>Ensuite, il est bon de renseigner votre parc de matériel dans le menu <a
-                                                    href="{{ path('tractor_new') }}">Matériel</a> et faire l'inventaire
-                                            dans
-                                            votre <a href="{{ path('farmspeciality_index') }}">Local phytosanitaire
-                                                virtuel</a>.
-                                        </li>
-                                        <li>Puis, vous pouvez commencer par ajouter une première parcelle depuis le menu
-                                            <a
-                                                    href="{{ path('plot_index') }}">Parcelle</a> ou <a
-                                                    href="{{ path('farm_show_current') }}">Carte</a>.
-                                        </li>
+                    </div>
+                {% else %}
+                    <div class="col-lg-3">
+                        <div class="widget">
+                            <div class="widget-header white bg-cyan-600 padding-30 clearfix">
+                                <div class="pull-left">
+                                    <div class="font-size-20 margin-bottom-15">{{ farm.name }}</div>
+                                    <p class="margin-bottom-5 text-nowrap"><i class="icon md-email margin-right-10"
+                                                                              aria-hidden="true"></i>
+                                        <span class="text-break">{{ app.user.username }}</span>
                                     </p>
+                                </div>
+                            </div>
+                            <div class="widget-content">
+                                <div class="row no-space padding-vertical-20 padding-horizontal-30 text-center">
+                                    <div class="col-xs-6">
+                                        <div class="counter">
+                                            <span class="counter-number cyan-600">{{ farm.plots |length }}</span>
+
+                                            <div class="counter-label">Parcelles</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="counter">
+                                            <span class="counter-number cyan-600">{{ farm.area | number_format(1,","," ") }}</span>
+
+                                            <div class="counter-label">Hectares</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
+
+
+                    </div>
+
+                    <div class="col-lg-9">
+                        <div class="panel">
+                            <div class="panel-body" style="
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 0px;
+        padding-top: 0px;
+
+">
+                                <div class="row">
+                                    <div class="col-lg-12" id="map" style="height: 65vh;">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+            {% if farm.plots is not empty %}
+                <div class="row">
+                    <div class="col-lg-offset-3 col-lg-9">
+                        <div class="panel panel-bordered">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Calendrier</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-12" id="calendar">
+                                        <div class="calendar-container">
+                                            <div id="calendar"></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-            </div>
+            {% endif %}
         </div>
 
     </div>
 
 {% endblock %}
 
+{% block core_plugin %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/vendor/mapbox.js/mapbox.js') }}"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
+    <script src="{{ asset('front/global/vendor/leaflet-label/leaflet.label.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/fullcalendar/fullcalendar.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/fullcalendar/lang/fr.js') }}"></script>
+{% endblock %}
+
+
+{% block template_config %}
+    {{ parent() }}
+    <script src="{{ asset('front/global/js/components/material.js') }}"></script>
+    <script src="{{ asset('front/global/js/plugins/action-btn.js') }}"></script>
+
+    <script>
+        window.YouSite = Site.extend({
+            handleMap: function () {
+
+                var self = this;
+
+
+                L.mapbox.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
+
+                /* format map */
+                var map = L.mapbox.map('map', 'mapbox.streets');
+
+                // Add GeoRep
+                var georep = L.tileLayer.wms('https://carto10.gouv.nc/arcgis/services/fond_imagerie/MapServer/WMSServer', {
+                    format: 'img/png',
+                    transparent: true,
+                    layers: 16,
+                    maxZoom: 26
+                });
+
+                // Display GeoRep according to zoom level
+                map.on('zoomend', function () {
+                    if (map.getZoom() > 14 && map.hasLayer(georep) == false) {
+                        map.addLayer(georep);
+                    }
+                    if (map.getZoom() < 14 && map.hasLayer(georep)) {
+                        map.removeLayer(georep);
+                    }
+                });
+
+
+                function addPlots() {
+                    // Create FeatureGroup
+                    var featureGroup = L.featureGroup();
+
+                    //Drawing polygons
+                    {% for plot in app.user.farm.plots %}
+                    {% if plot.latLngs is not empty %}
+                    var layer = L.geoJson({{ plot.latLngs | raw }});
+                    layer.setStyle({color: "white", opacity: 0.8, weight: 1.5});
+                    featureGroup.addLayer(layer);
+
+                    {% endif %}
+                    {% endfor %}
+                    featureGroup.addTo(map);
+                    //Zoom to farm bounds
+                    var bounds = featureGroup.getBounds();
+                    map.fitBounds(bounds);
+                }
+
+                /* Add markers to map */
+                addPlots();
+
+
+                function addCropCycles() {
+                    // Create FeatureGroup
+                    var featureGroup2 = L.featureGroup();
+
+                    //Drawing polygons
+                    {% for plot in app.user.farm.plots %}
+                    {% for cycle in plot.cropCycles %}
+                    {% if cycle.latLngs is not empty and cycle.status == "ActiveAction"%}
+                    // Add current polygon and add an attribute alt
+                    var layer2 = L.geoJson({{ cycle.latLngs | raw }}, {
+                    });
+
+
+                    var color = "red";
+                    {% for crop in cycle.crops %}
+                    var color = "{{ crop.color }}";
+
+                    {% endfor %}
+
+                    //Set style
+                    layer2.setStyle({color: color, Opacity: 1, fillOpacity: 0.6, weight: 1.5});
+
+                    //Add a popup
+                    layer2.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ cycle.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ cycle.name | upper }}" + "</h3><p class=\"margin-top-10\"><a type=\"button\" href=\"{{ path('cropcycle_show',{'id':cycle.id}) }}\" style=\"color:#757575;\" class=\"btn btn-default btn-block btn-sm waves-effect waves-light\">Afficher</a><a type=\"button\" href=\"{{ path('action_new',{'id':cycle.id}) }}\" style=\"color:white;\" class=\"btn btn-primary btn-block btn-sm waves-effect waves-light\">Ajouter une intervention</a></p></div>", {closeButton: false});
+
+                    layer2.on('mouseover', function (e) {
+                        this.openPopup();
+                    });
+                    layer2.on('mouseout', function (e) {
+                        this.closePopup();
+                    });
+
+                    // Add current polygon to featureGroup
+                    featureGroup2.addLayer(layer2);
+                    {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                    featureGroup2.addTo(map);
+                }
+
+                addCropCycles();
+
+            },
+
+            run: function () {
+                this.allFriends = [];
+                this.allFriendId = [];
+                this.allMarkers = [];
+                this.inListFriends = [];
+                this.coords = [];
+
+                this.handleMap();
+
+            }
+        });
+
+        $(document).ready(function () {
+            YouSite.run();
+        });
+    </script>
+
+
+    <script>
+        window.AppCalendar = Site.extend({
+            handleFullcalendar: function() {
+                var my_events = [
+                    {% for action in actions %}
+                    {
+                        title: '{{ action.cropCycle.plot.name }} - {{ action.intervention.name }}',
+                        start: '{{ action.startDatetime | date('Y-m-d\\Tg:ia') }}',
+                        end: '{{ action.endDatetime | date('Y-m-d\\Tg:ia') }}',
+                        backgroundColor: $.colors("cyan", 600),
+                        borderColor: $.colors("cyan", 600)
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}
+                ];
+                var actionBtn = $('.site-action').actionBtn().data('actionBtn');
+                var my_options = {
+                    header: {
+                        left: null,
+                        center: 'prev,title,next',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                    defaultDate: '{{ "now"|date("Y-m-d") }}',
+                    selectable: false,
+                    selectHelper: false,
+                    select: function() {
+                        $('#addNewEvent').modal('show');
+                    },
+                    editable: false,
+                    eventLimit: true,
+                    windowResize: function(view) {
+                        var width = $(window).outerWidth();
+                        var options = $.extend({}, my_options);
+                        options.events = view.calendar.getEventCache();
+                        options.aspectRatio = width < 667 ? 0.5 : 1.5;
+
+                        $('#calendar').fullCalendar('destroy');
+                        $('#calendar').fullCalendar(options);
+                    },
+                    eventClick: function(event) {
+                        var color = event.backgroundColor ? event.backgroundColor : $.colors('blue', 600);
+                        $('#editEname').val(event.title);
+
+
+                        $('#editNewEvent').modal('show').one('hidden.bs.modal', function(e) {
+                        })
+                    },
+                    eventDragStart: function() {
+                        actionBtn.show();
+                    },
+                    eventDragStop: function() {
+                        actionBtn.hide();
+                    },
+                    events: my_events,
+                    droppable: true
+                };
+
+                var _options;
+                var my_options_mobile = $.extend({}, my_options);
+
+                my_options_mobile.aspectRatio = 0.5;
+                _options = $(window).outerWidth() < 667 ? my_options_mobile : my_options;
+
+                $('#editNewEvent').modal();
+                $('#calendar').fullCalendar(_options);
+            },
+
+
+            handleEventList: function() {
+                $('#addNewEventBtn').on('click', function() {
+                    $('#addNewEvent').modal('show');
+                });
+
+                $('.calendar-list .calendar-event').each(function() {
+                    var $this = $(this),
+                            color = $this.data('color').split('-');
+                    $this.data('event', {
+                        title: $this.data('title'),
+                        stick: $this.data('stick'),
+                        backgroundColor: $.colors(color[0], color[1]),
+                        borderColor: $.colors(color[0], color[1])
+                    });
+                    $this.draggable({
+                        zIndex: 999,
+                        revert: true,
+                        revertDuration: 0,
+                        helper: function() {
+                            return '<a class="fc-day-grid-event fc-event fc-start fc-end" style="background-color:' + $.colors(color[0], color[1]) + ';border-color:' + $.colors(color[0], color[1]) + '">' +
+                                    '<div class="fc-content">' +
+                                    '<span class="fc-title">' + $this.data('title') + '</span>' +
+                                    '</div>' +
+                                    '</a>';
+                        }
+                    });
+                });
+            },
+
+
+            run: function(next) {
+
+                $('#addNewEvent').modal({
+                    show: false
+                });
+
+
+
+                this.handleEventList();
+                this.handleFullcalendar();
+
+                next();
+            }
+        });
+
+        $(document).ready(function() {
+            AppCalendar.run();
+
+        });
+    </script>
+
+{% endblock %}

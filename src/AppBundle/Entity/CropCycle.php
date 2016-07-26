@@ -576,6 +576,16 @@ class CropCycle
         $this->varieties = $varieties;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getLabel()
+    {
+        $plot = $this->getPlot()->getName();
+        $name = $this->getName();
+        $label = $plot.' - '.$name;
+        return $label;
+    }
 
 }
 
