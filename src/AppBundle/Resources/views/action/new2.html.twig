@@ -38,7 +38,7 @@
                 {% endfor %}
                 {{ form_start(form) }}
 
-                <div class="panel">
+                <div class="panel" id="intervention">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ form_label(form.intervention) }}
                         </h3>
@@ -185,7 +185,7 @@
                     </div>
                 </div>
 
-                <div class="panel">
+                <div class="panel" id="periods">
                     <div class="panel-heading">
                         <h3 class="panel-title">Définir les périodes d'intervention
                         </h3>
@@ -213,7 +213,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel">
+                <div class="panel" id="nbWorkers">
                     <div class="panel-heading">
                         <h3 class="panel-title">{{ form_label(form.nbWorkers) }}
                         </h3>
@@ -241,7 +241,7 @@
                     </div>
                 </div>
 
-                <div class="panel">
+                <div class="panel" id="tractors">
                     <div class="panel-heading">
                         <h3 class="panel-title">Choisir le matériel utilisé
                         </h3>
@@ -285,7 +285,7 @@
                     </div>
                 </div>
 
-                <div class="panel">
+                <div class="panel" id="comment">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             {{ form_label(form.comment) }} <small>(facultatif)</small>
@@ -635,7 +635,14 @@
 
                         $('#density').show("slow");
 
-                    } else {
+                    } else if($("#action_intervention").select2('data')[0]['text'] == "Observation") {
+                        $('#density').hide("slow");
+                        $('#farmSpecialities').hide("slow");
+                        $('#harvestProducts').hide("slow");
+                        $('#farmFertilizers').hide("slow");
+                        $('#auxiliary').hide("slow");
+                        $('#tractors').hide("slow");
+                    }else {
                         $('#density').hide("slow");
                         $('#farmSpecialities').hide("slow");
                         $('#harvestProducts').hide("slow");
