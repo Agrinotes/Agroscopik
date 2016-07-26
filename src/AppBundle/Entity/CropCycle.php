@@ -587,5 +587,36 @@ class CropCycle
         return $label;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDensity()
+    {
+        $actions = $this->getActions();
+        $density = 0;
+        foreach($actions as $action){
+            if($action->getDensity() != null){
+                $density = $action->getDensity();
+            }
+        }
+;
+        return $density;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDensityUnit()
+    {
+        $actions = $this->getActions();
+        $unit = "";
+        foreach($actions as $action){
+            if($action->getDensity() != null){
+                $unit = $action->getDensityUnit()->getSymbol();
+            }
+        }
+        $unit = 'plants '.$unit;
+        return $unit;
+    }
 }
 

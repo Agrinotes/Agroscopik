@@ -107,6 +107,34 @@
                     </div>
                 </div>
                 <div class="col-lg-3">
+                    <div class="widget">
+                        <div class="widget-header white bg-cyan-600 padding-30 clearfix">
+                            <div class="pull-left">
+                                <div class="font-size-20">{{ cropCycle.name }}</div>
+                            </div>
+                        </div>
+                        <div class="widget-content">
+                            <div class="row no-space padding-vertical-20 padding-horizontal-30 text-center">
+                                <div class="col-xs-6">
+                                    <div class="counter">
+                                        <span class="counter-number cyan-600">{{ cropCycle.area |number_format(2, ',', ' ') }}</span>
+
+                                        <div class="counter-label">Hectares</div>
+                                    </div>
+                                </div>
+                                {% if cropCycle.density != 0 and cropCycle.densityUnit != "" %}
+                                <div class="col-xs-6">
+                                    <div class="counter">
+                                        <span class="counter-number cyan-600">{{ cropCycle.density  }}</span>
+
+                                        <div class="counter-label">{{ cropCycle.densityUnit  }}</div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="panel">
                         <div class="panel-heading">
                             <h3 class="panel-title">Statut du cycle</h3>
@@ -141,18 +169,10 @@
                                     </a>
                                 {% endif %}</div>
 
-                            <div class="row padding-top-15 padding-right-15 padding-left-15">
-                                <div class="col-lg-12">
-                                    <span class="example-title">Surface
-
-                                    </span>
-                                                                            <span class="padding-left-20">{{ cropCycle.area |number_format(2, ',', ' ') }}
-                                                                                ha</span>
-
-                                </div>
-                            </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
