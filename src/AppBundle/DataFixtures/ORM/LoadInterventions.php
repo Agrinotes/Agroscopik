@@ -61,11 +61,14 @@ class LoadInterventions extends AbstractFixture implements OrderedFixtureInterfa
             array('Traitement phytosanitaire','protection-des-cultures'),
 
             array('Irrigation ponctuelle','irrigation'),
-            array('Irrigation régulière','irrigation'),
+            array('Irrigation au programmateur','irrigation'),
 
             array('Récolte','recolte'),
 
             array('Triage','travaux-post-recoltes'),
+
+            array('Observation','observation'),
+
 
         );
 
