@@ -88,7 +88,7 @@ class ImplementController extends Controller
             // Update ACL
             $aclProvider->updateAcl($acl);
 
-            return $this->redirectToRoute('implement_show', array('id' => $implement->getId()));
+            return $this->redirectToRoute('implement_index');
         }
 
         return $this->render('@App/implement/new.html.twig', array(
