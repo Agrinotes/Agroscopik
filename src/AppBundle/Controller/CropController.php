@@ -265,6 +265,29 @@ class CropController extends Controller
     }
 
     /**
+     * Get cumulated gross added valuevfora a crop for a specific year
+     *
+     * @Route("ferme/{farm}/crop/{crop}/campagne/{year)/grossaddedvalue", name="cumulated_grossaddedvalue", requirements={"year" = "\d+"}, defaults={"year" = 2016}))
+     * @Method("GET")
+     */
+    public function getCumulatedGrossAddedValueAction($crop, $year, $farm)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        // Create campaign date
+        $startDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-01-01 00:00:00");
+        $endDatetime = \DateTime::createFromFormat("Y-m-d H:i:s", $year . "-12-31 23:59:59");
+
+        // Get cropCycles for current crop and campaign
+        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findByCropAndCampaign($crop, $startDatetime, $endDatetime, $farm);
+        $total = 0;
+        foreach ($cropCycles as $cropCycle) {
+            $total += $cropCycle->getGrossAddedValue();
+        }
+        return new Response(number_format($total,0,'',' '));
+    }
+
+    /**
      * Format an interval to show all existing components.
      *
      * @param DateInterval $interval The interval

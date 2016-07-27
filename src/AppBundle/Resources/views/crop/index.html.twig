@@ -80,7 +80,7 @@
                                     <div class="col-xs-6 padding-top-10 padding-bottom-10">
                                         <div class="counter">
                                             <div class="counter-label">Marge brute</div>
-                                            <div class="counter-number ">A venir</div>
+                                            <div class="counter-number ">{{ render(controller('AppBundle:Crop:getCumulatedGrossAddedValue',{'farm':app.user.farm.id,'crop':crop.id,'year':year})) }} CFP</div>
                                         </div>
                                     </div>
                                 </div>
