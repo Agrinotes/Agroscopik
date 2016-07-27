@@ -118,6 +118,7 @@ class ActionType extends AbstractType
                         ->orWhere('u.slug = :slug3')
                         ->setParameter('slug3', 'unity_per_square_meter');
                 },
+
             ));
 
         // grab the user, do a quick sanity check that one exists

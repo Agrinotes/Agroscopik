@@ -134,10 +134,6 @@ class Action
      */
     private $nbWorkers;
 
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Expense", mappedBy="action", cascade={"persist","remove"})
-     */
-    private $expenses;
 
     /**
      * Get id
@@ -898,43 +894,6 @@ $endTime = $endTime->add($period->getDuration());
         $this->nbWorkers = $nbWorkers;
     }
 
-    /**
-     * Add expense
-     *
-     * @param \AppBundle\Entity\Expense $expense
-     * @return Action
-     */
-    public function addExpense(Expense $expense)
-    {
-        $this->expenses[] = $expense;
-
-        // We also add the current action to the period
-        $expense->setAction($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove expense
-     *
-     * @param \AppBundle\Entity\Expense $expense
-     */
-    public function removeExpense(Expense $expense)
-    {
-        $this->expenses->removeElement($expense);
-
-        // I should do something here to remove the Event $period from the database
-    }
-
-    /**
-     * Get action
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getExpenses()
-    {
-        return $this->periods;
-    }
 
 }
 
