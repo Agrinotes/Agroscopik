@@ -631,5 +631,29 @@ class CropCycle
         }
         return $total;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getExpensesCost()
+    {
+        $actions = $this->getActions();
+        $total = 0;
+        foreach($actions as $action){
+            $total += $action->getExpensesCost();
+        }
+        return $total;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGrossAddedValue()
+    {
+
+        return $this->getGrossProduct()-$this->getExpensesCost();
+    }
+
+
 }
 
