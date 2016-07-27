@@ -57,12 +57,32 @@
                         </div>
                         <div class="panel-body">
 
+                            {{ action.comment }}
+
+                            {% if action.density != 0 %}
+
+                                <h4 class="example-title">
+                                    Densité
+                                </h4>
+<p>{{ action.density }} {{ action.densityUnit }}</p>
+
+                            {% endif %}
+
+                            {% if action.auxiliary is not empty %}
+
+                                <h4 class="example-title">
+                                    Auxiliaires
+                                </h4>
+                                {{ action.auxiliary }}
+
+                            {% endif %}
 
                             {% if action.intervention.interventionCategory.slug == "protection-des-cultures" and action.farmSpecialityMvts is not empty %}
 
                                 <h4 class="example-title">
                                 Produits utilisés
                             </h4>
+                                Cible : {{ action.aim }}
                                 <table class="table table-hover">
                                     <div class="table-body">
 
@@ -133,8 +153,10 @@
                                             </a>
                                         </td>
                                         <td>
+                                            {% if period.durationLabel != "" %}
                                             <i class="icon md-time-interval" aria-hidden="true"></i>
                                             {{ period.durationLabel }}
+                                            {% endif %}
                                         </td>
                                         <td>
                                             {% if period.status == "ActiveAction" %}
@@ -170,6 +192,13 @@
                                 <p>
                                     Aucun matériel renseigné
                                 </p>
+                            {% endif %}
+                            {% if action.nbWorkers != "" or action.nbWorkers != 0 %}
+
+                                <h4 class="example-title margin-top-30">
+                                Nombre de personnes
+                            </h4>
+                                {{ action.nbWorkers }}
                             {% endif %}
                         </div>
                     </div>

@@ -116,7 +116,9 @@
                                                 </td>
                                                 <td>
                                                     {% if usage.status =="TRUE" %}
-                                                        {{ usage.zNTwater }}m
+                                                        {% if usage.zNTwater == 0  %}0{% else %}
+                                                        {{ usage.zNTwater }}
+                                                            {% endif %}m
                                                     {% endif %}
                                                 </td>
 

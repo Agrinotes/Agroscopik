@@ -1,65 +1,50 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Fertilizer list</h1>
+{% block head_javascripts %}
+    {{ parent() }}
+    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Formula</th>
-                <th>N</th>
-                <th>P2o5</th>
-                <th>K2o</th>
-                <th>Cao</th>
-                <th>Mgo</th>
-                <th>Fe</th>
-                <th>So3</th>
-                <th>Zn</th>
-                <th>B</th>
-                <th>Mn</th>
-                <th>Cu</th>
-                <th>Comment</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for fertilizer in fertilizers %}
-            <tr>
-                <td><a href="{{ path('fertilizer_show', { 'id': fertilizer.id }) }}">{{ fertilizer.id }}</a></td>
-                <td>{{ fertilizer.name }}</td>
-                <td>{{ fertilizer.formula }}</td>
-                <td>{{ fertilizer.n }}</td>
-                <td>{{ fertilizer.p2O5 }}</td>
-                <td>{{ fertilizer.k2O }}</td>
-                <td>{{ fertilizer.caO }}</td>
-                <td>{{ fertilizer.mgO }}</td>
-                <td>{{ fertilizer.fe }}</td>
-                <td>{{ fertilizer.sO3 }}</td>
-                <td>{{ fertilizer.zn }}</td>
-                <td>{{ fertilizer.b }}</td>
-                <td>{{ fertilizer.mn }}</td>
-                <td>{{ fertilizer.cu }}</td>
-                <td>{{ fertilizer.comment }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('fertilizer_show', { 'id': fertilizer.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fertilizer_edit', { 'id': fertilizer.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('fertilizer_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+{% block page %}
+    <div class="page animsition">
+        <div class="page-content">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Liste des engrais et amendements
+
+                    </h3>
+
+                </div>
+                <div class="panel-body">
+                    <p>
+                        Cette liste est donnée à titre indicative et n'a pas vocation à être exhaustive (pour le moment).
+                    </p>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <a class="btn btn-primary" href="{{ path('fertilizer_new') }}">Ajouter un engrais ou amendement</a>
+                    {% endif %}
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>N</th>
+                            <th>P</th>
+                            <th>K</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for fertilizer in fertilizers %}
+                            <tr>
+                                <td><a href="{{ path('fertilizer_show', { 'id': fertilizer.id }) }}">{{ fertilizer.name | capitalize }}</a></td>
+                                <td>{{ fertilizer.n }}</td>
+                                <td>{{ fertilizer.p2O5 }}</td>
+                                <td>{{ fertilizer.k2O }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
