@@ -171,7 +171,10 @@
 
 {% block template_config %}
     {{ parent() }}
-    <script src="{{ asset('front/global/js/components/material.js') }}"></script>
+
+    {% if farm.plots is not empty %}
+
+<script src="{{ asset('front/global/js/components/material.js') }}"></script>
     <script src="{{ asset('front/global/js/plugins/action-btn.js') }}"></script>
 
     <script>
@@ -407,5 +410,6 @@
 
         });
     </script>
+{% endif %}
 
 {% endblock %}
