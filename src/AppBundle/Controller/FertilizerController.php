@@ -50,7 +50,7 @@ class FertilizerController extends Controller
             $em->persist($fertilizer);
             $em->flush();
 
-            return $this->redirectToRoute('fertilizer_show', array('id' => $fertilizer->getId()));
+            return $this->redirectToRoute('farmfertilizer_index');
         }
 
         return $this->render('fertilizer/new.html.twig', array(

@@ -3,6 +3,8 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,20 +17,81 @@ class FertilizerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('formula')
-            ->add('n')
-            ->add('p2O5')
-            ->add('k2O')
-            ->add('caO')
-            ->add('mgO')
-            ->add('fe')
-            ->add('sO3')
-            ->add('zn')
-            ->add('b')
-            ->add('mn')
-            ->add('cu')
-            ->add('comment')
+            ->add('name',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>true,
+                'label' => "Entrer le nom de l'engrais ou amendement",
+            ))
+            ->add('formula',ChoiceType::class, array(
+                'choices' => array(
+                    'Solide' => 'granulé',
+                    'Liquide' => 'liquide',
+                ),
+                'attr' => array('class'=>'form-control'),
+                'label' => "Formulation",
+
+
+            ))
+            ->add('n',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "N",
+            ))
+            ->add('p2O5',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "P2O5",
+            ))
+            ->add('k2O',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "K2O",
+            ))
+            ->add('caO',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "CaO",
+            ))
+            ->add('mgO',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "MgO",
+            ))
+            ->add('fe',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "Fe",
+            ))
+            ->add('sO3',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "SO3",
+            ))
+            ->add('zn',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "Zn",
+            ))
+            ->add('b',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "B",
+            ))
+            ->add('mn',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "Mn",
+            ))
+            ->add('cu',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "Cu",
+            ))
+            ->add('comment',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "Commentaire",
+            ))
         ;
     }
     
