@@ -64,7 +64,7 @@
                                 <h4 class="example-title">
                                     Densité
                                 </h4>
-<p>{{ action.density }} {{ action.densityUnit }}</p>
+<p>{{ action.density }} {{ action.densityUnit.symbol }}</p>
 
                             {% endif %}
 
@@ -199,6 +199,23 @@
                                 Nombre de personnes
                             </h4>
                                 {{ action.nbWorkers }}
+                            {% endif %}
+
+                            <h4 class="example-title margin-top-30">
+                                Quantités récoltées
+                            </h4>
+                            {% if action.harvestProducts is not empty %}
+                                <ul>
+                                    {% for product in action.harvestProducts %}
+                                        <li>
+                                            {{ product.qty }} {{ product.unit.symbol }} à {{ product.price }} CFP/{{ product.priceUnit.symbol }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            {% else %}
+                                <p>
+                                    Aucun matériel renseigné
+                                </p>
                             {% endif %}
                         </div>
                     </div>

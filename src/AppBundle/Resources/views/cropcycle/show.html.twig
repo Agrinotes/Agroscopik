@@ -55,7 +55,7 @@
                                                                                   href="#exampleTabsLineOne"
                                                                                   aria-controls="exampleTabsLineOne"
                                                                                   role="tab" style="font-size: 16px;">Interventions</a></li>
-                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
+                                        {#<li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
                                                                    aria-controls="exampleTabsLineTwo"
                                                                    role="tab" style="font-size: 16px;">Traitements phytosanitaires</a></li>
                                         <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineThree"
@@ -63,7 +63,7 @@
                                                                    role="tab" style="font-size: 16px;">Fertilisation </a></li>
                                         <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineFour"
                                                                    aria-controls="exampleTabsLineFour"
-                                                                   role="tab" style="font-size: 16px;">Irrigation </a></li>
+                                                                   role="tab" style="font-size: 16px;">Irrigation </a></li>#}
 
 
                                     </ul>
@@ -131,10 +131,10 @@
                                     </div>
                                 </div>
                                 {% endif %}
-                                </div>
+                                </div>                            {% if cropCycle.grossProduct != 0 %}
+
                             <div class="row no-space padding-vertical-10 padding-horizontal-10 text-center" style="border-top: 1px solid lightgrey">
 
-                            {% if cropCycle.grossProduct != 0 %}
                                     <div class="col-xs-6">
                                         <div class="counter">
                                             <span class="counter-number green-600">{{ cropCycle.grossProduct | number_format(0,","," ")  }} CFP</span>
@@ -142,8 +142,7 @@
                                             <div class="counter-label">Produit Brut</div>
                                         </div>
                                     </div>
-                                {% endif %}
-                                {% if cropCycle.expensesCost != 0 %}
+
                                     <div class="col-xs-6">
                                         <div class="counter">
                                             <span class="counter-number red-600">{{ cropCycle.expensesCost | number_format(0,","," ")  }} CFP</span>
@@ -151,14 +150,12 @@
                                             <div class="counter-label">Charges</div>
                                         </div>
                                     </div>
-                                {% endif %}
                                 </div>
-                                {% if cropCycle.grossProduct != 0 and cropCycle.expensesCost != 0  %}
                                     <div class="row no-space padding-vertical-10 padding-horizontal-10 text-center">
 
                                     <div class="col-xs-12">
                                         <div class="counter">
-                                            <span class="counter-number black-600">{{ cropCycle.grossAddedValue | number_format(0,","," ")  }} CFP</span>
+                                            <span class="counter-number cyan-600">{{ cropCycle.grossAddedValue | number_format(0,","," ")  }} CFP</span>
 
                                             <div class="counter-label">Marge brute</div>
                                         </div>
@@ -191,7 +188,7 @@
                         </div>
                     </div>
                     <div class="panel">
-                        <div class="panel-body padding-top-0 padding-left-0 padding-right-0">
+                        <div class="panel-body padding-top-0 padding-left-0 padding-right-0 padding-bottom-0">
                             <div>
                                 <img src="" class="img-responsive" id="cropcycle_map"/>
                             </div>

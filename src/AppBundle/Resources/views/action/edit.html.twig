@@ -277,15 +277,15 @@
                 <div class="panel" id="expenses">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            {{ form_label(form.expenses) }} <small>(facultatif)</small>
+                            {{ form_label(edit_form.expenses) }} <small>(facultatif)</small>
                         </h3>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-12">
 
-                                {{ form_errors(form.expenses) }}
-                                {{ form_widget(form.expenses) }}
+                                {{ form_errors(edit_form.expenses) }}
+                                {{ form_widget(edit_form.expenses) }}
 
                                 <a class="pull-right" href="#" id="add_expense"><i class="icon md-plus-circle-o"
                                                                                    aria-hidden="true"></i> Ajouter une
