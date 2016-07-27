@@ -163,7 +163,7 @@ class ActionType extends AbstractType
                     'label' => 'Choisir les outils utilisés',
                     'required' => false,
                     'multiple' => true,
-                    'expanded' => true,
+                    'expanded' => false,
                     'query_builder' => function (EntityRepository $er) use ($farm) {
                         return $er->qbFindAllForCurrentFarm($farm);
                     },
