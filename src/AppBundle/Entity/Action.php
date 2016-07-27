@@ -937,6 +937,20 @@ $endTime = $endTime->add($period->getDuration());
         $this->nbWorkers = $nbWorkers;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCost()
+    {
+        $cost = 0;
+        $expenses = $this->getExpenses();
+        foreach($expenses as $expense){
+            if($expense->getAmount() != 0){
+                $cost += $expense->getAmount();
+            }
+        }
+        return $cost;
+    }
 
 }
 
