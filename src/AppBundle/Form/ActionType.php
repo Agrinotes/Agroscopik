@@ -77,6 +77,13 @@ class ActionType extends AbstractType
                 'by_reference' => false,
                 'label' => 'Définir les quantités récoltées',
             ))
+            ->add('expenses', CollectionType::class, array(
+                'entry_type' => ExpenseType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label' => 'Définir les dépenses associées',
+            ))
             ->add('aim', TextType::class, array(
                 'label' => 'Cible(s) du traitement',
                 'attr' => array('class' => 'form-control'),

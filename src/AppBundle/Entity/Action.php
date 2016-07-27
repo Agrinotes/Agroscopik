@@ -24,7 +24,6 @@ class Action
     public function __construct()
     {
         $this->periods = new ArrayCollection();
-        $this->expenses = new ArrayCollection();
         $this->tractors = new ArrayCollection();
         $this->implements = new ArrayCollection();
     }
@@ -93,6 +92,11 @@ class Action
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\HarvestProduct", mappedBy="action", cascade={"persist","remove"})
      */
     private $harvestProducts;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Expense", mappedBy="action", cascade={"persist","remove"})
+     */
+    private $expenses;
 
     /**
      * @var string
@@ -456,6 +460,45 @@ class Action
     {
         return $this->harvestProducts;
     }
+
+    /**
+     * Add expense
+     *
+     * @param \AppBundle\Entity\Expense $expense
+     * @return Action
+     */
+    public function addExpense(Expense $expense)
+    {
+        $this->expenses[] = $expense;
+
+        //Bidirectionnality
+        $expense->setAction($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove $expense
+     *
+     * @param \AppBundle\Entity\Expense $expense
+     */
+    public function removeExpense(Expense $expense)
+    {
+        $this->expenses->removeElement($expense);
+
+        $expense->setAction(""); // That's a problem
+    }
+
+    /**
+     * Get harvest products
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExpenses()
+    {
+        return $this->expenses;
+    }
+
 
     /**
      * Set startDatetime

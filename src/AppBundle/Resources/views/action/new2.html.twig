@@ -187,7 +187,7 @@
 
                 <div class="panel" id="periods">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Définir les périodes d'intervention
+                        <h3 class="panel-title">Définir les périodes d'intervention <small>(facultatif)</small>
                         </h3>
 
                         <div class="panel-actions">
@@ -215,7 +215,7 @@
                 </div>
                 <div class="panel" id="nbWorkers">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{{ form_label(form.nbWorkers) }}
+                        <h3 class="panel-title">{{ form_label(form.nbWorkers) }} <small>(facultatif)</small>
                         </h3>
 
                         <div class="panel-actions">
@@ -243,7 +243,7 @@
 
                 <div class="panel" id="tractors">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Choisir le matériel utilisé
+                        <h3 class="panel-title">Choisir le matériel utilisé <small>(facultatif)</small>
                         </h3>
                     </div>
                     <div class="panel-body">
@@ -304,7 +304,7 @@
                 <div class="panel" id="expenses">
                     <div class="panel-heading">
                         <h3 class="panel-title">
-                            {{ form_label(form.expenses) }}
+                            {{ form_label(form.expenses) }} <small>(facultatif)</small>
                         </h3>
                     </div>
                     <div class="panel-body">
@@ -627,7 +627,7 @@
                     var template6 = $container6.attr('data-prototype')
                             .replace(/__name__label__/g, '')
                             .replace(/__name__/g, index6)
-                            .replace(/form-group/g, "form-group col-lg-6")
+                            .replace(/form-group/g, "form-group col-lg-12")
 
 
                             ;
@@ -736,7 +736,7 @@
                         $('#auxiliary').hide("slow");
                         $('#periods').hide("slow");
                         $('#nbWorkers').hide("slow");
-
+                        $('#expenses').hide("slow");
                         $('#tractors').hide("slow");
                     }else {
                         $('#density').hide("slow");
@@ -746,6 +746,7 @@
                         $('#farmFertilizers').hide("slow");
 
                         $('#periods').show("slow");
+                        $('#expenses').show("slow");
                         $('#nbWorkers').show("slow");
                         $('#tractors').show("slow");
 

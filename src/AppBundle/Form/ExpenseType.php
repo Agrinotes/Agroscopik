@@ -18,13 +18,14 @@ class ExpenseType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,array(
-                'attr' => array('class' => 'form-control col-lg-6','placeholder'=>'Gasoil, Electricité, Engrais...'),
-                'label'=>'Intitulé de la dépense',
                 'required'=>false,
+                'attr'=>array('class'=>'form-control','placeholder'=>'Semences, Gasoil...'),
+                'label' => 'Intitulé'
             ))
-            ->add('price',IntegerType::class,array(
-                'label'=> 'Montant',
-                'required'=>false,
+            ->add('amount',IntegerType::class,array(
+                'required' => false,
+                'attr'=>array('class'=>'form-control'),
+                'label' => 'Montant'
             ))
         ;
     }
