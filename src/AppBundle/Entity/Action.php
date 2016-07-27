@@ -940,7 +940,7 @@ $endTime = $endTime->add($period->getDuration());
     /**
      * @return mixed
      */
-    public function getCost()
+    public function getExpensesCost()
     {
         $cost = 0;
         $expenses = $this->getExpenses();
@@ -950,6 +950,46 @@ $endTime = $endTime->add($period->getDuration());
             }
         }
         return $cost;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGrossProduct()
+    {
+        $total = 0;
+        $products = $this->getHarvestProducts();
+
+        // Get value of each harvest product
+        foreach($products as $product){
+            $rawQty = $product->getQty();
+            $rawUnit = $product->getUnit();
+
+            // Modify raw amount to kg
+            $rawKgQty = $rawQty * $rawUnit->getA();
+
+
+            // Calculate full qty depending on unit chosen
+            $unitCategory = $rawUnit->getUnitCategory()->getSlug();
+            if($rawUnit->getC()==0 || $rawUnit->getC()==1){
+                $kgQty = $rawKgQty;
+            }else{
+                $kgQty = $rawKgQty*$this->getCropCycle()->getArea()*$rawUnit->getC()/10000;
+            }
+
+            // Get price for 1 kg
+            $rawPrice = $product->getPrice();
+            $rawPriceUnit = $product->getPriceUnit();
+            $kgPrice = $rawPrice*$rawPriceUnit->getA();
+
+            // Get harvest product full value
+            $value = $kgQty * $kgPrice;
+
+            // Sum with current total gross value
+            $total+= $value;
+
+        }
+        return $total;
     }
 
 }

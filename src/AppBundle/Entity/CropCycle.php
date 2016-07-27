@@ -604,8 +604,8 @@ class CropCycle
     }
 
     /**
-     * @return mixed
-     */
+ * @return mixed
+ */
     public function getDensityUnit()
     {
         $actions = $this->getActions();
@@ -617,6 +617,19 @@ class CropCycle
         }
         $unit = 'plants '.$unit;
         return $unit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGrossProduct()
+    {
+        $actions = $this->getActions();
+        $total = 0;
+        foreach($actions as $action){
+            $total += $action->getGrossProduct();
+        }
+        return $total;
     }
 }
 
