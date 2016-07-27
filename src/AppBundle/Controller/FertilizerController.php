@@ -50,7 +50,10 @@ class FertilizerController extends Controller
             $em->persist($fertilizer);
             $em->flush();
 
-            return $this->redirectToRoute('farmfertilizer_index');
+            $request->getSession()->getFlashBag()->add('success', 'L\'engrais ou amendement '.$fertilizer->getName().' a été ajouté avec succès ! Vous pouvez désormais l\'ajouter dans votre stock d\'engrais.');
+
+
+            return $this->redirectToRoute('farmfertilizer_new');
         }
 
         return $this->render('fertilizer/new.html.twig', array(
