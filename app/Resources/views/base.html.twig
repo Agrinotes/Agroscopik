@@ -72,7 +72,7 @@
 <body class="{% block body_class %}site-navbar-small{% endblock %}">
 
 {% block site_navbar %}
-<nav class="site-navbar navbar navbar-inverse navbar-fixed-top navbar-mega bg-red-600" role="navigation">
+<nav class="site-navbar navbar navbar-inverse navbar-fixed-top navbar-mega bg-red-700" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle hamburger hamburger-close navbar-toggle-left hided"
                 data-toggle="menubar">
@@ -83,10 +83,7 @@
                 data-toggle="collapse">
             <i class="icon md-more" aria-hidden="true"></i>
         </button>
-        <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu" style="
-    padding-bottom: 10px;
-    padding-top: 25px;
-">
+        <div class="navbar-brand navbar-brand-center site-gridmenu-toggle" data-toggle="gridmenu">
             <img class="navbar-brand-logo" src="{{ asset('front/mmenu/assets/images/logo.png') }}" title="Agroscopik">
             <span class="navbar-brand-text hidden-xs"> Agroscopik
             </span>
@@ -105,11 +102,7 @@
                         </i>
                     </a>
                 </li>
-                <li class="hidden-xs" id="toggleFullscreen">
-                    <a class="icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
-                        <span class="sr-only">Toggle fullscreen</span>
-                    </a>
-                </li>
+
             </ul>
             <!-- End Navbar Toolbar -->
             <!-- Navbar Toolbar Right -->
@@ -148,8 +141,8 @@
 {% endblock %}
 
 {% block site_menubar %}
-<div class="site-menubar site-menubar-dark">
-    <ul class="site-menu">
+<div class="site-menubar site-menubar-dark" style="background-color:#263238; color:rgba(163,175,183,.9);">
+    <ul class="site-menu" style="color: white">
         <li class="site-menu-item">
             <a class="animsition-link" href="{{ path('farm_show_current') }}">
                 <i class="site-menu-icon md-view-dashboard
