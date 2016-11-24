@@ -23,6 +23,11 @@ security:
                 always_use_default_target_path: true
             logout:       true
             anonymous:    true
+            remember_me:
+                secret:      %secret%
+                lifetime: 7777000
+                path:     /
+                domain:   ~
 
     access_control:
         - { path: ^/_console, role: IS_AUTHENTICATED_ANONYMOUSLY }

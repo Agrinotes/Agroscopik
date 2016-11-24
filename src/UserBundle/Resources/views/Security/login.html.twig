@@ -1,69 +1,159 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html class="no-js css-menubar" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta name="description" content="bootstrap admin template">
+  <meta name="author" content="">
+  <title>Agroscopik | Connexion</title>
+  <link rel="apple-touch-icon" href="{{ asset('ui/topbar/assets/images/apple-touch-icon.png') }}">
+  <link rel="shortcut icon" href="{{ asset('ui/topbar/assets/images/favicon.ico') }}">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/css/bootstrap-extend.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/css/site.min.css') }}">
 
-{% block body_class %}
-    page-login-v3 layout-full
-{% endblock %}
+    <style>
+        .table a{
+            text-decoration: none;
+        }
 
-{% block plugin_stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('front/mmenu/assets/examples/css/pages/login-v3.css') }}">
-{% endblock %}
+        .table td:hover a{
+            text-decoration: underline;
+        }
+        input:-webkit-autofill {
+            -webkit-box-shadow:0 0 0 50px white inset !important; /* Change the color to your own background color */
+            -webkit-text-fill-color: #333;
+        }
+        input:-webkit-autofill:focus {
+            -webkit-box-shadow: /*your box-shadow*/,0 0 0 50px white inset !important;
+            -webkit-text-fill-color: #333;
+        }
+    </style>
 
-{% block site_navbar %}
-{% endblock %}
+  <!-- Plugins -->
+  <link rel="stylesheet" href="{{asset('ui/topbar/assets/vendor/animsition/animsition.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/vendor/asscrollable/asScrollable.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/vendor/switchery/switchery.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/vendor/intro-js/introjs.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/vendor/slidepanel/slidePanel.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/vendor/flag-icon-css/flag-icon.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/vendor/waves/waves.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/examples/css/pages/login-v2.css')}}">
+  <!-- Fonts -->
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/fonts/material-design/material-design.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('ui/topbar/assets/fonts/brand-icons/brand-icons.min.css') }}">
+  <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="{{ asset('ui/topbar/assets/vendor/html5shiv/html5shiv.min.js') }}"></script>
+    <![endif]-->
+  <!--[if lt IE 10]>
+    <script src="{{ asset('ui/topbar/assets/vendor/media-match/media.match.min.js')}}"></script>
+    <script src="{{ asset('ui/topbar/assets/vendor/respond/respond.min.js') }}"></script>
+    <![endif]-->
+  <!-- Scripts -->
+  <script src="{{ asset('ui/topbar/assets/vendor/breakpoints/breakpoints.min.js') }}"></script>
+  <script>
+  Breakpoints();
+  </script>
+    <link id="skinStyle" href="{{ asset('ui/topbar/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
 
-{% block site_menubar %}
-{% endblock %}
-
-{% block page %}
-    <div class="page animsition vertical-align text-center" data-animsition-in="fade-in"
-         data-animsition-out="fade-out">>
-        <div class="page-content vertical-align-middle">
-            <div class="panel">
-                <div class="panel-body">
-                    <div class="brand">
-                        <img class="brand-img" src="{{ asset('front/mmenu/assets/images/logo-blue.png') }}" alt="Logo">
-
-                        <h2 class="brand-text font-size-18">Agroscopik</h2>
-                    </div>
-                    {{ include('FOSUserBundle:Security:login_content.html.twig') }}
-
-                    <a class="btn btn-danger btn-lg btn-block"
-                       href="{{ path('fos_user_registration_register') }}">Créer un compte</a>
-
-                </div>
-            </div>
-            <footer class="page-copyright page-copyright-inverse">
-
-                <p>© 2016, Agroscopik créé par Hugo Lehoux pour REPAIR.</p>
-
-                <div class="social">
-                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-                        <i class="icon bd-twitter" aria-hidden="true"></i>
-                    </a>
-                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-                        <i class="icon bd-facebook" aria-hidden="true"></i>
-                    </a>
-                    <a class="btn btn-icon btn-pure" href="javascript:void(0)">
-                        <i class="icon bd-google-plus" aria-hidden="true"></i>
-                    </a>
-                </div>
-            </footer>
+</head>
+<body class="animsition page-login-v2 layout-full page-dark">
+  <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+  <!-- Page -->
+  <div class="page" data-animsition-in="fade-in" data-animsition-out="fade-out">
+    <div class="page-content">
+      <div class="page-brand-info">
+        <div class="brand">
+            <h2 class="font-size-80 white" style="font-family: 'Pacifico','Roboto', cursive ">agroscopik</h2>
         </div>
+        <p class="font-size-20">Simplifie la vie des agriculteurs et des conseillers agricoles en Nouvelle-Calédonie.</p>
+      </div>
+      <div class="page-login-main">
+        <div class="brand hidden-md-up">
+            <h2 class="font-size-40" style="font-family: 'Pacifico','Roboto', cursive; text-align: center;">agroscopik</h2>
+        </div>
+        <h3 class="font-size-24">Connectez-vous</h3>
+        <!-- Login Form -->
+          {{ include('@User/Security/login_content.html.twig') }}
+
+        <p>
+            <a href="{{ path('fos_user_registration_register') }}" class="btn btn-danger btn-block">
+                Créer un compte
+            </a>
+        </p>
+        <footer class="page-copyright">
+          <p>Agroscopik par Hugo Lehoux</p>
+          <p>© 2016 REPAIR. Tous droits réservés.</p>
+          <div class="social">
+
+            <a class="btn btn-icon btn-round social-facebook" href="javascript:void(0)">
+              <i class="icon bd-facebook" aria-hidden="true"></i>
+            </a>
+            <a class="btn btn-icon btn-round social-vimeo" href="javascript:void(0)">
+              <i class="icon bd-vimeo" aria-hidden="true"></i>
+            </a>
+              <a class="btn btn-icon btn-round social-github" href="javascript:void(0)">
+                  <i class="icon bd-github" aria-hidden="true"></i>
+              </a>
+          </div>
+        </footer>
+      </div>
     </div>
-{% endblock %}
-
-{% block footer %}
-{% endblock %}
-
-{% block core_plugin %}
-    {{ parent() }}
-    <script src="{{ asset('front/global/vendor/jquery-placeholder/jquery.placeholder.js') }}"></script>
-{% endblock %}
-
-{% block template_config %}
-    {{ parent() }}
-    <script src="{{ asset('front/global/js/components/jquery-placeholder.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/material.js') }}"></script>
-{% endblock %}
-
+  </div>
+  <!-- End Page -->
+  <!-- Core  -->
+  <script src="{{ asset('ui/topbar/assets/vendor/babel-external-helpers/babel-external-helpers.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/tether/tether.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/bootstrap/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/animsition/animsition.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/mousewheel/jquery.mousewheel.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/asscrollbar/jquery-asScrollbar.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/asscrollable/jquery-asScrollable.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/waves/waves.min.js') }}"></script>
+  <!-- Plugins -->
+  <script src="{{ asset('ui/topbar/assets/vendor/switchery/switchery.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/intro-js/intro.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/screenfull/screenfull.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/slidepanel/jquery-slidePanel.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/vendor/jquery-placeholder/jquery.placeholder.min.js') }}"></script>
+  <!-- Scripts -->
+  <script src="{{ asset('ui/topbar/assets/js/State.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Component.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Plugin.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Base.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Config.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Section/Menubar.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Section/Sidebar.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Section/PageAside.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Plugin/menu.min.js') }}"></script>
+  <!-- Config -->
+  <script src="{{ asset('ui/topbar/assets/js/config/colors.min.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/config/tour.min.js') }}"></script>
+  <script>
+  Config.set('assets', '{{ app.request.getBaseURL() }}/web/ui/topbar/assets');
+  </script>
+  <!-- Page -->
+  <script src="{{ asset('ui/topbar/assets/js/Site.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Plugin/asscrollable.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Plugin/slidepanel.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Plugin/switchery.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Plugin/jquery-placeholder.js') }}"></script>
+  <script src="{{ asset('ui/topbar/assets/js/Plugin/material.js') }}"></script>
+  <script>
+  (function(document, window, $) {
+    'use strict';
+    var Site = window.Site;
+    $(document).ready(function() {
+      Site.run();
+    });
+  })(document, window, jQuery);
+  </script>
+</body>
+</html>
