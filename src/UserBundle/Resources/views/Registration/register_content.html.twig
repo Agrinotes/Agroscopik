@@ -1,30 +1,39 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register register-form','autocomplete':'off'}}) }}
 {% if not form.vars.valid %}
     <div class="alert dark alert-alt alert-warning alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
-    {{ form_errors(form) }}
-</div>
+        {{ form_errors(form) }}
+    </div>
 {% endif %}
-<div class="form-group form-material floating">
-    {{ form_widget(form.firstName) }}
-    {{ form_label(form.firstName) }}
-</div>
-<div class="form-group form-material floating">
-    {{ form_widget(form.lastName) }}
-    {{ form_label(form.lastName) }}
-</div>
-<div class="form-group form-material floating">
-    {{ form_widget(form.email) }}
-    {{ form_label(form.email) }}
-</div>
-<div class="form-group form-material floating">
-    {{ form_widget(form.plainPassword) }}
-    {{ form_label(form.plainPassword) }}
-</div>
-<button type="submit" class="btn btn-primary btn-block btn-lg margin-top-40">S'inscrire</button>
-{{ form_end(form) }}
-<p>Déjà un compte ? <a href="{{ path('fos_user_security_login') }}">Connectez-vous</a></p>
+
+<form action="{{ path("fos_user_registration_register") }}" method="post" autocomplete="off">
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input type="text" class="form-control empty" id="fos_user_registration_form_firstName" name="fos_user_registration_form[firstName]">
+        <label class="floating-label" for="fos_user_registration_form_firstName">Prénom</label>
+    </div>
+
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input type="text" class="form-control empty" id="fos_user_registration_form_lastName" name="fos_user_registration_form[lastName]">
+        <label class="floating-label" for="fos_user_registration_form_lastName">Nom</label>
+    </div>
+
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input type="email" class="form-control empty" id="fos_user_registration_form_email" name="fos_user_registration_form[email]">
+        <label class="floating-label" for="fos_user_registration_form_email">Email</label>
+    </div>
+
+    <div class="form-group form-material floating" data-plugin="formMaterial">
+        <input type="password" class="form-control empty" id="fos_user_registration_form_plainPassword" name="fos_user_registration_form[plainPassword]">
+        <label class="floating-label" for="fos_user_registration_form_plainPassword">Mot de passe</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block" type="submit"
+            id="_submit" name="_submit">Connexion
+    </button>
+</form>
