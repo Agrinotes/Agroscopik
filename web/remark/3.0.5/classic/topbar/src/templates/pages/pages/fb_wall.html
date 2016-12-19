@@ -1,0 +1,666 @@
+---
+title: page-fb-wall
+body_class: page-fb-wall
+---
+
+{{#extend "layout-default"}}
+  {{#content "css_vendor" mode="append"}}
+    <link rel="stylesheet" href="{{global}}/vendor/plyr/plyr.css">
+    <link rel="stylesheet" href="{{global}}/vendor/magnific-popup/magnific-popup.css">
+  {{/content}}
+
+  {{#content "css" mode="prepend"}}
+    <link rel="stylesheet" href="{{assets}}/examples/css/pages/fb_wall.css">
+  {{/content}}
+
+
+  {{#content "js_vendor" mode="append"}}
+    <script src="{{global}}/vendor/plyr/plyr.js"></script>
+    <script src="{{global}}/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+  {{/content}}
+
+  {{#content "js" mode="append"}}
+    <script src="{{global}}/js/Plugin/plyr.js"></script>
+    <script src="{{global}}/js/Plugin/magnific-popup.js"></script>
+  {{/content}}
+
+
+  {{#content "scripts" mode="replace"}}
+    <script src="{{assets}}/examples/js/pages/fb_wall.js"></script>
+  {{/content}}
+
+  {{#content "body"}}
+
+    <div class="page">
+      <div class="page-content container-fluid">
+        <div class="row">
+          <div class="col-xs-12 col-lg-8">
+            <div class="card">
+              <img class="card-img-top w-full" src="{{global}}/photos/placeholder.png">
+              <div class="card-block wall-person-info">
+                <a class="avatar bg-white img-bordered person-avatar">
+                  <img class="" src="{{global}}/portraits/2.jpg">
+                </a>
+                <h2 class="person-name">
+                  <a href="#">Jonathan Smith</a>
+                </h2>
+                <p class="card-text">
+                  <a href="#" class="blue-grey-400">jsmith@flatlab.com</a>
+                </p>
+              </div>
+            </div>
+            <div class="card card-shadow wall-posting">
+              <div class="card-block p-0">
+                <div class="form-group m-b-0">
+                  <input class="form-control form-control-lg" type="text" name="write" placeholder="Whats in your mind tody?"
+                  />
+                  <div class="p-10">
+                    <button class="btn btn-pure btn-default icon wb-image" type="button" name="button"></button>
+                    <button class="btn btn-pure btn-default icon wb-video" type="button" name="button"></button>
+                    <button class="btn btn-pure btn-default icon wb-calendar" type="button" name="button"></button>
+                    <button class="btn btn-pure btn-default icon wb-map" type="button" name="button"></button>
+                    <button class="btn btn-primary btn-round submit pull-xs-right m-r-10">
+                      Post
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-block media clearfix p-25">
+                <div class="media-left">
+                  <a href="#" class="avatar avatar-lg">
+                    <img class="img-fluid" src="{{global}}/portraits/6.jpg">
+                  </a>
+                </div>
+                <div class="media-body text-middle">
+                  <h4 class="media-heading">
+                    Mallinda Hollaway
+                  </h4>
+                  <small>Posted on 31st Aug 2017 at 07:00</small>
+                </div>
+              </div>
+              <div class="card-block p-x-25  p-t-0">
+                <p class="card-text m-b-20">
+                  Occaecat fugiat enim ipsum excepteur sint. Lorem id laboris nisi esse aute proident
+                  qui veniam. Adipisicing enim nisi occaecat magna. Id ex labore
+                  do elit eu labore ad. Magna sunt aliqua deserunt consequat laborum.
+                  In in occaecat ex in. Reprehenderit nulla sunt consectetur eiusmod
+                  nostrud sint. Nostrud labore tempor dolore adipisicing.
+                </p>
+                <div class="row imgs-gallery m-b-20 no-space">
+                  <div class="col-lg-12">
+                    <a href="../../../global/photos/animal-2-960x640.jpg" alt="..." class="gallery-item"
+                      data-img-id="m_1" title="view_1">
+                      <img src="../../../global/photos/animal-2-960x640.jpg" class="w-full">
+                    </a>
+                  </div>
+                </div>
+                <ul class="wall-attrs clearfix p-0 m-0">
+                  <li class="attrs-meta pull-xs-left">
+                    <span>
+                      <i class="icon wb-chat"></i> 36
+                    </span>
+                    <span class="success m-l-10">
+                      </if>
+                      <i class="icon wb-heart"></i> 220
+                    </span>
+                  </li>
+                  <li class="pull-xs-right">
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_1">
+                      <img src="{{global}}/portraits/3.jpg">
+                    </a>
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_2">
+                      <img src="{{global}}/portraits/1.jpg">
+                    </a>
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_3">
+                      <img src="{{global}}/portraits/2.jpg">
+                    </a>
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_4">
+                      <img src="{{global}}/portraits/4.jpg">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer p-20">
+                <div class="wall-comment">
+                  <a href="#" class="avatar avatar-md pull-xs-left">
+                    <img src="{{global}}/portraits/3.jpg">
+                  </a>
+                  <div class="m-l-60">
+                    <a href="#">Stacey Hunt</a>
+                    <small class="m-l-10">30th July 2017</small>
+                    <p class="m-t-5">
+                      Id nisi labore aliqua reprehenderit laborum elit id laboris proident. Nulla ad
+                      aliqua elit voluptate consequat aliquip irure et et. Consectetur
+                      consequat mollit cillum pariatur. Amet magna non laborum
+                      non officia deserunt laboris.
+                    </p>
+                  </div>
+                  <div class="dropdown comment-operation">
+                    <button type="button" class="btn btn-icon btn-round btn-default btn-sm" data-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="icon wb-more-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Report</a>
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Delete</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="wall-comment">
+                  <a href="#" class="avatar avatar-md pull-xs-left">
+                    <img src="{{global}}/portraits/5.jpg">
+                  </a>
+                  <div class="m-l-60">
+                    <a href="#">Sam Anderson</a>
+                    <small class="m-l-10">3 mins ago...</small>
+                    <p class="m-t-5">
+                      Aliqua ut nisi est officia. Dolor elit veniam excepteur velit tempor. Nostrud nisi
+                      mollit ipsum excepteur cupidatat nisi ad Lorem eiusmod. Ullamco
+                      minim laborum Lorem sint adipisicing sint cillum commodo.
+                    </p>
+                  </div>
+                  <div class="dropdown comment-operation">
+                    <button type="button" class="btn btn-icon btn-round btn-default btn-sm" data-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="icon wb-more-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Report</a>
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Delete</a>
+                    </div>
+                  </div>
+                </div>
+                <form class="wall-comment-reply">
+                  <input type="text" class="form-control m-b-15" placeholder="Write Something...">
+                  <div class="reply-opration">
+                    <button class="btn btn-sm btn-primary" type="button">POST</button>
+                    <button class="btn btn-sm btn-pure btn-default" type="button">CANCEL</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-block media clearfix p-25">
+                <div class="media-left">
+                  <a href="#" class="avatar avatar-lg">
+                    <img class="img-fluid" src="{{global}}/portraits/1.jpg">
+                  </a>
+                </div>
+                <div class="media-body text-middle">
+                  <h4 class="media-heading">
+                    Felix Harper
+                  </h4>
+                  <small>Posted on 29th Aug 2017 at 02:10</small>
+                </div>
+              </div>
+              <div class="card-block p-x-25  p-t-0">
+                <p class="card-text m-b-20">
+                  Ad Lorem ipsum ex id nostrud. Deserunt anim cillum id velit consequat consequat
+                  reprehenderit adipisicing nisi. Aliquip duis qui irure in. Incididunt
+                  non elit pariatur quis excepteur. Labore culpa commodo ad esse
+                  quis aliqua. Dolore adipisicing enim eu excepteur amet nulla
+                  proident Lorem. Culpa esse culpa ullamco cillum aute reprehenderit
+                  Lorem mollit pariatur. Magna dolor non incididunt est tempor
+                  deserunt eiusmod.
+                </p>
+                <ul class="wall-attrs clearfix p-0 m-0">
+                  <li class="attrs-meta pull-xs-left">
+                    <span>
+                      <i class="icon wb-chat"></i> 0
+                    </span>
+                    <span class="m-l-10">
+                      </if>
+                      <i class="icon wb-heart"></i> 0
+                    </span>
+                  </li>
+                  <li class="pull-xs-right">
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_1">
+                      <img src="{{global}}/portraits/3.jpg">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer p-20">
+                <form class="wall-comment-reply">
+                  <input type="text" class="form-control m-b-15" placeholder="Write Something...">
+                  <div class="reply-opration">
+                    <button class="btn btn-sm btn-primary" type="button">POST</button>
+                    <button class="btn btn-sm btn-pure btn-default" type="button">CANCEL</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-block media clearfix p-25">
+                <div class="media-left">
+                  <a href="#" class="avatar avatar-lg">
+                    <img class="img-fluid" src="{{global}}/portraits/5.jpg">
+                  </a>
+                </div>
+                <div class="media-body text-middle">
+                  <h4 class="media-heading">
+                    Johnni Schmidt
+                  </h4>
+                  <small>Posted on 2nd on Jul 2017 at 02:10</small>
+                </div>
+              </div>
+              <div class="card-block p-x-25  p-t-0">
+                <p class="card-text m-b-20">
+                  Aliquip consectetur irure ex voluptate irure esse nulla labore. Enim aliquip irure
+                  laborum reprehenderit tempor Lorem. Aliqua proident exercitation
+                  sint officia veniam sunt cupidatat. Nostrud sint consectetur
+                  aliquip laboris dolore mollit. Dolore enim sit dolor laborum
+                  ut elit veniam incididunt ex. Magna nostrud in deserunt Lorem.
+                  Nostrud veniam dolor minim non ut ullamco ea proident consectetur.
+                  Id voluptate commodo incididunt duis consectetur commodo nulla.
+                </p>
+                <div class="row imgs-gallery m-b-20 no-space">
+                  <div class="col-xl-4 col-lg-6 col-xs-12">
+                    <a href="../../../global/photos/city-2-720x480.jpg" alt="..." class="gallery-item"
+                      data-img-id="m_1" title="view_1">
+                      <img src="../../../global/photos/city-2-720x480.jpg" class="w-full">
+                    </a>
+                  </div>
+                  <div class="col-xl-4 col-lg-6 col-xs-12">
+                    <a href="../../../global/photos/city-3-720x480.jpg" alt="..." class="gallery-item"
+                      data-img-id="m_2" title="view_2">
+                      <img src="../../../global/photos/city-3-720x480.jpg" class="w-full">
+                    </a>
+                  </div>
+                  <div class="col-xl-4 col-lg-6 col-xs-12">
+                    <a href="../../../global/photos/city-4-720x480.jpg" alt="..." class="gallery-item"
+                      data-img-id="m_3" title="view_3">
+                      <img src="../../../global/photos/city-4-720x480.jpg" class="w-full">
+                    </a>
+                  </div>
+                  <div class="col-xl-6 col-lg-6 col-xs-12">
+                    <a href="../../../global/photos/city-5-720x480.jpg" alt="..." class="gallery-item"
+                      data-img-id="m_4" title="view_4">
+                      <img src="../../../global/photos/city-5-720x480.jpg" class="w-full">
+                    </a>
+                  </div>
+                  <div class="col-xl-6 col-lg-12 col-xs-12">
+                    <a href="../../../global/photos/animal-1-720x480.jpg" alt="..." class="gallery-item"
+                      data-img-id="m_5" title="view_5">
+                      <img src="../../../global/photos/animal-1-720x480.jpg" class="w-full">
+                    </a>
+                  </div>
+                </div>
+                <ul class="wall-attrs clearfix p-0 m-0">
+                  <li class="attrs-meta pull-xs-left">
+                    <span>
+                      <i class="icon wb-chat"></i> 2
+                    </span>
+                    <span class="success m-l-10">
+                      </if>
+                      <i class="icon wb-heart"></i> 10
+                    </span>
+                  </li>
+                  <li class="pull-xs-right">
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_1">
+                      <img src="{{global}}/portraits/2.jpg">
+                    </a>
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_2">
+                      <img src="{{global}}/portraits/1.jpg">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer p-20">
+                <div class="wall-comment">
+                  <a href="#" class="avatar avatar-md pull-xs-left">
+                    <img src="{{global}}/portraits/3.jpg">
+                  </a>
+                  <div class="m-l-60">
+                    <a href="#">Stacey Hunt</a>
+                    <small class="m-l-10">30th July 2017</small>
+                    <p class="m-t-5">
+                      Cillum aliqua elit ad enim labore magna mollit. Est enim et anim aliquip dolore
+                      voluptate nisi cupidatat ipsum. Culpa deserunt laborum commodo
+                      aliqua nulla aliqua. Incididunt veniam elit id proident.
+                    </p>
+                  </div>
+                  <div class="dropdown comment-operation">
+                    <button type="button" class="btn btn-icon btn-round btn-default btn-sm" data-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="icon wb-more-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Report</a>
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Delete</a>
+                    </div>
+                  </div>
+                </div>
+                <form class="wall-comment-reply">
+                  <input type="text" class="form-control m-b-15" placeholder="Write Something...">
+                  <div class="reply-opration">
+                    <button class="btn btn-sm btn-primary" type="button">POST</button>
+                    <button class="btn btn-sm btn-pure btn-default" type="button">CANCEL</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-block media clearfix p-25">
+                <div class="media-left">
+                  <a href="#" class="avatar avatar-lg">
+                    <img class="img-fluid" src="{{global}}/portraits/3.jpg">
+                  </a>
+                </div>
+                <div class="media-body text-middle">
+                  <h4 class="media-heading">
+                    Tim Collins
+                  </h4>
+                  <small>Posted on 2nd Sep 2017 at 17:00</small>
+                </div>
+              </div>
+              <div class="card-block p-x-25  p-t-0">
+                <p class="wall-note">Added a new video</p>
+                <p class="card-text m-b-20">
+                  Occaecat minim veniam magna ut velit laborum minim. Tempor minim deserunt veniam
+                  ea adipisicing. Officia nisi nostrud adipisicing culpa est reprehenderit
+                  mollit. Non esse dolore adipisicing id commodo ad adipisicing
+                  officia. Voluptate ad eiusmod in eu sint nulla labore. Magna
+                  commodo incididunt ullamco do nisi. Ex culpa laboris veniam exercitation
+                  pariatur. Exercitation esse eiusmod aute anim id duis in aute.
+                </p>
+                <div class="row m-b-20 no-space">
+                  <div class="col-xxl-6 col-xl-12">
+                    <div class="cover player" data-video-id="v_1">
+                      <video poster="{{assets}}/examples/images/poster.jpg" controls crossorigin>
+                        <!-- Video Files -->
+                        <source type="video/mp4" src="https://cdn.selz.com/plyr/1.0/movie.mp4">
+                        <source type="video/webm" src="https://cdn.selz.com/plyr/1.0/movie.webm">
+
+                        <!-- Text Track File -->
+                        <track kind="captions" label="English" srclang="en" src="//cdn.selz.com/plyr/1.0/en.vtt"
+                          default>
+
+                        <!-- Fallback For Browsers That Don'T Support The <Video> Element -->
+                        <a href="https://cdn.selz.com/plyr/1.0/movie.mp4">Download</a>
+                      </video>
+                    </div>
+                  </div>
+                </div>
+                <ul class="wall-attrs clearfix p-0 m-0">
+                  <li class="attrs-meta pull-xs-left">
+                    <span>
+                      <i class="icon wb-chat"></i> 18
+                    </span>
+                    <span class="success m-l-10">
+                      </if>
+                      <i class="icon wb-heart"></i> 45
+                    </span>
+                  </li>
+                  <li class="pull-xs-right">
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_1">
+                      <img src="{{global}}/portraits/2.jpg">
+                    </a>
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_2">
+                      <img src="{{global}}/portraits/1.jpg">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer p-20">
+                <div class="wall-comment">
+                  <a href="#" class="avatar avatar-md pull-xs-left">
+                    <img src="{{global}}/portraits/3.jpg">
+                  </a>
+                  <div class="m-l-60">
+                    <a href="#">Stacey Hunt</a>
+                    <small class="m-l-10">30th July 2017</small>
+                    <p class="m-t-5">
+                      Lorem proident anim exercitation adipisicing irure Lorem est. Pariatur cupidatat
+                      pariatur dolor occaecat qui cupidatat. Officia anim ad fugiat
+                      dolor fugiat ad. Officia laborum in duis in esse anim.
+                    </p>
+                  </div>
+                  <div class="dropdown comment-operation">
+                    <button type="button" class="btn btn-icon btn-round btn-default btn-sm" data-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="icon wb-more-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Report</a>
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Delete</a>
+                    </div>
+                  </div>
+                </div>
+                <form class="wall-comment-reply">
+                  <input type="text" class="form-control m-b-15" placeholder="Write Something...">
+                  <div class="reply-opration">
+                    <button class="btn btn-sm btn-primary" type="button">POST</button>
+                    <button class="btn btn-sm btn-pure btn-default" type="button">CANCEL</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-block media clearfix p-25">
+                <div class="media-left">
+                  <a href="#" class="avatar avatar-lg">
+                    <img class="img-fluid" src="{{global}}/portraits/3.jpg">
+                  </a>
+                </div>
+                <div class="media-body text-middle">
+                  <h4 class="media-heading">
+                    Tim Collins
+                  </h4>
+                  <small>Posted on 2nd Sep 2017 at 17:00</small>
+                </div>
+              </div>
+              <div class="card-block p-x-25  p-t-0">
+                <p class="wall-note">Is listening to the Evernote</p>
+                <p class="card-text m-b-20">
+                  Ad ex ea consequat cillum nulla. Sint laboris ad et nisi id laboris. Non dolor
+                  consectetur dolore aute adipisicing reprehenderit. Adipisicing
+                  irure veniam exercitation laborum sint minim do labore elit.
+                  Minim sunt enim tempor tempor. Sit ullamco cillum anim ut fugiat
+                  enim. Ut est ea consequat est velit consectetur. Pariatur est
+                  do eiusmod aliquip nostrud irure ex.
+                </p>
+                <div class="wall-body-audio clearfix">
+                  <div class="row m-b-20 no-space">
+                    <div class="col-xxl-6 col-xl-12">
+                      <div class="cover player" data-audio-id="">
+                        <audio controls>
+                          <!-- Audio Files -->
+                          <source type="audio/mp3" src="https://cdn.selz.com/plyr/1.0/logistics-96-sample.mp3">
+                          <source type="audio/ogg" src="https://cdn.selz.com/plyr/1.0/logistics-96-sample.ogg">
+                          <!-- Fallback For Browsers That Don'T Support The <Audio> Element -->
+                          <a href="https://cdn.selz.com/plyr/1.0/logistics-96-sample.mp3">Download</a>
+                        </audio>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <ul class="wall-attrs clearfix p-0 m-0">
+                  <li class="attrs-meta pull-xs-left">
+                    <span>
+                      <i class="icon wb-chat"></i> 18
+                    </span>
+                    <span class="success m-l-10">
+                      </if>
+                      <i class="icon wb-heart"></i> 45
+                    </span>
+                  </li>
+                  <li class="pull-xs-right">
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_1">
+                      <img src="{{global}}/portraits/3.jpg">
+                    </a>
+                    <a href="#" class="avatar avatar-sm" data-paticipator-id="p_2">
+                      <img src="{{global}}/portraits/1.jpg">
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-footer p-20">
+                <div class="wall-comment">
+                  <a href="#" class="avatar avatar-md pull-xs-left">
+                    <img src="{{global}}/portraits/3.jpg">
+                  </a>
+                  <div class="m-l-60">
+                    <a href="#">Stacey Hunt</a>
+                    <small class="m-l-10">30th July 2017</small>
+                    <p class="m-t-5">
+                      Duis ipsum irure anim quis anim cupidatat quis. Magna ipsum sit cupidatat proident
+                      consequat sint nostrud dolor duis. Consequat non enim non
+                      Lorem excepteur. Incididunt sint est culpa cupidatat mollit.
+                    </p>
+                  </div>
+                  <div class="dropdown comment-operation">
+                    <button type="button" class="btn btn-icon btn-round btn-default btn-sm" data-toggle="dropdown"
+                      aria-expanded="false">
+                      <i class="icon wb-more-vertical"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Report</a>
+                      <a class="dropdown-item" href="javascript:void(0)" role="menuitem">Delete</a>
+                    </div>
+                  </div>
+                </div>
+                <form class="wall-comment-reply">
+                  <input type="text" class="form-control m-b-15" placeholder="Write Something...">
+                  <div class="reply-opration">
+                    <button class="btn btn-sm btn-primary" type="button">POST</button>
+                    <button class="btn btn-sm btn-pure btn-default" type="button">CANCEL</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-lg-4">
+            <div class="card card-block">
+              <h4 class="card-title">About me</h4>
+              <p class="card-text">
+                Laborum nostrud aliquip veniam labore laboris velit anim magna adipisicing. Lorem
+                non anim ipsum occaecat ipsum. Adipisicing veniam aute dolore eiusmod
+                occaecat enim eu non adipisicing. Non et veniam et ex quis consectetur.
+                <a href="#">Read more...</a>
+              </p>
+            </div>
+            <div class="card wall-recent-comments">
+              <div class="card-block">
+                <h4 class="card-title">
+                  Recent Comments
+                </h4>
+                <p class="card-text">
+                  Cras congue nec lorem eget posuere
+                </p>
+              </div>
+              <ul class="list-group">
+                <a class="list-group-item" data-recomment-id="c_1">
+                  <div class="media">
+                    <div class="media-left pull-xs-left p-r-15">
+                      <img class="avatar avatar-md" src="../../../global/portraits/6.jpg">
+                    </div>
+                    <div class="media-body">
+                      <h5 class="list-group-item-heading">David Belle</h5>
+                      <p class="list-group-item-text">
+                        Cupidatat anim ut deserunt dolore tempor quis labore in....
+                      </p>
+                    </div>
+                  </div>
+                </a>
+                <a class="list-group-item" data-recomment-id="c_2">
+                  <div class="media">
+                    <div class="media-left pull-xs-left p-r-15">
+                      <img class="avatar avatar-md" src="../../../global/portraits/7.jpg">
+                    </div>
+                    <div class="media-body">
+                      <h5 class="list-group-item-heading">Jonathan Morris</h5>
+                      <p class="list-group-item-text">
+                        Cillum laboris ea velit deserunt officia Lorem....
+                      </p>
+                    </div>
+                  </div>
+                </a>
+                <a class="list-group-item" data-recomment-id="c_3">
+                  <div class="media">
+                    <div class="media-left pull-xs-left p-r-15">
+                      <img class="avatar avatar-md" src="../../../global/portraits/4.jpg">
+                    </div>
+                    <div class="media-body">
+                      <h5 class="list-group-item-heading">Fredric Mitchell Jr.</h5>
+                      <p class="list-group-item-text">
+                        Proident irure amet cillum qui occaecat in aliqua excepteur fugiat....
+                      </p>
+                    </div>
+                  </div>
+                </a>
+                <a class="list-group-item" data-recomment-id="c_4">
+                  <div class="media">
+                    <div class="media-left pull-xs-left p-r-15">
+                      <img class="avatar avatar-md" src="../../../global/portraits/7.jpg">
+                    </div>
+                    <div class="media-body">
+                      <h5 class="list-group-item-heading">Jonathan Morris</h5>
+                      <p class="list-group-item-text">
+                        Veniam sunt aliquip Lorem irure cupidatat tempor occaecat Lorem ut....
+                      </p>
+                    </div>
+                  </div>
+                </a>
+                <a class="list-group-item" data-recomment-id="c_5">
+                  <div class="media">
+                    <div class="media-left pull-xs-left p-r-15">
+                      <img class="avatar avatar-md" src="../../../global/portraits/4.jpg">
+                    </div>
+                    <div class="media-body">
+                      <h5 class="list-group-item-heading">Fredric Mitchell Jr.</h5>
+                      <p class="list-group-item-text">
+                        Sint do esse anim magna anim consequat proident....
+                      </p>
+                    </div>
+                  </div>
+                </a>
+              </ul>
+              <div class="card-block comments-view">
+                <a href="#">View All</a>
+              </div>
+            </div>
+            <div class="card p-20">
+              <h4 class="card-title">
+                Contact Information
+              </h4>
+              <p class="card-text">
+                Fusce eget dolor id justo luctus commodo vel pharetra nisi. Donec velit libero
+              </p>
+              <div class="card-block p-0">
+                <p data-info-type="phone" class="m-b-10 text-nowrap">
+                  <i class="icon wb-user m-r-10"></i>
+                  <span class="text-break">00971123456789
+                    <span>
+                      </li>
+                      <p data-info-type="email" class="m-b-10 text-nowrap">
+                        <i class="icon wb-envelope m-r-10"></i>
+                        <span class="text-break">malinda.h@gmail.com
+                          <span>
+                            </li>
+                            <p data-info-type="fb" class="m-b-10 text-nowrap">
+                              <i class="icon bd-facebook m-r-10"></i>
+                              <span class="text-break">malinda.hollaway
+                                <span>
+                                  </li>
+                                  <p data-info-type="twitter" class="m-b-10 text-nowrap">
+                                    <i class="icon bd-twitter m-r-10"></i>
+                                    <span class="text-break">@malinda (twitter.com/malinda)
+                                      <span>
+                                        </li>
+                                        <p data-info-type="address" class="m-b-10 text-nowrap">
+                                          <i class="icon wb-map m-r-10"></i>
+                                          <span class="text-break">44-46 Morningside Road,Edinburgh,Scotland
+                                            <span>
+                                              </li>
+                                        </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  {{/content}}
+{{/extend}}
