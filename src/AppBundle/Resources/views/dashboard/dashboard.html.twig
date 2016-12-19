@@ -265,7 +265,7 @@
                 value: function handleMapHeight() {
                     var footerH = this.$siteFooter.outerHeight(),
                             navbarH = this.$siteNavbar.outerHeight();
-                    var mapH = this.window.height() - navbarH - footerH;
+                    var mapH = this.window.height() - navbarH - footerH - 50;
                     this.$pageMain.outerHeight(mapH);
                 }
             }, {
