@@ -283,28 +283,54 @@
             babelHelpers.createClass(Markers, [{
                 key: 'handleMarkers',
                 value: function handleMarkers() {
-                     // Create FeatureGroup to handle the plots
-                    var featureGroup = L.featureGroup();
+                // Create FeatureGroup to handle the plots and cropCycles
+                var featureGroup = L.featureGroup();
+                var featureGroup2 = L.featureGroup();
+
                 //Drawing polygons
                 {% for plot in farm.plots %}
-                {% if plot.latLngs is not empty %}
-                // Add current polygon and add an attribute alt
-                var layer = L.geoJson({{ plot.latLngs | raw }});
-                //Set style
-                layer.setStyle({color: "#088", Opacity:0.9, fillOpacity: 0.8, weight: 1.5});
-                // Add current polygon to featureGroup
-                featureGroup.addLayer(layer);
-                // Add it inside allMarkers array
-                this.allMarkers.push(layer);
-                console.log(self.allMarkers);
-                {% endif %}
+                    {% if plot.latLngs is not empty %}
+                    // Add current polygon and add an attribute alt
+                    var layer = L.geoJson({{ plot.latLngs | raw }});
+                    //Set style
+                    layer.setStyle({color: "white", Opacity:0.9, fillOpacity: 0.8, weight: 1.5});
+
+                    //Add a popup
+                    layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | upper }}"+"</h3></div>", {closeButton: false});
+
+                    // Add current polygon to featureGroup
+                    featureGroup.addLayer(layer);
+                    // Add it inside allMarkers array
+                    this.allMarkers.push(layer);
+                    console.log(self.allMarkers);
+                    {% endif %}
+
+                    // Add cropcycles polygons
+                    {% for cycle in plot.cropCycles %}
+                        {% if cycle.latLngs is not empty and cycle.status == "ActiveAction" %}
+                                // Add current polygon and add an attribute alt
+                                var layer2 = L.geoJson({{ cycle.latLngs | raw }});
+                                var color = "red";
+                                {% for crop in cycle.crops %}
+                                var color = "{{ crop.color }}";
+                                {% endfor %}
+                                //Set style
+                                layer2.setStyle({color: color, Opacity:1, fillOpacity: 0.8, weight: 1.5});
+                                //Add a popup
+                                layer2.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ cycle.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\" style=\"font-weight: 500;color:#76838f;    text-transform: capitalize;\"><a href=\"{{ path('action_new',{'id':cycle.id}) }}\">" + "{{ cycle.name | capitalize }}"+"</a></h3><p>sur la parcelle " +"{{plot.name | capitalize}}"+"</p></div></div>", {closeButton: false});
+                                // Add current polygon to featureGroup
+                                featureGroup2.addLayer(layer2);
+                        {% endif %}
+                    {% endfor %}
+
                 {% endfor %}
+                // Add plots to the map
                 featureGroup.addTo(this.map);
-                        //Zoom to farm bounds
-                        var bounds = featureGroup.getBounds();
-                        this.map.fitBounds(bounds);               
+                featureGroup2.addTo(this.map);             
 
-
+                //Zoom to farm bounds
+                var bounds = featureGroup.getBounds();
+                this.map.fitBounds(bounds);  
                 }
             }, {
                 key: 'getAllMarkers',

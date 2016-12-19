@@ -24,6 +24,10 @@
   display: inline-block;
 }
 
+.leaflet-popup-tip-container{
+  display: none;
+}
+
 .app-location #map .in-map-markers .friend-icon img {
   width: 62px;
   border-radius: 50%;
@@ -126,7 +130,7 @@
 }
 
 .detail {
-  background-color: #a2caee !important;
+  background-color: #D6494B !important;
 }
 
 .leaflet-popup-pane:hover h3 {
