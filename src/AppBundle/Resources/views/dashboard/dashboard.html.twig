@@ -263,7 +263,10 @@
                 value: function getMap() {
                     var mapLatlng = L.latLng(37.769, -122.446);
                     L.mapbox.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
-                    return L.mapbox.map('map', 'mapbox.streets').setView(mapLatlng, 18);
+                    var map = L.mapbox.map('map', 'mapbox.streets',{ zoomControl: false }).setView(mapLatlng, 18);
+                       new L.Control.Zoom({ position: 'topright' }).addTo(map);
+
+                    return map;
                 }
             }]);
             return Map;
