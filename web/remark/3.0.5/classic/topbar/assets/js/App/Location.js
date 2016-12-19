@@ -44,15 +44,13 @@
     }, {
       key: 'getMap',
       value: function getMap() {
-        mapboxgl.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
-        var map = new mapboxgl.Map({
-          container: 'map',
-          style: 'mapbox://styles/mapbox/streets-v9',
-          center: [-68.13734351262877, 45.137451890638886],
-          zoom: 5
-        });
-        map.addControl(new mapboxgl.NavigationControl());
-        return map;
+        var mapLatlng = L.latLng(37.769, -122.446);
+
+        // this accessToken, you can get it to here ==> [ https://www.mapbox.com ]
+        L.mapbox.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
+
+        return L.mapbox.map('map', 'mapbox.light').setView(mapLatlng, 18);
+
       }
     }]);
     return Map;

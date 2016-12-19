@@ -57,7 +57,7 @@
             <i class="icon md-more" aria-hidden="true"></i>
         </button>
         <a class="navbar-brand navbar-brand-center" href="../../index.html">
-            <span class="navbar-brand-text hidden-xs-down">Agroscopik</span>
+            <span class="navbar-brand-text hidden-xs-down">AGROSCOPIK</span>
         </a>
     </div>
     <div class="navbar-container container-fluid">
@@ -107,87 +107,12 @@
     <div class="site-menubar-body">
         <div>
             <div>
-                <ul class="site-menu" data-plugin="menu">
+                <ul class="site-menu" data-plugin="menu" style="font-weight: 500;">
                     <li class="site-menu-category">General</li>
-                    <li class="dropdown site-menu-item has-sub">
-                        <a data-toggle="dropdown" href="javascript:void(0)" data-dropdown-toggle="false">
-                            <i class="site-menu-icon md-view-compact" aria-hidden="true"></i>
-                            <span class="site-menu-title">Layouts</span>
-                            <span class="site-menu-arrow"></span>
+                    <li class="site-menu-item">
+                        <a href="{{ path('dashboard') }}">
+                            <span class="site-menu-title">Parcelles</span>
                         </a>
-                        <div class="dropdown-menu">
-                            <div class="site-menu-scroll-wrap is-list">
-                                <div>
-                                    <div>
-                                        <ul class="site-menu-sub site-menu-normal-list">
-                                            <li class="site-menu-item">
-                                                <a class="animsition-link" href="../../layouts/grids.html">
-                                                    <span class="site-menu-title">Grid Scaffolding</span>
-                                                </a>
-                                            </li>
-                                            <li class="site-menu-item">
-                                                <a class="animsition-link" href="../../layouts/layout-grid.html">
-                                                    <span class="site-menu-title">Layout Grid</span>
-                                                </a>
-                                            </li>
-                                            <li class="site-menu-item">
-                                                <a class="animsition-link" href="../../layouts/headers.html">
-                                                    <span class="site-menu-title">Different Headers</span>
-                                                </a>
-                                            </li>
-                                            <li class="site-menu-item">
-                                                <a class="animsition-link" href="../../layouts/panel-transition.html">
-                                                    <span class="site-menu-title">Panel Transition</span>
-                                                </a>
-                                            </li>
-                                            <li class="site-menu-item">
-                                                <a class="animsition-link" href="../../layouts/boxed.html">
-                                                    <span class="site-menu-title">Boxed Layout</span>
-                                                </a>
-                                            </li>
-                                            <li class="site-menu-item">
-                                                <a class="animsition-link" href="../../layouts/two-columns.html">
-                                                    <span class="site-menu-title">Two Columns</span>
-                                                </a>
-                                            </li>
-                                            <li class="site-menu-item">
-                                                <a class="animsition-link" href="../../layouts/bordered-header.html">
-                                                    <span class="site-menu-title">Bordered Header</span>
-                                                </a>
-                                            </li>
-                                            <li class="site-menu-item has-sub">
-                                                <a href="javascript:void(0)">
-                                                    <span class="site-menu-title">Page Aside</span>
-                                                    <span class="site-menu-arrow"></span>
-                                                </a>
-                                                <ul class="site-menu-sub">
-                                                    <li class="site-menu-item">
-                                                        <a class="animsition-link" href="../../layouts/aside-left-static.html">
-                                                            <span class="site-menu-title">Left Static</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="site-menu-item">
-                                                        <a class="animsition-link" href="../../layouts/aside-right-static.html">
-                                                            <span class="site-menu-title">Right Static</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="site-menu-item">
-                                                        <a class="animsition-link" href="../../layouts/aside-left-fixed.html">
-                                                            <span class="site-menu-title">Left Fixed</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="site-menu-item">
-                                                        <a class="animsition-link" href="../../layouts/aside-right-fixed.html">
-                                                            <span class="site-menu-title">Right Fixed</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </li>
                 </ul>
             </div>
@@ -216,366 +141,25 @@
                                     Ajouter une parcelle
                                 </a>
                             </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_1">
+
+                        {% if farm.plots is not empty %}
+                        {% for plot in farm.plots %}
+
+
+                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_{{ loop.index0 }}">
                                 <div class="card card-shadow">
                                     <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Adam_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Adam</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Adam.
+                                        <div class="friend-name" style="font-weight:500">{{ plot.name | capitalize }}
                                         </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up">1</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
+                                        <div class="friend-title" style="font-weight:400">
+                                            {{ plot.area|number_format(2, ',', ' ') }} ha
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_2">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Fanny_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Fanny</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Fanny.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up"></span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_3">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Allen_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Allen</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Allen.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up">4</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_4">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Fitch_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Fitch</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Fitch.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up"></span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_5">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Viola_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Viola</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Viola.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up"></span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_6">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Gordon_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Gordon</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Gordon.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up"></span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_7">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Wall_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Wall</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Wall.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up">4</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_8">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Ian_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Ian</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Ian.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up"></span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_9">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Sibyl_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Sibyl</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Sibyl.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up"></span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_10">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Darren_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Darren</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Darren.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up"></span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_11">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Madeline_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Madeline</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Madeline.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up"></span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_12">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <a href="#" class="avatar m-b-5">
-                                            <img class="img-fluid" src="{{ asset('remark/3.0.5/classic/global/portraits/1.jpg') }}" alt="Lyndon_photo"
-                                            />
-                                        </a>
-                                        <div class="friend-name">Lyndon</div>
-                                        <div class="friend-title m-b-20 blue-grey-400">
-                                            Hi~ I&#x27;m Lyndon.
-                                        </div>
-                                        <ul class="list-inline font-size-17 m-b-5">
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-account blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-comment blue-grey-400">
-                                                    <span class="tag tag-pill tag-success up">2</span>
-                                                </a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-tag blue-grey-400"></a>
-                                            </li>
-                                            <li class="list-inline-item">
-                                                <a href="#" class="icon md-share blue-grey-400"></a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+                        {% endfor %}
+                            {% endif
+                             %}
                         </div>
                     </div>
                 </div>
@@ -631,7 +215,316 @@
 <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asscrollable.js') }}"></script>
 <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/slidepanel.js') }}"></script>
 <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/App/Location.js') }}"></script>
+
+{# Map script #}
+<script>
+    (function (global, factory) {
+        if (typeof define === "function" && define.amd) {
+            define('/App/Location', ['exports', 'Site'], factory);
+        } else if (typeof exports !== "undefined") {
+            factory(exports, require('Site'));
+        } else {
+            var mod = {
+                exports: {}
+            };
+            factory(mod.exports, global.Site);
+            global.AppLocation = mod.exports;
+        }
+    })(this, function (exports, _Site2) {
+        'use strict';
+
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.getInstance = exports.run = exports.AppLocation = undefined;
+
+        var _Site3 = babelHelpers.interopRequireDefault(_Site2);
+
+        var Map = function () {
+            function Map() {
+                babelHelpers.classCallCheck(this, Map);
+
+                this.window = $(window);
+                this.$siteNavbar = $('.site-navbar');
+                this.$siteFooter = $('.site-footer');
+                this.$pageMain = $('.page-main');
+
+                this.handleMapHeight();
+            }
+
+            babelHelpers.createClass(Map, [{
+                key: 'handleMapHeight',
+                value: function handleMapHeight() {
+                    var footerH = this.$siteFooter.outerHeight(),
+                            navbarH = this.$siteNavbar.outerHeight();
+                    var mapH = this.window.height() - navbarH - footerH;
+
+                    this.$pageMain.outerHeight(mapH);
+                }
+            }, {
+                key: 'getMap',
+                value: function getMap() {
+                    var mapLatlng = L.latLng(37.769, -122.446);
+
+                    // this accessToken, you can get it to here ==> [ https://www.mapbox.com ]
+                    L.mapbox.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
+
+                    return L.mapbox.map('map', 'mapbox.streets').setView(mapLatlng, 18);
+
+                }
+            }]);
+            return Map;
+        }();
+
+        var Markers = function () {
+            function Markers(friends, map) {
+                babelHelpers.classCallCheck(this, Markers);
+
+                this.friends = friends;
+                this.map = map;
+                this.allMarkers = [];
+
+                this.handleMarkers();
+            }
+
+            babelHelpers.createClass(Markers, [{
+                key: 'handleMarkers',
+                value: function handleMarkers() {
+                    /* add markercluster Plugin */
+                    // this mapbox's Plugins,you can get it to here ==> [ https://github.com/Leaflet/Leaflet.markercluster.git ]
+                    var markers = new L.MarkerClusterGroup({
+                        removeOutsideVisibleBounds: false,
+                        polygonOptions: {
+                            color: '#444'
+                        }
+                    });
+
+                    for (var i = 0; i < this.friends.length; i++) {
+                        var path = void 0,
+                                x = void 0;
+
+                        if (i % 2 === 0) {
+                            x = Number(Math.random());
+                        } else {
+                            x = -1 * Math.random();
+                        }
+
+                        var markerLatlng = L.latLng(37.769 + Math.random() / 170 * x, -122.446 + Math.random() / 150 * x);
+
+                        path = $(this.friends[i]).find('img').attr('src');
+
+                        var divContent = '<div class=\'in-map-markers\'><div class=\'friend-icon\'><img src=\'' + path + '\' /></div></div>';
+
+                        var friendImg = L.divIcon({
+                            html: divContent,
+                            iconAnchor: [0, 0],
+                            className: ''
+                        });
+
+                        /* create new marker and add to map */
+                        var popupInfo = '<div class=\'friend-popup-info\'><div class=\'detail\'>info</div><h3>' + $(this.friends[i]).find('.friend-name').html() + '</h3><p>' + $(this.friends[i]).find('.friend-title').html() + '</p></div><i class=\'icon wb-chevron-right-mini\'></i>';
+                        var marker = L.marker(markerLatlng, {
+                            title: $(this.friends[i]).find('friend-name').html(),
+                            icon: friendImg
+                        }).bindPopup(popupInfo, {
+                            closeButton: false
+                        });
+
+                        markers.addLayer(marker);
+
+                        this.allMarkers.push(marker);
+
+                        marker.on('popupopen', function () {
+                            this._icon.className += ' marker-active';
+                            this.setZIndexOffset(999);
+                        });
+
+                        marker.on('popupclose', function () {
+                            if (this._icon) {
+                                this._icon.className = 'leaflet-marker-icon leaflet-zoom-animated leaflet-clickable';
+                            }
+                            this.setZIndexOffset(450);
+                        });
+                    }
+
+                    this.map.addLayer(markers);
+                }
+            }, {
+                key: 'getAllMarkers',
+                value: function getAllMarkers() {
+                    return this.allMarkers;
+                }
+            }, {
+                key: 'getMarkersInMap',
+                value: function getMarkersInMap() {
+                    var inMapMarkers = [];
+                    var allMarkers = this.getAllMarkers();
+
+                    /* Get the object of all Markers in the map view */
+                    for (var i = 0; i < allMarkers.length; i++) {
+                        if (this.map.getBounds().contains(allMarkers[i].getLatLng())) {
+                            inMapMarkers.push(allMarkers.indexOf(allMarkers[i]));
+                        }
+                    }
+
+                    return inMapMarkers;
+                }
+            }]);
+            return Markers;
+        }();
+
+        var AppLocation = function (_Site) {
+            babelHelpers.inherits(AppLocation, _Site);
+
+            function AppLocation() {
+                babelHelpers.classCallCheck(this, AppLocation);
+                return babelHelpers.possibleConstructorReturn(this, (AppLocation.__proto__ || Object.getPrototypeOf(AppLocation)).apply(this, arguments));
+            }
+
+            babelHelpers.createClass(AppLocation, [{
+                key: 'processed',
+                value: function processed() {
+                    babelHelpers.get(AppLocation.prototype.__proto__ || Object.getPrototypeOf(AppLocation.prototype), 'processed', this).call(this);
+
+                    this.window = $(window);
+                    this.$listItem = $('.app-location .page-aside .list-group');
+                    this.$allFriends = $('.app-location .friend-info');
+                    this.allFriends = this.getAllFriends();
+                    this.mapbox = new Map();
+
+                    this.map = this.mapbox.getMap();
+                    this.markers = new Markers(this.$allFriends, this.map);
+                    this.allMarkers = this.markers.getAllMarkers();
+
+                    this.markersInMap = null;
+                    this.friendNum = null;
+
+                    this.handleResize();
+                    this.steupListItem();
+                    this.steupMapChange();
+                    this.handleSearch();
+                }
+            }, {
+                key: 'getDefaultState',
+                value: function getDefaultState() {
+                    return Object.assign(babelHelpers.get(AppLocation.prototype.__proto__ || Object.getPrototypeOf(AppLocation.prototype), 'getDefaultState', this).call(this), {
+                        mapChange: true,
+                        listItemActive: false
+                    });
+                }
+            }, {
+                key: 'getDefaultActions',
+                value: function getDefaultActions() {
+                    return Object.assign(babelHelpers.get(AppLocation.prototype.__proto__ || Object.getPrototypeOf(AppLocation.prototype), 'getDefaultActions', this).call(this), {
+                        mapChange: function mapChange(change) {
+                            if (change) {
+                                console.log('map change');
+                            } else {
+                                var friendsInList = [];
+
+                                this.markersInMap = this.markers.getMarkersInMap();
+                                for (var i = 0; i < this.allMarkers.length; i++) {
+                                    if (this.markersInMap.indexOf(i) === -1) {
+                                        $(this.allFriends[i]).show(); {# you can hide them #}
+                                    } else {
+                                        $(this.allFriends[i]).show();
+                                        friendsInList.push($(this.allFriends[i]));
+                                    }
+                                }
+
+                                this.friendsInList = friendsInList;
+                            }
+                        },
+                        listItemActive: function listItemActive(active) {
+                            if (active) {
+                                this.map.panTo(this.allMarkers[this.friendNum].getLatLng());
+                                this.allMarkers[this.friendNum].openPopup();
+                            } else {
+                                console.log('listItem unactive');
+                            }
+                        }
+                    });
+                }
+            }, {
+                key: 'getAllFriends',
+                value: function getAllFriends() {
+                    var allFriends = [];
+
+                    this.$allFriends.each(function () {
+                        allFriends.push(this);
+                    });
+
+                    return allFriends;
+                }
+            }, {
+                key: 'steupListItem',
+                value: function steupListItem() {
+                    var _this2 = this;
+
+                    var self = this;
+
+                    this.$allFriends.on('click', function () {
+
+                        $('.list-inline').on('click', function (event) {
+                            event.stopPropagation();
+                        });
+
+                        self.friendNum = self.allFriends.indexOf(this);
+
+                        self.setState('listItemActive', true);
+                    });
+
+                    this.$allFriends.on('mouseup', function () {
+                        _this2.setState('listItemActive', false);
+                    });
+                }
+            }, {
+                key: 'steupMapChange',
+                value: function steupMapChange() {
+                    var _this3 = this;
+
+                    this.map.on('viewreset move', function () {
+                        _this3.setState('mapChange', true);
+                    });
+
+                    this.map.on('ready blur moveend dragend zoomend', function () {
+                        _this3.setState('mapChange', false);
+                    });
+                }
+            }, {
+                key: 'handleResize',
+                value: function handleResize() {
+                    var _this4 = this;
+
+                    this.window.on('resize', function () {
+                        _this4.mapbox.handleMapHeight();
+                    });
+                }
+            }]);
+            return AppLocation;
+        }(_Site3.default);
+
+        var instance = null;
+
+        function getInstance() {
+            if (!instance) {
+                instance = new AppLocation();
+            }
+            return instance;
+        }
+
+        function run() {
+            var app = getInstance();
+            app.run();
+        }
+
+        exports.default = AppLocation;
+        exports.AppLocation = AppLocation;
+        exports.run = run;
+        exports.getInstance = getInstance;
+    });
+
+</script>
 <script src="{{ asset('remark/3.0.5/classic/topbar/assets/examples/js/apps/location.js') }}"></script>
 </body>
 </html>
