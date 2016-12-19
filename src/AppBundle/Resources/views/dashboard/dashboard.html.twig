@@ -181,24 +181,6 @@
 
                 </div>
                             </div>
-
-
-                        {% if farm.plots is not empty %}
-                        {% for plot in farm.plots %}
-                            <div class="list-group-item col-xs-12 col-xxl-6 col-lg-12 friend-info" data-friend-id="f_{{ loop.index0 }}">
-                                <div class="card card-shadow">
-                                    <div class="card-block text-xs-center bg-white p-20">
-                                        <div class="friend-name" style="font-weight:500">{{ plot.name | capitalize }}
-                                        </div>
-                                        <div class="friend-title" style="font-weight:400">
-                                            {{ plot.area|number_format(2, ',', ' ') }} ha
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                            {% endif
-                             %}
                         </div>
                     </div>
                 </div>

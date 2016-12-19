@@ -126,7 +126,7 @@
 }
 
 .detail {
-  background-color: #a2caee !important;
+  background-color: #D6494B !important;
 }
 
 .leaflet-popup-pane:hover h3 {
@@ -157,6 +157,12 @@
   color: #fff;
 }
 
+  .panel-title{
+    font-family: Roboto, sans-serif;
+    font-weight: 500;
+    color: rgba(118,131,143,1);
+  }
+
 @media (max-width: 1199px) {
   .page-aside + .page-main {
     margin-left: 450px !important;
@@ -168,7 +174,7 @@
     width: 300px;
   }
   .page-aside .panel-title {
-    opacity: 0;
+    opacity: 1;
   }
   .page-aside .input-search {
     width: 240px;
