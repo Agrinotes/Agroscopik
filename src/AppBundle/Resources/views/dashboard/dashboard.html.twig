@@ -21,6 +21,12 @@
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/slidePanel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/flag-icon-css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.min.css') }}">
+    {# Temporary fix #}
+    <style>
+        .leaflet-popup-tip-container{
+            left:-35px;
+        }
+    </style>
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css')}}">
     <!-- Fonts -->
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/font-awesome/font-awesome.min.css') }}">
@@ -151,6 +157,31 @@
                                     Ajouter une parcelle
                                 </a>
                             </div>
+
+                            <div class="col-lg-12" style="padding-left:15px; padding-right:0px;">
+<div class="panel-group" id="exampleAccordionDefault" aria-multiselectable="true" role="tablist">
+
+                        {% if farm.plots is not empty %}
+                        {% for plot in farm.plots %}
+                  <div class="panel">
+                    <div class="panel-heading" id="panel_plot_{{plot.id}}" role="tab">
+                      <a class="panel-title collapsed friend-name" data-toggle="collapse" href="#plot_{{plot.id}}" data-parent="#exampleAccordionDefault" aria-expanded="false" aria-controls="exampleCollapseDefaultOne">
+                      {{plot.name | capitalize}} <small>{{ plot.area|number_format(2, ',', ' ') }} ha</small>
+                    </a>
+                    </div>
+                    <div class="panel-collapse collapse" id="plot_{{plot.id}}" aria-labelledby="panel_plot_{{plot.id}}" role="tabpanel" aria-expanded="false" style="height: 0px;">
+                      <div class="panel-body">
+                        Test
+                      </div>
+                    </div>
+                  </div>
+                                          {% endfor %}
+                            {% endif
+                             %}
+
+                </div>
+                            </div>
+
 
                         {% if farm.plots is not empty %}
                         {% for plot in farm.plots %}

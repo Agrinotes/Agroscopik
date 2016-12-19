@@ -172,7 +172,7 @@
     width: 300px;
   }
   .page-aside .panel-title {
-    opacity: 0;
+    opacity: 1; 
   }
   .page-aside .input-search {
     width: 240px;
