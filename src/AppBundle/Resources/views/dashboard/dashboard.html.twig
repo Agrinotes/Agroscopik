@@ -111,7 +111,17 @@
                     <li class="site-menu-category">General</li>
                     <li class="site-menu-item">
                         <a href="{{ path('dashboard') }}">
-                            <span class="site-menu-title">Parcelles</span>
+                            <span class="site-menu-title">Carte</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-item">
+                        <a href="{{ path('dashboard') }}">
+                            <span class="site-menu-title">Planning</span>
+                        </a>
+                    </li>
+                    <li class="site-menu-item">
+                        <a href="{{ path('dashboard') }}">
+                            <span class="site-menu-title">Synthèses</span>
                         </a>
                     </li>
                 </ul>
@@ -261,10 +271,14 @@
             }, {
                 key: 'getMap',
                 value: function getMap() {
-                    var mapLatlng = L.latLng(37.769, -122.446);
-                    L.mapbox.accessToken = 'pk.eyJ1IjoiYW1hemluZ3N1cmdlIiwiYSI6ImNpaDVubzBoOTAxZG11dGx4OW5hODl2b3YifQ.qudwERFDdMJhFA-B2uO6Rg';
-                    var map = L.mapbox.map('map', 'mapbox.streets',{ zoomControl: false }).setView(mapLatlng, 18);
-                       new L.Control.Zoom({ position: 'topright' }).addTo(map);
+                    L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
+                    var map = L.mapbox.map('map','mapbox.streets',{ zoomControl: false }).setView([38.8922,-77.0348], 14);
+                    new L.Control.Zoom({ position: 'topright' }).addTo(map);
+
+                    L.control.layers({
+                        'Carte': L.mapbox.tileLayer('mapbox.streets').addTo(map),
+                        'Image satellite': L.mapbox.tileLayer('mapbox.streets-satellite')
+                    }).addTo(map);
 
                     return map;
                 }
