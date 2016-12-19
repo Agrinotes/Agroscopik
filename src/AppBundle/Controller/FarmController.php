@@ -55,6 +55,31 @@ class FarmController extends Controller
     }
 
     /**
+     * Show current user Dashboard
+     *
+     * @Route("/dashboard", name="dashboard")
+     * @Security("has_role('ROLE_FARMER')")
+     * @Method("GET")
+     *
+     */
+    public function dashboardAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Farm');
+        $id = $this->getUser()->getFarm()->getId();
+        $farm = $repository->find($id);
+
+        $deleteForm = $this->createDeleteForm($farm);
+
+        return $this->render('AppBundle:dashboard:dashboard.html.twig', array(
+            'farm' => $farm,
+            'delete_form' => $deleteForm->createView(),
+
+        ));
+    }
+
+
+    /**
      * Finds and displays current user Farm entity.
      *
      * @Route("/map", name="farm_map")
