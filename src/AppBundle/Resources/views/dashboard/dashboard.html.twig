@@ -378,6 +378,7 @@
                     //Add a popup
                     layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | upper }}"+"</h3></div>", {closeButton: false});
 
+                    
                     // Add current polygon to featureGroup
                     featureGroup.addLayer(layer);
                     // Add it inside allMarkers array
