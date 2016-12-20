@@ -38,7 +38,7 @@
             opacity: 1;
         }
         .created-div {
-            border: 10px solid white;
+            border: 10px solid #088;
             -webkit-border-radius: 30px;
             -moz-border-radius: 30px;
             border-radius: 30px;
@@ -57,6 +57,10 @@
             to {
                 transform: none;
             }
+        }
+
+        .leaflet-draw{
+            display:none;
         }
     </style>
     <!-- Fonts -->
@@ -184,9 +188,16 @@
                                 margin-bottom: 15px;
                                 margin-top: 15px
                             ">
-                                <button class="btn btn-info btn-block" onclick="$('#form_new_plot').toggle(400);       $(this).text(function(i, text){
-          return text === 'Ajouter une parcelle' ? 'Annuler' : 'Ajouter une parcelle';
-      })">Ajouter une parcelle</button>
+                                <button class="btn btn-info btn-block" onclick="
+                                    $('#form_new_plot').toggle(400);       
+                                    $(this).text(function(i, text){
+                                    window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.disable(); 
+                                    window.featureGroup2.clearLayers();
+                                    $('form')[0].reset();
+                                    $('.leaflet-draw').hide();
+
+                                    return text === 'Ajouter une parcelle' ? 'Annuler' : 'Ajouter une parcelle';  
+                                })">Ajouter une parcelle</button>
                                 <div id="form_new_plot" class="panel" style="display:none;margin-top:15px;">
                                     <div class="panel-body">
                                     {{ render(controller('AppBundle:Plot:NewFromDashboard')) }}
@@ -382,15 +393,15 @@
                 }); 
 
                 //Launch leaflet draw
-                 var featureGroup2 = L.featureGroup().addTo(map);
-                
+                window.featureGroup2 = L.featureGroup().addTo(map);
+                featureGroup2 = window.featureGroup2;
                 // Enable drawing polygons
-                map.drawControl = new L.Control.Draw({
+                window.drawControl = new L.Control.Draw({
                     edit: {
                         featureGroup: featureGroup2,
                         selectedPathOptions: {
                             dashArray: "8,6",
-                            color: 'white',
+                            color: '#088',
                             opacity: 0.8,
                             weight: 1.5
                         }
@@ -408,7 +419,7 @@
                             }),
                             shapeOptions: {
                                 dashArray: "8,6",
-                                color: 'white',
+                                color: '#088',
                                 opacity: 0.8,
                                 weight: 1.5
                             }

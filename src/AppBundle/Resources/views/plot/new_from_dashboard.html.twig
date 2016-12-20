@@ -2,15 +2,33 @@
                                                        {{form_label(form.name)}}
 
                              {{form_widget(form.name)}}
-                             <button class="btn btn-default btn-block" style="margin-top:15px" onclick="">Dessiner la parcelle</button>
-                             <div class="nodraw" style="">
+
+                            <div id="nodraw" style="display:none; margin-top:10px;">
                              {{form_label(form.area)}}
                              {{form_widget(form.area)}}
                              </div>
-                             <div class="hidden" style="">
+
+                             <button class="btn btn-default btn-block" style="margin-top:15px" onclick="
+                             $('.leaflet-draw').show();
+                             window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.enable();
+                             ">
+                                Dessiner la parcelle
+                             </button>
+                             <button class="btn btn-pure pull-right" onclick="
+                                    $('#nodraw').toggle(400);       
+                                    $(this).text(function(i, text){
+                                    window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.disable(); 
+                                    window.featureGroup2.clearLayers();
+                                    $('.leaflet-draw').hide();
+                                    $('#plot_area').val('');
+                                    $('#plot_latLngs').val('');
+                                })">Je n'arrive pas à dessiner la parcelle</button>
+
+                            
+                             <div class="hidden" style="display:none;">
                                                           {{form_label(form.latLngs)}}
                              {{form_widget(form.latLngs)}}
                              </div>
-                                                 <button class="btn btn-danger btn-block" style="margin-top:15px" type="submit">Enregistrer</button>
+                                                 <button class="btn btn-info btn-block" style="margin-top:15px" type="submit">Enregistrer</button>
 
                         {{form_end(form)}}
