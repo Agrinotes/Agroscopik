@@ -164,7 +164,7 @@
                         {% if farm.plots is not empty %}
                         {% for plot in farm.plots %}
                   <div class="panel">
-                    <div class="panel-heading" id="panel_plot_{{plot.id}}" role="tab">
+                    <div class="panel-heading" id="panel_plot_{{plot.id}}" data-plot-id={{ loop.index0 }} role="tab">
                       <a class="panel-title collapsed friend-name" data-toggle="collapse" href="#plot_{{plot.id}}" data-parent="#exampleAccordionDefault" aria-expanded="false" aria-controls="exampleCollapseDefaultOne">
                       {{plot.name | capitalize}} <small>{{ plot.area|number_format(2, ',', ' ') }} ha</small>
                     </a>
@@ -289,6 +289,7 @@
             function Map() {
                 babelHelpers.classCallCheck(this, Map);
 
+
                 this.window = $(window);
                 this.$siteNavbar = $('.site-navbar');
                 this.$siteFooter = $('.site-footer');
@@ -317,6 +318,30 @@
                         'Image satellite': L.mapbox.tileLayer('mapbox.streets-satellite')
                     }).addTo(map);
 
+
+                var coords = [];
+
+                    // Create a coords array
+                     //Drawing polygons
+                {% for plot in farm.plots %}
+                    {% if plot.latLngs is not empty %}
+                    // Add current polygon and add an attribute alt
+                    var layer = L.geoJson({{ plot.latLngs | raw }});
+                    
+                    coords.push(layer.getBounds());
+                    console.log(this.coords);
+
+                    {% endif %}
+                {% endfor %}
+
+                  // Handle click and zoom
+                   $(".panel-heading").on("click", function() {
+                    var plotId = $(this).attr("data-plot-id");
+                                           console.log("clicked" + plotId);
+
+                    map.fitBounds(coords[plotId]);
+                }); 
+
                     return map;
                 }
             }]);
@@ -326,6 +351,7 @@
         var Markers = function () {
             function Markers(friends, map) {
                 babelHelpers.classCallCheck(this, Markers);
+
 
                 this.friends = friends;
                 this.map = map;
@@ -356,7 +382,6 @@
                     featureGroup.addLayer(layer);
                     // Add it inside allMarkers array
                     this.allMarkers.push(layer);
-                    console.log(self.allMarkers);
                     {% endif %}
 
                     // Add cropcycles polygons
@@ -385,8 +410,9 @@
                 //Zoom to farm bounds
                 var bounds = featureGroup.getBounds();
                 this.map.fitBounds(bounds);  
+
                 }
-            }, {
+            },{
                 key: 'getAllMarkers',
                 value: function getAllMarkers() {
                     return this.allMarkers;
