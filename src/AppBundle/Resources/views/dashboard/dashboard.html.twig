@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js css-menubar" lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,22 +22,22 @@
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/slidePanel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/flag-icon-css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.min.css') }}">
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css')}}">
-        {# Temporary fix #}
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet' />
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css')}}"> {# Temporary fix #}
     <style>
-        .leaflet-popup-tip-container{
-            left:-35px;
+        .leaflet-popup-tip-container {
+            left: -35px;
         }
-
-        .leaflet-control-layers-toggle{
+        
+        .leaflet-control-layers-toggle {
             font-family: Roboto, sans-serif;
         }
-
-                .leaflet-editing-icon {
+        
+        .leaflet-editing-icon {
             border-radius: 100%;
             opacity: 1;
         }
+        
         .created-div {
             border: 10px solid #088;
             -webkit-border-radius: 30px;
@@ -50,6 +51,7 @@
             transform-origin: center;
             /*opacity: 0.0*/
         }
+        
         @keyframes hugo {
             from {
                 transform: scale(3);
@@ -58,9 +60,9 @@
                 transform: none;
             }
         }
-
-        .leaflet-draw{
-            display:none;
+        
+        .leaflet-draw {
+            display: none;
         }
     </style>
     <!-- Fonts -->
@@ -82,113 +84,111 @@
         Breakpoints();
     </script>
 </head>
+
 <body class="animsition site-navbar-small app-location page-aside-scroll page-aside-left">
-<!--[if lt IE 8]>
+    <!--[if lt IE 8]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
-<nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse bg-cyan-600 " role="navigation">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
-                data-toggle="menubar">
+    <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse bg-cyan-600 " role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided" data-toggle="menubar">
             <span class="sr-only">Toggle navigation</span>
             <span class="hamburger-bar"></span>
         </button>
-        <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
-                data-toggle="collapse">
+            <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse" data-toggle="collapse">
             <i class="icon md-more" aria-hidden="true"></i>
         </button>
-        <a class="navbar-brand navbar-brand-center" href="../../index.html">
-            <span class="navbar-brand-text hidden-xs-down">AGROSCOPIK</span>
-        </a>
-    </div>
-    <div class="navbar-container container-fluid">
-        <!-- Navbar Collapse -->
-        <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
-            <!-- Navbar Toolbar -->
-            <ul class="nav navbar-toolbar">
-                <li class="nav-item hidden-float" id="toggleMenubar">
-                    <a class="nav-link" data-toggle="menubar" href="#" role="button">
-                        <i class="icon hamburger hamburger-arrow-left">
+            <a class="navbar-brand navbar-brand-center" href="../../index.html">
+                <span class="navbar-brand-text hidden-xs-down">AGROSCOPIK</span>
+            </a>
+        </div>
+        <div class="navbar-container container-fluid">
+            <!-- Navbar Collapse -->
+            <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
+                <!-- Navbar Toolbar -->
+                <ul class="nav navbar-toolbar">
+                    <li class="nav-item hidden-float" id="toggleMenubar">
+                        <a class="nav-link" data-toggle="menubar" href="#" role="button">
+                            <i class="icon hamburger hamburger-arrow-left">
                             <span class="sr-only">Toggle menubar</span>
                             <span class="hamburger-bar"></span>
                         </i>
-                    </a>
-                </li>
-                <li class="nav-item hidden-sm-down" id="toggleFullscreen">
-                    <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
-                        <span class="sr-only">Toggle fullscreen</span>
-                    </a>
-                </li>
-            </ul>
-            <!-- End Navbar Toolbar -->
-            <!-- Navbar Toolbar Right -->
-            <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
-                <li class="nav-item dropdown">
-                    <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
-                       data-animation="scale-up" role="button">
-              <span class="avatar avatar-online">
-                <img src="{{ asset('remark/3.0.5/classic/topbar/assets/portraits/5.jpg') }}" alt="...">
-                <i></i>
-              </span>
-                    </a>
-                    <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-account" aria-hidden="true"></i> Profil</a>
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-settings" aria-hidden="true"></i> Paramètres</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Déconnexion</a>
-                    </div>
-                </li>
-            </ul>
-            <!-- End Navbar Toolbar Right -->
-        </div>
-        <!-- End Navbar Collapse -->
-    </div>
-</nav>
-<div class="site-menubar site-menubar-light">
-    <div class="site-menubar-body">
-        <div>
-            <div>
-                <ul class="site-menu" data-plugin="menu" style="font-weight: 500;">
-                    <li class="site-menu-category">General</li>
-                    <li class="site-menu-item">
-                        <a href="{{ path('dashboard') }}">
-                            <span class="site-menu-title">Carte</span>
                         </a>
                     </li>
-                    <li class="site-menu-item">
-                        <a href="{{ path('dashboard') }}">
-                            <span class="site-menu-title">Planning</span>
-                        </a>
-                    </li>
-                    <li class="site-menu-item">
-                        <a href="{{ path('dashboard') }}">
-                            <span class="site-menu-title">Synthèses</span>
+                    <li class="nav-item hidden-sm-down" id="toggleFullscreen">
+                        <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
+                            <span class="sr-only">Toggle fullscreen</span>
                         </a>
                     </li>
                 </ul>
+                <!-- End Navbar Toolbar -->
+                <!-- Navbar Toolbar Right -->
+                <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
+                            <span class="avatar avatar-online">
+                <img src="{{ asset('remark/3.0.5/classic/topbar/assets/portraits/5.jpg') }}" alt="...">
+                <i></i>
+              </span>
+                        </a>
+                        <div class="dropdown-menu" role="menu">
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-account" aria-hidden="true"></i> Profil</a>
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-settings" aria-hidden="true"></i> Paramètres</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Déconnexion</a>
+                        </div>
+                    </li>
+                </ul>
+                <!-- End Navbar Toolbar Right -->
+            </div>
+            <!-- End Navbar Collapse -->
+        </div>
+    </nav>
+    <div class="site-menubar site-menubar-light">
+        <div class="site-menubar-body">
+            <div>
+                <div>
+                    <ul class="site-menu" data-plugin="menu" style="font-weight: 500;">
+                        <li class="site-menu-category">General</li>
+                        <li class="site-menu-item">
+                            <a href="{{ path('dashboard') }}">
+                                <span class="site-menu-title">Carte</span>
+                            </a>
+                        </li>
+                        <li class="site-menu-item">
+                            <a href="{{ path('dashboard') }}">
+                                <span class="site-menu-title">Planning</span>
+                            </a>
+                        </li>
+                        <li class="site-menu-item">
+                            <a href="{{ path('dashboard') }}">
+                                <span class="site-menu-title">Synthèses</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="page">
-    <!-- Firends Sidebar -->
-    <div class="page-aside">
-        <div class="page-aside-switch">
-            <i class="icon md-chevron-left" aria-hidden="true"></i>
-            <i class="icon md-chevron-right" aria-hidden="true"></i>
-        </div>
-        <div class="page-aside-inner">
-            <!-- Firends List -->
-            <div class="app-location-list page-aside-scroll">
-                <div data-role="container">
-                    <div data-role="content">
-                        <div class="list-group row">
-                            <div class="col-lg-12" style="
+    <div class="page">
+        <!-- Firends Sidebar -->
+        <div class="page-aside">
+            <div class="page-aside-switch">
+                <i class="icon md-chevron-left" aria-hidden="true"></i>
+                <i class="icon md-chevron-right" aria-hidden="true"></i>
+            </div>
+            <div class="page-aside-inner">
+                <!-- Firends List -->
+                <div class="app-location-list page-aside-scroll">
+                    <div data-role="container">
+                        <div data-role="content">
+                            <div class="list-group row">
+                                <div class="col-lg-12" style="
                                 padding-right: 0px;
                                 margin-bottom: 15px;
                                 margin-top: 15px
                             ">
-                                <button class="btn btn-info btn-block" onclick="
+                                    <button class="btn btn-info btn-block" onclick="
                                     $('#form_new_plot').toggle(400);       
                                     $(this).text(function(i, text){
                                     window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.disable(); 
@@ -198,120 +198,109 @@
 
                                     return text === 'Ajouter une parcelle' ? 'Annuler' : 'Ajouter une parcelle';  
                                 })">Ajouter une parcelle</button>
-                                <div id="form_new_plot" class="panel" style="display:none;margin-top:15px;">
-                                    <div class="panel-body">
-                                    {{ render(controller('AppBundle:Plot:NewFromDashboard')) }}
+                                    <div id="form_new_plot" class="panel" style="display:none;margin-top:15px;">
+                                        <div class="panel-body">
+                                            {{ render(controller('AppBundle:Plot:NewFromDashboard')) }}
+                                        </div>
                                     </div>
                                 </div>
-                                
+                                <div class="col-lg-12" style="padding-left:15px; padding-right:0px;">
+                                    <div class="panel-group" id="exampleAccordionDefault" aria-multiselectable="true" role="tablist">
+                                    {% if farm.plots is not empty %} 
+                                        {% for plot in farm.plots %}
+                                        <div class="panel">
+                                            <div class="panel-heading" id="panel_plot_{{plot.id}}" data-plot-id={{ loop.index0 }} role="tab">
+                                                <a class="panel-title collapsed friend-name" data-toggle="collapse" href="#plot_{{plot.id}}" data-parent="#exampleAccordionDefault"
+                                                    aria-expanded="false" aria-controls="exampleCollapseDefaultOne">
+                                                {{plot.name | capitalize}} <small>{{ plot.area|number_format(2, ',', ' ') }} ha</small>
+                                                </a>
+                                            </div>
+                                            <div class="panel-collapse collapse" id="plot_{{plot.id}}" aria-labelledby="panel_plot_{{plot.id}}" role="tabpanel" aria-expanded="false"
+                                                style="height: 0px;">
+                                                <div class="panel-body table-responsive" style="
+                                                        padding-top: 0px;
+                                                        padding-bottom: 5px;
+                                                    ">
+                                                    <a href="#" class="btn btn-default btn-outline btn-block" style="margin-bottom:10px;">
+                                                        Ajouter une culture
+                                                    </a> 
 
-                            </div>
-                            <div class="col-lg-12" style="padding-left:15px; padding-right:0px;">
-<div class="panel-group" id="exampleAccordionDefault" aria-multiselectable="true" role="tablist">
+                                                    {% if plot.cropCycles is not empty %}
+                                                    <table class="table table-hover ">
+                                                        <tbody>
 
-                        {% if farm.plots is not empty %}
-                        {% for plot in farm.plots %}
-                  <div class="panel">
-                    <div class="panel-heading" id="panel_plot_{{plot.id}}" data-plot-id={{ loop.index0 }} role="tab">
-                      <a class="panel-title collapsed friend-name" data-toggle="collapse" href="#plot_{{plot.id}}" data-parent="#exampleAccordionDefault" aria-expanded="false" aria-controls="exampleCollapseDefaultOne">
-                      {{plot.name | capitalize}} <small>{{ plot.area|number_format(2, ',', ' ') }} ha</small>
-                    </a>
-                    </div>
-                    <div class="panel-collapse collapse" id="plot_{{plot.id}}" aria-labelledby="panel_plot_{{plot.id}}" role="tabpanel" aria-expanded="false" style="height: 0px;">
-                      <div class="panel-body table-responsive" style="
-    padding-top: 0px;
-    padding-bottom: 5px;
-">
+                                                            {% for cycle in plot.cropCycles %}
+                                                            <tr {% if loop.first %}style="border-top:none;" {% endif %}>
+                                                                <td style="color:lightgrey;{% if loop.first %}border-top:none;{% endif %}">{{ loop.index }}</td>
+                                                                <td {% if loop.first %}style="border-top:none;" {% endif %}><a href="{{ path('cropcycle_show',{'id':cycle.id})}}" style="color: rgba(118,131,143,1);text-decoration:none;">{{ cycle.name }} <small>{{cycle.area |number_format(2, ',', ' ') }} ha</small></a></td>
+                                                                <td {% if loop.first %}style="border-top:none;" {% endif %}>
+                                                                </td>
+                                                            </tr>
+                                                            {% endfor %}
 
-                            <a href="#" class="btn btn-default btn-outline btn-block" style="margin-bottom:10px;">
-                                    Ajouter une culture
-                            </a>
-                        {% if plot.cropCycles is not empty %}
-<table class="table table-hover ">
+                                                        </tbody>
+                                                    </table>
+                                                    {% endif %}
 
-                    <tbody>
-                    {% for cycle in plot.cropCycles %}
-                      <tr {% if loop.first %}style="border-top:none;"{% endif %}>
-                        <td style="color:lightgrey;{% if loop.first %}border-top:none;{% endif %}">{{ loop.index }}</td>
-                        <td {% if loop.first %}style="border-top:none;"{% endif %}><a href="{{ path('cropcycle_show',{'id':cycle.id})}}" style="color: rgba(118,131,143,1);text-decoration:none;">{{ cycle.name }} <small>{{cycle.area |number_format(2, ',', ' ') }} ha</small></a></td>
-                        <td {% if loop.first %}style="border-top:none;"{% endif %}>                        
-                        </td>
-                      </tr>
-
-            {% endfor %}
-                    </tbody>
-                  </table>
-{% endif %}
-
-                      </div>
-                    </div>
-                  </div>
-                                          {% endfor %}
-                            {% endif
-                             %}
-
-
-                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %} 
+                                    {% endif %}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- End Firends List -->
             </div>
-            <!-- End Firends List -->
+        </div>
+        <!-- End Firends Sidebar -->
+        <div class="page-main">
+            <div id="map">
+            </div>
         </div>
     </div>
-    <!-- End Firends Sidebar -->
-    <div class="page-main">
-        <div id="map">
-        </div>
-    </div>
-</div>
-
-
-
-<!-- Core  -->
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/babel-external-helpers/babel-external-helpers.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/jquery/jquery.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/tether/tether.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap/bootstrap.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/animsition/animsition.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/mousewheel/jquery.mousewheel.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/asscrollbar/jquery-asScrollbar.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/asscrollable/jquery-asScrollable.js') }}"></script>
-
-<!-- Plugins -->
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/switchery/switchery.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/intro-js/intro.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/screenfull/screenfull.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/jquery-slidePanel.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.js') }}"></script>
-<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
-<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
-
-<script src="{{ asset('remark/3.0.5/classic/global/js/State.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/js/Component.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin.min.js') }}"></script>
-<!-- Scripts -->
-<script src="{{ asset('remark/3.0.5/classic/global/js/Base.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/js/Config.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/Menubar.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/Sidebar.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/PageAside.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Plugin/menu.min.js') }}"></script>
-<!-- Config -->
-<script src="{{ asset('remark/3.0.5/classic/global/js/config/colors.min.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/config/tour.min.js') }}"></script>
-<script>
+    <!-- Core  -->
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/babel-external-helpers/babel-external-helpers.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/tether/tether.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/animsition/animsition.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/mousewheel/jquery.mousewheel.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/asscrollbar/jquery-asScrollbar.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/asscrollable/jquery-asScrollable.js') }}"></script>
+    <!-- Plugins -->
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/switchery/switchery.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/intro-js/intro.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/screenfull/screenfull.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/jquery-slidePanel.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.js') }}"></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/State.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Component.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin.min.js') }}"></script>
+    <!-- Scripts -->
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Base.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Config.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/Menubar.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/Sidebar.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/PageAside.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Plugin/menu.min.js') }}"></script>
+    <!-- Config -->
+    <script src="{{ asset('remark/3.0.5/classic/global/js/config/colors.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/config/tour.min.js') }}"></script>
+    <script>
     Config.set('assets', '{{ app.request.getBaseURL() }}/web/remark/3.0.5/classic/topbar/assets');
 </script>
-<!-- Page -->
-<script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Site.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asscrollable.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/slidepanel.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script>
-
-{# Map script #}
-<script>
+    <!-- Page -->
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Site.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asscrollable.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/slidepanel.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script> {# Map script #}
+    <script>
     (function (global, factory) {
         if (typeof define === "function" && define.amd) {
             define('/App/Location', ['exports', 'Site'], factory);
@@ -706,6 +695,7 @@
     });
 
 </script>
-<script src="{{ asset('remark/3.0.5/classic/topbar/assets/examples/js/apps/location.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/examples/js/apps/location.js') }}"></script>
 </body>
+
 </html>
