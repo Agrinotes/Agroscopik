@@ -1,0 +1,14 @@
+                          {{ form_start(form)}}
+                                                       {{form_label(form.name)}}
+
+                             {{form_widget(form.name)}}
+                             <button class="btn btn-default btn-block" style="margin-top:15px">Dessiner la parcelle</button>
+                             <div class="nodraw" style="display:none;">
+                             {{form_label(form.area)}}
+                             {{form_widget(form.area)}}
+                             </div>
+                             <div class="hidden" style="display:none;">
+                                                          {{form_label(form.latLngs)}}
+                             {{form_widget(form.latLngs)}}
+                             </div>
+                        {{form_end(form)}}

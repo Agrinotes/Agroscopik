@@ -17,18 +17,21 @@ class PlotType extends AbstractType
     {
         $builder
             ->add('name',TextType::class,array(
-                'attr' => array('class' => 'form-control','placeholder'=>'Exemple : Parcelle 6, Le pré froid...'),
+                'attr' => array('class' => 'form-control'),
                 'label' => "Entrer le nom de la parcelle",
                 'required' => true,
                 'label_attr' => array('class' => 'control-label')
             ))
             ->add('area',TextType::class,array(
-                'attr' => array('class' => 'hidden'),
-                'label_attr' => array('class' => 'hidden'),
+                'attr' => array('class' => 'form-control hidden'),
+                'label' => "Entrer la surface de la parcelle",
+                'label_attr' => array('class' => 'control-label hidden'),
             ))
             ->add('latLngs',TextType::class,array(
-                'attr' => array('class' => 'hidden'),
-                'label_attr' => array('class' => 'hidden'),
+                'attr' => array('class' => 'form-control hidden'),
+                 'label' => "Latitude et Longitudes des points",
+
+                'label_attr' => array('class' => 'control-label hidden'),
             ))
             ;
     }
