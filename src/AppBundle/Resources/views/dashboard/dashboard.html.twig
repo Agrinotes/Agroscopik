@@ -364,7 +364,15 @@
 
                     L.control.layers({
                         'Carte': L.mapbox.tileLayer('mapbox.streets').addTo(map),
-                        'Image satellite': L.mapbox.tileLayer('mapbox.streets-satellite')
+                        'Google Satellite': L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+                            maxZoom: 20,
+                            subdomains:['mt0','mt1','mt2','mt3']
+                        }),
+                        'Google Street': L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+                            maxZoom: 20,
+                            subdomains:['mt0','mt1','mt2','mt3']
+                        }),
+                        'Image satellite Mapbox': L.mapbox.tileLayer('mapbox.streets-satellite'),
                     }).addTo(map);
 
 
