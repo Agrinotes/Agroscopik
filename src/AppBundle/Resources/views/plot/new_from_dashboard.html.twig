@@ -2,13 +2,15 @@
                                                        {{form_label(form.name)}}
 
                              {{form_widget(form.name)}}
-                             <button class="btn btn-default btn-block" style="margin-top:15px">Dessiner la parcelle</button>
-                             <div class="nodraw" style="display:none;">
+                             <button class="btn btn-default btn-block" style="margin-top:15px" onclick="">Dessiner la parcelle</button>
+                             <div class="nodraw" style="">
                              {{form_label(form.area)}}
                              {{form_widget(form.area)}}
                              </div>
-                             <div class="hidden" style="display:none;">
+                             <div class="hidden" style="">
                                                           {{form_label(form.latLngs)}}
                              {{form_widget(form.latLngs)}}
                              </div>
+                                                 <button class="btn btn-danger btn-block" style="margin-top:15px" type="submit">Enregistrer</button>
+
                         {{form_end(form)}}

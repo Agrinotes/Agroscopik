@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/slidePanel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/flag-icon-css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.min.css') }}">
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css')}}">
         {# Temporary fix #}
     <style>
@@ -30,6 +31,32 @@
 
         .leaflet-control-layers-toggle{
             font-family: Roboto, sans-serif;
+        }
+
+                .leaflet-editing-icon {
+            border-radius: 100%;
+            opacity: 1;
+        }
+        .created-div {
+            border: 10px solid white;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;
+            height: 20px;
+            width: 20px;
+            -webkit-animation: hugo 0.5s;
+            -moz-animation: hugo 0.5s;
+            animation: hugo 0.5s;
+            transform-origin: center;
+            /*opacity: 0.0*/
+        }
+        @keyframes hugo {
+            from {
+                transform: scale(3);
+            }
+            to {
+                transform: none;
+            }
         }
     </style>
     <!-- Fonts -->
@@ -247,7 +274,8 @@
 <script src="{{ asset('remark/3.0.5/classic/global/vendor/screenfull/screenfull.min.js') }}"></script>
 <script src="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/jquery-slidePanel.min.js') }}"></script>
 <script src="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.js') }}"></script>
-<script src="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/leaflet.markercluster.js') }}"></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
+<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
 
 <script src="{{ asset('remark/3.0.5/classic/global/js/State.min.js') }}"></script>
 <script src="{{ asset('remark/3.0.5/classic/global/js/Component.min.js') }}"></script>
@@ -350,7 +378,166 @@
                                            console.log("clicked" + plotId);
 
                     map.fitBounds(coords[plotId]);
+                    
                 }); 
+
+                //Launch leaflet draw
+                 var featureGroup2 = L.featureGroup().addTo(map);
+                
+                // Enable drawing polygons
+                map.drawControl = new L.Control.Draw({
+                    edit: {
+                        featureGroup: featureGroup2,
+                        selectedPathOptions: {
+                            dashArray: "8,6",
+                            color: 'white',
+                            opacity: 0.8,
+                            weight: 1.5
+                        }
+                    },
+                    draw: {
+                        polyline: false,
+                        circle: false,
+                        marker: false,
+                        rectangle: false,
+                        polygon: {
+                            icon: new L.DivIcon({
+                                iconSize: new L.Point(20, 20),
+                                className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                                html: '<div class="created-div"></div>'
+                            }),
+                            shapeOptions: {
+                                dashArray: "8,6",
+                                color: 'white',
+                                opacity: 0.8,
+                                weight: 1.5
+                            }
+                        }
+                    }
+                }).addTo(map);
+
+                                // Change Leaflet draw messages
+                L.drawLocal = {
+                    draw: {
+                        toolbar: {
+                            actions: {
+                                title: 'Annulez le dessin',
+                                text: 'Annuler'
+                            },
+                            buttons: {
+                                polyline: 'Dessiner une polyligne',
+                                polygon: 'Dessiner ma parcelle',
+                                rectangle: 'Dessiner un rectangle',
+                                circle: 'Dessiner un cercle',
+                                marker: 'Dessiner un marqueur'
+                            }
+                        },
+                        handlers: {
+                            circle: {
+                                tooltip: {
+                                    start: 'Cliquez et déplacez pour dessiner un cercle.'
+                                }
+                            },
+                            marker: {
+                                tooltip: {
+                                    start: 'Cliquez sur la carte pour placer un marqueur.'
+                                }
+                            },
+                            polygon: {
+                                tooltip: {
+                                    start: 'Vous pouvez commencer à dessiner votre parcelle.',
+                                    cont: 'Vous pouvez continuer à dessiner votre parcelle',
+                                    end: 'Cliquez sur votre premier point quand vous avez terminé.'
+                                }
+                            },
+                            polyline: {
+                                error: '<strong>Erreur:</strong> Les arrêtes de la forme ne doivent pas se croiser!',
+                                tooltip: {
+                                    start: 'Cliquez pour commencer à dessiner d\'une ligne.',
+                                    cont: 'Cliquez pour continuer à dessiner une ligne.',
+                                    end: 'Cliquez sur le dernier point pour terminer la ligne.'
+                                }
+                            },
+                            rectangle: {
+                                tooltip: {
+                                    start: 'Cliquez et déplacez pour dessiner un rectangle.'
+                                }
+                            },
+                            simpleshape: {
+                                tooltip: {
+                                    end: 'Relachez la souris pour finir de dessiner.'
+                                }
+                            }
+                        }
+                    },
+                    edit: {
+                        toolbar: {
+                            actions: {
+                                save: {
+                                    title: 'Enregistrer les changements.',
+                                    text: 'Enregistrer'
+                                },
+                                cancel: {
+                                    title: 'Annuler les modifications.',
+                                    text: 'Annuler'
+                                }
+                            },
+                            buttons: {
+                                edit: 'Modifier la parcelle.',
+                                editDisabled: 'Aucune parcelle à modifier.',
+                                remove: 'Supprimer la parcelle.',
+                                removeDisabled: 'Aucune parcelle à supprimer.'
+                            }
+                        },
+                        handlers: {
+                            edit: {
+                                tooltip: {
+                                    text: 'Déplacez les points pour modifier la parcelle.',
+                                    subtext: ''
+                                }
+                            },
+                            remove: {
+                                tooltip: {
+                                    text: 'Cliquez sur la parcelle à supprimer'
+                                }
+                            }
+                        }
+                    }
+                };
+
+                    // On draw created, add polygon values to the form
+                map.on('draw:created', function (e) {
+                    var layer = e.layer;
+                    featureGroup2.clearLayers();
+                    featureGroup2.addLayer(layer);
+                    $("#plot_area").val(getPolygonArea(layer));
+                    var latLngs = JSON.stringify(layer.toGeoJSON());
+                    $("#plot_latLngs").val(latLngs);
+                    map.fitBounds(layer.getBounds());
+                });
+
+                // On draw edited, update polygon values to the form
+                map.on('draw:edited', function (e) {
+                    e.layers.eachLayer(function (layer) {
+                        featureGroup2.clearLayers();
+                        featureGroup2.addLayer(layer);
+                        $("#plot_area").val(getPolygonArea(layer));
+                        var latLngs = JSON.stringify(layer.toGeoJSON());
+                        $("#plot_latLngs").val(latLngs);
+                    });
+                });
+                // On draw deletestop, delete previous plot
+                map.on('draw:deletestop', function (e) {
+                    featureGroup2.clearLayers();
+                    $("#plot_latLngs").val("");
+                    $("#plot_area").val("");
+                });
+
+                // Get Polygon Area function
+                function getPolygonArea(layer) {
+                    var area = LGeo.area(layer) / 10000;
+                    return area.toFixed(3);
+                }
 
                     return map;
                 }
