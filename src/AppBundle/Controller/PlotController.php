@@ -167,7 +167,7 @@ class PlotController extends Controller
 
 
 
-            return $this->redirectToRoute('plot_show', array('id' => $plot->getId()));
+            return $this->redirectToRoute('dashboard');
         }
 
         return $this->render('AppBundle:plot:new_from_dashboard.html.twig', array(

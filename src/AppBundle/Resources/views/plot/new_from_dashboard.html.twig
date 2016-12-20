@@ -1,5 +1,5 @@
-                          {{ form_start(form)}}
-                                                       {{form_label(form.name)}}
+<form name="plot" method="post" action="{{path('plot_new_from_dashboard')}}"
+   {{form_label(form.name)}}
 
                              {{form_widget(form.name)}}
 
