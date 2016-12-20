@@ -75,8 +75,8 @@
 
 .page-aside-inner .app-location-list {
   height: 100%;
-  height: -webkit-calc(100% - 72px);
-  height: calc(100% - 72px);
+  height: -webkit-calc(100%);
+  height: calc(100%);
 }
 
 .page-aside-inner .app-location-list-body {
