@@ -21,13 +21,13 @@
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/slidePanel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/flag-icon-css/flag-icon.min.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.min.css') }}">
-    {# Temporary fix #}
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css')}}">
+        {# Temporary fix #}
     <style>
         .leaflet-popup-tip-container{
             left:-35px;
         }
     </style>
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css')}}">
     <!-- Fonts -->
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/font-awesome/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/web-icons/web-icons.min.css') }}">
@@ -170,14 +170,38 @@
                     </a>
                     </div>
                     <div class="panel-collapse collapse" id="plot_{{plot.id}}" aria-labelledby="panel_plot_{{plot.id}}" role="tabpanel" aria-expanded="false" style="height: 0px;">
-                      <div class="panel-body">
-                        Test
+                      <div class="panel-body table-responsive" style="
+    padding-top: 0px;
+    padding-bottom: 5px;
+">
+
+                             <a href="#" class="btn btn-default btn-outline btn-block" style="margin-bottom:10px;">
+                                    Ajouter une culture
+                                </a>
+                        {% if plot.cropCycles is not empty %}
+<table class="table table-hover ">
+
+                    <tbody>
+                    {% for cycle in plot.cropCycles %}
+                      <tr {% if loop.first %}style="border-top:none;"{% endif %}>
+                        <td style="color:lightgrey;{% if loop.first %}border-top:none;{% endif %}">{{ loop.index }}</td>
+                        <td {% if loop.first %}style="border-top:none;"{% endif %}><a href="{{ path('cropcycle_show',{'id':cycle.id})}}" style="color: rgba(118,131,143,1);text-decoration:none;">{{ cycle.name }} <small>{{cycle.area |number_format(2, ',', ' ') }} ha</small></a></td>
+                        <td {% if loop.first %}style="border-top:none;"{% endif %}>                        
+                        </td>
+                      </tr>
+
+            {% endfor %}
+                    </tbody>
+                  </table>
+{% endif %}
+
                       </div>
                     </div>
                   </div>
                                           {% endfor %}
                             {% endif
                              %}
+
 
                 </div>
                             </div>
