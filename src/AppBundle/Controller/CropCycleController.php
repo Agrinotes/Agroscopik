@@ -24,6 +24,29 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class CropCycleController extends Controller
 {
 
+    /**
+     * Creates a new CropCycle entity from dashboard.
+     *
+     * @Route("/cropcycle/new_from_dashboard", name="cropcycle_new_from_dashboard")
+     * @Method({"GET", "POST"})
+     */
+    public function newFromDashboardAction(Request $request)
+    {
+        $cropCycle = new CropCycle();
+        
+        // Get Entity Manager
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm('AppBundle\Form\CropCycleType', $cropCycle);
+        $form->handleRequest($request);
+      
+        return $this->render('@App/cropcycle/new_from_dashboard.html.twig', array(
+            'cropCycle' => $cropCycle,
+            'form_new' => $form->createView(),
+        ));
+    }
+
+
 
 
 
@@ -143,6 +166,10 @@ class CropCycleController extends Controller
             'form' => $form->createView(),
         ));
     }
+
+
+
+
 
     /**
      * Finds and displays a CropCycle entity.

@@ -1,18 +1,6 @@
-{% extends 'base.html.twig' %}
-
-{% block head_javascripts %}
-    {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-{% block plugin_stylesheets %}
-    {{ parent() }}
-    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet'
-          xmlns="http://www.w3.org/1999/html"/>
-{% endblock %}
+{% extends 'base_topbar.html.twig' %}
 
 {% block page %}
-    <div class="page animsition">
         <div class="page-header padding-top-20 padding-bottom-10">
             <ol class="breadcrumb">
                 <li><a href="{{ path('farm_show_current') }}">Parcelles</a></li>
@@ -207,7 +195,6 @@
                 </div>
             </div>
         </div>
-    </div>
 {% endblock %}
 
 {% block core_plugin %}

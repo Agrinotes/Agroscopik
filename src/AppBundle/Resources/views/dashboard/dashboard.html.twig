@@ -1,29 +1,10 @@
-<!DOCTYPE html>
-<html class="no-js css-menubar" lang="en">
+{% extends 'base_topbar.html.twig' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <meta name="description" content="bootstrap admin template">
-    <meta name="author" content="">
-    <title>Agroscopik | Bienvenue sur votre exploitation</title>
-    <link rel="apple-touch-icon" href="{{ asset('remark/3.0.5/classic/topbar/assets/images/apple-touch-icon.png') }}">
-    <link rel="shortcut icon" href="{{ asset('remark/3.0.5/classic/topbar/assets/images/favicon.ico') }}">
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/css/bootstrap-extend.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/css/site.min.css') }}">
-    <!-- Plugins -->
-    <link rel="stylesheet" href="{{asset('remark/3.0.5/classic/global/vendor/animsition/animsition.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asscrollable/asScrollable.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/switchery/switchery.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/intro-js/introjs.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/slidePanel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/flag-icon-css/flag-icon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.min.css') }}">
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet' />
+{% block title %}Bienvenue sur votre exploitation{% endblock %}
+
+{% block page_stylesheets %}
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css')}}"> {# Temporary fix #}
+
     <style>
         .leaflet-popup-tip-container {
             left: -35px;
@@ -65,129 +46,25 @@
             display: none;
         }
     </style>
-    <!-- Fonts -->
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/font-awesome/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/web-icons/web-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/brand-icons/brand-icons.min.css') }}">
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-    <!--[if lt IE 9]>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/html5shiv/html5shiv.min.js') }}"></script>
-    <![endif]-->
-    <!--[if lt IE 10]>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/media-match/media.match.min.js')}}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/respond/respond.min.js') }}"></script>
-    <![endif]-->
-    <!-- Scripts -->
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/breakpoints/breakpoints.min.js') }}"></script>
-    <script>
-        Breakpoints();
-    </script>
-</head>
+{% endblock page_stylesheets %}
+   
+{% block body_class %}animsition site-navbar-small app-location page-aside-scroll page-aside-left{% endblock %}
 
-<body class="animsition site-navbar-small app-location page-aside-scroll page-aside-left">
-    <!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-<![endif]-->
-    <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse bg-cyan-600 " role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided" data-toggle="menubar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="hamburger-bar"></span>
-        </button>
-            <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse" data-toggle="collapse">
-            <i class="icon md-more" aria-hidden="true"></i>
-        </button>
-            <a class="navbar-brand navbar-brand-center" href="../../index.html">
-                <span class="navbar-brand-text hidden-xs-down">AGROSCOPIK</span>
-            </a>
-        </div>
-        <div class="navbar-container container-fluid">
-            <!-- Navbar Collapse -->
-            <div class="collapse navbar-collapse navbar-collapse-toolbar" id="site-navbar-collapse">
-                <!-- Navbar Toolbar -->
-                <ul class="nav navbar-toolbar">
-                    <li class="nav-item hidden-float" id="toggleMenubar">
-                        <a class="nav-link" data-toggle="menubar" href="#" role="button">
-                            <i class="icon hamburger hamburger-arrow-left">
-                            <span class="sr-only">Toggle menubar</span>
-                            <span class="hamburger-bar"></span>
-                        </i>
-                        </a>
-                    </li>
-                    <li class="nav-item hidden-sm-down" id="toggleFullscreen">
-                        <a class="nav-link icon icon-fullscreen" data-toggle="fullscreen" href="#" role="button">
-                            <span class="sr-only">Toggle fullscreen</span>
-                        </a>
-                    </li>
-                </ul>
-                <!-- End Navbar Toolbar -->
-                <!-- Navbar Toolbar Right -->
-                <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
-                            <span class="avatar avatar-online">
-                <img src="{{ asset('remark/3.0.5/classic/topbar/assets/portraits/5.jpg') }}" alt="...">
-                <i></i>
-              </span>
-                        </a>
-                        <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-account" aria-hidden="true"></i> Profil</a>
-                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-settings" aria-hidden="true"></i> Paramètres</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="javascript:void(0)" role="menuitem"><i class="icon md-power" aria-hidden="true"></i> Déconnexion</a>
-                        </div>
-                    </li>
-                </ul>
-                <!-- End Navbar Toolbar Right -->
-            </div>
-            <!-- End Navbar Collapse -->
-        </div>
-    </nav>
-    <div class="site-menubar site-menubar-light">
-        <div class="site-menubar-body">
-            <div>
-                <div>
-                    <ul class="site-menu" data-plugin="menu" style="font-weight: 500;">
-                        <li class="site-menu-category">General</li>
-                        <li class="site-menu-item">
-                            <a href="{{ path('dashboard') }}">
-                                <span class="site-menu-title">Carte</span>
-                            </a>
-                        </li>
-                        <li class="site-menu-item">
-                            <a href="{{ path('dashboard') }}">
-                                <span class="site-menu-title">Planning</span>
-                            </a>
-                        </li>
-                        <li class="site-menu-item">
-                            <a href="{{ path('dashboard') }}">
-                                <span class="site-menu-title">Synthèses</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="page">
-        <!-- Firends Sidebar -->
+{% block page %}
+        <!-- Page aside -->
         <div class="page-aside">
             <div class="page-aside-switch">
                 <i class="icon md-chevron-left" aria-hidden="true"></i>
                 <i class="icon md-chevron-right" aria-hidden="true"></i>
             </div>
             <div class="page-aside-inner">
-                <!-- Firends List -->
                 <div class="app-location-list page-aside-scroll">
                     <div data-role="container">
                         <div data-role="content">
                             <div class="list-group row">
-                                <div class="col-lg-12" style="
-                                padding-right: 0px;
-                                margin-bottom: 15px;
-                                margin-top: 15px
-                            ">
+                                <!-- Add a plot panel -->
+                                <div id="add_plot_div" class="col-lg-12" style="padding-right: 0px;margin-bottom: 15px;margin-top: 15px">
+                                    <!-- Add a plot button -->
                                     <button class="btn btn-info btn-block" onclick="
                                     $('#form_new_plot').toggle(400);       
                                     $(this).text(function(i, text){
@@ -197,132 +74,79 @@
                                     $('.leaflet-draw').hide();
 
                                     return text === 'Ajouter une parcelle' ? 'Annuler' : 'Ajouter une parcelle';  
-                                })">Ajouter une parcelle</button>
+                                    })">Ajouter une parcelle</button>
+                                    <!-- End Add a plot button -->
+                                    
+                                    <!-- Add a plot form -->
                                     <div id="form_new_plot" class="panel" style="display:none;margin-top:15px;">
                                         <div class="panel-body">
                                             {{ render(controller('AppBundle:Plot:NewFromDashboard')) }}
                                         </div>
                                     </div>
+                                    <!-- End Add a plot button -->
                                 </div>
+                                <!-- End Add a plot panel -->
+                                <!-- Plot panels -->
                                 <div class="col-lg-12" style="padding-left:15px; padding-right:0px;">
                                     <div class="panel-group" id="exampleAccordionDefault" aria-multiselectable="true" role="tablist">
-                                    {% if farm.plots is not empty %} 
-                                        {% for plot in farm.plots %}
-                                        <div class="panel">
-                                            <div class="panel-heading" id="panel_plot_{{plot.id}}" data-plot-id={{ loop.index0 }} role="tab">
-                                                <a class="panel-title collapsed friend-name" data-toggle="collapse" href="#plot_{{plot.id}}" data-parent="#exampleAccordionDefault"
-                                                    aria-expanded="false" aria-controls="exampleCollapseDefaultOne">
-                                                {{plot.name | capitalize}} <small>{{ plot.area|number_format(2, ',', ' ') }} ha</small>
-                                                </a>
-                                            </div>
-                                            <div class="panel-collapse collapse" id="plot_{{plot.id}}" aria-labelledby="panel_plot_{{plot.id}}" role="tabpanel" aria-expanded="false"
-                                                style="height: 0px;">
-                                                <div class="panel-body table-responsive" style="
-                                                        padding-top: 0px;
-                                                        padding-bottom: 5px;
-                                                    ">
+                                        {% if farm.plots is not empty %}
+                                            {% for plot in farm.plots %}
+                                            {% if plot.name is not empty %}
+                                            <div class="panel">
+                                                <div class="panel-heading" id="panel_plot_{{plot.id}}" data-plot-id={{ loop.index0 }} role="tab">
+                                                    <a class="panel-title collapsed friend-name" data-toggle="collapse" href="#plot_{{plot.id}}" data-parent="#exampleAccordionDefault"
+                                                        aria-expanded="false" aria-controls="exampleCollapseDefaultOne">
+                                                    {{ plot.name | capitalize}} <small>{{ plot.area|number_format(2, ',', ' ') }} ha</small>
+                                                    </a>
+                                                </div>
+                                                <div class="panel-collapse collapse" id="plot_{{plot.id}}" aria-labelledby="panel_plot_{{plot.id}}" role="tabpanel" aria-expanded="false"
+                                                    style="height: 0px;">
+                                                    <div class="panel-body table-responsive" style="padding-top: 0px;padding-bottom: 5px;">
+                                                        <a href="{{path('cropcycle_new',{'id':plot.id})}}" class="btn btn-default btn-outline btn-block" style="margin-bottom:10px;">Ajouter une culture</a>
 
-                                                    <button class="btn btn-default btn-outline btn-block" data-target="#exampleNifty3dSign" data-toggle="modal" type="button" style="margin-bottom:10px;"> Ajouter une culture</button>
-
-                                                    {% if plot.cropCycles is not empty %}
-                                                    <table class="table table-hover ">
-                                                        <tbody>
-
+                                                        {% if plot.cropCycles is not empty %}
+                                                        <table class="table table-hover ">
+                                                            <tbody>
                                                             {% for cycle in plot.cropCycles %}
-                                                            <tr {% if loop.first %}style="border-top:none;" {% endif %}>
-                                                                <td style="color:lightgrey;{% if loop.first %}border-top:none;{% endif %}">{{ loop.index }}</td>
-                                                                <td {% if loop.first %}style="border-top:none;" {% endif %}><a href="{{ path('cropcycle_show',{'id':cycle.id})}}" style="color: rgba(118,131,143,1);text-decoration:none;">{{ cycle.name }} <small>{{cycle.area |number_format(2, ',', ' ') }} ha</small></a></td>
-                                                                <td {% if loop.first %}style="border-top:none;" {% endif %}>
-                                                                </td>
-                                                            </tr>
+                                                                <tr {% if loop.first %}style="border-top:none;" {% endif %}>
+                                                                    <td style="color:lightgrey;{% if loop.first %}border-top:none;{% endif %}">{{ loop.index }}</td>
+                                                                    <td {% if loop.first %}style="border-top:none;" {% endif %}><a href="{{ path('cropcycle_show',{'id':cycle.id})}}" style="color: rgba(118,131,143,1);text-decoration:none;">{{ cycle.name }} <small>{{cycle.area |number_format(2, ',', ' ') }} ha</small></a></td>
+                                                                    <td {% if loop.first %}style="border-top:none;" {% endif %}></td>
+                                                                </tr>
                                                             {% endfor %}
-
-                                                        </tbody>
-                                                    </table>
-                                                    {% endif %}
-
+                                                            </tbody>
+                                                        </table>
+                                                        {% endif %}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        {% endfor %} 
-                                    {% endif %}
+                                            {% endif %}
+                                            {% endfor %} 
+                                        {% endif %}
                                     </div>
                                 </div>
+                                <!-- End Plot panels --> 
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- End Firends List -->
             </div>
         </div>
-        <!-- End Firends Sidebar -->
+        <!-- End Page aside -->
         <div class="page-main">
             <div id="map">
             </div>
         </div>
+{% endblock %}
 
-        <!-- Modal New Crop Cycle -->
-        <div class="modal fade modal-3d-sign modal-info " id="exampleNifty3dSign" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog"
-            tabindex="-1" style="display: none;">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                        <h4 class="modal-title">Ajouter une culture</h4>
-                    </div>
-                    <div class="modal-body">
-                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default margin-0" data-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary">Enregistrer</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-     <!-- End Modal New Crop Cycle -->
 
-    </div>
-    <!-- Core  -->
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/babel-external-helpers/babel-external-helpers.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/tether/tether.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/animsition/animsition.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/mousewheel/jquery.mousewheel.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/asscrollbar/jquery-asScrollbar.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/asscrollable/jquery-asScrollable.js') }}"></script>
-    <!-- Plugins -->
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/switchery/switchery.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/intro-js/intro.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/screenfull/screenfull.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/jquery-slidePanel.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.js') }}"></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/State.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Component.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin.min.js') }}"></script>
-    <!-- Scripts -->
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Base.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Config.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/Menubar.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/Sidebar.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/PageAside.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Plugin/menu.min.js') }}"></script>
-    <!-- Config -->
-    <script src="{{ asset('remark/3.0.5/classic/global/js/config/colors.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/config/tour.min.js') }}"></script>
-    <script>
-    Config.set('assets', '{{ app.request.getBaseURL() }}/web/remark/3.0.5/classic/topbar/assets');
-</script>
-    <!-- Page -->
+{% block page_javascripts %}
+{{ parent() }}
     <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Site.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asscrollable.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/slidepanel.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script> {# Map script #}
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script> 
+    {# Map script #}
     <script>
     (function (global, factory) {
         if (typeof define === "function" && define.amd) {
@@ -371,7 +195,7 @@
                 key: 'getMap',
                 value: function getMap() {
                     L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
-                    var map = L.mapbox.map('map','mapbox.streets',{ zoomControl: false }).setView([38.8922,-77.0348], 14);
+                    var map = L.mapbox.map('map','mapbox.streets',{ zoomControl: false }).setView([20,150], 2);
                     new L.Control.Zoom({ position: 'topright' }).addTo(map);
 
                     L.control.layers({
@@ -387,31 +211,25 @@
                         'Image satellite Mapbox': L.mapbox.tileLayer('mapbox.streets-satellite'),
                     }).addTo(map);
 
-
+                // Create a coords array
                 var coords = [];
 
-                    // Create a coords array
-                     //Drawing polygons
-                {% for plot in farm.plots %}
-                    {% if plot.latLngs is not empty %}
-                    // Add current polygon and add an attribute alt
-                    var layer = L.geoJson({{ plot.latLngs | raw }});
-                    
-                    coords.push(layer.getBounds());
-                    console.log(this.coords);
-
-                    {% endif %}
-                {% endfor %}
+                //Drawing polygons
+                {% if farm.plots is not empty %}
+                    {% for plot in farm.plots %}
+                        {% if plot.latLngs is not empty %}
+                            var layer = L.geoJson({{ plot.latLngs | raw }});   
+                            coords.push(layer.getBounds());
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
 
                   // Handle click and zoom
                    $(".panel-heading").on("click", function() {
                     var plotId = $(this).attr("data-plot-id");
-                                           console.log("clicked" + plotId);
-
                     map.fitBounds(coords[plotId]);
-                    
-                }); 
-
+                    }); 
+                
                 //Launch leaflet draw
                 window.featureGroup2 = L.featureGroup().addTo(map);
                 featureGroup2 = window.featureGroup2;
@@ -591,6 +409,7 @@
             babelHelpers.createClass(Markers, [{
                 key: 'handleMarkers',
                 value: function handleMarkers() {
+                    {% if farm.plots is not empty %}
                 // Create FeatureGroup to handle the plots and cropCycles
                 var featureGroup = L.featureGroup();
                 var featureGroup2 = L.featureGroup();
@@ -639,7 +458,7 @@
                 //Zoom to farm bounds
                 var bounds = featureGroup.getBounds();
                 this.map.fitBounds(bounds);  
-
+{% endif %}
                 }
             },{
                 key: 'getAllMarkers',
@@ -716,9 +535,6 @@
         exports.run = run;
         exports.getInstance = getInstance;
     });
-
-</script>
+    </script>
     <script src="{{ asset('remark/3.0.5/classic/topbar/assets/examples/js/apps/location.js') }}"></script>
-</body>
-
-</html>
+{% endblock %}
