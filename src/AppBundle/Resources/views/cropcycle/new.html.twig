@@ -69,6 +69,7 @@
                     <div data-role="container">
                         <div data-role="content">
                             <div class="list-group row">
+                        
                                 <!-- Plot panels -->
                                 <div class="col-lg-12" style="padding-left:15px; padding-right:0px; margin-top:20px;">
                                     <div class="" >
@@ -127,8 +128,7 @@
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <a class="btn btn-default btn-flat" href="{{ path('plot_show',{'id': plot.id }) }}">Annuler</a>
-                        <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button> {{ form_end(form)}}
+                        <button class="btn btn-info btn-block margin-left-10" type="submit">Enregistrer</button> {{ form_end(form)}}
                     </div>
                 </div>
                                     </div>
@@ -150,7 +150,6 @@
 {% block plugins_javascripts %}
 {{ parent()}}
 <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.full.min.js') }}"></script>
-{#<script src="{{ asset('front/global/vendor/leaflet-label/leaflet.label.js') }}"></script>  Change source #}
 <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script> {# Change source #}
 <script src="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.js') }}"></script> {# Change source #}
 {% endblock %}
@@ -239,9 +238,11 @@
                 var parent = L.geoJson({{ plot.latLngs | raw }});   
 
 
+
                 //Launch leaflet draw
                 window.featureGroup2 = L.featureGroup().addTo(map);
                 featureGroup2 = window.featureGroup2;
+
                 // Enable drawing polygons
                 window.drawControl = new L.Control.Draw({
                     edit: {
@@ -259,6 +260,7 @@
                         marker: false,
                         rectangle: false,
                         polygon: {
+                            guideLayers: guideLayers, snapDistance: 5,
                             icon: new L.DivIcon({
                                 iconSize: new L.Point(20, 20),
                                 className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
