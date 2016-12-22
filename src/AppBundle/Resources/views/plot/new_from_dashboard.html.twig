@@ -8,14 +8,14 @@
                              {{form_widget(form.area)}}
                              </div>
 
-                             <button class="btn btn-default btn-block" style="margin-top:15px" onclick="
+                             <a class="btn btn-default btn-block" style="margin-top:15px" onclick="
                              $('#nodraw').hide(400);    
                              $('.leaflet-draw').show();
                              window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.enable();
                              ">
                                 Dessiner la parcelle
-                             </button>
-                             <button class="btn btn-pure pull-right" onclick="
+                             </a>
+                             <a class="btn btn-pure pull-right" onclick="
                                     $('#nodraw').toggle(400);       
                                     $(this).text(function(i, text){
                                     window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.disable(); 
@@ -23,7 +23,7 @@
                                     $('.leaflet-draw').hide();
                                     $('#plot_area').val('');
                                     $('#plot_latLngs').val('');
-                                })">Je n'arrive pas à dessiner la parcelle</button>
+                                })">Je n'arrive pas à dessiner la parcelle</a>
 
                             
                              <div class="hidden" style="display:none;">

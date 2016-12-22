@@ -116,6 +116,9 @@ class CropCycleController extends Controller
     {
         $cropCycle = new CropCycle();
 
+        // Get current farm
+        $farm = $this->getUser()->getFarm();
+
         // Get current plot
         $plot = $this->getDoctrine()->getManager()->getRepository('AppBundle:Plot')->find($id);
         $plot->addCropCycle($cropCycle); // Which also setPlot($plot) on $cropCycle
@@ -161,6 +164,7 @@ class CropCycleController extends Controller
         }
 
         return $this->render('@App/cropcycle/new.html.twig', array(
+            'farm' => $farm,
             'plot' => $plot,
             'cropCycle' => $cropCycle,
             'form' => $form->createView(),

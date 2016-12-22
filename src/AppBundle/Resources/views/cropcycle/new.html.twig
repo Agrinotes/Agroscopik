@@ -1,24 +1,33 @@
 {% extends 'base_topbar.html.twig' %}
 
-{% block title %}Ajouter une culture sur {{ plot.name }}{% endblock %}
+{% block title %}Ajouter une culture sur {{ plot.name }}{% endblock %} 
 
-{% block plugins_stylesheets %}
+{% block plugins_stylesheets %} 
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('front/global/vendor/select2/select2.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/leaflet-label/leaflet.label.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/leaflet-label/leaflet.label.css') }}" />
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.css') }}"> 
 {% endblock %}
 
 {% block page_stylesheets %}
-    <style>
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css')}}"> {# Temporary fix #}
 
+    <style>
+        .leaflet-popup-tip-container {
+            left: -35px;
+        }
+        
+        .leaflet-control-layers-toggle {
+            font-family: Roboto, sans-serif;
+        }
+        
         .leaflet-editing-icon {
             border-radius: 100%;
             opacity: 1;
         }
-
+        
         .created-div {
-            border: 10px solid darkred;
+            border: 10px solid #088;
             -webkit-border-radius: 30px;
             -moz-border-radius: 30px;
             border-radius: 30px;
@@ -30,7 +39,7 @@
             transform-origin: center;
             /*opacity: 0.0*/
         }
-
+        
         @keyframes hugo {
             from {
                 transform: scale(3);
@@ -39,101 +48,514 @@
                 transform: none;
             }
         }
-
-        .leaflet-label-right:before {
+        
+        .leaflet-draw {
             display: none;
         }
-
-        .leaflet-label {
-            border: none;
-        }
     </style>
-{% endblock %}
+{% endblock page_stylesheets %}
+   
+{% block body_class %}animsition site-navbar-small app-location page-aside-scroll page-aside-left{% endblock %}
 
 {% block page %}
-    <div class="page">
-        <!-- Page header -->
-            <div class="page-header">
-                <h1 class="page-title">Page Title</h1>
-                <ol class="breadcrumb">
-                  <li><a href="#">{{ plot.name }}</a></li>
-                  <li class="active">Ajouter une culture</li>
-                </ol>
-                <div class="page-header-actions">
-                  <div class="row no-space width-250 hidden-xs">
-                    <div class="col-xs-4">
-                      <div class="counter">
-                        <span class="counter-number font-weight-medium">{{plot.area |number_format(2, ',', ' ')}}</span>
-                        <div class="counter-label">hectares</div>
-                      </div>
+        <!-- Page aside -->
+        <div class="page-aside">
+            <div class="page-aside-switch">
+                <i class="icon md-chevron-left" aria-hidden="true"></i>
+                <i class="icon md-chevron-right" aria-hidden="true"></i>
+            </div>
+            <div class="page-aside-inner">
+                <div class="app-location-list page-aside-scroll">
+                    <div data-role="container">
+                        <div data-role="content">
+                            <div class="list-group row">
+                                <!-- Plot panels -->
+                                <div class="col-lg-12" style="padding-left:15px; padding-right:0px; margin-top:20px;">
+                                    <div class="" >
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h5 class="panel-title" style="font-size:16px;">Ajouter une culture sur la parcelle {{plot.name | capitalize}}</h3>
                     </div>
-                  </div>
-                </div>
-              </div>
-        <!-- End page header -->
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-bordered">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Ajouter un cycle de culture</h3>
-                        </div>
-                        <div class="panel-body">
-                            {{ form_start(form) }}
-                            <div class="row">
-                                <div class="col-lg-4">
+                    <div class="panel-body" style="padding-top:0px;">
+                        {{ form_start(form) }}
+
+ 
                                     {{ form_start(form) }}
-                                    <div class="form-group form-material">
-
-
-                                        {{ form_label(form.crops) }}
-                                    {{ form_errors(form.crops) }}
-                                    {{ form_widget(form.crops) }}
+                                    <div class="form-group">
+                                        {{ form_label(form.crops) }} {{ form_errors(form.crops) }} {{ form_widget(form.crops) }}
                                     </div>
-                                </div>
-                            </div>
-                                <div class="row">
 
-                                <div class="col-lg-4">
-                                    <div class="form-group form-material">
-                                        {{ form_label(form.varieties) }}
-
-                                        {{ form_errors(form.varieties) }}
-                                        {{ form_widget(form.varieties) }}
+                     
+                                    <div class="form-group">
+                                        {{ form_label(form.varieties) }} <small> facultatif</small> {{ form_errors(form.varieties) }} {{ form_widget(form.varieties) }}
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="hidden">
-                                        {{ form_widget(form.status) }}
-                                    </div>
-                                    <div>
-                                        <label for="crop_cycle_crops" class="required margin-bottom -10">Dessiner  la zone de culture sur "{{ plot.name }}"</label>
 
-                                        <div id="map" style="height: 60vh;"></div>
-                                        {{ form_label(form.area) }}
-                                        {{ form_widget(form.area) }}
-                                        {{ form_errors(form.area) }}
-                                        {{ form_label(form.latLngs) }}
-                                        {{ form_widget(form.latLngs) }}
+
+
+                                    <div id="nodraw" style="display:none">
+                                        {{ form_label(form.area) }} 
+                                        {{ form_widget(form.area) }} 
+                                        {{ form_errors(form.area) }} 
+                                        </div>
+ 
+                                        <a class="btn btn-default btn-block" style="margin-top:15px" onclick="
+                             $('#nodraw').hide(400);    
+                             $('.leaflet-draw').show();
+                              $('#crop_cycle_latLngs').val('{{plot.latLngs}}');
+                             $('#crop_cycle_area').val('{{plot.area}}');
+                             window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.enable();
+                             ">Dessiner la zone de culture</a>
+                                        <a class="btn btn-pure pull-right" onclick="
+                                        $('#nodraw').toggle(400);       
+                                        $(this).text(function(i, text){
+                                        window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.disable(); 
+                                        window.featureGroup2.clearLayers();
+                                        $('.leaflet-draw').hide();
+                                        $('#crop_cycle_area').val('{{plot.area}}');
+                                        $('#crop_cycle_latLngs').val('');
+                                        })">Je n'arrive pas à dessiner la parcelle</a>
+
+                                        <div class="hidden" style="display:none">
+
+                                        {{ form_label(form.latLngs) }} 
+                                        {{ form_widget(form.latLngs) }} 
                                         {{ form_errors(form.latLngs) }}
+                                        {{ form_widget(form.status) }}
+
+                                        <div>
+                                    </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a class="btn btn-default btn-flat" href="{{ path('plot_show',{'id': plot.id }) }}">Annuler</a>
+                        <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button> {{ form_end(form)}}
+                    </div>
+                </div>
                                     </div>
                                 </div>
+                                <!-- End Plot panels --> 
                             </div>
-                        </div>
-                        <div class="panel-footer">
-                            <a class="btn btn-default btn-flat"
-                               href="{{ path('plot_show',{'id': plot.id }) }}">Annuler</a>
-                            <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button>
-                            {{ form_end(form) }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        <!-- End Page aside -->
+        <div class="page-main">
+            <div id="map">
+            </div>
+        </div>
 {% endblock %}
+
+{% block plugins_javascripts %}
+{{ parent()}}
+<script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.full.min.js') }}"></script>
+{#<script src="{{ asset('front/global/vendor/leaflet-label/leaflet.label.js') }}"></script>  Change source #}
+<script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script> {# Change source #}
+<script src="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.js') }}"></script> {# Change source #}
+{% endblock %}
+
+
+{% block page_javascripts %}
+{{ parent() }}
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Site.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asscrollable.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/slidepanel.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script> 
+    
+    {# Select2 script#}
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>
+    <script>
+        $('#crop_cycle_crops').select2();
+    </script>
+
+    {# Map script #}
+    <script>
+    (function (global, factory) {
+        if (typeof define === "function" && define.amd) {
+            define('/App/Location', ['exports', 'Site'], factory);
+        } else if (typeof exports !== "undefined") {
+            factory(exports, require('Site'));
+        } else {
+            var mod = {
+                exports: {}
+            };
+            factory(mod.exports, global.Site);
+            global.AppLocation = mod.exports;
+        }
+    })(this, function (exports, _Site2) {
+        'use strict';
+
+        Object.defineProperty(exports, "__esModule", {
+            value: true
+        });
+        exports.getInstance = exports.run = exports.AppLocation = undefined;
+
+        var _Site3 = babelHelpers.interopRequireDefault(_Site2);
+
+        var Map = function () {
+            function Map() {
+                babelHelpers.classCallCheck(this, Map);
+
+
+                this.window = $(window);
+                this.$siteNavbar = $('.site-navbar');
+                this.$siteFooter = $('.site-footer');
+                this.$pageMain = $('.page-main');
+
+                this.handleMapHeight();
+            }
+
+            babelHelpers.createClass(Map, [{
+                key: 'handleMapHeight',
+                value: function handleMapHeight() {
+                    var footerH = this.$siteFooter.outerHeight(),
+                            navbarH = this.$siteNavbar.outerHeight();
+                    var mapH = this.window.height() - navbarH - footerH - 50;
+                    this.$pageMain.outerHeight(mapH);
+                }
+            }, {
+                key: 'getMap',
+                value: function getMap() {
+                    L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
+                    var map = L.mapbox.map('map','mapbox.streets',{ zoomControl: false }).setView([20,150], 2);
+                    new L.Control.Zoom({ position: 'topright' }).addTo(map);
+
+                    L.control.layers({
+                        'Carte': L.mapbox.tileLayer('mapbox.streets').addTo(map),
+                        'Google Satellite': L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+                            maxZoom: 20,
+                            subdomains:['mt0','mt1','mt2','mt3']
+                        }),
+                        'Google Street': L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+                            maxZoom: 20,
+                            subdomains:['mt0','mt1','mt2','mt3']
+                        }),
+                        'Image satellite Mapbox': L.mapbox.tileLayer('mapbox.streets-satellite'),
+                    }).addTo(map);
+
+                // Create a coords array
+                var coords = [];
+
+                //Drawing polygons
+                {% if farm.plots is not empty %}
+                    {% for plot in farm.plots %}
+                        {% if plot.latLngs is not empty %}
+                            var layer = L.geoJson({{ plot.latLngs | raw }});   
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                //Launch leaflet draw
+                window.featureGroup2 = L.featureGroup().addTo(map);
+                featureGroup2 = window.featureGroup2;
+                // Enable drawing polygons
+                window.drawControl = new L.Control.Draw({
+                    edit: {
+                        featureGroup: featureGroup2,
+                        selectedPathOptions: {
+                            dashArray: "8,6",
+                            color: '#088',
+                            opacity: 0.8,
+                            weight: 1.5
+                        }
+                    },
+                    draw: {
+                        polyline: false,
+                        circle: false,
+                        marker: false,
+                        rectangle: false,
+                        polygon: {
+                            icon: new L.DivIcon({
+                                iconSize: new L.Point(20, 20),
+                                className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                                html: '<div class="created-div"></div>'
+                            }),
+                            shapeOptions: {
+                                dashArray: "8,6",
+                                color: '#088',
+                                opacity: 0.8,
+                                weight: 1.5
+                            }
+                        }
+                    }
+                }).addTo(map);
+
+                                // Change Leaflet draw messages
+                L.drawLocal = {
+                    draw: {
+                        toolbar: {
+                            actions: {
+                                title: 'Annulez le dessin',
+                                text: 'Annuler'
+                            },
+                            buttons: {
+                                polyline: 'Dessiner une polyligne',
+                                polygon: 'Dessiner ma parcelle',
+                                rectangle: 'Dessiner un rectangle',
+                                circle: 'Dessiner un cercle',
+                                marker: 'Dessiner un marqueur'
+                            }
+                        },
+                        handlers: {
+                            circle: {
+                                tooltip: {
+                                    start: 'Cliquez et déplacez pour dessiner un cercle.'
+                                }
+                            },
+                            marker: {
+                                tooltip: {
+                                    start: 'Cliquez sur la carte pour placer un marqueur.'
+                                }
+                            },
+                            polygon: {
+                                tooltip: {
+                                    start: 'Vous pouvez commencer à dessiner votre zone de culture.',
+                                    cont: 'Vous pouvez continuer à dessiner votre zone de culture',
+                                    end: 'Cliquez sur votre premier point quand vous avez terminé.'
+                                }
+                            },
+                            polyline: {
+                                error: '<strong>Erreur:</strong> Les arrêtes de la forme ne doivent pas se croiser!',
+                                tooltip: {
+                                    start: 'Cliquez pour commencer à dessiner d\'une ligne.',
+                                    cont: 'Cliquez pour continuer à dessiner une ligne.',
+                                    end: 'Cliquez sur le dernier point pour terminer la ligne.'
+                                }
+                            },
+                            rectangle: {
+                                tooltip: {
+                                    start: 'Cliquez et déplacez pour dessiner un rectangle.'
+                                }
+                            },
+                            simpleshape: {
+                                tooltip: {
+                                    end: 'Relachez la souris pour finir de dessiner.'
+                                }
+                            }
+                        }
+                    },
+                    edit: {
+                        toolbar: {
+                            actions: {
+                                save: {
+                                    title: 'Enregistrer les changements.',
+                                    text: 'Enregistrer'
+                                },
+                                cancel: {
+                                    title: 'Annuler les modifications.',
+                                    text: 'Annuler'
+                                }
+                            },
+                            buttons: {
+                                edit: 'Modifier la parcelle.',
+                                editDisabled: 'Aucune parcelle à modifier.',
+                                remove: 'Supprimer la parcelle.',
+                                removeDisabled: 'Aucune parcelle à supprimer.'
+                            }
+                        },
+                        handlers: {
+                            edit: {
+                                tooltip: {
+                                    text: 'Déplacez les points pour modifier la parcelle.',
+                                    subtext: ''
+                                }
+                            },
+                            remove: {
+                                tooltip: {
+                                    text: 'Cliquez sur la parcelle à supprimer'
+                                }
+                            }
+                        }
+                    }
+                };
+
+                    // On draw created, add polygon values to the form
+                map.on('draw:created', function (e) {
+                    var layer = e.layer;
+                    featureGroup2.clearLayers();
+                    featureGroup2.addLayer(layer);
+                    $("#crop_cycle_area").val(getPolygonArea(layer));
+                    var latLngs = JSON.stringify(layer.toGeoJSON());
+                    $("#crop_cycle_latLngs").val(latLngs);
+                    map.fitBounds(layer.getBounds());
+                });
+
+                // On draw edited, update polygon values to the form
+                map.on('draw:edited', function (e) {
+                    e.layers.eachLayer(function (layer) {
+                        featureGroup2.clearLayers();
+                        featureGroup2.addLayer(layer);
+                        $("#crop_cycle_area").val(getPolygonArea(layer));
+                        var latLngs = JSON.stringify(layer.toGeoJSON());
+                        $("#crop_cycle_latLngs").val(latLngs);
+                    });
+                });
+                // On draw deletestop, delete previous plot
+                map.on('draw:deletestop', function (e) {
+                    featureGroup2.clearLayers();
+                    $("#crop_cycle_latLngs").val("{{plot.latLngs}}");
+                    $("#crop_cycle_area").val("{{plot.area}}");
+                });
+
+                // Get Polygon Area function
+                function getPolygonArea(layer) {
+                    var area = LGeo.area(layer) / 10000;
+                    return area.toFixed(3);
+                }
+
+                    return map;
+                }
+            }]);
+            return Map;
+        }();
+
+        var Markers = function () {
+            function Markers(friends, map) {
+                babelHelpers.classCallCheck(this, Markers);
+
+
+                this.friends = friends;
+                this.map = map;
+                this.allMarkers = [];
+
+                this.handleMarkers();
+            }
+
+            babelHelpers.createClass(Markers, [{
+                key: 'handleMarkers',
+                value: function handleMarkers() {
+                    {% if farm.plots is not empty %}
+                // Create FeatureGroup to handle the plots and cropCycles
+                var featureGroup = L.featureGroup();
+                var featureGroup2 = L.featureGroup();
+
+                //Drawing polygons
+                
+                    {% if plot.latLngs is not empty %}
+                    // Add current polygon and add an attribute alt
+                    var layer = L.geoJson({{ plot.latLngs | raw }});
+                    //Set style
+                    layer.setStyle({color: "white", Opacity:0.9, fillOpacity: 0.8, weight: 1.5});
+
+                    //Add a popup
+                    layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | upper }}"+"</h3></div>", {closeButton: false});
+
+                    
+                    // Add current polygon to featureGroup
+                    featureGroup.addLayer(layer);
+                    // Add it inside allMarkers array
+                    this.allMarkers.push(layer);
+                    {% endif %}
+
+                    // Add cropcycles polygons
+                    {% for cycle in plot.cropCycles %}
+                        {% if cycle.latLngs is not empty and cycle.name is not empty and cycle.status == "ActiveAction" %}
+                                // Add current polygon and add an attribute alt
+                                var layer2 = L.geoJson({{ cycle.latLngs | raw }});
+                                var color = "white";
+                                {% for crop in cycle.crops %}
+                                var color = "{{ crop.color }}";
+                                {% endfor %}
+                                //Set style
+                                layer2.setStyle({color: color, Opacity:1, fillOpacity: 0.8, weight: 1.5});
+                                //Add a popup
+                                layer2.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ cycle.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\" style=\"font-weight: 500;color:#76838f;    text-transform: capitalize;\"> {{ cycle.name | capitalize }}"+"</h3><p>en cours sur la parcelle " +"{{plot.name | capitalize}}"+"</p></div></div>", {closeButton: false});
+                                // Add current polygon to featureGroup
+                                featureGroup2.addLayer(layer2);
+                        {% endif %}
+                    {% endfor %}
+
+                
+                // Add plots to the map
+                featureGroup.addTo(this.map);
+                featureGroup2.addTo(this.map);             
+
+                //Zoom to farm bounds
+                var bounds = featureGroup.getBounds();
+                this.map.fitBounds(bounds);  
+{% endif %}
+                }
+            },{
+                key: 'getAllMarkers',
+                value: function getAllMarkers() {
+                    return this.allMarkers;
+                }
+            }]);
+            return Markers;
+        }();
+
+        var AppLocation = function (_Site) {
+            babelHelpers.inherits(AppLocation, _Site);
+
+            function AppLocation() {
+                babelHelpers.classCallCheck(this, AppLocation);
+                return babelHelpers.possibleConstructorReturn(this, (AppLocation.__proto__ || Object.getPrototypeOf(AppLocation)).apply(this, arguments));
+            }
+
+            babelHelpers.createClass(AppLocation, [{
+                key: 'processed',
+                value: function processed() {
+                    babelHelpers.get(AppLocation.prototype.__proto__ || Object.getPrototypeOf(AppLocation.prototype), 'processed', this).call(this);
+
+                    this.window = $(window);
+                    this.$listItem = $('.app-location .page-aside .list-group');
+                    this.allFriends = $('.app-location .friend-info');
+                    this.mapbox = new Map();
+
+                    this.map = this.mapbox.getMap();
+                    this.markers = new Markers(this.$allFriends, this.map);
+                    this.allMarkers = this.markers.getAllMarkers();
+                    this.friendNum = null;
+
+                    this.handleResize();
+                }
+            }, {
+                key: 'getDefaultState',
+                value: function getDefaultState() {
+                    return Object.assign(babelHelpers.get(AppLocation.prototype.__proto__ || Object.getPrototypeOf(AppLocation.prototype), 'getDefaultState', this).call(this), {
+                        mapChange: true,
+                        listItemActive: false
+                    });
+                }
+            }, {
+                key: 'handleResize',
+                value: function handleResize() {
+                    var _this4 = this;
+
+                    this.window.on('resize', function () {
+                        _this4.mapbox.handleMapHeight();
+                    });
+                }
+            }]);
+            return AppLocation;
+        }(_Site3.default);
+
+        var instance = null;
+
+        function getInstance() {
+            if (!instance) {
+                instance = new AppLocation();
+            }
+            return instance;
+        }
+
+        function run() {
+            var app = getInstance();
+            app.run();
+        }
+
+        exports.default = AppLocation;
+        exports.AppLocation = AppLocation;
+        exports.run = run;
+        exports.getInstance = getInstance;
+    });
+    </script>
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/examples/js/apps/location.js') }}"></script>
+{% endblock %}
+
+
+
 
 
 
