@@ -31,7 +31,7 @@ class PlotType extends AbstractType
             ->add('latLngs',TextType::class,array(
                 'attr' => array('class' => 'form-control hidden'),
                  'label' => "Latitude et Longitudes des points",
-
+                 'required' => false,
                 'label_attr' => array('class' => 'control-label hidden'),
             ))            ;
     }

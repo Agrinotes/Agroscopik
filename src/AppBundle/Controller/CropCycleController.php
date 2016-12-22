@@ -25,32 +25,6 @@ class CropCycleController extends Controller
 {
 
     /**
-     * Creates a new CropCycle entity from dashboard.
-     *
-     * @Route("/cropcycle/new_from_dashboard", name="cropcycle_new_from_dashboard")
-     * @Method({"GET", "POST"})
-     */
-    public function newFromDashboardAction(Request $request)
-    {
-        $cropCycle = new CropCycle();
-        
-        // Get Entity Manager
-        $em = $this->getDoctrine()->getManager();
-
-        $form = $this->createForm('AppBundle\Form\CropCycleType', $cropCycle);
-        $form->handleRequest($request);
-      
-        return $this->render('@App/cropcycle/new_from_dashboard.html.twig', array(
-            'cropCycle' => $cropCycle,
-            'form_new' => $form->createView(),
-        ));
-    }
-
-
-
-
-
-    /**
      * Lists all CropCycle entities for a specific plot and a campaign
      * .
      * @Route("/parcelle/{id}/cultures/campagne/{year}", name="cropcycle_index", requirements={"year" = "\d+"}, defaults={"year" = 2016})

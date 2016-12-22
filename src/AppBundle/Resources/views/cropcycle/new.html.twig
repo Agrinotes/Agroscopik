@@ -65,7 +65,7 @@
 
 {% block page %}
         <!-- Page aside -->
-        <div class="page-aside">
+        <div class="{% if plot.latLngs is not empty %}page-aside{% endif %}">
             <div class="page-aside-switch">
                 <i class="icon md-chevron-left" aria-hidden="true"></i>
                 <i class="icon md-chevron-right" aria-hidden="true"></i>
@@ -75,9 +75,11 @@
                     <div data-role="container">
                         <div data-role="content">
                             <div class="list-group row">
-                        
+                            {% if plot.latLngs is empty %}
+                            <div class="col-lg-4"></div>
+                            {% endif %}
                                 <!-- Plot panels -->
-                                <div class="col-lg-12" style="padding-left:15px; padding-right:0px; margin-top:20px;">
+                                <div class="{% if plot.latLngs is not empty %}col-lg-12{% else %}col-lg-4{% endif %}" style="padding-left:15px; padding-right:0px; margin-top:20px;">
                                     <div class="" >
                 <div class="panel">
                     <div class="panel-heading">
@@ -97,14 +99,16 @@
                                         {{ form_label(form.varieties) }} <small> facultatif</small> {{ form_errors(form.varieties) }} {{ form_widget(form.varieties) }}
                                     </div>
 
-                                    <div id="nodraw" style="display:none">
+                                    <div id="nodraw" style="{% if plot.latLngs is not empty %}display:none{% endif %}">
                                       
                                         {{ form_label(form.area) }} 
                                         <div class="asRange" data-plugin="asRange" style="margin-top:30px;" data-namespace="rangeUi" data-step="0.01"
                   data-min="0.01" data-tip=true data-max="{{plot.area}}" data-value="{{plot.area}}"></div>
                                         {{ form_errors(form.area) }} 
                                         </div>
- 
+
+{# If plot doesn't have latLngs hide these buttons #}
+ {% if plot.latLngs is not empty %}
                                         <a class="btn btn-default btn-block" style="margin-top:15px" onclick="
                              $('#nodraw').hide(200);    
                              $('.leaflet-draw').show();
@@ -122,7 +126,7 @@
                                         $('#crop_cycle_area').val('{{plot.area}}');
                                         $('#crop_cycle_latLngs').val('');
                                         })">Je n'arrive pas à dessiner la parcelle</a>
-
+{% endif %}
                                         <div class="hidden" style="display:none">
                                         {{ form_widget(form.area) }} 
                                         {{ form_label(form.latLngs) }} 
@@ -148,10 +152,12 @@
             </div>
         </div>
         <!-- End Page aside -->
+         {% if plot.latLngs is not empty %}
         <div class="page-main">
             <div id="map">
             </div>
         </div>
+        {% endif %}
 {% endblock %}
 
 {% block plugins_javascripts %}

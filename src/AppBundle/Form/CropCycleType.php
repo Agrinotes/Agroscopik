@@ -34,12 +34,12 @@ class CropCycleType extends AbstractType
             ->add('area',TextType::class,array(
                 'label' => 'Choisir la surface de culture',
                 'attr' => array('class' => 'form-control'),
-                'required' =>'true'
+                'required' => true
             ))
             ->add('latLngs',TextType::class,array(
+                'required' =>false,
                 'attr' => array('class' => 'hidden'),
-                'label_attr' => array('class' => 'hidden'),
-                'required' =>'false'
+                'label_attr' => array('class' => 'hidden')
             ))
             ->add('status', ChoiceType::class, array(
                 'multiple' => false,
