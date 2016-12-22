@@ -32,7 +32,7 @@ class CropCycleType extends AbstractType
                 'required'=> false,
             ))
             ->add('area',TextType::class,array(
-                'label' => 'Entrer la surface de culture (hectares)',
+                'label' => 'Choisir la surface de culture',
                 'attr' => array('class' => 'form-control'),
                 'required' =>'true'
             ))

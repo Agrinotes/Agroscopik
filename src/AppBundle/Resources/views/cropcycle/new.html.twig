@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ asset('front/global/vendor/select2/select2.css') }}">
     <link rel="stylesheet" href="{{ asset('front/global/vendor/leaflet-label/leaflet.label.css') }}" />
     <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.css') }}"> 
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/asrange/asRange.css') }}">
 {% endblock %}
 
 {% block page_stylesheets %}
@@ -52,6 +53,11 @@
         .leaflet-draw {
             display: none;
         }
+
+        .rangeUi-tip{
+            width:auto;
+            font-size:15px;
+        }
     </style>
 {% endblock page_stylesheets %}
    
@@ -91,19 +97,20 @@
                                         {{ form_label(form.varieties) }} <small> facultatif</small> {{ form_errors(form.varieties) }} {{ form_widget(form.varieties) }}
                                     </div>
 
-
-
                                     <div id="nodraw" style="display:none">
+                                      
                                         {{ form_label(form.area) }} 
-                                        {{ form_widget(form.area) }} 
+                                        <div class="asRange" data-plugin="asRange" style="margin-top:30px;" data-namespace="rangeUi" data-step="0.01"
+                  data-min="0.01" data-tip=true data-max="{{plot.area}}" data-value="{{plot.area}}"></div>
                                         {{ form_errors(form.area) }} 
                                         </div>
  
                                         <a class="btn btn-default btn-block" style="margin-top:15px" onclick="
-                             $('#nodraw').hide(400);    
+                             $('#nodraw').hide(200);    
                              $('.leaflet-draw').show();
                               $('#crop_cycle_latLngs').val('{{plot.latLngs}}');
                              $('#crop_cycle_area').val('{{plot.area}}');
+                             $('.asRange').asRange('set',{{plot.area}})
                              window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.enable();
                              ">Dessiner la zone de culture</a>
                                         <a class="btn btn-pure pull-right" onclick="
@@ -117,7 +124,7 @@
                                         })">Je n'arrive pas à dessiner la parcelle</a>
 
                                         <div class="hidden" style="display:none">
-
+                                        {{ form_widget(form.area) }} 
                                         {{ form_label(form.latLngs) }} 
                                         {{ form_widget(form.latLngs) }} 
                                         {{ form_errors(form.latLngs) }}
@@ -152,6 +159,8 @@
 <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.full.min.js') }}"></script>
 <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script> {# Change source #}
 <script src="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.js') }}"></script> {# Change source #}
+<script src="{{ asset('remark/3.0.5/classic/global/vendor/asrange/jquery-asRange.min.js') }}"></script>
+
 {% endblock %}
 
 
@@ -161,6 +170,7 @@
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asscrollable.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/slidepanel.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script> 
+      <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asrange.js') }}"></script>
     
     {# Select2 script#}
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>
@@ -237,7 +247,7 @@
                 //Drawing polygons
                 var parent = L.geoJson({{ plot.latLngs | raw }});   
 
-
+                var guideLayers =[parent];
 
                 //Launch leaflet draw
                 window.featureGroup2 = L.featureGroup().addTo(map);

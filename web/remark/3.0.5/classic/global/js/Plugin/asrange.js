@@ -39,7 +39,11 @@
       value: function getDefaults() {
         return {
           tip: false,
-          scale: false
+          scale: false,
+          format(value) {
+            $('#crop_cycle_area').val(value);
+            return value + 'ha';
+          }
         };
       }
     }]);
