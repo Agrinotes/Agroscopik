@@ -234,17 +234,10 @@
                         'Image satellite Mapbox': L.mapbox.tileLayer('mapbox.streets-satellite'),
                     }).addTo(map);
 
-                // Create a coords array
-                var coords = [];
 
                 //Drawing polygons
-                {% if farm.plots is not empty %}
-                    {% for plot in farm.plots %}
-                        {% if plot.latLngs is not empty %}
-                            var layer = L.geoJson({{ plot.latLngs | raw }});   
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
+                var parent = L.geoJson({{ plot.latLngs | raw }});   
+
 
                 //Launch leaflet draw
                 window.featureGroup2 = L.featureGroup().addTo(map);
@@ -373,22 +366,52 @@
                     // On draw created, add polygon values to the form
                 map.on('draw:created', function (e) {
                     var layer = e.layer;
-                    featureGroup2.clearLayers();
+                                            featureGroup2.clearLayers();
+
+                    if(assertContains(parent,layer)==false){
+                        $("#crop_cycle_latLngs").val("{{plot.latLngs}}");
+                        $("#crop_cycle_area").val("{{plot.area}}");
+                        swal({
+                            title: "Oups...",
+                            text: "La zone de culture dessinée est complètement hors de la parcelle !",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: '#009688',
+                            confirmButtonText: 'Recommencer',
+                            closeOnConfirm: true
+                        });
+                        new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
+                    }else{
                     featureGroup2.addLayer(layer);
                     $("#crop_cycle_area").val(getPolygonArea(layer));
                     var latLngs = JSON.stringify(layer.toGeoJSON());
                     $("#crop_cycle_latLngs").val(latLngs);
                     map.fitBounds(layer.getBounds());
+                    }
                 });
 
                 // On draw edited, update polygon values to the form
                 map.on('draw:edited', function (e) {
                     e.layers.eachLayer(function (layer) {
                         featureGroup2.clearLayers();
+                        if(assertContains(parent,layer)==false){
+                        $("#crop_cycle_latLngs").val("{{plot.latLngs}}");
+                        $("#crop_cycle_area").val("{{plot.area}}");
+                        swal({
+                            title: "Oups...",
+                            text: "La zone de culture modifiée est complètement hors de la parcelle !",
+                            type: "warning",
+                            showCancelButton: false,
+                            confirmButtonColor: '#009688',
+                            confirmButtonText: 'Recommencer',
+                            closeOnConfirm: true
+                        });
+                        new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
+                    }else{
                         featureGroup2.addLayer(layer);
                         $("#crop_cycle_area").val(getPolygonArea(layer));
                         var latLngs = JSON.stringify(layer.toGeoJSON());
-                        $("#crop_cycle_latLngs").val(latLngs);
+                        $("#crop_cycle_latLngs").val(latLngs);}
                     });
                 });
                 // On draw deletestop, delete previous plot
@@ -404,6 +427,9 @@
                     return area.toFixed(3);
                 }
 
+                function assertContains(parent, child) {
+                    return parent.getBounds().contains(child.getBounds());
+                }
                     return map;
                 }
             }]);
