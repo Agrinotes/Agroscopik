@@ -1733,7 +1733,7 @@
 		 * sZeroRecords - assuming that is given.
 		 */
 		if ( ! lang.sEmptyTable && zeroRecords &&
-			defaults.sEmptyTable === "No data available in table" )
+			defaults.sEmptyTable === "Aucun intervention renseignée pour le moment" )
 		{
 			_fnMap( lang, lang, 'sZeroRecords', 'sEmptyTable' );
 		}
@@ -11364,7 +11364,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "Aucune intervention enregistrée pour le moment",
 	
 	
 			/**
@@ -11396,7 +11396,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "Showing _START_ to _END_ of _TOTAL_ entries",
+			"sInfo": "De _START_ à _END_ sur _TOTAL_ interventions",
 	
 	
 			/**
@@ -11417,7 +11417,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "",
 	
 	
 			/**

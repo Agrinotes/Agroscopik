@@ -2874,7 +2874,7 @@ TableTools.BUTTONS = {
 	"copy": $.extend( {}, TableTools.buttonBase, {
 		"sAction": "flash_copy",
 		"sButtonClass": "DTTT_button_copy",
-		"sButtonText": "Copy",
+		"sButtonText": "Copier",
 		"fnClick": function( nButton, oConfig, flash ) {
 			this.fnSetText( flash, this.fnGetTableData(oConfig) );
 		},
@@ -2883,8 +2883,8 @@ TableTools.BUTTONS = {
             if (oConfig.bHeader) lines--;
             if (this.s.dt.nTFoot !== null && oConfig.bFooter) lines--;
 			var plural = (lines==1) ? "" : "s";
-			this.fnInfo( '<h6>Table copied</h6>'+
-				'<p>Copied '+lines+' row'+plural+' to the clipboard.</p>',
+			this.fnInfo( '<h6>Tableau copié</h6>'+
+				'<p>Copie de '+lines+' ligne'+plural+' dans le presse-papier.</p>',
 				1500
 			);
 		}
@@ -2919,7 +2919,7 @@ TableTools.BUTTONS = {
 		"bShowAll": true,
 		"sToolTip": "View print view",
 		"sButtonClass": "DTTT_button_print",
-		"sButtonText": "Print",
+		"sButtonText": "Imprimer",
 		"fnClick": function ( nButton, oConfig ) {
 			this.fnPrint( true, oConfig );
 		}
@@ -3096,7 +3096,7 @@ TableTools.DEFAULTS = {
 	"fnPreRowSelect":  null,
 	"fnRowSelected":   null,
 	"fnRowDeselected": null,
-	"aButtons":        [ "copy", "csv", "xls", "pdf", "print" ],
+	"aButtons":        [ "xls", "pdf", "print","copy" ],
 	"oTags": {
 		"container": "div",
 		"button": "a", // We really want to use buttons here, but Firefox and IE ignore the
