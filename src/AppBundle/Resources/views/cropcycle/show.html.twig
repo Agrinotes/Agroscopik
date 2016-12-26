@@ -71,7 +71,7 @@
                   
                   onClick="
                   swal({
-  title: 'Confirmer la suppression de l\'intervention',
+  title: 'Supprimer l\'intervention ?',
   text: 'Cette suppression sera définitive',
   type: 'warning',
   showCancelButton: true,
@@ -79,7 +79,7 @@
   confirmButtonText: 'Confirmer',
   cancelButtonText: 'Annuler',
   closeOnConfirm: true,
-  closeOnCancel: true
+  closeOnCancel: true,
 },
 function(isConfirm){
   if (isConfirm) {
@@ -87,7 +87,7 @@ function(isConfirm){
                         $('#td_{{action.id}}').hide(200);
                   })
                   .fail(function() {
-                    alert( 'Il y a eu une erreur...' );
+                        swal('Erreur', 'Il y a eu une erreur', 'error');
                   });    } 
 });
 
