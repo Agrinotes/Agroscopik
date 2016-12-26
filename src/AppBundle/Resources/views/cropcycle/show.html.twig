@@ -70,12 +70,28 @@
                   <button 
                   
                   onClick="
-    $.ajax('{{path('action_delete_ajax',{'id':action.id})}}').done(function() {
-         $('#td_{{action.id}}').hide(200);
-  })
-  .fail(function() {
-    alert( 'Il y a eu une erreur...' );
-  });  "
+                  swal({
+  title: 'Confirmer la suppression de l\'intervention',
+  text: 'Cette suppression sera définitive',
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#DD6B55',
+  confirmButtonText: 'Confirmer',
+  cancelButtonText: 'Annuler',
+  closeOnConfirm: true,
+  closeOnCancel: true
+},
+function(isConfirm){
+  if (isConfirm) {
+                    $.ajax('{{path('action_delete_ajax',{'id':action.id})}}').done(function() {
+                        $('#td_{{action.id}}').hide(200);
+                  })
+                  .fail(function() {
+                    alert( 'Il y a eu une erreur...' );
+                  });    } 
+});
+
+                  "
 
                   
                   class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row " style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Supprimer"><i class="icon wb-trash" aria-hidden="true"></i></button>
