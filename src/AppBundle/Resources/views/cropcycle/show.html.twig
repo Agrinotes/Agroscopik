@@ -15,7 +15,15 @@
       visibility: hidden;
   }
 
+    table tr > td > span > a > i.icon{
+      visibility: hidden;
+  }
+
   table tr:hover > td > span > button > i.icon{
+      visibility: visible;
+  }
+
+    table tr:hover > td > span > a > i.icon{
       visibility: visible;
   }
 </style>
@@ -58,15 +66,16 @@
             <thead>
               <tr>
                 <th>Intervention</th>
-                                <th>Date</th>
-
+                <th>Date</th>
+                <th>Personnes</th>
                 <th>Temps de travail</th>
+                <th>Coûts associés</th>
               </tr>
             </thead>
             <tbody>
             {% for action in cropCycle.actions %}
               <tr id="td_{{action.id}}">
-                <td>{{action.name}}  <span class="pull-right"><button href="{{path('action_edit',{'id':action.id})}}" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Modifier"><i class="icon wb-edit" aria-hidden="true"></i></button>
+                <td>{{action.name}}  <span class="pull-right"><a href="{{path('action_edit',{'id':action.id})}}" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Modifier"><i class="icon wb-edit" aria-hidden="true"></i></a>
                   <button 
                   
                   onClick="
@@ -97,8 +106,10 @@ function(isConfirm){
                   class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row " style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Supprimer"><i class="icon wb-trash" aria-hidden="true"></i></button>
                </span></td>
                                <td>{{action.startDatetime | date ('d/m/Y')}}</td>
+                <td>{{action.nbWorkers}}</td>
 
                 <td>{{action.workingDurationLabel}}</td>
+                <td>{{action.expensesCost |number_format(0, ',', ' ')}} CFP</td>
               </tr>
             {% endfor %}
             </tbody>
@@ -120,6 +131,7 @@ function(isConfirm){
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootbox/bootbox.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
+    
 {% endblock %}
 
 {% block page_javascripts %}
@@ -146,16 +158,29 @@ function(isConfirm){
   (function() {
 
     $(document).ready(function() {
+      {# Sort dates #}
       $.fn.dataTable.moment( 'DD/MM/YYYY' );
+
+      {# Sort hectares and CFP #}
+      $.fn.dataTableExt.oSort['formatted-num-pre']=function(a){
+                a = (a === "-" || a === "") ? 0 : a.replace( /[^\d\-\.]/g, "" );
+        return parseFloat( a );
+    }
+
+          $.fn.dataTableExt.oSort['formatted-num-asc']=function(a, b){
+ return a - b;
+    }
+              $.fn.dataTableExt.oSort['formatted-num-desc']=function(a, b){
+ return b-a;
+    }
 
       var defaults = Plugin.getDefaults("dataTable");
 
       var options = $.extend(true, {}, defaults, {
+             columnDefs: [
+       { type: 'formatted-num', targets: [3,4] }
+     ],
         "order": [[ 1, "desc" ]],
-        "aoColumnDefs": [{
-          'bSortable': false,
-          'aTargets': [-1]
-        }],
         "iDisplayLength": 10,
         "aLengthMenu": [
           [5, 10, 25, 50, -1],
