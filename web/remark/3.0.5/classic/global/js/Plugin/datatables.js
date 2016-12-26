@@ -65,7 +65,7 @@
         return {
           responsive: true,
           language: {
-            sSearchPlaceholder: 'Search..',
+            sSearchPlaceholder: 'Recherche..',
             lengthMenu: '_MENU_',
             search: '_INPUT_',
             paginate: {

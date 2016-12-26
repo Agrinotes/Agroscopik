@@ -161,32 +161,9 @@ class CropCycleController extends Controller
      */
     public function showAction(Request $request, CropCycle $cropCycle)
     {
-        $editForm = $this->createForm('AppBundle\Form\CropCycleType', $cropCycle);
-        $editForm->handleRequest($request);
-
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($cropCycle);
-            $em->flush();
-
-            if($cropCycle->getStatus()=="ActiveAction"){
-                $statusLabel="en cours";
-            }else{
-                $statusLabel="terminé";
-            };
-
-            $request->getSession()->getFlashBag()->add('info', 'Votre cycle de culture est bien enregistré comme étant '.$statusLabel.' !');
-
-            return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
-        }
-
-        $deleteForm = $this->createDeleteForm($cropCycle);
 
         return $this->render('@App/cropcycle/show.html.twig', array(
             'cropCycle' => $cropCycle,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-
         ));
     }
 
