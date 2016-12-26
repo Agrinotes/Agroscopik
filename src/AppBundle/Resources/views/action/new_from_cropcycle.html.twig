@@ -1,0 +1,92 @@
+                    <!-- Panel Wizard Form Container -->
+          <div class="panel" id="exampleWizardFormContainer">
+            <div class="panel-heading">
+              <h3 class="panel-title">Ajouter une intervention</h3>
+            </div>
+            <div class="panel-body">
+              <!-- Steps -->
+              <div class="pearls row">
+                <div class="pearl current col-xs-4">
+                  <div class="pearl-icon"><i class="icon wb-user" aria-hidden="true"></i></div>
+                  <span class="pearl-title">Renseigner l'intervention</span>
+                </div>
+                <div class="pearl col-xs-4">
+                  <div class="pearl-icon"><i class="icon wb-payment" aria-hidden="true"></i></div>
+                  <span class="pearl-title">Informations complémentaires</span>
+                </div>
+                <div class="pearl col-xs-4">
+                  <div class="pearl-icon"><i class="icon wb-check" aria-hidden="true"></i></div>
+                  <span class="pearl-title">Coût d'intervention</span>
+                </div>
+              </div>
+              <!-- End Steps -->
+              <!-- Wizard Content -->
+              <form class="wizard-content" id="exampleFormContainer">
+                <div class="wizard-pane active" role="tabpanel">
+                  <div class="form-group">
+                                    {{ form_label(form.intervention) }}
+                                    {{ form_errors(form.intervention) }}
+                                    {{ form_widget(form.intervention) }}
+                                                            <a class="pull-right" href="{{ path('intervention_new') }}"><i class="icon md-help-outline"
+                                                                                       aria-hidden="true"></i> Que
+                            faire si mon intervention n'est pas dans la liste déroulante</a>
+ </div>
+
+
+                </div>
+                <div class="wizard-pane" id="exampleBillingOne" role="tabpanel">
+                  <div class="form-group">
+                    <label class="form-control-label" for="inputCardNumberOne">Card Number</label>
+                    <input type="text" class="form-control" id="inputCardNumberOne" name="number" placeholder="Card number">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-control-label" for="inputCVVOne">CVV</label>
+                    <input type="text" class="form-control" id="inputCVVOne" name="cvv" placeholder="CVV">
+                  </div>
+                </div>
+                <div class="wizard-pane" id="exampleGettingOne" role="tabpanel">
+                  <div class="text-xs-center m-y-20">
+                    <h4>Please confrim your order.</h4>
+                    <div class="table-responsive">
+                      <table class="table table-hover text-xs-right">
+                        <thead>
+                          <tr>
+                            <th class="text-xs-center">#</th>
+                            <th>Description</th>
+                            <th class="text-xs-right">Quantity</th>
+                            <th class="text-xs-right">Unit Cost</th>
+                            <th class="text-xs-right">Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="text-xs-center">1</td>
+                            <td class="text-xs-left">Server hardware purchase</td>
+                            <td>32</td>
+                            <td>$75</td>
+                            <td>$2152</td>
+                          </tr>
+                          <tr>
+                            <td class="text-xs-center">2</td>
+                            <td class="text-xs-left">Office furniture purchase</td>
+                            <td>15</td>
+                            <td>$169</td>
+                            <td>$4169</td>
+                          </tr>
+                          <tr>
+                            <td class="text-xs-center">3</td>
+                            <td class="text-xs-left">Company Anual Dinner Catering</td>
+                            <td>69</td>
+                            <td>$49</td>
+                            <td>$1260</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <!-- Wizard Content -->
+            </div>
+          </div>
+          <!-- End Panel Wizard Form Container -->

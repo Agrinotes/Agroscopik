@@ -28,6 +28,40 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class ActionController extends Controller
 {
+        /**
+     * Creates a new Action entity from cropcycle_show.
+     *
+     * @Route("/cropcycle/{id}/action/new_from_cropcycle", name="action_new_from_cropcycle")
+     * @Method({"GET", "POST"})
+     */
+    public function newFromCropCycleAction(Request $request, CropCycle $cropCycle)
+    {
+                // Get Entity Manager
+        $em = $this->getDoctrine()->getManager();
+        $action = new Action();
+        // Should check security here
+
+        // Link this action to current crop cycle
+        $cropCycle->addAction($action); // Which also setCropcycle($this) on $action
+
+        $form = $this->createForm(ActionType::class, $action);
+        $form->handleRequest($request);
+        
+         if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($action);
+            $em->flush();
+
+            return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
+        }
+
+        return $this->render('@App/action/new_from_cropcycle.html.twig', array(
+            'action' => $action,
+            'form' => $form->createView(),
+        ));
+    }
+
+
     /**
      * Lists all Action entities for a specific crop cycle
      *
