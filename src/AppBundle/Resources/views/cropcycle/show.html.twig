@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
 {% endblock %}
 
+{% block page_stylesheets %}
+{{parent() }}
+<style>
+  .icon{
+      visibility: hidden;
+  }
+
+  table tr:hover > td > span > a > i.icon{
+      visibility: visible;
+  }
+</style>
+{% endblock %}
+
 {% block page %}
     <div class="page-content">
    <!-- Panel Basic -->
@@ -47,16 +60,16 @@
                 <th>Date</th>
                 <th>Intervention</th>
                 <th>Temps de travail</th>
-                <th>Charges</th>
               </tr>
             </thead>
             <tbody>
             {% for action in cropCycle.actions %}
               <tr>
                 <td>{{action.startDatetime | date ('d/m/Y')}}</td>
-                <td>{{action.name}}</td>
+                <td>{{action.name}}  <span class="pull-right"><a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Modifier"><i class="icon wb-edit" aria-hidden="true"></i></a>
+                  <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row " style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Supprimer"><i class="icon wb-trash" aria-hidden="true"></i></a>
+               </span></td>
                 <td>{{action.workingDurationLabel}}</td>
-                <td>{{action.status}}</td>
               </tr>
             {% endfor %}
             </tbody>
