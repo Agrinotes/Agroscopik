@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jquery-wizard/jquery-wizard.css') }}">
 {% endblock %}
 
 {% block page_stylesheets %}
@@ -43,7 +42,7 @@
 
 {% block page %}
     <div class="page-content">
-   <!-- Panel Basic -->
+   <!-- Panel Basic used as temporary fix -->
       <div class="panel" style="display:none;">
         <header class="panel-heading">
           <div class="panel-actions"></div>
@@ -148,8 +147,7 @@ function(isConfirm){
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootbox/bootbox.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
-    
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/jquery-wizard/jquery-wizard.js') }}"></script>
+
 {% endblock %}
 
 {% block page_javascripts %}
@@ -218,23 +216,5 @@ function(isConfirm){
 })(document, window, jQuery);
 
     </script>
-
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/jquery-wizard.js') }}"></script> 
-      <script>
-        // Example Wizard Form Container
-  // -----------------------------
-  // http://formvalidation.io/api/#is-valid-container
-  (function() {
-    var defaults = Plugin.getDefaults("wizard");
-    var options = $.extend(true, {}, defaults, {
-      onFinish: function() {
-        // $('#exampleFormContainer').submit();
-      },
-      buttonsAppendTo: '.panel-body'
-    });
-
-    $("#exampleWizardFormContainer").wizard(options);
-  })();
-      </script> 
 
 {% endblock %}
