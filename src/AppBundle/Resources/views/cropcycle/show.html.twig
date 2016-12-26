@@ -26,6 +26,15 @@
     table tr:hover > td > span > a > i.icon{
       visibility: visible;
   }
+
+  .actionLink{
+    text-decoration:none !important;
+    color: #526069;
+  }
+   table tr:hover > td > a.actionLink{
+    text-decoration:underline !important;
+    color: #526069;
+  }
 </style>
 {% endblock %}
 
@@ -75,7 +84,9 @@
             <tbody>
             {% for action in cropCycle.actions %}
               <tr id="td_{{action.id}}">
-                <td>{{action.name}}  <span class="pull-right"><a href="{{path('action_edit',{'id':action.id})}}" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Modifier"><i class="icon wb-edit" aria-hidden="true"></i></a>
+                <td><a class="actionLink" href="{{ path('action_show',{'id':action.id}) }}">{{action.name}} </a>
+                
+                <span class="pull-right"><a href="{{path('action_edit',{'id':action.id})}}" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Modifier"><i class="icon wb-edit" aria-hidden="true"></i></a>
                   <button 
                   
                   onClick="
