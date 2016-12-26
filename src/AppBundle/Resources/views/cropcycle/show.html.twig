@@ -11,11 +11,11 @@
 {% block page_stylesheets %}
 {{parent() }}
 <style>
-  .icon{
+  table tr > td > span > button > i.icon{
       visibility: hidden;
   }
 
-  table tr:hover > td > span > a > i.icon{
+  table tr:hover > td > span > button > i.icon{
       visibility: visible;
   }
 </style>
@@ -57,18 +57,31 @@
           <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
             <thead>
               <tr>
-                <th>Date</th>
                 <th>Intervention</th>
+                                <th>Date</th>
+
                 <th>Temps de travail</th>
               </tr>
             </thead>
             <tbody>
             {% for action in cropCycle.actions %}
-              <tr>
-                <td>{{action.startDatetime | date ('d/m/Y')}}</td>
-                <td>{{action.name}}  <span class="pull-right"><a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Modifier"><i class="icon wb-edit" aria-hidden="true"></i></a>
-                  <a href="#" class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row " style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Supprimer"><i class="icon wb-trash" aria-hidden="true"></i></a>
+              <tr id="td_{{action.id}}">
+                <td>{{action.name}}  <span class="pull-right"><button href="{{path('action_edit',{'id':action.id})}}" class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row" style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Modifier"><i class="icon wb-edit" aria-hidden="true"></i></button>
+                  <button 
+                  
+                  onClick="
+    $.ajax('{{path('action_delete_ajax',{'id':action.id})}}').done(function() {
+         $('#td_{{action.id}}').hide(200);
+  })
+  .fail(function() {
+    alert( 'Il y a eu une erreur...' );
+  });  "
+
+                  
+                  class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row " style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Supprimer"><i class="icon wb-trash" aria-hidden="true"></i></button>
                </span></td>
+                               <td>{{action.startDatetime | date ('d/m/Y')}}</td>
+
                 <td>{{action.workingDurationLabel}}</td>
               </tr>
             {% endfor %}
@@ -122,7 +135,7 @@
       var defaults = Plugin.getDefaults("dataTable");
 
       var options = $.extend(true, {}, defaults, {
-        "order": [[ 0, "desc" ]],
+        "order": [[ 1, "desc" ]],
         "aoColumnDefs": [{
           'bSortable': false,
           'aTargets': [-1]

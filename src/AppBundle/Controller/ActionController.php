@@ -7,6 +7,7 @@ use AppBundle\Entity\CropCycle;
 use AppBundle\Entity\InterventionCategory;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;  
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -306,4 +307,23 @@ class ActionController extends Controller
             ->setMethod('DELETE')
             ->getForm();
     }
+
+        /**
+     * Deletes a Action entity.
+     *
+     * @Route("/action/delete/ajax/{id}", name="action_delete_ajax")
+     */
+    public function deleteAjaxAction(Request $request, Action $action)
+    {
+      
+
+        // Must add ACL check here
+            $em = $this->getDoctrine()->getManager();
+            $id = $action->getCropCycle()->getId();
+            $em->remove($action);
+            $em->flush();
+
+            return new JsonResponse(array('data' => 'this is a json response'));
+    
+  }
 }
