@@ -65,6 +65,18 @@
             display: none;
         }
 
+        .rotate{
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down{
+            -ms-transform:rotate(45deg);
+            -moz-transform:rotate(45deg);
+            -webkit-transform:rotate(45deg);
+            transform:rotate(45deg);
+        }
     </style>
 {% endblock %}
 
@@ -186,7 +198,7 @@
 
         <!-- Button Add Action -->
         <div class="site-action">
-            <button type="button" onClick="$('#tableTools').hide();$('#addAction').fadeIn(400);  $('.select2').select2();$('.select2-keep').select2({closeOnSelect:false});" class="site-action site-floataction btn-raised btn btn-danger btn-floating">
+            <button type="button" onClick="switchPanels();" class="rotate site-action site-floataction btn-raised btn btn-danger btn-floating">
                 <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
             </button>
         </div>
@@ -294,4 +306,25 @@
 
     {{ include('@AppBundle/Resources/public/js/addActionFromCropCycleShow.js') }}
 
+    <script>
+        var i = 0;
+        function switchPanels(){
+            if(i%2 == 0){
+            $('#tableTools').hide();
+            $('#addAction').fadeIn(400);
+                if(i==0){
+                    $('.select2').select2();
+                    $('.select2-keep').select2({closeOnSelect:false});
+                }
+            }else{
+                $('#addAction').hide();
+                $('#tableTools').fadeIn(400);
+            }
+            i++;
+       };
+
+        $(".rotate").click(function(){
+            $(this).toggleClass("down");
+        });
+    </script>
 {% endblock %}
