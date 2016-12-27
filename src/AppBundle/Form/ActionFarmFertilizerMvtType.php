@@ -42,24 +42,26 @@ class ActionFarmFertilizerMvtType extends AbstractType
             ->add('fertilizer', EntityType::class,array(
                 'class' => 'AppBundle:FarmFertilizer',
                 'choice_label' => 'fertilizer.name',
-                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
-                'label' => 'Choisir le nom de l\'engrais ou amendement',
-                'label_attr' => array('class'=>''),
+                'attr' => array('class' => 'form-control'),
+                'label' => '',
+                'label_attr' => array('class'=>'hidden'),
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,
             ))
             ->add('amount',NumberType::class,array(
-                'label'=>'Entrer la quantité correspondante',
-                'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
+                'label'=>'',
+                'label_attr' => array('class'=>'hidden'),
+                'attr' => array('class' => 'form-control','placeholder'=>'0'),
                 'required'=>false,
 
             ))
             ->add('unit',EntityType::class, array(
                 'class' => 'AppBundle:Unit',
                 'choice_label' => 'symbol',
-                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
-                'label' => 'Choisir l\'unité',
+                'attr' => array('class' => 'form-control'),
+                'label' => '',
+                'label_attr' => array('class'=>'hidden'),
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,

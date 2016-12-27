@@ -65,7 +65,7 @@
         }
 
         function addDeleteLink($prototype) {
-            var $deleteLink = $('<a href="#" style="position: absolute;top: -4px;left: -2px;"><i class="btn btn-pure btn-danger icon waves-effect waves-circle waves-classicr md-close-circle-o" aria-hidden="true"></i></a>');
+            var $deleteLink = $('<a href="#" style="position: absolute;top: -35px;right:20px;"><i class="btn btn-pure btn-danger icon wb-trash" aria-hidden="true"></i></a>');
             $prototype.append($deleteLink);
             $deleteLink.click(function (e) {
                 $prototype.remove();
@@ -102,9 +102,10 @@
             var template2 = $container2.attr('data-prototype')
                     .replace(/__name__label__/g, '')
                     .replace(/__name__/g, index2)
-                    .replace(/form-group/g, "form-group col-lg-6")
-
-
+                    .replace(/form-group/g, "col-lg-6")
+                    .replace(/col-lg-6/, "col-lg-12")
+                    .replace(/col-lg-6/, "col-lg-12")
+                    .replace(/col-lg-6/, "col-lg-12")
                 ;
 
             var $prototype2 = $(template2);
@@ -115,7 +116,7 @@
         }
 
         function addDeleteLink2($prototype2) {
-            var $deleteLink2 = $('<a href="#" style="margin: none; position: relative;top: -4px;right: 2px;"><i class="btn btn-pure btn-danger icon waves-effect waves-circle waves-classicr md-close-circle-o" aria-hidden="true"></i></a>');
+            var $deleteLink2 = $('<a href="#" style="margin: none; position: relative;top: -35px;right:20px;"><i class="btn btn-pure btn-danger icon wb-trash" aria-hidden="true"></i></a>');
             $prototype2.append($deleteLink2);
             $deleteLink2.click(function (e) {
                 $prototype2.remove();
@@ -154,8 +155,10 @@
             var template4 = $container4.attr('data-prototype')
                     .replace(/__name__label__/g, '')
                     .replace(/__name__/g, index4)
-                    .replace(/form-group/g, "form-group col-lg-6")
-
+                    .replace(/form-group/g, "col-lg-6")
+                    .replace(/col-lg-6/, "col-lg-12")
+                    .replace(/col-lg-6/, "col-lg-12")
+                    .replace(/col-lg-6/, "col-lg-12")
 
                 ;
 
@@ -167,7 +170,7 @@
         }
 
         function addDeleteLink4($prototype4) {
-            var $deleteLink4 = $('<a href="#" style="margin: none; position: relative;top: -4px;right: 2px;"><i class="btn btn-pure btn-danger icon waves-effect waves-circle waves-classicr md-close-circle-o" aria-hidden="true"></i></a>');
+            var $deleteLink4 = $('<a href="#" style="margin: none; position: relative;top: -35px;right:20px;"><i class="btn btn-pure btn-danger icon wb-trash" aria-hidden="true"></i></a>');
             $prototype4.append($deleteLink4);
             $deleteLink4.click(function (e) {
                 $prototype4.remove();
@@ -219,7 +222,7 @@
         }
 
         function addDeleteLink3($prototype3) {
-            var $deleteLink3 = $('<a href="#" style="margin: none; position: relative;top: -4px;right: 2px;"><i class="btn btn-pure btn-danger icon waves-effect waves-circle waves-classicr md-close-circle-o" aria-hidden="true"></i></a>');
+            var $deleteLink3 = $('<a href="#" style="margin: none; position: relative;top: -35px;right:20px;"><i class="btn btn-pure btn-danger icon wb-trash" aria-hidden="true"></i></a>');
             $prototype3.append($deleteLink3);
             $deleteLink3.click(function (e) {
                 $prototype3.remove();
@@ -273,7 +276,7 @@
         }
 
         function addDeleteLink6($prototype6) {
-            var $deleteLink6 = $('<a href="#" style="margin: 0px; padding:0px; position: relative;top: -30px;right: 10px;"><i class="wb-close" aria-hidden="true"></i></a>');
+            var $deleteLink6 = $('<a href="#" style="margin: 0px; padding:0px; position: relative;top: -35px;right:20px;"><i class="wb-close" aria-hidden="true"></i></a>');
             $prototype6.append($deleteLink6);
             $deleteLink6.click(function (e) {
                 $prototype6.remove();

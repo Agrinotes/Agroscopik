@@ -42,15 +42,16 @@ class ActionFarmSpecialityMvtType extends AbstractType
             ->add('speciality', EntityType::class,array(
                 'class' => 'AppBundle:FarmSpeciality',
                 'choice_label' => 'speciality.name',
-                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                'attr' => array('class' => 'form-control'),
                 'label' => 'Choisir le nom du produit',
-                'label_attr' => array('class'=>'margin-top-30'),
+                'label_attr' => array('class'=>'hidden'),
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,
             ))
             ->add('amount',NumberType::class,array(
-                'label'=>'Entrer la quantité correspondante',
+                'label'=>'',
+                'label_attr' => array('class'=>'hidden'),
                 'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
                 'required'=>false,
 
@@ -58,8 +59,9 @@ class ActionFarmSpecialityMvtType extends AbstractType
             ->add('unit',EntityType::class, array(
                 'class' => 'AppBundle:Unit',
                 'choice_label' => 'symbol',
-                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
-                'label' => 'Choisir l\'unité',
+                'attr' => array('class' => 'form-control'),
+                'label' => '',
+                'label_attr' => array('class'=>'hidden'),
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,

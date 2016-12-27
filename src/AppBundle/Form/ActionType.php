@@ -96,7 +96,7 @@ class ActionType extends AbstractType
             ->add('auxiliary', EntityType::class, array(
                 'class' => 'AppBundle:Insect',
                 'choice_label' => 'name',
-                'attr' => array('class' => 'form-control select2'),
+                'attr' => array('class' => 'form-control'),
                 'label' => 'Choisir l\'auxiliaire',
                 'required' => false,
                 'multiple' => false,
