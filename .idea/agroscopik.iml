@@ -30,18 +30,34 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor/monolog/monolog/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/app/DoctrineMigrations" />
+      <excludeFolder url="file://$MODULE_DIR$/app/Resources/TwigBundle" />
+      <excludeFolder url="file://$MODULE_DIR$/app/config" />
+      <excludeFolder url="file://$MODULE_DIR$/features" />
+      <excludeFolder url="file://$MODULE_DIR$/src/UserBundle" />
+      <excludeFolder url="file://$MODULE_DIR$/tests" />
+      <excludeFolder url="file://$MODULE_DIR$/var" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor" />
+      <excludeFolder url="file://$MODULE_DIR$/web/Nouveau dossier" />
+      <excludeFolder url="file://$MODULE_DIR$/web/bundles" />
+      <excludeFolder url="file://$MODULE_DIR$/web/front/.src" />
+      <excludeFolder url="file://$MODULE_DIR$/web/front/agroscopik" />
+      <excludeFolder url="file://$MODULE_DIR$/web/front/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/web/front/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/3.0.5/.src" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/3.0.5/classic/center" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/3.0.5/classic/iconbar" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/3.0.5/classic/mmenu" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/3.0.5/classic/server" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/3.0.5/classic/topicon" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/3.0.5/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/3.0.5/material" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/3.0.5/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/web/remark/latest" />
+      <excludeFolder url="file://$MODULE_DIR$/web/ui" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="PHARS">
-        <CLASSES>
-          <root url="phar://$MODULE_DIR$/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectWithXsdExtensionInPhar.phar" />
-        </CLASSES>
-        <SOURCES>
-          <root url="phar://$MODULE_DIR$/vendor/symfony/symfony/src/Symfony/Component/DependencyInjection/Tests/Fixtures/includes/ProjectWithXsdExtensionInPhar.phar" />
-        </SOURCES>
-      </library>
-    </orderEntry>
   </component>
 </module>

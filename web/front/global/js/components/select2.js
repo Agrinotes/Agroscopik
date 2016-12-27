@@ -6,8 +6,8 @@
 $.components.register("select2", {
   mode: "init",
   defaults: {
-    width: "style",
-    theme: "material"
+    width: "100%",
+    theme: "classic"
   },
   init: function(context) {
     if (!$.fn.select2) return;

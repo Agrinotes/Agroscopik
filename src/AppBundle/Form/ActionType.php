@@ -40,7 +40,7 @@ class ActionType extends AbstractType
             ->add('intervention', EntityType::class, array(
                 'class' => 'AppBundle:Intervention',
                 'choice_label' => 'name',
-                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                'attr' => array('class' => 'form-control select2'),
                 'group_by' => 'interventionCategory.name',
                 'label' => 'Choisir une intervention'
             ))
@@ -54,7 +54,7 @@ class ActionType extends AbstractType
             ->add('nbWorkers', IntegerType::class, array(
                 'required' => false,
                 'label' => 'Définir le nombre de personnes pour cette intervention',
-                'attr' => array('class' => 'form-control', 'min' => 0, 'placeholder' => '1'),
+                'attr' => array('class' => 'form-control', 'min' => 0, 'value' => '1'),
             ))
             ->add('farmSpecialityMvts', CollectionType::class, array(
                 'entry_type' => ActionFarmSpecialityMvtType::class,
@@ -82,7 +82,6 @@ class ActionType extends AbstractType
                 'allow_add' => true,
                 'allow_delete' => true,
                 'by_reference' => false,
-                'label' => 'Définir les dépenses associées',
             ))
             ->add('aim', TextType::class, array(
                 'label' => 'Cible(s) du traitement',
@@ -97,7 +96,7 @@ class ActionType extends AbstractType
             ->add('auxiliary', EntityType::class, array(
                 'class' => 'AppBundle:Insect',
                 'choice_label' => 'name',
-                'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                'attr' => array('class' => 'form-control select2'),
                 'label' => 'Choisir l\'auxiliaire',
                 'required' => false,
                 'multiple' => false,
@@ -145,7 +144,7 @@ class ActionType extends AbstractType
                     'class' => 'AppBundle:Tractor',
                     'choice_label' => 'model.label',
                     'label' => 'Choisir les tracteurs utilisés',
-                    'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                    'attr' => array('class' => 'form-control select2-keep'),
                     'required' => false,
                     'multiple' => true,
                     'expanded' => false,
@@ -159,7 +158,7 @@ class ActionType extends AbstractType
                 $implementsOptions = array(
                     'class' => 'AppBundle:Implement',
                     'choice_label' => 'name',
-                    'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                    'attr' => array('class' => 'form-control select2-keep'),
                     'label' => 'Choisir les outils utilisés',
                     'required' => false,
                     'multiple' => true,

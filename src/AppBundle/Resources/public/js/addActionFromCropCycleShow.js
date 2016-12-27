@@ -258,7 +258,9 @@
             var template6 = $container6.attr('data-prototype')
                     .replace(/__name__label__/g, '')
                     .replace(/__name__/g, index6)
-                    .replace(/form-group/g, "form-group col-lg-12")
+                    .replace(/form-group/g, "col-lg-6")
+                    .replace(/col-lg-6/, "col-lg-12")
+
 
 
                 ;
@@ -271,7 +273,7 @@
         }
 
         function addDeleteLink6($prototype6) {
-            var $deleteLink6 = $('<a href="#" style="margin: none; position: relative;top: -4px;right: 2px;"><i class="btn btn-pure btn-danger icon waves-effect waves-circle waves-classicr md-close-circle-o" aria-hidden="true"></i></a>');
+            var $deleteLink6 = $('<a href="#" style="margin: 0px; padding:0px; position: relative;top: -30px;right: 10px;"><i class="wb-close" aria-hidden="true"></i></a>');
             $prototype6.append($deleteLink6);
             $deleteLink6.click(function (e) {
                 $prototype6.remove();

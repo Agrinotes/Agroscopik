@@ -41,6 +41,16 @@
             color: #526069;
         }
 
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
         table tr:hover > td > a.actionLink {
             text-decoration: underline !important;
             color: #526069;
@@ -50,6 +60,11 @@
             font-weight: 500;
             font-family: Roboto, sans-serif;
         }
+
+        .hidden{
+            display: none;
+        }
+
     </style>
 {% endblock %}
 
@@ -80,7 +95,7 @@
         <!-- End Panel Basic -->
 
         <!-- Panel Table Tools -->
-        <div class="panel">
+        <div class="panel" id="tableTools">
             <header class="panel-heading">
                 <h3 class="panel-title">{{ cropCycle.name | upper }}</h3>
             </header>
@@ -151,7 +166,7 @@
         <!-- End Panel Table Tools -->
 
         <!-- Panel Add Action -->
-        <div class="row">
+        <div class="row" id="addAction" style="display: none;">
             <div class="col-md-3 col-sm-0">
 
             </div>
@@ -161,13 +176,22 @@
                         <div class="panel-actions"></div>
                         <h3 class="panel-title">Ajouter une intervention</h3>
                     </header>
-                    <div class="panel-body">
+                    <div class="panel-body" style="padding-top:20px;">
                         {{ render(controller('AppBundle:Action:newFromCropCycle',{'id':cropCycle.id})) }}
                     </div>
                 </div>
             </div>
         </div>
         <!-- End Panel Add Action -->
+
+        <!-- Button Add Action -->
+        <div class="site-action">
+            <button type="button" onClick="$('#tableTools').hide();$('#addAction').fadeIn(400);  $('.select2').select2();$('.select2-keep').select2({closeOnSelect:false});" class="site-action site-floataction btn-raised btn btn-danger btn-floating">
+                <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
+            </button>
+        </div>
+        <!-- End Button Add Action -->
+
 
     </div>
 {% endblock %}
@@ -184,8 +208,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
 
-    <script src="{{ asset('front/global/vendor/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/select2.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.min.js') }}"></script>
+    {#<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>#}
 
     <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>

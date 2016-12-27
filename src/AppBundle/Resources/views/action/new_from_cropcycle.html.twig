@@ -1,15 +1,30 @@
 {{ form_start(form) }}
 <div class="row" id="intervention">
-    <div class="col-sm-12">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
         <div class="form-group">
             {{ form_label(form.intervention) }}
             {{ form_errors(form.intervention) }}
             {{ form_widget(form.intervention) }}
+            <a class="pull-right helpLink" href="{{ path('intervention_new') }}">
+                <i class="icon md-help-outline" aria-hidden="true"></i>
+                Ajouter une intervention qui n'est pas dans la liste déroulante
+            </a>
         </div>
-        <a class="pull-right" href="{{ path('intervention_new') }}">
-            <i class="icon md-help-outline" aria-hidden="true"></i>
-            Que faire si mon intervention n'est pas dans la liste déroulante
-        </a>
+
+    </div>
+</div>
+
+<div class="row" id="periods">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8" style="margin-left: -30px; padding-right:0px;">
+        {% form_theme form 'AppBundle:form:datetime.html.twig' %}
+        {{ form_widget(form.periods) }}
+{#
+        <a class="pull-right helpLink" href="#" id="add_period" style="margin-top: -20px;">
+            <i class="icon md-plus-circle-o" aria-hidden="true"></i>
+            Ajouter une autre période
+        </a>#}
     </div>
 </div>
 
@@ -45,16 +60,15 @@
 <div class="row" id="farmSpecialities">
     <div class="col-sm-12">
         {% if app.user.farm.farmSpecialities is not empty %}
-            <div class="form-group">
                 {{ form_label(form.aim) }}
                 {{ form_errors(form.aim) }}
                 {{ form_widget(form.aim) }}
-            </div>
+
             <div class="margin-10"></div>
-            <div class="form-group">
+
                 {{ form_errors(form.farmSpecialityMvts) }}
                 {{ form_widget(form.farmSpecialityMvts) }}
-            </div>
+
             <div class="margin-10"></div>
 
             <a class="pull-right" href="#" id="add_mvt"><i class="icon md-plus-circle-o"
@@ -104,7 +118,7 @@
             {{ form_errors(form.harvestProducts) }}
             {{ form_widget(form.harvestProducts) }}
         </div>
-        <a class="pull-right" href="#" id="add_harvest">
+        <a class="pull-right helpLink" href="#" id="add_harvest">
             <i class="icon md-plus-circle-o" aria-hidden="true"></i>
             Ajouter un autre produit récolté
         </a>
@@ -112,41 +126,41 @@
 </div>
 
 
-<div class="row" id="periods">
-    <div class="col-lg-12">
-        {% form_theme form 'AppBundle:form:datetime.html.twig' %}
-        {{ form_widget(form.periods) }}
-
-        <a class="pull-right" href="#" id="add_period">
-            <i class="icon md-plus-circle-o" aria-hidden="true"></i>
-            Ajouter une autre période
-        </a>
-    </div>
-</div>
-
-
 <div class="row" id="nbWorkers">
-    <div class="col-md-12 col-lg-6">
-        {{ form_label(form.nbWorkers) }}
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+            <label>Main d'oeuvre et Matériel</label>
         <div class="input-group">
+                        <span class="input-group-addon">
+               <i class="icon wb-user"
+                  aria-hidden="true"></i>
+            </span>
             {{ form_widget(form.nbWorkers) }}
             {{ form_errors(form.nbWorkers) }}
-            <span class="input-group-addon">
-               personnes
-            </span>
+
+        </div>
         </div>
     </div>
 </div>
 
 
 <div class="row" id="tractors">
-    <div class="col-lg-12">
-        {{ form_label(form.tractors) }}
-
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
 
         {% if app.user.farm.tractors is not empty %}
-            {{ form_errors(form.tractors) }}
+        <div class="form-group">
+
+        <div class="input-group">
+                        <span class="input-group-addon">
+               <i class="icon wb-settings"
+                  aria-hidden="true"></i>
+            </span>
+        {{ form_errors(form.tractors) }}
             {{ form_widget(form.tractors) }}
+        </div>
+        </div>
         {% else %}
             <div class="hidden">
                 {{ form_errors(form.tractors) }}
@@ -157,11 +171,19 @@
             </p>
         {% endif %}
 
-        {{ form_label(form.implements) }}
 
         {% if app.user.farm.implements is not empty %}
+        <div class="form-group">
+
+        <div class="input-group">
+                        <span class="input-group-addon">
+               <i class="icon wb-hammer"
+                  aria-hidden="true"></i>
+            </span>
             {{ form_errors(form.implements) }}
             {{ form_widget(form.implements) }}
+            </div>
+        </div>
         {% else %}
             <div class="hidden">
                 {{ form_errors(form.implements) }}
@@ -176,7 +198,8 @@
 
 
 <div class="row" id="comment">
-    <div class="col-lg-12">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
         <div class="form-group">
             {{ form_label(form.comment) }}
             {{ form_errors(form.comment) }}
@@ -187,16 +210,18 @@
 
 
 <div class="row" id="expenses">
-    <div class="col-lg-12">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
         <div class="form-group">
-            {{ form_label(form.expenses) }}
+            <label style="margin-bottom: 0px;">Dépenses</label>
             {{ form_errors(form.expenses) }}
             {{ form_widget(form.expenses) }}
+            <a class="pull-right helpLink" href="#" id="add_expense">
+                <i class="icon md-plus-circle-o" aria-hidden="true"></i>
+                Ajouter une autre dépense
+            </a>
         </div>
-        <a class="pull-right" href="#" id="add_expense">
-            <i class="icon md-plus-circle-o" aria-hidden="true"></i>
-            Ajouter une autre dépense
-        </a>
+
     </div>
 </div>
 
