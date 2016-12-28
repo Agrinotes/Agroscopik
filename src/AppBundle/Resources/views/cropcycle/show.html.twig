@@ -72,10 +72,10 @@
         }
 
         .rotate.down{
-            -ms-transform:rotate(45deg);
-            -moz-transform:rotate(45deg);
-            -webkit-transform:rotate(45deg);
-            transform:rotate(45deg);
+            -ms-transform:rotate(135deg);
+            -moz-transform:rotate(135deg);
+            -webkit-transform:rotate(135deg);
+            transform:rotate(135deg);
         }
     </style>
 {% endblock %}
@@ -83,7 +83,7 @@
 {% block page %}
     <div class="page-content">
         <!-- Panel Basic used as temporary fix -->
-        <div class="panel" style="display:none;">
+        <div class="panel " style="display:none;">
             <header class="panel-heading">
                 <div class="panel-actions"></div>
                 <h3 class="panel-title">{{ cropCycle.name }}</h3>
@@ -109,7 +109,7 @@
         <!-- Panel Table Tools -->
         <div class="panel" id="tableTools">
             <header class="panel-heading">
-                <h3 class="panel-title">{{ cropCycle.name | upper }}</h3>
+                <h3 class="panel-title">{{ cropCycle.plot.name | capitalize }} {{ cropCycle.name | capitalize }}</h3>
             </header>
             <div class="panel-body">
                 <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">

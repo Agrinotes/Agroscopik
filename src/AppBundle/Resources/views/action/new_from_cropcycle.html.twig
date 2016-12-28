@@ -1,4 +1,4 @@
-{{ form_start(form) }}
+{{ form_start(form, {'action': path('action_new_from_cropcycle',{'id':cropCycle.id}), 'method': 'POST'}) }}
 <div class="row" id="intervention">
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8">

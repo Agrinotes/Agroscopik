@@ -34,32 +34,105 @@ class ActionController extends Controller
      * @Route("/cropcycle/{id}/action/new_from_cropcycle", name="action_new_from_cropcycle")
      * @Method({"GET", "POST"})
      */
-    public function newFromCropCycleAction(Request $request, CropCycle $cropCycle)
+    public function newFromCropCycleAction(Request $request, $id)
     {
-                // Get Entity Manager
-        $em = $this->getDoctrine()->getManager();
         $action = new Action();
-        // Should check security here
+
+        // Get Entity Manager
+        $em = $this->getDoctrine()->getManager();
+
+        // Get current cropCycle
+        $cropCycle = $em->getRepository('AppBundle:CropCycle')->find($id);
+
+        // Check for edit access
+        $authorizationChecker = $this->get('security.authorization_checker');
+        if (false === $authorizationChecker->isGranted('EDIT', $cropCycle)) {
+            throw new AccessDeniedException();
+        }
 
         // Link this action to current crop cycle
         $cropCycle->addAction($action); // Which also setCropcycle($this) on $action
 
         $form = $this->createForm(ActionType::class, $action);
         $form->handleRequest($request);
-        
-         if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($action);
+
             $em->flush();
+
+            // Remove specialities added to wrong categories
+            if ($action->getFarmSpecialityMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'protection-des-cultures') {
+                $mvts = $action->getFarmSpecialityMvts();
+                foreach ($mvts as $mvt) {
+                    $em->remove($mvt);
+                }
+                $em->flush();
+            }
+
+            // Remove fertilizers added to wrong categories
+            if ($action->getFarmFertilizerMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'fertilisation') {
+                $mvts = $action->getFarmFertilizerMvts();
+                foreach ($mvts as $mvt) {
+                    $em->remove($mvt);
+                }
+                $em->flush();
+            }
+
+            // Remove harvest products added to wrong categories
+            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'recolte') {
+                $products = $action->getHarvestProducts();
+                foreach ($products as $product) {
+                    $em->remove($product);
+                }
+                $em->flush();
+            }
+
+            // Remove seeds or plant density products added to wrong categories
+            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'semis-et-plantation') {
+                $action->setDensity("");
+                $action->setDensityUnit(null);
+                $em->flush();
+            }
+
+            // Call ACL service
+            $aclProvider = $this->get('security.acl.provider');
+
+            // Create the ACL for current Action $action
+            $objectIdentity = ObjectIdentity::fromDomainObject($action);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // Retrieve the security identity of the current user
+            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
+
+            // Create Access Mask
+            $builder = new MaskBuilder();
+            $builder
+                ->add('view')
+                ->add('edit')
+                ->add('delete');
+            $mask = $builder->get();
+
+            // Insert Object Access Entry
+            $acl->insertObjectAce($securityIdentity, $mask);
+
+            // Update ACL
+            $aclProvider->updateAcl($acl);
+
+            $request->getSession()->getFlashBag()->add('success', 'Une intervention ' . $action->getName() . ' a été ajoutée avec succès le ' . $action->getStartDatetime()->format('d/m/Y') . ' !');
 
             return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
         }
 
         return $this->render('@App/action/new_from_cropcycle.html.twig', array(
+            'cropCycle' => $cropCycle,
             'action' => $action,
             'form' => $form->createView(),
         ));
     }
+
 
 
     /**
