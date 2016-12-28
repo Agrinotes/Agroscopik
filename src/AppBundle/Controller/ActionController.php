@@ -366,12 +366,12 @@ class ActionController extends Controller
 
             $request->getSession()->getFlashBag()->add('success', 'L\'intervention ' . $action->getName() . ' a été modifiée avec succès !');
 
-            return $this->redirectToRoute('action_show', array('id' => $action->getId()));
+            return $this->redirectToRoute('cropcycle_show', array('id' => $action->getCropCycle()->getId()));
         }
 
-        return $this->render('@App/action/edit.html.twig', array(
+        return $this->render('@App/action/edit2.html.twig', array(
             'action' => $action,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }

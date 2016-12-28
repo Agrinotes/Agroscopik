@@ -1,0 +1,363 @@
+{% extends 'base_topbar.html.twig' %}
+
+{% block title %} Edition d'intervention sur {{ action.cropCycle.name | capitalize }}{% endblock %}
+
+{% block plugins_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asspinner/asSpinner.css') }}">
+{% endblock %}
+
+{% block page_stylesheets %}
+    {{ parent() }}
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label{
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden{
+            display: none;
+        }
+
+        .rotate{
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down{
+            -ms-transform:rotate(135deg);
+            -moz-transform:rotate(135deg);
+            -webkit-transform:rotate(135deg);
+            transform:rotate(135deg);
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+    <div class="page-content">
+        <!-- Panel Add Action -->
+        <div class="row" id="editAction">
+            <div class="col-md-3 col-sm-0">
+
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-info panel-bordered">
+                    <header class="panel-heading">
+                        <div class="panel-actions"></div>
+                        <h3 class="panel-title">Modifier une intervention</h3>
+                    </header>
+                    <div class="panel-body" style="padding-top:20px;">
+                        {{ form_start(form, {'action': path('action_edit',{'id':action.id}), 'method': 'POST'}) }}
+                        <div class="row" id="intervention" style="margin-bottom: 15px;">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    {{ form_label(form.intervention) }}
+                                    {{ form_errors(form.intervention) }}
+                                    {{ form_widget(form.intervention) }}
+                                    <a class="pull-right helpLink" href="{{ path('intervention_new') }}">
+                                        <i class="icon md-help-outline" aria-hidden="true"></i>
+                                        Ajouter une intervention qui n'est pas dans la liste déroulante
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="auxiliary">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    {{ form_label(form.auxiliary) }}
+                                    {{ form_errors(form.auxiliary) }}
+
+                                    {{ form_widget(form.auxiliary) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="density">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    {{ form_label(form.density) }}
+                                    {{ form_errors(form.density) }}
+                                    <div class="input-group">
+                                        {{ form_widget(form.density) }}
+                                        <span class="input-group-addon">
+                      plants
+                </span>
+                                        {{ form_errors(form.densityUnit) }}
+                                        {{ form_widget(form.densityUnit) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="farmSpecialities">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                {% if app.user.farm.farmSpecialities is not empty %}
+                                    {{ form_label(form.aim) }}
+                                    {{ form_errors(form.aim) }}
+                                    {{ form_widget(form.aim) }}
+
+                                    <div class="form-group">
+                                        <label style="margin-bottom: -15px; margin-top: 15px;">Produits
+                                            phytosanitaires</label>
+
+                                        {{ form_errors(form.farmSpecialityMvts) }}
+                                        {{ form_widget(form.farmSpecialityMvts) }}
+                                        <a class="pull-right helpLink" href="#" id="add_mvt"><i class="icon md-plus-circle-o"
+                                                                                       aria-hidden="true"></i> Ajouter
+                                            un autre
+                                            produit</a>
+                                    </div>
+                                {% else %}
+                                    <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
+                                        Vous devez avoir au moins un produit dans votre <a
+                                                style="text-decoration: underline"
+                                                href="{{ path('farmspeciality_new') }}">local
+                                            phytosanitaire virtuel</a> pour pouvoir faire des traitements
+                                        phytosanitaires.
+                                    </div>
+
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="farmFertilizers">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                {% if app.user.farm.farmFertilizers is not empty %}
+
+                                    <div class="form-group">
+                                        <label style="margin-bottom: -5px;">Engrais et Amendements</label>
+                                        {{ form_errors(form.farmFertilizerMvts) }}
+                                        {{ form_widget(form.farmFertilizerMvts) }}
+
+                                        <a class="pull-right helpLink" href="#" id="add_ferti_mvt">
+                                            Ajouter un autre engrais ou amendement
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
+                                        Vous devez avoir au moins un engrais ou amendement dans votre <a
+                                                style="text-decoration: underline"
+                                                href="{{ path('farmfertilizer_new') }}">stock
+                                            d'engrais virtuel</a> pour pouvoir faire des opérations de fertilisation ou
+                                        amendement.
+                                    </div>
+
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="harvestProducts">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    {{ form_label(form.harvestProducts) }}
+                                    {{ form_errors(form.harvestProducts) }}
+                                    {{ form_widget(form.harvestProducts) }}
+                                </div>
+                                <a class="pull-right helpLink" href="#" id="add_harvest">
+                                    <i class="icon md-plus-circle-o" aria-hidden="true"></i>
+                                    Ajouter un autre produit récolté
+                                </a>
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="nbWorkers">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="form-group">
+                                    <label>Main d'oeuvre et Matériel</label>
+
+                                    <div class="input-group">
+                        <span class="input-group-addon">
+               <i class="icon wb-user"
+                  aria-hidden="true"></i>
+            </span>
+                                        {{ form_widget(form.nbWorkers) }}
+                                        {{ form_errors(form.nbWorkers) }}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="tractors">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+
+                                {% if app.user.farm.tractors is not empty %}
+                                    <div class="form-group">
+
+                                        <div class="input-group">
+                        <span class="input-group-addon">
+               <i class="icon wb-settings"
+                  aria-hidden="true"></i>
+            </span>
+                                            {{ form_errors(form.tractors) }}
+                                            {{ form_widget(form.tractors) }}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="hidden">
+                                        {{ form_errors(form.tractors) }}
+                                        {{ form_widget(form.tractors) }}
+                                    </div>
+                                    <p>
+                                        Vous n'avez pas enregistrer de tracteur sur l'exploitation
+                                    </p>
+                                {% endif %}
+
+
+                                {% if app.user.farm.implements is not empty %}
+                                    <div class="form-group">
+
+                                        <div class="input-group">
+                        <span class="input-group-addon">
+               <i class="icon wb-hammer"
+                  aria-hidden="true"></i>
+            </span>
+                                            {{ form_errors(form.implements) }}
+                                            {{ form_widget(form.implements) }}
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <div class="hidden">
+                                        {{ form_errors(form.implements) }}
+                                        {{ form_widget(form.implements) }}
+                                    </div>
+                                    <p>
+                                        Vous n'avez pas enregistrer d'outils sur l'exploitation
+                                    </p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="comment">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    {{ form_label(form.comment) }}
+                                    {{ form_errors(form.comment) }}
+                                    {{ form_widget(form.comment) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="expenses">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    <label style="margin-bottom: 0px;">Dépenses</label>
+                                    {{ form_errors(form.expenses) }}
+                                    {{ form_widget(form.expenses) }}
+                                    <a class="pull-right helpLink" href="#" id="add_expense">
+                                        Ajouter une autre dépense
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Add Action -->
+
+
+    </div>
+{% endblock %}
+
+{% block plugins_javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.min.js') }}"></script>
+
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/jquery.datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/asspinner/jquery-asSpinner.min.js') }}"></script>
+
+
+    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/asspinner.js') }}"></script>
+{% endblock %}
+
+
+{% block page_javascripts %}
+    {{ parent() }}
+
+    {{ include('@AppBundle/Resources/public/js/editAction.js') }}
+
+    <script>
+        $('.select2').select2();
+        $('.select2-keep').select2({closeOnSelect:false});
+    </script>
+
+{% endblock %}
