@@ -143,12 +143,12 @@
                                 <ul>
                                     {% for tractor in action.tractors %}
                                         <li>
-                                            {{ tractor.name }}
+                                            {{ tractor.model.name | capitalize}}
                                         </li>
                                     {% endfor %}
                                     {% for implement in action.implements %}
                                         <li>
-                                            {{ implement.name }}
+                                            {{ implement.name | capitalize }}
                                         </li>
                                     {% endfor %}
                                 </ul>
