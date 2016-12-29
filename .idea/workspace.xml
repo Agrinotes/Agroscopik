@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/showPhEc.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/CropCycleController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/CropCycleController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
@@ -26,44 +26,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="new_from_cropcycle.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig">
+      <file leaf-file-name="ActionRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ActionRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.781818">
-              <caret line="57" column="55" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.115385">
+              <caret line="122" column="4" selection-start-line="0" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
               <folding>
-                <element signature="e#873#906#0#Twig" expanded="false" />
+                <element signature="e#8485#10714#0#Twig" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
+      <file leaf-file-name="CropCycle.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.076923">
-              <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+            <state vertical-scroll-proportion="21.346153">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CropCycleController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CropCycleController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-16.961538">
+              <caret line="183" column="53" selection-start-line="183" selection-start-column="53" selection-end-line="183" selection-end-column="53" />
               <folding>
-                <element signature="e#1476#1497#1#PHP" expanded="true" />
-                <element signature="e#5655#5676#1#PHP" expanded="true" />
-                <element signature="e#6022#6040#1#PHP" expanded="true" />
-                <element signature="e#6619#6651#1#PHP" expanded="true" />
-                <element signature="e#6762#6780#1#PHP" expanded="true" />
-                <element signature="e#7328#7344#1#PHP" expanded="true" />
-                <element signature="e#7455#7473#1#PHP" expanded="true" />
-                <element signature="e#8049#8070#1#PHP" expanded="true" />
+                <element signature="e#707#782#0#PHP" expanded="false" />
+                <element signature="e#835#1086#0#PHP" expanded="false" />
+                <element signature="e#1091#1929#0#PHP" expanded="false" />
+                <element signature="e#1300#1316#1#PHP" expanded="true" />
+                <element signature="e#1607#1628#1#PHP" expanded="true" />
+                <element signature="e#1679#1922#0#PHP" expanded="false" />
+                <element signature="e#1727#1921#0#PHP" expanded="false" />
+                <element signature="e#1935#2200#0#PHP" expanded="false" />
+                <element signature="e#2205#3109#0#PHP" expanded="false" />
+                <element signature="e#2367#2383#1#PHP" expanded="true" />
+                <element signature="e#2755#2776#1#PHP" expanded="true" />
+                <element signature="e#2857#3102#0#PHP" expanded="false" />
+                <element signature="e#2919#3101#0#PHP" expanded="false" />
+                <element signature="e#3115#3268#0#PHP" expanded="false" />
+                <element signature="e#3273#5410#0#PHP" expanded="false" />
+                <element signature="e#3535#3551#1#PHP" expanded="true" />
+                <element signature="e#3859#5183#0#PHP" expanded="false" />
+                <element signature="e#4564#4602#0#PHP" expanded="false" />
+                <element signature="e#4564#4632#0#PHP" expanded="false" />
+                <element signature="e#4564#4664#0#PHP" expanded="false" />
+                <element signature="e#5200#5403#0#PHP" expanded="false" />
+                <element signature="e#5246#5402#0#PHP" expanded="false" />
+                <element signature="e#5416#5770#0#PHP" expanded="false" />
+                <element signature="e#5775#5974#0#PHP" expanded="false" />
+                <element signature="e#5864#5967#0#PHP" expanded="false" />
+                <element signature="e#5911#5966#0#PHP" expanded="false" />
+                <element signature="e#6725#6760#0#PHP" expanded="true" />
+                <element signature="e#8033#8064#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionType.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
+      <file leaf-file-name="showPhEc.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/showPhEc.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74474055">
-              <caret line="130" column="108" selection-start-line="130" selection-start-column="108" selection-end-line="130" selection-end-column="108" />
+            <state vertical-scroll-proportion="0.38148668">
+              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CropCycleRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CropCycleRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="5.269231">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#34#81#0#PHP" expanded="true" />
+                <element signature="e#1291#2056#0#PHP" expanded="false" />
+                <element signature="e#2062#2896#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -84,8 +135,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/views/fertilizer/show.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig" />
         <option value="$PROJECT_DIR$/web/front/mmenu/assets/css/site.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
@@ -135,6 +184,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/CropCycleController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/showPhEc.html.twig" />
       </list>
     </option>
   </component>
@@ -363,7 +414,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="action" />
+              <option name="myItemId" value="cropcycle" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -386,28 +437,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik-NC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -583,27 +612,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/Security/login_content.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Form/Type/RegistrationFormType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/friendsofsymfony/user-bundle/Security/LoginManager.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/security.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -699,13 +707,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CropCycleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4165498">
-          <caret line="164" column="68" selection-start-line="164" selection-start-column="68" selection-end-line="164" selection-end-column="68" />
         </state>
       </provider>
     </entry>
@@ -836,14 +837,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="33.346153">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.92987376">
@@ -939,17 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="69.15385">
-          <caret line="148" column="36" selection-start-line="148" selection-start-column="36" selection-end-line="148" selection-end-column="36" />
-          <folding>
-            <element signature="e#12#33#0#Twig" expanded="false" />
-            <element signature="e#8485#10714#0#Twig" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -964,40 +946,111 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.781818">
-          <caret line="57" column="55" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
+        <state vertical-scroll-proportion="0.74474055">
+          <caret line="130" column="108" selection-start-line="130" selection-start-column="108" selection-end-line="130" selection-end-column="108" />
           <folding>
-            <element signature="e#873#906#0#Twig" expanded="false" />
+            <element signature="e#34#81#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.076923">
+        <state vertical-scroll-proportion="0.47685835">
           <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70614034">
+          <caret line="57" column="55" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CropCycleRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="5.269231">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1476#1497#1#PHP" expanded="true" />
-            <element signature="e#5655#5676#1#PHP" expanded="true" />
-            <element signature="e#6022#6040#1#PHP" expanded="true" />
-            <element signature="e#6619#6651#1#PHP" expanded="true" />
-            <element signature="e#6762#6780#1#PHP" expanded="true" />
-            <element signature="e#7328#7344#1#PHP" expanded="true" />
-            <element signature="e#7455#7473#1#PHP" expanded="true" />
-            <element signature="e#8049#8070#1#PHP" expanded="true" />
+            <element signature="e#1291#2056#0#PHP" expanded="false" />
+            <element signature="e#2062#2896#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/ActionRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74474055">
-          <caret line="130" column="108" selection-start-line="130" selection-start-column="108" selection-end-line="130" selection-end-column="108" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="21.346153">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.115385">
+          <caret line="122" column="4" selection-start-line="0" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
           <folding>
-            <element signature="e#34#81#0#PHP" expanded="true" />
+            <element signature="e#8485#10714#0#Twig" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/CropCycleController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.961538">
+          <caret line="183" column="53" selection-start-line="183" selection-start-column="53" selection-end-line="183" selection-end-column="53" />
+          <folding>
+            <element signature="e#707#782#0#PHP" expanded="false" />
+            <element signature="e#835#1086#0#PHP" expanded="false" />
+            <element signature="e#1091#1929#0#PHP" expanded="false" />
+            <element signature="e#1300#1316#1#PHP" expanded="true" />
+            <element signature="e#1607#1628#1#PHP" expanded="true" />
+            <element signature="e#1679#1922#0#PHP" expanded="false" />
+            <element signature="e#1727#1921#0#PHP" expanded="false" />
+            <element signature="e#1935#2200#0#PHP" expanded="false" />
+            <element signature="e#2205#3109#0#PHP" expanded="false" />
+            <element signature="e#2367#2383#1#PHP" expanded="true" />
+            <element signature="e#2755#2776#1#PHP" expanded="true" />
+            <element signature="e#2857#3102#0#PHP" expanded="false" />
+            <element signature="e#2919#3101#0#PHP" expanded="false" />
+            <element signature="e#3115#3268#0#PHP" expanded="false" />
+            <element signature="e#3273#5410#0#PHP" expanded="false" />
+            <element signature="e#3535#3551#1#PHP" expanded="true" />
+            <element signature="e#3859#5183#0#PHP" expanded="false" />
+            <element signature="e#4564#4602#0#PHP" expanded="false" />
+            <element signature="e#4564#4632#0#PHP" expanded="false" />
+            <element signature="e#4564#4664#0#PHP" expanded="false" />
+            <element signature="e#5200#5403#0#PHP" expanded="false" />
+            <element signature="e#5246#5402#0#PHP" expanded="false" />
+            <element signature="e#5416#5770#0#PHP" expanded="false" />
+            <element signature="e#5775#5974#0#PHP" expanded="false" />
+            <element signature="e#5864#5967#0#PHP" expanded="false" />
+            <element signature="e#5911#5966#0#PHP" expanded="false" />
+            <element signature="e#6725#6760#0#PHP" expanded="true" />
+            <element signature="e#8033#8064#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/showPhEc.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38148668">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding />
         </state>
       </provider>
     </entry>

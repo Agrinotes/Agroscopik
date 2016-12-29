@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Plot;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -145,10 +146,6 @@ class CropCycleController extends Controller
         ));
     }
 
-
-
-
-
     /**
      * Finds and displays a CropCycle entity.
      *
@@ -164,6 +161,33 @@ class CropCycleController extends Controller
 
         return $this->render('@App/cropcycle/show.html.twig', array(
             'cropCycle' => $cropCycle,
+        ));
+    }
+
+    /**
+     * Render actions related to pH and EC in order to make graphs
+     *
+     * @Route("/cropcycle/{id}/phec", name="cropcycle_phec_show")
+     * @Method({"GET"})
+     * @param Request $request
+     * @param CropCycle $cropCycle
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN')")
+     */
+    public function showPhECAction(Request $request, CropCycle $cropCycle)
+    {
+        $actions = $cropCycle->getActions();
+
+        $keep = new ArrayCollection();
+
+        foreach($actions as $action){
+            if($action->getIntervention()->getName()=="Relevé pH/EC"){
+                $keep->add($action);
+            }
+        }
+
+        return $this->render('@App/cropcycle/showPhEc.html.twig', array(
+            'actions' => $keep,
         ));
     }
 

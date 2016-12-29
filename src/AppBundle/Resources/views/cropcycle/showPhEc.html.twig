@@ -1,0 +1,25 @@
+{% extends 'base_topbar.html.twig' %}
+
+
+
+{% block page %}
+    <div class="page-content">
+
+
+        <!-- Panel Table Tools -->
+        <div class="panel" id="tableTools">
+            <header class="panel-heading">
+                <h3 class="panel-title">Test</h3>
+            </header>
+            <div class="panel-body">
+                {% for action in actions %}
+                    pH {{ action.ph }}
+                    EC {{ action.ec }}
+                {% endfor %}
+            </div>
+        </div>
+        <!-- End Panel Table Tools -->
+
+
+    </div>
+{% endblock %}
