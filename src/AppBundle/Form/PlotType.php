@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -22,6 +23,10 @@ class PlotType extends AbstractType
                 'label' => "Entrer le nom de la parcelle",
                 'required' => true,
                 'label_attr' => array('class' => 'control-label')
+            ))
+            ->add('hydroponics', CheckboxType::class, array(
+                'label'    => 'Cocher si c\'est une culture hors-sol',
+                'required' => false
             ))
             ->add('area',TextType::class,array(
                 'attr' => array('class' => 'form-control hidden'),

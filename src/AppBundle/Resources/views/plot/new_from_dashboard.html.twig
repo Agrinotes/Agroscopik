@@ -1,21 +1,27 @@
-<form name="plot" method="post" action="{{path('plot_new_from_dashboard')}}"
-   {{form_label(form.name)}}
+<form name="plot" method="post" action="{{ path('plot_new_from_dashboard') }}"
+{{ form_label(form.name) }}
 
-                             {{form_widget(form.name)}}
+                             {{ form_widget(form.name) }}
+<div class="form-group">
 
-                            <div id="nodraw" style="display:none; margin-top:10px;">
-                             {{form_label(form.area)}}
-                             {{form_widget(form.area)}}
-                             </div>
+    <div class="checkbox-custom checkbox-info">
+        {{ form_widget(form.hydroponics) }}
+        {{ form_label(form.hydroponics) }}
+    </div>
+</div>
+<div id="nodraw" style="display:none; margin-top:10px;">
+    {{ form_label(form.area) }}
+    {{ form_widget(form.area) }}
+</div>
 
-                             <a class="btn btn-default btn-block" style="margin-top:15px" onclick="
+<a class="btn btn-default btn-block" style="margin-top:15px" onclick="
                              $('#nodraw').hide(400);    
                              $('.leaflet-draw').show();
                              window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.enable();
                              ">
-                                Dessiner la parcelle
-                             </a>
-                             <a class="btn btn-pure pull-right" onclick="
+    Dessiner la parcelle
+</a>
+<a class="btn btn-pure pull-right" onclick="
                                     $('#nodraw').show(400);       
                                     $(this).text(function(i, text){
                                     window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.disable(); 
@@ -25,11 +31,13 @@
                                     $('#plot_latLngs').val('');
                                 })">Je n'arrive pas à dessiner la parcelle</a>
 
-                            
-                             <div class="hidden" style="display:none;">
-                                                          {{form_label(form.latLngs)}}
-                             {{form_widget(form.latLngs)}}
-                             </div>
-                                                 <button class="btn btn-info btn-block" style="margin-top:15px" type="submit">Enregistrer</button>
 
-                        {{form_end(form)}}
+<div class="hidden" style="display:none;">
+    {{ form_label(form.latLngs) }}
+    {{ form_widget(form.latLngs) }}
+</div>
+
+
+<button class="btn btn-info btn-block" style="margin-top:15px" type="submit">Enregistrer</button>
+
+{{ form_end(form) }}

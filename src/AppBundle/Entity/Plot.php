@@ -64,6 +64,12 @@ class Plot
     private $area;
 
     /**
+     *
+     * @ORM\Column(name="hydroponics", type="boolean", nullable=true)
+     */
+    private $hydroponics;
+
+    /**
      * Get id
      *
      * @return int
@@ -200,6 +206,22 @@ class Plot
     public function getArea()
     {
         return $this->area;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHydroponics()
+    {
+        return $this->hydroponics;
+    }
+
+    /**
+     * @param mixed $hydroponics
+     */
+    public function setHydroponics($hydroponics)
+    {
+        $this->hydroponics = $hydroponics;
     }
 }
 
