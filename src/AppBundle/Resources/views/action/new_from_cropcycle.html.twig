@@ -47,7 +47,7 @@
             {{ form_label(form.pH) }}
             {{ form_errors(form.pH) }}
 
-            {{ form_widget(form.pH) }}
+            {{ form_widget(form.pH, { 'type':'number' }) }}
         </div>
     </div>
     <div class="col-sm-12 col-md-4">
@@ -55,7 +55,7 @@
             {{ form_label(form.ec) }}
             {{ form_errors(form.ec) }}
 
-            {{ form_widget(form.ec) }}
+            {{ form_widget(form.ec, { 'type':'number' }) }}
         </div>
     </div>
 </div>
