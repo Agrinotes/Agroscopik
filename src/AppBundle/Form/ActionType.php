@@ -125,7 +125,18 @@ class ActionType extends AbstractType
                         ->setParameter('slug3', 'unity_per_square_meter');
                 },
 
-            ));
+            ))
+            ->add('pH', NumberType::class, array(
+                'label' => 'pH',
+                'attr' => array('class' => 'form-control', 'min' => 0, 'max' => 14, 'value' => '7'),
+                'required' => false,
+            ))
+            ->add('ec',NumberType::class, array(
+                'label' => 'EC (mS/cm)',
+                'attr' => array('class' => 'form-control', 'min' => 0, 'value' => '1'),
+                'required' => false,
+            ))
+        ;
 
         // grab the user, do a quick sanity check that one exists
         $farm = $this->tokenStorage->getToken()->getUser()->getFarm()->getId();
