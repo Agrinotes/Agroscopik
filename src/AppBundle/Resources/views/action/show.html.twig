@@ -16,6 +16,7 @@
             <div class="panel panel-info panel-bordered">
                 <header class="panel-heading">
                     <div class="panel-actions">
+                        
                                                    {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
                                     <a style="color:white"
                                        href="{{ path('action_edit', { 'id': action.id }) }}">Modifier</a>
