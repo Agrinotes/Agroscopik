@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/show.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/show.html.twig" />
-    </list>
+    <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="" />
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
