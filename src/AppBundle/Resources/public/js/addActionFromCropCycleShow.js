@@ -298,6 +298,8 @@
         $('#harvestProducts').hide();
         $('#density').hide();
         $('#auxiliary').hide();
+        $('#ph').hide();
+
 
         $('#action_intervention').on('change', function () {
             if ($("#action_intervention").select2('data')[0]['text'] == "Traitement phytosanitaire") {
@@ -305,7 +307,7 @@
                 $('#harvestProducts').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
-
+                $('#ph').hide("slow");
 
                 $('#farmSpecialities').show("slow");
 
@@ -318,6 +320,7 @@
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#harvestProducts').hide("slow");
+                $('#ph').hide("slow");
 
                 $('#farmFertilizers').show("slow");
 
@@ -330,6 +333,7 @@
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
+                $('#ph').hide("slow");
 
                 $('#harvestProducts').show("slow");
 
@@ -343,6 +347,7 @@
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
                 $('#farmFertilizers').hide("slow");
+                $('#ph').hide("slow");
 
                 $('#auxiliary').show("slow");
 
@@ -352,11 +357,13 @@
             }
             else if ($("#action_intervention").select2('data')[0]['text'] == "Semis direct" ||
                 $("#action_intervention").select2('data')[0]['text'] == "Semis pépinière" ||
-                $("#action_intervention").select2('data')[0]['text'] == "Repiquage/Plantation") {
+                $("#action_intervention").select2('data')[0]['text'] == "Repiquage/Plantation" ||
+                $("#action_intervention").select2('data')[0]['text'] == "Semis") {
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
+                $('#ph').hide("slow");
 
                 $('#density').show("slow");
 
@@ -374,12 +381,27 @@
                 $('#nbWorkers').hide("slow");
                 $('#expenses').hide("slow");
                 $('#tractors').hide("slow");
+                $('#ph').hide("slow");
+            } else if($("#action_intervention").select2('data')[0]['text'] == "Relevé pH/EC") {
+                $('#density').hide("slow");
+                $('#farmSpecialities').hide("slow");
+                $('#harvestProducts').hide("slow");
+                $('#farmFertilizers').hide("slow");
+                $('#auxiliary').hide("slow");
+                $('#nbWorkers').hide("slow");
+                $('#expenses').hide("slow");
+                $('#tractors').hide("slow");
+
+                $('#ph').show("slow");
+
+                $('#periods').show("slow");
             }else {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
+                $('#ph').hide("slow");
 
                 $('#periods').show("slow");
                 $('#expenses').show("slow");

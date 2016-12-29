@@ -1,0 +1,311 @@
+[33mcommit d90c3de2ec9c261b53e33c7244508063f6d5013b[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Fri Dec 30 08:05:35 2016 +1100
+
+    Ajouter les variables pH et EC sur action pour permettre d'enregistrer des relevés de ces valeurs
+
+[33mcommit 5cff4cdf355d4486049ca482340678e9930a02dc[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Fri Dec 30 07:51:49 2016 +1100
+
+    Ajoute la différenciation entre Plein champs et hors-sol
+
+[33mcommit fada6a2e9438c97bc8944d19c592fdc71af3c49b[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 29 16:14:29 2016 +1100
+
+    Ajoute une variable hydroponics sur l'objet Plot
+
+[33mcommit 65bbb221a24f81841984649f873c72df15ad1eb2[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 29 15:04:45 2016 +1100
+
+    Modification UI interventions
+
+[33mcommit 378f1f62e1d2066c7ec5b8ff5769925d812eff45[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 29 13:42:12 2016 +1100
+
+    Empty commit
+
+[33mcommit cce3df74bc2e2e80d5a3127398d4262941fd6aa8[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 29 13:20:59 2016 +1100
+
+    Calcul des densités rapportées à la surface de la parcelle ou par hectare
+
+[33mcommit b4b8bfcc3eca2fa84ac85af8fe9b1bae867df256[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 29 10:14:59 2016 +1100
+
+    Ajoute une page pour modifier les interventions
+
+[33mcommit 8d4bc6cc1784cdd944e616e0398948ab05ddb8b1[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 29 09:40:52 2016 +1100
+
+    Ajout d'intervention depuis le cycle de culture
+
+[33mcommit be946f8570256986d6b419140bafc0764f72f699[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 27 16:18:17 2016 +1100
+
+    Ajoute css transform sur le bouton d'ajout d'intervention
+
+[33mcommit f5df2ad9740d47d083d0af1446e18f91e8268ec2[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 27 15:56:12 2016 +1100
+
+    Ajout du formulaire pour les interventions des catégories Fertilisation, Traitement phytosanitaire, Auxiliaires, Semis et Plantation. La partie qui concerne la récolte doit être revue.
+
+[33mcommit e0f7ebc6f50ea712e1ed9ae2ac9553d9cb91eb7f[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 27 14:52:33 2016 +1100
+
+    Formulaire de base terminé
+
+[33mcommit d261b9d6fb3413dcb97df7335b9eb8e1df663a55[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 27 12:19:31 2016 +1100
+
+    Ajoute le formulaire dans cropCycleShow/htm.twig
+
+[33mcommit 5cc3fd68feaa7798070e30968523a4c79cdfcf99[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 27 10:37:38 2016 +1100
+
+    Suppression du wizard. Changement de stratégie pour renseigner les interventions.
+
+[33mcommit 91fd120c342a2400babd05707dddd19a279c6351[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 15:58:11 2016 +1100
+
+    Done for now
+
+[33mcommit 981a389d386685a4513f95631a5511367ce432f8[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 15:35:31 2016 +1100
+
+    Ajoute un Form Wizard pour nouvelles interventions
+
+[33mcommit 8b3dae86ab778a0f11fb9936a76db96700a541ff[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 14:40:35 2016 +1100
+
+    Ajoute le bon nom de fichier lors du téléchargement d'un tableau
+
+[33mcommit cfecfd1c7f893bfecc893ab183e7f85d6f1ba8eb[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 14:33:56 2016 +1100
+
+    Ajoute le lien vers le détail de chaque intervention dans le tableau. Modifie l'apparence du lien au survol de la ligne
+
+[33mcommit 582f93582c745f0a4e41b9a03fadbd57761ee55b[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 14:22:17 2016 +1100
+
+    Fait fonctionner le tri sur les valeurs en hectares et CFP correctement dans le tableau
+
+[33mcommit d64232671f3d70ac15775f71786573c736d3b7a4[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 13:32:31 2016 +1100
+
+    Gère les erreurs pendant la requête Ajax avec affichage UI
+
+[33mcommit 7d0a44ab110a1f4fbdcb3bb80737fe68ce2224dd[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 13:25:01 2016 +1100
+
+    Demande une confirmation lors de la suppression d'une intervention
+
+[33mcommit ee56a60e0a6ac71a491c417823b79751835c65f2[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 13:17:31 2016 +1100
+
+    Permet la suppression d'intervention avec unrequête Ajax.
+
+[33mcommit 92049eb5dd300f88fd05db178ed9fe4efcb6f122[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 12:17:54 2016 +1100
+
+    Ajout de bouton qui apparaissent au survol de la ligne.
+
+[33mcommit 2231ec19a70562c8a3e689d9d77978e0c605e9b0[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 11:34:46 2016 +1100
+
+    Datatable en français. Supprime l'option d'export de tableau au format CSV.
+
+[33mcommit af51fdb42ecffb0c19a730050344b2d63cc44b0e[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 26 11:19:22 2016 +1100
+
+    Ajout de DataTableJS pour afficher les interventions d'un cycle de culture. Ajout de plusieurs méthodes d'export des données (Excel, PDF, CSV, Impression). Ajoute le parsing des dates Européennes grâce à MomentJS pour trier les données par date décroissante.
+
+[33mcommit e747844f0802ef117c0073ee6468011ea5988f0f[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 22 16:14:34 2016 +1100
+
+    Gère complètement les parcelles non dessinables.
+
+[33mcommit 39edb6ba9e1f7c5be7b82435a878ec083dfe65c3[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 22 15:39:14 2016 +1100
+
+    Ajoute la possibilité de ne pas dessiner la zone de culture, ajoute un slider pour choisir la surface de la parcelle attribuée à la culture
+
+[33mcommit b9261525f50f096bfcf0ee88147afdbb5cb9456f[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 22 15:07:58 2016 +1100
+
+    Ajoute le snapping pour faciliter le dessin des zones de culture sans dépasser les limites des parcelles
+
+[33mcommit 0cbc50e49182e12c720c7daf1caddf42d6ce5e2e[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 22 14:53:00 2016 +1100
+
+    Gère les zones de culture dessinées hors de la parcelle
+
+[33mcommit c34e3144944a364d4c661087f62d7a92db7f65b6[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 22 14:38:34 2016 +1100
+
+    Modification de comportement de l'UI
+
+[33mcommit d9adaa28ca3b12a26ed4ccff981c3d9048db99af[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Thu Dec 22 14:31:38 2016 +1100
+
+    Ajoute une page pour la création de culture par parcelle
+
+[33mcommit b5519312a8ea28225b1670a0db41091157506eea[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Wed Dec 21 16:29:17 2016 +1100
+
+    Nouveau template pour toutes les pages.
+
+[33mcommit 22f105d65dadce6a22982b924236e2f5e22322bf[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Wed Dec 21 10:42:30 2016 +1100
+
+    Ajout d'un modal pour créer de nouveau cycle de culture depuis le tableau de bord
+
+[33mcommit 058e75da0f4734e8ba8d4f8685d7b57c5bc89257[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Wed Dec 21 10:32:40 2016 +1100
+
+    Ajustement du comportement des boutons et affichage des champs du formulaire de création de parcelle
+
+[33mcommit 0332fc9431d335bfdc78495ac4e8eceabf2b9b80[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Wed Dec 21 09:35:53 2016 +1100
+
+    Modifie location.css pour résoudre le problème de la taille du cadre qui présente la liste des cycles de culture.
+
+[33mcommit ab44823bf34a44b5e08f54d1507f74184f821d07[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Wed Dec 21 09:22:05 2016 +1100
+
+    Modifie le controlleur pour retourner directement au tableau de bord après un ajout de parcelle
+
+[33mcommit 657a087b4d709b69aeb2e3369a76a7bed09762db[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Wed Dec 21 09:09:50 2016 +1100
+
+    Ajout des fonds de carte Google Satellite et Google Street
+
+[33mcommit ae9785706ed891c5e038b4a5263ad091dd6f6eca[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Wed Dec 21 08:46:45 2016 +1100
+
+    L'interface graphique de création de parcelle est terminée.
+
+[33mcommit 01ae607ae3bef91c6d2194d02cc88c6dac7c5596[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 16:07:33 2016 +1100
+
+    Blocage dû aux problèmes de scope d'ES2015 sur leafletdraw
+
+[33mcommit 23b1706cab99945eb44a915eba965a46f430ef62[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 15:27:54 2016 +1100
+
+    Interface pur ajouter les parcelles directement depuis le tableau de bord en cours.
+
+[33mcommit d2c4bee7c2b7ffecef10bf785f609c2c57de1e1f[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 13:48:45 2016 +1100
+
+    Lien direct vers la création de culture depuis le tableau de bord.
+
+[33mcommit c5f4558619ef78118b0d62b5fc0127f36171155e[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 13:41:40 2016 +1100
+
+    Tableau de bord terminé
+
+[33mcommit 4392758f1abe64db0e44164dc440e7cd586f749b[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 13:21:45 2016 +1100
+
+    Le clic sur le nom de la parcelle déplace la carte automatiquement sur la parcelle.
+
+[33mcommit 33c6447629543f813c64c7ade8fdc244d68bfbf5[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 12:32:08 2016 +1100
+
+    Ajoute affichage des cycles de culture dans Dashboard. Possibilité d'ajouter une culture directement depuis le tableau de bord.
+
+[33mcommit 64baf3821ce766e70a22a3469afe2951a11d962b[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 10:34:39 2016 +1100
+
+    Modification affichage liste parcelles
+
+[33mcommit 1d602a25c74fc352dc5bef54f1668e5b2375041b[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 10:14:29 2016 +1100
+
+    Modification de l'affichage de la liste des parcelles en cours.
+
+[33mcommit 61a622ce6f22134c46e9a2d638156323a038271f[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 08:44:24 2016 +1100
+
+    Reformuler le calcul de la taille de la carte. Nouveau calcul de taille de carte lors du redimensionnement de la taille de la fenêtre du navigateur.
+
+[33mcommit 97a697be2914af40185b4d53c9411e1e868b62a2[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Tue Dec 20 08:38:44 2016 +1100
+
+    Possibilité de choisir le fonds de carte entre image satellite et cartographie simplifiée
+
+[33mcommit 265776b93f71df1b766102ffc2e00780a33be9d6[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 19 16:21:19 2016 +1100
+
+    Déplacement des outils de contrôle de la carte en haut à droite
+
+[33mcommit f974c7dfa1ccecb76569e67e9392ddf8127c0c0d[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 19 16:16:53 2016 +1100
+
+    Affichage de la parcelle associée au cycle de culture sur la carte. Suppression temporaire des liens vers les cycles de culture. Décalage de la popup pose problème.
+
+[33mcommit 74df20e4239acf235b0f87f09d0afeb6a2e2456b[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 19 15:36:33 2016 +1100
+
+    Les parcelles s'affichent correctement.
+
+[33mcommit 8181459283720a94c256f7919694665545424ef5[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 19 14:35:14 2016 +1100
+
+    Nouveau tableau de bord en cours de création
+
+[33mcommit 8575ec4d37f2c55dcc707490ac9fb926894e6a6f[m
+Author: Hugo Lehoux <Hugo Lehoux>
+Date:   Mon Dec 19 13:55:26 2016 +1100
+
+    Update de l'UI Kit
