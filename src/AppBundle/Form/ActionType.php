@@ -128,7 +128,7 @@ class ActionType extends AbstractType
             ))
             ->add('pH', NumberType::class, array(
                 'label' => 'pH',
-                'attr' => array('class' => 'form-control', 'min' => 0, 'max' => 14, 'value' => '7'),
+                'attr' => array('class' => 'form-control', 'min' => 0, 'max' => 14, 'value' => 7),
                 'required' => false,
             ))
             ->add('ec',NumberType::class, array(

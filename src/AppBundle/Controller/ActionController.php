@@ -92,8 +92,15 @@ class ActionController extends Controller
 
             // Remove seeds or plant density products added to wrong categories
             if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'semis-et-plantation') {
-                $action->setDensity("");
+                $action->setDensity(null);
                 $action->setDensityUnit(null);
+                $em->flush();
+            }
+
+            // Remove pH and EC added to wrong categories
+            if ($action->getIntervention()->getName() != 'Relevé pH/EC') {
+                $action->setPH(null);
+                $action->setEc(null);
                 $em->flush();
             }
 
