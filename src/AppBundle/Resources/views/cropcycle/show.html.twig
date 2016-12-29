@@ -167,7 +167,7 @@
                             <td>{{ action.startDatetime | date ('d/m/Y') }}</td>
                             <td>{{ action.nbWorkers }}</td>
 
-                            <td>{{ action.workingDurationLabel }}</td>
+                            <td>{{ action.durationLabel }} {% if action.workingDurationLabel !="0h" %}{% endif %}</td>
                             <td>{{ action.expensesCost |number_format(0, ',', ' ') }} CFP</td>
                         </tr>
                     {% endfor %}

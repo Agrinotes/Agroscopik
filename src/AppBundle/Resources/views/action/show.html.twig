@@ -1,73 +1,71 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block head_javascripts %}
-    {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-{% block plugin_stylesheets %}
-    {{ parent() }}
-    <style>
-
-        table.table-hover td:hover .appear {
-            visibility: visible;
-        }
-
-        table.table-hover td .appear {
-            visibility: hidden;
-        }
+{% block title %} {{ action.cropcycle.plot.name | capitalize }} {{ action.cropcycle.name | capitalize }} {{ action.name | capitalize }}{% endblock %}
 
 
-    </style>
-{% endblock %}
+
 
 {% block page %}
+<div class="page-content">
+    <!-- Panel Add Action -->
+    <div class="row" id="editAction">
+        <div class="col-md-3 col-sm-0">
 
-    <div class="page animsition">
-        <div class="page-header padding-top-20 padding-bottom-10">
-            <ol class="breadcrumb">
-                <li>
-                    <a href="{{ path('plot_show',{'id':action.cropCycle.plot.id}) }}">{{ action.cropCycle.plot.name }}</a>
-                </li>
-                <li><a href="{{ path('cropcycle_show',{'id':action.cropCycle.id}) }}">{{ action.cropCycle.name }}</a>
-                </li>
-                <li class="active">{{ action.name }}</li>
-            </ol>
         </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-9">
-                    {% for flash_message in app.session.flashBag.get('success') %}
-                        <div class="alert dark alert-alt alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            {{ flash_message }}
-                        </div>
-                    {% endfor %}
-                    <div class="panel panel-bordered">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{ action.name }}</h3>
-                            <div class="panel-actions">
-                                {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
-                                    <a class="btn btn-default"
+        <div class="col-md-6">
+            <div class="panel panel-info panel-bordered">
+                <header class="panel-heading">
+                    <div class="panel-actions">
+                                                   {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
+                                    <a style="color:white"
                                        href="{{ path('action_edit', { 'id': action.id }) }}">Modifier</a>
                                 {% endif %}
+</div>
+                    <h3 class="panel-title">{{ action.cropcycle.plot.name | capitalize }} {{ action.cropcycle.name | capitalize }} </h3>
+                </header>
+                <div class="panel-body" style="padding-top:20px;">
+                <h3>{{ action.name }}</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                    {% for period in action.periods %}
+                        {{ period.intervalLabel}}
+
+                        {% if period.durationLabel != "" %}
+                            {{ period.durationLabel }}
+                        {% endif %}
+
+<br/>
+                    {% endfor %}
+                        </div>
+                    </div>
+                    {% if action.nbWorkers != "" or action.nbWorkers != 0 %}
+                        <div class="row" style="margin-top:15px;">
+                            <div class="col-md-12">
+                                <i class="icon wb-user"
+                                   aria-hidden="true"></i>
+                                {{ action.nbWorkers }}
                             </div>
                         </div>
-                        <div class="panel-body">
 
-                            {{ action.comment }}
+                    {% endif %}
+                 {{ action.comment }}
 
                             {% if action.density != 0 %}
 
                                 <h4 class="example-title">
                                     Densité
                                 </h4>
-<p>{{ action.density }} {{ action.densityUnit.symbol }}</p>
-
+<p>{{ action.density }} plants {{ action.densityUnit.symbol }}
+                           {% if action.densityUnit.c == 0  %}
+                               {% set value = action.density/action.cropcycle.area %} soit {{ value | round }} plants/ha
+                            {% elseif action.densityUnit.c == 10000 %}
+                                {% set value = action.density*action.cropcycle.area %} soit environ {{ value | round }} plants au total
+                            {% elseif action.densityUnit.c == 1 %}
+                                {% set value = action.density*10000 %}soit {{ value | round }} plants/ha
                             {% endif %}
+    {% endif %}
 
+</p>
                             {% if action.auxiliary is not empty %}
 
                                 <h4 class="example-title">
@@ -133,49 +131,15 @@
                             {% endif %}
 
 
-                            <h4 class="example-title margin-top-30">
-                                Périodes d'intervention
-                                <span class="label label-info">
-                                    {{ action.progress['completed_actions'] }}
-                                    / {{ action.progress['count_actions'] }}
-                                </span>
-                            </h4>
-                            <table class="table table-hover">
-                                <tbody>
-                                {% for period in action.periods %}
-                                    <tr>
-                                        <td>{{ period.intervalLabel}}
 
-                                            <a href="{{ path('event_edit',{'id':period.id}) }}">
-                                                <i class="icon appear md-edit margin-left-10" style="color:darkgrey"
-                                                   aria-hidden="true">
-                                                </i>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            {% if period.durationLabel != "" %}
-                                            <i class="icon md-time-interval" aria-hidden="true"></i>
-                                            {{ period.durationLabel }}
-                                            {% endif %}
-                                        </td>
-                                        <td>
-                                            {% if period.status == "ActiveAction" %}
-                                                <span class="pull-right label label-danger  margin-right-10px">En cours</span>
-                                            {% elseif period.status == "CompletedAction" %}
-                                                <span class="pull-right label label-info  margin-right-10px">Terminée</span>
-                                            {% elseif period.status == "PotentialAction" %}
-                                                <span class="pull-right label label-default  margin-right-10px">A venir</span>
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                                </tbody>
-                            </table>
 
-                            <h4 class="example-title margin-top-30">
-                                Matériel utilisé
-                            </h4>
+
+
+
                             {% if action.tractors is not empty and action.implements is not empty %}
+                                <h4 class="example-title margin-top-30">
+                                    Matériel utilisé
+                                </h4>
                                 <ul>
                                     {% for tractor in action.tractors %}
                                         <li>
@@ -188,23 +152,14 @@
                                         </li>
                                     {% endfor %}
                                 </ul>
-                            {% else %}
-                                <p>
-                                    Aucun matériel renseigné
-                                </p>
-                            {% endif %}
-                            {% if action.nbWorkers != "" or action.nbWorkers != 0 %}
-
-                                <h4 class="example-title margin-top-30">
-                                Nombre de personnes
-                            </h4>
-                                {{ action.nbWorkers }}
                             {% endif %}
 
-                            <h4 class="example-title margin-top-30">
-                                Quantités récoltées
-                            </h4>
+
+
                             {% if action.harvestProducts is not empty %}
+                                <h4 class="example-title margin-top-30">
+                                    Quantités récoltées
+                                </h4>
                                 <ul>
                                     {% for product in action.harvestProducts %}
                                         <li>
@@ -212,34 +167,12 @@
                                         </li>
                                     {% endfor %}
                                 </ul>
-                            {% else %}
-                                <p>
-                                    Aucun matériel renseigné
-                                </p>
                             {% endif %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                Actions sensibles
-                            </div>
-                        </div>
-                        <div class="panel-body">
-
-
-                            {% if is_granted('DELETE', action) or is_granted('ROLE_ADMIN') %}
-                                {{ form_start(delete_form) }}
-                                <button type="submit" class="btn btn-danger">Supprimer</button>
-                                {{ form_end(delete_form) }}
-                            {% endif %}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
 {% endblock %}
 
