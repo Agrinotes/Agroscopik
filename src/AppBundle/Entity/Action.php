@@ -138,6 +138,18 @@ class Action
      */
     private $nbWorkers;
 
+    /**
+     *
+     * @ORM\Column(name="pH", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $pH;
+
+    /**
+     *
+     * @ORM\Column(name="ec", type="decimal", precision=10, scale=2, nullable=true)
+     */
+    private $ec;
+
 
     /**
      * Get id
@@ -990,6 +1002,38 @@ $endTime = $endTime->add($period->getDuration());
 
         }
         return $total;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPH()
+    {
+        return $this->pH;
+    }
+
+    /**
+     * @param mixed $pH
+     */
+    public function setPH($pH)
+    {
+        $this->pH = $pH;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEc()
+    {
+        return $this->ec;
+    }
+
+    /**
+     * @param mixed $ec
+     */
+    public function setEc($ec)
+    {
+        $this->ec = $ec;
     }
 
 }
