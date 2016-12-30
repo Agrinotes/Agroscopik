@@ -12,7 +12,8 @@
           href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asspinner/asSpinner.css') }}">
 {% endblock %}
@@ -55,78 +56,83 @@
             text-decoration: underline !important;
             color: #526069;
         }
-        
-        label{
+
+        label {
             font-weight: 500;
             font-family: Roboto, sans-serif;
         }
 
-        .hidden{
+        .hidden {
             display: none;
         }
 
-        .rotate{
+        .rotate {
             -moz-transition: all .2s linear;
             -webkit-transition: all .2s linear;
             transition: all .2s linear;
         }
 
-        .rotate.down{
-            -ms-transform:rotate(135deg);
-            -moz-transform:rotate(135deg);
-            -webkit-transform:rotate(135deg);
-            transform:rotate(135deg);
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        .highcharts-credits {
+            visibility: hidden !important;
         }
     </style>
 {% endblock %}
 
 {% block page %}
     <div class="page-content">
-        <!-- Panel Basic used as temporary fix -->
-        <div class="panel " style="display:none;">
-            <header class="panel-heading">
-                <div class="panel-actions"></div>
-                <h3 class="panel-title">{{ cropCycle.name }}</h3>
-            </header>
-            <div class="panel-body">
-                <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
-                    <thead>
-                    <tr>
-                        <th>Temporary fix here</th>
-                    </tr>
-                    </thead>
-                    <tfoot>
-                    <tr>
-                        <th>Temporary fix here</th>
-                    </tr>
-                    </tfoot>
-                    <tbody></tbody>
-                </table>
+        <div class="row">
+            <!-- Panel Basic used as temporary fix -->
+            <div class="panel " style="display:none;">
+                <header class="panel-heading">
+                    <div class="panel-actions"></div>
+                    <h3 class="panel-title">{{ cropCycle.name }}</h3>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+                        <thead>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </tfoot>
+                        <tbody></tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <!-- End Panel Basic -->
+            <!-- End Panel Basic -->
 
-        <!-- Panel Table Tools -->
-        <div class="panel" id="tableTools">
-            <header class="panel-heading">
-                <h3 class="panel-title">{{ cropCycle.plot.name | capitalize }} {{ cropCycle.name | capitalize }}</h3>
-            </header>
-            <div class="panel-body">
-                <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
-                    <thead>
-                    <tr>
-                        <th>Intervention</th>
-                        <th>Date</th>
-                        <th>Personnes</th>
-                        <th>Temps de travail</th>
-                        <th>Coûts associés</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for action in cropCycle.actions %}
-                        <tr id="td_{{ action.id }}">
-                            <td><a class="actionLink"
-                                   href="{{ path('action_show',{'id':action.id}) }}">{{ action.name }} </a>
+            <!-- Panel Table Tools -->
+            <div class="panel" id="tableTools">
+                <header class="panel-heading">
+                    <h3 class="panel-title">{{ cropCycle.plot.name | capitalize }} {{ cropCycle.name | capitalize }}</h3>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
+                        <thead>
+                        <tr>
+                            <th>Intervention</th>
+                            <th>Date</th>
+                            <th>Personnes</th>
+                            <th>Temps de travail</th>
+                            <th>Coûts associés</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for action in cropCycle.actions %}
+                            <tr id="td_{{ action.id }}">
+                                <td><a class="actionLink"
+                                       href="{{ path('action_show',{'id':action.id}) }}">{{ action.name }} </a>
                 
                 <span class="pull-right"><a href="{{ path('action_edit',{'id':action.id}) }}"
                                             class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
@@ -164,19 +170,40 @@
                           style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Supprimer"><i
                               class="icon wb-trash" aria-hidden="true"></i></button>
                </span></td>
-                            <td>{{ action.startDatetime | date ('d/m/Y') }}</td>
-                            <td>{{ action.nbWorkers }}</td>
+                                <td>{{ action.startDatetime | date ('d/m/Y') }}</td>
+                                <td>{{ action.nbWorkers }}</td>
 
-                            <td>{{ action.durationLabel }} {% if action.workingDurationLabel !="0h" %}{% endif %}</td>
-                            <td>{{ action.expensesCost |number_format(0, ',', ' ') }} CFP</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                                <td>{{ action.durationLabel }} {% if action.workingDurationLabel !="0h" %}{% endif %}</td>
+                                <td>{{ action.expensesCost |number_format(0, ',', ' ') }} CFP</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <!-- End Panel Table Tools -->
+            <!-- End Panel Table Tools -->
 
+            {% if cropCycle.plot.hydroponics %}
+                <!-- pH & EC charts -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="panel" id="ph-ec-chart">
+                        <div class="panel-body">
+                            <div id="container" style="min-width: 310px; height: 400px; margin: auto"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End pH & EC charts -->
+            {% endif %}
+
+            <!-- Button Add Action -->
+            <div class="site-action">
+                <button type="button" onClick="switchPanels();"
+                        class="rotate site-action site-floataction btn-raised btn btn-danger btn-floating">
+                    <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
+                </button>
+            </div>
+            <!-- End Button Add Action -->
+        </div>
         <!-- Panel Add Action -->
         <div class="row" id="addAction" style="display: none;">
             <div class="col-md-3 col-sm-0">
@@ -195,14 +222,6 @@
             </div>
         </div>
         <!-- End Panel Add Action -->
-
-        <!-- Button Add Action -->
-        <div class="site-action">
-            <button type="button" onClick="switchPanels();" class="rotate site-action site-floataction btn-raised btn btn-danger btn-floating">
-                <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
-            </button>
-        </div>
-        <!-- End Button Add Action -->
 
 
     </div>
@@ -235,6 +254,9 @@
     <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
     <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
     <script src="{{ asset('front/global/js/components/asspinner.js') }}"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 {% endblock %}
 
 {% block page_javascripts %}
@@ -308,23 +330,99 @@
 
     <script>
         var i = 0;
-        function switchPanels(){
-            if(i%2 == 0){
-            $('#tableTools').hide();
-            $('#addAction').fadeIn(400);
-                if(i==0){
+        function switchPanels() {
+            if (i % 2 == 0) {
+                $('#tableTools').hide();
+                $('#ph-ec-chart').hide();
+                $('#addAction').fadeIn(400);
+                if (i == 0) {
                     $('.select2').select2();
-                    $('.select2-keep').select2({closeOnSelect:false});
+                    $('.select2-keep').select2({closeOnSelect: false});
                 }
-            }else{
+            } else {
                 $('#addAction').hide();
                 $('#tableTools').fadeIn(400);
+                $('#ph-ec-chart').fadeIn(400);
+
             }
             i++;
-       };
+        }
+        ;
 
-        $(".rotate").click(function(){
+        $(".rotate").click(function () {
             $(this).toggleClass("down");
         });
+    </script>
+    <script>
+        $(function () {
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'spline',
+
+                },
+                title: {
+                    text: 'Suivi EC et pH'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        month: '%e %b',
+                        year: '%b'
+                    }
+
+                },
+                yAxis: [{
+
+                    title: {
+                        text: 'pH'
+                    }
+                }, {
+
+                    title: {
+                        text: 'EC (mS/cm)'
+                    },
+                    opposite: true
+                }
+                ],
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x:%e %b}: {point.y:.2f}'
+                }
+                ,
+
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            enabled: true
+                        }
+                    }
+                }
+                ,
+
+                series: [{
+                    name: 'pH',
+                    yAxis: 0,
+                    data: [
+                        {% for action in keep %}
+                        [Date.UTC({{ action.startDatetime | date ('Y,m,d') }}), {{ action.ph }}]
+                        {% if not loop.last %}, {% endif %}
+
+                        {% endfor %}
+
+                    ]
+                }, {
+                    name: 'EC (mS/cm)',
+                    yAxis: 1,
+                    data: [
+                        {% for action in keep %}
+                        [Date.UTC({{ action.startDatetime | date ('Y') }}, {{ action.startDatetime | date ('m') }}, {{ action.startDatetime | date ('d') }}), {{ action.ec }}]
+                        {% if not loop.last %}, {% endif %}
+
+                        {% endfor %}
+                    ]
+                }]
+            });
+        })
+        ;
     </script>
 {% endblock %}

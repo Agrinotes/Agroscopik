@@ -158,24 +158,6 @@ class CropCycleController extends Controller
      */
     public function showAction(Request $request, CropCycle $cropCycle)
     {
-
-        return $this->render('@App/cropcycle/show.html.twig', array(
-            'cropCycle' => $cropCycle,
-        ));
-    }
-
-    /**
-     * Render actions related to pH and EC in order to make graphs
-     *
-     * @Route("/cropcycle/{id}/phec", name="cropcycle_phec_show")
-     * @Method({"GET"})
-     * @param Request $request
-     * @param CropCycle $cropCycle
-     * @return \Symfony\Component\HttpFoundation\Response
-     * @Security("is_granted('VIEW', cropCycle) or is_granted('ROLE_ADMIN')")
-     */
-    public function showPhECAction(Request $request, CropCycle $cropCycle)
-    {
         $actions = $cropCycle->getActions();
 
         $keep = new ArrayCollection();
@@ -185,11 +167,12 @@ class CropCycleController extends Controller
                 $keep->add($action);
             }
         }
-
-        return $this->render('@App/cropcycle/showPhEc.html.twig', array(
-            'actions' => $keep,
+        return $this->render('@App/cropcycle/show.html.twig', array(
+            'cropCycle' => $cropCycle,
+            'keep' => $keep,
         ));
     }
+
 
     /**
      * Displays a form to edit an existing CropCycle entity.
