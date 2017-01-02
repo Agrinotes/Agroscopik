@@ -14,9 +14,18 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
 
 class ActionFarmFertilizerMvtType extends AbstractType
 {
+    private $tokenStorage;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -39,43 +48,60 @@ class ActionFarmFertilizerMvtType extends AbstractType
                         ->where("c.slug = 'useAction'");
                 },
             ))
-            ->add('fertilizer', EntityType::class,array(
-                'class' => 'AppBundle:FarmFertilizer',
-                'choice_label' => 'fertilizer.name',
-                'attr' => array('class' => 'form-control'),
-                'label' => '',
-                'label_attr' => array('class'=>'hidden'),
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-            ))
-            ->add('amount',NumberType::class,array(
-                'label'=>'',
-                'label_attr' => array('class'=>'hidden'),
-                'attr' => array('class' => 'form-control','placeholder'=>'0'),
-                'required'=>false,
+;
 
-            ))
-            ->add('unit',EntityType::class, array(
-                'class' => 'AppBundle:Unit',
-                'choice_label' => 'symbol',
-                'attr' => array('class' => 'form-control'),
-                'label' => '',
-                'label_attr' => array('class'=>'hidden'),
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->join('u.unitCategory', 'cat')
-                        ->addSelect('cat')
-                        ->where('cat.slug = :slug')
-                        ->setParameter('slug','mass')
-                        ->orWhere('cat.slug = :slug2')
-                        ->setParameter('slug2','volume')
-                        ;
-                },
-            ));
+        $farm = $this->tokenStorage->getToken()->getUser()->getFarm()->getId();
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($farm) {
+                $form = $event->getForm();
+
+                $fertilizerOptions = array(
+                    'class' => 'AppBundle:FarmFertilizer',
+                    'choice_label' => 'fertilizer.name',
+                    'attr' => array('class' => 'form-control'),
+                    'label' => '',
+                    'label_attr' => array('class'=>'hidden'),
+                    'required' => true,
+                    'multiple' => false,
+                    'expanded' => false,
+                    'query_builder' => function (EntityRepository $er) use ($farm) {
+                        return $er->qbFindAllForCurrentFarm($farm);
+                    },
+                );
+
+                $form->add('fertilizer', EntityType::class, $fertilizerOptions)
+                    ->add('amount',NumberType::class,array(
+                        'label'=>'',
+                        'label_attr' => array('class'=>'hidden'),
+                        'attr' => array('class' => 'form-control','placeholder'=>'0'),
+                        'required'=>false,
+
+                    ))
+                    ->add('unit',EntityType::class, array(
+                        'class' => 'AppBundle:Unit',
+                        'choice_label' => 'symbol',
+                        'attr' => array('class' => 'form-control'),
+                        'label' => '',
+                        'label_attr' => array('class'=>'hidden'),
+                        'required' => true,
+                        'multiple' => false,
+                        'expanded' => false,
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er->createQueryBuilder('u')
+                                ->join('u.unitCategory', 'cat')
+                                ->addSelect('cat')
+                                ->where('cat.slug = :slug')
+                                ->setParameter('slug','mass')
+                                ->orWhere('cat.slug = :slug2')
+                                ->setParameter('slug2','volume')
+                                ;
+                        },
+                    ));
+
+            }
+        );
 
     }
 

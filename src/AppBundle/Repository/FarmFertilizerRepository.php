@@ -10,13 +10,22 @@ namespace AppBundle\Repository;
  */
 class FarmFertilizerRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllForCurrentFarm ($id)
-    {
-        $qb = $this->createQueryBuilder('s');
 
-        $qb->where('s.farm = :farm')
+
+    public function qbFindAllForCurrentFarm ($id)
+    {
+        $qb = $this->createQueryBuilder('f');
+
+        $qb->where('f.farm = :farm')
             ->setParameter('farm', $id)
         ;
+
+        return $qb;
+    }
+
+    public function findAllForCurrentFarm ($id)
+    {
+        $qb = $this->qbFindAllForCurrentFarm($id);
 
         return $qb
             ->getQuery()
