@@ -14,9 +14,18 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+
 
 class ActionFarmSpecialityMvtType extends AbstractType
 {
+    private $tokenStorage;
+
+    public function __construct(TokenStorageInterface $tokenStorage)
+    {
+        $this->tokenStorage = $tokenStorage;
+    }
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -39,43 +48,62 @@ class ActionFarmSpecialityMvtType extends AbstractType
                         ->where("c.slug = 'useAction'");
                 },
             ))
-            ->add('speciality', EntityType::class,array(
-                'class' => 'AppBundle:FarmSpeciality',
-                'choice_label' => 'speciality.name',
-                'attr' => array('class' => 'form-control'),
-                'label' => 'Choisir le nom du produit',
-                'label_attr' => array('class'=>'hidden'),
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-            ))
-            ->add('amount',NumberType::class,array(
-                'label'=>'',
-                'label_attr' => array('class'=>'hidden'),
-                'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
-                'required'=>false,
+;
 
-            ))
-            ->add('unit',EntityType::class, array(
-                'class' => 'AppBundle:Unit',
-                'choice_label' => 'symbol',
-                'attr' => array('class' => 'form-control'),
-                'label' => '',
-                'label_attr' => array('class'=>'hidden'),
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->join('u.unitCategory', 'cat')
-                        ->addSelect('cat')
-                        ->where('cat.slug = :slug')
-                        ->setParameter('slug','mass')
-                        ->orWhere('cat.slug = :slug2')
-                        ->setParameter('slug2','volume')
-                        ;
-                },
-            ));
+        $farm = $this->tokenStorage->getToken()->getUser()->getFarm()->getId();
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($farm) {
+                $form = $event->getForm();
+
+                $specialityOptions = array(
+                    'class' => 'AppBundle:FarmSpeciality',
+                    'choice_label' => 'speciality.name',
+                    'attr' => array('class' => 'form-control'),
+                    'label' => 'Choisir le nom du produit',
+                    'label_attr' => array('class'=>'hidden'),
+                    'required' => true,
+                    'multiple' => false,
+                    'expanded' => false,
+                    'query_builder' => function (EntityRepository $er) use ($farm) {
+                        return $er->qbFindAllForCurrentFarm($farm);
+                    },
+                );
+
+                $form->add('speciality', EntityType::class, $specialityOptions)
+                    ->add('amount',NumberType::class,array(
+                        'label'=>'',
+                        'label_attr' => array('class'=>'hidden'),
+                        'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
+                        'required'=>false,
+
+                    ))
+                    ->add('unit',EntityType::class, array(
+                        'class' => 'AppBundle:Unit',
+                        'choice_label' => 'symbol',
+                        'attr' => array('class' => 'form-control'),
+                        'label' => '',
+                        'label_attr' => array('class'=>'hidden'),
+                        'required' => true,
+                        'multiple' => false,
+                        'expanded' => false,
+                        'query_builder' => function (EntityRepository $er) {
+                            return $er->createQueryBuilder('u')
+                                ->join('u.unitCategory', 'cat')
+                                ->addSelect('cat')
+                                ->where('cat.slug = :slug')
+                                ->setParameter('slug','mass')
+                                ->orWhere('cat.slug = :slug2')
+                                ->setParameter('slug2','volume')
+                                ;
+                        },
+                    ))
+;
+
+            }
+        );
+
 
     }
 

@@ -15,6 +15,11 @@ services:
         arguments: ['@security.token_storage']
         tags:
             - { name: form.type }
+    app.form.actionspeciality:
+        class: AppBundle\Form\ActionFarmSpecialityMvtType
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: form.type }
     app.period.listener:
         class: AppBundle\EventListener\PeriodListener
         tags:
