@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/ActionFarmSpecialityMvtType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ActionFarmSpecialityMvtType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/FarmSpecialityRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/FarmSpecialityRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/services.yml" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/services.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,41 +24,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ActionFarmFertilizerMvtType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionFarmFertilizerMvtType.php">
+      <file leaf-file-name="CropCycle.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.538462">
-              <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="103" selection-end-column="10" />
-              <folding>
-                <element signature="e#34#68#0#PHP" expanded="true" />
-                <element signature="e#1157#1708#0#PHP" expanded="false" />
-                <element signature="e#2003#2602#0#PHP" expanded="false" />
-                <element signature="e#2738#3000#0#PHP" expanded="false" />
-                <element signature="e#3054#4061#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionFarmSpecialityMvtType.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionFarmSpecialityMvtType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2847125">
-              <caret line="49" column="14" selection-start-line="49" selection-start-column="14" selection-end-line="49" selection-end-column="14" />
-              <folding>
-                <element signature="e#34#68#0#PHP" expanded="true" />
-                <element signature="e#1157#1708#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FarmFertilizerRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/FarmFertilizerRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.153846">
-              <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
+            <state vertical-scroll-proportion="-13.076923">
+              <caret line="24" column="34" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Action.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-28.076923">
+              <caret line="1077" column="33" selection-start-line="1077" selection-start-column="33" selection-end-line="1077" selection-end-column="33" />
+              <folding>
+                <element signature="e#36#53#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Irrigation.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Irrigation.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7868163">
+              <caret line="78" column="7" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Event.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Event.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.230769">
+              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="134" selection-end-column="5" />
+              <folding>
+                <element signature="e#36#53#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,7 +83,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/CropController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/crop/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ImplementController.php" />
@@ -114,7 +116,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Plot.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/PlotType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/new_from_dashboard.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/CropCycleType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" />
@@ -131,6 +132,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/config/services.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/FarmSpecialityRepository.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionFarmSpecialityMvtType.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Irrigation.php" />
       </list>
     </option>
   </component>
@@ -312,29 +315,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Repository" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik-NC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Form" />
+              <option name="myItemId" value="Entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -349,28 +330,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik-NC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -549,20 +508,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/remark/3.0.5/classic/topbar/assets/examples/js/apps/location.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -762,14 +707,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30995792">
-          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/CropCycleType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23842917">
@@ -826,14 +763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -950,7 +879,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/FarmFertilizerRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.153846">
+        <state vertical-scroll-proportion="0.33380085">
           <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
           <folding />
         </state>
@@ -964,6 +893,42 @@
             <element signature="e#34#68#0#PHP" expanded="true" />
             <element signature="e#1157#1708#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.076923">
+          <caret line="24" column="34" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.076923">
+          <caret line="1077" column="33" selection-start-line="1077" selection-start-column="33" selection-end-line="1077" selection-end-column="33" />
+          <folding>
+            <element signature="e#36#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Event.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="134" selection-end-column="5" />
+          <folding>
+            <element signature="e#36#53#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Irrigation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7868163">
+          <caret line="78" column="7" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>

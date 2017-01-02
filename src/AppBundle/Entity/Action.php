@@ -24,6 +24,7 @@ class Action
     public function __construct()
     {
         $this->periods = new ArrayCollection();
+        $this->irrigations = new ArrayCollection();
         $this->tractors = new ArrayCollection();
         $this->implements = new ArrayCollection();
     }
@@ -53,6 +54,11 @@ class Action
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Event", mappedBy="action", cascade={"persist","remove"})
      */
     private $periods;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Irrigation", mappedBy="action", cascade={"persist","remove"})
+     */
+    private $irrigations;
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Tractor",inversedBy="actions" ,cascade={"persist"})
@@ -1036,5 +1042,40 @@ $endTime = $endTime->add($period->getDuration());
         $this->ec = $ec;
     }
 
+    /**
+     * Add irrigation
+     *
+     * @param \AppBundle\Entity\Irrigation $irrigation
+     * @return Action
+     */
+    public function addIrrigation(Irrigation $irrigation)
+    {
+        $this->irrigations[] = $irrigation;
+
+        // We also add the current action to the period
+        $irrigation->setAction($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove irrigation
+     *
+     * @param \AppBundle\Entity\Irrigation $irrigation
+     */
+    public function removeIrrigation(Irrigation $irrigation)
+    {
+        $this->irrigations->removeElement($irrigation);
+    }
+
+    /**
+     * Get action
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getIrrigations()
+    {
+        return $this->irrigations;
+    }
 }
 
