@@ -42,11 +42,21 @@ class Irrigation
     private $flow;
 
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unit")
+     */
+    private $flowUnit;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="volume", type="float", nullable=true)
      */
     private $volume;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Unit")
+     */
+    private $volumeUnit;
 
 
     /**
@@ -152,6 +162,38 @@ class Irrigation
     public function getVolume()
     {
         return $this->volume;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFlowUnit()
+    {
+        return $this->flowUnit;
+    }
+
+    /**
+     * @param mixed $flowUnit
+     */
+    public function setFlowUnit($flowUnit)
+    {
+        $this->flowUnit = $flowUnit;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVolumeUnit()
+    {
+        return $this->volumeUnit;
+    }
+
+    /**
+     * @param mixed $volumeUnit
+     */
+    public function setVolumeUnit($volumeUnit)
+    {
+        $this->volumeUnit = $volumeUnit;
     }
 }
 
