@@ -104,6 +104,22 @@ class ActionController extends Controller
                 $em->flush();
             }
 
+            // Remove irrigations added to wrong categories
+            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'irrigation') {
+                $irrigations = $action->getIrrigations();
+                foreach ($irrigations as $i) {
+                    $em->remove($i);
+                }
+                $em->flush();
+            }
+
+            // Remove tank volume added to wrong intervention
+            if ($action->getIntervention()->getName() != 'Préparation d\'une cuve de solution-mère') {
+                $action->setTankVolume(null);
+                $em->flush();
+            }
+
+
             // Call ACL service
             $aclProvider = $this->get('security.acl.provider');
 
