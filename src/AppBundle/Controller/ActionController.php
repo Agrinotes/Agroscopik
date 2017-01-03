@@ -119,6 +119,12 @@ class ActionController extends Controller
                 $em->flush();
             }
 
+            // Remove drainage added to wrong intervention
+            if ($action->getIntervention()->getName() != 'Relevé de drainage') {
+                $action->setDrainage(null);
+                $em->flush();
+            }
+
             // Call ACL service
             $aclProvider = $this->get('security.acl.provider');
 
