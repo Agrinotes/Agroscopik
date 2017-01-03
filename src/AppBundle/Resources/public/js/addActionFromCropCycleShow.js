@@ -358,6 +358,8 @@
         $('#auxiliary').hide();
         $('#ph').hide();
         $('#irrigations').hide();
+        $('#tankVolume').hide();
+
 
         $('#action_intervention').on('change', function () {
             if ($("#action_intervention").select2('data')[0]['text'] == "Traitement phytosanitaire") {
@@ -367,6 +369,7 @@
                 $('#farmFertilizers').hide("slow");
                 $('#ph').hide("slow");
                 $('#irrigations').hide();
+                $('#tankVolume').hide();
 
                 $('#farmSpecialities').show("slow");
 
@@ -381,8 +384,25 @@
                 $('#harvestProducts').hide("slow");
                 $('#ph').hide("slow");
                 $('#irrigations').hide();
+                $('#tankVolume').hide();
 
                 $('#farmFertilizers').show("slow");
+
+                $('#periods').show("slow");
+                $('#nbWorkers').show("slow");
+                $('#tractors').show("slow");
+
+            }else if ($("#action_intervention").select2('data')[0]['text'] == "Préparation d'une cuve de solution-mère") {
+                $('#density').hide("slow");
+                $('#farmSpecialities').hide("slow");
+                $('#auxiliary').hide("slow");
+                $('#harvestProducts').hide("slow");
+                $('#ph').hide("slow");
+                $('#irrigations').hide();
+
+                $('#farmFertilizers').show("slow");
+                $('#tankVolume').show("slow");
+
 
                 $('#periods').show("slow");
                 $('#nbWorkers').show("slow");
@@ -395,6 +415,7 @@
                 $('#harvestProducts').hide("slow");
                 $('#ph').hide("slow");
                 $('#farmFertilizers').hide("slow");
+                $('#tankVolume').hide();
 
                 $('#irrigations').show("slow");
 
@@ -409,6 +430,7 @@
                 $('#farmFertilizers').hide("slow");
                 $('#ph').hide("slow");
                 $('#irrigations').hide();
+                $('#tankVolume').hide();
 
                 $('#harvestProducts').show("slow");
 
@@ -424,6 +446,7 @@
                 $('#farmFertilizers').hide("slow");
                 $('#ph').hide("slow");
                 $('#irrigations').hide();
+                $('#tankVolume').hide();
 
                 $('#auxiliary').show("slow");
 
@@ -441,6 +464,7 @@
                 $('#farmFertilizers').hide("slow");
                 $('#ph').hide("slow");
                 $('#irrigations').hide();
+                $('#tankVolume').hide();
 
                 $('#density').show("slow");
 
@@ -460,6 +484,7 @@
                 $('#tractors').hide("slow");
                 $('#ph').hide("slow");
                 $('#irrigations').hide();
+                $('#tankVolume').hide();
 
             } else if($("#action_intervention").select2('data')[0]['text'] == "Relevé pH/EC") {
                 $('#density').hide("slow");
@@ -471,6 +496,7 @@
                 $('#expenses').hide("slow");
                 $('#tractors').hide("slow");
                 $('#irrigations').hide();
+                $('#tankVolume').hide();
 
                 $('#ph').show("slow");
 
@@ -483,6 +509,7 @@
                 $('#farmFertilizers').hide("slow");
                 $('#ph').hide("slow");
                 $('#irrigations').hide();
+                $('#tankVolume').hide();
 
                 $('#periods').show("slow");
                 $('#expenses').show("slow");

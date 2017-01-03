@@ -156,6 +156,13 @@ class Action
      */
     private $ec;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="tankVolume", type="integer", nullable=true)
+     */
+    private $tankVolume;
+
 
     /**
      * Get id
@@ -1078,6 +1085,22 @@ $endTime = $endTime->add($period->getDuration());
     public function getIrrigations()
     {
         return $this->irrigations;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTankVolume()
+    {
+        return $this->tankVolume;
+    }
+
+    /**
+     * @param int $tankVolume
+     */
+    public function setTankVolume($tankVolume)
+    {
+        $this->tankVolume = $tankVolume;
     }
 }
 

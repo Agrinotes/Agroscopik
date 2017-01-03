@@ -20,11 +20,11 @@
     <div class="col-sm-12 col-md-8" style="margin-left: -30px; padding-right:0px;">
         {% form_theme form 'AppBundle:form:datetime.html.twig' %}
         {{ form_widget(form.periods) }}
-{#
-        <a class="pull-right helpLink" href="#" id="add_period" style="margin-top: -20px;">
-            <i class="icon md-plus-circle-o" aria-hidden="true"></i>
-            Ajouter une autre période
-        </a>#}
+        {#
+                <a class="pull-right helpLink" href="#" id="add_period" style="margin-top: -20px;">
+                    <i class="icon md-plus-circle-o" aria-hidden="true"></i>
+                    Ajouter une autre période
+                </a>#}
     </div>
 </div>
 
@@ -32,8 +32,9 @@
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8" style="margin-left: -30px; padding-right:0px;">
 
-        {{ form_label(form.irrigations) }}<div>
-        <a href="javascript:void(0);" onclick="$('.durationFlow').toggle();$('.volume').toggle();
+        {{ form_label(form.irrigations) }}
+        <div>
+            <a href="javascript:void(0);" onclick="$('.durationFlow').toggle();$('.volume').toggle();
 
                                    $(this).text(function(i, text){
 
@@ -45,11 +46,11 @@
         {{ form_errors(form.irrigations) }}
         {{ form_widget(form.irrigations) }}
 
-                <a class="pull-right helpLink" href="#" id="add_irrigation">
-                    <i class="icon wb-plus" aria-hidden="true"></i>
-                    Ajouter une autre irrigation
-                </a>
-            </div>
+        <a class="pull-right helpLink" href="#" id="add_irrigation">
+            <i class="icon wb-plus" aria-hidden="true"></i>
+            Ajouter une autre irrigation
+        </a>
+    </div>
 
 </div>
 
@@ -76,7 +77,7 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-4">
-    <div class="form-group">
+        <div class="form-group">
             {{ form_label(form.ec) }}
             {{ form_errors(form.ec) }}
 
@@ -109,18 +110,18 @@
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8">
         {% if app.user.farm.farmSpecialities is not empty %}
-                {{ form_label(form.aim) }}
-                {{ form_errors(form.aim) }}
-                {{ form_widget(form.aim) }}
+            {{ form_label(form.aim) }}
+            {{ form_errors(form.aim) }}
+            {{ form_widget(form.aim) }}
 
             <div class="form-group">
-            <label style="margin-bottom: -15px; margin-top: 15px;">Produits phytosanitaires</label>
+                <label style="margin-bottom: -15px; margin-top: 15px;">Produits phytosanitaires</label>
 
                 {{ form_errors(form.farmSpecialityMvts) }}
                 {{ form_widget(form.farmSpecialityMvts) }}
-                            <a class="pull-right helpLink" href="#" id="add_mvt"><i class="icon md-plus-circle-o"
-                                                           aria-hidden="true"></i> Ajouter un autre
-                produit</a>
+                <a class="pull-right helpLink" href="#" id="add_mvt"><i class="icon md-plus-circle-o"
+                                                                        aria-hidden="true"></i> Ajouter un autre
+                    produit</a>
             </div>
         {% else %}
             <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
@@ -138,15 +139,19 @@
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8">
         {% if app.user.farm.farmFertilizers is not empty %}
-
+            <div class="form-group hidden" id="tankVolume">
+                {{ form_label(form.tankVolume) }}
+                {{ form_errors(form.tankVolume) }}
+                {{ form_widget(form.tankVolume) }}
+            </div>
             <div class="form-group">
-            <label style="margin-bottom: -5px;">Engrais et Amendements</label>
-            {{ form_errors(form.farmFertilizerMvts) }}
-            {{ form_widget(form.farmFertilizerMvts) }}
+                <label style="margin-bottom: -5px;">Engrais et Amendements</label>
+                {{ form_errors(form.farmFertilizerMvts) }}
+                {{ form_widget(form.farmFertilizerMvts) }}
 
-            <a class="pull-right helpLink" href="#" id="add_ferti_mvt">
-                Ajouter un autre engrais ou amendement
-            </a>
+                <a class="pull-right helpLink" href="#" id="add_ferti_mvt">
+                    Ajouter un autre engrais ou amendement
+                </a>
             </div>
         {% else %}
             <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
@@ -181,15 +186,16 @@
     <div class="col-sm-6 col-md-4">
         <div class="form-group">
             <label>Main d'oeuvre et Matériel</label>
-        <div class="input-group">
+
+            <div class="input-group">
                         <span class="input-group-addon">
                <i class="icon wb-user"
                   aria-hidden="true"></i>
             </span>
-            {{ form_widget(form.nbWorkers) }}
-            {{ form_errors(form.nbWorkers) }}
+                {{ form_widget(form.nbWorkers) }}
+                {{ form_errors(form.nbWorkers) }}
 
-        </div>
+            </div>
         </div>
     </div>
 </div>
@@ -200,17 +206,17 @@
     <div class="col-sm-12 col-md-8">
 
         {% if app.user.farm.tractors is not empty %}
-        <div class="form-group">
+            <div class="form-group">
 
-        <div class="input-group">
+                <div class="input-group">
                         <span class="input-group-addon">
                <i class="icon wb-settings"
                   aria-hidden="true"></i>
             </span>
-        {{ form_errors(form.tractors) }}
-            {{ form_widget(form.tractors) }}
-        </div>
-        </div>
+                    {{ form_errors(form.tractors) }}
+                    {{ form_widget(form.tractors) }}
+                </div>
+            </div>
         {% else %}
             <div class="hidden">
                 {{ form_errors(form.tractors) }}
@@ -223,17 +229,17 @@
 
 
         {% if app.user.farm.implements is not empty %}
-        <div class="form-group">
+            <div class="form-group">
 
-        <div class="input-group">
+                <div class="input-group">
                         <span class="input-group-addon">
                <i class="icon wb-hammer"
                   aria-hidden="true"></i>
             </span>
-            {{ form_errors(form.implements) }}
-            {{ form_widget(form.implements) }}
+                    {{ form_errors(form.implements) }}
+                    {{ form_widget(form.implements) }}
+                </div>
             </div>
-        </div>
         {% else %}
             <div class="hidden">
                 {{ form_errors(form.implements) }}
@@ -277,7 +283,7 @@
 <div class="row" style="margin-top:20px;">
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8" style="text-align:right;">
-            <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
-            {{ form_end(form) }}
+        <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
+        {{ form_end(form) }}
     </div>
 </div>

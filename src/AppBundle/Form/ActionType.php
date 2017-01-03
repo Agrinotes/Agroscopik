@@ -70,6 +70,7 @@ class ActionType extends AbstractType
                 'by_reference' => false,
                 'label' => 'Définir les produits utilisés',
             ))
+
             ->add('farmFertilizerMvts', CollectionType::class, array(
                 'entry_type' => ActionFarmFertilizerMvtType::class,
                 'allow_add' => true,
@@ -143,6 +144,12 @@ class ActionType extends AbstractType
                 'attr' => array('class' => 'form-control', 'min' => 0, 'value' => 1, 'step'=>0.01),
                 'required' => false,
             ))
+            ->add('tankVolume', IntegerType::class, array(
+                'required' => false,
+                'label' => 'Volume de la cuve (L)',
+                'attr' => array('class' => 'form-control', 'min' => 0, 'value' => '100'),
+            ))
+
         ;
 
         // grab the user, do a quick sanity check that one exists
