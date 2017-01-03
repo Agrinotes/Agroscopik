@@ -174,7 +174,7 @@
                                 <td>{{ action.nbWorkers }}</td>
 
                                 <td>{{ action.durationLabel }} {% if action.workingDurationLabel !="0h" %}{% endif %}</td>
-                                <td>{{ action.expensesCost |number_format(0, ',', ' ') }} CFP</td>
+                                <td>{% if action.expensesCost is not empty %}{{ action.expensesCost |number_format(0, ',', ' ') }} CFP {%  endif %}</td>
                             </tr>
                         {% endfor %}
                         </tbody>

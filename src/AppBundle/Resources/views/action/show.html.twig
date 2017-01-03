@@ -6,111 +6,117 @@
 
 
 {% block page %}
-<div class="page-content">
-    <!-- Panel Add Action -->
-    <div class="row" id="editAction">
-        <div class="col-md-3 col-sm-0">
+    <div class="page-content">
+        <!-- Panel Add Action -->
+        <div class="row" id="editAction">
+            <div class="col-md-3 col-sm-0">
 
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-info panel-bordered">
-                <header class="panel-heading">
-                    <div class="panel-actions">
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-info panel-bordered">
+                    <header class="panel-heading">
+                        <div class="panel-actions" style="right: 0px;">
 
-                                                   {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
-                                    <a style="color:white"
-                                       href="{{ path('action_edit', { 'id': action.id }) }}">Modifier</a>
-                                {% endif %}
-</div>
-                    <h3 class="panel-title">{{ action.cropcycle.plot.name | capitalize }} {{ action.cropcycle.name | capitalize }} </h3>
-                </header>
-                <div class="panel-body" style="padding-top:20px;">
-                <h3>{{ action.name }}</h3>
-                    <div class="row">
-                        <div class="col-md-12">
-                    {% for period in action.periods %}
-                        {{ period.intervalLabel}}
-
-                        {% if period.durationLabel != "" %}
-                            {{ period.durationLabel }}
-                        {% endif %}
-
-<br/>
-                    {% endfor %}
+                            {% if is_granted('EDIT', action) or is_granted('ROLE_ADMIN') %}
+                               <a class="btn btn-animate btn-pure" style="font-weight: 500;color:white"
+                                   href="{{ path('action_edit', { 'id': action.id }) }}">Modifier</a>
+                            {% endif %}
                         </div>
-                    </div>
-                    {% if action.nbWorkers != "" or action.nbWorkers != 0 %}
-                        <div class="row" style="margin-top:15px;">
+
+                        <button type="button" onclick="window.location.href='{{ path('cropcycle_show',{'id':action.cropCycle.id}) }}'" class="btn btn-animate btn-animate-side btn-pure" style="font-weight: 500;">
+                            <span><i class="icon wb-chevron-left" aria-hidden="true"></i>Retour</span>
+                        </button>
+
+                    </header>
+                    <div class="panel-body" style="padding-top:20px;">
+                        <h3>{{ action.name }}</h3>
+
+                        <div class="row">
                             <div class="col-md-12">
-                                <i class="icon wb-user"
-                                   aria-hidden="true"></i>
-                                {{ action.nbWorkers }}
+                                {% for period in action.periods %}
+                                    {{ period.intervalLabel }}
+
+                                    {% if period.durationLabel != "" %}
+                                        {{ period.durationLabel }}
+                                    {% endif %}
+
+                                    <br/>
+                                {% endfor %}
                             </div>
                         </div>
+                        {% if action.nbWorkers != "" or action.nbWorkers != 0 %}
+                            <div class="row" style="margin-top:15px;">
+                                <div class="col-md-12">
+                                    <i class="icon wb-user"
+                                       aria-hidden="true"></i>
+                                    {{ action.nbWorkers }}
+                                </div>
+                            </div>
 
-                    {% endif %}
-                 {{ action.comment }}
+                        {% endif %}
+                        {{ action.comment }}
 
-                            {% if action.density != 0 %}
+                        {% if action.density != 0 %}
 
-                                <h4 class="example-title">
-                                    Densité
-                                </h4>
-<p>{{ action.density }} plants {{ action.densityUnit.symbol }}
-                           {% if action.densityUnit.c == 0  %}
-                               {% set value = action.density/action.cropcycle.area %} soit {{ value | round }} plants/ha
+                        <h4 class="example-title">
+                            Densité
+                        </h4>
+
+                        <p>{{ action.density }} plants {{ action.densityUnit.symbol }}
+                            {% if action.densityUnit.c == 0 %}
+                                {% set value = action.density/action.cropcycle.area %} soit {{ value | round }} plants/ha
                             {% elseif action.densityUnit.c == 10000 %}
                                 {% set value = action.density*action.cropcycle.area %} soit environ {{ value | round }} plants au total
                             {% elseif action.densityUnit.c == 1 %}
                                 {% set value = action.density*10000 %}soit {{ value | round }} plants/ha
                             {% endif %}
-    {% endif %}
-
-</p>
-                            {% if action.auxiliary is not empty %}
-
-                                <h4 class="example-title">
-                                    Auxiliaires
-                                </h4>
-                                {{ action.auxiliary }}
-
                             {% endif %}
 
-                    {% if action.pH is not empty %}
+                        </p>
+                        {% if action.auxiliary is not empty %}
 
-                        <h4 class="example-title">
-                            pH
-                        </h4>
-                        {{ action.pH }}
+                            <h4 class="example-title">
+                                Auxiliaires
+                            </h4>
+                            {{ action.auxiliary }}
 
-                    {% endif %}
+                        {% endif %}
 
-                    {% if action.ec is not empty %}
+                        {% if action.pH is not empty %}
 
-                        <h4 class="example-title">
-                            EC (mS/cm)
-                        </h4>
-                        {{ action.ec }}
+                            <h4 class="example-title">
+                                pH
+                            </h4>
+                            {{ action.pH }}
 
-                    {% endif %}
+                        {% endif %}
 
-                    {% if action.drainage is not empty %}
+                        {% if action.ec is not empty %}
 
-                        <h4 class="example-title">
-                            Taux de drainage
-                        </h4>
-                        {{ action.drainage }} %
+                            <h4 class="example-title">
+                                EC (mS/cm)
+                            </h4>
+                            {{ action.ec }}
 
-                    {% endif %}
+                        {% endif %}
 
-                    {% if action.intervention.interventionCategory.slug == "protection-des-cultures" and action.farmSpecialityMvts is not empty %}
+                        {% if action.drainage is not empty %}
 
-                                <h4 class="example-title">
+                            <h4 class="example-title">
+                                Taux de drainage
+                            </h4>
+                            {{ action.drainage }} %
+
+                        {% endif %}
+
+                        {% if action.intervention.interventionCategory.slug == "protection-des-cultures" and action.farmSpecialityMvts is not empty %}
+
+                            <h4 class="example-title">
                                 Produits utilisés
                             </h4>
-                                Cible : {{ action.aim }}
-                                <table class="table table-hover">
-                                    <div class="table-body">
+                            Cible : {{ action.aim }}
+                            <table class="table table-hover">
+                                <div class="table-body">
 
 
                                     {% for mvt in action.farmSpecialityMvts %}
@@ -122,23 +128,30 @@
                                             <td>                                            {{ mvt.amount }}{{ mvt.unit.symbol }}
                                             </td>
                                             <td>
-                                                <a class="btn btn-sm btn-default pull-right" href="{{ path('speciality_show',{'id':mvt.speciality.speciality.id}) }}">Voir usages et doses autorisées</a>
+                                                <a class="btn btn-sm btn-default pull-right"
+                                                   href="{{ path('speciality_show',{'id':mvt.speciality.speciality.id}) }}">Voir
+                                                    usages et doses autorisées</a>
 
                                             </td>
                                         </tr>
                                     {% endfor %}
-                                    </div>
-                                </table>
+                                </div>
+                            </table>
 
-                            {% endif %}
+                        {% endif %}
 
-                            {% if action.intervention.interventionCategory.slug == "fertilisation" and action.farmFertilizerMvts is not empty %}
-
+                        {% if action.intervention.interventionCategory.slug == "fertilisation" and action.farmFertilizerMvts is not empty %}
+                            {% if action.tankVolume is not empty %}
                                 <h4 class="example-title">
-                                    Engrais et amendements utilisés
+                                    Volume de la cuve
                                 </h4>
-                                <table class="table table-hover">
-                                    <div class="table-body">
+                                {{ action.tankVolume }} Litres
+                            {% endif %}
+                            <h4 class="example-title">
+                                Engrais et amendements utilisés
+                            </h4>
+                            <table class="table table-hover">
+                                <div class="table-body">
 
 
                                     {% for mvt in action.farmFertilizerMvts %}
@@ -147,108 +160,112 @@
                                                 {{ mvt.fertilizer.fertilizer.name }}
 
                                             </td>
-                                            <td>                                            {{ mvt.amount }}{{ mvt.unit.symbol }} (soit {{ mvt.dose|number_format(2,',',' ') }}{{ mvt.unit.symbol }}/ha)
+                                            <td>                                            {{ mvt.amount }}{{ mvt.unit.symbol }}
+                                                (soit {{ mvt.dose|number_format(2,',',' ') }}{{ mvt.unit.symbol }}/ha)
                                             </td>
                                             <td>
-                                                <a class="btn btn-sm btn-default pull-right" href="{{ path('speciality_show',{'id':mvt.fertilizer.fertilizer.id}) }}">Voir la composition de l'engrais</a>
+                                                <a class="btn btn-sm btn-default pull-right"
+                                                   href="{{ path('speciality_show',{'id':mvt.fertilizer.fertilizer.id}) }}">Voir
+                                                    la composition de l'engrais</a>
 
                                             </td>
                                         </tr>
                                     {% endfor %}
-                                    </div>
-                                </table>
+                                </div>
+                            </table>
 
-                            {% endif %}
+                        {% endif %}
 
-                    {% if action.irrigations is not empty %}
+                        {% if action.irrigations is not empty %}
 
-                        <h4 class="example-title">
-                            Irrigations
-                        </h4>
-                        <table class="table table-hover">
-                            <div class="table-heading">
-                                <th>
-                                    #
-                                </th>
-                                <th>
-                                    Débit parcelle
-                                </th>
-                                <th>Durée
-                                </th>
-                                <th>
-                                    Volume
-                                </th>
-                            </div>
-                            <div class="table-body">
-
-
-                            {% for irrigation in action.irrigations %}
-                                <tr>
-                                    <td>{{ loop.index }}</td>
-                                    <td>{% if irrigation.flow is not empty %}
-                                        {{ irrigation.flow }} {{ irrigation.flowUnit.symbol }}
-{% endif %}
-                                    </td>
-                                    <td>
-                                        {% if irrigation.duration is not empty %}
-                                        {{ irrigation.duration }} minutes
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        {% if irrigation.volume is not empty %}
-{{ irrigation.volume }} {{ irrigation.volumeUnit.symbol }}
-{% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                            </div>
-                        </table>
-
-                    {% endif %}
+                            <h4 class="example-title">
+                                Irrigations
+                            </h4>
+                            <table class="table table-hover">
+                                <div class="table-heading">
+                                    <th>
+                                        #
+                                    </th>
+                                    <th>
+                                        Débit parcelle
+                                    </th>
+                                    <th>Durée
+                                    </th>
+                                    <th>
+                                        Volume
+                                    </th>
+                                </div>
+                                <div class="table-body">
 
 
-
-
-
-
-
-                            {% if action.tractors is not empty and action.implements is not empty %}
-                                <h4 class="example-title margin-top-30">
-                                    Matériel utilisé
-                                </h4>
-                                <ul>
-                                    {% for tractor in action.tractors %}
-                                        <li>
-                                            {{ tractor.model.name | capitalize}}
-                                        </li>
+                                    {% for irrigation in action.irrigations %}
+                                        <tr>
+                                            <td>{{ loop.index }}</td>
+                                            <td>{% if irrigation.flow is not empty %}
+                                                    {{ irrigation.flow }} {{ irrigation.flowUnit.symbol }}
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if irrigation.duration is not empty %}
+                                                    {{ irrigation.duration }} minutes
+                                                {% endif %}
+                                            </td>
+                                            <td>
+                                                {% if irrigation.volume is not empty %}
+                                                    {{ irrigation.volume }} {{ irrigation.volumeUnit.symbol }}
+                                                {% endif %}
+                                            </td>
+                                        </tr>
                                     {% endfor %}
-                                    {% for implement in action.implements %}
-                                        <li>
-                                            {{ implement.name | capitalize }}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
+                                </div>
+                            </table>
+
+                        {% endif %}
 
 
 
-                            {% if action.harvestProducts is not empty %}
-                                <h4 class="example-title margin-top-30">
-                                    Quantités récoltées
-                                </h4>
-                                <ul>
-                                    {% for product in action.harvestProducts %}
-                                        <li>
-                                            {{ product.qty }} {{ product.unit.symbol }} à {{ product.price }} CFP/{{ product.priceUnit.symbol }}
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
+
+
+
+
+                        {% if action.tractors is not empty and action.implements is not empty %}
+                            <h4 class="example-title margin-top-30">
+                                Matériel utilisé
+                            </h4>
+                            <ul>
+                                {% for tractor in action.tractors %}
+                                    <li>
+                                        {{ tractor.model.name | capitalize }}
+                                    </li>
+                                {% endfor %}
+                                {% for implement in action.implements %}
+                                    <li>
+                                        {{ implement.name | capitalize }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+
+
+
+                        {% if action.harvestProducts is not empty %}
+                            <h4 class="example-title margin-top-30">
+                                Quantités récoltées
+                            </h4>
+                            <ul>
+                                {% for product in action.harvestProducts %}
+                                    <li>
+                                        {{ product.qty }} {{ product.unit.symbol }} à {{ product.price }}
+                                        CFP/{{ product.priceUnit.symbol }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
 
