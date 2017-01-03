@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/IrrigationType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/IrrigationType.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,19 +34,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="addActionFromCropCycleShow.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="addActionFromCropCycleShow.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.689655">
-              <caret line="313" column="9" selection-start-line="313" selection-start-column="9" selection-end-line="313" selection-end-column="9" />
+            <state vertical-scroll-proportion="-0.79577464">
+              <caret line="352" column="20" selection-start-line="352" selection-start-column="20" selection-end-line="352" selection-end-column="20" />
               <folding>
                 <element signature="e#7987#9534#0" expanded="false" />
-                <marker date="1483414944440" expanded="true" signature="2264:2305" placeholder="..." />
-                <marker date="1483414944440" expanded="true" signature="4050:4105" placeholder="..." />
-                <marker date="1483414944440" expanded="true" signature="5888:5943" placeholder="..." />
-                <marker date="1483414944440" expanded="true" signature="7514:7569" placeholder="..." />
-                <marker date="1483414944440" expanded="true" signature="9159:9226" placeholder="..." />
-                <marker date="1483414944440" expanded="true" signature="10772:10804" placeholder="..." />
+                <marker date="1483416798942" expanded="true" signature="2264:2305" placeholder="..." />
+                <marker date="1483416798942" expanded="true" signature="4050:4105" placeholder="..." />
+                <marker date="1483416798942" expanded="true" signature="5888:5943" placeholder="..." />
+                <marker date="1483416798942" expanded="true" signature="7514:7569" placeholder="..." />
+                <marker date="1483416798942" expanded="true" signature="9159:9226" placeholder="..." />
+                <marker date="1483416798942" expanded="true" signature="10772:10804" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -104,12 +101,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="new_from_cropcycle.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="new_from_cropcycle.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.60672516">
-              <caret line="35" column="97" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="97" />
+            <state vertical-scroll-proportion="-9.090909">
+              <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
               <folding>
+                <element signature="e#873#906#0#Twig" expanded="false" />
                 <element signature="n#style#0;n#div#1;n#div#2;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -202,9 +200,9 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/temporary_huhu.html" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/IrrigationType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js" />
       </list>
     </option>
   </component>
@@ -1234,28 +1232,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.689655">
-          <caret line="313" column="9" selection-start-line="313" selection-start-column="9" selection-end-line="313" selection-end-column="9" />
+        <state vertical-scroll-proportion="-9.090909">
+          <caret line="40" column="29" selection-start-line="40" selection-start-column="29" selection-end-line="40" selection-end-column="29" />
           <folding>
-            <element signature="e#7987#9534#0" expanded="false" />
-            <marker date="1483414944440" expanded="true" signature="2264:2305" placeholder="..." />
-            <marker date="1483414944440" expanded="true" signature="4050:4105" placeholder="..." />
-            <marker date="1483414944440" expanded="true" signature="5888:5943" placeholder="..." />
-            <marker date="1483414944440" expanded="true" signature="7514:7569" placeholder="..." />
-            <marker date="1483414944440" expanded="true" signature="9159:9226" placeholder="..." />
-            <marker date="1483414944440" expanded="true" signature="10772:10804" placeholder="..." />
+            <element signature="e#873#906#0#Twig" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#2;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_cropcycle.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.60672516">
-          <caret line="35" column="97" selection-start-line="35" selection-start-column="47" selection-end-line="35" selection-end-column="97" />
+        <state vertical-scroll-proportion="-0.79577464">
+          <caret line="352" column="20" selection-start-line="352" selection-start-column="20" selection-end-line="352" selection-end-column="20" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#2;n#!!top" expanded="true" />
+            <element signature="e#7987#9534#0" expanded="false" />
+            <marker date="1483416798942" expanded="true" signature="2264:2305" placeholder="..." />
+            <marker date="1483416798942" expanded="true" signature="4050:4105" placeholder="..." />
+            <marker date="1483416798942" expanded="true" signature="5888:5943" placeholder="..." />
+            <marker date="1483416798942" expanded="true" signature="7514:7569" placeholder="..." />
+            <marker date="1483416798942" expanded="true" signature="9159:9226" placeholder="..." />
+            <marker date="1483416798942" expanded="true" signature="10772:10804" placeholder="..." />
           </folding>
         </state>
       </provider>

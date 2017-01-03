@@ -388,7 +388,7 @@
                 $('#nbWorkers').show("slow");
                 $('#tractors').show("slow");
 
-            }else if ($("#action_intervention").select2('data')[0]['text'] == "Irrigation") {
+            }else if ($("#action_intervention").select2('data')[0]['text'] == "Irrigation"||$("#action_intervention").select2('data')[0]['text'] == "Programme d'irrigation") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
