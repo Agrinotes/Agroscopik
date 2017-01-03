@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Irrigation</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ irrigation.id }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ irrigation.duration }}</td>
+            </tr>
+            <tr>
+                <th>Flow</th>
+                <td>{{ irrigation.flow }}</td>
+            </tr>
+            <tr>
+                <th>Volume</th>
+                <td>{{ irrigation.volume }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('irrigation_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('irrigation_edit', { 'id': irrigation.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

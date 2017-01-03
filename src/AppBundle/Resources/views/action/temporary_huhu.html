@@ -1,0 +1,71 @@
+<div class="form-group">
+    <label class="control-label required">__name__label__</label>
+
+    <div id="action_irrigations___name__">
+        <div class="form-group">
+            <label class="control-label" for="action_irrigations___name___duration">
+                Durée (minutes)
+            </label>
+
+            <div class="input-group">
+                        <span class="input-group-addon">
+               <i class="icon wb-user"
+                  aria-hidden="true"></i>
+            </span>
+
+
+                <input type="text" id="action_irrigations___name___duration"
+                   name="action[irrigations][__name__][duration]"
+                   class="form-control form-control"
+                   placeholder="0"/>
+
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="action_irrigations___name___flow">
+                Débit total de la parcelle
+            </label>
+
+
+            <input type="text" id="action_irrigations___name___flow"
+                   name="action[irrigations][__name__][flow]"
+                   class="form-control form-control"
+                   placeholder="0"/>
+        </div>
+        <div class="form-group">
+            <label class="hidden control-label required" for="action_irrigations___name___flowUnit">
+                Flow unit
+            </label>
+            <select id="action_irrigations___name___flowUnit"
+                    name="action[irrigations][__name__][flowUnit]"
+                    class="form-control form-control">
+                <option value="50">L/h</option>
+            </select></div>
+        <div class="form-group">
+            <label class="control-label" for="action_irrigations___name___volume">Volume
+                d&#039;eau
+            </label>
+            <input type="text" id="action_irrigations___name___volume"
+                   name="action[irrigations][__name__][volume]" class="form-control form-control"
+                   placeholder="0"/></div>
+        <div class="form-group">
+            <label class="hidden control-label required"
+                   for="action_irrigations___name___volumeUnit">Volume unit</label><select
+                id="action_irrigations___name___volumeUnit" name="action[irrigations][__name__][volumeUnit]"
+                class="form-control form-control">
+            <option value="8">cl</option>
+            <option value="13">cm³</option>
+            <option value="28">hL</option>
+            <option value="48">L</option>
+            <option value="55">m³</option>
+            <option value="77">mL</option>
+            <option value="29">hL/ha</option>
+            <option value="49">L/ha</option>
+            <option value="51">L/m²</option>
+            <option value="56">m³/ha</option>
+            <option value="57">cm³/ha</option>
+        </select></div>
+    </div>
+</div>

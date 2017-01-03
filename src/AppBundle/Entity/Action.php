@@ -1066,6 +1066,8 @@ $endTime = $endTime->add($period->getDuration());
     public function removeIrrigation(Irrigation $irrigation)
     {
         $this->irrigations->removeElement($irrigation);
+
+        // Should delete Irrigation object here...
     }
 
     /**

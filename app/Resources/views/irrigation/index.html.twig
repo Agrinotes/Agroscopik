@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Irrigation list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Duration</th>
+                <th>Flow</th>
+                <th>Volume</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for irrigation in irrigations %}
+            <tr>
+                <td><a href="{{ path('irrigation_show', { 'id': irrigation.id }) }}">{{ irrigation.id }}</a></td>
+                <td>{{ irrigation.duration }}</td>
+                <td>{{ irrigation.flow }}</td>
+                <td>{{ irrigation.volume }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('irrigation_show', { 'id': irrigation.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('irrigation_edit', { 'id': irrigation.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('irrigation_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

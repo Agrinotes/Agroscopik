@@ -51,6 +51,13 @@ class ActionType extends AbstractType
                 'by_reference' => false,
                 'label' => 'Définir une ou plusieurs périodes d\'intervention',
             ))
+            ->add('irrigations', CollectionType::class, array(
+                'entry_type' => IrrigationType::class,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label' => 'Définir une ou plusieurs irrigations',
+            ))
             ->add('nbWorkers', IntegerType::class, array(
                 'required' => false,
                 'label' => 'Définir le nombre de personnes pour cette intervention',

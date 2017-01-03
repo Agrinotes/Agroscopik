@@ -28,6 +28,22 @@
     </div>
 </div>
 
+<div class="row" id="irrigations">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8" style="margin-left: -30px; padding-right:0px;">
+
+        {{ form_label(form.irrigations) }}
+        {{ form_errors(form.irrigations) }}
+        {{ form_widget(form.irrigations) }}
+
+                <a class="pull-right helpLink" href="#" id="add_irrigation">
+                    <i class="icon wb-plus" aria-hidden="true"></i>
+                    Ajouter une autre irrigation
+                </a>
+            </div>
+
+</div>
+
 <div class="row" id="auxiliary">
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8">
