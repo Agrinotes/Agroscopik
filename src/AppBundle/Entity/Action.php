@@ -157,6 +157,12 @@ class Action
     private $ec;
 
     /**
+     *
+     * @ORM\Column(name="drainage", type="integer", nullable=true)
+     */
+    private $drainage;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="tankVolume", type="integer", nullable=true)
@@ -1101,6 +1107,22 @@ $endTime = $endTime->add($period->getDuration());
     public function setTankVolume($tankVolume)
     {
         $this->tankVolume = $tankVolume;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDrainage()
+    {
+        return $this->drainage;
+    }
+
+    /**
+     * @param mixed $drainage
+     */
+    public function setDrainage($drainage)
+    {
+        $this->drainage = $drainage;
     }
 }
 

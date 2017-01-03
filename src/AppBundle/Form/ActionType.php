@@ -144,6 +144,11 @@ class ActionType extends AbstractType
                 'attr' => array('class' => 'form-control', 'min' => 0, 'value' => 1, 'step'=>0.01),
                 'required' => false,
             ))
+            ->add('drainage', IntegerType::class, array(
+                'required' => false,
+                'label' => 'Taux de draînage (%)',
+                'attr' => array('class' => 'form-control', 'min' => 0, 'max' => 120, 'value' => 30),
+            ))
             ->add('tankVolume', IntegerType::class, array(
                 'required' => false,
                 'label' => 'Volume de la cuve (L)',

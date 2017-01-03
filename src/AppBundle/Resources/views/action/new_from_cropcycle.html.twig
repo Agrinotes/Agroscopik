@@ -86,6 +86,17 @@
     </div>
 </div>
 
+<div class="row" id="drainage">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+            {{ form_label(form.drainage) }}
+            {{ form_errors(form.drainage) }}
+            {{ form_widget(form.drainage, { 'type':'number' }) }}
+        </div>
+    </div>
+</div>
+
 
 <div class="row" id="density">
     <div class="col-sm-0 col-md-2"></div>

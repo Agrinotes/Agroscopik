@@ -119,7 +119,6 @@ class ActionController extends Controller
                 $em->flush();
             }
 
-
             // Call ACL service
             $aclProvider = $this->get('security.acl.provider');
 
