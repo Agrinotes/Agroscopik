@@ -305,9 +305,11 @@
             addIrrigation($container7);
             $("#action_irrigations > div > a").remove();
 
+
         } else {
             $container7.children('div').each(function () {
                 addDeleteLink7($(this));
+
             });
         }
 
@@ -316,13 +318,14 @@
             var template7 = $container7.attr('data-prototype')
                     .replace(/__name__label__/g, '')
                     .replace(/__name__/g, index7)
-                    .replace(/form-group/g, "col-lg-12")
-                    .replace(/col-lg-6/, "col-lg-12")
+                    .replace(/form-group/g, "col-lg-12 irrigation"+index7)
 
                 ;
 
             var $prototype7 = $(template7);
+
             addDeleteLink7($prototype7);
+
             $container7.append($prototype7);
 
             index7++;
@@ -340,6 +343,8 @@
                 return false;
             });
         }
+
+
     });
 </script>
 

@@ -32,7 +32,16 @@
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8" style="margin-left: -30px; padding-right:0px;">
 
-        {{ form_label(form.irrigations) }}
+        {{ form_label(form.irrigations) }}<div>
+        <a href="javascript:void(0);" onclick="$('.durationFlow').toggle();$('.volume').toggle();
+
+                                   $(this).text(function(i, text){
+
+                                    return text === 'Je préfère renseigner des durées et des débits' ? 'Je préfère renseigner des volumes' : 'Je préfère renseigner des durées et des débits';
+                                    })
+
+        ">Je préfère renseigner des durées et des débits</a>
+        </div>
         {{ form_errors(form.irrigations) }}
         {{ form_widget(form.irrigations) }}
 

@@ -18,36 +18,7 @@ class IrrigationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('duration',NumberType::class, array(
-                'label'=>'Durée (minutes)',
-                'attr' => array('class' => 'form-control durationFlow','placeholder'=>'0'),
-                'label_attr' => array('class'=>'durationFlow'),
-                'required'=>false,
-            ))
-            ->add('flow',NumberType::class, array(
-                'label'=>'Débit total de la parcelle',
-                'attr' => array('class' => 'form-control durationFlow','placeholder'=>'0'),
-                'label_attr' => array('class'=>'durationFlow'),
-                'required'=>false,
-            ))
-            ->add('flowUnit',EntityType::class, array(
-                'class' => 'AppBundle:Unit',
-                'choice_label' => 'symbol',
-                'attr' => array('class' => 'form-control durationFlow'),
-                'label' => '',
-                'label_attr' => array('class'=>'hidden durationFlow'),
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->join('u.unitCategory', 'cat')
-                        ->addSelect('cat')
-                        ->where('cat.slug = :slug')
-                        ->setParameter('slug','volume_flow')
-                        ;
-                },
-            ))
+
             ->add('volume',NumberType::class, array(
                 'label'=>'Volume d\'eau',
                 'attr' => array('class' => 'form-control volume','placeholder'=>'0'),
@@ -59,7 +30,7 @@ class IrrigationType extends AbstractType
                 'choice_label' => 'symbol',
                 'attr' => array('class' => 'form-control volume'),
                 'label' => '',
-                'label_attr' => array('class'=>'hidden volume'),
+                'label_attr' => array('class'=>'hidden'),
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,
@@ -71,6 +42,36 @@ class IrrigationType extends AbstractType
                         ->setParameter('slug','volume_area_density')
                         ->orWhere('cat.slug = :slug2')
                         ->setParameter('slug2','volume')
+                        ;
+                },
+            ))
+            ->add('duration',NumberType::class, array(
+                'label'=>'Durée (minutes)',
+                'attr' => array('class' => 'form-control durationFlow hidden','placeholder'=>'0'),
+                'label_attr' => array('class'=>'durationFlow hidden'),
+                'required'=>false,
+            ))
+            ->add('flow',NumberType::class, array(
+                'label'=>'Débit total de la parcelle',
+                'attr' => array('class' => 'form-control durationFlow hidden','placeholder'=>'0'),
+                'label_attr' => array('class'=>'durationFlow hidden'),
+                'required'=>false,
+            ))
+            ->add('flowUnit',EntityType::class, array(
+                'class' => 'AppBundle:Unit',
+                'choice_label' => 'symbol',
+                'attr' => array('class' => 'form-control durationFlow hidden'),
+                'label' => '',
+                'label_attr' => array('class'=>' hidden'),
+                'required' => true,
+                'multiple' => false,
+                'expanded' => false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->join('u.unitCategory', 'cat')
+                        ->addSelect('cat')
+                        ->where('cat.slug = :slug')
+                        ->setParameter('slug','volume_flow')
                         ;
                 },
             ))
