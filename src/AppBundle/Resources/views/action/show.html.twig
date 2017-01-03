@@ -76,7 +76,34 @@
 
                             {% endif %}
 
-                            {% if action.intervention.interventionCategory.slug == "protection-des-cultures" and action.farmSpecialityMvts is not empty %}
+                    {% if action.pH is not empty %}
+
+                        <h4 class="example-title">
+                            pH
+                        </h4>
+                        {{ action.pH }}
+
+                    {% endif %}
+
+                    {% if action.ec is not empty %}
+
+                        <h4 class="example-title">
+                            EC (mS/cm)
+                        </h4>
+                        {{ action.ec }}
+
+                    {% endif %}
+
+                    {% if action.drainage is not empty %}
+
+                        <h4 class="example-title">
+                            Taux de drainage
+                        </h4>
+                        {{ action.drainage }} %
+
+                    {% endif %}
+
+                    {% if action.intervention.interventionCategory.slug == "protection-des-cultures" and action.farmSpecialityMvts is not empty %}
 
                                 <h4 class="example-title">
                                 Produits utilisés
@@ -85,7 +112,7 @@
                                 <table class="table table-hover">
                                     <div class="table-body">
 
-                                    </div>
+
                                     {% for mvt in action.farmSpecialityMvts %}
                                         <tr>
                                             <td>
@@ -100,6 +127,7 @@
                                             </td>
                                         </tr>
                                     {% endfor %}
+                                    </div>
                                 </table>
 
                             {% endif %}
@@ -112,7 +140,7 @@
                                 <table class="table table-hover">
                                     <div class="table-body">
 
-                                    </div>
+
                                     {% for mvt in action.farmFertilizerMvts %}
                                         <tr>
                                             <td>
@@ -127,9 +155,56 @@
                                             </td>
                                         </tr>
                                     {% endfor %}
+                                    </div>
                                 </table>
 
                             {% endif %}
+
+                    {% if action.irrigations is not empty %}
+
+                        <h4 class="example-title">
+                            Irrigations
+                        </h4>
+                        <table class="table table-hover">
+                            <div class="table-heading">
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    Débit parcelle
+                                </th>
+                                <th>Durée
+                                </th>
+                                <th>
+                                    Volume
+                                </th>
+                            </div>
+                            <div class="table-body">
+
+
+                            {% for irrigation in action.irrigations %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{% if irrigation.flow is not empty %}
+                                        {{ irrigation.flow }} {{ irrigation.flowUnit.symbol }}
+{% endif %}
+                                    </td>
+                                    <td>
+                                        {% if irrigation.duration is not empty %}
+                                        {{ irrigation.duration }} minutes
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if irrigation.volume is not empty %}
+{{ irrigation.volume }} {{ irrigation.volumeUnit.symbol }}
+{% endif %}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </div>
+                        </table>
+
+                    {% endif %}
 
 
 
