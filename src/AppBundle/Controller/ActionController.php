@@ -160,52 +160,7 @@ class ActionController extends Controller
             'form' => $form->createView(),
         ));
     }
-
-
-    /**
-     * Lists all Action entities for a specific intervention category
-     *
-     * @Route("/action/category/{id}", name="action_by_category")
-     * @Method("GET")
-     */
-    public function listByCategoryAction(Request $request, InterventionCategory $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $category = $this->getDoctrine()->getManager()->getRepository('AppBundle:InterventionCategory')->find($id);
-
-        // Find actions for current intervention category
-        $actions = $em->getRepository('AppBundle:Action')->findByInterventionCategory($id);
-
-        return $this->render('@App/action/listByCategory.html.twig', array(
-            'actions' => $actions,
-            'category' => $category,
-        ));
-    }
-
-    /**
-     * Lists all Action entities for a specific crop
-     *
-     * @Route("/action/crop/{id}", name="action_by_crop")
-     * @Method("GET")
-     */
-    public function listByCropAction(Request $request, Crop $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $crop = $this->getDoctrine()->getManager()->getRepository('AppBundle:Crop')->find($id);
-
-        // Find actions for current intervention category
-        $actions = $em->getRepository('AppBundle:Action')->findByCrop($id);
-
-        return $this->render('@App/action/listByCrop.html.twig', array(
-            'actions' => $actions,
-            'crop' => $crop,
-        ));
-    }
-
-
-
+    
     /**
      * Finds and displays a Action entity.
      *
