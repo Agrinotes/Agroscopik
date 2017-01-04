@@ -154,41 +154,13 @@ class ActionController extends Controller
             return $this->redirectToRoute('cropcycle_show', array('id' => $cropCycle->getId()));
         }
 
-        return $this->render('@App/action/new_from_cropcycle.html.twig', array(
+        return $this->render('@App/action/new.html.twig', array(
             'cropCycle' => $cropCycle,
             'action' => $action,
             'form' => $form->createView(),
         ));
     }
 
-
-
-    /**
-     * Lists all Action entities for a specific crop cycle
-     *
-     * @Route("/cropcycle/{id}/action", name="action_index")
-     * @Method("GET")
-     */
-    public function indexAction(Request $request, $id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $cropCycle = $this->getDoctrine()->getManager()->getRepository('AppBundle:CropCycle')->find($id);
-
-        // Check for edit access
-        $authorizationChecker = $this->get('security.authorization_checker');
-        if (false === $authorizationChecker->isGranted('VIEW', $cropCycle)) {
-            throw new AccessDeniedException();
-        }
-
-        // Find actions for current cropCycle
-        $actions = $em->getRepository('AppBundle:Action')->findByCropCycle($id);
-
-        return $this->render('@App/action/index.html.twig', array(
-            'actions' => $actions,
-            'cropCycle' => $cropCycle,
-        ));
-    }
 
     /**
      * Lists all Action entities for a specific intervention category
@@ -229,111 +201,6 @@ class ActionController extends Controller
         return $this->render('@App/action/listByCrop.html.twig', array(
             'actions' => $actions,
             'crop' => $crop,
-        ));
-    }
-
-    /**
-     * Creates a new Action entity.
-     *
-     * @Route("/cropcycle/{id}/action/new", name="action_new")
-     * @Method({"GET", "POST"})
-     */
-    public function newAction(Request $request, $id)
-    {
-        $action = new Action();
-
-        // Get Entity Manager
-        $em = $this->getDoctrine()->getManager();
-
-        // Get current cropCycle
-        $cropCycle = $em->getRepository('AppBundle:CropCycle')->find($id);
-
-        // Check for edit access
-        $authorizationChecker = $this->get('security.authorization_checker');
-        if (false === $authorizationChecker->isGranted('EDIT', $cropCycle)) {
-            throw new AccessDeniedException();
-        }
-
-        // Link this action to current crop cycle
-        $cropCycle->addAction($action); // Which also setCropcycle($this) on $action
-
-        $form = $this->createForm(ActionType::class, $action);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($action);
-
-            $em->flush();
-
-            // Remove specialities added to wrong categories
-            if ($action->getFarmSpecialityMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'protection-des-cultures') {
-                $mvts = $action->getFarmSpecialityMvts();
-                foreach ($mvts as $mvt) {
-                    $em->remove($mvt);
-                }
-                $em->flush();
-            }
-
-            // Remove fertilizers added to wrong categories
-            if ($action->getFarmFertilizerMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'fertilisation') {
-                $mvts = $action->getFarmFertilizerMvts();
-                foreach ($mvts as $mvt) {
-                    $em->remove($mvt);
-                }
-                $em->flush();
-            }
-
-            // Remove harvest products added to wrong categories
-            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'recolte') {
-                $products = $action->getHarvestProducts();
-                foreach ($products as $product) {
-                    $em->remove($product);
-                }
-                $em->flush();
-            }
-
-            // Remove seeds or plant density products added to wrong categories
-            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'semis-et-plantation') {
-                $action->setDensity("");
-                $action->setDensityUnit(null);
-                $em->flush();
-            }
-
-            // Call ACL service
-            $aclProvider = $this->get('security.acl.provider');
-
-            // Create the ACL for current Action $action
-            $objectIdentity = ObjectIdentity::fromDomainObject($action);
-            $acl = $aclProvider->createAcl($objectIdentity);
-
-            // Retrieve the security identity of the current user
-            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
-
-            // Create Access Mask
-            $builder = new MaskBuilder();
-            $builder
-                ->add('view')
-                ->add('edit')
-                ->add('delete');
-            $mask = $builder->get();
-
-            // Insert Object Access Entry
-            $acl->insertObjectAce($securityIdentity, $mask);
-
-            // Update ACL
-            $aclProvider->updateAcl($acl);
-
-            $request->getSession()->getFlashBag()->add('success', 'Une intervention ' . $action->getName() . ' a été ajoutée avec succès le ' . $action->getStartDatetime()->format('d/m/Y') . ' !');
-
-            return $this->redirectToRoute('action_new', array('id' => $action->getCropCycle()->getId()));
-        }
-
-        return $this->render('@App/action/new2.html.twig', array(
-            'cropCycle' => $cropCycle,
-            'action' => $action,
-            'form' => $form->createView(),
         ));
     }
 
@@ -397,7 +264,7 @@ class ActionController extends Controller
             return $this->redirectToRoute('cropcycle_show', array('id' => $action->getCropCycle()->getId()));
         }
 
-        return $this->render('@App/action/edit2.html.twig', array(
+        return $this->render('@App/action/edit.html.twig', array(
             'action' => $action,
             'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
