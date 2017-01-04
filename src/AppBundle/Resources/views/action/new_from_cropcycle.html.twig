@@ -1,4 +1,5 @@
 {{ form_start(form, {'action': path('action_new_from_cropcycle',{'id':cropCycle.id}), 'method': 'POST'}) }}
+
 <div class="row" id="intervention">
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8">
@@ -7,7 +8,6 @@
             {{ form_errors(form.intervention) }}
             {{ form_widget(form.intervention) }}
             <a class="pull-right helpLink" href="{{ path('intervention_new') }}">
-                <i class="icon md-help-outline" aria-hidden="true"></i>
                 Ajouter une intervention qui n'est pas dans la liste déroulante
             </a>
         </div>
@@ -20,33 +20,27 @@
     <div class="col-sm-12 col-md-8" style="margin-left: -30px; padding-right:0px;">
         {% form_theme form 'AppBundle:form:datetime.html.twig' %}
         {{ form_widget(form.periods) }}
-        {#
-                <a class="pull-right helpLink" href="#" id="add_period" style="margin-top: -20px;">
-                    <i class="icon md-plus-circle-o" aria-hidden="true"></i>
-                    Ajouter une autre période
-                </a>#}
+        <a class="pull-right helpLink" href="#" id="add_period" style="margin-top: -20px;">
+            <i class="icon wb-plus" aria-hidden="true"></i>
+            Ajouter une autre période
+        </a>
     </div>
 </div>
 
 <div class="row" id="irrigations">
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8" style="margin-left: -30px; padding-right:0px;">
-
         {{ form_label(form.irrigations) }}
         <div>
             <a href="javascript:void(0);" onclick="$('.durationFlow').toggle();$('.volume').toggle();
-
-                                   $(this).text(function(i, text){
-
-                                    return text === 'Je préfère renseigner des durées et des débits' ? 'Je préfère renseigner des volumes' : 'Je préfère renseigner des durées et des débits';
-                                    })
-
+               $(this).text(function(i, text){
+                   return text === 'Je préfère renseigner des durées et des débits' ? 'Je préfère renseigner des volumes' : 'Je préfère renseigner des durées et des débits';
+               })
         ">Je préfère renseigner des durées et des débits</a>
         </div>
         {{ form_errors(form.irrigations) }}
         {{ form_widget(form.irrigations) }}
-
-        <a class="pull-right helpLink" href="#" id="add_irrigation">
+        <a class="pull-right helpLink" href="javascript:void(0);" id="add_irrigation">
             <i class="icon wb-plus" aria-hidden="true"></i>
             Ajouter une autre irrigation
         </a>
@@ -60,7 +54,6 @@
         <div class="form-group">
             {{ form_label(form.auxiliary) }}
             {{ form_errors(form.auxiliary) }}
-
             {{ form_widget(form.auxiliary) }}
         </div>
     </div>
@@ -72,7 +65,6 @@
         <div class="form-group">
             {{ form_label(form.pH) }}
             {{ form_errors(form.pH) }}
-
             {{ form_widget(form.pH, { 'type':'number' }) }}
         </div>
     </div>
@@ -80,7 +72,6 @@
         <div class="form-group">
             {{ form_label(form.ec) }}
             {{ form_errors(form.ec) }}
-
             {{ form_widget(form.ec, { 'type':'number' }) }}
         </div>
     </div>
@@ -127,24 +118,24 @@
 
             <div class="form-group">
                 <label style="margin-bottom: -15px; margin-top: 15px;">Produits phytosanitaires</label>
-
                 {{ form_errors(form.farmSpecialityMvts) }}
                 {{ form_widget(form.farmSpecialityMvts) }}
-                <a class="pull-right helpLink" href="#" id="add_mvt"><i class="icon md-plus-circle-o"
-                                                                        aria-hidden="true"></i> Ajouter un autre
-                    produit</a>
+                <a class="pull-right helpLink" href="#" id="add_mvt">
+                    <i class="icon wb-plus" aria-hidden="true"></i>
+                    Ajouter un autre produit
+                </a>
             </div>
         {% else %}
             <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
-                Vous devez avoir au moins un produit dans votre <a style="text-decoration: underline"
-                                                                   href="{{ path('farmspeciality_new') }}">local
-                    phytosanitaire virtuel</a> pour pouvoir faire des traitements phytosanitaires.
+                Vous devez avoir au moins un produit dans votre
+                <a style="text-decoration: underline" href="{{ path('farmspeciality_new') }}">
+                    local phytosanitaire virtuel
+                </a>
+                pour pouvoir faire des traitements phytosanitaires.
             </div>
-
         {% endif %}
     </div>
 </div>
-
 
 <div class="row" id="farmFertilizers">
     <div class="col-sm-0 col-md-2"></div>
@@ -166,11 +157,12 @@
             </div>
         {% else %}
             <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
-                Vous devez avoir au moins un engrais ou amendement dans votre <a
-                        style="text-decoration: underline" href="{{ path('farmfertilizer_new') }}">stock
-                    d'engrais virtuel</a> pour pouvoir faire des opérations de fertilisation ou amendement.
+                Vous devez avoir au moins un engrais ou amendement dans votre
+                <a style="text-decoration: underline" href="{{ path('farmfertilizer_new') }}">
+                    stock d'engrais virtuel
+                </a>
+                pour pouvoir faire des opérations de fertilisation ou amendement.
             </div>
-
         {% endif %}
     </div>
 </div>
@@ -257,12 +249,11 @@
                 {{ form_widget(form.implements) }}
             </div>
             <p>
-                Vous n'avez pas enregistrer d'outils sur l'exploitation
+                Vous n'avez pas enregistrer d'outil sur l'exploitation
             </p>
         {% endif %}
     </div>
 </div>
-
 
 <div class="row" id="comment">
     <div class="col-sm-0 col-md-2"></div>
@@ -274,7 +265,6 @@
         </div>
     </div>
 </div>
-
 
 <div class="row" id="expenses">
     <div class="col-sm-0 col-md-2"></div>
