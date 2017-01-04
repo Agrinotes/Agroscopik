@@ -211,6 +211,63 @@
     });
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        var $container7 = $('div#action_edit_irrigations');
+        var index7 = $container7.find(':input').length;
+        $('#add_irrigation').click(function (e) {
+            addIrrigation($container7);
+            e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+            return false;
+        });
+
+        if (index7 == 0) {
+            addIrrigation($container7);
+            $("#action_edit_irrigations > div > a").remove();
+
+
+        } else {
+            $container7.children('div').each(function () {
+                addDeleteLink7($(this));
+
+            });
+        }
+
+        function addIrrigation($container7) {
+
+            var template7 = $container7.attr('data-prototype')
+                    .replace(/__name__label__/g, '')
+                    .replace(/__name__/g, index7)
+                    .replace(/form-group/g, "col-lg-12 irrigation"+index7)
+
+                ;
+
+            var $prototype7 = $(template7);
+
+            addDeleteLink7($prototype7);
+
+            $container7.append($prototype7);
+
+            index7++;
+        }
+
+        function addDeleteLink7($prototype7) {
+            var $deleteLink7 = $('<a href="#" style=" relative;top: -35px;right:20px;"><i class="wb-close" aria-hidden="true"></i></a>');
+            $prototype7.append($deleteLink7);
+            $deleteLink7.click(function (e) {
+                $prototype7.remove();
+
+                index7--;
+
+                e.preventDefault();
+                return false;
+            });
+        }
+
+
+    });
+</script>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -219,6 +276,11 @@
         $('#harvestProducts').hide();
         $('#density').hide();
         $('#auxiliary').hide();
+        $('#ph').hide();
+        $('#irrigations').hide();
+        $('#tankVolume').hide();
+        $('#drainage').hide();
+
 
         $('#action_edit_intervention').on('change', function () {
             if ($("#action_edit_intervention").select2('data')[0]['text'] == "Traitement phytosanitaire") {
@@ -226,7 +288,10 @@
                 $('#harvestProducts').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
-
+                $('#ph').hide("slow");
+                $('#irrigations').hide("slow");
+                $('#tankVolume').hide("slow");
+                $('#drainage').hide("slow");
 
                 $('#farmSpecialities').show("slow");
 
@@ -239,8 +304,45 @@
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#harvestProducts').hide("slow");
+                $('#ph').hide("slow");
+                $('#irrigations').hide("slow");
+                $('#tankVolume').hide("slow");
+                $('#drainage').hide("slow");
 
                 $('#farmFertilizers').show("slow");
+
+                $('#periods').show("slow");
+                $('#nbWorkers').show("slow");
+                $('#tractors').show("slow");
+
+            }else if ($("#action_edit_intervention").select2('data')[0]['text'] == "Préparation d'une cuve de solution-mère") {
+                $('#density').hide("slow");
+                $('#farmSpecialities').hide("slow");
+                $('#auxiliary').hide("slow");
+                $('#harvestProducts').hide("slow");
+                $('#ph').hide("slow");
+                $('#irrigations').hide("slow");
+                $('#drainage').hide("slow");
+
+                $('#farmFertilizers').show("slow");
+                $('#tankVolume').show("slow");
+
+
+                $('#periods').show("slow");
+                $('#nbWorkers').show("slow");
+                $('#tractors').show("slow");
+
+            }else if ($("#action_edit_intervention").select2('data')[0]['text'] == "Irrigation"||$("#action_edit_intervention").select2('data')[0]['text'] == "Programme d'irrigation") {
+                $('#density').hide("slow");
+                $('#farmSpecialities').hide("slow");
+                $('#auxiliary').hide("slow");
+                $('#harvestProducts').hide("slow");
+                $('#ph').hide("slow");
+                $('#farmFertilizers').hide("slow");
+                $('#tankVolume').hide();
+                $('#drainage').hide("slow");
+
+                $('#irrigations').show("slow");
 
                 $('#periods').show("slow");
                 $('#nbWorkers').show("slow");
@@ -251,6 +353,10 @@
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
+                $('#ph').hide("slow");
+                $('#irrigations').hide("slow");
+                $('#tankVolume').hide("slow");
+                $('#drainage').hide("slow");
 
                 $('#harvestProducts').show("slow");
 
@@ -264,6 +370,10 @@
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
                 $('#farmFertilizers').hide("slow");
+                $('#ph').hide("slow");
+                $('#irrigations').hide("slow");
+                $('#tankVolume').hide("slow");
+                $('#drainage').hide("slow");
 
                 $('#auxiliary').show("slow");
 
@@ -273,11 +383,16 @@
             }
             else if ($("#action_edit_intervention").select2('data')[0]['text'] == "Semis direct" ||
                 $("#action_edit_intervention").select2('data')[0]['text'] == "Semis pépinière" ||
-                $("#action_edit_intervention").select2('data')[0]['text'] == "Repiquage/Plantation") {
+                $("#action_edit_intervention").select2('data')[0]['text'] == "Repiquage/Plantation" ||
+                $("#action_edit_intervention").select2('data')[0]['text'] == "Semis") {
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
+                $('#ph').hide("slow");
+                $('#irrigations').hide("slow");
+                $('#tankVolume').hide("slow");
+                $('#drainage').hide("slow");
 
                 $('#density').show("slow");
 
@@ -295,12 +410,53 @@
                 $('#nbWorkers').hide("slow");
                 $('#expenses').hide("slow");
                 $('#tractors').hide("slow");
+                $('#ph').hide("slow");
+                $('#irrigations').hide();
+                $('#tankVolume').hide();
+                $('#drainage').hide("slow");
+
+            } else if($("#action_edit_intervention").select2('data')[0]['text'] == "Relevé pH/EC") {
+                $('#density').hide("slow");
+                $('#farmSpecialities').hide("slow");
+                $('#harvestProducts').hide("slow");
+                $('#farmFertilizers').hide("slow");
+                $('#auxiliary').hide("slow");
+                $('#expenses').hide("slow");
+                $('#tractors').hide("slow");
+                $('#irrigations').hide("slow");
+                $('#tankVolume').hide("slow");
+                $('#drainage').hide("slow");
+
+                $('#ph').show("slow");
+
+                $('#nbWorkers').show("slow");
+                $('#periods').show("slow");
+            }else if($("#action_edit_intervention").select2('data')[0]['text'] == "Relevé de drainage") {
+                $('#density').hide("slow");
+                $('#farmSpecialities').hide("slow");
+                $('#harvestProducts').hide("slow");
+                $('#farmFertilizers').hide("slow");
+                $('#auxiliary').hide("slow");
+                $('#expenses').hide("slow");
+                $('#tractors').hide("slow");
+                $('#irrigations').hide("slow");
+                $('#tankVolume').hide("slow");
+                $('#ph').hide("slow");
+
+                $('#drainage').show("slow");
+
+                $('#nbWorkers').show("slow");
+                $('#periods').show("slow");
             }else {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
+                $('#ph').hide("slow");
+                $('#irrigations').hide("slow");
+                $('#tankVolume').hide("slow");
+                $('#drainage').hide("slow");
 
                 $('#periods').show("slow");
                 $('#expenses').show("slow");
