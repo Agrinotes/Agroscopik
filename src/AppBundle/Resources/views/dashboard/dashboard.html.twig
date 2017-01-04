@@ -444,7 +444,7 @@
                                 //Set style
                                 layer2.setStyle({color: color, Opacity:1, fillOpacity: 0.8, weight: 1.5});
                                 //Add a popup
-                                layer2.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ cycle.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\" style=\"font-weight: 500;color:#76838f;    text-transform: capitalize;\"><a href=\"{{ path('action_new',{'id':cycle.id}) }}\">" + "{{ cycle.name | capitalize }}"+"</a></h3><p>sur la parcelle " +"{{plot.name | capitalize}}"+"</p></div></div>", {closeButton: false});
+                                layer2.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ cycle.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\" style=\"font-weight: 500;color:#76838f;    text-transform: capitalize;\"><a href=\"{{ path('cropcycle_show',{'id':cycle.id}) }}\">" + "{{ cycle.name | capitalize }}"+"</a></h3><p>sur la parcelle " +"{{plot.name | capitalize}}"+"</p></div></div>", {closeButton: false});
                                 // Add current polygon to featureGroup
                                 featureGroup2.addLayer(layer2);
                         {% endif %}

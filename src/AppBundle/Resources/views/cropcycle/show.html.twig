@@ -404,7 +404,7 @@
                     yAxis: 0,
                     data: [
                         {% for action in keep %}
-                        [Date.UTC({{ action.startDatetime | date ('Y,m,d') }}), {{ action.ph }}]
+                        [Date.UTC({{ action.startDatetime | date_modify("-1 month")| date ('Y,m,d') }}), {{ action.ph }}]
                         {% if not loop.last %}, {% endif %}
 
                         {% endfor %}
@@ -415,7 +415,7 @@
                     yAxis: 1,
                     data: [
                         {% for action in keep %}
-                        [Date.UTC({{ action.startDatetime | date ('Y') }}, {{ action.startDatetime | date ('m') }}, {{ action.startDatetime | date ('d') }}), {{ action.ec }}]
+                        [Date.UTC({{ action.startDatetime | date_modify("-1 month")| date ('Y,m,d') }}), {{ action.ec }}]
                         {% if not loop.last %}, {% endif %}
 
                         {% endfor %}
