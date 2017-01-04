@@ -185,7 +185,7 @@
 
             {% if cropCycle.plot.hydroponics %}
                 <!-- pH & EC charts -->
-                <div class="col-lg-6 col-md-12">
+                <div class="col-lg-12 col-md-12">
                     <div class="panel" id="ph-ec-chart">
                         <div class="panel-body">
                             <div id="container" style="min-width: 310px; height: 400px; margin: auto"></div>
@@ -262,6 +262,15 @@
 {% block page_javascripts %}
     {{ parent() }}
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/datatables.js') }}"></script>
+    <script>
+        Highcharts.setOptions({
+            chart: {
+                style: {
+                    fontFamily: 'Roboto'
+                }
+            }
+        });
+    </script>
     <script>
         /*!
          * remark (http://getbootstrapadmin.com/remark)
