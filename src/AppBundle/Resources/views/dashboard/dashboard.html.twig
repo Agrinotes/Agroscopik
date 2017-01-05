@@ -107,14 +107,16 @@
                                                         {% if plot.cropCycles is not empty %}
                                                         <table class="table table-hover ">
                                                             <tbody>
+                                                            {% set cropcycle_index = 1 %}
                                                             {% for cycle in plot.cropCycles %}
                                                                 {% if cycle.status == "ActiveAction" %}
-                                                                <tr {% if loop.first %}style="border-top:none;" {% endif %}>
-                                                                    <td style="color:lightgrey;{% if loop.first %}border-top:none;{% endif %}">{{ loop.index }}</td>
+                                                                <tr {% if cropcycle_index == 1 %}style="border-top:none;" {% endif %}>
+                                                                    <td style="color:lightgrey;{% if loop.first %}border-top:none;{% endif %}">{{ cropcycle_index }}</td>
                                                                     <td {% if loop.first %}style="border-top:none;" {% endif %}><a href="{{ path('cropcycle_show',{'id':cycle.id})}}" style="color: rgba(118,131,143,1);text-decoration:none;">{{ cycle.name }} <small>{{cycle.area |number_format(2, ',', ' ') }} ha</small></a></td>
                                                                     <td {% if loop.first %}style="border-top:none;" {% endif %}></td>
                                                                 </tr>
-                                                            {% endif %}
+                                                                    {% set cropcycle_index = cropcycle_index+1 %}
+                                                                {% endif %}
                                                             {% endfor %}
                                                             </tbody>
                                                         </table>
