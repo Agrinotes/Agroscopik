@@ -64,7 +64,7 @@ class ActionController extends Controller
             $em->flush();
 
             // Remove specialities added to wrong categories
-            if ($action->getFarmSpecialityMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'protection-des-cultures') {
+            if ($action->getFarmSpecialityMvts() && $action->getIntervention()->getName() != 'Traitement phytosanitaire') {
                 $mvts = $action->getFarmSpecialityMvts();
                 foreach ($mvts as $mvt) {
                     $em->remove($mvt);

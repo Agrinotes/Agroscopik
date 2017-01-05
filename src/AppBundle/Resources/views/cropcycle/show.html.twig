@@ -115,7 +115,17 @@
             <!-- Panel Table Tools -->
             <div class="panel" id="tableTools">
                 <header class="panel-heading">
-                    <h3 class="panel-title">{{ cropCycle.plot.name | capitalize }} {{ cropCycle.name | capitalize }}</h3>
+                    <h4 class="panel-title" style="font-size:16px;"><a href="{{path('plot_show',{'id':cropCycle.plot.id})}}">{{ cropCycle.plot.name | capitalize }}</a> <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i></small>
+{{ cropCycle.name | trim | capitalize }}
+                            <small>{{ cropCycle.area | number_format(2,',',' ') }} ha
+                            </small>
+                    </h4>
+
+
+                    <div class="panel-actions panel-actions-keep">
+                        <a class="panel-action icon wb-settings" href="{{ path('cropcycle_edit',{'id':cropCycle.id}) }}" aria-hidden="true"></a>
+
+                    </div>
                 </header>
                 <div class="panel-body">
                     <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
@@ -174,7 +184,7 @@
                                 <td>{{ action.nbWorkers }}</td>
 
                                 <td>{{ action.durationLabel }} {% if action.workingDurationLabel !="0h" %}{% endif %}</td>
-                                <td>{% if action.expensesCost != 0 %}{{ action.expensesCost |number_format(0, ',', ' ') }} CFP {%  endif %}</td>
+                                <td style="text-align: right">{% if action.expensesCost != 0 %}{{ action.expensesCost |number_format(0, ',', ' ') }} CFP {%  endif %}</td>
                             </tr>
                         {% endfor %}
                         </tbody>
