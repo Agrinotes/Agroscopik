@@ -1,22 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block head_javascripts %}
+{% block title %}Modifier {{ cropCycle.plot.name | capitalize }} {{ cropCycle.name | capitalize }}{% endblock %}
+
+{% block plugins_stylesheets %}
     {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/asrange/asRange.css') }}">
+
 {% endblock %}
 
-{% block plugin_stylesheets %}
+{% block page_stylesheets %}
     {{ parent() }}
-    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet'
-          xmlns="http://www.w3.org/1999/html"/>
-
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.geosearch/0.1/css/l.geosearch.css">
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/leaflet-label/leaflet.label.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.css') }}">
-
-
     <style>
+        .leaflet-popup-tip-container {
+            left: -35px;
+        }
+
+        .leaflet-control-layers-toggle {
+            font-family: Roboto, sans-serif;
+        }
 
         .leaflet-editing-icon {
             border-radius: 100%;
@@ -24,7 +25,7 @@
         }
 
         .created-div {
-            border: 10px solid darkred;
+            border: 10px solid #088;
             -webkit-border-radius: 30px;
             -moz-border-radius: 30px;
             border-radius: 30px;
@@ -46,554 +47,328 @@
             }
         }
 
-        .leaflet-label-right:before {
+        .rangeUi-tip{
+            width:auto;
+            font-size:15px;
+        }
+        
+        .hidden{
             display: none;
-        }
-
-        .leaflet-label {
-            border: none;
-        }
-
-        .leaflet-control-locate a span {
-            padding-left: 7px;
-            padding-top: 2px;
         }
     </style>
 {% endblock %}
 
 {% block page %}
-
-    <div class="page">
-        <div class="page-header padding-top-20 padding-bottom-10">
-            <ol class="breadcrumb">
-                <li><a href="{{ path('plot_show',{'id':cropCycle.plot.id}) }}">{{ cropCycle.plot.name | capitalize }}</a></li>
-                <li class="active">Modifier un cycle de culture</li>
-            </ol>
-        </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-bordered">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Modifier {{ cropCycle.name }} sur {{ cropCycle.plot.name }}</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-4 hidden">
-                                    {{ form_start(edit_form) }}
-
-                                    <h4 class="example-title">
-                                        {{ form_label(edit_form.crops) }}
-                                    </h4>
-
-                                    {{ form_errors(edit_form.crops) }}
-                                    {{ form_widget(edit_form.crops) }}
-                                </div>
-                                <div class="col-lg-4">
-                                    <h4 class="example-title">
-                                        {{ form_label(edit_form.varieties) }}
-                                    </h4>
-
-                                    <div class="form-group form-material">
-                                        {{ form_errors(edit_form.varieties) }}
-                                        {{ form_widget(edit_form.varieties) }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row margin-top-20">
-
-                            </div>
-                            <div class="row margin-top-20">
-                                <div class="col-lg-12">
-                                    <div class="hidden">
-                                        {{ form_widget(edit_form.status) }}
-                                    </div>
-                                    <div>
-                                        <h4 class="example-title">
-                                            Zone de culture
-                                        </h4>
-
-                                        <div id="map" style="height: 60vh;"></div>
-                                        {{ form_label(edit_form.area) }}
-                                        {{ form_widget(edit_form.area) }}
-                                        {{ form_errors(edit_form.area) }}
-                                        {{ form_label(edit_form.latLngs) }}
-                                        {{ form_widget(edit_form.latLngs) }}
-                                        {{ form_errors(edit_form.latLngs) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <a class="btn btn-default btn-flat"
-                               href="{{ path('plot_show',{'id': cropCycle.plot.id }) }}">Annuler</a>
-                            <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button>
-                            {{ form_end(edit_form) }}
-                        </div>
+    <div class="page-content">
+        <div class="row">
+            {% if cropCycle.plot.latLngs is  empty %}
+            <div class="col-lg-4 col-md-3 col-sm-0">
+            </div>
+            {% endif %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+            <!-- Panel -->
+            <div class="panel panel-info panel-bordered">
+                <header class="panel-heading">
+                    <div class="panel-actions"></div>
+                    <h3 class="panel-title">{{ cropCycle.name }}</h3>
+                </header>
+                <div class="panel-body">
+                    {{ form_start(edit_form) }}
+                    <div class="form-group">
+                        {{ form_label(edit_form.varieties) }}
+                        {{ form_errors(edit_form.varieties) }}
+                        {{ form_widget(edit_form.varieties) }}
                     </div>
 
-                    {% if is_granted('DELETE', cropCycle) or is_granted('ROLE_ADMIN') %}
-                    <div class="panel panel-bordered">
-                        <div class="panel-header">
-                            <div class="panel-title">
-                                Actions sensibles
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                                    {{ form_start(delete_form) }}
-                            <button class="btn btn-danger margin-left-10" type="submit">Supprimer</button>
-                             {{ form_end(delete_form) }}
-                        </div>
-                    </div>
-                    {% endif %}
+                    <div class="form-group hidden">
+                        {{ form_widget(edit_form.area) }}
+                        {{ form_errors(edit_form.area) }}
+                        {{ form_label(edit_form.area) }}
 
+                        {{ form_label(edit_form.latLngs) }}
+                        {{ form_errors(edit_form.latLngs) }}
+                        {{ form_widget(edit_form.latLngs) }}
+                    </div>
+                    <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+                    {{ form_end(edit_form) }}
                 </div>
             </div>
+            <!-- End Panel -->
+            </div>
+            {% if cropCycle.plot.latLngs is not empty %}
+                <div class="col-lg-8 col-md-6 col-sm-12">
+            <div id="map" style="height: 78vh;">
+            </div>
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
 
-{% block core_plugin %}
-    {{ parent() }}
-    <script src="{{ asset('front/global/vendor/mapbox.js/mapbox.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/mapbox.js/plugins/leaflet.markercluster.js') }}"></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
-    <script src="https://cdn.jsdelivr.net/g/leaflet.geosearch@0.1(js/l.control.geosearch.js+js/l.geosearch.provider.google.js)"></script>
-    <script src="{{ asset('front/global/vendor/leaflet-label/leaflet.label.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.geometryutil.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.js') }}"></script>
+{% block plugins_javascripts %}
+    {{ parent()}}
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script> {# Change source #}
+    <script src="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.js') }}"></script> {# Change source #}
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/asrange/jquery-asRange.min.js') }}"></script>
+
 {% endblock %}
 
-{% block template_config %}
+{% block page_javascripts %}
     {{ parent() }}
-    <script src="{{ asset('front/global/js/components/bootstrap-sweetalert.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Site.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asrange.js') }}"></script>
 
-    <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
+    {# Map script #}
     <script>
-        window.AppPlotNew = Site.extend({
-            createMap: function () {
-                // Mapbox access token
-                L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
+       L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
+       var map = L.mapbox.map('map','mapbox.streets',{ zoomControl: false }).setView([20,150], 2);
+       new L.Control.Zoom({ position: 'topright' }).addTo(map);
+       L.control.layers({
+           'Carte': L.mapbox.tileLayer('mapbox.streets').addTo(map),
+           'Google Satellite': L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+               maxZoom: 20,
+               subdomains:['mt0','mt1','mt2','mt3']
+           }),
+           'Google Street': L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+               maxZoom: 20,
+               subdomains:['mt0','mt1','mt2','mt3']
+           }),
+           'Image satellite Mapbox': L.mapbox.tileLayer('mapbox.streets-satellite'),
+       }).addTo(map);
 
-                // Create the map
-                var map = L.mapbox.map('map', 'mapbox.streets').setView([-21.20000, 166.00000], 7);
+       // Add cropcycle plot
+       var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }},
+               {
+                   color: "white",
+                   opacity: 0.8,
+                   weight: 1.5
+               }
+       ).addTo(map);
+       var guideLayers = [parent];
+       // Zoom on plot
+       var bounds = parent.getBounds();
+       map.fitBounds(bounds);
 
-                // Add GeoRep
-                var georep = L.tileLayer.wms('https://carto10.gouv.nc/arcgis/services/fond_imagerie/MapServer/WMSServer', {
-                    format: 'img/png',
-                    transparent: true,
-                    layers: 16,
-                    maxZoom: 26
-                });
+       var featureGroup = L.geoJson({{ cropCycle.latLngs | raw }},
+               {
+                   color: "#088",
+                   opacity: 0.8,
+                   weight: 1.5
+               }
+       ).addTo(map);
 
-                // Display GeoRep according to zoom level
-                map.on('zoomend', function () {
-                    if (map.getZoom() > 14 && map.hasLayer(georep) == false) {
-                        map.addLayer(georep);
-                    }
-                    if (map.getZoom() < 14 && map.hasLayer(georep)) {
-                        map.removeLayer(georep);
-                    }
-                    if (map.getZoom() > 14) {
-                        $('.leaflet-label').css('display', 'block');
-                    } else {
-                        $('.leaflet-label').css('display', 'none');
-                    }
-                });
-
-
-                // Add cropcycle plot
-                var layer = L.geoJson({{ cropCycle.plot.latLngs | raw }},
-                        {
-                            color: "white",
-                            opacity: 0.8,
-                            weight: 1.5
-                        }
-                ).addTo(map);
-                var guideLayers = [layer];
-
-                // Store vertices lat lngs in arrays to check if new drawn crop cycle area is contained in this plot
-                var plotVerticesX = [];
-                var plotVerticesY = [];
-                var numVertices = 0;
-
-                // I need to duplicate it otherwise can't fit plot bounds... Don't know why...
-                var duplicatelayer = L.geoJson({{cropCycle.plot.latLngs|raw}},
-                        {
-                            onEachFeature: onEachFeature
-                        }
-                );
-
-                function onEachFeature(feature, layer) {
-                    numVertices = feature.geometry.coordinates[0].length;
-                    for (var indexVertice = 0; indexVertice < numVertices; indexVertice++) {
-                        plotVerticesX.push(feature.geometry.coordinates[0][indexVertice][0]);
-                        plotVerticesY.push(feature.geometry.coordinates[0][indexVertice][1]);
-
-                    }
-                };
-
-
-                // Zoom on plot
-                var bounds = layer.getBounds();
-                map.fitBounds(bounds);
-
-                {% if cropCycle.latLngs is empty %}
-                var featureGroup = L.geoJson({{ cropCycle.plot.latLngs | raw }},
-                        {
-                            color: "red",
-                            opacity: 0.8,
-                            weight: 1.5
-                        }
-                ).addTo(map);
-                {% else %}
-                var featureGroup = L.geoJson({{ cropCycle.latLngs | raw }},
-                        {
-                            color: "red",
-                            opacity: 0.8,
-                            weight: 1.5
-                        }
-                ).addTo(map);
-                {% endif %}
-
-
-
-                // Change icon styles
-                L.Edit.Poly = L.Edit.Poly.extend({
-                    options: {
-                        icon: new L.DivIcon({
-                            iconSize: new L.Point(20, 20),
-                            className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
-                            html: '<div class="inside-div"></div>'
-                        })
-                    }
-                });
-
-
-                // Enable drawing polygons
-                var drawControl = new L.Control.Draw({
-                    edit: {
-                        featureGroup: featureGroup,
-                        selectedPathOptions: {
-                            dashArray: "8,6",
-                            color: 'white',
-                            opacity: 0.8,
-                            weight: 1.5
-                        }
-                    },
-                    draw: {
-                        polyline: false,
-                        circle: false,
-                        marker: false,
-                        rectangle: false,
-                        polygon: {
-                            guideLayers: guideLayers, snapDistance: 10,
-                            icon: new L.DivIcon({
-                                iconSize: new L.Point(20, 20),
-                                className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
-                                html: '<div class="created-div"></div>'
-                            }),
-                            shapeOptions: {
-                                dashArray: "8,6",
-                                color: 'red',
-                                opacity: 0.8,
-                                weight: 1.5
-                            }
-                        }
-                    }
-                }).addTo(map);
-
-
-                // Change Leaflet draw messages
-                L.drawLocal = {
-                    draw: {
-                        toolbar: {
-                            actions: {
-                                title: 'Annulez le dessin',
-                                text: 'Annuler'
-                            },
-                            buttons: {
-                                polyline: 'Dessiner une polyligne',
-                                polygon: 'Dessiner ma zone de culture',
-                                rectangle: 'Dessiner un rectangle',
-                                circle: 'Dessiner un cercle',
-                                marker: 'Dessiner un marqueur'
-                            }
-                        },
-                        handlers: {
-                            circle: {
-                                tooltip: {
-                                    start: 'Cliquez et déplacez pour dessiner un cercle.'
-                                }
-                            },
-                            marker: {
-                                tooltip: {
-                                    start: 'Cliquez sur la carte pour placer un marqueur.'
-                                }
-                            },
-                            polygon: {
-                                tooltip: {
-                                    start: 'Vous pouvez commencer à dessiner votre zone de culture.',
-                                    cont: 'Vous pouvez continuer à dessiner votre zone de culture',
-                                    end: 'Cliquez sur votre premier point quand vous avez terminé.'
-                                }
-                            },
-                            polyline: {
-                                error: '<strong>Erreur:</strong> Les arrêtes de la forme ne doivent pas se croiser!',
-                                tooltip: {
-                                    start: 'Cliquez pour commencer à dessiner d\'une ligne.',
-                                    cont: 'Cliquez pour continuer à dessiner une ligne.',
-                                    end: 'Cliquez sur le dernier point pour terminer la ligne.'
-                                }
-                            },
-                            rectangle: {
-                                tooltip: {
-                                    start: 'Cliquez et déplacez pour dessiner un rectangle.'
-                                }
-                            },
-                            simpleshape: {
-                                tooltip: {
-                                    end: 'Relachez la souris pour finir de dessiner.'
-                                }
-                            }
-                        }
-                    },
-                    edit: {
-                        toolbar: {
-                            actions: {
-                                save: {
-                                    title: 'Enregistrer les changements.',
-                                    text: 'Enregistrer'
-                                },
-                                cancel: {
-                                    title: 'Annuler les modifications.',
-                                    text: 'Annuler'
-                                }
-                            },
-                            buttons: {
-                                edit: 'Modifier la zone de culture.',
-                                editDisabled: 'Aucune zone de culture à modifier.',
-                                remove: 'Supprimer la zone de culture.',
-                                removeDisabled: 'Aucune zone de culture à supprimer.'
-                            }
-                        },
-                        handlers: {
-                            edit: {
-                                tooltip: {
-                                    text: 'Déplacez les points pour modifier la zone de culture.',
-                                    subtext: ''
-                                }
-                            },
-                            remove: {
-                                tooltip: {
-                                    text: 'Cliquez sur la zone de culture à supprimer'
-                                }
-                            }
-                        }
-                    }
-                };
-
-                // On draw created, add polygon values to the form
-                map.on('draw:created', function (e) {
-                    var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
-                    var layer = e.layer;
-                    var layerLatLngs = layer.getLatLngs();
-
-                    if(assertContains(parent,layer)==false){
-                        $("#crop_cycle_latLngs").val("");
-                        $("#crop_cycle_area").val("");
-                        swal({
-                            title: "Oups...",
-                            text: "La zone de culture dessinée est hors de la parcelle !",
-                            type: "warning",
-                            showCancelButton: false,
-                            confirmButtonColor: '#009688',
-                            confirmButtonText: 'Recommencer',
-                            closeOnConfirm: true
-                        });
-                        featureGroup.clearLayers();
-
-                        new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-                    }else{
-                        // If all vertices are in plot area
-                        featureGroup.clearLayers();
-                        featureGroup.addLayer(layer);
-                        $("#crop_cycle_area").val(getPolygonArea(layer));
-                        var latLngs = JSON.stringify(layer.toGeoJSON());
-                        $("#crop_cycle_latLngs").val(latLngs);
-                        map.fitBounds(layer.getBounds());
-                    }
-                    {#// Get vertices from the drawn polygon
-                    var numNewVertices = layer.getLatLngs().length;
-                    for (var i = 0; i < numNewVertices; i++) {
-                        if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat, i) == false) {
-                            $("#crop_cycle_latLngs").val("");
-                            $("#crop_cycle_area").val("");
-                            swal({
-                                title: "Oups...",
-                                text: "La zone de culture dessinée est hors de la parcelle !",
-                                type: "warning",
-                                showCancelButton: false,
-                                confirmButtonColor: '#009688',
-                                confirmButtonText: 'Recommencer',
-                                closeOnConfirm: true
-                            });
-                            featureGroup.clearLayers();
-
-                            new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-                            return;
-
-                        }
-                    }
-#}
-
-                });
-
-                // On draw edited, update polygon values to the form
-                map.on('draw:edited', function (e) {
-                    e.layers.eachLayer(function (layer) {
-                        var parent = L.geoJson({{ cropCycle.plot.latLngs | raw }});
-                        featureGroup.clearLayers();
-
-                        if(assertContains(parent,layer)==false){
-                            $("#crop_cycle_latLngs").val("");
-                            $("#crop_cycle_area").val("");
-                            swal({
-                                title: "Oups...",
-                                text: "La zone de culture dessinée est hors de la parcelle !",
-                                type: "warning",
-                                showCancelButton: false,
-                                confirmButtonColor: '#009688',
-                                confirmButtonText: 'Recommencer',
-                                closeOnConfirm: true
-                            });
-                            featureGroup.clearLayers();
-
-                            new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-                        }else{
-                            featureGroup.addLayer(layer);
-                            $("#crop_cycle_area").val(getPolygonArea(layer));
-                            var latLngs = JSON.stringify(layer.toGeoJSON());
-                            $("#crop_cycle_latLngs").val(latLngs);
-                        }
-                        {#
-                        var layerLatLngs = layer.getLatLngs();
-                        // Get vertices from the drawn polygon
-                        var numNewVertices = layer.getLatLngs().length;
-                        for (var i = 0; i < numNewVertices; i++) {
-                            if (isInPolygon(numVertices, plotVerticesX, plotVerticesY, layerLatLngs[i].lng, layerLatLngs[i].lat, i) == false) {
-                                $("#crop_cycle_latLngs").val("");
-                                $("#crop_cycle_area").val("");
-                                swal({
-                                    title: "Oups...",
-                                    text: "La zone de culture dessinée est hors de la parcelle !",
-                                    type: "warning",
-                                    showCancelButton: false,
-                                    confirmButtonColor: '#009688',
-                                    confirmButtonText: 'Recommencer',
-                                    closeOnConfirm: true
-                                });
-                                featureGroup.clearLayers();
-
-                                new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-                                return;
-
-                            }
-                        }
-#}
+       // Change icon styles
+       L.Edit.Poly = L.Edit.Poly.extend({
+           options: {
+               icon: new L.DivIcon({
+                   iconSize: new L.Point(20, 20),
+                   className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                   html: '<div class="inside-div"></div>'
+               })
+           }
+       });
+       // Enable drawing polygons
+       var drawControl = new L.Control.Draw({
+           edit: {
+               featureGroup: featureGroup,
+               remove: false,
+               selectedPathOptions: {
+                   dashArray: "8,6",
+                   color: '#088',
+                   opacity: 0.8,
+                   weight: 1.5
+               }
+           },
+           draw: {
+               polyline: false,
+               circle: false,
+               marker: false,
+               rectangle: false,
+               polygon: {
+                   guideLayers: guideLayers, snapDistance: 10,
+                   icon: new L.DivIcon({
+                       iconSize: new L.Point(20, 20),
+                       className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
+                       html: '<div class="created-div"></div>'
+                   }),
+                   shapeOptions: {
+                       dashArray: "8,6",
+                       color: '#088',
+                       opacity: 0.8,
+                       weight: 1.5
+                   }
+               }
+           }
+       }).addTo(map);
+       // Change Leaflet draw messages
+       L.drawLocal = {
+           draw: {
+               toolbar: {
+                   actions: {
+                       title: 'Annulez le dessin',
+                       text: 'Annuler'
+                   },
+                   buttons: {
+                       polyline: 'Dessiner une polyligne',
+                       polygon: 'Dessiner ma zone de culture',
+                       rectangle: 'Dessiner un rectangle',
+                       circle: 'Dessiner un cercle',
+                       marker: 'Dessiner un marqueur'
+                   }
+               },
+               handlers: {
+                   circle: {
+                       tooltip: {
+                           start: 'Cliquez et déplacez pour dessiner un cercle.'
+                       }
+                   },
+                   marker: {
+                       tooltip: {
+                           start: 'Cliquez sur la carte pour placer un marqueur.'
+                       }
+                   },
+                   polygon: {
+                       tooltip: {
+                           start: 'Vous pouvez commencer à dessiner votre zone de culture.',
+                           cont: 'Vous pouvez continuer à dessiner votre zone de culture',
+                           end: 'Cliquez sur votre premier point quand vous avez terminé.'
+                       }
+                   },
+                   polyline: {
+                       error: '<strong>Erreur:</strong> Les arrêtes de la forme ne doivent pas se croiser!',
+                       tooltip: {
+                           start: 'Cliquez pour commencer à dessiner d\'une ligne.',
+                           cont: 'Cliquez pour continuer à dessiner une ligne.',
+                           end: 'Cliquez sur le dernier point pour terminer la ligne.'
+                       }
+                   },
+                   rectangle: {
+                       tooltip: {
+                           start: 'Cliquez et déplacez pour dessiner un rectangle.'
+                       }
+                   },
+                   simpleshape: {
+                       tooltip: {
+                           end: 'Relachez la souris pour finir de dessiner.'
+                       }
+                   }
+               }
+           },
+           edit: {
+               toolbar: {
+                   actions: {
+                       save: {
+                           title: 'Enregistrer les changements.',
+                           text: 'Enregistrer'
+                       },
+                       cancel: {
+                           title: 'Annuler les modifications.',
+                           text: 'Annuler'
+                       }
+                   },
+                   buttons: {
+                       edit: 'Modifier la zone de culture.',
+                       editDisabled: 'Aucune zone de culture à modifier.',
+                       remove: 'Supprimer la zone de culture.',
+                       removeDisabled: 'Aucune zone de culture à supprimer.'
+                   }
+               },
+               handlers: {
+                   edit: {
+                       tooltip: {
+                           text: 'Déplacez les points pour modifier la zone de culture.',
+                           subtext: ''
+                       }
+                   },
+                   remove: {
+                       tooltip: {
+                           text: 'Cliquez sur la zone de culture à supprimer'
+                       }
+                   }
+               }
+           }
+       };
 
 
-                    });
-                });
+       // On draw created, add polygon values to the form
+       map.on('draw:created', function (e) {
+           var layer = e.layer;
+           featureGroup.clearLayers();
 
-                // On draw deletestop, delete previous plot
-                map.on('draw:deletestop', function (e) {
-                    featureGroup.clearLayers();
-                    $("#crop_cycle_latLngs").val("");
-                    $("#crop_cycle_area").val("");
-                });
+           if(assertContains(parent,layer)==false){
+               $("#crop_cycle_edit_latLngs").val('{{cropCycle.latLngs | raw}}');
+               $("#crop_cycle_edit_area").val("{{cropCycle.area}}");
+               swal({
+                   title: "Oups...",
+                   text: "La zone de culture dessinée est complètement hors de la parcelle !",
+                   type: "warning",
+                   showCancelButton: false,
+                   confirmButtonColor: '#009688',
+                   confirmButtonText: 'Recommencer',
+                   closeOnConfirm: true
+               });
 
-                // Get Polygon Area
-                function getPolygonArea(layer) {
-                    var area = LGeo.area(layer) / 10000;
-                    return area.toFixed(3);
-                }
+               featureGroup.addLayer(L.geoJson({{ cropCycle.latLngs | raw }},
+                       {
+                           color: "#088",
+                           opacity: 0.8,
+                           weight: 1.5
+                       }
+               ));
+           }else{
+               featureGroup.addLayer(layer);
+               $("#crop_cycle_edit_area").val(getPolygonArea(layer));
+               var latLngs = JSON.stringify(layer.toGeoJSON());
+               $("#crop_cycle_edit_latLngs").val(latLngs);
+               map.fitBounds(layer.getBounds());
+           }
+       });
 
-                function assertContains(parent, child) {
-                    return parent.getBounds().contains(child.getBounds());
-                }
+       // On draw edited, update polygon values to the form
+       map.on('draw:edited', function (e) {
+           e.layers.eachLayer(function (layer) {
+               featureGroup.clearLayers();
+               if(assertContains(parent,layer)==false){
+                   $("#crop_cycle_edit_latLngs").val('{{cropCycle.latLngs | raw}}');
+                   $("#crop_cycle_edit_area").val("{{cropCycle.area}}");
+                   swal({
+                       title: "Oups...",
+                       text: "La zone de culture modifiée est complètement hors de la parcelle !",
+                       type: "warning",
+                       showCancelButton: false,
+                       confirmButtonColor: '#009688',
+                       confirmButtonText: 'Recommencer',
+                       closeOnConfirm: true
+                   });
 
-
-                function isInPolygon(points_polygon, vertices_x, vertices_y, longitude_x, latitude_y, num) {
-                    console.log("Point " + (num));
-                    var i = 0;
-                    var j = 0;
-                    var c = false;
-
-                    for (i = 0, j = points_polygon - 1; i < points_polygon; j = i++) {
-
-                        {#
-                        console.log("A " + i + " " + j + " (" +
-                                (vertices_y[i] > latitude_y) + " =! " +
-                                (vertices_y[j] > latitude_y) + ") = " +
-                                (vertices_y[i] > latitude_y != (vertices_y[j] > latitude_y)) + " && " +
-                                (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.0000 ) + " = " +
-                                ((vertices_y[i] >= latitude_y != (vertices_y[j] > latitude_y)) &&
-                                (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.0000 )) + "\n" + longitude_x + " <= " + ((vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.0000 )
-                        );
-
-                        console.log("B " + i + " " + j + " (" +
-                                (vertices_y[i] > latitude_y) + " =! " +
-                                (vertices_y[j] > latitude_y) + ") = " +
-                                (vertices_y[i] > latitude_y != (vertices_y[j] > latitude_y)) + " && " +
-                                (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.00001 ) + " = " +
-                                ((vertices_y[i] >= latitude_y != (vertices_y[j] > latitude_y)) &&
-                                (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.00001 )) + "\n" + longitude_x + " <= " + ((vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + 0.00001 )
-                        );#}
-
-
-                        //Add a small offset if necessary
-                        var offset = 0;
-
-                        if (vertices_y[i] >= latitude_y == true &&
-                                vertices_y[j] > latitude_y == false &&
-                                (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i]) == false
-                        ) {
-                            offset = 0.00001
-                        }
-
-                        //Evaluate
-                        if ((vertices_y[i] >= latitude_y != (vertices_y[j] > latitude_y)) &&
-                                (longitude_x <= (vertices_x[j] - vertices_x[i]) * (latitude_y - vertices_y[i]) / (vertices_y[j] - vertices_y[i]) + vertices_x[i] + offset)) {
-
-                            c = true;
-                            console.log(c);
-                        }
-                    }
-
-                    return c;
-                }
-            }
-            ,
-            run: function () {
-                this.createMap();
-            }
-        });
+                   featureGroup.addLayer(L.geoJson({{ cropCycle.latLngs | raw }},
+                           {
+                               color: "#088",
+                               opacity: 0.8,
+                               weight: 1.5
+                           }
+                   ));
 
 
-        $(document).ready(function ($) {
-            AppPlotNew.run();
-        })
+               }else{
+                   featureGroup.addLayer(layer);
+                   $("#crop_cycle_edit_area").val(getPolygonArea(layer));
+                   var latLngs = JSON.stringify(layer.toGeoJSON());
+                   $("#crop_cycle_edit_latLngs").val(latLngs);}
+           });
+       });
+
+
+       // Get Polygon Area function
+       function getPolygonArea(layer) {
+           var area = LGeo.area(layer) / 10000;
+           return area.toFixed(3);
+       }
+
+       function assertContains(parent, child) {
+           return parent.getBounds().contains(child.getBounds());
+       }
     </script>
 
-
-
-
 {% endblock %}
-
-
-
-
-

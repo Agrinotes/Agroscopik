@@ -176,7 +176,7 @@
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asscrollable.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/slidepanel.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script> 
-      <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asrange.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asrange.js') }}"></script>
     
     {# Select2 script#}
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>
@@ -387,7 +387,7 @@
                                             featureGroup2.clearLayers();
 
                     if(assertContains(parent,layer)==false){
-                        $("#crop_cycle_latLngs").val("{{plot.latLngs}}");
+                        $("#crop_cycle_latLngs").val('{{plot.latLngs | raw}}');
                         $("#crop_cycle_area").val("{{plot.area}}");
                         swal({
                             title: "Oups...",
@@ -413,7 +413,7 @@
                     e.layers.eachLayer(function (layer) {
                         featureGroup2.clearLayers();
                         if(assertContains(parent,layer)==false){
-                        $("#crop_cycle_latLngs").val("{{plot.latLngs}}");
+                        $("#crop_cycle_latLngs").val('{{plot.latLngs | raw}}');
                         $("#crop_cycle_area").val("{{plot.area}}");
                         swal({
                             title: "Oups...",
@@ -435,7 +435,7 @@
                 // On draw deletestop, delete previous plot
                 map.on('draw:deletestop', function (e) {
                     featureGroup2.clearLayers();
-                    $("#crop_cycle_latLngs").val("{{plot.latLngs}}");
+                    $("#crop_cycle_latLngs").val('{{plot.latLngs | raw}}');
                     $("#crop_cycle_area").val("{{plot.area}}");
                 });
 
@@ -595,6 +595,7 @@
         exports.getInstance = getInstance;
     });
     </script>
+
     <script src="{{ asset('remark/3.0.5/classic/topbar/assets/examples/js/apps/location.js') }}"></script>
 {% endblock %}
 

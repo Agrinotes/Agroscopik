@@ -189,7 +189,7 @@ class CropCycleController extends Controller
     public function editAction(Request $request, CropCycle $cropCycle)
     {
         $deleteForm = $this->createDeleteForm($cropCycle);
-        $editForm = $this->createForm('AppBundle\Form\CropCycleType', $cropCycle);
+        $editForm = $this->createForm('AppBundle\Form\CropCycleEditType', $cropCycle);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
