@@ -15,6 +15,8 @@ use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 
 
 /**
@@ -250,5 +252,27 @@ class CropCycleController extends Controller
             ->getForm();
     }
 
+    /**
+     * Update cropCycle status.
+     *
+     * @Route("/cropcycle/{id}/ajax/updateStatus", name="cropcycle_update_status_ajax")
+     */
+    public function updateStatusAjaxAction(Request $request, CropCycle $cropCycle)
+    {
+        $em = $this->getDoctrine()->getManager();
 
+        $content = $request->getContent();
+
+        // Should be improved...
+        if($content == "myvalue=true"){
+            $cropCycle->setStatus('CompletedAction');
+        }else{
+            $cropCycle->setStatus('ActiveAction');
+        }
+
+        $em->persist($cropCycle);
+        $em->flush();
+
+        return new JsonResponse(array('data' => $content ));
+    }
 }

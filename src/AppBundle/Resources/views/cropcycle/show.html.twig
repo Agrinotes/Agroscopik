@@ -121,7 +121,7 @@
                         </small>
                     </h4>
                     <div class="panel-actions panel-actions-keep">
-                        <span class="check-change js-check-change-field"></span> <input type="checkbox" class="js-check-change" data-plugin="switchery" data-color="#E9595B" data-size="small" data-secondary-color="#83B944" checked="" data-switchery="true"/>
+                        <span class="check-change js-check-change-field">{% if cropCycle.status == "CompletedAction" %}Cycle terminé{% else %}Cycle en cours{% endif %}</span> <input type="checkbox" class="js-check-change" data-plugin="switchery" data-color="#E9595B" data-size="small" data-secondary-color="#83B944" {% if cropCycle.status == "CompletedAction" %}checked{% endif %} data-switchery="true"/>
                         <a class="panel-action icon wb-settings" href="{{ path('cropcycle_edit',{'id':cropCycle.id}) }}" aria-hidden="true"></a>
 
                     </div>
@@ -448,11 +448,23 @@
                 , changeField = document.querySelector('.js-check-change-field');
 
         changeCheckbox.onchange = function() {
+
             if(changeCheckbox.checked){
             changeField.innerHTML = "Cycle terminé";
             }else{
                 changeField.innerHTML = "Cycle en cours";
             }
-        };
+
+            $.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: "{{ path('cropcycle_update_status_ajax',{'id':cropCycle.id}) }}",
+                    data: {
+                        myvalue: changeCheckbox.checked
+                    }
+                    }).done(function() {
+                        console.log('YEAH');
+                    });
+             };
     </script>
 {% endblock %}

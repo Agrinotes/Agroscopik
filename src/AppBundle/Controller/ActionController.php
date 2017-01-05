@@ -7,7 +7,7 @@ use AppBundle\Entity\CropCycle;
 use AppBundle\Entity\InterventionCategory;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\JsonResponse;  
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -28,7 +28,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class ActionController extends Controller
 {
-        /**
+    /**
      * Creates a new Action entity from cropcycle_show.
      *
      * @Route("/cropcycle/{id}/action/new_from_cropcycle", name="action_new_from_cropcycle")
@@ -265,22 +265,22 @@ class ActionController extends Controller
             ->getForm();
     }
 
-        /**
+    /**
      * Deletes a Action entity.
      *
      * @Route("/action/delete/ajax/{id}", name="action_delete_ajax")
      */
     public function deleteAjaxAction(Request $request, Action $action)
     {
-      
+
 
         // Must add ACL check here
-            $em = $this->getDoctrine()->getManager();
-            $id = $action->getCropCycle()->getId();
-            $em->remove($action);
-            $em->flush();
+        $em = $this->getDoctrine()->getManager();
+        $id = $action->getCropCycle()->getId();
+        $em->remove($action);
+        $em->flush();
 
-            return new JsonResponse(array('data' => 'this is a json response'));
-    
-  }
+        return new JsonResponse(array('data' => 'this is a json response'));
+
+    }
 }
