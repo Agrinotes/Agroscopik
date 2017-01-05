@@ -120,9 +120,8 @@
                         <small>{{ cropCycle.area | number_format(2,',',' ') }} ha
                         </small>
                     </h4>
-
-
                     <div class="panel-actions panel-actions-keep">
+                        <span class="check-change js-check-change-field"></span> <input type="checkbox" class="js-check-change" data-plugin="switchery" data-color="#E9595B" data-size="small" data-secondary-color="#83B944" checked="" data-switchery="true"/>
                         <a class="panel-action icon wb-settings" href="{{ path('cropcycle_edit',{'id':cropCycle.id}) }}" aria-hidden="true"></a>
 
                     </div>
@@ -443,5 +442,17 @@
             });
         })
         ;
+    </script>
+    <script>
+        var changeCheckbox = document.querySelector('.js-check-change')
+                , changeField = document.querySelector('.js-check-change-field');
+
+        changeCheckbox.onchange = function() {
+            if(changeCheckbox.checked){
+            changeField.innerHTML = "Cycle terminé";
+            }else{
+                changeField.innerHTML = "Cycle en cours";
+            }
+        };
     </script>
 {% endblock %}
