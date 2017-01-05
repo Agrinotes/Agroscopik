@@ -81,11 +81,11 @@
                                 <!-- Plot panels -->
                                 <div class="{% if plot.latLngs is not empty %}col-lg-12{% else %}col-lg-4{% endif %}" style="padding-left:15px; padding-right:0px; margin-top:20px;">
                                     <div class="" >
-                <div class="panel">
+                <div class="panel panel-bordered panel-info">
                     <div class="panel-heading">
-                        <h5 class="panel-title" style="font-size:16px;">Ajouter une culture sur la parcelle {{plot.name | capitalize}}</h3>
+                        <h4 class="panel-title" >Ajouter une culture sur la parcelle {{plot.name | capitalize}}</h3>
                     </div>
-                    <div class="panel-body" style="padding-top:0px;">
+                    <div class="panel-body">
                         {{ form_start(form) }}
 
  

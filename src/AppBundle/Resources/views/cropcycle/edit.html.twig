@@ -80,17 +80,22 @@
                         {{ form_widget(edit_form.varieties) }}
                     </div>
 
-                    <div class="form-group hidden">
-                        {{ form_widget(edit_form.area) }}
+                    <div class="form-group {% if cropCycle.latLngs is not empty %}hidden{% endif %}">
+
                         {{ form_errors(edit_form.area) }}
                         {{ form_label(edit_form.area) }}
-
+                        {{ form_widget(edit_form.area) }}
+                    </div>
+                    <div class="form-group hidden">
                         {{ form_label(edit_form.latLngs) }}
                         {{ form_errors(edit_form.latLngs) }}
                         {{ form_widget(edit_form.latLngs) }}
                     </div>
-                    <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-info btn-block margin-left-10" type="submit">Enregistrer</button>
                     {{ form_end(edit_form) }}
+
                 </div>
             </div>
             <!-- End Panel -->
