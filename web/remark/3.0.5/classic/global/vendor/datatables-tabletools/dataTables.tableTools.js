@@ -2865,7 +2865,7 @@ TableTools.BUTTONS = {
 		"sCharSet": "utf16le",
 		"bBomInc": true,
 		"sButtonClass": "DTTT_button_xls",
-		"sButtonText": "Excel",
+		"sButtonText": "<i class='icon fa-file-excel-o' aria-hidden='true'></i>",
 		"fnClick": function( nButton, oConfig, flash ) {
 			this.fnSetText( flash, this.fnGetTableData(oConfig) );
 		}
@@ -2874,7 +2874,7 @@ TableTools.BUTTONS = {
 	"copy": $.extend( {}, TableTools.buttonBase, {
 		"sAction": "flash_copy",
 		"sButtonClass": "DTTT_button_copy",
-		"sButtonText": "Copier",
+		"sButtonText": "<i class='icon fa-files-o' aria-hidden='true'></i>",
 		"fnClick": function( nButton, oConfig, flash ) {
 			this.fnSetText( flash, this.fnGetTableData(oConfig) );
 		},
@@ -2895,8 +2895,8 @@ TableTools.BUTTONS = {
 		"sNewLine": "\n",
 		"sFileName": "*.pdf",
 		"sButtonClass": "DTTT_button_pdf",
-		"sButtonText": "PDF",
-		"sPdfOrientation": "portrait",
+		"sButtonText": "<i class='icon fa-file-pdf-o' aria-hidden='true'></i>",
+		"sPdfOrientation": "landscape",
 		"sPdfSize": "A4",
 		"sPdfMessage": "",
 		"fnClick": function( nButton, oConfig, flash ) {
@@ -2913,13 +2913,12 @@ TableTools.BUTTONS = {
 	} ),
 
 	"print": $.extend( {}, TableTools.buttonBase, {
-		"sInfo": "<h6>Print view</h6><p>Please use your browser's print function to "+
-		  "print this table. Press escape when finished.</p>",
+		"sInfo": "<h6>Aperçu d'impression</h6><p>Cliquez sur l'outil d'impression de votre navigateur ou Echap pour retourner à la page précédente.</p>",
 		"sMessage": null,
 		"bShowAll": true,
 		"sToolTip": "View print view",
 		"sButtonClass": "DTTT_button_print",
-		"sButtonText": "Imprimer",
+		"sButtonText": "<i class='icon fa-print' aria-hidden='true'></i>",
 		"fnClick": function ( nButton, oConfig ) {
 			this.fnPrint( true, oConfig );
 		}
@@ -3096,7 +3095,7 @@ TableTools.DEFAULTS = {
 	"fnPreRowSelect":  null,
 	"fnRowSelected":   null,
 	"fnRowDeselected": null,
-	"aButtons":        [ "xls", "pdf", "print","copy" ],
+	"aButtons":        [ "copy", "print", "xls","pdf" ],
 	"oTags": {
 		"container": "div",
 		"button": "a", // We really want to use buttons here, but Firefox and IE ignore the
