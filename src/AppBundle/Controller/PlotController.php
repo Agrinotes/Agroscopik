@@ -180,19 +180,27 @@ class PlotController extends Controller
      * Finds and displays a Plot entity.
      *
      * @Security("is_granted('VIEW', plot) or is_granted('ROLE_ADMIN')")
-     * @Route("/parcelle/{id}/campagne/{year}", name="plot_show", requirements={"year" = "\d+"}, defaults={"year" = 2016})
+     * @Route("/parcelle/{id}/{year}", name="plot_show", requirements={"year" = "\d+"}, defaults={"year" = 2017})
      * @Method("GET")
      * @param Plot $plot
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Plot $plot, $year)
     {
-        $deleteForm = $this->createDeleteForm($plot);
+        $em = $this->getDoctrine()->getManager();
+
+        // Create campaign date
+        $startCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-01-01 00:00:00");
+        $endCampaignDate    =   \DateTime::createFromFormat("Y-m-d H:i:s",$year."-12-31 23:59:59");
+
+        $cropCycles = $em->getRepository('AppBundle:CropCycle')->findBy(array('plot' => $plot->getId()));
 
         return $this->render('AppBundle:plot:show.html.twig', array(
             'plot' => $plot,
-            'delete_form' => $deleteForm->createView(),
+            'cropCycles' => $cropCycles,
             'year' => $year,
+            'startCampaignDate' => $startCampaignDate,
+            'endCampaignDate' => $endCampaignDate,
         ));
     }
 
