@@ -24,3 +24,7 @@ services:
         class: AppBundle\EventListener\PeriodListener
         tags:
             - { name: doctrine.event_listener, event: onFlush }
+    twig.extension.sortbyfield:
+        class: Snilius\Twig\SortByFieldExtension
+        tags:
+            - { name: twig.extension }

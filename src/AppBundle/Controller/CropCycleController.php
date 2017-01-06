@@ -51,8 +51,6 @@ class CropCycleController extends Controller
             'cropCycles' => $cropCycles,
             'startCampaignDate' => $startCampaignDate,
             'endCampaignDate' => $endCampaignDate,
-
-
         ));
     }
 

@@ -1,0 +1,44 @@
+<table class="table table-hover">
+    <tbody>
+    {% for cycle in cropCycles %}
+        {% if is_granted('VIEW', cycle) or is_granted('ROLE_ADMIN') %}
+
+
+            {% if (startCampaignDate < cycle.startDatetime and endCampaignDate > cycle.startDatetime ) or (startCampaignDate < cycle.endDatetime and endCampaignDate > cycle.endDatetime) %}
+                <tr>
+                    <td class="cell-60 responsive-hide">
+                        <a class="avatar padding-top-5" href="javascript:void(0)">
+                            <img class="img-responsive" src="{{ asset('front/global/portraits/1.jpg') }}" alt="...">
+                        </a>
+                    </td>
+                    <td>
+                        <div class="content">
+                            <div class="title">
+                                <a href="{{ path('cropcycle_show', { 'id': cycle.id }) }}">{{ cycle.name }}</a>
+                            </div>
+                            <div class="metas">
+                                <i class="icon md-calendar" aria-hidden="true"> </i>
+                                {{ cycle.intervalLabel }}
+                                {% if cycle.workingDurationLabel != '' %}
+                                    <i class="icon md-time-interval margin-left-10" aria-hidden="true"></i>
+                                    {{ cycle.workingDurationLabel }}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        {% if cycle.status == "ActiveAction" %}
+                            <span class="pull-right label label-danger  margin-right-10px">En cours</span>
+                        {% elseif cycle.status == "CompletedAction" %}
+                            <span class="pull-right label label-info  margin-right-10px">Terminé</span>
+                        {% elseif cycle.status == "PotentialAction" %}
+                            <span class="pull-right label label-default  margin-right-10px">A venir</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+    </tbody>
+</table>
+
