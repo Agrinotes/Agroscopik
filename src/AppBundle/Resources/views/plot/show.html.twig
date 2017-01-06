@@ -1,274 +1,291 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block head_javascripts %}
+{% block title %}{{ plot.name | capitalize }}{% endblock %}
+
+{% block plugins_stylesheets %}
     {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
 {% endblock %}
 
-{% block plugin_stylesheets %}
+{% block page_stylesheets %}
     {{ parent() }}
-    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet'
-          xmlns="http://www.w3.org/1999/html"/>
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        .highcharts-credits {
+            visibility: hidden !important;
+        }
+    </style>
 {% endblock %}
 
 {% block page %}
-    <div class="page animsition">
-        <div class="page-header padding-top-20 padding-bottom-10">
-            <ol class="breadcrumb">
-                <li><a href="{{ path('farm_show_current') }}">Parcelles</a></li>
-                <li class="active">{{ plot.name }}</li>
-            </ol>
-        </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-9">
-                    {% for flash_message in app.session.flashBag.get('success') %}
-                        <div class="alert dark alert-alt alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                            {{ flash_message.title }}
-                            <a href="{{ path('plot_new') }}" style="margin-left:10px;text-decoration: underline">
-                                {{ flash_message.message }}
-
-                            </a>
-                        </div>
-                    {% endfor %}
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{ plot.name }} </h3>
-
-                            <div class="panel-actions">
-
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-                            <!-- Example Tabs Line -->
-                            <div class="example-wrap margin-lg-0">
-                                <div class="nav-tabs-horizontal">
-                                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
-                                        <li class="active" role="presentation"><a data-toggle="tab"
-                                                                                  href="#exampleTabsLineOne"
-                                                                                  aria-controls="exampleTabsLineOne"
-                                                                                  role="tab" style="font-size: 16px;">Cycles
-                                                de culture</a></li>
-                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
-                                                                   aria-controls="exampleTabsLineTwo"
-                                                                   role="tab" style="font-size: 16px;">Interventions récentes</a></li>
-
-
-                                    </ul>
-                                    </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
-                                            {% if plot.cropCycles is empty %}
-                                                <p class="margin-top-20">
-                                                    Aucune culture enregistrée.
-                                                </p>
-                                            {% else %}
-                                                <table class="table table-hover">
-                                                    <tbody>
-                                                    {% for cycle in cropCycles %}
-                                                        {% if is_granted('VIEW', cycle) or is_granted('ROLE_ADMIN') %}
-
-
-                                                            {% if (startCampaignDate < cycle.startDatetime and endCampaignDate > cycle.startDatetime ) or (startCampaignDate < cycle.endDatetime and endCampaignDate > cycle.endDatetime) %}
-                                                                <tr>
-                                                                    <td class="cell-60 responsive-hide">
-                                                                        <a class="avatar padding-top-5" href="javascript:void(0)">
-                                                                            <img class="img-responsive" src="{{ asset('front/global/portraits/1.jpg') }}" alt="...">
-                                                                        </a>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div class="content">
-                                                                            <div class="title">
-                                                                                <a href="{{ path('cropcycle_show', { 'id': cycle.id }) }}">{{ cycle.name }}</a>
-                                                                            </div>
-                                                                            <div class="metas">
-                                                                                <i class="icon md-calendar" aria-hidden="true"> </i>
-                                                                                {{ cycle.intervalLabel }}
-                                                                                {% if cycle.workingDurationLabel != '' %}
-                                                                                    <i class="icon md-time-interval margin-left-10" aria-hidden="true"></i>
-                                                                                    {{ cycle.workingDurationLabel }}
-                                                                                {% endif %}
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                    <td>
-                                                                        {% if cycle.status == "ActiveAction" %}
-                                                                            <span class="pull-right label label-danger  margin-right-10px">En cours</span>
-                                                                        {% elseif cycle.status == "CompletedAction" %}
-                                                                            <span class="pull-right label label-info  margin-right-10px">Terminé</span>
-                                                                        {% elseif cycle.status == "PotentialAction" %}
-                                                                            <span class="pull-right label label-default  margin-right-10px">A venir</span>
-                                                                        {% endif %}
-                                                                    </td>
-                                                                </tr>
-                                                            {% endif %}
-                                                        {% endif %}
-                                                    {% endfor %}
-                                                    </tbody>
-                                                </table>
-
-
-                                            {% endif %}
-                                            <a class="btn btn-primary"
-                                               href="{{ path('cropcycle_new', { 'id': plot.id }) }}">
-                                                Ajouter une culture
-                                            </a>
-                                        </div>
-                                        <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
-                                            <table class="table table-hover">
-                                                <tbody>
-                                                {% for cycle in plot.cropCycles %}
-                                                    {% for action in cycle.actions %}
-                                                        {% for period in action.periods %}
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="content">
-                                                                        <div class="title">
-                                                                            <a href="{{ path('action_show', { 'id': action.id }) }}">{{ action.name }}</a>
-                                                                        </div>
-                                                                        <div class="metas">
-                                                                            <span class="started">{{ action.cropCycle.name }}
-                                                                                le {{ period.startDateTime | date ('d/m/Y') }}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td>
-                                                                </td>
-                                                            </tr>
-                                                        {% endfor %}
-
-                                                    {% endfor %}
-
-                                                {% endfor %}
-                                                </tbody>
-                                            </table>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Example Tabs Line With JS -->
-
-
-                        </div>
-
-                    </div>
+    <div class="page-content">
+        <div class="row">
+            <!-- Panel Basic used as temporary fix -->
+            <div class="panel " style="display:none;">
+                <header class="panel-heading">
+                    <div class="panel-actions"></div>
+                    <h3 class="panel-title">{{ cropCycle.name }}</h3>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+                        <thead>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </tfoot>
+                        <tbody></tbody>
+                    </table>
                 </div>
-
-                <div class="col-lg-3">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Campagne</h3>
-
-                            <div class="panel-actions">
-
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-                            <div class="btn-group" aria-label="Basic example" role="group">
-                                <a type="button" href="{{ path('plot_show',{'id':plot.id,'year':year-1}) }}"
-                                   class="btn btn-default waves-effect waves-light"><i
-                                            class="icon md-chevron-left margin-0" aria-hidden="true"></i></a>
-                                <a type="button" href="#"
-                                   class="btn btn-default waves-effect waves-light">{{ year }}</a>
-                                <a type="button" href="{{ path('plot_show',{'id':plot.id,'year':year+1}) }}"
-                                   class="btn btn-default waves-effect waves-light"><i
-                                            class="icon md-chevron-right margin-0" aria-hidden="true"></i></a>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="panel">
-                        <div class="panel-body padding-top-0 padding-left-0 padding-right-0">
-                            <div>
-                                <img src="" class="img-responsive" id="plot_map"/>
-                            </div>
-                            <div class="" style="width: 100%;">                            {% if is_granted('EDIT', plot) or is_granted('ROLE_ADMIN') %}
-                                    <a class="btn btn-raised btn-icon btn-danger btn-round waves-effect waves-round waves-light"
-                                       href="{{ path('plot_edit', {'id': plot.id }) }}" id="edit_plot_button"
-                                       type="button" style="position: absolute; top: 10px; right:10px;">
-                                        <i class="icon md-edit" aria-hidden="true"></i>
-                                    </a>
-                                {% endif %}</div>
-
-                            <div class="row padding-top-15 padding-right-15 padding-left-15">
-                                <div class="col-lg-12">
-                                    <span class="example-title">Surface
-
-                                    </span>
-                                                                            <span class="padding-left-20">{{ plot.area }}
-                                                                                ha</span>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
+            <!-- End Panel Basic -->
+
+            <!-- Panel Table Tools -->
+            <div class="panel" id="tableTools">
+                <header class="panel-heading">
+                    <h4 class="panel-title" style="font-size:16px;">{{ plot.name | capitalize }}
+                        <small>{{ plot.area | number_format(2,',',' ') }} ha
+                        </small>
+                    </h4>
+                    <div class="panel-actions panel-actions-keep">
+                        <a class="panel-action icon wb-settings" href="{{ path('plot_edit',{'id':plot.id}) }}" aria-hidden="true"></a>
+
+                    </div>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
+                        <thead>
+                        <tr>
+                            <th>Cycle de culture</th>
+                            <th>Statut</th>
+                            <th>Surface</th>
+                            <th>Date début</th>
+                            <th>Date fin</th>
+                            <th>Temps de travail</th>
+                            <th>Produit brut</th>
+                            <th>Coûts de production</th>
+                            <th>Marge brute</th>
+                            <th>Productivité terre</th>
+                            <th>Productivité travail</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for cycle in plot.cropCycles %}
+                            <tr id="td_{{ cycle.id }}">
+
+                                <td><a class="actionLink"
+                                       href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.name }} </a>
+                
+                <span class="pull-right"><a href="{{ path('cropcycle_edit',{'id':cycle.id}) }}"
+                                            class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                                            style="padding:0px 5px 0px;" data-toggle="tooltip"
+                                            data-original-title="Modifier"><i class="icon wb-edit"
+                                                                              aria-hidden="true"></i></a>
+                  <button
+
+                          onClick="
+                                  swal({
+                                  title: 'Supprimer le ycle de culture ?',
+                                  text: 'Cette suppression sera définitive',
+                                  type: 'warning',
+                                  showCancelButton: true,
+                                  confirmButtonColor: '#DD6B55',
+                                  confirmButtonText: 'Confirmer',
+                                  cancelButtonText: 'Annuler',
+                                  closeOnConfirm: true,
+                                  closeOnCancel: true,
+                                  },
+                                  function(isConfirm){
+                                  if (isConfirm) {
+                                  $.ajax('{{ path('cropcycle_delete',{'id':cycle.id}) }}').done(function() {
+                                  $('#td_{{ cycle.id }}').hide(200);
+                                  })
+                                  .fail(function() {
+                                  swal('Erreur', 'Il y a eu une erreur', 'error');
+                                  });    }
+                                  });
+
+                                  "
+
+
+                          class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row "
+                          style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Supprimer"><i
+                              class="icon wb-trash" aria-hidden="true"></i></button>
+               </span></td>
+                                <td>{% if cycle.status == "CompletedAction" %}<span class="tag tag-round tag-danger">Terminé</span>{% else %}<span class="tag tag-round tag-info">En cours</span>{% endif %}</td>
+<td>{{ cycle.area | number_format(2,',',' ') }} ha</td>
+                                <td>{{ cycle.startDatetime | date ('d/m/Y') }}</td>
+                                <td>{{ cycle.endDatetime | date ('d/m/Y') }}</td>
+
+                                <td>#</td>
+
+                                <td>#</td>
+                                <td style="text-align: right"># CFP</td>
+                                <td style="text-align: right"># CFP</td>
+
+                                <td style="text-align: right"># CFP/ha</td>
+                                <td style="text-align: right"># CFP/hJ</td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End Panel Table Tools -->
         </div>
     </div>
 {% endblock %}
 
-{% block core_plugin %}
+{% block plugins_javascripts %}
     {{ parent() }}
-    <script src="{{ asset('front/global/vendor/mapbox.js/mapbox.js') }}"></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/geo-viewport/v0.1.1/geo-viewport.js'></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/geojson-extent/v0.0.1/geojson-extent.js'></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-tabletools/dataTables.tableTools.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootbox/bootbox.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
+
+
 {% endblock %}
 
-{% block template_config %}
+{% block page_javascripts %}
     {{ parent() }}
-
-    <script src="{{ asset('front/global/js/plugins/responsive-tabs.js') }}"></script>
-    <script src="{{ asset('front/global/js/plugins/closeable-tabs.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/datatables.js') }}"></script>
 
     <script>
-        window.AppPlotNew = Site.extend({
-            createMap: function () {
-                // Mapbox access token
-                L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
+        /*!
+         * remark (http://getbootstrapadmin.com/remark)
+         * Copyright 2016 amazingsurge
+         * Licensed under the Themeforest Standard Licenses
+         */
+        (function (document, window, $) {
+            'use strict';
 
-                // Create the map
+            var Site = window.Site;
 
-                var layerGroup = L.featureGroup();
-                var layer = L.geoJson({{ plot.latLngs | raw }});
-                layer.setStyle({color: "white", opacity: 0.8, weight: 1.5});
-                layerGroup.addLayer(layer);
-                var bounds = layerGroup.getBounds();
-                bounds = new L.latLngBounds(bounds);
-                // The size of the desired map.
-                var size = [600, 600];
+            $(document).ready(function ($) {
+                Site.run();
+            });
 
-                bounds = bounds.toBBoxString().split(',').map(Number);
 
-                // Calculate a zoom level and centerpoint for this map.
-                var vp = geoViewport.viewport(bounds, size);
+            // Table Tools
+            // -----------
+            (function () {
 
-                $("#plot_map").attr("src", 'https://api.mapbox.com/v4/mapbox.streets/geojson({{ plot.latLngs| url_encode }})/' +
-                        vp.center.join(',') + ',' +
-                        vp.zoom + '/' +
-                        size.join('x') + '@2x.png' +
-                        '?access_token=' + L.mapbox.accessToken);
-            }
-            ,
-            run: function () {
-                this.createMap();
-            }
-        });
+                $(document).ready(function () {
+                    {# Sort dates #}
+                    $.fn.dataTable.moment('DD/MM/YYYY');
 
-        $(document).ready(function ($) {
-            AppPlotNew.run();
-        })
+                    {# Sort hectares and CFP #}
+                    $.fn.dataTableExt.oSort['formatted-num-pre'] = function (a) {
+                        a = (a === "-" || a === "") ? 0 : a.replace(/[^\d\-\.]/g, "");
+                        return parseFloat(a);
+                    }
+
+                    $.fn.dataTableExt.oSort['formatted-num-asc'] = function (a, b) {
+                        return a - b;
+                    }
+                    $.fn.dataTableExt.oSort['formatted-num-desc'] = function (a, b) {
+                        return b - a;
+                    }
+
+                    var defaults = Plugin.getDefaults("dataTable");
+
+                    var options = $.extend(true, {}, defaults, {
+                        columnDefs: [
+                            {type: 'formatted-num', targets: [2, 5,6,7,8,9]}
+                        ],
+                        "order": [[1, "desc"]],
+                        "iDisplayLength": 10,
+                        "aLengthMenu": [
+                            [5, 10, 25, 50, -1],
+                            [5, 10, 25, 50, "All"]
+                        ],
+                        "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
+                        "oTableTools": {
+                            "sSwfPath": "{{ asset('remark/3.0.5/classic/global/vendor/datatables-tabletools/swf/copy_csv_xls_pdf.swf') }}"
+                        }
+                    });
+
+                    $('#exampleTableTools').dataTable(options);
+                });
+            })();
+
+
+        })(document, window, jQuery);
+
     </script>
 
+
 {% endblock %}
-
-
