@@ -187,12 +187,12 @@
 
                                 <td>{{ cycle.workingDurationLabel }}</td>
 
-                                <td style="text-align: right">{{ cycle.grossProduct }} CFP</td>
-                                <td style="text-align: right"># CFP</td>
-                                <td style="text-align: right"># CFP</td>
+                                <td style="text-align: right">{{ cycle.grossProduct | number_format(0,',',' ')}} CFP</td>
+                                <td style="text-align: right">{{ cycle.expensesCost | number_format(0,',',' ')}} CFP</td>
+                                <td style="text-align: right">{{ cycle.grossAddedValue | number_format(0,',',' ')}} CFP</td>
 
-                                <td style="text-align: right"># CFP/ha</td>
-                                <td style="text-align: right"># CFP/hJ</td>
+                                <td style="text-align: right">{{ cycle.soilProductivity | number_format(0,',',' ')}} CFP/ha</td>
+                                <td style="text-align: right">{{ cycle.workProductivity | number_format(0,',',' ')}} CFP/hJ</td>
 
                             </tr>
                         {% endfor %}

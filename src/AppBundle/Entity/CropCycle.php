@@ -505,6 +505,18 @@ class CropCycle
      * Get working duration label
      *
      */
+    public function getWorkingDurationRaw(){
+        $diff  = $this->getWorkingDuration();
+        $duration = $this->format_duration_to_hours($diff);
+
+        return $duration->h;
+    }
+
+
+    /**
+     * Get working duration label
+     *
+     */
     public function getWorkingDurationLabel(){
         $diff  = $this->getWorkingDuration();
         $duration = $this->format_duration_to_hours($diff);
@@ -654,6 +666,27 @@ class CropCycle
         return $this->getGrossProduct()-$this->getExpensesCost();
     }
 
+    /**
+     * @return mixed
+     */
+    public function getSoilProductivity()
+    {
+        if($this->getArea()==0){
+            return 0;
+        }
+        return $this->getGrossAddedValue()/$this->getArea();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWorkProductivity()
+    {
+        if($this->getWorkingDurationRaw()==0){
+            return 0;
+        }
+        return $this->getGrossAddedValue()/$this->getWorkingDurationRaw()*8;
+    }
 
 }
 
