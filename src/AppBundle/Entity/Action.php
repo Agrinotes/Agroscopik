@@ -993,9 +993,11 @@ $endTime = $endTime->add($period->getDuration());
 
         // Get value of each harvest product
         foreach($products as $product){
+
             $rawQty = $product->getQty();
             $rawUnit = $product->getUnit();
 
+            if($rawQty != null && $rawUnit!= null){
             // Modify raw amount to kg
             $rawKgQty = $rawQty * $rawUnit->getA();
 
@@ -1010,14 +1012,14 @@ $endTime = $endTime->add($period->getDuration());
 
             // Get price for 1 kg
             $rawPrice = $product->getPrice();
-            $rawPriceUnit = $product->getPriceUnit();
-            $kgPrice = $rawPrice*$rawPriceUnit->getA();
+            $kgPrice = $rawPrice*$rawUnit->getA();
 
             // Get harvest product full value
             $value = $kgQty * $kgPrice;
 
             // Sum with current total gross value
             $total+= $value;
+            }
 
         }
         return $total;
