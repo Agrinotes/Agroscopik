@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/showbackup.html.twig" />
-      <change type="DELETED" beforePath="C:\xamp\htdocs\agroscopik-NC\src\AppBundle\Resources\views\cropcycle\index.html.twig" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -74,7 +71,7 @@
       <file leaf-file-name="CropCycle.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="104.82758">
+            <state vertical-scroll-proportion="312.4138">
               <caret line="24" column="34" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
@@ -216,17 +213,17 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8531571">
-              <caret line="279" column="0" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.38325992">
+              <caret line="187" column="65" selection-start-line="187" selection-start-column="65" selection-end-line="187" selection-end-column="65" />
               <folding>
                 <element signature="e#2504#2525#0#HTML" expanded="true" />
                 <element signature="e#3561#3584#0#HTML" expanded="true" />
                 <element signature="e#5429#5457#0#HTML" expanded="true" />
                 <element signature="e#7093#7121#0#HTML" expanded="true" />
-                <element signature="e#7848#7873#0#HTML" expanded="true" />
-                <element signature="e#7921#7946#0#HTML" expanded="true" />
-                <element signature="e#7995#8020#0#HTML" expanded="true" />
-                <element signature="e#8071#8096#0#HTML" expanded="true" />
+                <element signature="e#7879#7904#0#HTML" expanded="true" />
+                <element signature="e#7952#7977#0#HTML" expanded="true" />
+                <element signature="e#8026#8051#0#HTML" expanded="true" />
+                <element signature="e#8102#8127#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -613,6 +610,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik-NC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1194,14 +1213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="104.82758">
-          <caret line="24" column="34" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Plot.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.5172415">
@@ -1356,19 +1367,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="312.4138">
+          <caret line="24" column="34" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8531571">
-          <caret line="279" column="0" selection-start-line="279" selection-start-column="0" selection-end-line="279" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.38325992">
+          <caret line="187" column="65" selection-start-line="187" selection-start-column="65" selection-end-line="187" selection-end-column="65" />
           <folding>
             <element signature="e#2504#2525#0#HTML" expanded="true" />
             <element signature="e#3561#3584#0#HTML" expanded="true" />
             <element signature="e#5429#5457#0#HTML" expanded="true" />
             <element signature="e#7093#7121#0#HTML" expanded="true" />
-            <element signature="e#7848#7873#0#HTML" expanded="true" />
-            <element signature="e#7921#7946#0#HTML" expanded="true" />
-            <element signature="e#7995#8020#0#HTML" expanded="true" />
-            <element signature="e#8071#8096#0#HTML" expanded="true" />
+            <element signature="e#7879#7904#0#HTML" expanded="true" />
+            <element signature="e#7952#7977#0#HTML" expanded="true" />
+            <element signature="e#8026#8051#0#HTML" expanded="true" />
+            <element signature="e#8102#8127#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
