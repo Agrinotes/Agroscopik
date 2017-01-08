@@ -181,6 +181,16 @@
                     </div>
                 </div>
                 <!-- End soil productivity   charts -->
+
+            <!-- Work productivity charts -->
+            <div class="col-lg-6 col-md-12">
+                <div class="panel" id="soil-productivity-chart">
+                    <div class="panel-body">
+                        <div id="container2" style="min-width: 310px; height: 400px; margin: auto"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- End work productivity   charts -->
         </div>
     </div>
 {% endblock %}
@@ -316,5 +326,42 @@
         })
         ;
     </script>
+    <script>
+        $(function () {
+            Highcharts.chart('container2', {
+                chart: {
+                    type: 'column',
+                },
+                title: {
+                    text: 'Productivité du travail'
+                },
+                xAxis: {
+                    categories: [''],
 
+                },
+                yAxis: {
+                    title: {
+                        text: 'CFP/homme-jour'
+                    }
+
+                },
+                credits: {
+                    enabled: false
+                },
+
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.y:.0f} CFP/homme-jour'
+                },
+                series: [
+                    {% for cycle in plot.cropCycles %}
+                    {
+                        name: '{{ cycle.name }}',
+                        data: [{{ cycle.workProductivity }}]
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}]
+            });
+        })
+        ;
+    </script>
 {% endblock %}
