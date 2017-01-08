@@ -1,105 +1,309 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block head_javascripts %}
+{% block title %}{{ cropCycle.plot.name | capitalize }} {{ cropCycle.name | capitalize }}{% endblock %}
+
+{% block plugins_stylesheets %}
     {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asspinner/asSpinner.css') }}">
+{% endblock %}
+
+{% block page_stylesheets %}
+    {{ parent() }}
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        .highcharts-credits {
+            visibility: hidden !important;
+        }
+    </style>
 {% endblock %}
 
 {% block page %}
-    <div class="page animsition">
-        <div class="page-header padding-top-20 padding-bottom-10">
-            <ol class="breadcrumb">
-                <li class="active">Tracteurs</li>
+    <div class="page-content">
+        <div class="row">
+            <!-- Panel Basic used as temporary fix -->
+            <div class="panel " style="display:none;">
+                <header class="panel-heading">
+                    <div class="panel-actions"></div>
+                    <h3 class="panel-title">Liste des tracteurs</h3>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+                        <thead>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </tfoot>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End Panel Basic -->
 
-            </ol>
+            <!-- Panel Table Tools -->
+            <div class="panel" id="tableTools">
+                <header class="panel-heading">
+                    <h4 class="panel-title" style="font-size:16px;">Liste des tracteurs
+                    </h4>
+                    <div class="panel-actions panel-actions-keep">
+                    </div>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
+                        <thead>
+                        <tr>
+                            <th>Marque</th>
+                            <th>Modèle</th>
+                            <th>Puissance</th>
+                            <th>Date d'achat</th>
+                            <th>Prix d'achat</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for tractor in tractors %}
+                            <tr id="td_{{ tractor.id }}">
+                                <td><a class="actionLink"
+                                       href="{{ path('tractor_show',{'id':tractor.id}) }}">{{ tractor.model.brand }}</a>
+                
+                <span class="pull-right"><a href="{{ path('tractor_edit',{'id':tractor.id}) }}"
+                                            class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                                            style="padding:0px 5px 0px;" data-toggle="tooltip"
+                                            data-original-title="Modifier"><i class="icon wb-edit"
+                                                                              aria-hidden="true"></i></a>
+
+               </span></td>
+                                <td>{{ tractor.model.name }}</td>
+                                <td>{{ tractor.model.power }} cv</td>
+                                <td>{{ tractor.startDatetime | date('m/Y') }}</td>
+                                <td style="text-align: right">{{ tractor.price | number_format(0, ',', ' ') }} CFP</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End Panel Table Tools -->
+
+            <!-- Button Add Action -->
+            <div class="site-action">
+                <button type="button" onClick="switchPanels();"
+                        class="rotate site-action site-floataction btn-raised btn btn-danger btn-floating">
+                    <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
+                </button>
+            </div>
+            <!-- End Button Add Action -->
         </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Liste des tracteurs</h3>
+        <!-- Panel Add Action -->
+        <div class="row" id="addTractor" style="display: none;">
+            <div class="col-lg-3 col-md-0">
 
-                            <div class="panel-actions">
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <!-- Example Tabs Line -->
-                            <div class="example-wrap margin-lg-0">
-                                <div class="nav-tabs-horizontal">
-                                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
-                                        <li class="active" role="presentation"><a data-toggle="tab"
-                                                                                  href="#exampleTabsLineOne"
-                                                                                  aria-controls="exampleTabsLineOne"
-                                                                                  role="tab" style="font-size: 16px;">Tracteurs</a>
-                                        </li>
-                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
-                                                                   aria-controls="exampleTabsLineTwo"
-                                                                   role="tab" style="font-size: 16px;">Entretien</a>
-                                        </li>
-                                    </ul>
-                                    </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
-                                            {% if tractors is empty %}
-                                                <p class="margin-top-20">Aucun tracteur enregistré.</p>
-                                            {% else %}
-                                            <table class="table table-hover">
-                                                <tbody>
-                                                {% for tractor in tractors %}
-                                                    {% if is_granted('VIEW', tractor) or is_granted('ROLE_ADMIN') %}
-                                                        <tr>
-                                                            <td>
-                                                                <div class="content">
-                                                                    <div class="title">
-                                                                        <a href="{{ path('tractor_show', { 'id': tractor.id }) }}">{{ tractor.model.label }}</a>
-                                                                    </div>
-                                                                    <div class="metas">
-                            <span class="started">
-                                <i class="icon md-calendar" aria-hidden="true"> </i>
-                                {{ tractor.startDatetime | date('m/Y') }}
-                                {% if tractor.price != '' %}
-                                    <i class="icon md-money-box margin-left-10" aria-hidden="true"></i>
-                                    {{ tractor.price |number_format(0, ',', ' ')  }} CFP
-                                {% endif %}
-                            </span>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    {% endif %}
-                                                {% endfor %}
-                                                </tbody>
-                                            </table>
-                                            {% endif %}
-                                            <a class="btn btn-primary"
-                                               href="{{ path('tractor_new') }}">
-                                                Ajouter un tracteur
-                                            </a>
-                                        </div>
-                                        <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
-                                            <p class="margin-top-20">Cette fonctionnalité pourra être développée à l'avenir</p>
-                                            <a class="btn btn-primary"
-                                               href="javascript:void(0)">
-                                                Ajouter une intervention d'entretien
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Example Tabs Line With JS -->
-                        </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-info panel-bordered">
+                    <header class="panel-heading">
+                        <div class="panel-actions"></div>
+                        <h3 class="panel-title">Ajouter une intervention</h3>
+                    </header>
+                    <div class="panel-body" style="padding-top:20px;">
+
                     </div>
                 </div>
             </div>
         </div>
+        <!-- End Panel Add Action -->
+
+
     </div>
 {% endblock %}
 
-{% block template_config %}
+{% block plugins_javascripts %}
     {{ parent() }}
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-tabletools/dataTables.tableTools.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/asrange/jquery-asRange.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootbox/bootbox.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
 
-<script src="{{ asset('front/global/js/plugins/responsive-tabs.js') }}"></script>
-<script src="{{ asset('front/global/js/plugins/closeable-tabs.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.min.js') }}"></script>
+    {#<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>#}
+
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/jquery.datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/asspinner/jquery-asSpinner.min.js') }}"></script>
+
+
+    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/asspinner.js') }}"></script>
+
+{% endblock %}
+
+{% block page_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/datatables.js') }}"></script>
+    <script>
+        /*!
+         * remark (http://getbootstrapadmin.com/remark)
+         * Copyright 2016 amazingsurge
+         * Licensed under the Themeforest Standard Licenses
+         */
+        (function (document, window, $) {
+            'use strict';
+
+            var Site = window.Site;
+
+            $(document).ready(function ($) {
+                Site.run();
+            });
+
+
+            // Table Tools
+            // -----------
+            (function () {
+
+                $(document).ready(function () {
+                    {# Sort dates #}
+                    $.fn.dataTable.moment('MM/YYYY');
+
+                    {# Sort hectares and CFP #}
+                    $.fn.dataTableExt.oSort['formatted-num-pre'] = function (a) {
+                        a = (a === "-" || a === "") ? 0 : a.replace(/[^\d\-\.]/g, "");
+                        return parseFloat(a);
+                    }
+
+                    $.fn.dataTableExt.oSort['formatted-num-asc'] = function (a, b) {
+                        return a - b;
+                    }
+                    $.fn.dataTableExt.oSort['formatted-num-desc'] = function (a, b) {
+                        return b - a;
+                    }
+
+                    var defaults = Plugin.getDefaults("dataTable");
+
+                    var options = $.extend(true, {}, defaults, {
+                        columnDefs: [
+                            {type: 'formatted-num', targets: [2, 4]}
+                        ],
+                        "order": [[1, "desc"]],
+                        "iDisplayLength": 10,
+                        "aLengthMenu": [
+                            [5, 10, 25, 50, -1],
+                            [5, 10, 25, 50, "All"]
+                        ],
+                        "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
+                        "oTableTools": {
+                            "sSwfPath": "{{ asset('remark/3.0.5/classic/global/vendor/datatables-tabletools/swf/copy_csv_xls_pdf.swf') }}"
+                        }
+                    });
+
+                    $('#exampleTableTools').dataTable(options);
+                });
+            })();
+
+
+        })(document, window, jQuery);
+
+    </script>
+    <script>
+        var i = 0;
+        function switchPanels() {
+            if (i % 2 == 0) {
+                $('#tableTools').hide();
+                $('#addTractor').fadeIn(400);
+                if (i == 0) {
+                    $('.select2').select2();
+                    $('.select2-keep').select2({closeOnSelect: false});
+                }
+            } else {
+                $('#addTractor').hide();
+                $('#tableTools').fadeIn(400);
+            }
+            i++;
+        }
+        ;
+
+        $(".rotate").click(function () {
+            $(this).toggleClass("down");
+        });
+    </script>
 {% endblock %}
