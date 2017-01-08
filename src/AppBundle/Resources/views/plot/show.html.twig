@@ -171,6 +171,16 @@
                 </div>
             </div>
             <!-- End Panel Table Tools -->
+
+                <!-- Soil productivity charts -->
+                <div class="col-lg-6 col-md-12">
+                    <div class="panel" id="soil-productivity-chart">
+                        <div class="panel-body">
+                            <div id="container1" style="min-width: 310px; height: 400px; margin: auto"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End soil productivity   charts -->
         </div>
     </div>
 {% endblock %}
@@ -186,6 +196,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
 
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script>
+        Highcharts.setOptions({
+            chart: {
+                style: {
+                    fontFamily: 'Roboto'
+                }
+            }
+        });
+    </script>
 
 {% endblock %}
 
@@ -257,5 +278,43 @@
 
     </script>
 
+    <script>
+        $(function () {
+            Highcharts.chart('container1', {
+                chart: {
+                    type: 'column',
+                },
+                title: {
+                    text: 'Productivité de la terre'
+                },
+                xAxis: {
+                    categories: [''],
+
+                },
+                yAxis: {
+                    title: {
+                        text: 'CFP/ha'
+                    }
+
+                },
+                credits: {
+                    enabled: false
+                },
+
+                tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                        pointFormat: '{point.y:.0f} CFP/ha'
+                },
+                series: [
+                    {% for cycle in plot.cropCycles %}
+                    {
+                        name: '{{ cycle.name }}',
+                        data: [{{ cycle.soilProductivity }}]
+                    }{% if not loop.last %},{% endif %}
+                    {% endfor %}]
+            });
+        })
+        ;
+    </script>
 
 {% endblock %}
