@@ -90,7 +90,7 @@
                                 <div class="col-lg-12" style="padding-left:15px; padding-right:0px;">
                                     <div class="panel-group" id="exampleAccordionDefault" aria-multiselectable="true" role="tablist">
                                         {% if farm.plots is not empty %}
-                                            {% for plot in farm.plots | sortbyfield('name') %}
+                                            {% for plot in farm.plots %}
                                             {% if plot.name is not empty %}
                                             <div class="panel">
                                                 <div class="panel-heading" id="panel_plot_{{plot.id}}" data-plot-id={{ loop.index0 }} role="tab">
@@ -122,7 +122,7 @@
                                                             </tbody>
                                                         </table>
 
-                                                            <a href="{{path('plot_show',{'id':plot.id})}}" class="btn btn-default btn-outline btn-block" style="margin-bottom:10px;">Plus d'informations</a>
+                                                            <a href="{{path('plot_show',{'id':plot.id})}}" class="btn btn-default btn-outline btn-block" style=";margin-bottom:10px;">Tous les cycles de culture</a>
 
                                                         {% endif %}
                                                     </div>
