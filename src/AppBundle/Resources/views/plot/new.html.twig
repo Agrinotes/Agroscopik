@@ -1,379 +1,43 @@
-{% extends 'base.html.twig' %}
+<form name="plot" method="post" action="{{ path('plot_new_from_dashboard') }}"
+{{ form_label(form.name) }}
 
-{% block plugin_stylesheets %}
-    {{ parent() }}
-    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet'
-          xmlns="http://www.w3.org/1999/html"/>
+                             {{ form_widget(form.name) }}
+<div class="form-group">
 
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet'/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/leaflet.geosearch/0.1/css/l.geosearch.css">
-    <link rel="stylesheet" href="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.css"/>
-
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/leaflet-label/leaflet.label.css') }}"/>
-
-
-    <style>
-
-        .leaflet-editing-icon {
-            border-radius: 100%;
-            opacity: 1;
-        }
-
-        .created-div {
-            border: 10px solid white;
-            -webkit-border-radius: 30px;
-            -moz-border-radius: 30px;
-            border-radius: 30px;
-            height: 20px;
-            width: 20px;
-            -webkit-animation: hugo 0.5s;
-            -moz-animation: hugo 0.5s;
-            animation: hugo 0.5s;
-            transform-origin: center;
-            /*opacity: 0.0*/
-        }
-
-        @keyframes hugo {
-            from {
-                transform: scale(3);
-            }
-            to {
-                transform: none;
-            }
-        }
-
-        .leaflet-label-right:before {
-            display: none;
-        }
-
-        .leaflet-label {
-            border: none;
-        }
-
-        {#
-        .leaflet-control-locate a span {
-            padding-left: 7px;
-            padding-top: 2px;
-        }
-        #}
-    </style>
-{% endblock %}
-
-{% block page %}
-    <div class="page animsition">
-        <div class="page-content">
-            <div class="panel panel-bordered">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Ajout d'une parcelle
-                        <div class="pull-right" style="color:grey;display: inline;"><span id="display_area">0</span> ha
-                        </div>
-                    </h3>
-                </div>
-                <div class="panel-body">
-                    {{ form_start(form) }}
-                    <div class="row">
-                        <div class="form-group form-material col-lg-4   ">
-                            {{ form_label(form.name) }}
-                            {{ form_errors(form.name) }}
-                            {{ form_widget(form.name) }}
-                        </div>
-                        <div class="hidden">
-                            {{ form_label(form.area) }}
-                            {{ form_errors(form.area) }}
-                            {{ form_widget(form.area) }}
-                            {{ form_label(form.latLngs) }}
-                            {{ form_errors(form.latLngs) }}
-                            {{ form_widget(form.latLngs) }}
-                        </div>
-
-                    </div>
-
-                    <label class="control-label required margin-top-10" for="plot_name">Dessiner le contour de la parcelle</label>
-                    <div class="row" id="map" style="margin:5px; height: 60vh;"></div>
-
-                    {{ form_widget(form) }}
-
-                </div>
-                <div class="panel-footer">
-                    <a class="btn btn-default" href="{{ path('farm_show_current') }}">Annuler</a>
-
-                    <button class="btn btn-danger margin-10" type="submit">Enregistrer</button>
-                </div>
-                {{ form_end(form) }}
-            </div>
-        </div>
+    <div class="checkbox-custom checkbox-info">
+        {{ form_widget(form.hydroponics) }}
+        {{ form_label(form.hydroponics) }}
     </div>
-{% endblock %}
+</div>
+<div id="nodraw" style="display:none; margin-top:10px;">
+    {{ form_label(form.area) }}
+    {{ form_widget(form.area) }}
+</div>
 
-{% block core_plugin %}
-    {{ parent() }}
-    <script src="{{ asset('front/global/vendor/mapbox.js/mapbox.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/mapbox.js/plugins/leaflet.markercluster.js') }}"></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.js'></script>
-    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-geodesy/v0.1.0/leaflet-geodesy.js'></script>
-
-    <script src="https://cdn.jsdelivr.net/g/leaflet.geosearch@0.1(js/l.control.geosearch.js+js/l.geosearch.provider.google.js)"></script>
-    <script src="https://domoritz.github.io/leaflet-locatecontrol/dist/L.Control.Locate.min.js"
-            charset="utf-8"></script>
-
-    <script src="{{ asset('front/global/vendor/leaflet-label/leaflet.label.js') }}"></script>
-{% endblock %}
-
-{% block template_config %}
-    {{ parent() }}
-    <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
-    <script>
-        window.AppPlotNew = Site.extend({
-            createMap: function () {
-                // Mapbox access token
-                L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
-
-                // Create the map
-                var map = L.mapbox.map('map', 'mapbox.streets').setView([-21.20000, 166.00000], 7);
-
-                /*new L.Control.GeoSearch({
-                    provider: new L.GeoSearch.Provider.Google()
-                }).addTo(map);
-*/
-                // Add GeoRep
-                var georep = L.tileLayer.wms('https://carto10.gouv.nc/arcgis/services/fond_imagerie/MapServer/WMSServer', {
-                    format: 'img/png',
-                    transparent: true,
-                    layers: 16,
-                    maxZoom: 26
-                });
-
-                // Display GeoRep according to zoom level
-                map.on('zoomend', function () {
-                    if (map.getZoom() > 14 && map.hasLayer(georep) == false) {
-                        map.addLayer(georep);
-                    }
-                    if (map.getZoom() < 14 && map.hasLayer(georep)) {
-                        map.removeLayer(georep);
-                    }
-                    if (map.getZoom() > 14) {
-                        $('.leaflet-label').css('display', 'block');
-                    } else {
-                        $('.leaflet-label').css('display', 'none');
-                    }
-                });
-
-                // Locate current user
-                //var lc = L.control.locate().addTo(map);
-
-                // Where the polygons are stored
-                var featureGroup = L.featureGroup().addTo(map);
-
-                // Add farm plots or locate user if not plots
-                {%   if app.user.farm.plots |length > 1 %}
-                var layerGroup = L.featureGroup();
-                {% for plot in app.user.farm.plots %}
-                {% if plot.latLngs is not empty %}
-                var layer = L.geoJson({{ plot.latLngs | raw }});
-                layer.setStyle({color: "white", opacity: 0.8, weight: 1.5});
-                var label = new LeafletLabel({
-                    direction: 'center'
-                });
-                label.setContent("{{ plot.name | capitalize }}");
-                label.setLatLng(layer.getBounds().getCenter());
-                map.showLabel(label);
-                layerGroup.addLayer(layer);
-                {% endif %}
-                {% endfor %}
-                layerGroup.addTo(map);
-                var bounds = layerGroup.getBounds();
-                map.fitBounds(bounds);
-                {% else %}
-                //lc.start();
-                //$('.leaflet-control-locate').hide();
-                {%  endif %}
-
-                // Change icon styles
-                L.Edit.Poly = L.Edit.Poly.extend({
-                    options: {
-                        icon: new L.DivIcon({
-                            iconSize: new L.Point(20, 20),
-                            className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
-                            html: '<div class="inside-div"></div>'
-                        })
-                    }
-                });
-
-                // Enable drawing polygons
-                var drawControl = new L.Control.Draw({
-                    edit: {
-                        featureGroup: featureGroup,
-                        selectedPathOptions: {
-                            dashArray: "8,6",
-                            color: 'white',
-                            opacity: 0.8,
-                            weight: 1.5
-                        }
-                    },
-                    draw: {
-                        polyline: false,
-                        circle: false,
-                        marker: false,
-                        rectangle: false,
-                        polygon: {
-                            icon: new L.DivIcon({
-                                iconSize: new L.Point(20, 20),
-                                className: 'leaflet-div-icon leaflet-editing-icon my-own-icon',
-                                html: '<div class="created-div"></div>'
-                            }),
-                            shapeOptions: {
-                                dashArray: "8,6",
-                                color: 'white',
-                                opacity: 0.8,
-                                weight: 1.5
-                            }
-                        }
-                    }
-                }).addTo(map);
-
-                // Change Leaflet draw messages
-                L.drawLocal = {
-                    draw: {
-                        toolbar: {
-                            actions: {
-                                title: 'Annulez le dessin',
-                                text: 'Annuler'
-                            },
-                            buttons: {
-                                polyline: 'Dessiner une polyligne',
-                                polygon: 'Dessiner ma parcelle',
-                                rectangle: 'Dessiner un rectangle',
-                                circle: 'Dessiner un cercle',
-                                marker: 'Dessiner un marqueur'
-                            }
-                        },
-                        handlers: {
-                            circle: {
-                                tooltip: {
-                                    start: 'Cliquez et déplacez pour dessiner un cercle.'
-                                }
-                            },
-                            marker: {
-                                tooltip: {
-                                    start: 'Cliquez sur la carte pour placer un marqueur.'
-                                }
-                            },
-                            polygon: {
-                                tooltip: {
-                                    start: 'Vous pouvez commencer à dessiner votre parcelle.',
-                                    cont: 'Vous pouvez continuer à dessiner votre parcelle',
-                                    end: 'Cliquez sur votre premier point quand vous avez terminé.'
-                                }
-                            },
-                            polyline: {
-                                error: '<strong>Erreur:</strong> Les arrêtes de la forme ne doivent pas se croiser!',
-                                tooltip: {
-                                    start: 'Cliquez pour commencer à dessiner d\'une ligne.',
-                                    cont: 'Cliquez pour continuer à dessiner une ligne.',
-                                    end: 'Cliquez sur le dernier point pour terminer la ligne.'
-                                }
-                            },
-                            rectangle: {
-                                tooltip: {
-                                    start: 'Cliquez et déplacez pour dessiner un rectangle.'
-                                }
-                            },
-                            simpleshape: {
-                                tooltip: {
-                                    end: 'Relachez la souris pour finir de dessiner.'
-                                }
-                            }
-                        }
-                    },
-                    edit: {
-                        toolbar: {
-                            actions: {
-                                save: {
-                                    title: 'Enregistrer les changements.',
-                                    text: 'Enregistrer'
-                                },
-                                cancel: {
-                                    title: 'Annuler les modifications.',
-                                    text: 'Annuler'
-                                }
-                            },
-                            buttons: {
-                                edit: 'Modifier la parcelle.',
-                                editDisabled: 'Aucune parcelle à modifier.',
-                                remove: 'Supprimer la parcelle.',
-                                removeDisabled: 'Aucune parcelle à supprimer.'
-                            }
-                        },
-                        handlers: {
-                            edit: {
-                                tooltip: {
-                                    text: 'Déplacez les points pour modifier la parcelle.',
-                                    subtext: ''
-                                }
-                            },
-                            remove: {
-                                tooltip: {
-                                    text: 'Cliquez sur la parcelle à supprimer'
-                                }
-                            }
-                        }
-                    }
-                };
-
-                // Enable drawing polygons on ready
-                new L.Draw.Polygon(map, drawControl.options.draw.polygon).enable();
-
-                // On draw created, add polygon values to the form
-                map.on('draw:created', function (e) {
-                    var layer = e.layer;
-                    featureGroup.clearLayers();
-                    featureGroup.addLayer(layer);
-                    $("#plot_area").val(getPolygonArea(layer));
-                    $("#display_area").html(getPolygonArea(layer));
-                    var latLngs = JSON.stringify(layer.toGeoJSON());
-                    $("#plot_latLngs").val(latLngs);
-                    map.fitBounds(layer.getBounds());
-                });
-
-                // On draw edited, update polygon values to the form
-                map.on('draw:edited', function (e) {
-                    e.layers.eachLayer(function (layer) {
-                        featureGroup.clearLayers();
-                        featureGroup.addLayer(layer);
-                        $("#plot_area").val(getPolygonArea(layer));
-                        $("#display_area").html(getPolygonArea(layer));
-                        var latLngs = JSON.stringify(layer.toGeoJSON());
-                        $("#plot_latLngs").val(latLngs);
-                    });
-                });
-
-                // On draw deletestop, delete previous plot
-                map.on('draw:deletestop', function (e) {
-                    featureGroup.clearLayers();
-                    $("#plot_latLngs").val("");
-                    $("#plot_area").val("");
-                    $("#display_area").html("0");
-
-                });
-
-                // Get Polygon Area
-                function getPolygonArea(layer) {
-                    var area = LGeo.area(layer) / 10000;
-                    return area.toFixed(3);
-                }
-            }
-            ,
-            run: function () {
-                this.createMap();
-            }
-        });
-
-        $(document).ready(function ($) {
-            AppPlotNew.run();
-
-        })
-    </script>
-
-{% endblock %}
+<a class="btn btn-default btn-block" style="margin-top:15px" onclick="
+                             $('#nodraw').hide(400);    
+                             $('.leaflet-draw').show();
+                             window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.enable();
+                             ">
+    Dessiner la parcelle
+</a>
+<a class="btn btn-pure pull-right" onclick="
+                                    $('#nodraw').show(400);       
+                                    $(this).text(function(i, text){
+                                    window.drawControl._toolbars[L.DrawToolbar.TYPE]._modes.polygon.handler.disable(); 
+                                    window.featureGroup2.clearLayers();
+                                    $('.leaflet-draw').hide();
+                                    $('#plot_area').val('');
+                                    $('#plot_latLngs').val('');
+                                })">Je n'arrive pas à dessiner la parcelle</a>
 
 
+<div class="hidden" style="display:none;">
+    {{ form_label(form.latLngs) }}
+    {{ form_widget(form.latLngs) }}
+</div>
+
+
+<button class="btn btn-info btn-block" style="margin-top:15px" type="submit">Enregistrer</button>
+
+{{ form_end(form) }}

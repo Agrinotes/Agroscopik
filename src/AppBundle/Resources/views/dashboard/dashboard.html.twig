@@ -80,7 +80,7 @@
                                     <!-- Add a plot form -->
                                     <div id="form_new_plot" class="panel" style="display:none;margin-top:15px;">
                                         <div class="panel-body">
-                                            {{ render(controller('AppBundle:Plot:NewFromDashboard')) }}
+                                            {{ render(controller('AppBundle:Plot:New')) }}
                                         </div>
                                     </div>
                                     <!-- End Add a plot button -->
@@ -122,8 +122,10 @@
                                                             </tbody>
                                                         </table>
 
-                                                            <a href="{{path('plot_show',{'id':plot.id})}}" class="btn btn-default btn-outline btn-block" style=";margin-bottom:10px;">Tous les cycles de culture</a>
 
+                                                        {% endif %}
+                                                        {% if plot.cropCycles is not empty %}
+                                                        <a href="{{path('plot_show',{'id':plot.id})}}" class="btn btn-default btn-outline btn-block" style=";margin-bottom:10px;">Tous les cycles de culture</a>
                                                         {% endif %}
                                                     </div>
                                                 </div>

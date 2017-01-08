@@ -9,75 +9,87 @@
     <title>Agroscopik | {% block title %}Bienvenue sur votre exploitation{% endblock %}</title>
     <link rel="apple-touch-icon" href="{{ asset('remark/3.0.5/classic/topbar/assets/images/apple-touch-icon.png') }}">
     <link rel="shortcut icon" href="{{ asset('remark/3.0.5/classic/topbar/assets/images/favicon.ico') }}">
-    
-    
+
+
     <!-- Stylesheets -->
     {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/css/bootstrap-extend.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/css/site.min.css') }}">
-    <!-- Plugins -->
-    {% block plugins_stylesheets %}
-    <link rel="stylesheet" href="{{asset('remark/3.0.5/classic/global/vendor/animsition/animsition.min.css')}}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asscrollable/asScrollable.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/switchery/switchery.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/intro-js/introjs.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/slidePanel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/flag-icon-css/flag-icon.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.css') }}"> {# Change source #}
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.min.css') }}">
-    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css' rel='stylesheet' />
-    {% endblock plugins_stylesheets %}
-   
-    <!-- Fonts -->
-    {% block fonts_stylesheets %}
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/font-awesome/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/web-icons/web-icons.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/brand-icons/brand-icons.min.css') }}">
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-    {% endblock fonts_stylesheets %}
+        <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/css/bootstrap-extend.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/css/site.min.css') }}">
+        <!-- Plugins -->
+        {% block plugins_stylesheets %}
+            <link rel="stylesheet"
+                  href="{{ asset('remark/3.0.5/classic/global/vendor/animsition/animsition.min.css') }}">
+            <link rel="stylesheet"
+                  href="{{ asset('remark/3.0.5/classic/global/vendor/asscrollable/asScrollable.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/switchery/switchery.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/intro-js/introjs.min.css') }}">
+            <link rel="stylesheet"
+                  href="{{ asset('remark/3.0.5/classic/global/vendor/slidepanel/slidePanel.min.css') }}">
+            <link rel="stylesheet"
+                  href="{{ asset('remark/3.0.5/classic/global/vendor/flag-icon-css/flag-icon.min.css') }}">
+            <link rel="stylesheet"
+                  href="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.css') }}"> {# Change source #}
+            <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/mapbox-js/mapbox.min.css') }}">
+            <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-draw/v0.2.3/leaflet.draw.css'
+                  rel='stylesheet'/>
+        {% endblock plugins_stylesheets %}
 
-    <!-- Page styles -->
-    {% block page_stylesheets %}
-    {% endblock page_stylesheets %}
+        <!-- Fonts -->
+        {% block fonts_stylesheets %}
+            <link rel="stylesheet"
+                  href="{{ asset('remark/3.0.5/classic/global/fonts/font-awesome/font-awesome.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/fonts/web-icons/web-icons.min.css') }}">
+            <link rel="stylesheet"
+                  href="{{ asset('remark/3.0.5/classic/global/fonts/brand-icons/brand-icons.min.css') }}">
+            <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,300italic'>
+            <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+        {% endblock fonts_stylesheets %}
+
+        <!-- Page styles -->
+        {% block page_stylesheets %}
+        {% endblock page_stylesheets %}
 
     {% endblock stylesheets %}
 
     {% block browser_compatibility %}
-    <!--[if lt IE 9]>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/html5shiv/html5shiv.min.js') }}"></script>
-    <![endif]-->
-    <!--[if lt IE 10]>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/media-match/media.match.min.js')}}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/respond/respond.min.js') }}"></script>
-    <![endif]-->
-    <!-- Scripts -->
+        <!--[if lt IE 9]>
+        <script src="{{ asset('remark/3.0.5/classic/global/vendor/html5shiv/html5shiv.min.js') }}"></script>
+        <![endif]-->
+        <!--[if lt IE 10]>
+        <script src="{{ asset('remark/3.0.5/classic/global/vendor/media-match/media.match.min.js')}}"></script>
+        <script src="{{ asset('remark/3.0.5/classic/global/vendor/respond/respond.min.js') }}"></script>
+        <![endif]-->
+        <!-- Scripts -->
     {% endblock %}
 
     {% block head_javascripts %}
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/breakpoints/breakpoints.min.js') }}"></script>
-    <script>
-        Breakpoints();
-    </script>
+        <script src="{{ asset('remark/3.0.5/classic/global/vendor/breakpoints/breakpoints.min.js') }}"></script>
+        <script>
+            Breakpoints();
+        </script>
     {% endblock %}
 </head>
 
 <body class="{% block body_class %}site-navbar-small{% endblock %}">
 <!--[if lt IE 8]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
 <![endif]-->
 
-    {% block site_navbar %}
-    <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse bg-cyan-600 " role="navigation">
+{% block site_navbar %}
+    <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-inverse bg-cyan-600 "
+         role="navigation">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided" data-toggle="menubar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="hamburger-bar"></span>
-        </button>
-            <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse" data-toggle="collapse">
-            <i class="icon wb-more" aria-hidden="true"></i>
-        </button>
+            <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
+                    data-toggle="menubar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="hamburger-bar"></span>
+            </button>
+            <button type="button" class="navbar-toggler collapsed" data-target="#site-navbar-collapse"
+                    data-toggle="collapse">
+                <i class="icon wb-more" aria-hidden="true"></i>
+            </button>
             <a class="navbar-brand navbar-brand-center" href="../../index.html">
                 <span class="navbar-brand-text hidden-xs-down">AGROSCOPIK</span>
             </a>
@@ -90,9 +102,9 @@
                     <li class="nav-item hidden-float" id="toggleMenubar">
                         <a class="nav-link" data-toggle="menubar" href="#" role="button">
                             <i class="icon hamburger hamburger-arrow-left">
-                            <span class="sr-only">Toggle menubar</span>
-                            <span class="hamburger-bar"></span>
-                        </i>
+                                <span class="sr-only">Toggle menubar</span>
+                                <span class="hamburger-bar"></span>
+                            </i>
                         </a>
                     </li>
                     <li class="nav-item hidden-sm-down" id="toggleFullscreen">
@@ -105,17 +117,23 @@
                 <!-- Navbar Toolbar Right -->
                 <ul class="nav navbar-toolbar navbar-right navbar-toolbar-right">
                     <li class="nav-item dropdown">
-                        <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false" data-animation="scale-up" role="button">
+                        <a class="nav-link navbar-avatar" data-toggle="dropdown" href="#" aria-expanded="false"
+                           data-animation="scale-up" role="button">
                             <span class="avatar avatar-online">
                 <img src="{{ asset('remark/3.0.5/classic/global/portraits/5.jpg') }}" alt="...">
                 <i></i>
               </span>
                         </a>
+
                         <div class="dropdown-menu" role="menu">
-                            <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}" role="menuitem"><i class="icon wb-account" aria-hidden="true"></i> Mon Profil</a>
-                            <a class="dropdown-item" href="{{ path('fos_user_profile_edit') }}" role="menuitem"><i class="icon wb-settings" aria-hidden="true"></i> Paramètres</a>
+                            <a class="dropdown-item" href="{{ path('fos_user_profile_show') }}" role="menuitem"><i
+                                        class="icon wb-account" aria-hidden="true"></i> Mon Profil</a>
+                            <a class="dropdown-item" href="{{ path('fos_user_profile_edit') }}" role="menuitem"><i
+                                        class="icon wb-settings" aria-hidden="true"></i> Paramètres</a>
+
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}" role="menuitem"><i class="icon wb-power" aria-hidden="true"></i> Déconnexion</a>
+                            <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}" role="menuitem"><i
+                                        class="icon wb-power" aria-hidden="true"></i> Déconnexion</a>
                         </div>
                     </li>
                 </ul>
@@ -124,9 +142,9 @@
             <!-- End Navbar Collapse -->
         </div>
     </nav>
-    {% endblock %}
+{% endblock %}
 
-    {% block site_menubar %}
+{% block site_menubar %}
     <div class="site-menubar site-menubar-light">
         <div class="site-menubar-body">
             <div>
@@ -139,38 +157,69 @@
                             </a>
                         </li>
                         <li class="site-menu-item">
-                            <a href="{{ path('dashboard') }}">
+                            <a href="{{ path('farm_calendar') }}">
                                 <span class="site-menu-title">Planning</span>
                             </a>
                         </li>
-                        <li class="site-menu-item">
-                            <a href="{{ path('dashboard') }}">
-                                <span class="site-menu-title">Synthèses</span>
+                        <li class="dropdown site-menu-item has-sub">
+                            <a data-toggle="dropdown" href="javascript:void(0)" data-dropdown-toggle="false">
+                                <span class="site-menu-title">Autres</span>
+                                <span class="site-menu-arrow"></span>
                             </a>
+
+                            <div class="dropdown-menu">
+                                <div class="site-menu-scroll-wrap is-list">
+
+                                    <ul class="site-menu-sub site-menu-normal-list">
+
+                                        <li class="site-menu-item">
+                                            <a class="animsition-link" href="{{ path('tractor_index') }}">
+                                                <span class="site-menu-title">Tracteurs</span>
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item">
+                                            <a class="animsition-link" href="{{ path('implement_index') }}">
+                                                <span class="site-menu-title">Outils</span>
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item">
+                                            <a class="animsition-link" href="{{ path('farmspeciality_index') }}">
+                                                <span class="site-menu-title">Local phytosanitaire</span>
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item">
+                                            <a class="animsition-link" href="{{ path('farmfertilizer_index') }}">
+                                                <span class="site-menu-title">Engrais</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    {% endblock %}
+{% endblock %}
 
-    
-    <div class="page">
-{# On pourrait afficher les messages Flash ici #}
+
+<div class="page">
+    {# On pourrait afficher les messages Flash ici #}
     {% block page %}
         <div class="page-main">
-                    {% block body %}
-                        {% block fos_user_content %}
-                        {% endblock fos_user_content %}
-                    {% endblock %}
+            {% block body %}
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            {% endblock %}
         </div>
     {% endblock %}
-    </div>
+</div>
 
-    {% block javascripts %}
+{% block javascripts %}
     <!-- Core  -->
-    {% block core_javascripts %}
+{% block core_javascripts %}
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/babel-external-helpers/babel-external-helpers.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/tether/tether.min.js') }}"></script>
@@ -179,9 +228,9 @@
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/mousewheel/jquery.mousewheel.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/asscrollbar/jquery-asScrollbar.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/asscrollable/jquery-asScrollable.js') }}"></script>
-    {% endblock %}
+{% endblock %}
     <!-- Plugins -->
-    {% block plugins_javascripts %}
+{% block plugins_javascripts %}
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/switchery/switchery.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/intro-js/intro.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/screenfull/screenfull.min.js') }}"></script>
@@ -193,9 +242,9 @@
     <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.geometryutil.js') }}"></script>
     <script src="{{ asset('front/global/vendor/leaflet-snap/leaflet.snap.js') }}"></script>
     <script src="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.js') }}"></script>
-    {% endblock %}
+{% endblock %}
     <!-- Scripts -->
-    {% block scripts_javascripts %}
+{% block scripts_javascripts %}
     <script src="{{ asset('remark/3.0.5/classic/global/js/State.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Component.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin.min.js') }}"></script>
@@ -205,22 +254,22 @@
     <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/Sidebar.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Section/PageAside.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Plugin/menu.min.js') }}"></script>
-    {% endblock %}
+{% endblock %}
     <!-- Config -->
-    {% block config_javascripts %}
+{% block config_javascripts %}
     <script src="{{ asset('remark/3.0.5/classic/global/js/config/colors.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/config/tour.min.js') }}"></script>
     <script>
-    Config.set('assets', '{{ app.request.getBaseURL() }}/web/remark/3.0.5/classic/topbar/assets');
+        Config.set('assets', '{{ app.request.getBaseURL() }}/web/remark/3.0.5/classic/topbar/assets');
     </script>
-    {% endblock %}
+{% endblock %}
     <!-- Page -->
-    {% block page_javascripts %}
+{% block page_javascripts %}
     <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Site.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/asscrollable.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/slidepanel.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script> 
-    {% endblock %}
-    {% endblock %}
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/switchery.js') }}"></script>
+{% endblock %}
+{% endblock %}
 </body>
 </html>

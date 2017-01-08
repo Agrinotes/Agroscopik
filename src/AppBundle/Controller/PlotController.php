@@ -52,10 +52,12 @@ class PlotController extends Controller
         ));
     }
 
-    /**
+
+
+       /**
      * Creates a new Plot entity.
      *
-     * @Route("/parcelle/new", name="plot_new")
+     * @Route("/parcelle/new_from_dashboard", name="plot_new_from_dashboard")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -105,72 +107,10 @@ class PlotController extends Controller
 
 
 
-            return $this->redirectToRoute('plot_show', array('id' => $plot->getId()));
-        }
-
-        return $this->render('AppBundle:plot:new.html.twig', array(
-            'plot' => $plot,
-            'form' => $form->createView(),
-        ));
-    }
-
-       /**
-     * Creates a new Plot entity.
-     *
-     * @Route("/parcelle/new_from_dashboard", name="plot_new_from_dashboard")
-     * @Method({"GET", "POST"})
-     */
-    public function newFromDashboardAction(Request $request)
-    {
-        $plot = new Plot();
-
-        // Get Entity Manager
-        $em = $this->getDoctrine()->getManager();
-
-        $farm = $this->getUser()->getFarm();
-        $farm->addPlot($plot);
-
-        $form = $this->createForm('AppBundle\Form\PlotType', $plot);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            // Store plot in the database
-            $em->persist($plot);
-            $em->flush();
-
-            // Call ACL service
-            $aclProvider = $this->get('security.acl.provider');
-
-            // Create the ACL for current Plot $plot
-            $objectIdentity = ObjectIdentity::fromDomainObject($plot);
-            $acl = $aclProvider->createAcl($objectIdentity);
-
-            // Retrieve the security identity of the current user
-            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
-
-            // Create Access Mask
-            $builder = new MaskBuilder();
-            $builder
-                ->add('view')
-                ->add('edit')
-                ->add('delete');
-            $mask = $builder->get();
-
-            // Insert Object Access Entry
-            $acl->insertObjectAce($securityIdentity, $mask);
-
-            // Update ACL
-            $aclProvider->updateAcl($acl);
-
-            $request->getSession()->getFlashBag()->add('success', array('title' => 'Votre parcelle '.$plot->getName().' ('.number_format($plot->getArea(), 2, ',', ' ').'ha)'.' a été ajoutée avec succès !', 'message' => 'Ajouter une autre parcelle') );
-
-
-
             return $this->redirectToRoute('dashboard');
         }
 
-        return $this->render('AppBundle:plot:new_from_dashboard.html.twig', array(
+        return $this->render('AppBundle:plot:new.html.twig', array(
             'plot' => $plot,
             'form' => $form->createView(),
         ));
