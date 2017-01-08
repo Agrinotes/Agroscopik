@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base_topbar.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base_topbar.html.twig" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,7 +65,7 @@
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.64788735">
-              <caret line="118" column="73" selection-start-line="118" selection-start-column="73" selection-end-line="118" selection-end-column="73" />
+              <caret line="118" column="82" selection-start-line="118" selection-start-column="82" selection-end-line="118" selection-end-column="82" />
               <folding />
             </state>
           </provider>
@@ -1338,7 +1337,7 @@
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.64788735">
-          <caret line="118" column="73" selection-start-line="118" selection-start-column="73" selection-end-line="118" selection-end-column="73" />
+          <caret line="118" column="82" selection-start-line="118" selection-start-column="82" selection-end-line="118" selection-end-column="82" />
           <folding />
         </state>
       </provider>
