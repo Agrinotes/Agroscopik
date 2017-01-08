@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/remark/3.0.5/classic/global/vendor/datatables/jquery.dataTables.js" afterPath="$PROJECT_DIR$/web/remark/3.0.5/classic/global/vendor/datatables/jquery.dataTables.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,16 +37,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8793104">
-              <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.8325991">
+              <caret line="118" column="38" selection-start-line="118" selection-start-column="38" selection-end-line="118" selection-end-column="38" />
               <folding>
-                <element signature="e#12#33#0#Twig" expanded="false" />
-                <element signature="e#6804#6857#0#HTML" expanded="true" />
-                <element signature="e#7249#7302#0#HTML" expanded="true" />
-                <element signature="e#11143#12216#0#HTML" expanded="false" />
+                <element signature="e#6933#6986#0#HTML" expanded="true" />
+                <element signature="e#7378#7431#0#HTML" expanded="true" />
+                <element signature="e#11272#12345#0#HTML" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -125,12 +121,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="edit.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70422536">
+            <state vertical-scroll-proportion="-68.27586">
               <caret line="99" column="112" selection-start-line="99" selection-start-column="112" selection-end-line="99" selection-end-column="112" />
               <folding>
+                <element signature="e#12#33#0#Twig" expanded="false" />
                 <element signature="e#3241#3265#0#HTML" expanded="true" />
               </folding>
             </state>
@@ -253,8 +250,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/dashboard/dashboard.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/edit.html.twig" />
         <option value="$PROJECT_DIR$/web/remark/3.0.5/classic/global/vendor/datatables/jquery.dataTables.js" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" />
       </list>
     </option>
   </component>
@@ -1208,19 +1205,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8793104">
-          <caret line="146" column="0" selection-start-line="146" selection-start-column="0" selection-end-line="146" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#33#0#Twig" expanded="false" />
-            <element signature="e#6804#6857#0#HTML" expanded="true" />
-            <element signature="e#7249#7302#0#HTML" expanded="true" />
-            <element signature="e#11143#12216#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.1363635">
@@ -1276,10 +1260,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70422536">
+        <state vertical-scroll-proportion="-68.27586">
           <caret line="99" column="112" selection-start-line="99" selection-start-column="112" selection-end-line="99" selection-end-column="112" />
           <folding>
+            <element signature="e#12#33#0#Twig" expanded="false" />
             <element signature="e#3241#3265#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8325991">
+          <caret line="118" column="38" selection-start-line="118" selection-start-column="38" selection-end-line="118" selection-end-column="38" />
+          <folding>
+            <element signature="e#6933#6986#0#HTML" expanded="true" />
+            <element signature="e#7378#7431#0#HTML" expanded="true" />
+            <element signature="e#11272#12345#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
