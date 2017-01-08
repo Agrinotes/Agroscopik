@@ -116,7 +116,7 @@ class CropCycle
             $name = $name . " " . $crop->getName();
         }
         if($this->getVarieties()){
-            $name = $name." (".ucfirst($this->getVarieties()).")";
+            $name = $name." (".ucfirst(strtolower( $this->getVarieties())).")";
         }
         return $name;
     }
