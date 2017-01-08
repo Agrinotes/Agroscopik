@@ -174,10 +174,10 @@
                 <div class="panel panel-info panel-bordered">
                     <header class="panel-heading">
                         <div class="panel-actions"></div>
-                        <h3 class="panel-title">Ajouter une intervention</h3>
+                        <h3 class="panel-title">Ajouter un tracteur</h3>
                     </header>
                     <div class="panel-body" style="padding-top:20px;">
-
+                        {{ render(controller('AppBundle:Tractor:new')) }}
                     </div>
                 </div>
             </div>
@@ -292,7 +292,15 @@
                 $('#addTractor').fadeIn(400);
                 if (i == 0) {
                     $('.select2').select2();
-                    $('.select2-keep').select2({closeOnSelect: false});
+                    $('.date').datepicker({
+                        'format': 'mm/yyyy',
+                        'startView': 'decade',
+                        'minViewMode': 'months',
+                        'language': 'fr',
+                        'orientation':'bottom',
+                        'autoclose': true
+                    });
+
                 }
             } else {
                 $('#addTractor').hide();
