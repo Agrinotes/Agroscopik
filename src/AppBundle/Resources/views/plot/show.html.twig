@@ -144,12 +144,7 @@
                                 <td><a class="actionLink"
                                        href="{{ path('cropcycle_show',{'id':cycle.id}) }}">{{ cycle.name }} </a>
                 
-                <span class="pull-right"><a href="{{ path('cropcycle_edit',{'id':cycle.id}) }}"
-                                            class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
-                                            style="padding:0px 5px 0px;" data-toggle="tooltip"
-                                            data-original-title="Modifier"><i class="icon wb-edit"
-                                                                              aria-hidden="true"></i></a>
-               </span></td>
+</td>
                                 <td>{% if cycle.status == "CompletedAction" %}<span class="tag tag-round tag-danger">Terminé</span>{% else %}<span class="tag tag-round tag-info">En cours</span>{% endif %}</td>
 <td>{{ cycle.area | number_format(2,',',' ') }} ha</td>
                                 <td>{{ cycle.startDatetime | date ('d/m/Y') }}</td>

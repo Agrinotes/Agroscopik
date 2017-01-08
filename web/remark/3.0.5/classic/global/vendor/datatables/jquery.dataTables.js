@@ -11396,7 +11396,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfo": "De _START_ à _END_ sur _TOTAL_ interventions",
+			"sInfo": "De _START_ à _END_ sur _TOTAL_ au total",
 	
 	
 			/**
