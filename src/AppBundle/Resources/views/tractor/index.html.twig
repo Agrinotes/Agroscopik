@@ -142,7 +142,36 @@
                                             style="padding:0px 5px 0px;" data-toggle="tooltip"
                                             data-original-title="Modifier"><i class="icon wb-edit"
                                                                               aria-hidden="true"></i></a>
+                  <button
 
+                          onClick="
+                                  swal({
+                                  title: 'Supprimer le tracteur ?',
+                                  text: 'Cette suppression sera définitive',
+                                  type: 'warning',
+                                  showCancelButton: true,
+                                  confirmButtonColor: '#DD6B55',
+                                  confirmButtonText: 'Confirmer',
+                                  cancelButtonText: 'Annuler',
+                                  closeOnConfirm: true,
+                                  closeOnCancel: true,
+                                  },
+                                  function(isConfirm){
+                                  if (isConfirm) {
+                                  $.ajax('{{ path('tractor_delete_ajax',{'id':tractor.id}) }}').done(function() {
+                                  $('#td_{{ tractor.id }}').hide(200);
+                                  })
+                                  .fail(function() {
+                                  swal('Erreur', 'Il y a eu une erreur', 'error');
+                                  });    }
+                                  });
+
+                                  "
+
+
+                          class="btn btn-sm btn-icon btn-pure btn-default on-default remove-row "
+                          style="padding:0px 5px 0px;" data-toggle="tooltip" data-original-title="Supprimer"><i
+                              class="icon wb-trash" aria-hidden="true"></i></button>
                </span></td>
                                 <td>{{ tractor.model.name }}</td>
                                 <td>{{ tractor.model.power }} cv</td>

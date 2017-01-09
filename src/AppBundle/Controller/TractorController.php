@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Tractor;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use AppBundle\Form\TractorType;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
@@ -163,6 +164,21 @@ class TractorController extends Controller
         }
 
         return $this->redirectToRoute('tractor_index');
+    }
+
+    /**
+     * Deletes a Tractor entity.
+     *
+     * @Security("is_granted('DELETE', tractor) or is_granted('ROLE_ADMIN')")
+     * @Route("/{id}/delete/ajax", name="tractor_delete_ajax")
+     */
+    public function deleteAjaxAction(Request $request, Tractor $tractor)
+    {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($tractor);
+            $em->flush();
+
+        return new JsonResponse(array('data' => 'this is a json response'));
     }
 
     /**

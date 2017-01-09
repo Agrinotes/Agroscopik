@@ -267,16 +267,14 @@ class ActionController extends Controller
 
     /**
      * Deletes a Action entity.
-     *
+     * @Security("is_granted('DELETE', action) or is_granted('ROLE_ADMIN')")
      * @Route("/action/delete/ajax/{id}", name="action_delete_ajax")
      */
     public function deleteAjaxAction(Request $request, Action $action)
     {
 
-
         // Must add ACL check here
         $em = $this->getDoctrine()->getManager();
-        $id = $action->getCropCycle()->getId();
         $em->remove($action);
         $em->flush();
 
