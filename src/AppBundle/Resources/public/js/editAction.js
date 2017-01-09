@@ -270,22 +270,22 @@
 
 
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#farmSpecialities').hide();
-        $('#farmFertilizers').hide();
-        $('#harvestProducts').hide();
-        $('#density').hide();
-        $('#auxiliary').hide();
-        $('#ph').hide();
-        $('#irrigations').hide();
-        $('#tankVolume').hide();
-        $('#drainage').hide();
+                    $(document).ready(function () {
+                        $('#farmSpecialities').hide();
+                        $('#farmFertilizers').hide();
+                        $('#harvestProducts').hide();
+                        $('#density').hide();
+                        $('#auxiliary').hide();
+                        $('#ph').hide();
+                        $('#irrigations').hide();
+                        $('#tankVolume').hide();
+                        $('#drainage').hide();
 
 
-        $('#action_edit_intervention').on('change', function () {
-            if ($("#action_edit_intervention").select2('data')[0]['text'] == "Traitement phytosanitaire") {
-                $('#density').hide("slow");
-                $('#harvestProducts').hide("slow");
+                        $('#action_edit_intervention').on('change', function () {
+                            if ($("#action_edit_intervention").select2('data')[0]['text'] == "Traitement phytosanitaire") {
+                                $('#density').hide("slow");
+                                $('#harvestProducts').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
                 $('#ph').hide("slow");

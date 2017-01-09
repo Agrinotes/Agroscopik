@@ -11,7 +11,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class FarmFertilizerMvtType extends AbstractType
+class FarmFertilizerMvtUpdateStockType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -28,6 +28,14 @@ class FarmFertilizerMvtType extends AbstractType
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('cat')
+                        ->where('cat.slug = :slug')
+                        ->setParameter('slug','updateStockAction')
+                        ->orWhere('cat.slug = :slug2')
+                        ->setParameter('slug2','buyAction')
+                        ;
+                },
             ))
             ->add('amount',NumberType::class,array(
                 'label'=>'Entrer la quantité correspondante',
@@ -53,11 +61,12 @@ class FarmFertilizerMvtType extends AbstractType
                 $form->add('unit',EntityType::class, array(
                     'class' => 'AppBundle:Unit',
                     'choice_label' => 'name',
-                    'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                    'attr' => array('class' => 'form-control select2'),
                     'label' => 'Choisir l\'unité',
                     'required' => true,
                     'multiple' => false,
                     'expanded' => false,
+
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('u')
                             ->join('u.unitCategory', 'cat')
@@ -71,7 +80,7 @@ class FarmFertilizerMvtType extends AbstractType
                 $form->add('unit',EntityType::class, array(
                     'class' => 'AppBundle:Unit',
                     'choice_label' => 'name',
-                    'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                    'attr' => array('class' => 'form-control select2'),
                     'label' => 'Choisir l\'unité',
                     'required' => true,
                     'multiple' => false,
@@ -89,7 +98,7 @@ class FarmFertilizerMvtType extends AbstractType
                 $form->add('unit',EntityType::class, array(
                     'class' => 'AppBundle:Unit',
                     'choice_label' => 'name',
-                    'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
+                    'attr' => array('class' => 'form-control select2'),
                     'label' => 'Choisir l\'unité',
                     'required' => true,
                     'multiple' => false,
@@ -109,7 +118,7 @@ class FarmFertilizerMvtType extends AbstractType
         });
 
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

@@ -87,7 +87,7 @@
 
 {% block page %}
     <div class="page-content">
-        <div class="row">
+        <div class="row" id="stock">
             <!-- Panel Basic used as temporary fix -->
             <div class="panel " style="display:none;">
                 <header class="panel-heading">
@@ -113,7 +113,7 @@
             <!-- End Panel Basic -->
 
             <!-- Panel Table Tools -->
-            <div class="panel" id="tableTools">
+            <div class="panel col-md-9" id="tableTools">
                 <header class="panel-heading">
                                             <h4 class="panel-title" style="font-size:16px;"><a href="{{path('farmfertilizer_index')}}">Engrais et amendements</a> <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i></small>
 {{ farmFertilizer.fertilizer.name | trim | capitalize }}
@@ -144,7 +144,7 @@
 </td>
             <td>
                 {% if farmFertilizerMvt.category.slug == "useAction" or farmFertilizerMvt.amount < 0 %}-{% endif %}
-                {{ farmFertilizerMvt.amount|abs|number_format(1,',',' ') }}
+                {{ farmFertilizerMvt.amount|abs|number_format(0,'',' ') }}
                 {{ farmFertilizerMvt.unit.symbol }}
 
             </td>
@@ -164,9 +164,44 @@
             </div>
             <!-- End Panel Table Tools -->
 
+            <div class="col-md-3">
+          <!-- Card -->
+          <div class="card card-block p-30">
+            <div class="counter counter-lg">
+              <div class="counter-label text-uppercase">Stock actuel</div>
+              <div class="counter-number-group">
+                <span class="counter-icon m-r-10 grey-300">
+                  <i class="wb-stats-bars"></i>
+                </span>
+                <span class="counter-number">{{ farmFertilizer.stock |number_format(0,'',' ')  }}</span>
+                <span class="counter-number-related">                                    {%  if farmFertilizer.fertilizer.formula == "liquide" %}L{% elseif farmFertilizer.fertilizer.formula is not empty %}kg{% else %}{% endif %}
+</span>
+              </div>
+            </div>
+          </div>
+          <!-- End Card -->
+          <button onClick="switchPanels();" class="btn btn-block btn-info" style="color:white; font-weight: 500; margin-top:-15px;">AJUSTER LE STOCK</button>
 
+            </div>
+                    </div>
+        <!-- Panel Add Action -->
+        <div class="row" id="updateStock" style="display: none;">
+            <div class="col-lg-3 col-md-0">
 
-
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-info panel-bordered">
+                    <header class="panel-heading">
+                        <div class="panel-actions"></div>
+                        <h3 class="panel-title">Ajuster le stock</h3>
+                    </header>
+                    <div class="panel-body" style="padding-top:20px;">
+                        {{ render(controller('AppBundle:FarmFertilizerMvt:updateStock',{'id':farmFertilizer.id})) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Add Action -->
     </div>
 {% endblock %}
 
@@ -266,6 +301,47 @@
 
         })(document, window, jQuery);
 
+    </script>
+
+    <script>
+        var i = 0;
+        function switchPanels() {
+            if (i % 2 == 0) {
+                $('#stock').hide();
+                $('#updateStock').fadeIn(400);
+                if (i == 0) {
+                    $('.select2').select2();
+                    $('.date').datepicker({
+                        'format': 'mm/yyyy',
+                        'startView': 'decade',
+                        'minViewMode': 'months',
+                        'language': 'fr',
+                        'orientation':'bottom',
+                        'autoclose': true
+                    });
+
+                }
+            } else {
+                $('#updateStock').hide();
+                $('#stock').fadeIn(400);
+            }
+            i++;
+        }
+        ;
+    </script>
+
+        <script type="text/javascript">
+                $(document).ready(function () {
+                    $('#togglePrice').hide();
+
+                    $('#farm_fertilizer_mvt_update_stock_category').on('change', function () {
+                        if ($("#farm_fertilizer_mvt_update_stock_category").select2('data')[0]['text'] == "Achat") {
+                            $('#togglePrice').show("slow");
+                        } else {
+                            $('#togglePrice').hide("slow");
+                        }
+                    })
+                });
     </script>
 
 

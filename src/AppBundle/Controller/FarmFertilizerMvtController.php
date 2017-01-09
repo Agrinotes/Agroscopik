@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\FarmFertilizer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -65,6 +66,76 @@ class FarmFertilizerMvtController extends Controller
         return $this->render('farmfertilizermvt/new_modal.html.twig', array(
             'farmFertilizerMvt' => $farmFertilizerMvt,
             'farmFertilizer' => $fertilizer,
+            'modal_form' => $form->createView(),
+        ));
+    }
+
+
+    /**
+     * Update farmFertilizer Stock
+     *
+     * @Route("/farmfertilizer/{id}/updateStock", name="farmfertilizer_update_stock")
+     * @Method({"GET", "POST"})
+     */
+    public function updateStockAction(Request $request, FarmFertilizer $farmFertilizer)
+    {
+        $farmFertilizerMvt = new FarmFertilizerMvt();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $farmFertilizerMvt->setFertilizer($farmFertilizer);
+
+        $category = $em->getRepository('AppBundle:FarmFertilizerMvtCategory')->findOneBySlug('updateStockAction');
+
+        $farmFertilizerMvt->setCategory($category);
+
+        $form = $this->createForm('AppBundle\Form\FarmFertilizerMvtUpdateStockType', $farmFertilizerMvt);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($farmFertilizerMvt);
+            //Modify value if updateStockAction
+            if($farmFertilizerMvt->getCategory()->getSlug()=="updateStockAction"){
+                // Current stock
+                $currentStock = $farmFertilizer->getStock();
+
+                // Updated Stock
+                $updatedStock = $farmFertilizerMvt->getAmount();
+
+                $currentStock -= $updatedStock;
+
+                // Conversion Factor to International Unit
+                //$conversionFactor = $farmFertilizerMvt->getUnit()->getA();
+                //if($conversionFactor==0){
+                //    $conversionFactor=1;
+               // }
+                //$updatedStockIntl =  $updatedStock*$conversionFactor;
+
+                // Calculates right amount to reach updated Stock
+                $newAmount = $updatedStock - $currentStock;
+
+                //Convert the other way around to avoid future calculations issues, could be improved a LOT !
+               // $newAmount /= $conversionFactor;
+
+                // Update value
+                $farmFertilizerMvt->setAmount($newAmount);
+
+                $em->persist($farmFertilizerMvt);
+
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($farmFertilizerMvt);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Le stock de '.$farmFertilizer->getFertilizer()->getName().' a été mis à jour avec succès !');
+
+            return $this->redirectToRoute('farmfertilizer_show', array('id' => $farmFertilizer->getId()));
+        }
+
+        return $this->render('farmfertilizermvt/new_modal.html.twig', array(
+            'farmFertilizerMvt' => $farmFertilizerMvt,
+            'farmFertilizer' => $farmFertilizer,
             'modal_form' => $form->createView(),
         ));
     }
