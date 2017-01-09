@@ -1,69 +1,307 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block head_javascripts %}
+{% block title %}Liste des engrais et amendements{% endblock %}
+
+{% block plugins_stylesheets %}
     {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asspinner/asSpinner.css') }}">
 {% endblock %}
 
-{% block plugin_stylesheets %}
+{% block page_stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('front/mmenu/assets/examples/css/apps/documents.css') }}">
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        .highcharts-credits {
+            visibility: hidden !important;
+        }
+    </style>
 {% endblock %}
 
-{% block body_class %}
-    site-navbar-small app-documents
+{% block page %}
+    <div class="page-content">
+        <div class="row">
+            <!-- Panel Basic used as temporary fix -->
+            <div class="panel " style="display:none;">
+                <header class="panel-heading">
+                    <div class="panel-actions"></div>
+                    <h3 class="panel-title">Liste des engrais et amendements</h3>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+                        <thead>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </tfoot>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End Panel Basic -->
+
+            <!-- Panel Table Tools -->
+            <div class="panel" id="tableTools">
+                <header class="panel-heading">
+                    <h4 class="panel-title" style="font-size:16px;">Liste des engrais et amendements
+                    </h4>
+                    <div class="panel-actions panel-actions-keep">
+                    </div>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
+                        <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Stock</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for farmFertilizer in farmFertilizers %}
+                            <tr id="td_{{ farmFertilizer.id }}">
+                                <td><a class="actionLink"
+                                       href="{{ path('farmfertilizer_show',{'id':farmFertilizer.id}) }}">{{ farmFertilizer.fertilizer.name |capitalize }}</a>
+                                </td>
+                                <td>{{ farmFertilizer.stock |number_format(2,',',' ') }}
+                                    {%  if farmFertilizer.fertilizer.formula == "liquide" %}L{% elseif farmFertilizer.fertilizer.formula is not empty %}kg{% else %}{% endif %}
+                                </td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End Panel Table Tools -->
+
+            <!-- Button Add Action -->
+            <div class="site-action">
+                <button type="button" onClick="switchPanels();"
+                        class="rotate site-action site-floataction btn-raised btn btn-danger btn-floating">
+                    <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
+                </button>
+            </div>
+            <!-- End Button Add Action -->
+        </div>
+        <!-- Panel Add Action -->
+        <div class="row" id="addTractor" style="display: none;">
+            <div class="col-lg-3 col-md-0">
+
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-info panel-bordered">
+                    <header class="panel-heading">
+                        <div class="panel-actions"></div>
+                        <h3 class="panel-title">Ajouter un tracteur</h3>
+                    </header>
+                    <div class="panel-body" style="padding-top:20px;">
+                        {{ render(controller('AppBundle:Tractor:new')) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Add Action -->
+
+
+    </div>
 {% endblock %}
 
- {% block page %}
-     <div class="page animsition">
-         <div class="page-header padding-bottom-10">
-             <h1>Stock d'engrais et amendements</h1>
-         </div>
-         <div class="page-content">
-             <a class="btn btn-primary" href="{{ path('farmfertilizer_new') }}">Ajouter un engrais ou amendement</a>
-
-             <div class="documents-wrap categories" data-plugin="animateList" data-child="li">
-                 <ul class="blocks blocks-50 blocks-xlg-4 blocks-md-3 blocks-xs-2">
-                     {% for farmFertilizer in farmFertilizers %}
-                         <li style="height: 20vh">
-
-                             <div class="category">
-                                 <h4>{{ farmFertilizer.fertilizer.name | capitalize }}</h4>
-                                 <span class="grey-700 font-size-30">{{ farmFertilizer.stock | number_format(2,',',' ') }} {%  if farmFertilizer.fertilizer.formula == "liquide" %}L{% elseif farmFertilizer.fertilizer.formula is not empty %}kg{% else %}{% endif %}</span>
-
-                                 <a type="button" style="position: absolute;bottom: -5px;right: 0px;"
-                                    class="btn-raised btn btn-info btn-floating waves-effect waves-light"
-                                    href="{{ path('farmfertilizer_show',{ 'id': farmFertilizer.id }) }}">
-                                     <i class="icon md-plus" aria-hidden="true"></i>
-                                 </a>
-
-                             </div>
-
-                         </li>
-                     {% endfor %}
-                 </ul>
-             </div>
-         </div>
-     </div>
-     <!-- Footer -->
- {% endblock %}
-
-{% block core_plugin %}
+{% block plugins_javascripts %}
     {{ parent() }}
-    <script src="{{ asset('front/global/vendor/matchheight/jquery.matchHeight-min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-tabletools/dataTables.tableTools.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/asrange/jquery-asRange.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootbox/bootbox.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
+
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.min.js') }}"></script>
+    {#<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>#}
+
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/jquery.datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/asspinner/jquery-asSpinner.min.js') }}"></script>
+
+
+    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/asspinner.js') }}"></script>
+
 {% endblock %}
 
-{% block template_config %}
+{% block page_javascripts %}
     {{ parent() }}
-    <script src="{{ asset('front/global/js/components/matchheight.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/bootstrap-select.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/animate-list.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/matchheight/jquery.matchHeight-min.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/matchheight/jquery.matchHeight-min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/datatables.js') }}"></script>
+    <script>
+        /*!
+         * remark (http://getbootstrapadmin.com/remark)
+         * Copyright 2016 amazingsurge
+         * Licensed under the Themeforest Standard Licenses
+         */
+        (function (document, window, $) {
+            'use strict';
 
-    <script src="{{ asset('front/mmenu/assets/js/app.js') }}"></script>
-    <script src="{{ asset('front/mmenu/assets/examples/js/apps/documents.js') }}"></script>
+            var Site = window.Site;
 
+            $(document).ready(function ($) {
+                Site.run();
+            });
+
+
+            // Table Tools
+            // -----------
+            (function () {
+
+                $(document).ready(function () {
+                    {# Sort dates #}
+                    $.fn.dataTable.moment('MM/YYYY');
+
+                    {# Sort hectares and CFP #}
+                    $.fn.dataTableExt.oSort['formatted-num-pre'] = function (a) {
+                        a = (a === "-" || a === "") ? 0 : a.replace(/[^\d\-\.]/g, "");
+                        return parseFloat(a);
+                    }
+
+                    $.fn.dataTableExt.oSort['formatted-num-asc'] = function (a, b) {
+                        return a - b;
+                    }
+                    $.fn.dataTableExt.oSort['formatted-num-desc'] = function (a, b) {
+                        return b - a;
+                    }
+
+                    var defaults = Plugin.getDefaults("dataTable");
+
+                    var options = $.extend(true, {}, defaults, {
+                        columnDefs: [
+                            {type: 'formatted-num', targets: [1]}
+                        ],
+                        "order": [[0, "asc"]],
+                        "iDisplayLength": 10,
+                        "aLengthMenu": [
+                            [5, 10, 25, 50, -1],
+                            [5, 10, 25, 50, "All"]
+                        ],
+                        "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
+                        "oTableTools": {
+                            "sSwfPath": "{{ asset('remark/3.0.5/classic/global/vendor/datatables-tabletools/swf/copy_csv_xls_pdf.swf') }}"
+                        }
+                    });
+
+                    $('#exampleTableTools').dataTable(options);
+                });
+            })();
+
+
+        })(document, window, jQuery);
+
+    </script>
+    <script>
+        var i = 0;
+        function switchPanels() {
+            if (i % 2 == 0) {
+                $('#tableTools').hide();
+                $('#addTractor').fadeIn(400);
+                if (i == 0) {
+                    $('.select2').select2();
+                    $('.date').datepicker({
+                        'format': 'mm/yyyy',
+                        'startView': 'decade',
+                        'minViewMode': 'months',
+                        'language': 'fr',
+                        'orientation':'bottom',
+                        'autoclose': true
+                    });
+
+                }
+            } else {
+                $('#addTractor').hide();
+                $('#tableTools').fadeIn(400);
+            }
+            i++;
+        }
+        ;
+
+        $(".rotate").click(function () {
+            $(this).toggleClass("down");
+        });
+    </script>
 {% endblock %}
-
-
