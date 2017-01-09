@@ -115,8 +115,8 @@
             <!-- Panel Table Tools -->
             <div class="panel" id="tableTools">
                 <header class="panel-heading">
-                    <h4 class="panel-title" style="font-size:16px;">
-                        {{ tractor.model.label | trim | capitalize }}
+                                            <h4 class="panel-title" style="font-size:16px;"><a href="{{path('tractor_index')}}">Tracteurs</a> <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i></small>
+{{ tractor.model.label | trim | capitalize }}
                         <small>{{ tractor.model.power }} cv
                         </small>
                     </h4>
@@ -234,7 +234,7 @@
                         columnDefs: [
                             {type: 'formatted-num', targets: [3]}
                         ],
-                        "order": [[1, "desc"]],
+                        "order": [[2, "desc"]],
                         "iDisplayLength": 10,
                         "aLengthMenu": [
                             [5, 10, 25, 50, -1],

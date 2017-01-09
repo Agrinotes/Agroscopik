@@ -133,7 +133,7 @@ class ImplementController extends Controller
             $em->persist($implement);
             $em->flush();
 
-            return $this->redirectToRoute('implement_edit', array('id' => $implement->getId()));
+            return $this->redirectToRoute('implement_index');
         }
 
         return $this->render('@App/implement/edit.html.twig', array(

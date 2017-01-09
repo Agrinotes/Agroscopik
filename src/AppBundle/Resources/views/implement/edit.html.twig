@@ -1,21 +1,109 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block body %}
-    <h1>Editer l'outil</h1>
+{% block title %} Edition d'outil - {{ implement.name | trim | capitalize }}{% endblock %}
 
-    {{ form_start(edit_form) }}
-    {{ form_widget(edit_form) }}
-    <input type="submit" value="Enregistrer"/>
-    {{ form_end(edit_form) }}
+{% block page_stylesheets %}
+    {{ parent() }}
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
 
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
 
-    <a href="{{ path('implement_show', { 'id': implement.id }) }}}">Annuler</a>
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
 
-    {% if is_granted('DELETE', implement) or is_granted('ROLE_ADMIN') %}
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
 
-        {{ form_start(delete_form) }}
-        <input type="submit" value="Supprimer">
-        {{ form_end(delete_form) }}
-    {% endif %}
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
 
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+    </style>
 {% endblock %}
+
+{% block page %}
+<div class="page-content">
+    <!-- Panel Add Action -->
+    <div class="row" id="editAction">
+        <div class="col-md-3 col-sm-0">
+
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-info panel-bordered">
+                <header class="panel-heading">
+                    <div class="panel-actions"></div>
+                    <h3 class="panel-title">Modifier un outil</h3>
+                </header>
+                <div class="panel-body" style="padding-top:20px;">
+                    {{ form_start(edit_form, {'action': path('implement_edit',{'id':implement.id}), 'method': 'POST'}) }}
+
+                    <div class="row" id="intervention">
+                        <div class="col-sm-0 col-md-2"></div>
+                        <div class="col-sm-12 col-md-8">
+                            <div class="form-group">
+                                {{ form_label(edit_form.name) }}
+                                {{ form_errors(edit_form.name) }}
+                                {{ form_widget(edit_form.name) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-sm-0 col-md-2"></div>
+                        <div class="col-sm-12 col-md-8">
+                            <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Panel Add Action -->
+    {% endblock %}
+
+

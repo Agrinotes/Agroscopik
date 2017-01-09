@@ -92,7 +92,7 @@
             <div class="panel " style="display:none;">
                 <header class="panel-heading">
                     <div class="panel-actions"></div>
-                    <h3 class="panel-title">{{ cropCycle.name }}</h3>
+                    <h3 class="panel-title"></h3>
                 </header>
                 <div class="panel-body">
                     <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
@@ -115,8 +115,8 @@
             <!-- Panel Table Tools -->
             <div class="panel" id="tableTools">
                 <header class="panel-heading">
-                    <h4 class="panel-title" style="font-size:16px;">
-                        {{ implement.name | trim | capitalize }}
+                                                                    <h4 class="panel-title" style="font-size:16px;"><a href="{{path('implement_index')}}">Outils</a> <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i></small>
+{{ implement.name | trim | capitalize }}
                     </h4>
                     <div class="panel-actions panel-actions-keep">
                         <a class="panel-action icon wb-settings" href="{{ path('implement_edit',{'id':implement.id}) }}" aria-hidden="true"></a>
@@ -162,26 +162,8 @@
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-tabletools/dataTables.tableTools.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/asrange/jquery-asRange.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootbox/bootbox.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
     <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
-
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.min.js') }}"></script>
-    {#<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>#}
-
-    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/datepair-js/datepair.min.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/datepair-js/jquery.datepair.min.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/asspinner/jquery-asSpinner.min.js') }}"></script>
-
-
-    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/asspinner.js') }}"></script>
 
 {% endblock %}
 
@@ -230,9 +212,9 @@
 
                     var options = $.extend(true, {}, defaults, {
                         columnDefs: [
-                            {type: 'formatted-num', targets: [0]}
+                            {type: 'formatted-num', targets: [3]}
                         ],
-                        "order": [[0, "desc"]],
+                        "order": [[2, "desc"]],
                         "iDisplayLength": 10,
                         "aLengthMenu": [
                             [5, 10, 25, 50, -1],
