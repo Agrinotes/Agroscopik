@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtUpdateStockType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerMvtController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerMvtController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/editAction.js" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/editAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/farmfertilizermvt/new_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/farmfertilizermvt/new_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtUpdateStockType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtUpdateStockType.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
@@ -83,10 +78,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FarmFertilizerMvtController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FarmFertilizerMvtController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerMvtController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8309859">
+            <state vertical-scroll-proportion="-20.344828">
               <caret line="121" column="56" selection-start-line="121" selection-start-column="56" selection-end-line="121" selection-end-column="56" />
               <folding>
                 <element signature="e#40#76#0#PHP" expanded="true" />
@@ -101,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FarmFertilizerMvtUpdateStockType.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="FarmFertilizerMvtUpdateStockType.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtUpdateStockType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.551723">
-              <caret line="46" column="56" selection-start-line="46" selection-start-column="56" selection-end-line="46" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.28169015">
+              <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -184,10 +179,10 @@
         <option value="$PROJECT_DIR$/app/Resources/views/farmfertilizermvt/list.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/editAction.js" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtUpdateStockType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmfertilizermvt/new_modal.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerMvtController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtUpdateStockType.php" />
       </list>
     </option>
   </component>
@@ -1121,14 +1116,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtUpdateStockType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.551723">
-          <caret line="46" column="56" selection-start-line="46" selection-start-column="56" selection-end-line="46" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-56.896553">
@@ -1151,7 +1138,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerMvtController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8309859">
+        <state vertical-scroll-proportion="-20.344828">
           <caret line="121" column="56" selection-start-line="121" selection-start-column="56" selection-end-line="121" selection-end-column="56" />
           <folding>
             <element signature="e#40#76#0#PHP" expanded="true" />
@@ -1162,6 +1149,14 @@
             <element signature="e#5450#5484#0#PHP" expanded="true" />
             <element signature="e#6472#6506#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerMvtUpdateStockType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28169015">
+          <caret line="47" column="34" selection-start-line="47" selection-start-column="34" selection-end-line="47" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>

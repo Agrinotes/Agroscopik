@@ -39,12 +39,12 @@ class FarmFertilizerMvtUpdateStockType extends AbstractType
             ))
             ->add('amount',NumberType::class,array(
                 'label'=>'Entrer la quantité correspondante',
-                'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
+                'attr' => array('class' => 'form-control','placeholder'=>'0'),
 
             ))
             ->add('price',NumberType::class, array(
                 'label'=>'Entrer le prix d\'achat',
-                'attr' => array('class' => 'form-control','placeholder'=>'0.00'),
+                'attr' => array('class' => 'form-control','placeholder'=>'0'),
                 'required'=>false,
             ))
         ;
@@ -69,10 +69,8 @@ class FarmFertilizerMvtUpdateStockType extends AbstractType
 
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('u')
-                            ->join('u.unitCategory', 'cat')
-                            ->addSelect('cat')
-                            ->where('cat.slug = :slug')
-                            ->setParameter('slug','mass')
+                            ->where('u.slug = :slug')
+                            ->setParameter('slug','kilogram')
                             ;
                     },
                 ));
@@ -87,10 +85,8 @@ class FarmFertilizerMvtUpdateStockType extends AbstractType
                     'expanded' => false,
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('u')
-                            ->join('u.unitCategory', 'cat')
-                            ->addSelect('cat')
-                            ->where('cat.slug = :slug')
-                            ->setParameter('slug','volume')
+                            ->where('u.slug = :slug')
+                            ->setParameter('slug','liter')
                             ;
                     },
                 ));
@@ -105,12 +101,10 @@ class FarmFertilizerMvtUpdateStockType extends AbstractType
                     'expanded' => false,
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('u')
-                            ->join('u.unitCategory', 'cat')
-                            ->addSelect('cat')
-                            ->where('cat.slug = :slug')
-                            ->setParameter('slug','mass')
-                            ->orWhere('cat.slug = :slug2')
-                            ->setParameter('slug2','volume')
+                            ->where('u.slug = :slug')
+                            ->setParameter('slug','liter')
+                            ->orWhere('u.slug = :slug2')
+                            ->setParameter('slug2','kilogram')
                             ;
                     },
                 ));
