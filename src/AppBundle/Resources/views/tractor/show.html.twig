@@ -129,6 +129,7 @@
                         <thead>
                         <tr>
                             <th>Interventions associées</th>
+                            <th>Cycle de culture</th>
                             <th>Date</th>
                             <th>Temps de travail</th>
                         </tr>
@@ -139,6 +140,7 @@
                                 <td><a class="actionLink"
                                        href="{{ path('action_show',{'id':action.id}) }}">{{ action.name }} </a>
                                 </td>
+                                <td>{{ action.cropCycle.name }}</td>
                                 <td>{{ action.startDatetime | date ('d/m/Y') }}</td>
                                 <td>{{ action.durationLabel }} {% if action.workingDurationLabel !="0h" %}{% endif %}</td>
                             </tr>
@@ -230,7 +232,7 @@
 
                     var options = $.extend(true, {}, defaults, {
                         columnDefs: [
-                            {type: 'formatted-num', targets: [2]}
+                            {type: 'formatted-num', targets: [3]}
                         ],
                         "order": [[1, "desc"]],
                         "iDisplayLength": 10,

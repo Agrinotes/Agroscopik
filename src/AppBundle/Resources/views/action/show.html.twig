@@ -228,14 +228,14 @@
 
 
 
-                        {% if action.tractors is not empty and action.implements is not empty %}
+                        {% if action.tractors is not empty or action.implements is not empty %}
                             <h4 class="example-title margin-top-30">
                                 Matériel utilisé
                             </h4>
                             <ul>
                                 {% for tractor in action.tractors %}
                                     <li>
-                                        {{ tractor.model.name | capitalize }}
+                                        {{ tractor.model.label | capitalize }}
                                     </li>
                                 {% endfor %}
                                 {% for implement in action.implements %}
