@@ -20,6 +20,8 @@ class Fertilizer
     public function __construct()
     {
         $this->farmFertilizers = new ArrayCollection();
+        $this->prices = new ArrayCollection();
+
     }
 
     /**
@@ -57,6 +59,11 @@ class Fertilizer
      * @ORM\Column(name="formula", type="string", length=255, nullable=true)
      */
     private $formula;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FertilizerPrice", mappedBy="fertilizer", cascade={"persist","remove"})
+     */
+    private $prices;
 
     /**
      * @var float
@@ -540,6 +547,31 @@ class Fertilizer
     public function getFarmFertilizers()
     {
         return $this->farmFertilizers;
+    }
+
+    /**
+     * Add price
+     *
+     * @param \AppBundle\Entity\FertilizerPrice $price
+     * @return Fertilizer
+     */
+    public function addPrice(FertilizerPrice $price)
+    {
+        $this->prices[] = $price;
+
+        return $this;
+    }
+
+    /**
+     * Remove price
+     *
+     * @param \AppBundle\Entity\FertilizerPrice $price
+     */
+    public function removePrice(FertilizerPrice $price)
+    {
+        $this->prices->removeElement($price);
+
+        $price->setFertilizer(""); // That's a problem because its Category cannot be null... Should be resolved soon
     }
 }
 
