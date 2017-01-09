@@ -124,6 +124,17 @@
                         <tr>
                             <th>Nom</th>
                             <th>Stock</th>
+                            <th>N</th>
+                            <th>P205</th>
+                            <th>K2O</th>
+                            <th>CaO</th>
+                            <th>MgO</th>
+                            <th>Fe</th>
+                            <th>SO3</th>
+                            <th>B</th>
+                            <th>Mn</th>
+                            <th>Zn</th>
+                            <th>Cu</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -135,7 +146,39 @@
                                 <td>{{ farmFertilizer.stock |number_format(2,',',' ') }}
                                     {%  if farmFertilizer.fertilizer.formula == "liquide" %}L{% elseif farmFertilizer.fertilizer.formula is not empty %}kg{% else %}{% endif %}
                                 </td>
-
+                                <td>
+                                    {{ farmFertilizer.fertilizer.n }}
+                                </td>
+                                <td>
+                                    {{ farmFertilizer.fertilizer.p2O5 }}
+                                </td>
+                                <td>
+                                    {{ farmFertilizer.fertilizer.k2O }}
+                                </td>
+                                <td>
+                                    {{ farmFertilizer.fertilizer.caO }}
+                                </td>
+                                <td>
+                                    {{ farmFertilizer.fertilizer.mgO }}
+                                </td>
+                                <td>
+                                    {{ fertilizer.fe }}
+                                </td>
+                                <td>
+                                    {{ fertilizer.sO3 }}
+                                </td>
+                                <td>
+                                    {{ fertilizer.b }}
+                                </td>
+                                <td>
+                                    {{ fertilizer.mn }}
+                                </td>
+                                <td>
+                                    {{ fertilizer.zn }}
+                                </td>
+                                <td>
+                                    {{ fertilizer.cu }}
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

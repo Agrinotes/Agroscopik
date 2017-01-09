@@ -39,12 +39,12 @@ class FarmFertilizerMvtUpdateStockType extends AbstractType
             ))
             ->add('amount',NumberType::class,array(
                 'label'=>'Entrer la quantité correspondante',
-                'attr' => array('class' => 'form-control','placeholder'=>'0'),
+                'attr' => array('class' => 'form-control'),
 
             ))
             ->add('price',NumberType::class, array(
                 'label'=>'Entrer le prix d\'achat',
-                'attr' => array('class' => 'form-control','placeholder'=>'0'),
+                'attr' => array('class' => 'form-control'),
                 'required'=>false,
             ))
         ;
