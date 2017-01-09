@@ -127,7 +127,7 @@ class FarmFertilizerController extends Controller
     public function editAction(Request $request, FarmFertilizer $farmFertilizer)
     {
         $deleteForm = $this->createDeleteForm($farmFertilizer);
-        $editForm = $this->createForm('AppBundle\Form\FarmFertilizerType', $farmFertilizer);
+        $editForm = $this->createForm('AppBundle\Form\FarmFertilizerEditType', $farmFertilizer);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
