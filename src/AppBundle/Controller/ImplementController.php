@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -161,6 +162,21 @@ class ImplementController extends Controller
         }
 
         return $this->redirectToRoute('implement_index');
+    }
+
+    /**
+     * Deletes a Tractor entity.
+     *
+     * @Security("is_granted('DELETE', implement) or is_granted('ROLE_ADMIN')")
+     * @Route("/{id}/delete/ajax", name="implement_delete_ajax")
+     */
+    public function deleteAjaxAction(Request $request, Implement $implement)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($implement);
+        $em->flush();
+
+        return new JsonResponse(array('data' => 'this is a json response'));
     }
 
     /**
