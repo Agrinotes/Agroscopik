@@ -1,109 +1,158 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block plugin_stylesheets %}
+{% block title %} Edition d'intervention sur {{ action.cropCycle.name | capitalize }}{% endblock %}
+
+{% block plugins_stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/select2/select2.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asspinner/asSpinner.css') }}">
 {% endblock %}
 
-{% block head_javascripts %}
+{% block page_stylesheets %}
     {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+    </style>
 {% endblock %}
 
 {% block page %}
+<div class="page-content">
+    <!-- Panel Add Action -->
+    <div class="row" id="editAction">
+        <div class="col-md-3 col-sm-0">
 
-    <div class="page animsition">
-        <div class="page-header padding-top-20 padding-bottom-10">
-            <ol class="breadcrumb">
-                <li><a href="{{ path('tractor_index') }}">Tracteurs</a></li>
-                <li class="active">Modifier un tracteur</li>
-            </ol>
         </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-6 col-lg-offset-3">
-                    <div class="panel panel-bordered">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Modifier un tracteur</h3>
-                        </div>
-                        <div class="panel-body">
-                            {{ form_start(edit_form) }}
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h4 class="example-title">{{ form_label(edit_form.model) }}</h4>
+        <div class="col-md-6">
+            <div class="panel panel-info panel-bordered">
+                <header class="panel-heading">
+                    <div class="panel-actions"></div>
+                    <h3 class="panel-title">Modifier un tracteur</h3>
+                </header>
+                <div class="panel-body" style="padding-top:20px;">
+                    {{ form_start(edit_form, {'action': path('tractor_edit',{'id':tractor.id}), 'method': 'POST'}) }}
 
-
-                                    {{ form_errors(edit_form.model) }}
-                                    {{ form_widget(edit_form.model) }}
-                                </div>
+                    <div class="row" id="intervention">
+                        <div class="col-sm-0 col-md-2"></div>
+                        <div class="col-sm-12 col-md-8">
+                            <div class="form-group">
+                                {{ form_label(edit_form.model) }}
+                                {{ form_errors(edit_form.model) }}
+                                {{ form_widget(edit_form.model) }}
+                                <a class="pull-right helpLink" href="{{ path('tractormodel_new') }}">
+                                    Ajouter un tracteur qui n'est pas dans la liste déroulante
+                                </a>
                             </div>
-                            <div class="row margin-top-30">
-                                <div class="col-lg-6 ">
-                                    <h4 class="example-title">{{ form_label(edit_form.startDatetime) }}</h4>
-
-                                    <div class="form-group">
-
-                                        <div class="input-group">
-                                            {{ form_errors(edit_form.startDatetime) }}
-
-                                            <span class="input-group-addon"><span class="icon md-calendar" aria-hidden="true"></span></span>
-                                            {{ form_widget(edit_form.startDatetime) }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group form-material">
-                                        <h4 class="example-title">{{ form_label(edit_form.price) }}</h4>
-
-
-                                        {{ form_errors(edit_form.price) }}
-                                        {{ form_widget(edit_form.price) }}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <a class="btn btn-default"
-                               href="{{ path('tractor_show', { 'id': tractor.id }) }}">Annuler</a>
-                            <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button>
-                            {{ form_end(edit_form) }}
-
-
                         </div>
                     </div>
-
-                </div>
-                <div class="col-lg-3">
-                    <div class="panel panel-bordered">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                Actions sensibles
-                            </h3>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-sm-0 col-md-2"></div>
+                        <div class="col-sm-12 col-md-4">
+                            <div class="form-group">
+                                {{ form_label(edit_form.startDatetime) }}
+                                {{ form_errors(edit_form.startDatetime) }}
+                                <div class="input-group">
+                                    <span class="input-group-addon"><span class="icon wb-calendar" aria-hidden="true"></span></span>
+                                    {{ form_widget(edit_form.startDatetime) }}
+                                </div>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            {% if is_granted('DELETE', tractor) or is_granted('ROLE_ADMIN') %}
-                                {{ form_start(delete_form) }}
-                                <button class="btn btn-danger margin-left-10" type="submit">Supprimer</button>
-                                {{ form_end(delete_form) }}
-                            {% endif %}
+                        <div class="col-sm-12 col-md-4">
+                            <div class="form-group">
+                                {{ form_label(edit_form.price) }}
+                                {{ form_errors(edit_form.price) }}
+                                <div class="input-group">
+                                    {{ form_widget(edit_form.price) }}
+                                    <span class="input-group-addon">CFP</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col-sm-0 col-md-2"></div>
+                        <div class="col-sm-12 col-md-8">
+                            <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
+                            {{ form_end(edit_form) }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- End Panel Add Action -->
 {% endblock %}
 
-{% block template_config %}
-    {{ parent() }}
-    <script src="{{ asset('front/global/vendor/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/select2.js') }}"></script>
 
-    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
-{% endblock %}
+    {% block plugins_javascripts %}
+        {{ parent() }}
+
+        <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.min.js') }}"></script>
+
+        <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+        <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+        <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
+        <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+        <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
+
+    {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}

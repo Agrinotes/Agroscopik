@@ -134,7 +134,7 @@ class TractorController extends Controller
             $em->persist($tractor);
             $em->flush();
 
-            return $this->redirectToRoute('tractor_show', array('id' => $tractor->getId()));
+            return $this->redirectToRoute('tractor_index');
         }
 
         return $this->render('@App/tractor/edit.html.twig', array(
