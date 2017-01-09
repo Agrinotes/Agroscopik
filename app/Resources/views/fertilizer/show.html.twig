@@ -1,135 +1,54 @@
-{% extends 'base.html.twig' %}
+<table class="table">
+    <tr>
+        <th>N</th>
+        <th>P2O5</th>
+        <th>K2O</th>
+        <th>CaO</th>
+        <th>MgO</th>
+        <th>Fe</th>
+        <th>SO3</th>
+        <th>B</th>
+        <th>Mn</th>
+        <th>Zn</th>
+        <th>Cu</th>
+    </tr>
+    </thead>
+    <tbody>
 
-{% block head_javascripts %}
-    {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
-{% endblock %}
-
-{% block page %}
-    <div class="page animsition">
-        <div class="page-header padding-top-20 padding-bottom-10">
-            <ol class="breadcrumb">
-                <li><a href="#">Fiches techniques</a></li>
-                <li><a href="{{ path('fertilizer_index') }}">Engrais et amendements</a></li>
-                <li class="active">{{ fertilizer.name }}</li>
-
-            </ol>
-        </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-bordered">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{ fertilizer.name }}</h3>
-
-                            <div class="panel-actions"></div>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-
-                                    <h4 class="example-title">
-                                        Valeurs fertilisantes <small>(Données à titre indicatif, se référer à la fiche technique)</small>
-                                    </h4>
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>N</th>
-                                            <th>P2O5</th>
-                                            <th>K2O</th>
-                                            <th>CaO</th>
-                                            <th>MgO</th>
-                                            <th>Fe</th>
-                                            <th>SO3</th>
-                                            <th>B</th>
-                                            <th>Mn</th>
-                                            <th>Zn</th>
-                                            <th>Cu</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                            <tr>
-                                                <td>
-                                                    {{ fertilizer.n }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.p2O5 }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.k2O }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.caO }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.mgO }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.fe }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.sO3 }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.b }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.mn }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.zn }}
-                                                </td>
-                                                <td>
-                                                    {{ fertilizer.cu }}
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    {{ fertilizer.comment }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <a class="btn btn-default" href="{{ path('fertilizer_index') }}">Liste des engrais et amendements
-                                </a>
-
-                            {% if is_granted('ROLE_ADMIN') %}
-
-                                <a class="btn btn-primary margin-left-10"
-                                   href="{{ path('fertilizer_edit', { 'id': fertilizer.id }) }}">Modifier</a>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <div class="col-lg-3">
-                        <div class="panel panel-bordered">
-                            <div class="panel-heading">
-                                <div class="panel-title">
-                                    Actions sensibles
-                                </div>
-                            </div>
-                            <div class="panel-body">
-
-                                {{ form_start(delete_form) }}
-                                <input class="btn btn-danger" type="submit" value="Supprimer">
-                                {{ form_end(delete_form) }}
-
-
-                            </div>
-                        </div>
-                    </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-{% endblock %}
-
-{% block template_config %}
-    {{ parent() }}
-
-    <script src="{{ asset('front/global/js/plugins/responsive-tabs.js') }}"></script>
-    <script src="{{ asset('front/global/js/plugins/closeable-tabs.js') }}"></script>
-{% endblock %}
+    <tr>
+        <td>
+            {{ fertilizer.n }}
+        </td>
+        <td>
+            {{ fertilizer.p2O5 }}
+        </td>
+        <td>
+            {{ fertilizer.k2O }}
+        </td>
+        <td>
+            {{ fertilizer.caO }}
+        </td>
+        <td>
+            {{ fertilizer.mgO }}
+        </td>
+        <td>
+            {{ fertilizer.fe }}
+        </td>
+        <td>
+            {{ fertilizer.sO3 }}
+        </td>
+        <td>
+            {{ fertilizer.b }}
+        </td>
+        <td>
+            {{ fertilizer.mn }}
+        </td>
+        <td>
+            {{ fertilizer.zn }}
+        </td>
+        <td>
+            {{ fertilizer.cu }}
+        </td>
+    </tr>
+    </tbody>
+</table>

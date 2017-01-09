@@ -120,6 +120,8 @@
 
                     </h4>
                     <div class="panel-actions panel-actions-keep">
+                        <a class="panel-action icon wb-settings" href="{{ path('farmfertilizer_edit',{'id':farmFertilizer.id}) }}" aria-hidden="true"></a>
+
                     </div>
                 </header>
                 <div class="panel-body">
@@ -183,7 +185,17 @@
           <button onClick="switchPanels();" class="btn btn-block btn-info" style="color:white; font-weight: 500; margin-top:-15px;">AJUSTER LE STOCK</button>
 
             </div>
+            <div class="col-md-9 panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title" style="font-size:16px;">Composition</h4>
+
+                </div>
+                <div class="panel-body">
+                    {{ render(controller('AppBundle:Fertilizer:show',{'id':farmFertilizer.fertilizer.id})) }}
+                </div>
+            </div>
                     </div>
+
         <!-- Panel Add Action -->
         <div class="row" id="updateStock" style="display: none;">
             <div class="col-lg-3 col-md-0">

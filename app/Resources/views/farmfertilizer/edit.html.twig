@@ -1,21 +1,102 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block body %}
-    <h1>FarmFertilizer edit</h1>
+{% block title %}Modifier {{ farmFertilizer.fertilizer.name | capitalize }}{% endblock %}
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('farmfertilizer_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% block page_stylesheets %}
+    {{ parent() }}
+    <style>
+        .leaflet-popup-tip-container {
+            left: -35px;
+        }
+
+        .leaflet-control-layers-toggle {
+            font-family: Roboto, sans-serif;
+        }
+
+        .leaflet-editing-icon {
+            border-radius: 100%;
+            opacity: 1;
+        }
+
+        .created-div {
+            border: 10px solid #088;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;
+            height: 20px;
+            width: 20px;
+            -webkit-animation: hugo 0.5s;
+            -moz-animation: hugo 0.5s;
+            animation: hugo 0.5s;
+            transform-origin: center;
+            /*opacity: 0.0*/
+        }
+
+        @keyframes hugo {
+            from {
+                transform: scale(3);
+            }
+            to {
+                transform: none;
+            }
+        }
+
+        .rangeUi-tip{
+            width:auto;
+            font-size:15px;
+        }
+
+        .hidden{
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+    <div class="page-content">
+        <div class="row">
+                <div class="col-lg-4 col-md-3 col-sm-0">
+                </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <!-- Panel -->
+                <div class="panel panel-info panel-bordered">
+                    <header class="panel-heading">
+                        <div class="panel-actions"></div>
+                        <h3 class="panel-title">Modifier {{ farmFertilizer.fertilizer.name }}</h3>
+                    </header>
+                    <div class="panel-body">
+                        {{ form_start(edit_form) }}
+                        <div class="form-group">
+                            {{ form_label(edit_form.fertilizer) }}
+                            {{ form_errors(edit_form.fertilizer) }}
+                            {{ form_widget(edit_form.fertilizer) }}
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-info btn-block margin-left-10" type="submit">Enregistrer</button>
+                        {{ form_end(edit_form) }}
+
+                        {{ form_start(delete_form) }}
+                        <input type="submit" class="btn btn-danger btn-block margin-left-10" style="margin-top:10px;" value="Supprimer ce produit de votre stock">
+                        {{ form_end(delete_form) }}
+
+                    </div>
+                </div>
+                <!-- End Panel -->
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block plugins_javascripts %}
+    {{ parent()}}
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.full.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-sweetalert/sweet-alert.js') }}"></script> {# Change source #}
+{% endblock %}
+
+{% block page_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Site.js') }}"></script>
 {% endblock %}
