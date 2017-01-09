@@ -12,10 +12,8 @@
           href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
-    <link rel="stylesheet"
-          href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asspinner/asSpinner.css') }}">
+
+
 {% endblock %}
 
 {% block page_stylesheets %}
@@ -156,7 +154,7 @@
             <!-- End Button Add Action -->
         </div>
         <!-- Panel Add Action -->
-        <div class="row" id="addTractor" style="display: none;">
+        <div class="row" id="addFarmFertilizer" style="display: none;">
             <div class="col-lg-3 col-md-0">
 
             </div>
@@ -164,10 +162,10 @@
                 <div class="panel panel-info panel-bordered">
                     <header class="panel-heading">
                         <div class="panel-actions"></div>
-                        <h3 class="panel-title">Ajouter un tracteur</h3>
+                        <h3 class="panel-title">Ajouter un engrais ou amendement</h3>
                     </header>
                     <div class="panel-body" style="padding-top:20px;">
-                        {{ render(controller('AppBundle:Tractor:new')) }}
+                        {{ render(controller('AppBundle:FarmFertilizer:new')) }}
                     </div>
                 </div>
             </div>
@@ -279,21 +277,12 @@
         function switchPanels() {
             if (i % 2 == 0) {
                 $('#tableTools').hide();
-                $('#addTractor').fadeIn(400);
+                $('#addFarmFertilizer').fadeIn(400);
                 if (i == 0) {
                     $('.select2').select2();
-                    $('.date').datepicker({
-                        'format': 'mm/yyyy',
-                        'startView': 'decade',
-                        'minViewMode': 'months',
-                        'language': 'fr',
-                        'orientation':'bottom',
-                        'autoclose': true
-                    });
-
                 }
             } else {
-                $('#addTractor').hide();
+                $('#addFarmFertilizer').hide();
                 $('#tableTools').fadeIn(400);
             }
             i++;

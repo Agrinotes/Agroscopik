@@ -34,25 +34,6 @@ class FarmFertilizerMvtController extends Controller
         ));
     }
 
-    /**
-     * Lists all FarmFertilizerMvt entities for current farm
-     *
-     * @Route("/farmfertilizer/{id}/mvts", name="farmfertilizermvt_list")
-     * @Method("GET")
-     */
-    public function listAction(Request $request,$id)
-    {
-        $em = $this->getDoctrine()->getManager();
-
-        $farmFertilizer = $em->getRepository('AppBundle:FarmFertilizer')->find($id);
-
-        $farmFertilizerMvts = $em->getRepository('AppBundle:FarmFertilizerMvt')->findAllByFarmFertilizer($id);
-
-        return $this->render('farmfertilizermvt/list.html.twig', array(
-            'farmFertilizerMvts' => $farmFertilizerMvts,
-            'farmFertilizer' => $farmFertilizer,
-        ));
-    }
 
     /**
      * Creates a new FarmFertilizerMvt entity.

@@ -2865,6 +2865,8 @@ TableTools.BUTTONS = {
 		"sCharSet": "utf16le",
 		"bBomInc": true,
 		"sButtonClass": "DTTT_button_xls",
+		"sToolTip": "Enregistrer le tableau au format Excel",
+
 		"sButtonText": "<i class='icon fa-file-excel-o' aria-hidden='true'></i>",
 		"fnClick": function( nButton, oConfig, flash ) {
 			this.fnSetText( flash, this.fnGetTableData(oConfig) );
@@ -2874,6 +2876,8 @@ TableTools.BUTTONS = {
 	"copy": $.extend( {}, TableTools.buttonBase, {
 		"sAction": "flash_copy",
 		"sButtonClass": "DTTT_button_copy",
+		"sToolTip": "Copier le tableau",
+
 		"sButtonText": "<i class='icon fa-files-o' aria-hidden='true'></i>",
 		"fnClick": function( nButton, oConfig, flash ) {
 			this.fnSetText( flash, this.fnGetTableData(oConfig) );
@@ -2895,6 +2899,8 @@ TableTools.BUTTONS = {
 		"sNewLine": "\n",
 		"sFileName": "*.pdf",
 		"sButtonClass": "DTTT_button_pdf",
+		"sToolTip": "Enregistrer le tableau au format PDF",
+
 		"sButtonText": "<i class='icon fa-file-pdf-o' aria-hidden='true'></i>",
 		"sPdfOrientation": "landscape",
 		"sPdfSize": "A4",
@@ -2916,7 +2922,7 @@ TableTools.BUTTONS = {
 		"sInfo": "<h6>Aperçu d'impression</h6><p>Cliquez sur l'outil d'impression de votre navigateur ou Echap pour retourner à la page précédente.</p>",
 		"sMessage": null,
 		"bShowAll": true,
-		"sToolTip": "View print view",
+		"sToolTip": "Imprimer le tableau",
 		"sButtonClass": "DTTT_button_print",
 		"sButtonText": "<i class='icon fa-print' aria-hidden='true'></i>",
 		"fnClick": function ( nButton, oConfig ) {

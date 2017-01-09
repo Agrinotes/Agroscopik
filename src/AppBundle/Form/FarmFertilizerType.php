@@ -19,7 +19,7 @@ class FarmFertilizerType extends AbstractType
                 ->add('fertilizer',EntityType::class,array(
                     'class' => 'AppBundle\Entity\Fertilizer',
                     'choice_label' => 'name',
-                    'attr' => array('class'=>'form-control','data-plugin'=>'select2'),
+                    'attr' => array('class'=>'form-control select2'),
                     'label'=>'Choisir le produit',
                     'required' => true,
                     'multiple' => false,
