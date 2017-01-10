@@ -87,6 +87,8 @@ class FertilizersPriceUpdate
     {
         $this->prices[] = $price;
 
+        $price->setUpdate($this);
+
         return $this;
     }
 

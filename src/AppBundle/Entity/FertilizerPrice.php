@@ -105,8 +105,6 @@ class FertilizerPrice
     {
         $this->update = $update;
 
-        //Bidirectionnality
-        $update->addPrice($this);
     }
 
     /**
