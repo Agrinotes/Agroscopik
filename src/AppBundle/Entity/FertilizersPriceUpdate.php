@@ -34,7 +34,7 @@ class FertilizersPriceUpdate
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="datetime", unique=true)
+     * @ORM\Column(name="date", type="datetime", unique=false)
      */
     private $date;
 

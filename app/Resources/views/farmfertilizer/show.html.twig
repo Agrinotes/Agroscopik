@@ -434,29 +434,33 @@
                     // of 1970/71 in order to be compared on the same x axis. Note
                     // that in JavaScript, months start at 0 for January, 1 for February etc.
                     data: [{% for price in farmFertilizer.fertilizer.prices %}
-                        [Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn }}]
+                            {% if price.pn is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn }}]
                         {% if not loop.last %}, {% endif %}
+                        {% endif %}
                         {% endfor %}
                     ]
                 }, {
                     name: 'Province Sud',
                     data: [{% for price in farmFertilizer.fertilizer.prices %}
-                        [Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.ps }}]
+                            {% if price.ps is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.ps }}]
                         {% if not loop.last %}, {% endif %}
+                        {% endif %}
                         {% endfor %}
                     ]
                 }, {
                     name: 'Province Sud (>500kg)',
                     data: [{% for price in farmFertilizer.fertilizer.prices %}
-                        [Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn500 }}]
+                        {% if price.pn500 is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn500 }}]
                         {% if not loop.last %}, {% endif %}
+                        {% endif %}
                         {% endfor %}
                     ]
                 }, {
                     name: 'Province des îles',
                     data: [{% for price in farmFertilizer.fertilizer.prices %}
-                        [Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pil }}]
+                            {% if price.pil is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pil }}]
                         {% if not loop.last %}, {% endif %}
+                        {% endif %}
                         {% endfor %}
                     ]
                 }]
