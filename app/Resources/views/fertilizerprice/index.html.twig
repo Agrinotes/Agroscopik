@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FertilizerPrice list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Pn</th>
+                <th>Ps</th>
+                <th>Pn500</th>
+                <th>Pil</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fertilizerPrice in fertilizerPrices %}
+            <tr>
+                <td><a href="{{ path('fertilizerprice_show', { 'id': fertilizerPrice.id }) }}">{{ fertilizerPrice.id }}</a></td>
+                <td>{{ fertilizerPrice.pn }}</td>
+                <td>{{ fertilizerPrice.ps }}</td>
+                <td>{{ fertilizerPrice.pn500 }}</td>
+                <td>{{ fertilizerPrice.pil }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fertilizerprice_show', { 'id': fertilizerPrice.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fertilizerprice_edit', { 'id': fertilizerPrice.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fertilizerprice_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

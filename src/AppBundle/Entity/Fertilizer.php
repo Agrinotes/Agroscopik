@@ -573,5 +573,13 @@ class Fertilizer
 
         $price->setFertilizer(""); // That's a problem because its Category cannot be null... Should be resolved soon
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPrices()
+    {
+        return $this->prices;
+    }
 }
 

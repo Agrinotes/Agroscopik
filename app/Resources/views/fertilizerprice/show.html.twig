@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FertilizerPrice</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fertilizerPrice.id }}</td>
+            </tr>
+            <tr>
+                <th>Pn</th>
+                <td>{{ fertilizerPrice.pn }}</td>
+            </tr>
+            <tr>
+                <th>Ps</th>
+                <td>{{ fertilizerPrice.ps }}</td>
+            </tr>
+            <tr>
+                <th>Pn500</th>
+                <td>{{ fertilizerPrice.pn500 }}</td>
+            </tr>
+            <tr>
+                <th>Pil</th>
+                <td>{{ fertilizerPrice.pil }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fertilizerprice_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fertilizerprice_edit', { 'id': fertilizerPrice.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,3 +1,11 @@
+app_fertilizer_price:
+    resource: "@AppBundle/Controller/FertilizerPriceController.php"
+    type:     annotation
+
+app_fertilizers_price_update:
+    resource: "@AppBundle/Controller/FertilizersPriceUpdateController.php"
+    type:     annotation
+
 app_irrigation:
     resource: "@AppBundle/Controller/IrrigationController.php"
     type:     annotation

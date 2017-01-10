@@ -1,0 +1,177 @@
+{% extends 'base_topbar.html.twig' %}
+
+{% block title %}Mise à jour du prix des engrais et amendements{% endblock %}
+
+{% block plugins_stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
+{% endblock %}
+
+{% block page_stylesheets %}
+    {{ parent() }}
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        .highcharts-credits {
+            visibility: hidden !important;
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+    <div class="page-content">
+<div class="panel">
+    <div   class="panel-heading">
+        <h4 class="panel-title">Mise à jour du prix des engrais</h4>
+
+    </div>
+    <div class="panel-body">
+
+        {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_label(form.date) }}
+            {{ form_errors(form.date) }}
+            {{ form_widget(form.date) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.prices) }}
+            {{ form_errors(form.prices) }}
+            {{ form_widget(form.prices) }}
+            <button class="button" id="add_fertilizer_price">Ajouter un engrais</button>
+        </div>
+        <input type="submit" value="Create" />
+        {{ form_end(form) }}
+</div>
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block plugins_javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.min.js') }}"></script>
+    {#<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>#}
+
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+
+{% endblock %}
+
+{% block page_javascripts %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $container = $('div#fertilizers_price_update_prices');
+            var index = $container.find(':input').length;
+            $('#add_fertilizer_price').click(function (e) {
+                addFertilizerPrice($container);
+
+                e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+                return false;
+            });
+
+            if (index == 0) {
+                addFertilizerPrice($container);
+                $("#fertilizers_price_update_prices > div > a").remove();
+
+            } else {
+                $container.children('div').each(function () {
+                    addDeleteLink($(this));
+                });
+            }
+
+            function addFertilizerPrice($container) {
+                var template = $container.attr('data-prototype')
+                                .replace(/__name__label__/g, '')
+                                .replace(/__name__/g, index)
+                                .replace(/form-group/g, "form-group col-md-4")
+
+
+                        ;
+
+                var $prototype = $(template);
+                addDeleteLink($prototype);
+                $container.append($prototype);
+
+                index++;
+            }
+
+            function addDeleteLink($prototype) {
+                var $deleteLink = $('<a href="#" style="position: absolute;top: -35px;right:20px;"><i class="btn btn-pure btn-danger icon wb-trash" aria-hidden="true"></i></a>');
+                $prototype.append($deleteLink);
+                $deleteLink.click(function (e) {
+                    $prototype.remove();
+
+                    index--;
+
+                    e.preventDefault();
+                    return false;
+                });
+            }
+        });
+    </script>
+
+
+{% endblock %}
+

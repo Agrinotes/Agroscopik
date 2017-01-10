@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>FertilizersPriceUpdate list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fertilizersPriceUpdate in fertilizersPriceUpdates %}
+            <tr>
+                <td><a href="{{ path('fertilizerspriceupdate_show', { 'id': fertilizersPriceUpdate.id }) }}">{{ fertilizersPriceUpdate.id }}</a></td>
+                <td>{% if fertilizersPriceUpdate.date %}{{ fertilizersPriceUpdate.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('fertilizerspriceupdate_show', { 'id': fertilizersPriceUpdate.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fertilizerspriceupdate_edit', { 'id': fertilizersPriceUpdate.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fertilizerspriceupdate_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
