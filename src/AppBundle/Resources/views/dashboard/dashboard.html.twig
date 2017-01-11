@@ -442,10 +442,10 @@
                     // Add current polygon and add an attribute alt
                     var layer = L.geoJson({{ plot.latLngs | raw }});
                     //Set style
-                    layer.setStyle({color: "white", Opacity:0.9, fillOpacity: 0.8, weight: 1.5});
+                    layer.setStyle({color: "white", Opacity:0.9, fillOpacity: 0.3, weight: 1.5});
 
                     //Add a popup
-                    layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\">" + "{{ plot.name | upper }}"+"</h3></div>", {closeButton: false});
+                    layer.bindPopup("<div class='friend-popup-info'><div class='detail'>" + "{{ plot.area | number_format(2,","," ") }} ha" + "</div><h3 class=\"margin-top-10\"><a href=\"{{ path('plot_show',{'id':plot.id}) }}\">" + "{{ plot.name | upper }}"+"</a></h3></div>", {closeButton: false});
 
                     
                     // Add current polygon to featureGroup
