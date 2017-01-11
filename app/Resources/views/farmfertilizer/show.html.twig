@@ -190,6 +190,8 @@
                         style="color:white; font-weight: 500; margin-top:-15px;">AJUSTER LE STOCK
                 </button>
 
+                <button id="toChart" class="btn btn-block btn-danger">VOIR LE GRAPHE</button>
+
             </div>
             <div class="col-md-9 panel">
                 <div class="panel-heading">
@@ -222,8 +224,8 @@
         <!-- End Panel Add Action -->
 
         <!-- Soil productivity charts -->
-        <div class="row" style="margin-left:0px;" id="chart">
-            <div class="col-md-9">
+        <div class="row" style="margin-left:0px; margin-right: 20px;" id="chart">
+            <div class="col-md-12">
                 <div class="panel" id="soil-productivity-chart">
                     <div class="panel-body">
                         <div id="container1"
@@ -408,13 +410,32 @@
         $(function () {
             Highcharts.stockChart('container1', {
                 rangeSelector: {
-                    selected: 6
+                    inputDateFormat:'%e %B %Y',
+                    inputEditDateFormat:'%d/%m/%Y',
+                    selected: 5,
+                    buttons: [{
+                        type: 'month',
+                        count: 1,
+                        text: '1m'
+                    }, {
+                        type: 'month',
+                        count: 3,
+                        text: '3m'
+                    }, {
+                        type: 'month',
+                        count: 6,
+                        text: '6m'
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: '1 an'
+                    }, {
+                        type: 'all',
+                        text: 'Tout'
+                    }]
                 },
                 title: {
-                    text: 'Evolution du prix et utilisation sur l\'exploitation - {{ farmFertilizer.fertilizer.name }}'
-                },
-                subtitle: {
-                    text: 'par Province'
+                    text: '{{ farmFertilizer.fertilizer.name }} - Quantités consommées sur l\'exploitation et Evolution du prix'
                 },
                 xAxis: {
                     type: 'datetime',
@@ -532,6 +553,11 @@
             });
         });
     </script>
+<script>    $("#toChart").click(function() {
+        $('html, body').animate({
+            scrollTop: $("#container1").offset().top
+        }, 1000);
+    });</script>
 
 
 

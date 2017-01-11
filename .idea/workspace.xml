@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,10 +31,14 @@
       <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8028169">
-              <caret line="281" column="47" selection-start-line="281" selection-start-column="47" selection-end-line="281" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.27459618">
+              <caret line="413" column="51" selection-start-line="413" selection-start-column="51" selection-end-line="413" selection-end-column="51" />
               <folding>
-                <element signature="e#9392#9463#0#HTML" expanded="true" />
+                <element signature="e#12#33#0#Twig" expanded="true" />
+                <element signature="e#8109#8132#0#HTML" expanded="true" />
+                <element signature="e#8459#8481#0#HTML" expanded="true" />
+                <element signature="e#9231#9275#0#HTML" expanded="true" />
+                <element signature="e#9508#9579#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1280,10 +1285,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8028169">
-          <caret line="281" column="47" selection-start-line="281" selection-start-column="47" selection-end-line="281" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.27459618">
+          <caret line="413" column="51" selection-start-line="413" selection-start-column="51" selection-end-line="413" selection-end-column="51" />
           <folding>
-            <element signature="e#9392#9463#0#HTML" expanded="true" />
+            <element signature="e#12#33#0#Twig" expanded="true" />
+            <element signature="e#8109#8132#0#HTML" expanded="true" />
+            <element signature="e#8459#8481#0#HTML" expanded="true" />
+            <element signature="e#9231#9275#0#HTML" expanded="true" />
+            <element signature="e#9508#9579#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
