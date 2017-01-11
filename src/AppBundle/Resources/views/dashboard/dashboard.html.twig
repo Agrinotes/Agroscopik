@@ -4,8 +4,12 @@
 
 {% block page_stylesheets %}
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css')}}"> {# Temporary fix #}
-
     <style>
+        .leaflet-control-draw-measure {
+            background-image: url("{{asset('remark/3.0.5/classic/global/vendor/leaflet-measure/images/measure-control.png')}}");
+            background-position: 50% 50%;
+        }
+
         .leaflet-popup-tip-container {
             left: -35px;
         }
@@ -149,6 +153,10 @@
         </div>
 {% endblock %}
 
+{% block plugins_javascripts %}
+    {{ parent() }}
+    <script src="https://unpkg.com/leaflet.measurecontrol@1.0.0"></script>
+{% endblock %}
 
 {% block page_javascripts %}
 {{ parent() }}
@@ -207,6 +215,8 @@
                     L.mapbox.accessToken = 'pk.eyJ1IjoiaHVnb2xlaG91eCIsImEiOiItOHl6Sm5jIn0.12l_k0K_Z28UE-Jc0kDgpw';
                     var map = L.mapbox.map('map','mapbox.streets',{ zoomControl: false }).setView([20,150], 2);
                     new L.Control.Zoom({ position: 'topright' }).addTo(map);
+                    new L.Control.measureControl({ position: 'topright' }).addTo(map);
+
 
                     L.control.layers({
                         'Carte': L.mapbox.tileLayer('mapbox.streets').addTo(map),
@@ -363,6 +373,8 @@
                         }
                     }
                 };
+
+
 
                     // On draw created, add polygon values to the form
                 map.on('draw:created', function (e) {
