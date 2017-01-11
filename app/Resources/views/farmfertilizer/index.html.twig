@@ -326,7 +326,10 @@
                     {% for farmFertilizer in farmFertilizers %}
                     $('.select2 option[value="{{ farmFertilizer.fertilizer.id }}"]').attr('disabled','disabled');
                     {% endfor %}
-                    $('.select2').select2();
+                    $('.select2').select2({
+                        placeholder: "",
+                        allowClear: true
+                    } );
 
                 }
             } else {

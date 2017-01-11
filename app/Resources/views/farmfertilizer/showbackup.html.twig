@@ -223,14 +223,13 @@
 
         <!-- Soil productivity charts -->
         <div class="row" style="margin-left:0px;" id="chart">
-            <div class="col-md-9">
-                <div class="panel" id="soil-productivity-chart">
-                    <div class="panel-body">
-                        <div id="container1"
-                             style="min-width: 310px; min-height: 400px; height: 70vh; margin: auto"></div>
-                    </div>
+        <div class="col-md-9">
+            <div class="panel" id="soil-productivity-chart">
+                <div class="panel-body">
+                    <div id="container1" style="min-width: 310px; height: 400px; margin: auto"></div>
                 </div>
             </div>
+        </div>
         </div>
         <!-- End soil productivity   charts -->
 
@@ -265,20 +264,10 @@
     <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
     <script src="{{ asset('front/global/js/components/asspinner.js') }}"></script>
 
-    <script src="https://code.highcharts.com/stock/highstock.js"></script>
-    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script>
         Highcharts.setOptions({
-            lang: {
-                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',  'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
-                weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-                shortMonths: [ "Jan" , "Fev" , "Mar" , "Avr" , "Mai" , "Juin" , "Juil" , "Août" , "Sep" , "Oct" , "Nov" , "Déc"],
-                rangeSelectorFrom: 'Du',
-                rangeSelectorTo: 'au',
-
-
-
-            },
             chart: {
                 style: {
                     fontFamily: 'Roboto'
@@ -400,58 +389,43 @@
 
     <script>
         $(function () {
-            Highcharts.stockChart('container1', {
-                rangeSelector: {
-                    selected: 6
+            Highcharts.chart('container1', {
+                chart: {
+                    type: 'spline'
                 },
                 title: {
-                    text: 'Evolution du prix et utilisation sur l\'exploitation - {{ farmFertilizer.fertilizer.name }}'
+                    text: 'Evolution du prix - {{ farmFertilizer.fertilizer.name }}'
                 },
                 subtitle: {
                     text: 'par Province'
                 },
                 xAxis: {
                     type: 'datetime',
+                    dateTimeLabelFormats: { // don't display the dummy year
+                        month: '%e. %b',
+                        year: '%b'
+                    },
                     title: {
                         text: 'Date'
                     }
                 },
                 yAxis: [{
                     title: {
-                        text: 'Utilisation en kg',
-                    },
-                    height: '60%',
-                    tooltip: {
-                        headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '{point.x:%e. %b}: {point.stackTotal:.0f} kg'
-                    },
-                },{
-                    title: {
                         text: 'Prix en CFP/kg'
                     },
-                    top: '65%',
-                    height: '35%',
-
-                    min: 0,
-                    tooltip: {
-                        headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '{series.name} {point.x:%e. %b}: {point.y:.0f} kg'
-                    },
-
-                }
-                    ],
-                tooltip:{
-                  split:true,
-                    backgroundColor: 'white',
-                    borderColor: 'black',
-                    borderRadius: 10,
-                    borderWidth:.5
+                    min: 0
                 },
-                legend: {
-                    enabled: true,
-                    verticalAlign: 'top',
-                    floating:true,
-                    y: 100
+                    {            labels: {
+                        format: '{value} kg',
+                    },
+                        title: {
+                            text: 'Utilisation en kg',
+                        },
+                        opposite: true
+                    }],
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x:%e. %b}: {point.y:.0f} CFP/kg'
                 },
 
                 plotOptions: {
@@ -462,30 +436,8 @@
                     }
                 },
 
-                series: [ {
-                    stacking: 'normal',
-                    name: 'Utilisation d\'engrais',
-                    type: 'column',
-                    tooltip: {
-                        split:false,
-                        headerFormat: '<b>{point.x:%e %B}</b><br/>',
-                        pointFormat: '{point.stackTotal:,.0f} kg'
-                    },
-
-                    data: [{% for movement in farmFertilizer.movements %}
-                            {% if movement.amount is not empty and movement.category.slug == "useAction"%}[Date.UTC({{ movement.datetime | date_modify("-1 month")| date ('Y,m,d') }}), {{ movement.amount |abs }}]
-                        {% if not loop.last %}, {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                    ]
-                },{
+                series: [{
                     name: 'Province Nord',
-                    type: 'spline',
-                    yAxis: 1,
-                    tooltip: {
-                        headerFormat: '<b>{point.x:%e %B}</b><br/>',
-                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
-                    },
                     // Define the data points. All series have a dummy year
                     // of 1970/71 in order to be compared on the same x axis. Note
                     // that in JavaScript, months start at 0 for January, 1 for February etc.
@@ -495,13 +447,8 @@
                         {% endif %}
                         {% endfor %}
                     ]
-                },{
+                }, {
                     name: 'Province Sud',
-                    type: 'spline',
-                    yAxis: 1,
-                    tooltip: {
-                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
-                    },
                     data: [{% for price in farmFertilizer.fertilizer.prices %}
                             {% if price.ps is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.ps }}]
                         {% if not loop.last %}, {% endif %}
@@ -510,19 +457,32 @@
                     ]
                 }, {
                     name: 'Province Sud (>500kg)',
-                    type: 'spline',
-                    yAxis: 1,
-                    tooltip: {
-                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
-                    },
                     data: [{% for price in farmFertilizer.fertilizer.prices %}
-                            {% if price.pn500 is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn500 }}]
+                        {% if price.pn500 is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn500 }}]
                         {% if not loop.last %}, {% endif %}
                         {% endif %}
                         {% endfor %}
                     ]
-                }
-                   ]
+                }, {
+                    name: 'Province des îles',
+                    data: [{% for price in farmFertilizer.fertilizer.prices %}
+                            {% if price.pil is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pil }}]
+                        {% if not loop.last %}, {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    ]
+                },
+                    {
+                        name: 'Utilisation d\'engrais',
+                        type: 'column',
+                        yAxis: 1,
+                        data: [{% for movement in farmFertilizer.movements %}
+                                {% if movement.amount is not empty and movement.category.slug == "useAction"%}[Date.UTC({{ movement.datetime | date_modify("-1 month")| date ('Y,m,d') }}), {{ movement.amount |abs }}]
+                            {% if not loop.last %}, {% endif %}
+                            {% endif %}
+                            {% endfor %}
+                        ]
+                    }]
             });
         });
     </script>
