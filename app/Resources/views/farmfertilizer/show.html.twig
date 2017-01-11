@@ -412,6 +412,7 @@
                 rangeSelector: {
                     inputDateFormat:'%e %B %Y',
                     inputEditDateFormat:'%d/%m/%Y',
+                    inputBoxWidth: 110,
                     selected: 5,
                     buttons: [{
                         type: 'month',
@@ -435,7 +436,7 @@
                     }]
                 },
                 title: {
-                    text: '{{ farmFertilizer.fertilizer.name }} - Quantités consommées sur l\'exploitation et Evolution du prix'
+                    text: '{{ farmFertilizer.fertilizer.name }} - Quantités consommées sur l\'exploitation'
                 },
                 xAxis: {
                     type: 'datetime',
@@ -447,28 +448,14 @@
                     title: {
                         text: 'Utilisation en kg',
                     },
-                    height: '60%',
                     tooltip: {
                         headerFormat: '<b>{series.name}</b><br>',
                         pointFormat: '{point.x:%e. %b}: {point.stackTotal:.0f} kg'
-                    },
-                },{
-                    title: {
-                        text: 'Prix en CFP/kg'
-                    },
-                    top: '65%',
-                    height: '35%',
-
-                    min: 0,
-                    tooltip: {
-                        headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '{series.name} {point.x:%e. %b}: {point.y:.0f} kg'
-                    },
-
+                    }
                 }
                     ],
                 tooltip:{
-                  split:true,
+                  split:false,
                     backgroundColor: 'white',
                     borderColor: 'black',
                     borderRadius: 10,
@@ -494,56 +481,12 @@
                     name: 'Utilisation d\'engrais',
                     type: 'column',
                     tooltip: {
-                        split:false,
                         headerFormat: '<b>{point.x:%e %B}</b><br/>',
                         pointFormat: '{point.stackTotal:,.0f} kg'
                     },
 
                     data: [{% for movement in farmFertilizer.movements %}
                             {% if movement.amount is not empty and movement.category.slug == "useAction"%}[Date.UTC({{ movement.datetime | date_modify("-1 month")| date ('Y,m,d') }}), {{ movement.amount |abs }}]
-                        {% if not loop.last %}, {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                    ]
-                },{
-                    name: 'Province Nord',
-                    type: 'spline',
-                    yAxis: 1,
-                    tooltip: {
-                        headerFormat: '<b>{point.x:%e %B}</b><br/>',
-                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
-                    },
-                    // Define the data points. All series have a dummy year
-                    // of 1970/71 in order to be compared on the same x axis. Note
-                    // that in JavaScript, months start at 0 for January, 1 for February etc.
-                    data: [{% for price in farmFertilizer.fertilizer.prices %}
-                            {% if price.pn is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn }}]
-                        {% if not loop.last %}, {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                    ]
-                },{
-                    name: 'Province Sud',
-                    type: 'spline',
-                    yAxis: 1,
-                    tooltip: {
-                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
-                    },
-                    data: [{% for price in farmFertilizer.fertilizer.prices %}
-                            {% if price.ps is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.ps }}]
-                        {% if not loop.last %}, {% endif %}
-                        {% endif %}
-                        {% endfor %}
-                    ]
-                }, {
-                    name: 'Province Sud (>500kg)',
-                    type: 'spline',
-                    yAxis: 1,
-                    tooltip: {
-                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
-                    },
-                    data: [{% for price in farmFertilizer.fertilizer.prices %}
-                            {% if price.pn500 is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn500 }}]
                         {% if not loop.last %}, {% endif %}
                         {% endif %}
                         {% endfor %}
