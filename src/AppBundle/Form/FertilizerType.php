@@ -34,6 +34,10 @@ class FertilizerType extends AbstractType
 
 
             ))
+            ->add('organic', CheckboxType::class, array(
+                'label'    => 'Cocher si autorisé en bio',
+                'required' => false
+            ))
             ->add('fds',UrlType::class,array(
                 'attr' => array('class'=>'form-control'),
                 'required'=>false,
@@ -44,10 +48,7 @@ class FertilizerType extends AbstractType
                 'required'=>false,
                 'label' => "URL Fiche technique",
             ))
-            ->add('organic', CheckboxType::class, array(
-                'label'    => 'Cocher si autorisé en bio',
-                'required' => false
-            ))
+
             ->add('n',TextType::class,array(
                 'attr' => array('class'=>'form-control'),
                 'required'=>false,

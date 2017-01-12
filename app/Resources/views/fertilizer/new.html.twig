@@ -4,7 +4,20 @@
     <div class="col-sm-0 col-md-2"></div>
     <div class="col-sm-12 col-md-8">
         <div class="form-group">
-            {{ form_widget(form) }}
+            {{ form_label(form.name) }}
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name) }}
+        </div>
+        <div class="form-group">
+            {{ form_errors(form.organic) }}
+
+            <div class="checkbox-custom checkbox-info">
+                {{ form_widget(form.organic) }}
+                {{ form_label(form.organic) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_rest(form) }}
         </div>
     </div>
 </div>
