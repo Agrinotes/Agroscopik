@@ -168,7 +168,7 @@
                         </li>
                         <li class="dropdown site-menu-item has-sub">
                             <a data-toggle="dropdown" href="javascript:void(0)" data-dropdown-toggle="false">
-                                <span class="site-menu-title">Autres</span>
+                                <span class="site-menu-title">Mes stocks</span>
                                 <span class="site-menu-arrow"></span>
                             </a>
 
@@ -177,6 +177,17 @@
 
                                     <ul class="site-menu-sub site-menu-normal-list">
 
+
+                                        <li class="site-menu-item">
+                                            <a class="animsition-link" href="{{ path('farmspeciality_index') }}">
+                                                <span class="site-menu-title">Produits phytosanitaires</span>
+                                            </a>
+                                        </li>
+                                        <li class="site-menu-item">
+                                            <a class="animsition-link" href="{{ path('farmfertilizer_index') }}">
+                                                <span class="site-menu-title">Engrais et amendements</span>
+                                            </a>
+                                        </li>
                                         <li class="site-menu-item">
                                             <a class="animsition-link" href="{{ path('tractor_index') }}">
                                                 <span class="site-menu-title">Tracteurs</span>
@@ -185,16 +196,6 @@
                                         <li class="site-menu-item">
                                             <a class="animsition-link" href="{{ path('implement_index') }}">
                                                 <span class="site-menu-title">Outils</span>
-                                            </a>
-                                        </li>
-                                        <li class="site-menu-item">
-                                            <a class="animsition-link" href="{{ path('farmspeciality_index') }}">
-                                                <span class="site-menu-title">Local phytosanitaire</span>
-                                            </a>
-                                        </li>
-                                        <li class="site-menu-item">
-                                            <a class="animsition-link" href="{{ path('farmfertilizer_index') }}">
-                                                <span class="site-menu-title">Engrais</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -229,7 +230,7 @@
                                         </li>
                                         <li class="site-menu-item">
                                             <a class="animsition-link" href="http://cloud.agroscopik.org/index.php/s/UN2W4Rrg1zTrFeI">
-                                                <span class="site-menu-title">Ressources bibliographiques</span>
+                                                <span class="site-menu-title">Cloud</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -257,6 +258,9 @@
         </div>
     {% endblock %}
 </div>
+
+{% block footer %}
+{% endblock %}
 
 {% block javascripts %}
     <!-- Core  -->
