@@ -7,6 +7,8 @@ Planning
 {% block plugins_stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/fullcalendar/fullcalendar.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/fullcalendar/fullcalendar.print.css') }}" media="print">
+
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-touchspin/bootstrap-touchspin.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jquery-selective/jquery-selective.css') }}">
@@ -19,7 +21,7 @@ Planning
 {% block page %}
     <div class="page-main">
         <div class="calendar-container">
-            <div id="calendar"></div>
+            <div id="calendar" ></div>
             <!--AddEvent Dialog -->
             <div class="modal fade" id="addNewEvent" aria-hidden="true" aria-labelledby="addNewEvent"
                  role="dialog" tabindex="-1">
@@ -405,45 +407,18 @@ Planning
                 }, {
                     key: 'handleFullcalendar',
                     value: function handleFullcalendar() {
-                        var myEvents = [{
-                            title: 'All Day Event',
-                            start: '2016-10-01'
-                        }, {
-                            title: 'Long Event',
-                            start: '2016-10-07',
-                            end: '2016-10-10',
+                        var myEvents = [
+                            {% for action in actions %}
+                            {
+                            title: '{{ action.intervention.name }} sur {{ action.cropCycle.name }} @ {{ action.cropCycle.plot.name }} ',
+                            start: '{{ action.startDatetime | date('Y-m-d\\TH:i:s') }}',
+                            end: '{{ action.endDatetime | date('Y-m-d\\TH:i:s') }}',
                             backgroundColor: Config.colors('cyan', 600),
                             borderColor: Config.colors('cyan', 600)
-                        }, {
-                            id: 999,
-                            title: 'Repeating Event',
-                            start: '2016-10-09T16:00:00',
-                            backgroundColor: Config.colors('red', 600),
-                            borderColor: Config.colors('red', 600)
-                        }, {
-                            title: 'Conference',
-                            start: '2016-10-11',
-                            end: '2016-10-13'
-                        }, {
-                            title: 'Meeting',
-                            start: '2016-10-12T10:30:00',
-                            end: '2016-10-12T12:30:00'
-                        }, {
-                            title: 'Lunch',
-                            start: '2016-10-12T12:00:00'
-                        }, {
-                            title: 'Meeting',
-                            start: '2016-10-12T14:30:00'
-                        }, {
-                            title: 'Happy Hour',
-                            start: '2016-10-12T17:30:00'
-                        }, {
-                            title: 'Dinner',
-                            start: '2016-10-12T20:00:00'
-                        }, {
-                            title: 'Birthday Party',
-                            start: '2016-10-13T07:00:00'
-                        }];
+                        }{% if not loop.last %},{% endif %}
+                            {% endfor %}
+
+                        ];
 
                         var myOptions = {
                             header: {
@@ -451,8 +426,10 @@ Planning
                                 center: 'prev,title,next',
                                 right: 'month,agendaWeek,agendaDay,listWeek'
                             },
+                            defaultView:'listWeek',
+                            height: 600,
                             locale: 'fr',
-                            defaultDate: '2016-10-12',
+                            defaultDate: '{{ 'now' | date('Y-m-d') }}',
                             selectable: true,
                             selectHelper: true,
                             select: function select() {
@@ -517,7 +494,7 @@ Planning
                             },
 
                             events: myEvents,
-                            droppable: true
+                            droppable: false
                         };
 
                         var _options = void 0;
