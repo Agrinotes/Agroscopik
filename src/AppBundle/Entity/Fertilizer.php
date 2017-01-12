@@ -149,6 +149,26 @@ class Fertilizer
      */
     private $comment;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ft", type="text", nullable=true)
+     */
+    private $ft;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fds", type="text", nullable=true)
+     */
+    private $fds;
+
+    /**
+     *
+     * @ORM\Column(name="organic", type="boolean", nullable=true)
+     */
+    private $organic;
+
 
     /**
      * Get id
@@ -580,6 +600,54 @@ class Fertilizer
     public function getPrices()
     {
         return $this->prices;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFt()
+    {
+        return $this->ft;
+    }
+
+    /**
+     * @param string $ft
+     */
+    public function setFt($ft)
+    {
+        $this->ft = $ft;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFds()
+    {
+        return $this->fds;
+    }
+
+    /**
+     * @param string $fds
+     */
+    public function setFds($fds)
+    {
+        $this->fds = $fds;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrganic()
+    {
+        return $this->organic;
+    }
+
+    /**
+     * @param mixed $organic
+     */
+    public function setOrganic($organic)
+    {
+        $this->organic = $organic;
     }
 }
 

@@ -3,8 +3,10 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -31,6 +33,20 @@ class FertilizerType extends AbstractType
                 'label' => "Formulation",
 
 
+            ))
+            ->add('fds',UrlType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "URL Fiche de données de sécurité",
+            ))
+            ->add('ft',UrlType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "URL Fiche technique",
+            ))
+            ->add('organic', CheckboxType::class, array(
+                'label'    => 'Cocher si autorisé en bio',
+                'required' => false
             ))
             ->add('n',TextType::class,array(
                 'attr' => array('class'=>'form-control'),
