@@ -1,55 +1,275 @@
-<table class="table">
-    <tr>
-        <th>N</th>
-        <th>P2O5</th>
-        <th>K2O</th>
-        <th>CaO</th>
-        <th>MgO</th>
-        <th>Fe</th>
-        <th>SO3</th>
-        <th>B</th>
-        <th>Mn</th>
-        <th>Zn</th>
-        <th>Cu</th>
-    </tr>
-    </thead>
-    <tbody>
+{% extends 'base_topbar.html.twig' %}
 
-    <tr>
-        <td>
-            {{ fertilizer.n }}
-        </td>
-        <td>
-            {{ fertilizer.p2O5 }}
-        </td>
-        <td>
-            {{ fertilizer.k2O }}
-        </td>
-        <td>
-            {{ fertilizer.caO }}
-        </td>
-        <td>
-            {{ fertilizer.mgO }}
-        </td>
-        <td>
-            {{ fertilizer.fe }}
-        </td>
-        <td>
-            {{ fertilizer.sO3 }}
-        </td>
-        <td>
-            {{ fertilizer.b }}
-        </td>
-        <td>
-            {{ fertilizer.mn }}
-        </td>
-        <td>
-            {{ fertilizer.zn }}
-        </td>
-        <td>
-            {{ fertilizer.cu }}
-        </td>
-    </tr>
-    </tbody>
-</table>
+{% block title %}{{ farmFertilizer.fertilizer.name | capitalize }}{% endblock %}
+
+{% block plugins_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asspinner/asSpinner.css') }}">
+{% endblock %}
+
+{% block page_stylesheets %}
+    {{ parent() }}
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        .highcharts-credits {
+            visibility: hidden !important;
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+<div class="page-content">
+
+    <!-- Soil productivity charts -->
+    <div class="row" style="margin-left:0px; margin-right: 20px;" id="chart">
+        <div class="col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div id="container1"
+                         style="min-width: 310px; min-height: 400px; height: 70vh; margin: auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End soil productivity   charts -->
+</div>
+{% endblock %}
+
+{% block plugins_javascripts %}
+    {{ parent() }}
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script>
+        Highcharts.setOptions({
+            lang: {
+                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',  'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                shortMonths: [ "Jan" , "Fev" , "Mar" , "Avr" , "Mai" , "Juin" , "Juil" , "Août" , "Sep" , "Oct" , "Nov" , "Déc"],
+                rangeSelectorFrom: 'Du',
+                rangeSelectorTo: 'au',
+                downloadJPEG: 'Télécharger au format JPEG',
+                downloadPNG: 'Télécharger au format PNG',
+                downloadPDF: 'Télécharger au format PDF',
+                downloadSVG: 'Télécharger au format SVG',
+                printChart: 'Imprimer le graphe',
+
+
+
+
+            },
+            chart: {
+                style: {
+                    fontFamily: 'Roboto'
+                }
+            }
+        });
+    </script>
+
+{% endblock %}
+
+{% block page_javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(function () {
+            Highcharts.stockChart('container1', {
+                rangeSelector: {
+                    inputDateFormat:'%e %B %Y',
+                    inputEditDateFormat:'%d/%m/%Y',
+                    inputBoxWidth: 110,
+                    selected: 5,
+                    buttons: [{
+                        type: 'month',
+                        count: 1,
+                        text: '1m'
+                    }, {
+                        type: 'month',
+                        count: 3,
+                        text: '3m'
+                    }, {
+                        type: 'month',
+                        count: 6,
+                        text: '6m'
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: '1 an'
+                    }, {
+                        type: 'all',
+                        text: 'Tout'
+                    }]
+                },
+                title: {
+                    text: '{{ fertilizer.name }} - Evolution du prix'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    title: {
+                        text: 'Date'
+                    }
+                },
+                yAxis: [{
+                    title: {
+                        text: 'Prix en CFP/kg'
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br>',
+                        pointFormat: '{series.name} {point.x:%e. %b}: {point.y:.0f} CFP/kg'
+                    }
+
+                }
+                ],
+                tooltip:{
+                    split:true,
+                    backgroundColor: 'white',
+                    borderColor: 'black',
+                    borderRadius: 10,
+                    borderWidth:.5
+                },
+                legend: {
+                    enabled: true,
+                    verticalAlign: 'top',
+                    floating:true,
+                    y: 100
+                },
+
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            enabled: true
+                        }
+                    }
+                },
+
+                series: [{
+                    name: 'Province Nord',
+                    type: 'spline',
+                    tooltip: {
+                        headerFormat: '<b>{point.x:%e %B}</b><br/>',
+                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
+                    },
+                    // Define the data points. All series have a dummy year
+                    // of 1970/71 in order to be compared on the same x axis. Note
+                    // that in JavaScript, months start at 0 for January, 1 for February etc.
+                    data: [{% for price in fertilizer.prices %}
+                            {% if price.pn is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn }}]
+                        {% if not loop.last %}, {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    ]
+                },{
+                    name: 'Province Sud',
+                    type: 'spline',
+                    tooltip: {
+                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
+                    },
+                    data: [{% for price in fertilizer.prices %}
+                            {% if price.ps is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.ps }}]
+                        {% if not loop.last %}, {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    ]
+                }, {
+                    name: 'Province Sud (> 250kg)',
+                    type: 'spline',
+                    tooltip: {
+                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
+                    },
+                    data: [{% for price in fertilizer.prices %}
+                            {% if price.pn500 is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pn500 }}]
+                        {% if not loop.last %}, {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    ]
+                }, {
+                    name: 'Province des îles',
+                    type: 'spline',
+                    tooltip: {
+                        pointFormat: '<b>{series.name}</b> {point.y:.0f} CFP/kg<br/>'
+                    },
+                    data: [{% for price in fertilizer.prices %}
+                            {% if price.il is not empty %}[Date.UTC({{ price.update.date | date_modify("-1 month")| date ('Y,m,d') }}), {{ price.pil }}]
+                        {% if not loop.last %}, {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    ]
+                }
+                ]
+            });
+        });
+    </script>
+
+
+
+
+{% endblock %}
 
