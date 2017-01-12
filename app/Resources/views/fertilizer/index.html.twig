@@ -123,6 +123,7 @@
                         <thead>
                         <tr>
                             <th>Nom</th>
+                            <th>Bio</th>
                             <th>N</th>
                             <th>P205</th>
                             <th>K2O</th>
@@ -141,6 +142,26 @@
                             <tr id="td_{{ fertilizer.id }}">
                                 <td><a class="actionLink"
                                        href="{{ path('fertilizer_show',{'id':fertilizer.id}) }}">{{ fertilizer.name |capitalize }}</a>
+
+                                     <span class="pull-right">
+                                         {% if fertilizer.ft is not empty %}<a target="_blank" href="{{ fertilizer.ft}}"
+                                                                 class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                                                                 style="padding:0px 5px 0px;" data-toggle="tooltip"
+                                                                 data-original-title="Fiche technique"><i class="icon wb-order"
+                                                                                                   aria-hidden="true"></i>
+                                         </a>{% endif %}
+                                         {% if fertilizer.fds is not empty %}<a target="_blank" href="{{ fertilizer.fds}}"
+                                                                               class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
+                                                                               style="padding:0px 5px 0px;" data-toggle="tooltip"
+                                                                               data-original-title="Fiche de données de sécurité"><i class="icon wb-order"
+                                                                                                                        aria-hidden="true"></i>
+                                             </a>{% endif %}
+               </span>
+                                </td>
+                                <td>
+                                    {% if fertilizer.organic%}
+                                        <span class="tag tag-info">Autorisé</span>
+                                                {% endif %}
                                 </td>
                                 <td>
                                     {{ fertilizer.n }}
