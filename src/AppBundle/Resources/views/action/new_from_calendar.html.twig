@@ -1,0 +1,300 @@
+{{ form_start(form, {'action': path('action_new_from_calendar'), 'method': 'POST'}) }}
+
+
+<div class="row" id="cropCycle">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+        <div class="form-group">
+            {{ form_label(form.cropCycle) }}
+            {{ form_errors(form.cropCycle) }}
+            {{ form_widget(form.cropCycle) }}
+        </div>
+
+    </div>
+</div>
+
+<div class="row" id="intervention">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+        <div class="form-group">
+            {{ form_label(form.intervention) }}
+            {{ form_errors(form.intervention) }}
+            {{ form_widget(form.intervention) }}
+            <a class="pull-right helpLink" href="{{ path('intervention_new') }}">
+                Ajouter une intervention qui n'est pas dans la liste déroulante
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="row" id="periods">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8" style="margin-left: -30px; padding-right:0px;">
+        {% form_theme form 'AppBundle:form:datetime.html.twig' %}
+        {{ form_widget(form.periods) }}
+        <a class="pull-right helpLink" href="#" id="add_period" style="margin-top: -20px;">
+            <i class="icon wb-plus" aria-hidden="true"></i>
+            Ajouter une autre période
+        </a>
+    </div>
+</div>
+
+<div class="row" id="irrigations">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8" style="margin-left: -30px; padding-right:0px;">
+        {{ form_label(form.irrigations) }}
+        <div>
+            <a href="javascript:void(0);" onclick="$('.durationFlow').toggle();$('.volume').toggle();
+               $(this).text(function(i, text){
+                   return text === 'Je préfère renseigner des durées et des débits' ? 'Je préfère renseigner des volumes' : 'Je préfère renseigner des durées et des débits';
+               })
+        ">Je préfère renseigner des durées et des débits</a>
+        </div>
+        {{ form_errors(form.irrigations) }}
+        {{ form_widget(form.irrigations) }}
+        <a class="pull-right helpLink" href="javascript:void(0);" id="add_irrigation">
+            <i class="icon wb-plus" aria-hidden="true"></i>
+            Ajouter une autre irrigation
+        </a>
+    </div>
+</div>
+
+<div class="row" id="auxiliary">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+        <div class="form-group">
+            {{ form_label(form.auxiliary) }}
+            {{ form_errors(form.auxiliary) }}
+            {{ form_widget(form.auxiliary) }}
+        </div>
+    </div>
+</div>
+
+<div class="row" id="ph">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+            {{ form_label(form.pH) }}
+            {{ form_errors(form.pH) }}
+            {{ form_widget(form.pH, { 'type':'number' }) }}
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+            {{ form_label(form.ec) }}
+            {{ form_errors(form.ec) }}
+            {{ form_widget(form.ec, { 'type':'number' }) }}
+        </div>
+    </div>
+</div>
+
+<div class="row" id="drainage">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+            {{ form_label(form.drainage) }}
+            {{ form_errors(form.drainage) }}
+            {{ form_widget(form.drainage, { 'type':'number' }) }}
+        </div>
+    </div>
+</div>
+
+<div class="row" id="density">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+        <div class="form-group">
+            {{ form_label(form.density) }}
+            {{ form_errors(form.density) }}
+            <div class="input-group">
+                {{ form_widget(form.density) }}
+                <span class="input-group-addon">
+                      plants
+                </span>
+                {{ form_errors(form.densityUnit) }}
+                {{ form_widget(form.densityUnit) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" id="farmSpecialities">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+        {% if app.user.farm.farmSpecialities is not empty %}
+            {{ form_label(form.aim) }}
+            {{ form_errors(form.aim) }}
+            {{ form_widget(form.aim) }}
+
+            <div class="form-group">
+                <label style="margin-bottom: -15px; margin-top: 15px;">Produits phytosanitaires</label>
+                {{ form_errors(form.farmSpecialityMvts) }}
+                {{ form_widget(form.farmSpecialityMvts) }}
+                <a class="pull-right helpLink" href="#" id="add_mvt">
+                    <i class="icon wb-plus" aria-hidden="true"></i>
+                    Ajouter un autre produit
+                </a>
+            </div>
+        {% else %}
+            <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
+                Vous devez avoir au moins un produit dans votre
+                <a style="text-decoration: underline" href="{{ path('farmspeciality_new') }}">
+                    local phytosanitaire virtuel
+                </a>
+                pour pouvoir faire des traitements phytosanitaires.
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row" id="farmFertilizers">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+        {% if app.user.farm.farmFertilizers is not empty %}
+            <div class="form-group hidden" id="tankVolume">
+                {{ form_label(form.tankVolume) }}
+                {{ form_errors(form.tankVolume) }}
+                {{ form_widget(form.tankVolume) }}
+            </div>
+            <div class="form-group">
+                <label style="margin-bottom: -5px;">Engrais et Amendements</label>
+                {{ form_errors(form.farmFertilizerMvts) }}
+                {{ form_widget(form.farmFertilizerMvts) }}
+
+                <a class="pull-right helpLink" href="#" id="add_ferti_mvt">
+                    Ajouter un autre engrais ou amendement
+                </a>
+            </div>
+        {% else %}
+            <div class="alert dark alert-alt alert-info padding-right-10" role="alert">
+                Vous devez avoir au moins un engrais ou amendement dans votre
+                <a style="text-decoration: underline" href="{{ path('farmfertilizer_new') }}">
+                    stock d'engrais virtuel
+                </a>
+                pour pouvoir faire des opérations de fertilisation ou amendement.
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+<div class="row" id="harvestProducts">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+        <div class="form-group">
+            {{ form_label(form.harvestProducts) }}
+            {{ form_errors(form.harvestProducts) }}
+            {{ form_widget(form.harvestProducts) }}
+        </div>
+        <a class="pull-right helpLink" href="#" id="add_harvest">
+            <i class="icon md-plus-circle-o" aria-hidden="true"></i>
+            Ajouter un autre produit récolté
+        </a>
+    </div>
+</div>
+
+
+<div class="row" id="nbWorkers">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-6 col-md-4">
+        <div class="form-group">
+            <label>Main d'oeuvre et Matériel</label>
+
+            <div class="input-group">
+                        <span class="input-group-addon">
+               <i class="icon wb-user"
+                  aria-hidden="true"></i>
+            </span>
+                {{ form_widget(form.nbWorkers) }}
+                {{ form_errors(form.nbWorkers) }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row" id="tractors">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+
+        {% if app.user.farm.tractors is not empty %}
+            <div class="form-group">
+
+                <div class="input-group">
+                    <span class="input-group-addon">
+                       <i class="icon wb-settings"
+                          aria-hidden="true"></i>
+                    </span>
+                    {{ form_errors(form.tractors) }}
+                    {{ form_widget(form.tractors) }}
+                </div>
+            </div>
+        {% else %}
+            <div class="hidden">
+                {{ form_errors(form.tractors) }}
+                {{ form_widget(form.tractors) }}
+            </div>
+            <p>
+                Vous n'avez pas enregistrer de tracteur sur l'exploitation
+            </p>
+        {% endif %}
+
+
+        {% if app.user.farm.implements is not empty %}
+            <div class="form-group">
+
+                <div class="input-group">
+                        <span class="input-group-addon">
+               <i class="icon wb-hammer"
+                  aria-hidden="true"></i>
+            </span>
+                    {{ form_errors(form.implements) }}
+                    {{ form_widget(form.implements) }}
+                </div>
+            </div>
+        {% else %}
+            <div class="hidden">
+                {{ form_errors(form.implements) }}
+                {{ form_widget(form.implements) }}
+            </div>
+            <p>
+                Vous n'avez pas enregistrer d'outil sur l'exploitation
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row" id="comment">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+        <div class="form-group">
+            {{ form_label(form.comment) }}
+            {{ form_errors(form.comment) }}
+            {{ form_widget(form.comment) }}
+        </div>
+    </div>
+</div>
+
+<div class="row" id="expenses">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8">
+        <div class="form-group">
+            <label style="margin-bottom: 0px;">Dépenses</label>
+            {{ form_errors(form.expenses) }}
+            {{ form_widget(form.expenses) }}
+            <a class="pull-right helpLink" href="#" id="add_expense">
+                Ajouter une autre dépense
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="row" style="margin-top:20px;">
+    <div class="col-sm-0 col-md-2"></div>
+    <div class="col-sm-12 col-md-8" style="text-align:right;">
+        <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
+        {{ form_end(form) }}
+    </div>
+</div>

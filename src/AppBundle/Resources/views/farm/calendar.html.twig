@@ -8,6 +8,7 @@ Planning
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/fullcalendar/fullcalendar.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/fullcalendar/fullcalendar.print.css') }}" media="print">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
 
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-touchspin/bootstrap-touchspin.css') }}">
@@ -25,97 +26,14 @@ Planning
             <!--AddEvent Dialog -->
             <div class="modal fade" id="addNewEvent" aria-hidden="true" aria-labelledby="addNewEvent"
                  role="dialog" tabindex="-1">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg modal-info">
                     <form class="modal-content form-horizontal" action="#" method="post" role="form">
                         <div class="modal-header">
                             <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-                            <h4 class="modal-title">New Event</h4>
+                            <h4 class="modal-title">Ajouter une intervention</h4>
                         </div>
                         <div class="modal-body">
-                            <div class="form-group row">
-                                <label class="col-xs-12 col-md-2 form-control-label" for="ename">Name:</label>
-                                <div class="col-xs-12 col-md-10">
-                                    <input type="text" class="form-control" id="ename" name="ename">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-xs-12 col-md-2 form-control-label" for="starts">Starts:</label>
-                                <div class="col-xs-12 col-md-10">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="starts" data-container="#addNewEvent"
-                                               data-plugin="datepicker">
-                      <span class="input-group-addon">
-                        <i class="icon wb-calendar" aria-hidden="true"></i>
-                      </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-xs-12 col-md-2 form-control-label" for="ends">Ends:</label>
-                                <div class="col-xs-12 col-md-10">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="ends" data-container="#addNewEvent"
-                                               data-plugin="datepicker">
-                      <span class="input-group-addon">
-                        <i class="icon wb-calendar" aria-hidden="true"></i>
-                      </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-xs-12 col-md-2 form-control-label" for="repeats">Repeats:</label>
-                                <div class="col-xs-12 col-md-10">
-                                    <input type="text" class="form-control" id="repeats" name="repeats" data-plugin="TouchSpin"
-                                           data-min="0" data-max="10" value="0" />
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="form-control-label col-xs-12 col-md-2">Color:</label>
-                                <div class="col-xs-12 col-md-10">
-                                    <ul class="color-selector">
-                                        <li class="bg-blue-600">
-                                            <input type="radio" checked name="eventColorChosen" id="eventColorChosen2">
-                                            <label for="eventColorChosen2"></label>
-                                        </li>
-                                        <li class="bg-green-600">
-                                            <input type="radio" name="eventColorChosen" id="eventColorChosen3">
-                                            <label for="eventColorChosen3"></label>
-                                        </li>
-                                        <li class="bg-cyan-600">
-                                            <input type="radio" name="eventColorChosen" id="eventColorChosen4">
-                                            <label for="eventColorChosen4"></label>
-                                        </li>
-                                        <li class="bg-orange-600">
-                                            <input type="radio" name="eventColorChosen" id="eventColorChosen5">
-                                            <label for="eventColorChosen5"></label>
-                                        </li>
-                                        <li class="bg-red-600">
-                                            <input type="radio" name="eventColorChosen" id="eventColorChosen6">
-                                            <label for="eventColorChosen6"></label>
-                                        </li>
-                                        <li class="bg-blue-grey-600">
-                                            <input type="radio" name="eventColorChosen" id="eventColorChosen7">
-                                            <label for="eventColorChosen7"></label>
-                                        </li>
-                                        <li class="bg-purple-600">
-                                            <input type="radio" name="eventColorChosen" id="eventColorChosen8">
-                                            <label for="eventColorChosen8"></label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-xs-12 col-md-2 form-control-label" for="people">People:</label>
-                                <div class="col-xs-12 col-md-10">
-                                    <select id="eventPeople" multiple="multiple" class="plugin-selective"></select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="form-actions">
-                                <button class="btn btn-primary" data-dismiss="modal" type="button">Add this event</button>
-                                <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
-                            </div>
+                            {{ render(controller('AppBundle:Action:newFromCalendar')) }}
                         </div>
                     </form>
                 </div>
@@ -290,46 +208,27 @@ Planning
             </div>
             <!-- End AddCalendar Dialog -->
         </div>
+        <!--AddEvent Dialog -->
+        <div class="modal fade" id="addNewEvent" aria-hidden="true" aria-labelledby="addNewEvent"
+             role="dialog" tabindex="-1">
+            <div class="modal-dialog">
+                {{ render(controller('AppBundle:Action:newFromCalendar')) }}
+
+            </div>
+        </div>
+        <!-- End AddEvent Dialog -->
     </div>
 {% endblock %}
 {% block footer %}
 <!-- Site Action -->
 <div class="site-action" data-plugin="actionBtn">
-    <button type="button" class="site-action-toggle btn-raised btn btn-success btn-floating">
+    <button type="button" class="site-action-toggle btn-raised btn btn-danger btn-floating">
         <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
         <i class="back-icon wb-delete animation-scale-up" aria-hidden="true"></i>
     </button>
 </div>
 <!-- End Site Action -->
-<!-- Add Calendar Form -->
-<div class="modal fade" id="addNewCalendarForm" aria-hidden="true" aria-labelledby="addNewCalendarForm"
-     role="dialog" tabindex="-1">
-    <div class="modal-dialog">
-        <form class="modal-content" action="#" method="post" role="form">
-            <div class="modal-header">
-                <button type="button" class="close" aria-hidden="true" data-dismiss="modal">×</button>
-                <h4 class="modal-title">Create New Calendar</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label class="form-control-label m-b-15" for="name">Calendar name:</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Calendar name">
-                </div>
-                <div class="form-group">
-                    <label class="form-control-label m-b-15" for="name">Choice people to your project:</label>
-                    <select multiple="multiple" class="plugin-selective"></select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <div class="form-actions">
-                    <button class="btn btn-primary" data-dismiss="modal" type="button">Create</button>
-                    <a class="btn btn-sm btn-white" data-dismiss="modal" href="javascript:void(0)">Cancel</a>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-<!-- End Add Calendar Form -->
+
 {% endblock %}
 
 {% block plugins_javascripts %}
@@ -340,9 +239,24 @@ Planning
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/fullcalendar/locale/fr.js') }}"></script>
 
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/jquery-selective/jquery-selective.min.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-touchspin/bootstrap-touchspin.min.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootbox/bootbox.js') }}"></script>
+
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.min.js') }}"></script>
+    {#<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>#}
+
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/jquery.datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/asspinner/jquery-asSpinner.min.js') }}"></script>
+
+
+    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/asspinner.js') }}"></script>
 {% endblock %}
 
 {% block page_javascripts %}
@@ -424,7 +338,7 @@ Planning
                             header: {
                                 left: null,
                                 center: 'prev,title,next',
-                                right: 'month,agendaWeek,agendaDay,listWeek'
+                                right: 'month,agendaWeek,agendaDay,listMonth,listWeek'
                             },
                             defaultView:'listWeek',
                             height: 600,
@@ -432,10 +346,17 @@ Planning
                             defaultDate: '{{ 'now' | date('Y-m-d') }}',
                             selectable: true,
                             selectHelper: true,
-                            select: function select() {
+                            select: function select(start, end, jsEvent, view) {
                                 $('#addNewEvent').modal('show');
+                                $('#addNewEvent').on('shown.bs.modal', function (e) {
+                                    $('.select2').select2({dropdownParent: $("#addNewEvent")});
+                                    $('.select2-keep').select2({closeOnSelect: false});
+                                });
+                                // var allDay = !start.hasTime() && !end.hasTime();
+                                // alert(["Event Start date: " + moment(start).format(),
+                                //     "Event End date: " + moment(end).format(),
+                                //    "AllDay: " + allDay].join("\n"));                            },
                             },
-
                             editable: true,
                             eventLimit: true,
                             windowResize: function windowResize(view) {
@@ -656,4 +577,9 @@ Planning
             AppCalendar.run();
         });
     </script>
+
+    {{ include('@AppBundle/Resources/public/js/addActionFromCropCycleShow.js') }}
+
+
+
 {% endblock %}

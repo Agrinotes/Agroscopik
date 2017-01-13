@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Crop;
 use AppBundle\Entity\CropCycle;
 use AppBundle\Entity\InterventionCategory;
+use AppBundle\Form\ActionCalendarType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -28,6 +29,136 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 class ActionController extends Controller
 {
+    /**
+     * Creates a new Action entity from cropcycle_show.
+     *
+     * @Route("/action/new_from_calendar", name="action_new_from_calendar")
+     * @Method({"GET", "POST"})
+     */
+    public function newFromCalendarAction(Request $request)
+    {
+        $action = new Action();
+
+        // Get Entity Manager
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm(ActionCalendarType::class, $action);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // Check for edit access
+            $authorizationChecker = $this->get('security.authorization_checker');
+            if (false === $authorizationChecker->isGranted('EDIT', $action->getCropCycle())) {
+                throw new AccessDeniedException();
+            }
+
+            $em = $this->getDoctrine()->getManager();
+
+            // Strange... Maybe not necessary
+            $action->getCropCycle()->addAction($action);
+
+            $em->persist($action);
+
+            $em->flush();
+
+            // Remove specialities added to wrong categories
+            if ($action->getFarmSpecialityMvts() && $action->getIntervention()->getName() != 'Traitement phytosanitaire') {
+                $mvts = $action->getFarmSpecialityMvts();
+                foreach ($mvts as $mvt) {
+                    $em->remove($mvt);
+                }
+                $em->flush();
+            }
+
+            // Remove fertilizers added to wrong categories
+            if ($action->getFarmFertilizerMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'fertilisation') {
+                $mvts = $action->getFarmFertilizerMvts();
+                foreach ($mvts as $mvt) {
+                    $em->remove($mvt);
+                }
+                $em->flush();
+            }
+
+            // Remove harvest products added to wrong categories
+            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'recolte') {
+                $products = $action->getHarvestProducts();
+                foreach ($products as $product) {
+                    $em->remove($product);
+                }
+                $em->flush();
+            }
+
+            // Remove seeds or plant density products added to wrong categories
+            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'semis-et-plantation') {
+                $action->setDensity(null);
+                $action->setDensityUnit(null);
+                $em->flush();
+            }
+
+            // Remove pH and EC added to wrong categories
+            if ($action->getIntervention()->getName() != 'Relevé pH/EC') {
+                $action->setPH(null);
+                $action->setEc(null);
+                $em->flush();
+            }
+
+            // Remove irrigations added to wrong categories
+            if ($action->getIntervention()->getInterventionCategory()->getSlug() != 'irrigation') {
+                $irrigations = $action->getIrrigations();
+                foreach ($irrigations as $i) {
+                    $em->remove($i);
+                }
+                $em->flush();
+            }
+
+            // Remove tank volume added to wrong intervention
+            if ($action->getIntervention()->getName() != 'Préparation d\'une cuve de solution-mère') {
+                $action->setTankVolume(null);
+                $em->flush();
+            }
+
+            // Remove drainage added to wrong intervention
+            if ($action->getIntervention()->getName() != 'Relevé de drainage') {
+                $action->setDrainage(null);
+                $em->flush();
+            }
+
+            // Call ACL service
+            $aclProvider = $this->get('security.acl.provider');
+
+            // Create the ACL for current Action $action
+            $objectIdentity = ObjectIdentity::fromDomainObject($action);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // Retrieve the security identity of the current user
+            $securityIdentity = UserSecurityIdentity::fromAccount($this->getUser());
+
+            // Create Access Mask
+            $builder = new MaskBuilder();
+            $builder
+                ->add('view')
+                ->add('edit')
+                ->add('delete');
+            $mask = $builder->get();
+
+            // Insert Object Access Entry
+            $acl->insertObjectAce($securityIdentity, $mask);
+
+            // Update ACL
+            $aclProvider->updateAcl($acl);
+
+            $request->getSession()->getFlashBag()->add('success', 'Une intervention ' . $action->getName() . ' a été ajoutée avec succès le ' . $action->getStartDatetime()->format('d/m/Y') . ' !');
+
+            return $this->redirectToRoute('farm_calendar');
+        }
+
+        return $this->render('@App/action/new_from_calendar.html.twig', array(
+            'action' => $action,
+            'form' => $form->createView(),
+        ));
+    }
+
     /**
      * Creates a new Action entity from cropcycle_show.
      *

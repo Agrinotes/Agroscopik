@@ -70,7 +70,9 @@
             month: "Mois",
             week: "Semaine",
             day: "Jour",
-            list: "Mon planning"
+            listWeek: "Planning semaine",
+            listMonth: "Planning mois   "
+
         }, allDayHtml: "Toute la<br/>journée", eventLimitText: "en plus", noEventsMessage: "Aucun événement à afficher"
     })
 });

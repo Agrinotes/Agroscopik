@@ -48,7 +48,7 @@
   border: 0 solid transparent;
 }
 
-.fc-button.fc-month-button, .fc-button.fc-agendaWeek-button, .fc-button.fc-agendaDay-button, .fc-button.fc-listWeek-button {
+.fc-button.fc-month-button, .fc-button.fc-agendaWeek-button, .fc-button.fc-agendaDay-button, .fc-button.fc-listWeek-button, .fc-button.fc-listMonth-button  {
   height: auto;
   padding: 8px 14px;
   font-size: 14px;
