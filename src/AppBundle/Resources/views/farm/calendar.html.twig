@@ -334,6 +334,8 @@ Planning
 
                         ];
 
+                        var i = 0;
+
                         var myOptions = {
                             header: {
                                 left: null,
@@ -349,9 +351,18 @@ Planning
                             select: function select(start, end, jsEvent, view) {
                                 $('#addNewEvent').modal('show');
                                 $('#addNewEvent').on('shown.bs.modal', function (e) {
-                                    $('.select2').select2({dropdownParent: $("#addNewEvent")});
-                                    $('.select2-keep').select2({closeOnSelect: false});
+                                    if(i==0) {
+                                        $('.select2').select2({dropdownParent: $("#addNewEvent")});
+                                        $('.select2-keep').select2({closeOnSelect: false});
+                                        i++;
+                                    }
                                 });
+                                $('#action_calendar_periods_0_startDatetime_date').val(moment(start).format('L'));
+                                $('#action_calendar_periods_0_startDatetime_time').val(moment(start).format('LT'));
+
+                                $('#action_calendar_periods_0_endDatetime_date').val(moment(end).format('L'));
+                                $('#action_calendar_periods_0_endDatetime_time').val(moment(end).format('LT'));
+
                                 // var allDay = !start.hasTime() && !end.hasTime();
                                 // alert(["Event Start date: " + moment(start).format(),
                                 //     "Event End date: " + moment(end).format(),
@@ -578,7 +589,7 @@ Planning
         });
     </script>
 
-    {{ include('@AppBundle/Resources/public/js/addActionFromCropCycleShow.js') }}
+    {{ include('@AppBundle/Resources/public/js/addActionFromCalendar.js') }}
 
 
 

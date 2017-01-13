@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ActionCalendarType.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_calendar.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/remark/3.0.5/classic/topbar/assets/examples/css/apps/calendar.css" afterPath="$PROJECT_DIR$/web/remark/3.0.5/classic/topbar/assets/examples/css/apps/calendar.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/remark/3.0.5/classic/global/vendor/fullcalendar/locale/fr.js" afterPath="$PROJECT_DIR$/web/remark/3.0.5/classic/global/vendor/fullcalendar/locale/fr.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
@@ -36,10 +32,27 @@
       <file leaf-file-name="calendar.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5462555">
-              <caret line="350" column="47" selection-start-line="350" selection-start-column="47" selection-end-line="350" selection-end-column="47" />
+            <state vertical-scroll-proportion="0.70631427">
+              <caret line="356" column="44" selection-start-line="356" selection-start-column="44" selection-end-line="356" selection-end-column="44" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addActionFromCalendar.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.224138">
+              <caret line="379" column="44" selection-start-line="379" selection-start-column="44" selection-end-line="379" selection-end-column="44" />
+              <folding>
+                <marker date="1484277703298" expanded="true" signature="2291:2332" placeholder="..." />
+                <marker date="1484277703298" expanded="true" signature="4095:4150" placeholder="..." />
+                <marker date="1484277703298" expanded="true" signature="5951:6006" placeholder="..." />
+                <marker date="1484277703298" expanded="true" signature="7595:7650" placeholder="..." />
+                <marker date="1484277703298" expanded="true" signature="9258:9325" placeholder="..." />
+                <marker date="1484277703298" expanded="true" signature="10889:10921" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -144,7 +157,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/PlotController.php" />
@@ -194,6 +206,7 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_calendar.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" />
       </list>
     </option>
@@ -486,11 +499,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="cropcycle" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -554,11 +567,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xamp\htdocs\agroscopik-NC\src\AppBundle\Resources\public\js" />
       <recent name="C:\xamp\htdocs\agroscopik-NC\src\AppBundle\Form" />
       <recent name="C:\xamp\htdocs\agroscopik-NC\src\AppBundle\Resources\views\action" />
       <recent name="C:\xamp\htdocs\agroscopik-NC\app\Resources\views\farmfertilizer" />
       <recent name="C:\xamp\htdocs\agroscopik-NC\src\AppBundle\Resources\views\plot" />
-      <recent name="C:\xamp\htdocs\agroscopik-NC\src\AppBundle\Resources\views\cropcycle" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xamp\htdocs\agroscopik-NC\src\AppBundle\Resources\views\cropcycle" />
@@ -674,16 +687,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28169015">
-          <caret line="129" column="72" selection-start-line="129" selection-start-column="72" selection-end-line="129" selection-end-column="72" />
-          <folding>
-            <element signature="e#962#988#1#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/FarmFertilizerEditType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.16901408">
@@ -1080,10 +1083,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.224138">
+          <caret line="379" column="44" selection-start-line="379" selection-start-column="44" selection-end-line="379" selection-end-column="44" />
+          <folding>
+            <marker date="1484277703298" expanded="true" signature="2291:2332" placeholder="..." />
+            <marker date="1484277703298" expanded="true" signature="4095:4150" placeholder="..." />
+            <marker date="1484277703298" expanded="true" signature="5951:6006" placeholder="..." />
+            <marker date="1484277703298" expanded="true" signature="7595:7650" placeholder="..." />
+            <marker date="1484277703298" expanded="true" signature="9258:9325" placeholder="..." />
+            <marker date="1484277703298" expanded="true" signature="10889:10921" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5462555">
-          <caret line="350" column="47" selection-start-line="350" selection-start-column="47" selection-end-line="350" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.70631427">
+          <caret line="356" column="44" selection-start-line="356" selection-start-column="44" selection-end-line="356" selection-end-column="44" />
           <folding>
             <element signature="n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
