@@ -7,7 +7,6 @@
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/ActionCalendarType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/ActionCalendarType.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Repository/CropCycleRepository.php" afterPath="$PROJECT_DIR$/src/AppBundle/Repository/CropCycleRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/config/services.yml" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/config/services.yml" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionCalendarType.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ActionCalendarType.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionCalendarType.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-35.517242">
-              <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.7183099">
+              <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
               <folding>
                 <element signature="e#34#68#0#PHP" expanded="true" />
               </folding>
@@ -51,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CropCycleRepository.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CropCycleRepository.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CropCycleRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8169014">
-              <caret line="103" column="11" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="11" />
+            <state vertical-scroll-proportion="-10.344828">
+              <caret line="89" column="35" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
               <folding>
                 <element signature="e#243#1285#0#PHP" expanded="false" />
                 <element signature="e#1291#2056#0#PHP" expanded="false" />
@@ -221,9 +220,9 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_calendar.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionCalendarType.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/config/services.yml" />
         <option value="$PROJECT_DIR$/src/AppBundle/Repository/CropCycleRepository.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionCalendarType.php" />
       </list>
     </option>
   </component>
@@ -1034,16 +1033,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionCalendarType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-35.517242">
-          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
-          <folding>
-            <element signature="e#34#68#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionType.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-130.0">
@@ -1065,12 +1054,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Repository/CropCycleRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8169014">
-          <caret line="103" column="11" selection-start-line="103" selection-start-column="11" selection-end-line="103" selection-end-column="11" />
+        <state vertical-scroll-proportion="-10.344828">
+          <caret line="89" column="35" selection-start-line="89" selection-start-column="35" selection-end-line="89" selection-end-column="35" />
           <folding>
             <element signature="e#243#1285#0#PHP" expanded="false" />
             <element signature="e#1291#2056#0#PHP" expanded="false" />
             <element signature="e#2062#2896#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/ActionCalendarType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7183099">
+          <caret line="55" column="51" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+          <folding>
+            <element signature="e#34#68#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

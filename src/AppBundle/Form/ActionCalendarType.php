@@ -53,7 +53,7 @@ class ActionCalendarType extends AbstractType
                     'group_by' => 'plot.name',
                     'label' => 'Choisir un cycle de culture en cours',
                     'query_builder' => function (EntityRepository $er) use ($farm) {
-                        return $er->qbFindAllByFarm($farm);
+                        return $er->qbFindAllActiveByFarm($farm);
                     },
                 );
 

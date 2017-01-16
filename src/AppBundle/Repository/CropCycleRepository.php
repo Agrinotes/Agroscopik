@@ -87,21 +87,24 @@ class CropCycleRepository extends \Doctrine\ORM\EntityRepository
             ;
     }
 
-    public function qbFindAllByFarm($farm)
+    public function qbFindAllActiveByFarm($farm)
     {
 
         $qb = $this->createQueryBuilder('c');
 
         $qb->join('c.plot','p')
+
             ->addSelect('p')
             ->join('p.farm','farm')
             ->addSelect('farm')
             ->where('farm.id =:farm')
             ->setParameter('farm', $farm)
+            ->andWhere('c.status=:status')
+            ->setParameter('status', 'ActiveAction')
         ;
 
         return $qb
-           
+
             ;
     }
 
