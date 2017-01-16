@@ -10,6 +10,11 @@ services:
         arguments: ['@security.token_storage']
         tags:
             - { name: form.type }
+    app.form.calendaraaction:
+        class: AppBundle\Form\ActionCalendarType
+        arguments: ['@security.token_storage']
+        tags:
+            - { name: form.type }
     app.form.actionfertilizer:
         class: AppBundle\Form\ActionFarmFertilizerMvtType
         arguments: ['@security.token_storage']
