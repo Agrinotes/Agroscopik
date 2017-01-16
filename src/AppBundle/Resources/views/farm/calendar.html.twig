@@ -11,11 +11,78 @@ Planning
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
 
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-touchspin/bootstrap-touchspin.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jquery-selective/jquery-selective.css') }}">
     <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/apps/calendar.css') }}">
 {% endblock %}
 
+{% block page_stylesheets %}
+    {{ parent() }}
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        .highcharts-credits {
+            visibility: hidden !important;
+        }
+    </style>
+{% endblock %}
 
 {% block body_class %}animsition site-navbar-small app-calendar page-aside-left{% endblock %}
 
@@ -261,13 +328,6 @@ Planning
 
 {% block page_javascripts %}
     {{ parent() }}
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/bootstrap-touchspin.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/material.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/action-btn.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/editlist.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/bootbox.js') }}"></script>
-    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/bootbox.js') }}"></script>
     <script src="{{ asset('remark/3.0.5/classic/topbar/assets/js/Site.js') }}"></script>
     <script>
         (function (global, factory) {
@@ -325,7 +385,7 @@ Planning
                             {% for action in actions %}
                             {
                             title: '{{ action.intervention.name }} sur {{ action.cropCycle.name }} @ {{ action.cropCycle.plot.name }} ',
-                            start: '{{ action.startDatetime | date('Y-m-d\\TH:i:s') }}',
+                                start: '{{ action.startDatetime | date('Y-m-d\\TH:i:s') }}',
                             end: '{{ action.endDatetime | date('Y-m-d\\TH:i:s') }}',
                             backgroundColor: Config.colors('cyan', 600),
                             borderColor: Config.colors('cyan', 600)
@@ -342,7 +402,7 @@ Planning
                                 center: 'prev,title,next',
                                 right: 'month,agendaWeek,agendaDay,listMonth,listWeek'
                             },
-                            defaultView:'listWeek',
+                            defaultView:'month',
                             height: 600,
                             locale: 'fr',
                             defaultDate: '{{ 'now' | date('Y-m-d') }}',
@@ -360,15 +420,18 @@ Planning
                                 $('#action_calendar_periods_0_startDatetime_date').val(moment(start).format('L'));
                                 $('#action_calendar_periods_0_startDatetime_time').val(moment(start).format('LT'));
 
+                                var allDay = !start.hasTime() && !end.hasTime();
+                                if(!allDay){
                                 $('#action_calendar_periods_0_endDatetime_date').val(moment(end).format('L'));
                                 $('#action_calendar_periods_0_endDatetime_time').val(moment(end).format('LT'));
+                                }else{
+                                    $('#action_calendar_periods_0_endDatetime_date').val(moment(start).format('L'));
+                                    $('#action_calendar_periods_0_endDatetime_time').val(moment(start).format('LT'));
+                                }
 
-                                // var allDay = !start.hasTime() && !end.hasTime();
-                                // alert(["Event Start date: " + moment(start).format(),
-                                //     "Event End date: " + moment(end).format(),
-                                //    "AllDay: " + allDay].join("\n"));                            },
                             },
-                            editable: true,
+                            draggable:false,
+                            editable: false,
                             eventLimit: true,
                             windowResize: function windowResize(view) {
                                 var width = $(window).outerWidth();
@@ -506,7 +569,7 @@ Planning
                         var _this2 = this;
 
                         this.$actionToggleBtn.on('click', function (e) {
-                            _this2.$addNewCalendarForm.modal('show');
+                            _this2.$addNewEvent.modal('show');
                             e.stopPropagation();
                         });
                     }
