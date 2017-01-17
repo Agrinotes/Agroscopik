@@ -1,8 +1,88 @@
+<script type="text/javascript">
+    $(document).ready(function () {
+        var $container = $('div#action_calendar_periods');
+        var index = $container.find(':input').length;
+        $('#add_period').click(function (e) {
+            addPeriod($container);
+
+            e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+            return false;
+        });
+
+        if (index == 0) {
+            addPeriod($container);
+            $("#action_calendar_periods > div > a").remove();
+
+        } else {
+            $container.children('div').each(function () {
+                addDeleteLink($(this));
+            });
+        }
+
+        function addPeriod($container) {
+            var template = $container.attr('data-prototype')
+                    .replace(/__name__label__/g, '')
+                    .replace(/__name__/g, index)
+                    .replace(/Start datetime/g, "Début d'intervention")
+                    .replace(/End datetime/g, "Fin d'intervention")
+                    .replace(/form-group/g, "form-group col-lg-12")
+
+
+                ;
+
+            var $prototype = $(template);
+            addDeleteLink($prototype);
+            $container.append($prototype);
+
+
+            $('input[id*="startDatetime_time"]').addClass("time start");
+            $('input[id*="startDatetime_date"]').addClass("date start");
+            $('input[id*="endDatetime_time"]').addClass("time end");
+            $('input[id*="endDatetime_date"]').addClass("date end");
+
+            // initialize input widgets first
+            $('.time').timepicker({
+                'showDuration': true,
+                'timeFormat': 'G:i',
+                'show2400': true
+            });
+
+            $('.date').datepicker({
+                'format': 'dd/mm/yyyy',
+                'startView': 'months',
+                'minView': 'days',
+                'language': 'fr',
+                'autoclose': true
+            });
+
+            // initialize datepair
+            var basicExampleEl = document.getElementById('action_calendar_periods_' + (index));
+            var datepair = new Datepair(basicExampleEl, {
+                anchor: 'null'
+            });
+
+            index++;
+        }
+
+        function addDeleteLink($prototype) {
+            var $deleteLink = $('<a href="#" style="position: absolute;top: -35px;right:20px;"><i class="btn btn-pure btn-danger icon wb-trash" aria-hidden="true"></i></a>');
+            $prototype.append($deleteLink);
+            $deleteLink.click(function (e) {
+                $prototype.remove();
+
+                index--;
+
+                e.preventDefault();
+                return false;
+            });
+        }
+    });
+</script>
 
 {% if app.user.farm.farmSpecialities is not empty %}
 <script type="text/javascript">
     $(document).ready(function () {
-        var $container2 = $('div#action_edit_farmSpecialityMvts');
+        var $container2 = $('div#action_calendar_farmSpecialityMvts');
         var index2 = $container2.find(':input').length;
         $('#add_mvt').click(function (e) {
             addMvt($container2);
@@ -12,7 +92,7 @@
 
         if (index2 == 0) {
             addMvt($container2);
-            $("#action_edit_farmSpecialityMvts > div > a").remove();
+            $("#action_calendar_farmSpecialityMvts > div > a").remove();
         } else {
             $container2.children('div').each(function () {
                 addDeleteLink2($(this));
@@ -55,7 +135,7 @@
 {% if app.user.farm.farmFertilizers is not empty %}
 <script type="text/javascript">
     $(document).ready(function () {
-        var $container4 = $('div#action_edit_farmFertilizerMvts');
+        var $container4 = $('div#action_calendar_farmFertilizerMvts');
         var index4 = $container4.find(':input').length;
         $('#add_ferti_mvt').click(function (e) {
             addFertiMvt($container4);
@@ -65,7 +145,7 @@
 
         if (index4 == 0) {
             addFertiMvt($container4);
-            $("#action_edit_farmFertilizerMvts > div > a").remove();
+            $("#action_calendar_farmFertilizerMvts > div > a").remove();
         } else {
             $container4.children('div').each(function () {
                 addDeleteLink4($(this));
@@ -108,7 +188,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var $container3 = $('div#action_edit_harvestProducts');
+        var $container3 = $('div#action_calendar_harvestProducts');
         var index3 = $container3.find(':input').length;
         $('#add_harvest').click(function (e) {
             addHarvest($container3);
@@ -118,7 +198,7 @@
 
         if (index3 == 0) {
             addHarvest($container3);
-            $("#action_edit_harvestProducts > div > a").remove();
+            $("#action_calendar_harvestProducts > div > a").remove();
 
         } else {
             $container3.children('div').each(function () {
@@ -160,7 +240,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var $container6 = $('div#action_edit_expenses');
+        var $container6 = $('div#action_calendar_expenses');
         var index6 = $container6.find(':input').length;
         $('#add_expense').click(function (e) {
             addExpense($container6);
@@ -170,7 +250,7 @@
 
         if (index6 == 0) {
             addExpense($container6);
-            $("#action_edit_expenses > div > a").remove();
+            $("#action_calendar_expenses > div > a").remove();
 
         } else {
             $container6.children('div').each(function () {
@@ -213,7 +293,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        var $container7 = $('div#action_edit_irrigations');
+        var $container7 = $('div#action_calendar_irrigations');
         var index7 = $container7.find(':input').length;
         $('#add_irrigation').click(function (e) {
             addIrrigation($container7);
@@ -223,7 +303,7 @@
 
         if (index7 == 0) {
             addIrrigation($container7);
-            $("#action_edit_irrigations > div > a").remove();
+            $("#action_calendar_irrigations > div > a").remove();
 
 
         } else {
@@ -270,22 +350,22 @@
 
 
 <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('#farmSpecialities').hide();
-                        $('#farmFertilizers').hide();
-                        $('#harvestProducts').hide();
-                        $('#density').hide();
-                        $('#auxiliary').hide();
-                        $('#ph').hide();
-                        $('#irrigations').hide();
-                        $('#tankVolume').hide();
-                        $('#drainage').hide();
+    $(document).ready(function () {
+        $('#farmSpecialities').hide();
+        $('#farmFertilizers').hide();
+        $('#harvestProducts').hide();
+        $('#density').hide();
+        $('#auxiliary').hide();
+        $('#ph').hide();
+        $('#irrigations').hide();
+        $('#tankVolume').hide();
+        $('#drainage').hide();
 
 
-                        $('#action_edit_intervention').on('change', function () {
-                            if ($("#action_edit_intervention").select2('data')[0]['text'] == "Traitement phytosanitaire") {
-                                $('#density').hide("slow");
-                                $('#harvestProducts').hide("slow");
+        $('#action_calendar_intervention').on('change', function () {
+            if ($("#action_calendar_intervention").select2('data')[0]['text'] == "Traitement phytosanitaire") {
+                $('#density').hide("slow");
+                $('#harvestProducts').hide("slow");
                 $('#auxiliary').hide("slow");
                 $('#farmFertilizers').hide("slow");
                 $('#ph').hide("slow");
@@ -299,7 +379,7 @@
                 $('#nbWorkers').show("slow");
                 $('#tractors').show("slow");
 
-            } else if ($("#action_edit_intervention").select2('data')[0]['text'] == "Fertilisation") {
+            } else if ($("#action_calendar_intervention").select2('data')[0]['text'] == "Fertilisation") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
@@ -315,7 +395,7 @@
                 $('#nbWorkers').show("slow");
                 $('#tractors').show("slow");
 
-            }else if ($("#action_edit_intervention").select2('data')[0]['text'] == "Préparation d'une cuve de solution-mère") {
+            }else if ($("#action_calendar_intervention").select2('data')[0]['text'] == "Préparation d'une cuve de solution-mère") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
@@ -332,7 +412,7 @@
                 $('#nbWorkers').show("slow");
                 $('#tractors').show("slow");
 
-            }else if ($("#action_edit_intervention").select2('data')[0]['text'] == "Irrigation"||$("#action_edit_intervention").select2('data')[0]['text'] == "Programme d'irrigation") {
+            }else if ($("#action_calendar_intervention").select2('data')[0]['text'] == "Irrigation"||$("#action_calendar_intervention").select2('data')[0]['text'] == "Programme d'irrigation") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
@@ -348,7 +428,7 @@
                 $('#nbWorkers').show("slow");
                 $('#tractors').show("slow");
 
-            }else if ($("#action_edit_intervention").select2('data')[0]['text'] == "Récolte") {
+            }else if ($("#action_calendar_intervention").select2('data')[0]['text'] == "Récolte") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
@@ -365,7 +445,7 @@
                 $('#tractors').show("slow");
 
 
-            }else if($("#action_edit_intervention").select2('data')[0]['text'].indexOf('auxiliaire') > -1) {
+            }else if($("#action_calendar_intervention").select2('data')[0]['text'].indexOf('auxiliaire') > -1) {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
@@ -381,10 +461,10 @@
                 $('#nbWorkers').show("slow");
                 $('#tractors').show("slow");
             }
-            else if ($("#action_edit_intervention").select2('data')[0]['text'] == "Semis direct" ||
-                $("#action_edit_intervention").select2('data')[0]['text'] == "Semis pépinière" ||
-                $("#action_edit_intervention").select2('data')[0]['text'] == "Repiquage/Plantation" ||
-                $("#action_edit_intervention").select2('data')[0]['text'] == "Semis") {
+            else if ($("#action_calendar_intervention").select2('data')[0]['text'] == "Semis direct" ||
+                $("#action_calendar_intervention").select2('data')[0]['text'] == "Semis pépinière" ||
+                $("#action_calendar_intervention").select2('data')[0]['text'] == "Repiquage/Plantation" ||
+                $("#action_calendar_intervention").select2('data')[0]['text'] == "Semis") {
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
                 $('#auxiliary').hide("slow");
@@ -400,7 +480,7 @@
                 $('#nbWorkers').show("slow");
                 $('#tractors').show("slow");
 
-            } else if($("#action_edit_intervention").select2('data')[0]['text'] == "Observation") {
+            } else if($("#action_calendar_intervention").select2('data')[0]['text'] == "Observation") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
@@ -415,7 +495,7 @@
                 $('#tankVolume').hide();
                 $('#drainage').hide("slow");
 
-            } else if($("#action_edit_intervention").select2('data')[0]['text'] == "Relevé pH/EC") {
+            } else if($("#action_calendar_intervention").select2('data')[0]['text'] == "Relevé pH/EC") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");
@@ -431,7 +511,7 @@
 
                 $('#nbWorkers').show("slow");
                 $('#periods').show("slow");
-            }else if($("#action_edit_intervention").select2('data')[0]['text'] == "Relevé de drainage") {
+            }else if($("#action_calendar_intervention").select2('data')[0]['text'] == "Relevé de drainage") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#harvestProducts').hide("slow");

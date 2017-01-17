@@ -15,6 +15,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Action;
 use AppBundle\Form\ActionType;
 use AppBundle\Form\ActionModalType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
@@ -307,6 +308,24 @@ class ActionController extends Controller
             'action' => $action,
             'delete_form' => $deleteForm->createView(),
         ));
+    }
+
+    /**
+     * Finds and displays a Action entity.
+     *
+     * @Security("is_granted('VIEW', action) or is_granted('ROLE_ADMIN')")
+     * @Route("/action/{id}/ajax", name="action_ajax_show", options = { "expose" = true })
+     * @Method("GET")
+     * @param Action $action
+     * @return Response
+     */
+    public function showAjaxAction(Action $action)
+    {
+        $template = $this->renderView('AppBundle:action:show_ajax.html.twig',array(
+            'action'=>$action
+        ));
+        return new JsonResponse(array('data' => $template));
+
     }
 
     /**

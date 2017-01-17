@@ -82,6 +82,9 @@ Planning
             visibility: hidden !important;
         }
     </style>
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 {% endblock %}
 
 {% block body_class %}animsition site-navbar-small app-calendar page-aside-left{% endblock %}
@@ -263,7 +266,7 @@ Planning
 
                             },
                             draggable:false,
-                            editable: false,
+                            editable: true,
                             eventLimit: true,
                             windowResize: function windowResize(view) {
                                 var width = $(window).outerWidth();
@@ -276,7 +279,16 @@ Planning
                             },
                             eventClick: function eventClick(event) {
                                 $('#showEvent').modal('show');
-                                $('#pushHere').append(event.id)
+                                $('#pushHere').html('<div style="margin-left: 50%; margin-top:40px; margin-bottom:40px;" class="loader loader-default"></div>');
+                                $.ajax({
+                                    type: "GET",
+                                    dataType: 'json',
+                                    url: Routing.generate('action_ajax_show', { id: event.id })
+                                })
+                                        .done(function(response){
+
+                                            $('#pushHere').html(response.data); //Change the html of the div with the id = "your_div"
+                                        });
 
                             },
                             eventDragStart: function eventDragStart() {
