@@ -1,0 +1,64 @@
+<table class="table" >
+    <thead>
+    <tr>
+        {% if fertilizer.organic%}
+        <th>Bio</th>
+        {% endif %}
+        <th>N</th>
+        <th>P205</th>
+        <th>K2O</th>
+        <th>CaO</th>
+        <th>MgO</th>
+        <th>Fe</th>
+        <th>SO3</th>
+        <th>B</th>
+        <th>Mn</th>
+        <th>Zn</th>
+        <th>Cu</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            {% if fertilizer.organic%}
+
+            <td>
+                    <span class="tag tag-info">Autorisé</span>
+            </td>
+            {% endif %}
+
+            <td>
+                {{ fertilizer.n }}
+            </td>
+            <td>
+                {{ fertilizer.p2O5 }}
+            </td>
+            <td>
+                {{ fertilizer.k2O }}
+            </td>
+            <td>
+                {{ fertilizer.caO }}
+            </td>
+            <td>
+                {{ fertilizer.mgO }}
+            </td>
+            <td>
+                {{ fertilizer.fe }}
+            </td>
+            <td>
+                {{ fertilizer.sO3 }}
+            </td>
+            <td>
+                {{ fertilizer.b }}
+            </td>
+            <td>
+                {{ fertilizer.mn }}
+            </td>
+            <td>
+                {{ fertilizer.zn }}
+            </td>
+            <td>
+                {{ fertilizer.cu }}
+            </td>
+        </tr>
+    </tbody>
+</table>

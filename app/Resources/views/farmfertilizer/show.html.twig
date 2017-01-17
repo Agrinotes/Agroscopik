@@ -115,7 +115,9 @@
             <!-- Panel Table Tools -->
             <div class="panel col-md-9" id="tableTools">
                 <header class="panel-heading">
-                    <h4 class="panel-title" style="font-size:16px;"><a href="{{ path('farmfertilizer_index') }}">Engrais
+                    <h4 class="panel-title" style="font-size:16px;">Mes stocks
+                        <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i></small>
+                        <a href="{{ path('farmfertilizer_index') }}">Engrais
                             et amendements</a>
                         <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i>
                         </small>
@@ -196,10 +198,9 @@
             <div class="col-md-9 panel">
                 <div class="panel-heading">
                     <h4 class="panel-title" style="font-size:16px;">Composition</h4>
-
                 </div>
                 <div class="panel-body">
-                    {{ render(controller('AppBundle:Fertilizer:show',{'id':farmFertilizer.fertilizer.id})) }}
+                    {{ render(controller('AppBundle:Fertilizer:showComposition',{'id':farmFertilizer.fertilizer.id})) }}
                 </div>
             </div>
         </div>

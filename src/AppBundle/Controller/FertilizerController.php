@@ -78,6 +78,21 @@ class FertilizerController extends Controller
     }
 
     /**
+     * Finds and displays a Fertilizer entity.
+     *
+     * @Route("/{id}/composition", name="fertilizer_composition_show")
+     * @Method("GET")
+     */
+    public function showCompositionAction(Fertilizer $fertilizer)
+    {
+        $deleteForm = $this->createDeleteForm($fertilizer);
+
+        return $this->render('fertilizer/show_composition.html.twig', array(
+            'fertilizer' => $fertilizer,
+        ));
+    }
+
+    /**
      * Displays a form to edit an existing Fertilizer entity.
      *
      * @Route("/{id}/edit", name="fertilizer_edit")
