@@ -20,7 +20,7 @@ class HarvestProductType extends AbstractType
     {
         $builder
             ->add('qty',NumberType::class,array(
-                'label' => 'Définir la quantité récoltée',
+                'label' => 'Quantité récoltée',
                 'attr' => array('class' => 'form-control'),
                 'required' => false,
 
@@ -29,7 +29,7 @@ class HarvestProductType extends AbstractType
                 'class' => 'AppBundle:Unit',
                 'choice_label' => 'symbol',
                 'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
-                'label' => 'Choisir l\'unité',
+                'label' => 'Choisir l\'unité de récolte',
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,
@@ -45,7 +45,7 @@ class HarvestProductType extends AbstractType
                 },
                 ))
             ->add('price',NumberType::class,array(
-                'label' => 'Définir le prix moyen',
+                'label' => 'Prix de vente moyen',
                 'attr' => array('class' => 'form-control'),
                 'required' => false,
 
@@ -54,7 +54,7 @@ class HarvestProductType extends AbstractType
                 'class' => 'AppBundle:Unit',
                 'choice_label' => 'symbol',
                 'attr' => array('class' => 'form-control', 'data-plugin' => 'select2'),
-                'label' => 'Choisir l\'unité du prix de vente',
+                'label' => 'Unité du prix de vente',
                 'required' => false,
                 'multiple' => false,
                 'expanded' => false,

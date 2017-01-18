@@ -210,7 +210,7 @@
             var template3 = $container3.attr('data-prototype')
                     .replace(/__name__label__/g, '')
                     .replace(/__name__/g, index3)
-                    .replace(/form-group/g, "form-group col-lg-6")
+                    .replace(/form-group/g, "form-group col-lg-12")
 
 
                 ;

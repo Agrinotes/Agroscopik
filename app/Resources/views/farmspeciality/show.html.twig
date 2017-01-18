@@ -1,131 +1,507 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block head_javascripts %}
+{% block title %}{{ farmSpeciality.speciality.name | capitalize }}{% endblock %}
+
+{% block plugins_stylesheets %}
     {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/jt-timepicker/jquery-timepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/asspinner/asSpinner.css') }}">
 {% endblock %}
 
+{% block page_stylesheets %}
+    {{ parent() }}
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        .highcharts-credits {
+            visibility: hidden !important;
+        }
+    </style>
+{% endblock %}
 
 {% block page %}
-    <div class="page animsition">
-        <div class="page-header padding-top-20 padding-bottom-10">
-            <ol class="breadcrumb">
-                <li><a href="{{ path('farmspeciality_index') }}">Local phytosanitaire</a></li>
-                <li class="active">{{ farmSpeciality.speciality.name }}</li>
-            </ol>
-        </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-9">
-                    {% for type, messages in app.session.flashbag.all() %}
-                        {% for message in messages %}
-                    <div class="alert dark alert-alt alert-{{ type }} alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                                {{ message}}
-                            </div>
+    <div class="page-content">
+        <div class="row" id="stock">
+            <!-- Panel Basic used as temporary fix -->
+            <div class="panel " style="display:none;">
+                <header class="panel-heading">
+                    <div class="panel-actions"></div>
+                    <h3 class="panel-title"></h3>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" data-plugin="dataTable">
+                        <thead>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th>Temporary fix here</th>
+                        </tr>
+                        </tfoot>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End Panel Basic -->
+
+            <!-- Panel Table Tools -->
+            <div class="panel col-md-9" id="tableTools">
+                <header class="panel-heading">
+                    <h4 class="panel-title" style="font-size:16px;">Mes stocks
+                        <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i></small>
+                        <a href="{{ path('farmspeciality_index') }}">Produits phytosanitaires</a>
+                        <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i>
+                        </small>
+                        {{ farmSpeciality.speciality.name | trim | capitalize }}
+
+                    </h4>
+                    <div class="panel-actions panel-actions-keep">
+                        <a class="panel-action icon wb-settings"
+                           href="{{ path('farmspeciality_edit',{'id':farmSpeciality.id}) }}" aria-hidden="true"></a>
+
+                    </div>
+                </header>
+                <div class="panel-body">
+                    <table class="table table-hover dataTable table-striped w-full" id="exampleTableTools">
+                        <thead>
+                        <tr>
+                            <th>Intitulé</th>
+                            <th>Date</th>
+                            <th>Mouvement de stock</th>
+                            <th>Prix</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for farmSpecialityMvt in farmSpeciality.movements %}
+                            <tr>
+                                <td>
+                                    <a class="actionLink"
+                                       href="{{ path('farmspecialitymvt_show', { 'id': farmSpecialityMvt.id }) }}">{{ farmFertilizerMvt.category.name }} {% if farmFertilizerMvt.action is not empty %}sur {% endif %}{{ farmFertilizerMvt.action.cropcycle.label | trim |capitalize }}
+                                    </a>
+                                </td>
+                                <td>
+                                    {{ farmSpecialityMvt.datetime|date('d/m/Y') }}
+                                </td>
+                                <td>
+                                    {% if farmSpecialityMvt.category.slug == "useAction" or farmSpecialityMvt.amount < 0 %}-{% endif %}
+                                    {{ farmSpecialityMvt.amount|abs|number_format(0,'',' ') }}
+                                    {{ farmSpecialityMvt.unit.symbol }}
+
+                                </td>
+                                <td>
+                                    {% if farmSpecialityMvt.price != 0 %}
+                                        {{ farmSpecialityMvt.price |number_format(0,',',' ') }} CFP
+                                    {% endif %}
+                                </td>
+                            </tr>
                         {% endfor %}
-                    {% endfor %}
-
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{{ farmSpeciality.speciality.name }}</h3>
-
-                            <div class="panel-actions">
-                                <a class="btn btn-default"  href="{{ path('speciality_show',{'id':farmSpeciality.speciality.id}) }}">Voir les usages autorisés</a>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <!-- Example Tabs Line -->
-                            <div class="example-wrap margin-lg-0">
-                                <div class="nav-tabs-horizontal">
-                                    <ul class="nav nav-tabs nav-tabs-line" data-plugin="nav-tabs" role="tablist">
-                                        <li class="active" role="presentation"><a data-toggle="tab"
-                                                                                  href="#exampleTabsLineOne"
-                                                                                  aria-controls="exampleTabsLineOne"
-                                                                                  role="tab" style="font-size: 16px;">Historique
-                                                Stock</a></li>
-                                        <li role="presentation"><a data-toggle="tab" href="#exampleTabsLineTwo"
-                                                                   aria-controls="exampleTabsLineTwo"
-                                                                   role="tab" style="font-size: 16px;">Traitements</a>
-                                        </li>
 
 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- End Panel Table Tools -->
 
-                                    </ul>
-                                    </li>
-                                    </ul>
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="exampleTabsLineOne" role="tabpanel">
-                                            {% if farmSpeciality.movements is empty %}
-                                                <p class="margin-top-20">
-                                                    Aucun mouvement de stock enregistré.
-                                                </p>
-                                            {% else %}
-                                                {{ render(controller('AppBundle:FarmSpecialityMvt:list',{'id': farmSpeciality.id } )) }}
-                                            {% endif %}
-
-
-                                        </div>
-                                        <div class="tab-pane" id="exampleTabsLineTwo" role="tabpanel">
-                                            <p class="margin-top-20">
-                                                Cette fonctionnalité pourra être développée à l'avenir
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Example Tabs Line With JS -->
+            <div class="col-md-3">
+                <!-- Card -->
+                <div class="card card-block p-30">
+                    <div class="counter counter-lg">
+                        <div class="counter-label text-uppercase">Stock actuel</div>
+                        <div class="counter-number-group">
+                <span class="counter-icon m-r-10 grey-300">
+                  <i class="wb-stats-bars"></i>
+                </span>
+                            <span class="counter-number">{{ farmSpecialityMvt.stock |number_format(0,'',' ') }}</span>
+                <span class="counter-number-related">                  Unité                  {{farmSpecialityMvt.fullUnit}}
+</span>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
-                    <div class="widget margin-bottom-10">
-                        <div class="widget-content padding-30 bg-cyan-700">
-                            <div class="counter counter-lg counter-inverse">
-                                <div class="counter-label text-uppercase">Stock</div>
-                                <div class="counter-number-group">
-                                    <span class="counter-number">{{ farmSpeciality.stock |number_format(2,',',' ') }}</span>
-                                    <span class="counter-number-related font-size-14">{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif %}</span>
-                                </div>
-                                <div>{{ farmSpeciality.unitPrice |number_format(0,',',' ') }} CFP/{%  if farmSpeciality.speciality.unitCategory.slug == "volume" %}L{% elseif farmSpeciality.speciality.unitCategory.slug == "mass" %}kg{% else %}{% endif %}</div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- End Card -->
+                <button onClick="switchPanels();" class="btn btn-block btn-info"
+                        style="color:white; font-weight: 500; margin-top:-15px;">AJUSTER LE STOCK
+                </button>
 
-                    <button class="btn btn-info waves-effect waves-light btn-block" data-target="#exampleNiftyFlipVertical" data-toggle="modal" type="button">Ajuster le stock</button>
+                <button id="toChart" class="btn btn-block btn-danger">VOIR LE GRAPHE</button>
 
-                    <div class="modal fade modal-3d-flip-vertical modal-info" id="exampleNiftyFlipVertical" aria-hidden="true" aria-labelledby="exampleModalTitle" role="dialog" tabindex="-1" style="display: none;">
-                        <div class="modal-dialog">
-                            {{ render(controller('AppBundle:FarmSpecialityMvt:new',{'id': farmSpeciality.id } )) }}
-                        </div>
-                    </div>
-
+            </div>
+            <div class="col-md-9 panel">
+                <div class="panel-heading">
+                    <h4 class="panel-title" style="font-size:16px;">Composition</h4>
+                </div>
+                <div class="panel-body">
+                    {# render(controller('AppBundle:Fertilizer:showComposition',{'id':farmFertilizer.fertilizer.id})) #}
                 </div>
             </div>
         </div>
+
+        <!-- Panel Add Action -->
+        <div class="row" id="updateStock" style="display: none;">
+            <div class="col-lg-3 col-md-0">
+
+            </div>
+            <div class="col-lg-6">
+                <div class="panel panel-info panel-bordered">
+                    <header class="panel-heading">
+                        <div class="panel-actions"></div>
+                        <h3 class="panel-title">Ajuster le stock</h3>
+                    </header>
+                    <div class="panel-body" style="padding-top:20px;">
+                        {# render(controller('AppBundle:FarmFertilizerMvt:updateStock',{'id':farmFertilizer.id})) #}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Panel Add Action -->
+
+        <!-- Charts -->
+        <div class="row" style="margin-left:0px; margin-right: 20px;" id="chart">
+            <div class="col-md-12">
+                <div class="panel" id="soil-productivity-chart">
+                    <div class="panel-body">
+                        <div id="container1"
+                             style="min-width: 310px; min-height: 400px; height: 70vh; margin: auto"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End charts -->
+
     </div>
 {% endblock %}
 
-{% block javascripts %}
+{% block plugins_javascripts %}
     {{ parent() }}
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/datatables-tabletools/dataTables.tableTools.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/asrange/jquery-asRange.min.js') }}"></script>
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/bootbox/bootbox.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+    <script src="https://cdn.datatables.net/plug-ins/1.10.13/sorting/datetime-moment.js"></script>
+
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.min.js') }}"></script>
+    {#<script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/select2.js') }}"></script>#}
+
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/jt-timepicker/jquery.timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/datepair-js/jquery.datepair.min.js') }}"></script>
+    <script src="{{ asset('front/global/vendor/asspinner/jquery-asSpinner.min.js') }}"></script>
+
+
+    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/jt-timepicker.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/datepair-js.js') }}"></script>
+    <script src="{{ asset('front/global/js/components/asspinner.js') }}"></script>
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+    <script>
+        Highcharts.setOptions({
+            lang: {
+                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',  'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+                weekdays: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+                shortMonths: [ "Jan" , "Fev" , "Mar" , "Avr" , "Mai" , "Juin" , "Juil" , "Août" , "Sep" , "Oct" , "Nov" , "Déc"],
+                rangeSelectorFrom: 'Du',
+                rangeSelectorTo: 'au',
+                downloadJPEG: 'Télécharger au format JPEG',
+                downloadPNG: 'Télécharger au format PNG',
+                downloadPDF: 'Télécharger au format PDF',
+                downloadSVG: 'Télécharger au format SVG',
+                printChart: 'Imprimer le graphe',
+
+
+
+
+            },
+            chart: {
+                style: {
+                    fontFamily: 'Roboto'
+                }
+            }
+        });
+    </script>
+
+{% endblock %}
+
+{% block page_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('remark/3.0.5/classic/global/js/Plugin/datatables.js') }}"></script>
+
+    <script>
+        /*!
+         * remark (http://getbootstrapadmin.com/remark)
+         * Copyright 2016 amazingsurge
+         * Licensed under the Themeforest Standard Licenses
+         */
+        (function (document, window, $) {
+            'use strict';
+
+            var Site = window.Site;
+
+            $(document).ready(function ($) {
+                Site.run();
+            });
+
+
+            // Table Tools
+            // -----------
+            (function () {
+
+                $(document).ready(function () {
+                    {# Sort dates #}
+                    $.fn.dataTable.moment('DD/MM/YYYY');
+
+                    {# Sort hectares and CFP #}
+                    $.fn.dataTableExt.oSort['formatted-num-pre'] = function (a) {
+                        a = (a === "-" || a === "") ? 0 : a.replace(/[^\d\-\.]/g, "");
+                        return parseFloat(a);
+                    }
+
+                    $.fn.dataTableExt.oSort['formatted-num-asc'] = function (a, b) {
+                        return a - b;
+                    }
+                    $.fn.dataTableExt.oSort['formatted-num-desc'] = function (a, b) {
+                        return b - a;
+                    }
+
+                    var defaults = Plugin.getDefaults("dataTable");
+
+                    var options = $.extend(true, {}, defaults, {
+                        columnDefs: [
+                            {type: 'formatted-num', targets: [2, 3]}
+                        ],
+                        "order": [[1, "desc"]],
+                        "iDisplayLength": 10,
+                        "aLengthMenu": [
+                            [5, 10, 25, 50, -1],
+                            [5, 10, 25, 50, "All"]
+                        ],
+                        "sDom": '<"dt-panelmenu clearfix"Tfr>t<"dt-panelfooter clearfix"ip>',
+                        "oTableTools": {
+                            "sSwfPath": "{{ asset('remark/3.0.5/classic/global/vendor/datatables-tabletools/swf/copy_csv_xls_pdf.swf') }}"
+                        }
+                    });
+
+                    $('#exampleTableTools').dataTable(options);
+                });
+            })();
+
+
+        })(document, window, jQuery);
+
+    </script>
+
+    <script>
+        var i = 0;
+        function switchPanels() {
+            if (i % 2 == 0) {
+                $('#stock').hide();
+                $('#updateStock').fadeIn(400);
+                if (i == 0) {
+                    $('.select2').select2();
+                    $('.date').datepicker({
+                        'format': 'mm/yyyy',
+                        'startView': 'decade',
+                        'minViewMode': 'months',
+                        'language': 'fr',
+                        'orientation': 'bottom',
+                        'autoclose': true
+                    });
+
+                }
+            } else {
+                $('#updateStock').hide();
+                $('#stock').fadeIn(400);
+            }
+            i++;
+        }
+        ;
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function () {
+            $('#togglePrice').hide();
 
-
-            $('#farm_speciality_mvt_category').on('change', function() {
-                if($("#farm_speciality_mvt_category option:selected").text()=="Nouvel achat de produit"){
-                    $('#togglePrice').show();
-
-                }else{
-                    $('#togglePrice').hide();
+            $('#farm_speciality_mvt_update_stock_category').on('change', function () {
+                if ($("#farm_speciality_mvt_update_stock_category").select2('data')[0]['text'] == "Achat") {
+                    $('#togglePrice').show("slow");
+                } else {
+                    $('#togglePrice').hide("slow");
                 }
+            })
+        });
+    </script>
+
+    <script>
+        $(function () {
+            Highcharts.stockChart('container1', {
+                rangeSelector: {
+                    inputDateFormat:'%e %B %Y',
+                    inputEditDateFormat:'%d/%m/%Y',
+                    inputBoxWidth: 110,
+                    selected: 5,
+                    buttons: [{
+                        type: 'month',
+                        count: 1,
+                        text: '1m'
+                    }, {
+                        type: 'month',
+                        count: 3,
+                        text: '3m'
+                    }, {
+                        type: 'month',
+                        count: 6,
+                        text: '6m'
+                    }, {
+                        type: 'year',
+                        count: 1,
+                        text: '1 an'
+                    }, {
+                        type: 'all',
+                        text: 'Tout'
+                    }]
+                },
+                title: {
+                    text: '{{ farmSpeciality.speciality.name }} - Quantités consommées sur l\'exploitation'
+                },
+                xAxis: {
+                    type: 'datetime',
+                    title: {
+                        text: 'Date'
+                    }
+                },
+                yAxis: [{
+                    title: {
+                        text: 'Utilisation en kg',
+                    },
+                    tooltip: {
+                        headerFormat: '<b>{series.name}</b><br>',
+                        pointFormat: '{point.x:%e. %b}: {point.stackTotal:.0f} kg'
+                    }
+                }
+                ],
+                tooltip:{
+                    split:false,
+                    backgroundColor: 'white',
+                    borderColor: 'black',
+                    borderRadius: 10,
+                    borderWidth:.5
+                },
+                legend: {
+                    enabled: true,
+                    verticalAlign: 'top',
+                    floating:true,
+                    y: 100
+                },
+
+                plotOptions: {
+                    spline: {
+                        marker: {
+                            enabled: true
+                        }
+                    }
+                },
+
+                series: [ {
+                    stacking: 'normal',
+                    name: 'Utilisation d\'engrais',
+                    type: 'column',
+                    tooltip: {
+                        headerFormat: '<b>{point.x:%e %B}</b><br/>',
+                        pointFormat: '{point.stackTotal:,.0f} kg'
+                    },
+
+                    data: [{% for movement in farmSpeciality.movements %}
+                            {% if movement.amount is not empty and movement.category.slug == "useAction"%}[Date.UTC({{ movement.datetime | date_modify("-1 month")| date ('Y,m,d') }}), {{ movement.amount |abs }}]
+                        {% if not loop.last %}, {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                    ]
+                }
+                ]
             });
         });
     </script>
+    <script>    $("#toChart").click(function() {
+            $('html, body').animate({
+                scrollTop: $("#container1").offset().top
+            }, 1000);
+        });</script>
+
+
+
 {% endblock %}
-
-
-

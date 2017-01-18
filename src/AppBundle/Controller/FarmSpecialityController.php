@@ -36,7 +36,7 @@ class FarmSpecialityController extends Controller
 
         $farmSpecialities = $em->getRepository('AppBundle:FarmSpeciality')->findAllForCurrentFarm($farm->getId());
 
-        return $this->render('farmspeciality/index2.html.twig', array(
+        return $this->render('farmspeciality/index.html.twig', array(
             'farmSpecialities' => $farmSpecialities,
         ));
     }
