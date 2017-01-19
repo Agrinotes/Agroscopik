@@ -71,8 +71,6 @@ class ImportCommand extends ContainerAwareCommand
 
                 $output->writeln('<comment>Added ' . $row[3] . ' ---</comment>');
 
-            }else{
-                $output->writeln('<comment>Already exists ' . $row[3] . ' ---</comment>');
             }
 
 

@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Resources/config/services.yml" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/config/services.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" afterPath="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" afterPath="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,33 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.827586">
-              <caret line="119" column="25" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="25" />
-              <folding>
-                <element signature="e#12#33#0#Twig" expanded="false" />
-                <element signature="e#105#825#0#Twig" expanded="false" />
-                <element signature="e#827#2348#0#Twig" expanded="false" />
-                <element signature="e#2491#3478#0#HTML" expanded="false" />
-                <element signature="e#5127#5155#0#HTML" expanded="true" />
-                <element signature="e#5878#5906#0#HTML" expanded="true" />
-                <element signature="e#7151#7173#0#HTML" expanded="true" />
-                <element signature="e#7606#7631#0#HTML" expanded="true" />
-                <marker date="1484795489600" expanded="true" signature="7859:10089" placeholder="{% block plugins_javascripts ...%}" />
-                <marker date="1484795489600" expanded="true" signature="10091:13334" placeholder="{% block page_javascripts ...%}" />
-                <marker date="1484795489600" expanded="true" signature="12711:12878" placeholder="{% for fertilizer in fertilizers ...%}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImportCommand.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImportCommand.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74647886">
-              <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
+            <state vertical-scroll-proportion="-16.896551">
+              <caret line="73" column="13" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
                 <element signature="e#1973#1995#1#PHP" expanded="true" />
@@ -114,11 +89,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConvertCsvToArray.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ConvertCsvToArray.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.310345">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.64788735">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -226,8 +201,8 @@
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/config/services.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
       </list>
     </option>
   </component>
@@ -1126,9 +1101,9 @@
             <element signature="e#5878#5906#0#HTML" expanded="true" />
             <element signature="e#7151#7173#0#HTML" expanded="true" />
             <element signature="e#7606#7631#0#HTML" expanded="true" />
-            <marker date="1484795489600" expanded="true" signature="7859:10089" placeholder="{% block plugins_javascripts ...%}" />
-            <marker date="1484795489600" expanded="true" signature="10091:13334" placeholder="{% block page_javascripts ...%}" />
-            <marker date="1484795489600" expanded="true" signature="12711:12878" placeholder="{% for fertilizer in fertilizers ...%}" />
+            <marker date="1484795489600" expanded="true" signature="-1:-1" placeholder="{% block plugins_javascripts ...%}" />
+            <marker date="1484795489600" expanded="true" signature="-1:-1" placeholder="{% block page_javascripts ...%}" />
+            <marker date="1484795489600" expanded="true" signature="-1:-1" placeholder="{% for fertilizer in fertilizers ...%}" />
           </folding>
         </state>
       </provider>
@@ -1190,22 +1165,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.310345">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74647886">
-          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
+        <state vertical-scroll-proportion="-16.896551">
+          <caret line="73" column="13" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
             <element signature="e#1973#1995#1#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64788735">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
