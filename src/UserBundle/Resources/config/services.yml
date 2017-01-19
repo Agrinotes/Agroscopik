@@ -13,3 +13,5 @@ services:
             - "@router"
         tags:
             - { name: kernel.event_subscriber }
+    import.csvtoarray:
+        class: AppBundle\Services\ConvertCsvToArray
