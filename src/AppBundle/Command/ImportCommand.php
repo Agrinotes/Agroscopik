@@ -5,6 +5,7 @@ namespace AppBundle\Command;
 use AppBundle\Entity\Speciality;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -16,8 +17,10 @@ class ImportCommand extends ContainerAwareCommand
     {
         // Name and description for app/console command
         $this
-            ->setName('import:csv')
-            ->setDescription('Update pesticides from CSV file');
+            ->setName('update:pesticides')
+            ->setDescription('Update pesticides from CSV file')
+            ->addArgument('path', InputArgument::REQUIRED, 'The path to the csv file.')
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -46,8 +49,11 @@ class ImportCommand extends ContainerAwareCommand
 
         // Define the size of record, the frequency for persisting the data and the current index of records
         $size = count($data);
+
         $batchSize = 20;
         $i = 1;
+        $added = 0;
+        $dismissed = 0;
 
         // Starting progress
         $progress = new ProgressBar($output, $size);
@@ -71,18 +77,11 @@ class ImportCommand extends ContainerAwareCommand
 
                 $output->writeln('<comment>Added ' . $row[3] . ' ---</comment>');
 
+                $added++;
+
+            }else{
+                $dismissed++;
             }
-
-
-
-            // Updating info
-            //$user->setLastName($row['lastname']);
-            //$user->setFirstName($row['firstname']);
-
-            // Do stuff here !
-
-            // Persisting the current user
-            //$em->persist($speciality);
 
             // Each 20 users persisted we flush everything
             if (($i % $batchSize) === 0) {
@@ -95,7 +94,7 @@ class ImportCommand extends ContainerAwareCommand
                 $progress->advance($batchSize);
 
                 $now = new \DateTime();
-                $output->writeln(' of pesticides imported ... | ' . $now->format('d-m-Y G:i:s'));
+                $output->writeln(' of pesticides processed ... | ' . $now->format('d-m-Y G:i:s'));
 
             }
 
@@ -109,12 +108,14 @@ class ImportCommand extends ContainerAwareCommand
 
         // Ending the progress bar process
         $progress->finish();
+        $output->writeln('<comment>Added ' . $added .' | Dismissed '.$dismissed.' ---</comment>');
+
     }
 
     protected function get(InputInterface $input, OutputInterface $output)
     {
         // Getting the CSV from filesystem
-        $fileName = 'web/uploads/import/pesticides.csv';
+        $fileName = $input->getArgument('path');
 
         // Using service for converting CSV to PHP Array
         $converter = $this->getContainer()->get('import.csvtoarray');
