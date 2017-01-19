@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -67,13 +66,13 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.0563381">
-              <caret line="149" column="37" selection-start-line="149" selection-start-column="37" selection-end-line="149" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.46478873">
+              <caret line="128" column="32" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="32" />
               <folding>
-                <element signature="e#5127#5155#0#HTML" expanded="true" />
-                <element signature="e#5878#5906#0#HTML" expanded="true" />
-                <element signature="e#7151#7173#0#HTML" expanded="true" />
-                <element signature="e#7606#7631#0#HTML" expanded="true" />
+                <element signature="e#5128#5156#0#HTML" expanded="true" />
+                <element signature="e#5879#5907#0#HTML" expanded="true" />
+                <element signature="e#7152#7174#0#HTML" expanded="true" />
+                <element signature="e#7607#7632#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -983,13 +982,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.0563381">
-          <caret line="149" column="37" selection-start-line="149" selection-start-column="37" selection-end-line="149" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.46478873">
+          <caret line="128" column="32" selection-start-line="128" selection-start-column="32" selection-end-line="128" selection-end-column="32" />
           <folding>
-            <element signature="e#5127#5155#0#HTML" expanded="true" />
-            <element signature="e#5878#5906#0#HTML" expanded="true" />
-            <element signature="e#7151#7173#0#HTML" expanded="true" />
-            <element signature="e#7606#7631#0#HTML" expanded="true" />
+            <element signature="e#5128#5156#0#HTML" expanded="true" />
+            <element signature="e#5879#5907#0#HTML" expanded="true" />
+            <element signature="e#7152#7174#0#HTML" expanded="true" />
+            <element signature="e#7607#7632#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
