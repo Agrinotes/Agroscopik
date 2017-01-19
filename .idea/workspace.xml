@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/FarmSpecialityController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/FarmSpecialityController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/FarmSpecialityType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/FarmSpecialityType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/HarvestProductType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/HarvestProductType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/farmspeciality/new.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/farmspeciality/new.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,17 +38,42 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74647886">
-              <caret line="503" column="0" selection-start-line="503" selection-start-column="0" selection-end-line="503" selection-end-column="0" />
+            <state vertical-scroll-proportion="-18.965517">
+              <caret line="391" column="25" selection-start-line="391" selection-start-column="25" selection-end-line="391" selection-end-column="25" />
               <folding>
                 <element signature="e#7796#7852#0#HTML" expanded="true" />
-                <element signature="e#8500#8522#0#HTML" expanded="true" />
-                <element signature="e#8938#8963#0#HTML" expanded="true" />
-                <element signature="e#9254#9298#0#HTML" expanded="true" />
-                <element signature="e#9531#9602#0#HTML" expanded="true" />
+                <element signature="e#8518#8540#0#HTML" expanded="true" />
+                <element signature="e#8956#8981#0#HTML" expanded="true" />
+                <element signature="e#9272#9316#0#HTML" expanded="true" />
+                <element signature="e#9549#9620#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/fertilizer/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-27.586206">
+              <caret line="121" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="363" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.0563381">
+              <caret line="149" column="37" selection-start-line="149" selection-start-column="37" selection-end-line="149" selection-end-column="37" />
+              <folding>
+                <element signature="e#5127#5155#0#HTML" expanded="true" />
+                <element signature="e#5878#5906#0#HTML" expanded="true" />
+                <element signature="e#7151#7173#0#HTML" expanded="true" />
+                <element signature="e#7606#7631#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -76,7 +95,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/implement/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/implement/show.html.twig" />
         <option value="$PROJECT_DIR$/web/remark/3.0.5/classic/global/vendor/datatables-tabletools/dataTables.tableTools.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmfertilizer/new.html.twig" />
@@ -127,6 +145,7 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/FarmSpeciality.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
       </list>
     </option>
   </component>
@@ -380,33 +399,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="farmspeciality" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="agroscopik-NC" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="farmfertilizer" />
+              <option name="myItemId" value="speciality" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -586,13 +579,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/farmfertilizer/showbackup.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.413793">
-          <caret line="465" column="17" selection-start-line="457" selection-start-column="17" selection-end-line="465" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Fertilizer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7746479">
@@ -822,14 +808,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/fertilizer/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="121" column="22" selection-start-line="121" selection-start-column="0" selection-end-line="202" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-17.103449">
@@ -983,14 +961,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74647886">
-          <caret line="503" column="0" selection-start-line="503" selection-start-column="0" selection-end-line="503" selection-end-column="0" />
+        <state vertical-scroll-proportion="-18.965517">
+          <caret line="391" column="25" selection-start-line="391" selection-start-column="25" selection-end-line="391" selection-end-column="25" />
           <folding>
             <element signature="e#7796#7852#0#HTML" expanded="true" />
-            <element signature="e#8500#8522#0#HTML" expanded="true" />
-            <element signature="e#8938#8963#0#HTML" expanded="true" />
-            <element signature="e#9254#9298#0#HTML" expanded="true" />
-            <element signature="e#9531#9602#0#HTML" expanded="true" />
+            <element signature="e#8518#8540#0#HTML" expanded="true" />
+            <element signature="e#8956#8981#0#HTML" expanded="true" />
+            <element signature="e#9272#9316#0#HTML" expanded="true" />
+            <element signature="e#9549#9620#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/fertilizer/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-27.586206">
+          <caret line="121" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="363" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0563381">
+          <caret line="149" column="37" selection-start-line="149" selection-start-column="37" selection-end-line="149" selection-end-column="37" />
+          <folding>
+            <element signature="e#5127#5155#0#HTML" expanded="true" />
+            <element signature="e#5878#5906#0#HTML" expanded="true" />
+            <element signature="e#7151#7173#0#HTML" expanded="true" />
+            <element signature="e#7606#7631#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

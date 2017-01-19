@@ -144,7 +144,7 @@
                             <tr>
                                 <td>
                                     <a class="actionLink"
-                                       href="{{ path('farmspecialitymvt_show', { 'id': farmSpecialityMvt.id }) }}">{{ farmFertilizerMvt.category.name }} {% if farmFertilizerMvt.action is not empty %}sur {% endif %}{{ farmFertilizerMvt.action.cropcycle.label | trim |capitalize }}
+                                       href="{{ path('farmspecialitymvt_show', { 'id': farmSpecialityMvt.id }) }}">{{ farmSpecialityMvt.category.name }} {% if farmSpecialityMvt.action is not empty %}sur {% endif %}{{ farmSpecialityMvt.action.cropcycle.label | trim |capitalize }}
                                     </a>
                                 </td>
                                 <td>
@@ -194,14 +194,15 @@
                 <button id="toChart" class="btn btn-block btn-danger">VOIR LE GRAPHE</button>
 
             </div>
-            <div class="col-md-9 panel">
+            {#<div class="col-md-9 panel">
                 <div class="panel-heading">
                     <h4 class="panel-title" style="font-size:16px;">Composition</h4>
                 </div>
                 <div class="panel-body">
-                    {# render(controller('AppBundle:Fertilizer:showComposition',{'id':farmFertilizer.fertilizer.id})) #}
+                    {{  render(controller('AppBundle:Fertilizer:showComposition',{'id':farmFertilizer.fertilizer.id})) }}
                 </div>
             </div>
+            #}
         </div>
 
         <!-- Panel Add Action -->
@@ -370,6 +371,8 @@
         function switchPanels() {
             if (i % 2 == 0) {
                 $('#stock').hide();
+                $('#chart').hide();
+
                 $('#updateStock').fadeIn(400);
                 if (i == 0) {
                     $('.select2').select2();
@@ -386,6 +389,8 @@
             } else {
                 $('#updateStock').hide();
                 $('#stock').fadeIn(400);
+                $('#chart').fadeIn(400);
+
             }
             i++;
         }
