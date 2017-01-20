@@ -20,7 +20,7 @@ class ImportCommand extends ContainerAwareCommand
         $this
             ->setName('update:pesticides')
             ->setDescription('Update pesticides from CSV file')
-            ->addArgument('path', InputArgument::REQUIRED, 'The path to the csv file.')
+            ->addArgument('path', InputArgument::OPTIONAL, 'The path to the csv file.','web/uploads/import/pesticides.csv')
             ->addOption(
                 'amm',
                 null,
@@ -103,8 +103,10 @@ class ImportCommand extends ContainerAwareCommand
 
     }
 
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+
         // Showing when the script is launched
         $start = new \DateTime();
 
@@ -128,9 +130,9 @@ class ImportCommand extends ContainerAwareCommand
         $name = $input->getOption('name');
         $alternativeName = $input->getOption('no-alt-name') ? false : $input->getOption('alt-name');
         $owner = $input->getOption('no-owner') ? false : $input->getOption('owner');
-        $authorizedMentions = $input->getOption('no-authorized-mentions') ? false :$input->getOption('authorized-mentions');
-        $composition = $input->getOption('no-composition') ? false :$input->getOption('composition');
-        $usage_unit = $input->getOption('no-usage-unit') ? false :$input->getOption('usage-unit');
+        $authorizedMentions = $input->getOption('no-authorized-mentions') ? false : $input->getOption('authorized-mentions');
+        $composition = $input->getOption('no-composition') ? false : $input->getOption('composition');
+        $usage_unit = $input->getOption('no-usage-unit') ? false : $input->getOption('usage-unit');
 
         // Getting doctrine manager
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -140,7 +142,7 @@ class ImportCommand extends ContainerAwareCommand
         // Define the size of record, the frequency for persisting the data and the current index of records
         $size = count($data);
 
-        $batchSize = 20;
+        $batchSize = 50;
         $i = 1;
         $added = 0;
         $updated = 0;
@@ -236,17 +238,23 @@ class ImportCommand extends ContainerAwareCommand
         // Outputs number of rows processed
         $output->writeln('');
         $output->writeln('<comment>Added ' . $added . ' | Updated ' . $updated . ' ---</comment>');
-        if(!$alternativeName){        $output->writeln('<comment>No alternative name updated ---</comment>');
+        $output->writeln('');
+        if (!$alternativeName) {
+            $output->writeln('<comment>No alternative name updated ---</comment>');
         };
-        if(!$owner){        $output->writeln('<comment>No owning company updated ---</comment>');
+        if (!$owner) {
+            $output->writeln('<comment>No owning company updated ---</comment>');
         };
-        if(!$authorizedMentions){        $output->writeln('<comment>No authorized mention updated ---</comment>');
+        if (!$authorizedMentions) {
+            $output->writeln('<comment>No authorized mention updated ---</comment>');
         };
-        if(!$composition){        $output->writeln('<comment>No composition updated ---</comment>');
+        if (!$composition) {
+            $output->writeln('<comment>No composition updated ---</comment>');
         };
-        if(!$usage_unit){        $output->writeln('<comment>No unit category updated ---</comment>');
+        if (!$usage_unit) {
+            $output->writeln('<comment>No unit category updated ---</comment>');
         };
-
+        $output->writeln('');
     }
 
     protected function get(InputInterface $input, OutputInterface $output)
@@ -260,5 +268,7 @@ class ImportCommand extends ContainerAwareCommand
 
         return $data;
     }
+
+
 
 }

@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" afterPath="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" afterPath="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,14 +31,24 @@
       <file leaf-file-name="ImportCommand.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49295774">
-              <caret line="246" column="76" selection-start-line="246" selection-start-column="76" selection-end-line="246" selection-end-column="76" />
+            <state vertical-scroll-proportion="0.44052863">
+              <caret line="144" column="22" selection-start-line="144" selection-start-column="22" selection-end-line="144" selection-end-column="22" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
-                <element signature="e#5236#5258#1#PHP" expanded="true" />
-                <element signature="e#6524#6540#1#PHP" expanded="true" />
-                <element signature="e#6939#6963#1#PHP" expanded="true" />
+                <element signature="e#5277#5299#1#PHP" expanded="true" />
+                <element signature="e#6565#6581#1#PHP" expanded="true" />
+                <element signature="e#6980#7004#1#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConvertCsvToArray.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.5172415">
+              <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -107,8 +117,8 @@
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/config/services.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" />
       </list>
     </option>
@@ -1002,14 +1012,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.862069">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.4482758">
@@ -1018,15 +1020,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.5172415">
+          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49295774">
-          <caret line="246" column="76" selection-start-line="246" selection-start-column="76" selection-end-line="246" selection-end-column="76" />
+        <state vertical-scroll-proportion="0.44052863">
+          <caret line="144" column="22" selection-start-line="144" selection-start-column="22" selection-end-line="144" selection-end-column="22" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
-            <element signature="e#5236#5258#1#PHP" expanded="true" />
-            <element signature="e#6524#6540#1#PHP" expanded="true" />
-            <element signature="e#6939#6963#1#PHP" expanded="true" />
+            <element signature="e#5277#5299#1#PHP" expanded="true" />
+            <element signature="e#6565#6581#1#PHP" expanded="true" />
+            <element signature="e#6980#7004#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

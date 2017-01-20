@@ -15,14 +15,18 @@ class ConvertCsvToArray {
 
         $header = NULL;
         $data = array();
+        $debug = false;
+        $line=0;
 
         if (($handle = fopen($filename, 'r')) !== FALSE) {
-            while (($row = fgetcsv($handle, 5000, $delimiter)) !== FALSE) {
+            while (($row = fgetcsv($handle, 8000, $delimiter)) !== FALSE) {
                 if(!$header) {
                     $header = $row;
                 } else {
+                    if($debug){($line.' '.count($row));};
                     $data[] = array_combine(range(1,count($header)), $row);
                 }
+                $line++;
             }
             fclose($handle);
         }
