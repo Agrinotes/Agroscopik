@@ -50,28 +50,28 @@ class Speciality
     /**
      * @var string
      *
-     * @ORM\Column(name="alternative_name", type="string", length=255, unique=true)
+     * @ORM\Column(name="alternative_name", type="string", length=255, unique=false)
      */
     private $alternativeName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="owner", type="string", length=255, unique=true)
+     * @ORM\Column(name="owner", type="string", length=255, unique=false)
      */
     private $owner;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="authorized_mentions", type="string", length=255, unique=true)
+     * @ORM\Column(name="authorized_mentions", type="string", length=255, unique=false)
      */
     private $authorizedMentions;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="composition", type="string", length=255, unique=true)
+     * @ORM\Column(name="composition", type="string", length=255, unique=false)
      */
     private $composition;
 

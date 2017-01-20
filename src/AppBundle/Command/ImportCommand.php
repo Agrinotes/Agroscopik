@@ -19,8 +19,7 @@ class ImportCommand extends ContainerAwareCommand
         $this
             ->setName('update:pesticides')
             ->setDescription('Update pesticides from CSV file')
-            ->addArgument('path', InputArgument::REQUIRED, 'The path to the csv file.')
-        ;
+            ->addArgument('path', InputArgument::REQUIRED, 'The path to the csv file.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -43,6 +42,15 @@ class ImportCommand extends ContainerAwareCommand
         // Getting php array of data from CSV
         $data = $this->get($input, $output);
 
+        // Define column numbers
+        $amm = 2;
+        $name = 3;
+        $alternativeName = 4;
+        $owner = 5;
+        $authorizedMentions = 8;
+        $composition = 9;
+        $usage_unit = 16;
+
         // Getting doctrine manager
         $em = $this->getContainer()->get('doctrine')->getManager();
         // Turning off doctrine default logs queries for saving memory
@@ -61,49 +69,52 @@ class ImportCommand extends ContainerAwareCommand
         $progress->start();
 
         // Processing on each row of data
-        foreach($data as $row) {
+        foreach ($data as $row) {
 
             $speciality = $em->getRepository('AppBundle:Speciality')
-                ->findOneByAmm(intval($row[2]));
+                ->findOneByAmm(intval($row[$amm]));
 
             // If the pesticide doest not exist we create one
-            if(!is_object($speciality)){
+            if (!is_object($speciality)) {
 
                 // Creates a speciality
-                $newSpeciality = new Speciality();
+                $speciality = new Speciality();
 
                 // Give basic attributes
-                $newSpeciality->setAmm(intval($row[2]));
-                $newSpeciality->setName($row[3]);
-                $newSpeciality->setAlternativeName($row[4]);
-                $newSpeciality->setOwner($row[5]);
-                $newSpeciality->setAuthorizedMentions($row[8]);
-                $newSpeciality->setComposition($row[9]);
-
-                // Guess unit category from usage unit
-                $csvUnit = explode("/", $row(16), 2)[0];
-                $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit);
-                if(is_object($unit)){
-                    $newSpeciality->setUnitCategory($unit->getUnitCategory());
-                }else{
-                    // En cours
-                }
-
-                $em->persist($newSpeciality);
-                $em->flush();
+                $speciality->setAmm(intval($row[$amm]));
 
                 $output->writeln('<comment>Added ' . $row[3] . ' ---</comment>');
 
                 $added++;
-
-            }else{
-                $dismissed++;
+            } else {
+                $updated++;
             }
+
+            // Give or Update basic attributes
+            $speciality->setName($row[$name]);
+            $speciality->setAlternativeName($row[$alternativeName]);
+            $speciality->setOwner($row[$owner]);
+            $speciality->setAuthorizedMentions($row[$authorizedMentions]);
+            $speciality->setComposition($row[$composition]);
+
+            // Guess unit category from usage unit
+            $csvUnit = strtok($row[$usage_unit], '/');
+            $csvUnit = $csvUnit[0];
+            $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit);
+            if (is_object($unit)) {
+                $speciality->setUnitCategory($unit->getUnitCategory());
+            } else {
+                // If nothing is found, attribute none category that has a "unit" unit.
+                $noneCategory = $em->getRepository('AppBundle:UnitCategory')->findOneBySlug('none');
+                $speciality->setUnitCategory($noneCategory);
+            }
+
+            $em->persist($speciality);
+            $em->flush();
 
             // Each 20 users persisted we flush everything
             if (($i % $batchSize) === 0) {
 
-                $em->flush();
                 // Detaches all objects from Doctrine for memory save
                 $em->clear();
 
@@ -126,7 +137,7 @@ class ImportCommand extends ContainerAwareCommand
         // Ending the progress bar process
         $progress->finish();
         $output->writeln('');
-        $output->writeln('<comment>Added ' . $added .' | Dismissed '.$dismissed.' ---</comment>');
+        $output->writeln('<comment>Added ' . $added . ' | Updated ' . $updated . ' ---</comment>');
 
     }
 
