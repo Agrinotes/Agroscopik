@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" afterPath="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,13 +31,13 @@
       <file leaf-file-name="ImportCommand.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64788735">
-              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.49295774">
+              <caret line="246" column="76" selection-start-line="246" selection-start-column="76" selection-end-line="246" selection-end-column="76" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
-                <element signature="e#4089#4111#1#PHP" expanded="true" />
-                <element signature="e#5366#5382#1#PHP" expanded="true" />
-                <element signature="e#5781#5805#1#PHP" expanded="true" />
+                <element signature="e#5236#5258#1#PHP" expanded="true" />
+                <element signature="e#6524#6540#1#PHP" expanded="true" />
+                <element signature="e#6939#6963#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1019,13 +1020,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64788735">
-          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.49295774">
+          <caret line="246" column="76" selection-start-line="246" selection-start-column="76" selection-end-line="246" selection-end-column="76" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
-            <element signature="e#4089#4111#1#PHP" expanded="true" />
-            <element signature="e#5366#5382#1#PHP" expanded="true" />
-            <element signature="e#5781#5805#1#PHP" expanded="true" />
+            <element signature="e#5236#5258#1#PHP" expanded="true" />
+            <element signature="e#6524#6540#1#PHP" expanded="true" />
+            <element signature="e#6939#6963#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

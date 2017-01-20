@@ -36,11 +36,17 @@ class ImportCommand extends ContainerAwareCommand
                 3
             )
             ->addOption(
-                'alternative-name',
+                'alt-name',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Set alternative name column number',
                 4
+            )
+            ->addOption(
+                'no-alt-name',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no alternative name in csv file'
             )
             ->addOption(
                 'owner',
@@ -50,11 +56,23 @@ class ImportCommand extends ContainerAwareCommand
                 5
             )
             ->addOption(
+                'no-owner',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no owner in csv file'
+            )
+            ->addOption(
                 'authorized-mentions',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Set authorized mentions and comments column number',
                 8
+            )
+            ->addOption(
+                'no-authorized-mentions',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no authorized mentions in csv file'
             )
             ->addOption(
                 'composition',
@@ -64,11 +82,23 @@ class ImportCommand extends ContainerAwareCommand
                 9
             )
             ->addOption(
+                'no-composition',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no composition in csv file'
+            )
+            ->addOption(
                 'usage-unit',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'Set usage unit column number',
                 17
+            )
+            ->addOption(
+                'no-usage-unit',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no unit in csv file'
             );
 
     }
@@ -96,11 +126,11 @@ class ImportCommand extends ContainerAwareCommand
         // Define column numbers
         $amm = $input->getOption('amm');
         $name = $input->getOption('name');
-        $alternativeName = $input->getOption('alternative-name');
-        $owner = $input->getOption('owner');
-        $authorizedMentions = $input->getOption('authorized-mentions');
-        $composition = $input->getOption('composition');
-        $usage_unit = $input->getOption('usage-unit');
+        $alternativeName = $input->getOption('no-alt-name') ? false : $input->getOption('alt-name');
+        $owner = $input->getOption('no-owner') ? false : $input->getOption('owner');
+        $authorizedMentions = $input->getOption('no-authorized-mentions') ? false :$input->getOption('authorized-mentions');
+        $composition = $input->getOption('no-composition') ? false :$input->getOption('composition');
+        $usage_unit = $input->getOption('no-usage-unit') ? false :$input->getOption('usage-unit');
 
         // Getting doctrine manager
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -144,20 +174,21 @@ class ImportCommand extends ContainerAwareCommand
             // Give or Update basic attributes
             $speciality->setName($row[$name]);
 
-            if($alternativeName){
+            if ($alternativeName) {
                 $speciality->setAlternativeName($row[$alternativeName]);
             }
-            if($owner){
+
+            if ($owner) {
                 $speciality->setOwner($row[$owner]);
             }
-            if($authorizedMentions){
+            if ($authorizedMentions) {
                 $speciality->setAuthorizedMentions($row[$authorizedMentions]);
             }
-            if($composition){
+            if ($composition) {
                 $speciality->setComposition($row[$composition]);
             }
 
-            if($usage_unit){
+            if ($usage_unit) {
                 // Guess unit category from usage unit
                 $csvUnit = strtok($row[$usage_unit], '/');
                 $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit);
@@ -205,6 +236,16 @@ class ImportCommand extends ContainerAwareCommand
         // Outputs number of rows processed
         $output->writeln('');
         $output->writeln('<comment>Added ' . $added . ' | Updated ' . $updated . ' ---</comment>');
+        if(!$alternativeName){        $output->writeln('<comment>No alternative name updated ---</comment>');
+        };
+        if(!$owner){        $output->writeln('<comment>No owning company updated ---</comment>');
+        };
+        if(!$authorizedMentions){        $output->writeln('<comment>No authorized mention updated ---</comment>');
+        };
+        if(!$composition){        $output->writeln('<comment>No composition updated ---</comment>');
+        };
+        if(!$usage_unit){        $output->writeln('<comment>No unit category updated ---</comment>');
+        };
 
     }
 
