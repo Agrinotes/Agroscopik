@@ -49,7 +49,7 @@ class ImportCommand extends ContainerAwareCommand
         $owner = 5;
         $authorizedMentions = 8;
         $composition = 9;
-        $usage_unit = 16;
+        $usage_unit = 17;
 
         // Getting doctrine manager
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -62,7 +62,7 @@ class ImportCommand extends ContainerAwareCommand
         $batchSize = 20;
         $i = 1;
         $added = 0;
-        $dismissed = 0;
+        $updated = 0;
 
         // Starting progress
         $progress = new ProgressBar($output, $size);
@@ -99,7 +99,6 @@ class ImportCommand extends ContainerAwareCommand
 
             // Guess unit category from usage unit
             $csvUnit = strtok($row[$usage_unit], '/');
-            $csvUnit = $csvUnit[0];
             $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit);
             if (is_object($unit)) {
                 $speciality->setUnitCategory($unit->getUnitCategory());
@@ -136,6 +135,8 @@ class ImportCommand extends ContainerAwareCommand
 
         // Ending the progress bar process
         $progress->finish();
+
+        // Outputs number of rows processed
         $output->writeln('');
         $output->writeln('<comment>Added ' . $added . ' | Updated ' . $updated . ' ---</comment>');
 
