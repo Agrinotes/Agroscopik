@@ -30,13 +30,13 @@
       <file leaf-file-name="ImportCommand.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46478873">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.64788735">
+              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
-                <element signature="e#2374#2396#1#PHP" expanded="true" />
-                <element signature="e#3412#3428#1#PHP" expanded="true" />
-                <element signature="e#3726#3750#1#PHP" expanded="true" />
+                <element signature="e#4089#4111#1#PHP" expanded="true" />
+                <element signature="e#5366#5382#1#PHP" expanded="true" />
+                <element signature="e#5781#5805#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1019,13 +1019,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46478873">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.64788735">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
-            <element signature="e#2374#2396#1#PHP" expanded="true" />
-            <element signature="e#3412#3428#1#PHP" expanded="true" />
-            <element signature="e#3726#3750#1#PHP" expanded="true" />
+            <element signature="e#4089#4111#1#PHP" expanded="true" />
+            <element signature="e#5366#5382#1#PHP" expanded="true" />
+            <element signature="e#5781#5805#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Helper\ProgressBar;
 
@@ -19,7 +20,57 @@ class ImportCommand extends ContainerAwareCommand
         $this
             ->setName('update:pesticides')
             ->setDescription('Update pesticides from CSV file')
-            ->addArgument('path', InputArgument::REQUIRED, 'The path to the csv file.');
+            ->addArgument('path', InputArgument::REQUIRED, 'The path to the csv file.')
+            ->addOption(
+                'amm',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set AMM (Autorisation Mise sur le marché) column number',
+                2
+            )
+            ->addOption(
+                'name',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set name column number',
+                3
+            )
+            ->addOption(
+                'alternative-name',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set alternative name column number',
+                4
+            )
+            ->addOption(
+                'owner',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set owner column number',
+                5
+            )
+            ->addOption(
+                'authorized-mentions',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set authorized mentions and comments column number',
+                8
+            )
+            ->addOption(
+                'composition',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set composition column number',
+                9
+            )
+            ->addOption(
+                'usage-unit',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set usage unit column number',
+                17
+            );
+
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -43,13 +94,13 @@ class ImportCommand extends ContainerAwareCommand
         $data = $this->get($input, $output);
 
         // Define column numbers
-        $amm = 2;
-        $name = 3;
-        $alternativeName = 4;
-        $owner = 5;
-        $authorizedMentions = 8;
-        $composition = 9;
-        $usage_unit = 17;
+        $amm = $input->getOption('amm');
+        $name = $input->getOption('name');
+        $alternativeName = $input->getOption('alternative-name');
+        $owner = $input->getOption('owner');
+        $authorizedMentions = $input->getOption('authorized-mentions');
+        $composition = $input->getOption('composition');
+        $usage_unit = $input->getOption('usage-unit');
 
         // Getting doctrine manager
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -92,26 +143,41 @@ class ImportCommand extends ContainerAwareCommand
 
             // Give or Update basic attributes
             $speciality->setName($row[$name]);
-            $speciality->setAlternativeName($row[$alternativeName]);
-            $speciality->setOwner($row[$owner]);
-            $speciality->setAuthorizedMentions($row[$authorizedMentions]);
-            $speciality->setComposition($row[$composition]);
 
-            // Guess unit category from usage unit
-            $csvUnit = strtok($row[$usage_unit], '/');
-            $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit);
-            if (is_object($unit)) {
-                $speciality->setUnitCategory($unit->getUnitCategory());
-            } else {
-                // If nothing is found, attribute none category that has a "unit" unit.
-                $noneCategory = $em->getRepository('AppBundle:UnitCategory')->findOneBySlug('none');
-                $speciality->setUnitCategory($noneCategory);
+            if($alternativeName){
+                $speciality->setAlternativeName($row[$alternativeName]);
+            }
+            if($owner){
+                $speciality->setOwner($row[$owner]);
+            }
+            if($authorizedMentions){
+                $speciality->setAuthorizedMentions($row[$authorizedMentions]);
+            }
+            if($composition){
+                $speciality->setComposition($row[$composition]);
             }
 
+            if($usage_unit){
+                // Guess unit category from usage unit
+                $csvUnit = strtok($row[$usage_unit], '/');
+                $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit);
+
+                if (is_object($unit)) {
+                    // If unit exists, attribute its category to this pesticide
+                    $speciality->setUnitCategory($unit->getUnitCategory());
+                } else {
+                    // If nothing is found, attribute none category that has a "unit" unit.
+                    $noneCategory = $em->getRepository('AppBundle:UnitCategory')->findOneBySlug('none');
+                    $speciality->setUnitCategory($noneCategory);
+                }
+            }
+
+            // Persist and flush
             $em->persist($speciality);
             $em->flush();
 
-            // Each 20 users persisted we flush everything
+
+            // Each 20 users persisted we clear everything and show progress
             if (($i % $batchSize) === 0) {
 
                 // Detaches all objects from Doctrine for memory save
