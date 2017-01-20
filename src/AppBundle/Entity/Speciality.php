@@ -48,6 +48,34 @@ class Speciality
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="alternative_name", type="string", length=255, unique=true)
+     */
+    private $alternativeName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="owner", type="string", length=255, unique=true)
+     */
+    private $owner;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorized_mentions", type="string", length=255, unique=true)
+     */
+    private $authorizedMentions;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="composition", type="string", length=255, unique=true)
+     */
+    private $composition;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\SpecialityUsage", mappedBy="speciality", cascade={"persist","remove"})
      */
     private $usages;
@@ -247,6 +275,70 @@ class Speciality
     public function setUnitCategory($unitCategory)
     {
         $this->unitCategory = $unitCategory;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlternativeName()
+    {
+        return $this->alternativeName;
+    }
+
+    /**
+     * @param string $alternativeName
+     */
+    public function setAlternativeName($alternativeName)
+    {
+        $this->alternativeName = $alternativeName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param string $owner
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAuthorizedMentions()
+    {
+        return $this->authorizedMentions;
+    }
+
+    /**
+     * @param string $authorizedMentions
+     */
+    public function setAuthorizedMentions($authorizedMentions)
+    {
+        $this->authorizedMentions = $authorizedMentions;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComposition()
+    {
+        return $this->composition;
+    }
+
+    /**
+     * @param string $composition
+     */
+    public function setComposition($composition)
+    {
+        $this->composition = $composition;
     }
 }
 

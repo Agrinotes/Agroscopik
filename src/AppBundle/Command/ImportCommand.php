@@ -26,15 +26,16 @@ class ImportCommand extends ContainerAwareCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Showing when the script is launched
-        $now = new \DateTime();
-        $output->writeln('<comment>Start : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
+        $start = new \DateTime();
 
         // Importing CSV on DB via Doctrine ORM
         $this->import($input, $output);
 
         // Showing when the script is over
-        $now = new \DateTime();
-        $output->writeln('<comment>End : ' . $now->format('d-m-Y G:i:s') . ' ---</comment>');
+        $end = new \DateTime();
+
+        $output->writeln('<comment>Start : ' . $start->format('d-m-Y G:i:s') . ' ---</comment>');
+        $output->writeln('<comment>End : ' . $end->format('d-m-Y G:i:s') . ' ---</comment>');
     }
 
     protected function import(InputInterface $input, OutputInterface $output)
@@ -68,9 +69,25 @@ class ImportCommand extends ContainerAwareCommand
             // If the pesticide doest not exist we create one
             if(!is_object($speciality)){
 
+                // Creates a speciality
                 $newSpeciality = new Speciality();
+
+                // Give basic attributes
                 $newSpeciality->setAmm(intval($row[2]));
                 $newSpeciality->setName($row[3]);
+                $newSpeciality->setAlternativeName($row[4]);
+                $newSpeciality->setOwner($row[5]);
+                $newSpeciality->setAuthorizedMentions($row[8]);
+                $newSpeciality->setComposition($row[9]);
+
+                // Guess unit category from usage unit
+                $csvUnit = explode("/", $row(16), 2)[0];
+                $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit);
+                if(is_object($unit)){
+                    $newSpeciality->setUnitCategory($unit->getUnitCategory());
+                }else{
+                    // En cours
+                }
 
                 $em->persist($newSpeciality);
                 $em->flush();
@@ -108,6 +125,7 @@ class ImportCommand extends ContainerAwareCommand
 
         // Ending the progress bar process
         $progress->finish();
+        $output->writeln('');
         $output->writeln('<comment>Added ' . $added .' | Dismissed '.$dismissed.' ---</comment>');
 
     }
