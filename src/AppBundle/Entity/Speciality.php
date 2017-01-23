@@ -165,8 +165,6 @@ class Speciality
     {
         $this->usages[] = $usage;
 
-        $usage->setSpeciality($this);
-
         return $this;
     }
 

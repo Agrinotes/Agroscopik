@@ -412,6 +412,8 @@ class SpecialityUsage
     public function setSpeciality($speciality)
     {
         $this->speciality = $speciality;
+
+        $speciality->addUsage($this);
     }
 
     /**

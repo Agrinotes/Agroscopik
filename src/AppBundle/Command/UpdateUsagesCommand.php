@@ -248,6 +248,9 @@ class UpdateUsagesCommand extends ContainerAwareCommand
                 // Build a usage object based on csv to compare to current usages
                 $csvUsage = new SpecialityUsage();
 
+                // Attach speciality to this usage
+                $csvUsage->setSpeciality($speciality);
+
                 // Add usage short number
                 if($shortNumber){
                     $csvUsage->setShortNumber($row[$shortNumber]);
@@ -352,23 +355,8 @@ class UpdateUsagesCommand extends ContainerAwareCommand
             }
 
 
-            if ($usage_unit) {
-                // Guess unit category from usage unit
-                $csvUnit = strtok($row[$usage_unit], '/');
-                $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit);
-
-                if (is_object($unit)) {
-                    // If unit exists, attribute its category to this pesticide
-                    $speciality->setUnitCategory($unit->getUnitCategory());
-                } else {
-                    // If nothing is found, attribute none category that has a "unit" unit.
-                    $noneCategory = $em->getRepository('AppBundle:UnitCategory')->findOneBySlug('none');
-                    $speciality->setUnitCategory($noneCategory);
-                }
-            }
-
             // Persist and flush
-            $em->persist($speciality);
+            $em->persist($csvUsage);
             $em->flush();
 
 
@@ -382,7 +370,7 @@ class UpdateUsagesCommand extends ContainerAwareCommand
                 $progress->advance($batchSize);
 
                 $now = new \DateTime();
-                $output->writeln(' of pesticides processed ... | ' . $now->format('d-m-Y G:i:s'));
+                $output->writeln(' of usages processed ... | ' . $now->format('d-m-Y G:i:s'));
 
             }
 
@@ -401,21 +389,6 @@ class UpdateUsagesCommand extends ContainerAwareCommand
         $output->writeln('');
         $output->writeln('<comment>Added ' . $added . ' | Dismissed ' . $dismissed . ' ---</comment>');
         $output->writeln('');
-        if (!$alternativeName) {
-            $output->writeln('<comment>No alternative name updated ---</comment>');
-        };
-        if (!$owner) {
-            $output->writeln('<comment>No owning company updated ---</comment>');
-        };
-        if (!$authorizedMentions) {
-            $output->writeln('<comment>No authorized mention updated ---</comment>');
-        };
-        if (!$composition) {
-            $output->writeln('<comment>No composition updated ---</comment>');
-        };
-        if (!$usage_unit) {
-            $output->writeln('<comment>No unit category updated ---</comment>');
-        };
         $output->writeln('');
     }
 

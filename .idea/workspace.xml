@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" afterPath="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" />
     </list>
     <ignored path="agroscopik.iws" />
@@ -27,32 +29,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="UpdateUsagesCommand.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
+      <file leaf-file-name="ImportCommand.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.79441994">
-              <caret line="343" column="17" selection-start-line="343" selection-start-column="17" selection-end-line="343" selection-end-column="17" />
+            <state vertical-scroll-proportion="-13.793103">
+              <caret line="156" column="11" selection-start-line="156" selection-start-column="11" selection-end-line="157" selection-end-column="51" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
-                <element signature="e#8189#8211#1#PHP" expanded="true" />
-                <element signature="e#10370#10386#1#PHP" expanded="true" />
-                <element signature="e#10715#10731#1#PHP" expanded="true" />
-                <element signature="e#11692#11708#1#PHP" expanded="true" />
-                <element signature="e#12045#12061#1#PHP" expanded="true" />
-                <element signature="e#12559#12575#1#PHP" expanded="true" />
-                <element signature="e#12974#12998#1#PHP" expanded="true" />
+                <element signature="e#5277#5299#1#PHP" expanded="true" />
+                <element signature="e#6565#6581#1#PHP" expanded="true" />
+                <element signature="e#6980#7004#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoadSpecialityUsages.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages.php">
+      <file leaf-file-name="UpdateUsagesCommand.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="8.275862">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5873715">
+              <caret line="250" column="50" selection-start-line="250" selection-start-column="50" selection-end-line="250" selection-end-column="50" />
               <folding>
-                <element signature="e#46#95#0#PHP" expanded="false" />
+                <element signature="e#37#69#0#PHP" expanded="true" />
+                <element signature="e#8189#8211#1#PHP" expanded="true" />
+                <element signature="e#10477#10493#1#PHP" expanded="true" />
+                <element signature="e#10822#10838#1#PHP" expanded="true" />
+                <element signature="e#11799#11815#1#PHP" expanded="true" />
+                <element signature="e#12152#12168#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -61,8 +64,18 @@
       <file leaf-file-name="SpecialityUsage.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.827586">
-              <caret line="499" column="20" selection-start-line="499" selection-start-column="20" selection-end-line="499" selection-end-column="20" />
+            <state vertical-scroll-proportion="-11.24138">
+              <caret line="415" column="37" selection-start-line="415" selection-start-column="37" selection-end-line="415" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Speciality.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.2413793">
+              <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -130,9 +143,9 @@
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/config/services.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" />
       </list>
@@ -841,6 +854,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Command" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik-NC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1267,27 +1302,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.4482758">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.344828">
-          <caret line="15" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="273" selection-end-column="1" />
-          <folding>
-            <element signature="e#37#69#0#PHP" expanded="true" />
-            <element signature="e#5277#5299#1#PHP" expanded="true" />
-            <element signature="e#6565#6581#1#PHP" expanded="true" />
-            <element signature="e#6980#7004#1#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-20.0">
@@ -1406,17 +1420,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.827586">
-          <caret line="499" column="20" selection-start-line="499" selection-start-column="20" selection-end-line="499" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/DataFixtures/ORM/LoadSpecialityUsages.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="8.275862">
+        <state vertical-scroll-proportion="-0.33802816">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#46#95#0#PHP" expanded="false" />
@@ -1424,19 +1430,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.793103">
+          <caret line="156" column="11" selection-start-line="156" selection-start-column="11" selection-end-line="157" selection-end-column="51" />
+          <folding>
+            <element signature="e#37#69#0#PHP" expanded="true" />
+            <element signature="e#5277#5299#1#PHP" expanded="true" />
+            <element signature="e#6565#6581#1#PHP" expanded="true" />
+            <element signature="e#6980#7004#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.2413793">
+          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.24138">
+          <caret line="415" column="37" selection-start-line="415" selection-start-column="37" selection-end-line="415" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79441994">
-          <caret line="343" column="17" selection-start-line="343" selection-start-column="17" selection-end-line="343" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.5873715">
+          <caret line="250" column="50" selection-start-line="250" selection-start-column="50" selection-end-line="250" selection-end-column="50" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
             <element signature="e#8189#8211#1#PHP" expanded="true" />
-            <element signature="e#10370#10386#1#PHP" expanded="true" />
-            <element signature="e#10715#10731#1#PHP" expanded="true" />
-            <element signature="e#11692#11708#1#PHP" expanded="true" />
-            <element signature="e#12045#12061#1#PHP" expanded="true" />
-            <element signature="e#12559#12575#1#PHP" expanded="true" />
-            <element signature="e#12974#12998#1#PHP" expanded="true" />
+            <element signature="e#10477#10493#1#PHP" expanded="true" />
+            <element signature="e#10822#10838#1#PHP" expanded="true" />
+            <element signature="e#11799#11815#1#PHP" expanded="true" />
+            <element signature="e#12152#12168#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
