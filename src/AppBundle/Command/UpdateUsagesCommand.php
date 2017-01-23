@@ -37,6 +37,20 @@ class UpdateUsagesCommand extends ContainerAwareCommand
                 11
             )
             ->addOption(
+                'dose',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set dose column number',
+                16
+            )
+            ->addOption(
+                'status',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set dose column number',
+                15
+            )
+            ->addOption(
                 'short-number',
                 null,
                 InputOption::VALUE_REQUIRED,
@@ -192,15 +206,15 @@ class UpdateUsagesCommand extends ContainerAwareCommand
         $shortNumber = $input->getOption('no-short-number') ? false : $input->getOption('short-number');
         $minStage = $input->getOption('no-min-stage') ? false : $input->getOption('min-stage');
         $maxStage= $input->getOption('no-max-stage') ? false : $input->getOption('max-stage');
-        $status= $input->getOption('status');
-        $dose= $input->getOption('dose');
-        $fullUnit = $input->getOption('full-unit');
         $dar= $input->getOption('no-dar') ? false : $input->getOption('dar');
         $maxActions= $input->getOption('no-max-actions') ? false : $input->getOption('max-actions');
         $conditions= $input->getOption('no-conditions') ? false : $input->getOption('conditions');
         $zntWater= $input->getOption('no-znt-water') ? false : $input->getOption('znt-water');
         $zntArthropodes= $input->getOption('no-znt-arthropodes') ? false : $input->getOption('znt-arthropodes');
         $zntPlants= $input->getOption('no-znt-plants') ? false : $input->getOption('znt-plants');
+        $status= $input->getOption('status');
+        $dose= $input->getOption('dose');
+        $fullUnit = $input->getOption('full-unit');
 
 
         // Getting doctrine manager
@@ -233,56 +247,110 @@ class UpdateUsagesCommand extends ContainerAwareCommand
 
                 // Build a usage object based on csv to compare to current usages
                 $csvUsage = new SpecialityUsage();
-                $csvUsage->setShortNumber($row[$shortNumber]);
-                $csvUsage->setName($row[$name]);
-                $csvUsage->setMinCropStage($row[$minStage]);
-                $csvUsage->setMaxCropStage($row[$maxStage]);
 
+                // Add usage short number
+                if($shortNumber){
+                    $csvUsage->setShortNumber($row[$shortNumber]);
+                }
+
+                // Add usage name (required)
+                $csvUsage->setName($row[$name]);
+
+                // Add min and max BBCH crop stage for usage
+                if($minStage){
+                    $csvUsage->setMinCropStage($row[$minStage]);
+                }
+                if($maxStage){
+                    $csvUsage->setMaxCropStage($row[$maxStage]);
+                }
+
+                if($dar){
+                    $csvUsage->setDAR($row[$dar]);
+                }
+                if($maxActions){
+                    $csvUsage->setMaxActions($row[$maxActions]);
+                }
+
+                if($conditions){
+                    $csvUsage->setConditions($row[$conditions]);
+                }
+
+                if($zntWater){
+                    $csvUsage->setZNTwater($row[$zntWater]);
+                }
+
+                if($zntArthropodes){
+                    $csvUsage->setZNTarthropodes($row[$zntArthropodes]);
+                }
+
+                if($zntPlants){
+                    $csvUsage->setZNTplants($row[$zntPlants]);
+                }
+
+                // Guess status (required)
                 if($row[$status]=="Autorisé"){
                     $csvUsage->setStatus("TRUE");
                 }else{
                     $csvUsage->setStatus("FALSE");
                 }
 
+                // Add dose (required)
                 $csvUsage->setDose($row[$dose]);
 
+                // Add full unit (required)
                 $csvUsage->setFullUnit($row[$fullUnit]);
 
-                // Guess unit category
-                $csvUsage->setUnit1();
-                $csvUsage->setAmountUnit2();
-                $csvUsage->setUnit2();
+                // Guess unit categories from $fullUnit
 
-                $csvUsage->setDAR($row[$dar]);
-                $csvUsage->setMaxActions($row[$maxActions]);
-                $csvUsage->setConditions($row[$conditions]);
-                $csvUsage->setZNTwater($row[$zntWater]);
-                $csvUsage->setZNTarthropodes($row[$zntArthropodes]);
-                $csvUsage->setZNTplants($row[$zntPlants]);
+                // Get first part of the csvUnit string
+                $csvUnit1 = strtok($row[$fullUnit], '/');
+                $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit1);
 
-                $output->writeln('<comment>Added ' . $row[3] . ' ---</comment>');
+                if (is_object($unit)) {
+                    // If unit exists, attribute it to usage
+                    $csvUsage->setUnit1($unit);
+                } else {
+                    // If nothing is found, attribute "unit" unit.
+                    $unityCategory = $em->getRepository('AppBundle:Unit')->findOneBySlug('unity');
+                    $csvUsage->setUnit1($unityCategory);
+                }
+
+                //Get second part of the unit
+                $csvUnitSecondPart = substr($row[$fullUnit], strrpos($row[$fullUnit], '/') + 1);
+
+                // Extract numbers if any to fill amount unit
+                $csvAmountUnit2 = preg_replace("/[^0-9]+/", "", $csvUnitSecondPart);
+                   if($csvAmountUnit2){
+                       $csvUsage->setAmountUnit2($csvAmountUnit2);
+                   } else{
+                       $csvUsage->setAmountUnit2(0);
+                   }
+
+                // Extract letters if any to guess unit
+                $csvUnit2 = preg_replace("/[^a-zA-Z]+/", "", $csvUnitSecondPart);
+
+                // Test if non empty (checks if amount unit is also non empty oherwise attributes unit unit)
+                if($csvUnit2 != "" || $csvAmountUnit2 != ""){
+                    $unit2 = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit2);
+
+                    // If we found a matching unit
+                    if(is_object($unit2)){
+                        $csvUsage->setUnit2($unit2);
+                    }else{
+                        // If nothing is found, attribute "unit" unit.
+                        $unityCategory = $em->getRepository('AppBundle:Unit')->findOneBySlug('unity');
+                        $csvUsage->setUnit2($unityCategory);
+                    }
+                }
+
+
+                $output->writeln('<comment>Added ' . $row[$name] . ' ---</comment>');
 
                 $added++;
             } else {
                 $dismissed++;
             }
 
-            // Give or Update basic attributes
-            $speciality->setName($row[$name]);
-
-            if ($alternativeName) {
-                $speciality->setAlternativeName($row[$alternativeName]);
-            }
-
-            if ($owner) {
-                $speciality->setOwner($row[$owner]);
-            }
-            if ($authorizedMentions) {
-                $speciality->setAuthorizedMentions($row[$authorizedMentions]);
-            }
-            if ($composition) {
-                $speciality->setComposition($row[$composition]);
-            }
 
             if ($usage_unit) {
                 // Guess unit category from usage unit

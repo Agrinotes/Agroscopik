@@ -30,13 +30,17 @@
       <file leaf-file-name="UpdateUsagesCommand.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8028169">
-              <caret line="260" column="58" selection-start-line="260" selection-start-column="58" selection-end-line="260" selection-end-column="58" />
+            <state vertical-scroll-proportion="0.79441994">
+              <caret line="343" column="17" selection-start-line="343" selection-start-column="17" selection-end-line="343" selection-end-column="17" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
-                <element signature="e#7805#7827#1#PHP" expanded="true" />
-                <element signature="e#10087#10103#1#PHP" expanded="true" />
-                <element signature="e#10502#10526#1#PHP" expanded="true" />
+                <element signature="e#8189#8211#1#PHP" expanded="true" />
+                <element signature="e#10370#10386#1#PHP" expanded="true" />
+                <element signature="e#10715#10731#1#PHP" expanded="true" />
+                <element signature="e#11692#11708#1#PHP" expanded="true" />
+                <element signature="e#12045#12061#1#PHP" expanded="true" />
+                <element signature="e#12559#12575#1#PHP" expanded="true" />
+                <element signature="e#12974#12998#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1422,13 +1426,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8028169">
-          <caret line="260" column="58" selection-start-line="260" selection-start-column="58" selection-end-line="260" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.79441994">
+          <caret line="343" column="17" selection-start-line="343" selection-start-column="17" selection-end-line="343" selection-end-column="17" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
-            <element signature="e#7805#7827#1#PHP" expanded="true" />
-            <element signature="e#10087#10103#1#PHP" expanded="true" />
-            <element signature="e#10502#10526#1#PHP" expanded="true" />
+            <element signature="e#8189#8211#1#PHP" expanded="true" />
+            <element signature="e#10370#10386#1#PHP" expanded="true" />
+            <element signature="e#10715#10731#1#PHP" expanded="true" />
+            <element signature="e#11692#11708#1#PHP" expanded="true" />
+            <element signature="e#12045#12061#1#PHP" expanded="true" />
+            <element signature="e#12559#12575#1#PHP" expanded="true" />
+            <element signature="e#12974#12998#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
