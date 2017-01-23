@@ -30,6 +30,12 @@ class UpdateUsagesCommand extends ContainerAwareCommand
                 2
             )
             ->addOption(
+                'override',
+                null,
+                InputOption::VALUE_NONE,
+                'Use to override all usages in db'
+            )
+            ->addOption(
                 'name',
                 null,
                 InputOption::VALUE_REQUIRED,
@@ -221,6 +227,26 @@ class UpdateUsagesCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine')->getManager();
         // Turning off doctrine default logs queries for saving memory
         $em->getConnection()->getConfiguration()->setSQLLogger(null);
+
+        // Eras all usages unless --append
+        if($input->getOption('override')){
+
+            $limit = 100;
+            $deleted = 0;
+            while($oldUsages = $em->getRepository('AppBundle:SpecialityUsage')->findBy(array(), array(), $limit, 0))
+            {
+                foreach($oldUsages as $oldUsage)
+                {
+                    $em->remove($oldUsage);
+                }
+                $em->flush();
+                $em->clear();
+                $deleted += $limit;
+                $output->writeln('<comment>Deleted ' . $deleted . ' ---</comment>');
+
+            }
+
+        }
 
         // Define the size of record, the frequency for persisting the data and the current index of records
         $size = count($data);
