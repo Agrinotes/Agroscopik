@@ -36,6 +36,19 @@ class UpdateUsagesCommand extends ContainerAwareCommand
                 'Use to override all usages in db'
             )
             ->addOption(
+                'download-url',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set download path',
+                'https://www.data.gouv.fr/s/resources/donnees-ouvertes-du-catalogue-des-produits-phytopharmaceutiques-adjuvants-matieres-fertilisantes-et-support-de-culture-produits-mixtes-et-melanges-e-phy/20161230-162255/usages_des_produits_autorises_v2_utf8-29122016.csv'
+            )
+            ->addOption(
+                'no-download',
+                null,
+                InputOption::VALUE_NONE,
+                ''
+            )
+            ->addOption(
                 'name',
                 null,
                 InputOption::VALUE_REQUIRED,
@@ -419,6 +432,36 @@ class UpdateUsagesCommand extends ContainerAwareCommand
 
     protected function get(InputInterface $input, OutputInterface $output)
     {
+        // Down load file from the web
+        if(!$input->getOption('no-download')){
+            // This is the entire file that was uploaded to a temp location.
+            $fp = fopen('web/uploads/import/pesticides.csv', 'w');
+
+// Connecting to website.
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, 'https://www.data.gouv.fr/s/resources/donnees-ouvertes-du-catalogue-des-produits-phytopharmaceutiques-adjuvants-matieres-fertilisantes-et-support-de-culture-produits-mixtes-et-melanges-e-phy/20161230-162255/usages_des_produits_autorises_v2_utf8-29122016.csv');
+            curl_setopt($ch, CURLOPT_FILE, $fp);
+            curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
+            curl_exec ($ch);
+
+            if (curl_errno($ch)) {
+                $msg = curl_error($ch);
+            }
+            else {
+
+                $msg = 'File uploaded successfully.';
+            }
+
+            curl_close ($ch);
+
+            fclose($fp);
+
+            $return = array('msg' => $msg);
+
+            echo json_encode($return);
+        }
+
+
         // Getting the CSV from filesystem
         $fileName = $input->getArgument('path');
 

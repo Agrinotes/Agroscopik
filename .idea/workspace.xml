@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" afterPath="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,16 +45,16 @@
       <file leaf-file-name="UpdateUsagesCommand.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33333334">
-              <caret line="231" column="11" selection-start-line="231" selection-start-column="11" selection-end-line="231" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.20704846">
+              <caret line="434" column="38" selection-start-line="434" selection-start-column="38" selection-end-line="434" selection-end-column="38" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
-                <element signature="e#8064#8091#1#PHP" expanded="true" />
-                <element signature="e#8977#8999#1#PHP" expanded="true" />
-                <element signature="e#11267#11283#1#PHP" expanded="true" />
-                <element signature="e#11612#11628#1#PHP" expanded="true" />
-                <element signature="e#12589#12605#1#PHP" expanded="true" />
-                <element signature="e#12942#12958#1#PHP" expanded="true" />
+                <element signature="e#8666#8693#1#PHP" expanded="true" />
+                <element signature="e#9579#9601#1#PHP" expanded="true" />
+                <element signature="e#11869#11885#1#PHP" expanded="true" />
+                <element signature="e#12214#12230#1#PHP" expanded="true" />
+                <element signature="e#13191#13207#1#PHP" expanded="true" />
+                <element signature="e#13544#13560#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1075,13 +1074,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/show_ajax.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1459,18 +1451,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pesticides.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="231" column="11" selection-start-line="231" selection-start-column="11" selection-end-line="231" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.20704846">
+          <caret line="434" column="38" selection-start-line="434" selection-start-column="38" selection-end-line="434" selection-end-column="38" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
-            <element signature="e#8064#8091#1#PHP" expanded="true" />
-            <element signature="e#8977#8999#1#PHP" expanded="true" />
-            <element signature="e#11267#11283#1#PHP" expanded="true" />
-            <element signature="e#11612#11628#1#PHP" expanded="true" />
-            <element signature="e#12589#12605#1#PHP" expanded="true" />
-            <element signature="e#12942#12958#1#PHP" expanded="true" />
+            <element signature="e#8666#8693#1#PHP" expanded="true" />
+            <element signature="e#9579#9601#1#PHP" expanded="true" />
+            <element signature="e#11869#11885#1#PHP" expanded="true" />
+            <element signature="e#12214#12230#1#PHP" expanded="true" />
+            <element signature="e#13191#13207#1#PHP" expanded="true" />
+            <element signature="e#13544#13560#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
