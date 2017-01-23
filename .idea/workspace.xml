@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" afterPath="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" />
     </list>
     <ignored path="agroscopik.iws" />
@@ -47,15 +45,15 @@
       <file leaf-file-name="UpdateUsagesCommand.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5873715">
-              <caret line="250" column="50" selection-start-line="250" selection-start-column="50" selection-end-line="250" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.5301028">
+              <caret line="227" column="22" selection-start-line="227" selection-start-column="22" selection-end-line="227" selection-end-column="22" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
                 <element signature="e#8189#8211#1#PHP" expanded="true" />
-                <element signature="e#10477#10493#1#PHP" expanded="true" />
-                <element signature="e#10822#10838#1#PHP" expanded="true" />
-                <element signature="e#11799#11815#1#PHP" expanded="true" />
-                <element signature="e#12152#12168#1#PHP" expanded="true" />
+                <element signature="e#10479#10495#1#PHP" expanded="true" />
+                <element signature="e#10824#10840#1#PHP" expanded="true" />
+                <element signature="e#11801#11817#1#PHP" expanded="true" />
+                <element signature="e#12154#12170#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,8 +62,8 @@
       <file leaf-file-name="SpecialityUsage.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.24138">
-              <caret line="415" column="37" selection-start-line="415" selection-start-column="37" selection-end-line="415" selection-end-column="37" />
+            <state vertical-scroll-proportion="50.0">
+              <caret line="415" column="33" selection-start-line="415" selection-start-column="33" selection-end-line="415" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -1430,6 +1428,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.2413793">
+          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="50.0">
+          <caret line="415" column="33" selection-start-line="415" selection-start-column="33" selection-end-line="415" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-13.793103">
@@ -1443,33 +1457,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.2413793">
-          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.24138">
-          <caret line="415" column="37" selection-start-line="415" selection-start-column="37" selection-end-line="415" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5873715">
-          <caret line="250" column="50" selection-start-line="250" selection-start-column="50" selection-end-line="250" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.5301028">
+          <caret line="227" column="22" selection-start-line="227" selection-start-column="22" selection-end-line="227" selection-end-column="22" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
             <element signature="e#8189#8211#1#PHP" expanded="true" />
-            <element signature="e#10477#10493#1#PHP" expanded="true" />
-            <element signature="e#10822#10838#1#PHP" expanded="true" />
-            <element signature="e#11799#11815#1#PHP" expanded="true" />
-            <element signature="e#12152#12168#1#PHP" expanded="true" />
+            <element signature="e#10479#10495#1#PHP" expanded="true" />
+            <element signature="e#10824#10840#1#PHP" expanded="true" />
+            <element signature="e#11801#11817#1#PHP" expanded="true" />
+            <element signature="e#12154#12170#1#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -239,11 +239,11 @@ class UpdateUsagesCommand extends ContainerAwareCommand
 
             // Find line speciality
             $speciality = $em->getRepository('AppBundle:Speciality')
-                ->findByAmm(intval($row[$amm]));
+                ->findOneByAmm(intval($row[$amm]));
 
 
             // If the pesticide isn't found just dismiss it
-            if (!is_object($speciality)) {
+            if (is_object($speciality)) {
 
                 // Build a usage object based on csv to compare to current usages
                 $csvUsage = new SpecialityUsage();
@@ -346,8 +346,9 @@ class UpdateUsagesCommand extends ContainerAwareCommand
                     }
                 }
 
-
-                $output->writeln('<comment>Added ' . $row[$name] . ' ---</comment>');
+                // Persist and flush
+                $em->persist($csvUsage);
+                $em->flush();
 
                 $added++;
             } else {
@@ -355,9 +356,7 @@ class UpdateUsagesCommand extends ContainerAwareCommand
             }
 
 
-            // Persist and flush
-            $em->persist($csvUsage);
-            $em->flush();
+
 
 
             // Each 20 users persisted we clear everything and show progress
