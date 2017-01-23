@@ -28,6 +28,13 @@ class SpecialityUsage
     private $speciality;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="shortNumber", type="integer", nullable=true)
+     */
+    private $shortNumber;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
@@ -485,6 +492,22 @@ class SpecialityUsage
     public function setFullUnit($fullUnit)
     {
         $this->fullUnit = $fullUnit;
+    }
+
+    /**
+     * @return int
+     */
+    public function getShortNumber()
+    {
+        return $this->shortNumber;
+    }
+
+    /**
+     * @param int $shortNumber
+     */
+    public function setShortNumber($shortNumber)
+    {
+        $this->shortNumber = $shortNumber;
     }
 
 
