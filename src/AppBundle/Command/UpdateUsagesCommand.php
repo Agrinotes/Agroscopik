@@ -21,7 +21,7 @@ class UpdateUsagesCommand extends ContainerAwareCommand
         $this
             ->setName('update:pesticides:usages')
             ->setDescription('Update pesticides usages from CSV file')
-            ->addArgument('path', InputArgument::OPTIONAL, 'The path to the csv file.','web/uploads/import/pesticides.csv')
+            ->addArgument('path', InputArgument::OPTIONAL, 'The path to the csv file.', 'web/uploads/import/pesticides.csv')
             ->addOption(
                 'amm',
                 null,
@@ -30,17 +30,136 @@ class UpdateUsagesCommand extends ContainerAwareCommand
                 2
             )
             ->addOption(
-                'usage-unit',
+                'name',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Set usage unit column number',
+                'Set usage short number column number',
+                11
+            )
+            ->addOption(
+                'short-number',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set usage short number column number',
+                10
+            )
+            ->addOption(
+                'no-short-number',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no usage short number in csv file'
+            )
+
+            ->addOption(
+                'min-stage',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set usage minimum BBCH stage column number',
+                13
+            )
+            ->addOption(
+                'no-min-stage',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no usage minimum BBCH stage in csv file'
+            )
+            ->addOption(
+                'max-stage',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set usage maximum BBCH stage column number',
+                14
+            )
+            ->addOption(
+                'no-max-stage',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no usage maximum BBCH stage in csv file'
+            )
+            ->addOption(
+                'full-unit',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set full unit stage column number',
                 17
             )
             ->addOption(
-                'no-usage-unit',
+                'dar',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set Délai avant Récolte column number',
+                18
+            )
+            ->addOption(
+                'no-dar',
                 null,
                 InputOption::VALUE_NONE,
-                'Use if no unit in csv file'
+                'Use if no Délai avant Récolte in csv file'
+            )
+            ->addOption(
+                'max-actions',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set maximum number of actions for current usage column number',
+                20
+            )
+            ->addOption(
+                'no-max-actions',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no maximum number of actions for current usage in csv file'
+            )
+            ->addOption(
+                'conditions',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set usage conditions column number',
+                23
+            )
+            ->addOption(
+                'no-conditions',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no usage conditions in csv file'
+            )
+            ->addOption(
+                'znt-water',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set znt water column number',
+                24
+            )
+            ->addOption(
+                'no-znt-water',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no znt water in csv file'
+            )
+            ->addOption(
+                'znt-arthropodes',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set znt arthropodes column number',
+                25
+            )
+            ->addOption(
+                'no-znt-arthropodes',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no znt arthropodes in csv file'
+            )
+            ->addOption(
+                'znt-plants',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Set znt plants column number',
+                26
+            )
+            ->addOption(
+                'no-znt-plants',
+                null,
+                InputOption::VALUE_NONE,
+                'Use if no znt arthropodes in csv file'
             );
 
     }
@@ -69,9 +188,20 @@ class UpdateUsagesCommand extends ContainerAwareCommand
 
         // Define column numbers
         $amm = $input->getOption('amm');
+        $name = $input->getOption('name');
+        $shortNumber = $input->getOption('no-short-number') ? false : $input->getOption('short-number');
+        $minStage = $input->getOption('no-min-stage') ? false : $input->getOption('min-stage');
+        $maxStage= $input->getOption('no-max-stage') ? false : $input->getOption('max-stage');
+        $status= $input->getOption('status');
+        $dose= $input->getOption('dose');
+        $fullUnit = $input->getOption('full-unit');
+        $dar= $input->getOption('no-dar') ? false : $input->getOption('dar');
+        $maxActions= $input->getOption('no-max-actions') ? false : $input->getOption('max-actions');
+        $conditions= $input->getOption('no-conditions') ? false : $input->getOption('conditions');
+        $zntWater= $input->getOption('no-znt-water') ? false : $input->getOption('znt-water');
+        $zntArthropodes= $input->getOption('no-znt-arthropodes') ? false : $input->getOption('znt-arthropodes');
+        $zntPlants= $input->getOption('no-znt-plants') ? false : $input->getOption('znt-plants');
 
-
-        $usage_unit = $input->getOption('no-usage-unit') ? false : $input->getOption('usage-unit');
 
         // Getting doctrine manager
         $em = $this->getContainer()->get('doctrine')->getManager();
@@ -103,28 +233,32 @@ class UpdateUsagesCommand extends ContainerAwareCommand
 
                 // Build a usage object based on csv to compare to current usages
                 $csvUsage = new SpecialityUsage();
-                $csvUsage->setShortNumber();
-                $csvUsage->setName();
-                $csvUsage->setMinCropStage();
-                $csvUsage->setMaxCropStage();
-                $csvUsage->setStatus();
-                $csvUsage->setDose();
-                $csvUsage->setAmountUnit2();
-                $csvUsage->setFullUnit();
-                $csvUsage->setDAR();
-                $csvUsage->setMaxActions();
-                $csvUsage->setConditions();
-                $csvUsage->setZNTwater();
-                $csvUsage->setZNTarthropodes();
-                $csvUsage->setZNTplants();
+                $csvUsage->setShortNumber($row[$shortNumber]);
+                $csvUsage->setName($row[$name]);
+                $csvUsage->setMinCropStage($row[$minStage]);
+                $csvUsage->setMaxCropStage($row[$maxStage]);
+
+                if($row[$status]=="Autorisé"){
+                    $csvUsage->setStatus("TRUE");
+                }else{
+                    $csvUsage->setStatus("FALSE");
+                }
+
+                $csvUsage->setDose($row[$dose]);
+
+                $csvUsage->setFullUnit($row[$fullUnit]);
+
                 // Guess unit category
                 $csvUsage->setUnit1();
+                $csvUsage->setAmountUnit2();
                 $csvUsage->setUnit2();
 
-
-
-
-
+                $csvUsage->setDAR($row[$dar]);
+                $csvUsage->setMaxActions($row[$maxActions]);
+                $csvUsage->setConditions($row[$conditions]);
+                $csvUsage->setZNTwater($row[$zntWater]);
+                $csvUsage->setZNTarthropodes($row[$zntArthropodes]);
+                $csvUsage->setZNTplants($row[$zntPlants]);
 
                 $output->writeln('<comment>Added ' . $row[3] . ' ---</comment>');
 
@@ -228,7 +362,6 @@ class UpdateUsagesCommand extends ContainerAwareCommand
 
         return $data;
     }
-
 
 
 }
