@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" afterPath="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" afterPath="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,15 +28,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ImportCommand.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImportCommand.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35211268">
+            <state vertical-scroll-proportion="-8.620689">
               <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
               <folding>
                 <element signature="e#37#69#0#PHP" expanded="true" />
                 <element signature="e#5879#5901#1#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-18.310345">
+              <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+              <folding>
+                <element signature="e#12#33#0#Twig" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.64788735">
+              <caret line="149" column="74" selection-start-line="149" selection-start-column="74" selection-end-line="149" selection-end-column="74" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -72,7 +94,7 @@
       <file leaf-file-name="Speciality.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.6896552">
               <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
               <folding />
             </state>
@@ -139,13 +161,13 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/FarmSpeciality.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/config/services.yml" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
+        <option value="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
       </list>
     </option>
   </component>
@@ -1150,13 +1172,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspeciality/index2.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="16.551723">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/farmfertilizer/new.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2535211">
@@ -1215,13 +1230,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7183099">
-          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1240,13 +1248,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="121" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="363" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.827586">
-          <caret line="119" column="25" selection-start-line="119" selection-start-column="25" selection-end-line="119" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1397,14 +1398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1446,12 +1439,46 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35211268">
+        <state vertical-scroll-proportion="-8.620689">
           <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
           <folding>
             <element signature="e#37#69#0#PHP" expanded="true" />
             <element signature="e#5879#5901#1#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.310345">
+          <caret line="139" column="0" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6896552">
+          <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspeciality/index2.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6760563">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64788735">
+          <caret line="149" column="74" selection-start-line="149" selection-start-column="74" selection-end-line="149" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
