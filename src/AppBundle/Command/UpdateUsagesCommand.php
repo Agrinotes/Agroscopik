@@ -439,7 +439,7 @@ class UpdateUsagesCommand extends ContainerAwareCommand
 
 // Connecting to website.
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, 'https://www.data.gouv.fr/s/resources/donnees-ouvertes-du-catalogue-des-produits-phytopharmaceutiques-adjuvants-matieres-fertilisantes-et-support-de-culture-produits-mixtes-et-melanges-e-phy/20161230-162255/usages_des_produits_autorises_v2_utf8-29122016.csv');
+            curl_setopt($ch, CURLOPT_URL, $input->getOption('download-url'));
             curl_setopt($ch, CURLOPT_FILE, $fp);
             curl_setopt($ch,CURLOPT_SSL_VERIFYPEER, false);
             curl_exec ($ch);

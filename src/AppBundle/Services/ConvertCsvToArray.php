@@ -15,7 +15,7 @@ class ConvertCsvToArray {
 
         $header = NULL;
         $data = array();
-        $debug = false;
+        $debug = 0;
         $line=0;
 
         if (($handle = fopen($filename, 'r')) !== FALSE) {
@@ -23,8 +23,8 @@ class ConvertCsvToArray {
                 if(!$header) {
                     $header = $row;
                 } else {
-                    if($debug){($line.' '.count($row));};
-                    $data[] = array_combine(range(1,count($header)), $row);
+                    if($debug){var_dump($line.' '.count($row));};
+                    $data[] = array_combine(range(1,count($header)), array_slice($row,0,count($header)));
                 }
                 $line++;
             }
