@@ -123,6 +123,7 @@
                         <thead>
                         <tr>
                             <th>Nom</th>
+                            <th>Noms secondaires</th>
                             <th>Composition</th>
                         </tr>
                         </thead>
@@ -147,6 +148,8 @@
                                              </a>{% endif %}
                </span>
                                 </td>
+                                <td>{{ speciality.alternativeName }}</td>
+
                                 <td>{{ speciality.composition | capitalize }}</td>
 
                             </tr>
