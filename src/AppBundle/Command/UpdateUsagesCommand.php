@@ -449,16 +449,15 @@ class UpdateUsagesCommand extends ContainerAwareCommand
             }
             else {
 
-                $msg = 'File uploaded successfully.';
+                $msg = 'File uploaded successfully from '.$input->getOption('download-url');
             }
 
             curl_close ($ch);
 
             fclose($fp);
 
-            $return = array('msg' => $msg);
 
-            echo json_encode($return);
+            echo $msg;
         }
 
 
