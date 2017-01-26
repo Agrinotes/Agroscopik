@@ -104,6 +104,16 @@ class FertilizerType extends AbstractType
                 'required'=>false,
                 'label' => "Cu",
             ))
+            ->add('ismo',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "ISMO",
+            ))
+            ->add('cn',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "C/N",
+            ))
             ->add('comment',TextType::class,array(
                 'attr' => array('class'=>'form-control'),
                 'required'=>false,

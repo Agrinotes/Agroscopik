@@ -135,6 +135,8 @@
                             <th>Mn</th>
                             <th>Zn</th>
                             <th>Cu</th>
+                            <th>ISMO</th>
+                            <th>C/N</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -163,38 +165,48 @@
                                         <span class="tag tag-info">Autorisé</span>
                                                 {% endif %}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.n == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.n }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.p2O5 == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.p2O5 }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.k2O == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.k2O }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.caO == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.caO }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.mgO == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.mgO }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.fe == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.fe }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.sO3 == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.sO3 }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.b == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.b }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.mn == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.mn }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.zn == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.zn }}
                                 </td>
-                                <td>
+                                <td {% if fertilizer.cu == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ fertilizer.cu }}
+                                </td>
+                                <td>
+                                    {% if fertilizer.ismo != 0 %}
+                                    {{ fertilizer.ismo }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if fertilizer.cn %}
+                                    {{ fertilizer.cn }}
+                                    {% endif %}
                                 </td>
                             </tr>
                         {% endfor %}
