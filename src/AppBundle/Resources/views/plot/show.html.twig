@@ -131,6 +131,7 @@
                             <th>Date début</th>
                             <th>Date fin</th>
                             <th>Temps de travail</th>
+                            <th>Récoltes</th>
                             <th>Produit brut</th>
                             <th>Coûts de production</th>
                             <th>Marge brute</th>
@@ -152,6 +153,7 @@
                                 <td>{{ cycle.endDatetime | date ('d/m/Y') }}</td>
 
                                 <td>{{ cycle.workingDurationLabel }}</td>
+                                <td style="text-align: right">{{ cycle.yield | number_format(0,',',' ')}} kg</td>
 
                                 <td style="text-align: right">{{ cycle.grossProduct | number_format(0,',',' ')}} CFP</td>
                                 <td style="text-align: right">{{ cycle.expensesCost | number_format(0,',',' ')}} CFP</td>
@@ -261,7 +263,7 @@
 
                     var options = $.extend(true, {}, defaults, {
                         columnDefs: [
-                            {type: 'formatted-num', targets: [2, 5,6,7,8,9]}
+                            {type: 'formatted-num', targets: [2, 5,6,7,8,9,10,11]}
                         ],
                         "order": [[1, "desc"]],
                         "iDisplayLength": 10,

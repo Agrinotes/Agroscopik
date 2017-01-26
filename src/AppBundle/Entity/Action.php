@@ -1028,6 +1028,23 @@ $endTime = $endTime->add($period->getDuration());
     /**
      * @return mixed
      */
+    public function getQty()
+    {
+        $qty = 0;
+        $harvestProducts = $this->getHarvestProducts();
+        foreach($harvestProducts as $harvestProduct){
+            if($harvestProduct->getQty()){
+
+                $qty += $harvestProduct->getStdQty();
+            }
+        }
+
+        return $qty;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getPH()
     {
         return $this->pH;
@@ -1126,5 +1143,7 @@ $endTime = $endTime->add($period->getDuration());
     {
         $this->drainage = $drainage;
     }
+
+
 }
 

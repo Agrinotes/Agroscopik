@@ -104,7 +104,7 @@
                                                 <div class="panel-heading" id="panel_plot_{{plot.id}}" data-plot-id={{ loop.index0 }} role="tab">
                                                     <a class="panel-title collapsed friend-name" data-toggle="collapse" href="#plot_{{plot.id}}" data-parent="#exampleAccordionDefault"
                                                         aria-expanded="false" aria-controls="exampleCollapseDefaultOne">
-                                                    {{ plot.name | capitalize}} <small>{{ plot.area|number_format(2, ',', ' ') }} ha</small>
+                                                    {{ plot.name | upper}} <small>{{ plot.area|number_format(2, ',', ' ') }} ha</small>
                                                     </a>
                                                 </div>
                                                 <div class="panel-collapse collapse" id="plot_{{plot.id}}" aria-labelledby="panel_plot_{{plot.id}}" role="tabpanel" aria-expanded="false"

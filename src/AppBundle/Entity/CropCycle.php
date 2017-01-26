@@ -688,5 +688,21 @@ class CropCycle
         return $this->getGrossAddedValue()/$this->getWorkingDurationRaw()*8;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getYield()
+    {
+        // Get cycle action
+        $actions = $this->getActions();
+        $yield = 0;
+
+        // For each action, get harvest products
+        foreach ($actions as $action) {
+            $yield += $action->getQty();
+        }
+        return $yield;
+
+    }
 }
 

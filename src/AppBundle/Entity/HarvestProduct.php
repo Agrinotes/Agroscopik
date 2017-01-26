@@ -181,4 +181,30 @@ class HarvestProduct
     {
         $this->action = $action;
     }
+
+    /**
+     * Get qty
+     *
+     * @return float
+     */
+    public function getStdQty()
+    {
+        $qty = $this->getQty();
+
+        // Get mass conversion factor
+        $a = $this->getUnit()->getA();
+        $qty *= $a; //To kg
+
+        // Get surface conversion factor if any
+        $c = $this->getUnit()->getC();
+        if($c){
+            $qty *= $c / 10000; // To ha
+
+            $area = $this->getAction()->getCropCycle()->getArea();
+            $qty *= $area;
+        }
+
+
+        return $qty;
+    }
 }
