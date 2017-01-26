@@ -203,7 +203,7 @@ class ImportCommand extends ContainerAwareCommand
                 $speciality->setComposition($row[$composition]);
             }
 
-            if ($usage_unit) {
+            if ($usage_unit && $row[$usage_unit]!= "") {
                 // Guess unit category from usage unit
                 $csvUnit = strtok($row[$usage_unit], '/');
                 $unit = $em->getRepository('AppBundle:Unit')->findOneBySymbol($csvUnit);

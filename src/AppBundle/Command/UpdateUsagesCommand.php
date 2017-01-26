@@ -329,11 +329,8 @@ class UpdateUsagesCommand extends ContainerAwareCommand
                     $csvUsage->setZNTplants($row[$zntPlants]);
                 }
 
-                // Guess status (required)
-                if($row[$status]=="Autorisé"){
-                    $csvUsage->setStatus("TRUE");
-                }else{
-                    $csvUsage->setStatus("FALSE");
+                if($status){
+                    $csvUsage->setStatus($row[$status]);
                 }
 
                 // Add dose (required)

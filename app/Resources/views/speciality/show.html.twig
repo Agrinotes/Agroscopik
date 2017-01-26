@@ -113,7 +113,7 @@
             <!-- Panel Table Tools -->
             <div class="panel" id="tableTools">
                 <header class="panel-heading">
-                    <h4 class="panel-title" style="font-size:16px;">Fiches techniques <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i></small>Produits phytosanitaires
+                    <h4 class="panel-title" style="font-size:16px;">Fiches techniques <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i></small><a href="{{ path('speciality_index') }}">Produits phytosanitaires</a>
                         <small><i class="icon wb-chevron-right" style="margin-right:5px;" aria-hidden="true"></i></small>
                         {{ speciality.name | capitalize }}
                     </h4>
@@ -140,7 +140,7 @@
                             <tr id="td_{{ usage.id }}">
                                 <td>{{ usage.name }}</td>
 
-                                <td>{% if usage.status == 'TRUE' %}<span class="tag tag-info">Autorisé</span>{% else %}<span class="tag tag-danger">Interdit</span>{% endif %}</td>
+                                <td>{% if usage.status == 'Autorisé' or usage.status == "Autorisé (Provisoire)" %}<span class="tag tag-info">{{ usage.status }}</span>{% else %}<span class="tag tag-danger">{{ usage.status }}</span>{% endif %}</td>
                                 <td><span class="tag tag-default">Voir SIVAP</span></td>
 
                                 <td>{{ usage.dose }}{{ usage.fullUnit }}</td>
@@ -156,35 +156,7 @@
                 </div>
             </div>
             <!-- End Panel Table Tools -->
-
-            <!-- Button Add Action -->
-            <div class="site-action">
-                <button type="button" onClick="switchPanels();"
-                        class="rotate site-action site-floataction btn-raised btn btn-danger btn-floating">
-                    <i class="front-icon wb-plus animation-scale-up" aria-hidden="true"></i>
-                </button>
-            </div>
-            <!-- End Button Add Action -->
         </div>
-        <!-- Panel Add Action -->
-        <div class="row" id="addSpeciality" style="display: none;">
-            <div class="col-lg-3 col-md-0">
-
-            </div>
-            <div class="col-lg-6">
-                <div class="panel panel-info panel-bordered">
-                    <header class="panel-heading">
-                        <div class="panel-actions"></div>
-                        <h3 class="panel-title">Ajouter un produit phytosanitaire</h3>
-                    </header>
-                    <div class="panel-body" style="padding-top:20px;">
-                        {#render(controller('AppBundle:Speciality:new'))#}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- End Panel Add Action -->
-
 
     </div>
 {% endblock %}
