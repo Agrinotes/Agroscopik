@@ -4,7 +4,8 @@
 
 {% block plugins_stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/asrange/asRange.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/asrange/asRange.css') }}"
+          xmlns="http://www.w3.org/1999/html">
 {% endblock %}
 
 {% block page_stylesheets %}
@@ -104,7 +105,7 @@
                         {{ form_end(edit_form) }}
 
                         {{ form_start(delete_form) }}
-                        <input type="submit" class="btn btn-danger btn-block margin-left-10" style="margin-top:10px;" value="Supprimer cette parcelle">
+                        <button type="submit" class="btn btn-danger btn-block margin-left-10" style="margin-top:10px;" >Supprimer cette parcelle</button>
                         {{ form_end(delete_form) }}
 
                     </div>
