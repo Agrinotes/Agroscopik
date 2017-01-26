@@ -193,7 +193,7 @@ class PlotController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('farm_show_current');
+        return $this->redirectToRoute('dashboard');
     }
 
     /**
