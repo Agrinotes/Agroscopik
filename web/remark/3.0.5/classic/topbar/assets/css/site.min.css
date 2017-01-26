@@ -8518,7 +8518,7 @@ ul.panel-actions > li:first-child {
 }
 
 .panel-group .panel-title:focus, .panel-group .panel-title:hover {
-    color: #76838f;
+    color: black;
     text-decoration: none
 }
 
