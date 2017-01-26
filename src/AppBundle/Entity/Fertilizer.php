@@ -143,6 +143,20 @@ class Fertilizer
     private $cu;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="ISMO", type="float", nullable=true)
+     */
+    private $ismo;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="CN", type="float", nullable=true)
+     */
+    private $cn;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="comment", type="text", nullable=true)
@@ -648,6 +662,38 @@ class Fertilizer
     public function setOrganic($organic)
     {
         $this->organic = $organic;
+    }
+
+    /**
+     * @return float
+     */
+    public function getIsmo()
+    {
+        return $this->ismo;
+    }
+
+    /**
+     * @param float $ismo
+     */
+    public function setIsmo($ismo)
+    {
+        $this->ismo = $ismo;
+    }
+
+    /**
+     * @return float
+     */
+    public function getCn()
+    {
+        return $this->cn;
+    }
+
+    /**
+     * @param float $cn
+     */
+    public function setCn($cn)
+    {
+        $this->cn = $cn;
     }
 }
 

@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -17,6 +18,16 @@ class SpecialityType extends AbstractType
         $builder
             ->add('amm')
             ->add('name')
+            ->add('fds',UrlType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "URL Fiche de données de sécurité",
+            ))
+            ->add('ft',UrlType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>false,
+                'label' => "URL Fiche technique",
+            ))
         ;
     }
     
