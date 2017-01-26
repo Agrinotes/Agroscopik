@@ -74,7 +74,7 @@ class FarmSpecialityMvtUpdateStockType extends AbstractType
                 'expanded' => false,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
-                        ->where('u.slug', 'slug')
+                        ->where('u.slug = :slug')
                         ->setParameter('slug','kilogram')
                         ;
                 },

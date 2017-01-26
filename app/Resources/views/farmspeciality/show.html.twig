@@ -143,9 +143,7 @@
                         {% for farmSpecialityMvt in farmSpeciality.movements %}
                             <tr>
                                 <td>
-                                    <a class="actionLink"
-                                       href="{{ path('farmspecialitymvt_show', { 'id': farmSpecialityMvt.id }) }}">{{ farmSpecialityMvt.category.name }} {% if farmSpecialityMvt.action is not empty %}sur {% endif %}{{ farmSpecialityMvt.action.cropcycle.label | trim |capitalize }}
-                                    </a>
+                                    {{ farmSpecialityMvt.category.name }} {% if farmSpecialityMvt.action is not empty %}sur {% endif %}{{ farmSpecialityMvt.action.cropcycle.label | trim |capitalize }}
                                 </td>
                                 <td>
                                     {{ farmSpecialityMvt.datetime|date('d/m/Y') }}
@@ -182,7 +180,7 @@
                 </span>
                             <span class="counter-number">{{ farmSpeciality.stock |number_format(0,'',' ') }}</span>
                 <span class="counter-number-related">
-                    {% if farmSpeciality.speciality.unitCategory.slug == 'mass'  %}kg{% elseif farmSpeciality.speciality.unitCategory.slug == 'volume' %}L{% else %} {{ farmSpeciality.speciality.unitCategory.symbol }} {% endif %}{{farmSpecialityMvt.fullUnit}}
+                    {% if farmSpeciality.speciality.unitCategory.slug == 'mass'  %}kg{% elseif farmSpeciality.speciality.unitCategory.slug == 'volume' %}L{% else %} {{ farmSpeciality.speciality.unitCategory.symbol }} {% endif %}
 </span>
                         </div>
                     </div>
@@ -219,8 +217,8 @@
         <!-- End Panel Add Action -->
 
         <!-- Charts -->
-        <div class="row" style="margin-left:0px; margin-right: 20px;" id="chart">
-            <div class="col-md-12">
+        <div class="row" id="chart" style="padding-left:18px; padding-right:10px; margin-top:-25px;">
+            <div class="col-md-9">
                 <div class="panel" id="soil-productivity-chart">
                     <div class="panel-body">
                         <div id="container1"
@@ -445,7 +443,7 @@
                 },
                 yAxis: [{
                     title: {
-                        text: 'Utilisation en QUOI',
+                        text: 'Utilisation en ' + '{% if farmSpeciality.speciality.unitCategory.slug == 'mass'  %}kg{% elseif farmSpeciality.speciality.unitCategory.slug == 'volume' %}L{% else %} {{ farmSpeciality.speciality.unitCategory.symbol }} {% endif %}',
                     },
                     tooltip: {
                         headerFormat: '<b>{series.name}</b><br>',
@@ -481,7 +479,7 @@
                     type: 'column',
                     tooltip: {
                         headerFormat: '<b>{point.x:%e %B}</b><br/>',
-                        pointFormat: '{point.stackTotal:,.0f} QUOI'
+                        pointFormat: '{point.stackTotal:,.0f} ' + '{% if farmSpeciality.speciality.unitCategory.slug == 'mass'  %}kg{% elseif farmSpeciality.speciality.unitCategory.slug == 'volume' %}L{% else %} {{ farmSpeciality.speciality.unitCategory.symbol }} {% endif %}'
                     },
 
                     data: [{% for movement in farmSpeciality.movements %}

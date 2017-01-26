@@ -144,9 +144,8 @@
                         {% for farmFertilizerMvt in farmFertilizer.movements %}
                             <tr>
                                 <td>
-                                    <a class="actionLink"
-                                       href="{{ path('farmfertilizermvt_show', { 'id': farmFertilizerMvt.id }) }}">{{ farmFertilizerMvt.category.name }} {% if farmFertilizerMvt.action is not empty %}sur {% endif %}{{ farmFertilizerMvt.action.cropcycle.label | trim |capitalize }}
-                                    </a>
+                                    {{ farmFertilizerMvt.category.name }} {% if farmFertilizerMvt.action is not empty %}sur {% endif %}{{ farmFertilizerMvt.action.cropcycle.label | trim |capitalize }}
+
                                 </td>
                                 <td>
                                     {{ farmFertilizerMvt.datetime|date('d/m/Y') }}
@@ -195,14 +194,6 @@
                 <button id="toChart" class="btn btn-block btn-danger">VOIR LE GRAPHE</button>
 
             </div>
-            <div class="col-md-9 panel">
-                <div class="panel-heading">
-                    <h4 class="panel-title" style="font-size:16px;">Composition</h4>
-                </div>
-                <div class="panel-body">
-                    {{ render(controller('AppBundle:Fertilizer:showComposition',{'id':farmFertilizer.fertilizer.id})) }}
-                </div>
-            </div>
         </div>
 
         <!-- Panel Add Action -->
@@ -225,8 +216,8 @@
         <!-- End Panel Add Action -->
 
         <!-- Soil productivity charts -->
-        <div class="row" style="margin-left:0px; margin-right: 20px;" id="chart">
-            <div class="col-md-12">
+        <div class="row" style="padding-left:17px; padding-right: 10px; margin-top:-25px;" id="chart">
+            <div class="col-md-9">
                 <div class="panel" id="soil-productivity-chart">
                     <div class="panel-body">
                         <div id="container1"
@@ -371,6 +362,8 @@
         function switchPanels() {
             if (i % 2 == 0) {
                 $('#stock').hide();
+                $('#chart').hide();
+
                 $('#updateStock').fadeIn(400);
                 if (i == 0) {
                     $('.select2').select2();
@@ -387,6 +380,8 @@
             } else {
                 $('#updateStock').hide();
                 $('#stock').fadeIn(400);
+                $('#chart').fadeIn(400);
+
             }
             i++;
         }
@@ -447,11 +442,11 @@
                 },
                 yAxis: [{
                     title: {
-                        text: 'Utilisation en kg',
+                        text: 'Utilisation en '+'{% if farmFertilizer.fertilizer.formula == "liquide" %}Litres{% elseif farmFertilizer.fertilizer.formula is not empty %}Kilogrammes{% else %}Unités{% endif %}',
                     },
                     tooltip: {
                         headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '{point.x:%e. %b}: {point.stackTotal:.0f} kg'
+                        pointFormat: '{point.x:%e. %b}: {point.stackTotal:.0f} ' + '{% if farmFertilizer.fertilizer.formula == "liquide" %}Litres{% elseif farmFertilizer.fertilizer.formula is not empty %}Kilogrammes{% else %}Unités{% endif %}'
                     }
                 }
                     ],
