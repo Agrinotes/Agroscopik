@@ -123,8 +123,9 @@
                         <thead>
                         <tr>
                             <th>Nom commercial</th>
-                            <th>Composition</th>
                             <th>Stock</th>
+                            <th>Composition</th>
+
                         </tr>
                         </thead>
                         <tbody>
@@ -134,11 +135,12 @@
                                        href="{{ path('farmspeciality_show',{'id':farmSpeciality.id}) }}">{{ farmSpeciality.speciality.name |capitalize }}</a>
                                 </td>
                                 <td>
-                                        {{ farmSpeciality.speciality.composition | capitalize }}
+                                    {{ farmSpeciality.stock }} {% if farmSpeciality.speciality.unitCategory.slug == 'mass'  %}kg{% elseif farmSpeciality.speciality.unitCategory.slug == 'volume' %}L{% else %} {{ farmSpeciality.speciality.unitCategory.symbol }} {% endif %}
                                 </td>
                                 <td>
-                                    {{ farmSpeciality.stock }} {% if farmSpeciality.speciality.unitCategory.slug == 'mass'  %}kg{% elseif farmSpeciality.speciality.unitCategory.slug == 'volume' %}L{% else %} {{ farmSpeciality.speciality.unitCategory.slug }} {% endif %}
+                                        {{ farmSpeciality.speciality.composition | capitalize }}
                                 </td>
+
                             </tr>
                         {% endfor %}
                         </tbody>

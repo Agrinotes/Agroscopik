@@ -180,8 +180,9 @@
                 <span class="counter-icon m-r-10 grey-300">
                   <i class="wb-stats-bars"></i>
                 </span>
-                            <span class="counter-number">{{ farmSpecialityMvt.stock |number_format(0,'',' ') }}</span>
-                <span class="counter-number-related">                  Unité                  {{farmSpecialityMvt.fullUnit}}
+                            <span class="counter-number">{{ farmSpeciality.stock |number_format(0,'',' ') }}</span>
+                <span class="counter-number-related">
+                    {% if farmSpeciality.speciality.unitCategory.slug == 'mass'  %}kg{% elseif farmSpeciality.speciality.unitCategory.slug == 'volume' %}L{% else %} {{ farmSpeciality.speciality.unitCategory.symbol }} {% endif %}{{farmSpecialityMvt.fullUnit}}
 </span>
                         </div>
                     </div>
@@ -194,15 +195,8 @@
                 <button id="toChart" class="btn btn-block btn-danger">VOIR LE GRAPHE</button>
 
             </div>
-            {#<div class="col-md-9 panel">
-                <div class="panel-heading">
-                    <h4 class="panel-title" style="font-size:16px;">Composition</h4>
-                </div>
-                <div class="panel-body">
-                    {{  render(controller('AppBundle:Fertilizer:showComposition',{'id':farmFertilizer.fertilizer.id})) }}
-                </div>
-            </div>
-            #}
+
+
         </div>
 
         <!-- Panel Add Action -->
@@ -217,7 +211,7 @@
                         <h3 class="panel-title">Ajuster le stock</h3>
                     </header>
                     <div class="panel-body" style="padding-top:20px;">
-                        {# render(controller('AppBundle:FarmFertilizerMvt:updateStock',{'id':farmFertilizer.id})) #}
+                        {{ render(controller('AppBundle:FarmSpecialityMvt:updateStock',{'id':farmSpeciality.id})) }}
                     </div>
                 </div>
             </div>
@@ -451,7 +445,7 @@
                 },
                 yAxis: [{
                     title: {
-                        text: 'Utilisation en kg',
+                        text: 'Utilisation en QUOI',
                     },
                     tooltip: {
                         headerFormat: '<b>{series.name}</b><br>',
@@ -483,11 +477,11 @@
 
                 series: [ {
                     stacking: 'normal',
-                    name: 'Utilisation d\'engrais',
+                    name: 'Quantités consommées',
                     type: 'column',
                     tooltip: {
                         headerFormat: '<b>{point.x:%e %B}</b><br/>',
-                        pointFormat: '{point.stackTotal:,.0f} kg'
+                        pointFormat: '{point.stackTotal:,.0f} QUOI'
                     },
 
                     data: [{% for movement in farmSpeciality.movements %}

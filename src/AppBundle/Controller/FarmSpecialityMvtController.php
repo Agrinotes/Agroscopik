@@ -36,6 +36,69 @@ class FarmSpecialityMvtController extends Controller
         ));
     }
 
+
+
+    /**
+     * Update farmSpeciality Stock
+     *
+     * @Route("/farmspeciality/{id}/updateStock", name="farmspeciality_update_stock")
+     * @Method({"GET", "POST"})
+     */
+    public function updateStockAction(Request $request, FarmSpeciality $farmSpeciality)
+    {
+        $farmSpecialityMvt = new FarmSpecialityMvt();
+
+        $em = $this->getDoctrine()->getManager();
+
+        $farmSpecialityMvt->setSpeciality($farmSpeciality);
+
+        $category = $em->getRepository('AppBundle:FarmSpecialityMvtCategory')->findOneBySlug('updateStockAction');
+
+        $farmSpecialityMvt->setCategory($category);
+
+        $form = $this->createForm('AppBundle\Form\FarmSpecialityMvtUpdateStockType', $farmSpecialityMvt);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($farmSpecialityMvt);
+
+            //Modify value if updateStockAction
+            if($farmSpecialityMvt->getCategory()->getSlug()=="updateStockAction"){
+                // Current stock
+                $currentStock = $farmSpeciality->getStock();
+
+                // Updated Stock
+                $updatedStock = $farmSpecialityMvt->getAmount();
+
+                // Remove updatedStock amount cause it's already been added to the stock...
+                $currentStock -= $updatedStock;
+
+                // Calculates right amount to reach updated Stock
+                $newAmount = $updatedStock - $currentStock;
+
+                // Update value
+                $farmSpecialityMvt->setAmount($newAmount);
+
+                $em->persist($farmSpecialityMvt);
+
+            }
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($farmSpecialityMvt);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('success', 'Le stock de '.$farmSpecialityMvt->getSpeciality()->getId().' a été mis à jour avec succès !');
+
+            return $this->redirectToRoute('farmspeciality_show', array('id' => $farmSpeciality->getId()));
+        }
+
+        return $this->render('farmspecialitymvt/new_modal.html.twig', array(
+            'farmSpecialityMvt' => $farmSpecialityMvt,
+            'farmSpeciality' => $farmSpeciality,
+            'modal_form' => $form->createView(),
+        ));
+    }
+
     /**
      * Lists all FarmSpecialityMvt for a specific FarmSpeciality.
      *
