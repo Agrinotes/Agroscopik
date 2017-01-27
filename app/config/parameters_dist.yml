@@ -1,0 +1,41 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: localhost
+    database_port: 3306
+    database_name: agroscopik
+    database_user: root
+    database_password: null
+    mailer_transport: gmail
+    mailer_host: 127.0.0.1
+    mailer_user: hugo.lehoux@gmail.com
+    mailer_password: 'sqfs?892'
+    secret: aze12AZE12aze
+
+    # This file is auto-generated during the composer install
+    parameters:
+        database_host: agroscoptftest.mysql.db
+        database_port: 3306
+        database_name: agroscoptftest
+        database_user: agroscoptftest
+        database_password: aze12AZE
+        mailer_transport: gmail
+        mailer_host: 127.0.0.1
+        mailer_user: hugo.lehoux@gmail.com
+        mailer_password: 'sqfs?892'
+        secret: aze12AZE12aze
+
+
+
+
+# This file is auto-generated during the composer install
+parameters:
+    database_host: agroscoptfagro.mysql.db
+    database_port: 3306
+    database_name: agroscoptfagro
+    database_user: agroscoptfagro
+    database_password: aze12AZE
+    mailer_transport: gmail
+    mailer_host: 127.0.0.1
+    mailer_user: hugo.lehoux@gmail.com
+    mailer_password: 'sqfs?892'
+    secret: aze12AZE12aze
