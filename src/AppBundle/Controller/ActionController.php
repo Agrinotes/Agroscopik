@@ -196,7 +196,7 @@ class ActionController extends Controller
             $em->flush();
 
             // Remove specialities added to wrong categories
-            if ($action->getFarmSpecialityMvts() && $action->getIntervention()->getName() != 'Traitement phytosanitaire') {
+            if ($action->getFarmSpecialityMvts() && $action->getIntervention()->getInterventionCategory()->getSlug() != 'protection-des-cultures') {
                 $mvts = $action->getFarmSpecialityMvts();
                 foreach ($mvts as $mvt) {
                     $em->remove($mvt);
@@ -428,7 +428,8 @@ class ActionController extends Controller
         $em->remove($action);
         $em->flush();
 
-        return new JsonResponse(array('data' => 'this is a json response'));
+        return $this->redirectToRoute('dashboard');
 
     }
+
 }
