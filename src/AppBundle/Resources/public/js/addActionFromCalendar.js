@@ -412,7 +412,9 @@
                 $('#nbWorkers').show("slow");
                 $('#tractors').show("slow");
 
-            }else if ($("#action_calendar_intervention").select2('data')[0]['text'] == "Irrigation"||$("#action_calendar_intervention").select2('data')[0]['text'] == "Programme d'irrigation") {
+            }else if ($("#action_calendar_intervention").select2('data')[0]['text'] == "Irrigation"||
+                $("#action_calendar_intervention").select2('data')[0]['text'] == "Irrigation au programmateur"||
+                $("#action_calendar_intervention").select2('data')[0]['text'] == "Irrigation ponctuelle") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");

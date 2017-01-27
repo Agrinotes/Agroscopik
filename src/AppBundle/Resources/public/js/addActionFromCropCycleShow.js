@@ -210,7 +210,7 @@
             var template3 = $container3.attr('data-prototype')
                     .replace(/__name__label__/g, '')
                     .replace(/__name__/g, index3)
-                    .replace(/form-group/g, "form-group col-lg-6")
+                    .replace(/form-group/g, "form-group col-lg-12")
 
 
                 ;
@@ -412,7 +412,9 @@
                 $('#nbWorkers').show("slow");
                 $('#tractors').show("slow");
 
-            }else if ($("#action_intervention").select2('data')[0]['text'] == "Irrigation"||$("#action_intervention").select2('data')[0]['text'] == "Programme d'irrigation") {
+            }else if ($("#action_intervention").select2('data')[0]['text'] == "Irrigation"||
+                $("#action_intervention").select2('data')[0]['text'] == "Irrigation au programmateur"||
+                $("#action_intervention").select2('data')[0]['text'] == "Irrigation ponctuelle") {
                 $('#density').hide("slow");
                 $('#farmSpecialities').hide("slow");
                 $('#auxiliary').hide("slow");
