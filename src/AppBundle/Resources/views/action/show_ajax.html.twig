@@ -1,4 +1,4 @@
-<h3>{{ action.name }} sur {{ action.cropCycle.name }} @ {{ action.cropCycle.plot.name }}</h3>
+<h4>{{ action.name }} sur {{ action.cropCycle.name }} @ {{ action.cropCycle.plot.name }}</h4>
 
 <div class="row">
     <div class="col-md-12">
@@ -130,12 +130,11 @@
 
                                             </td>
                                             <td>                                            {{ mvt.amount }}{{ mvt.unit.symbol }}
-                                                (soit {{ mvt.dose|number_format(2,',',' ') }}{{ mvt.unit.symbol }}/ha)
+
                                             </td>
                                             <td>
                                                 <a class="btn btn-sm btn-default pull-right"
-                                                   href="{{ path('speciality_show',{'id':mvt.fertilizer.fertilizer.id}) }}">Voir
-                                                    la composition de l'engrais</a>
+                                                   href="{{ path('fertilizer_show',{'id':mvt.fertilizer.fertilizer.id}) }}">Fiche technique</a>
 
                                             </td>
                                         </tr>

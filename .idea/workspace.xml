@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/InterventionController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/InterventionController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/show_ajax.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/action/show_ajax.html.twig" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,30 +29,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="calendar.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="calendar.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.4827585">
-              <caret line="265" column="22" selection-start-line="265" selection-start-column="22" selection-end-line="275" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.09859155">
+              <caret line="118" column="30" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
               <folding>
-                <marker date="1485489712244" expanded="true" signature="12033:12087" placeholder="..." />
+                <marker date="1485490700459" expanded="true" signature="12177:12231" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45915493">
-              <caret line="144" column="48" selection-start-line="144" selection-start-column="48" selection-end-line="144" selection-end-column="48" />
+            <state vertical-scroll-proportion="-11.034483">
+              <caret line="253" column="20" selection-start-line="253" selection-start-column="20" selection-end-line="255" selection-end-column="26" />
               <folding>
                 <element signature="e#12#33#0#Twig" expanded="true" />
                 <element signature="e#9738#9791#0#HTML" expanded="true" />
                 <element signature="e#10468#10490#0#HTML" expanded="true" />
                 <element signature="e#10914#10939#0#HTML" expanded="true" />
-                <marker date="1485490315211" expanded="true" signature="5998:6052" placeholder="..." />
+                <marker date="1485490642881" expanded="true" signature="5998:6052" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="show_ajax.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/show_ajax.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="3" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,7 +118,6 @@
         <option value="$PROJECT_DIR$/web/remark/3.0.5/classic/topbar/assets/examples/css/apps/location.css" />
         <option value="$PROJECT_DIR$/web/remark/3.0.5/classic/topbar/assets/css/site.min.css" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/dashboard/dashboard.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/show_ajax.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/HarvestProduct.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" />
@@ -123,8 +131,9 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Command/ActionsCleanCommand.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/InterventionController.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/action/show_ajax.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" />
       </list>
     </option>
   </component>
@@ -999,14 +1008,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/show_ajax.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="85" selection-start-line="0" selection-start-column="85" selection-end-line="0" selection-end-column="85" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.5172415">
@@ -1244,26 +1245,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/show_ajax.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.4827585">
-          <caret line="265" column="22" selection-start-line="265" selection-start-column="22" selection-end-line="275" selection-end-column="43" />
-          <folding>
-            <marker date="1485489712244" expanded="true" signature="12033:12087" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="3" selection-start-line="0" selection-start-column="3" selection-end-line="0" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45915493">
-          <caret line="144" column="48" selection-start-line="144" selection-start-column="48" selection-end-line="144" selection-end-column="48" />
+        <state vertical-scroll-proportion="-11.034483">
+          <caret line="253" column="20" selection-start-line="253" selection-start-column="20" selection-end-line="255" selection-end-column="26" />
           <folding>
             <element signature="e#12#33#0#Twig" expanded="true" />
             <element signature="e#9738#9791#0#HTML" expanded="true" />
             <element signature="e#10468#10490#0#HTML" expanded="true" />
             <element signature="e#10914#10939#0#HTML" expanded="true" />
-            <marker date="1485490315211" expanded="true" signature="5998:6052" placeholder="..." />
+            <marker date="1485490642881" expanded="true" signature="5998:6052" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09859155">
+          <caret line="118" column="30" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
+          <folding>
+            <marker date="1485490700459" expanded="true" signature="12177:12231" placeholder="..." />
           </folding>
         </state>
       </provider>
