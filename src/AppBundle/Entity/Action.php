@@ -1144,6 +1144,65 @@ $endTime = $endTime->add($period->getDuration());
         $this->drainage = $drainage;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getDetails()
+    {
+        $detail = "";
+        if($this->getDensity() && $this->getDensityUnit()){
+            $detail .= $this->getDensity().' plants '.$this->getDensityUnit()->getSymbol();
+        }
+        if($this->getQty()!= 0 ){
+            $detail .= $this->getQty().' kg';
+        }
+        if($this->getAim()){
+            $detail .= $this->getAim();
 
+        }
+
+        if($this->getAuxiliary()){
+            $this ->getAuxiliary()->getName();
+        }
+
+        if($this->getDrainage()){
+            $detail .= $this->getDrainage().'%';
+        }
+
+        if($this->getEc()){
+            $detail .= 'EC '.$this->getEc().'mS/cm';
+        }
+
+        if($this->getPH()){
+            $detail .= ' pH'.$this->getPH();
+        }
+
+        if($this->getFarmFertilizerMvts()){
+            foreach($this->getFarmFertilizerMvts() as $mvt){
+
+                $detail.= $mvt->getFertilizer()->getFertilizer()->getName();
+                $detail.= ' '.$mvt->getAmount();
+                $detail.= ' '.$mvt->getUnit()->getSymbol();
+            }
+        }
+
+        if($this->getFarmSpecialityMvts()){
+            foreach ($this->getFarmSpecialityMvts() as $mvt) {
+                $detail.= ' '.$mvt->getSpeciality()->getSpeciality()->getName();
+                $detail.= ' '.$mvt->getAmount();
+                $detail.= ' '.$mvt->getUnit()->getSymbol();
+            }
+        }
+
+        if($this->getIrrigations()){
+            $waterAmount=0;
+            foreach ($this->getIrrigations() as $irrigation ) {
+                $waterAmount+= $irrigation->getStdAmount();
+                $detail.=$waterAmount.'mm';
+            }
+        }
+
+        return $detail;
+    }
 }
 

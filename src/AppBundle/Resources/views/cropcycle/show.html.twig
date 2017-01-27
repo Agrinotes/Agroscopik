@@ -141,7 +141,7 @@
                         {% for action in cropCycle.actions %}
                             <tr id="td_{{ action.id }}">
                                 <td><a class="actionLink"
-                                       href="{{ path('action_show',{'id':action.id}) }}">{{ action.name }} </a>
+                                       href="{{ path('action_show',{'id':action.id}) }}">{{ action.name }}  {{ action.details }}</a>
                 
                 <span class="pull-right"><a href="{{ path('action_edit',{'id':action.id}) }}"
                                             class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"

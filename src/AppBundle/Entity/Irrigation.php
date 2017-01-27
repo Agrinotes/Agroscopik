@@ -195,5 +195,51 @@ class Irrigation
     {
         $this->volumeUnit = $volumeUnit;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getStdAmount()
+    {
+        if($this->getVolume() && $this->getVolumeUnit()){
+            $volume = $this->getVolume();
+            $unit = $this->getVolumeUnit();
+            $a = $unit->getA();
+            $c = $unit->getC();
+
+            $volume*=$a;// To m3
+            $volume*=1000; //To Liters
+            if($c){
+                $volume/=$c; //To m2
+            }
+            return $volume; // m²/L or mm
+        }
+
+        if($this->getFlow()&&$this->getFlowUnit()&&$this->getDuration()){
+            $flow = $this->getFlow(); // L/h or m3/h
+            $unit =$this->getFlowUnit();
+            $a = $unit->getA();
+            $c = $unit->getC();
+
+            $flow *= $a; // To m3/h
+            $flow *= 1000; // To liters/h
+
+            $flow /= $c; // TO L/second
+            $flow *= 60; // To L/minute
+
+            $duration = $this->getDuration(); // In minutes
+
+            $volume = $flow*$duration; // In liters
+
+            $area = $this->getAction()->getCropCycle()->getArea();
+            $area *= 10000; //To m²
+
+            $volume = $volume/$area; // L/m² or mm
+
+            return round($volume);
+        }
+
+        return "";
+    }
 }
 
