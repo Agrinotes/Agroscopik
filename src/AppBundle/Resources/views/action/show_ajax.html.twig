@@ -217,12 +217,15 @@
                             <ul>
                                 {% for product in action.harvestProducts %}
                                     <li>
-                                        {{ product.qty }} {{ product.unit.symbol }} à {{ product.price }}
-                                        CFP/{{ product.priceUnit.symbol }}
+                                        {{ product.qty }} {{ product.unit.symbol }} {% if product.price %}à {{ product.price }}
+                                        CFP/{{ product.priceUnit.symbol }}{% endif %}
                                     </li>
                                 {% endfor %}
                             </ul>
                         {% endif %}
+
+
+<a href="{{ path('action_edit',{'id':action.id}) }}" class="btn btn-default">Modifier</a>
 
 
 
