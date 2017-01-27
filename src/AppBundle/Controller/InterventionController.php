@@ -52,7 +52,7 @@ class InterventionController extends Controller
             $em->persist($intervention);
             $em->flush();
 
-            return $this->redirectToRoute('intervention_show', array('id' => $intervention->getId()));
+            return $this->redirectToRoute('dashboard', array('id' => $intervention->getId()));
         }
 
         return $this->render('@App/intervention/new.html.twig', array(

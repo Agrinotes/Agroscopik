@@ -1,93 +1,97 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_topbar.html.twig' %}
 
-{% block plugin_stylesheets %}
+{% block title %}Modifier {{ cropCycle.plot.name | capitalize }} {{ cropCycle.name | capitalize }}{% endblock %}
+
+{% block plugins_stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/select2/select2.css') }}">
-    <link rel="stylesheet" href="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('front/global/vendor/asrange/asRange.css') }}">
+
 {% endblock %}
 
-{% block head_javascripts %}
+{% block page_stylesheets %}
     {{ parent() }}
-    <link id="skinStyle" href="{{ asset('front/mmenu/assets/skins/teal.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        .leaflet-popup-tip-container {
+            left: -35px;
+        }
+
+        .leaflet-control-layers-toggle {
+            font-family: Roboto, sans-serif;
+        }
+
+        .leaflet-editing-icon {
+            border-radius: 100%;
+            opacity: 1;
+        }
+
+        .created-div {
+            border: 10px solid #088;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            border-radius: 30px;
+            height: 20px;
+            width: 20px;
+            -webkit-animation: hugo 0.5s;
+            -moz-animation: hugo 0.5s;
+            animation: hugo 0.5s;
+            transform-origin: center;
+            /*opacity: 0.0*/
+        }
+
+        @keyframes hugo {
+            from {
+                transform: scale(3);
+            }
+            to {
+                transform: none;
+            }
+        }
+
+        .rangeUi-tip{
+            width:auto;
+            font-size:15px;
+        }
+
+        .hidden{
+            display: none;
+        }
+    </style>
 {% endblock %}
 
 {% block page %}
+    <div class="page-content">
+        <div class="row">
+<div class="col-lg-4 col-md-3 col-sm-0">
 
-    <div class="page animsition">
-        <div class="page-header padding-top-20 padding-bottom-10">
-            <ol class="breadcrumb">
-                <li><a href="{{ path('intervention_index') }}">Interventions</a></li>
-                <li class="active">Ajouter une intervention</li>
-            </ol>
-        </div>
-        <div class="page-content">
-            <div class="row">
-                <div class="col-lg-6 col-lg-offset-3">
-                    <div class="panel panel-bordered">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Ajouter une intervention</h3>
+</div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <!-- Panel -->
+                <div class="panel panel-info panel-bordered">
+                    <header class="panel-heading">
+                        <div class="panel-actions"></div>
+                        <h3 class="panel-title">Ajouter une intervention</h3>
+                    </header>
+                    <div class="panel-body">
+                        {{ form_start(form) }}
+                        <div class="form-group">
+                            {{ form_rest(form) }}
+
                         </div>
-                        <div class="panel-body">
-                            {{ form_start(form) }}
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h4 class="example-title">{{ form_label(form.name) }}</h4>
 
-
-                                    {{ form_errors(form.name) }}
-                                    {{ form_widget(form.name) }}
-                                </div>
-                            </div>
-                            <div class="row margin-top-20">
-                                <div class="col-lg-12">
-                                    <h4 class="example-title">{{ form_label(form.interventionCategory) }}</h4>
-
-                                    <div class="form-group">
-                                            {{ form_errors(form.interventionCategory) }}
-                                            {{ form_widget(form.interventionCategory) }}
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <a class="btn btn-default"
-                               href="{{ path('intervention_index') }}">Liste des interventions disponibles</a>
-                            <button class="btn btn-primary margin-left-10" type="submit">Enregistrer</button>
-                            {{ form_end(form) }}
-                        </div>
                     </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-info btn-block margin-left-10" type="submit">Enregistrer</button>
+                        {{ form_end(form) }}
+                                            </div>
                 </div>
+                <!-- End Panel -->
             </div>
+
         </div>
     </div>
 {% endblock %}
 
-{% block template_config %}
-    {{ parent() }}
-    <script src="{{ asset('front/global/vendor/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/select2.js') }}"></script>
-
-    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.js') }}"></script>
-    <script src="{{ asset('front/global/vendor/bootstrap-datepicker/bootstrap-datepicker.fr.js') }}"></script>
-    <script src="{{ asset('front/global/js/components/bootstrap-datepicker.js') }}"></script>
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-                    $('.date').datepicker({
-                        'format': 'mm/yyyy',
-                        'startView': 'decade',
-                        'minViewMode': 'months',
-                        'language': 'fr',
-                        'orientation':'bottom',
-                        'autoclose': true
-                    });
-
-                }
-        );
-    </script>
+{% block plugins_javascripts %}
+    {{ parent()}}
+    <script src="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.full.min.js') }}"></script>
 {% endblock %}

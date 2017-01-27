@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AppBundle/Command/ActionsCleanCommand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/InterventionController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/InterventionController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,95 +30,30 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Action.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
+      <file leaf-file-name="calendar.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-34.13793">
-              <caret line="1186" column="30" selection-start-line="1186" selection-start-column="30" selection-end-line="1186" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.965517">
-              <caret line="258" column="0" selection-start-line="231" selection-start-column="12" selection-end-line="258" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UpdateUsagesCommand.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-238.6207">
-              <caret line="346" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="471" selection-end-column="1" />
+            <state vertical-scroll-proportion="-4.4827585">
+              <caret line="265" column="22" selection-start-line="265" selection-start-column="22" selection-end-line="275" selection-end-column="43" />
               <folding>
-                <element signature="e#37#69#0#PHP" expanded="true" />
-                <element signature="e#8666#8693#1#PHP" expanded="true" />
-                <element signature="e#9579#9601#1#PHP" expanded="true" />
-                <element signature="e#11741#11757#1#PHP" expanded="true" />
-                <element signature="e#12086#12102#1#PHP" expanded="true" />
-                <element signature="e#13063#13079#1#PHP" expanded="true" />
-                <element signature="e#13416#13432#1#PHP" expanded="true" />
+                <marker date="1485489712244" expanded="true" signature="12033:12087" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ActionsCleanCommand.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ActionsCleanCommand.php">
+      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.63380283">
-              <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.45915493">
+              <caret line="144" column="48" selection-start-line="144" selection-start-column="48" selection-end-line="144" selection-end-column="48" />
               <folding>
-                <element signature="e#37#65#0#PHP" expanded="true" />
-                <element signature="e#1704#1722#1#PHP" expanded="true" />
+                <element signature="e#12#33#0#Twig" expanded="true" />
+                <element signature="e#9738#9791#0#HTML" expanded="true" />
+                <element signature="e#10468#10490#0#HTML" expanded="true" />
+                <element signature="e#10914#10939#0#HTML" expanded="true" />
+                <marker date="1485490315211" expanded="true" signature="5998:6052" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImportCommand.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ImportCommand.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.655172">
-              <caret line="14" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="314" selection-end-column="1" />
-              <folding>
-                <element signature="e#37#69#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/services.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/config/services.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -138,8 +74,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Form/ActionCalendarType.php" />
-        <option value="$PROJECT_DIR$/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
         <option value="$PROJECT_DIR$/app/Resources/views/fertilizer/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/FertilizerController.php" />
@@ -163,7 +97,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/farmfertilizer/show.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/farmspeciality/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/FarmSpecialityMvtUpdateStockType.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" />
         <option value="$PROJECT_DIR$/web/remark/3.0.5/classic/global/css/bootstrap-extend.min.css" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/SpecialityType.php" />
@@ -180,7 +113,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/HarvestProduct.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Irrigation.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js" />
@@ -189,6 +121,10 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Command/CleanActions.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Command/ActionsCleanCommand.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/InterventionController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
       </list>
     </option>
   </component>
@@ -409,6 +345,10 @@
               <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -432,7 +372,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tractor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -454,7 +398,157 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="EventListener" />
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="plot" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik-NC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="intervention" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik-NC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="farm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik-NC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cropcycle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik-NC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="action" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agroscopik-NC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -688,73 +782,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-75.51724">
-          <caret line="415" column="33" selection-start-line="415" selection-start-column="33" selection-end-line="415" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/fertilizer/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.137931">
-          <caret line="93" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="275" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#33#0#Twig" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspeciality/index2.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/new.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.551724">
-          <caret line="142" column="85" selection-start-line="142" selection-start-column="85" selection-end-line="142" selection-end-column="85" />
-          <folding>
-            <element signature="e#12#33#0#Twig" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/farmspeciality/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="51.37931">
-          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#33#0#Twig" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Form/FarmSpecialityMvtType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.4827585">
-          <caret line="32" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/farmfertilizermvt/new_modal.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-12.413794">
@@ -826,16 +853,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="76" column="42" selection-start-line="76" selection-start-column="42" selection-end-line="76" selection-end-column="42" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="191" column="52" selection-start-line="191" selection-start-column="48" selection-end-line="191" selection-end-column="52" />
-          <folding>
-            <element signature="e#12#35#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -939,16 +956,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6760563">
-          <caret line="111" column="23" selection-start-line="111" selection-start-column="23" selection-end-line="111" selection-end-column="23" />
-          <folding>
-            <element signature="e#12#33#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base_topbar.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.206897">
@@ -1042,16 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.724138">
-          <caret line="346" column="73" selection-start-line="346" selection-start-column="47" selection-end-line="346" selection-end-column="73" />
-          <folding>
-            <element signature="e#12#33#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1119,23 +1116,7 @@
         <state vertical-scroll-proportion="-9.655172">
           <caret line="14" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="314" selection-end-column="1" />
           <folding>
-            <element signature="e#37#69#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-238.6207">
-          <caret line="346" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="471" selection-end-column="1" />
-          <folding>
-            <element signature="e#37#69#0#PHP" expanded="true" />
-            <element signature="e#8666#8693#1#PHP" expanded="true" />
-            <element signature="e#9579#9601#1#PHP" expanded="true" />
-            <element signature="e#11741#11757#1#PHP" expanded="true" />
-            <element signature="e#12086#12102#1#PHP" expanded="true" />
-            <element signature="e#13063#13079#1#PHP" expanded="true" />
-            <element signature="e#13416#13432#1#PHP" expanded="true" />
+            <element signature="e#37#69#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1156,13 +1137,133 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-238.6207">
+          <caret line="346" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="471" selection-end-column="1" />
+          <folding>
+            <element signature="e#37#69#0#PHP" expanded="false" />
+            <element signature="e#8666#8693#1#PHP" expanded="false" />
+            <element signature="e#9579#9601#1#PHP" expanded="false" />
+            <element signature="e#11741#11757#1#PHP" expanded="false" />
+            <element signature="e#12086#12102#1#PHP" expanded="false" />
+            <element signature="e#13063#13079#1#PHP" expanded="false" />
+            <element signature="e#13416#13432#1#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/implement/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.793103">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/tractor/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/plot/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#802#835#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/action/new_from_calendar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#1099#1132#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.344828">
+          <caret line="94" column="42" selection-start-line="0" selection-start-column="0" selection-end-line="607" selection-end-column="0" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.724138">
+          <caret line="17" column="31" selection-start-line="0" selection-start-column="0" selection-end-line="382" selection-end-column="14" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/intervention/new.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.827586">
+          <caret line="63" column="38" selection-start-line="63" selection-start-column="38" selection-end-line="63" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/InterventionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.655172">
+          <caret line="54" column="52" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
+          <folding>
+            <element signature="e#823#847#1#PHP" expanded="true" />
+            <element signature="e#1682#1715#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Command/ActionsCleanCommand.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63380283">
-          <caret line="113" column="30" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.16760564">
+          <caret line="56" column="43" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/farm/calendar.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.4827585">
+          <caret line="265" column="22" selection-start-line="265" selection-start-column="22" selection-end-line="275" selection-end-column="43" />
           <folding>
-            <element signature="e#37#65#0#PHP" expanded="true" />
-            <element signature="e#1704#1722#1#PHP" expanded="true" />
+            <marker date="1485489712244" expanded="true" signature="12033:12087" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45915493">
+          <caret line="144" column="48" selection-start-line="144" selection-start-column="48" selection-end-line="144" selection-end-column="48" />
+          <folding>
+            <element signature="e#12#33#0#Twig" expanded="true" />
+            <element signature="e#9738#9791#0#HTML" expanded="true" />
+            <element signature="e#10468#10490#0#HTML" expanded="true" />
+            <element signature="e#10914#10939#0#HTML" expanded="true" />
+            <marker date="1485490315211" expanded="true" signature="5998:6052" placeholder="..." />
           </folding>
         </state>
       </provider>

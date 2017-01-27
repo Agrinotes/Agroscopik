@@ -141,7 +141,20 @@
                         {% for action in cropCycle.actions %}
                             <tr id="td_{{ action.id }}">
                                 <td><a class="actionLink"
-                                       href="{{ path('action_show',{'id':action.id}) }}">{{ action.name }}  {{ action.details }}</a>
+
+                                       onclick="
+                                                 $('#showEvent').modal('show');
+                                $('#pushHere').html('<div style=\'margin-left: 50%; margin-top:40px; margin-bottom:40px;\' class=\'loader loader-default\'></div>');
+                                $.ajax({
+                                    type: 'GET',
+                                    dataType: 'json',
+                                    url: '{{ path('action_ajax_show',{'id':action.id }) }}'
+                                }).done(function(response){
+                                            $('#pushHere').html(response.data);
+                                        });
+                                       "
+
+                                       href="#">{{ action.name }}  {{ action.details }}</a>
                 
                 <span class="pull-right"><a href="{{ path('action_edit',{'id':action.id}) }}"
                                             class="btn btn-sm btn-icon btn-pure btn-default on-default edit-row"
@@ -232,7 +245,19 @@
         </div>
         <!-- End Panel Add Action -->
 
+        <!-- Edit Dialog -->
+        <div class="modal fade" id="showEvent" aria-hidden="true" aria-labelledby="showEvent"
+             role="dialog" tabindex="-1" data-show="false">
+            <div class="modal-dialog modal-lg modal-info" >
+                <div class="modal-content">
+                    <div class="modal-body" id="pushHere">
 
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End EditEvent Dialog -->
     </div>
 {% endblock %}
 
