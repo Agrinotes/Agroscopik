@@ -33,8 +33,6 @@
       <sourceFolder url="file://$MODULE_DIR$/vendor" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/app/DoctrineMigrations" />
-      <excludeFolder url="file://$MODULE_DIR$/app/Resources/TwigBundle" />
-      <excludeFolder url="file://$MODULE_DIR$/app/config" />
       <excludeFolder url="file://$MODULE_DIR$/features" />
       <excludeFolder url="file://$MODULE_DIR$/src/UserBundle" />
       <excludeFolder url="file://$MODULE_DIR$/tests" />
