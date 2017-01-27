@@ -1177,10 +1177,14 @@ $endTime = $endTime->add($period->getDuration());
             $detail .= ' pH'.$this->getPH();
         }
 
+        if($this->getTankVolume()){
+            $detail.=' '.$this->getTankVolume().'L';
+        }
+
         if($this->getFarmFertilizerMvts()){
             foreach($this->getFarmFertilizerMvts() as $mvt){
 
-                $detail.= $mvt->getFertilizer()->getFertilizer()->getName();
+                $detail.= ' '.$mvt->getFertilizer()->getFertilizer()->getName();
                 $detail.= ' '.$mvt->getAmount();
                 $detail.= ' '.$mvt->getUnit()->getSymbol();
             }
@@ -1201,6 +1205,8 @@ $endTime = $endTime->add($period->getDuration());
                 $detail.=$waterAmount.'mm';
             }
         }
+
+
 
         return $detail;
     }

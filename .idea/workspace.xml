@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js" afterPath="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,78 +27,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Action.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Action.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-18.275862">
-              <caret line="1200" column="38" selection-start-line="1200" selection-start-column="38" selection-end-line="1200" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.43661973">
+              <caret line="1186" column="30" selection-start-line="1186" selection-start-column="30" selection-end-line="1186" selection-end-column="30" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Irrigation.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Irrigation.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-31.37931">
-              <caret line="236" column="30" selection-start-line="236" selection-start-column="30" selection-end-line="236" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="258.9655">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="show.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.724138">
-              <caret line="346" column="73" selection-start-line="346" selection-start-column="47" selection-end-line="346" selection-end-column="73" />
-              <folding>
-                <element signature="e#12#33#0#Twig" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addActionFromCropCycleShow.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="414" column="90" selection-start-line="414" selection-start-column="90" selection-end-line="416" selection-end-column="95" />
-              <folding>
-                <marker date="1485482908226" expanded="true" signature="2264:2305" placeholder="..." />
-                <marker date="1485482908226" expanded="true" signature="4050:4105" placeholder="..." />
-                <marker date="1485482908226" expanded="true" signature="5888:5943" placeholder="..." />
-                <marker date="1485482908226" expanded="true" signature="7515:7570" placeholder="..." />
-                <marker date="1485482908226" expanded="true" signature="9160:9227" placeholder="..." />
-                <marker date="1485482908226" expanded="true" signature="10773:10805" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="addActionFromCalendar.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45872802">
-              <caret line="416" column="103" selection-start-line="416" selection-start-column="103" selection-end-line="416" selection-end-column="103" />
-              <folding>
-                <marker date="1485482966344" expanded="true" signature="2291:2332" placeholder="..." />
-                <marker date="1485482966344" expanded="true" signature="4095:4150" placeholder="..." />
-                <marker date="1485482966344" expanded="true" signature="5951:6006" placeholder="..." />
-                <marker date="1485482966344" expanded="true" signature="7596:7651" placeholder="..." />
-                <marker date="1485482966344" expanded="true" signature="9259:9326" placeholder="..." />
-                <marker date="1485482966344" expanded="true" signature="10890:10922" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -167,10 +100,10 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/HarvestProduct.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/plot/show.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/views/cropcycle/show.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Irrigation.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCropCycleShow.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Entity/Action.php" />
       </list>
     </option>
   </component>
@@ -1108,22 +1041,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="258.9655">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.275862">
-          <caret line="1200" column="38" selection-start-line="1200" selection-start-column="38" selection-end-line="1200" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Irrigation.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-31.37931">
@@ -1147,28 +1064,44 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="414" column="90" selection-start-line="414" selection-start-column="90" selection-end-line="416" selection-end-column="95" />
           <folding>
-            <marker date="1485482908226" expanded="true" signature="2264:2305" placeholder="..." />
-            <marker date="1485482908226" expanded="true" signature="4050:4105" placeholder="..." />
-            <marker date="1485482908226" expanded="true" signature="5888:5943" placeholder="..." />
-            <marker date="1485482908226" expanded="true" signature="7515:7570" placeholder="..." />
-            <marker date="1485482908226" expanded="true" signature="9160:9227" placeholder="..." />
-            <marker date="1485482908226" expanded="true" signature="10773:10805" placeholder="..." />
+            <marker date="1485482908226" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482908226" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482908226" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482908226" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482908226" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482908226" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Resources/public/js/addActionFromCalendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45872802">
+        <state vertical-scroll-proportion="0.0">
           <caret line="416" column="103" selection-start-line="416" selection-start-column="103" selection-end-line="416" selection-end-column="103" />
           <folding>
-            <marker date="1485482966344" expanded="true" signature="2291:2332" placeholder="..." />
-            <marker date="1485482966344" expanded="true" signature="4095:4150" placeholder="..." />
-            <marker date="1485482966344" expanded="true" signature="5951:6006" placeholder="..." />
-            <marker date="1485482966344" expanded="true" signature="7596:7651" placeholder="..." />
-            <marker date="1485482966344" expanded="true" signature="9259:9326" placeholder="..." />
-            <marker date="1485482966344" expanded="true" signature="10890:10922" placeholder="..." />
+            <marker date="1485482966344" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482966344" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482966344" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482966344" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482966344" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1485482966344" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/ActionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.577465">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Action.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43661973">
+          <caret line="1186" column="30" selection-start-line="1186" selection-start-column="30" selection-end-line="1186" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
