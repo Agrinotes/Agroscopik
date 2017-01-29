@@ -43,7 +43,10 @@ class ActionController extends Controller
         // Get Entity Manager
         $em = $this->getDoctrine()->getManager();
 
-        $form = $this->createForm(ActionCalendarType::class, $action);
+        $form = $this->createForm(ActionCalendarType::class, $action, array(
+        'action' => $this->generateUrl('action_new_from_calendar'),
+        'method' => 'POST'
+    ));
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -155,7 +158,6 @@ class ActionController extends Controller
         }
 
         return $this->render('@App/action/new_from_calendar.html.twig', array(
-            'action' => $action,
             'form' => $form->createView(),
         ));
     }
