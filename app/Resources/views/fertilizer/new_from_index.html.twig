@@ -90,36 +90,50 @@
             </div>
 
             <div class="col-lg-6">
-            <!-- Panel Basic used as temporary fix -->
-            <div class="panel panel-info ">
-                <header class="panel-heading">
-                    <div class="panel-actions"></div>
-                    <h3 class="panel-title">Ajouter un produit phytosanitaire</h3>
-                </header>
-                <div class="panel-body" style="padding-top:30px;">
-                    {{ form_start(form, {'action': path('speciality_new'), 'method': 'POST'}) }}
-                    <div class="row" id="intervention">
-                        <div class="col-sm-0 col-md-2"></div>
-                        <div class="col-sm-12 col-md-8">
-                            <div class="form-group">
-                                {{ form_rest(form) }}
+                <!-- Panel Basic used as temporary fix -->
+                <div class="panel panel-info ">
+                    <header class="panel-heading">
+                        <div class="panel-actions"></div>
+                        <h3 class="panel-title">Ajouter un produit phytosanitaire</h3>
+                    </header>
+                    <div class="panel-body" style="padding-top:30px;">
+                        {{ form_start(form, {'action': path('fertilizer_new'), 'method': 'POST'}) }}
+                        <div class="row" id="intervention">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    {{ form_label(form.name) }}
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_errors(form.organic) }}
+
+                                    <div class="checkbox-custom checkbox-info">
+                                        {{ form_widget(form.organic) }}
+                                        {{ form_label(form.organic) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_rest(form) }}
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row" style="margin-top:20px;">
-                        <div class="col-sm-0 col-md-2"></div>
-                        <div class="col-sm-12 col-md-8" style="text-align:right;">
-                            <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
-                            {{ form_end(form) }}
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8" style="text-align:right;">
+                                <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
+                                {{ form_end(form) }}
+                            </div>
                         </div>
+
                     </div>
                 </div>
-            </div>
-            <!-- End Panel Basic -->
+                <!-- End Panel Basic -->
 
-        </div>
             </div>
+        </div>
 
 
     </div>
@@ -133,5 +147,6 @@
     {{ parent() }}
 
 {% endblock %}
+
 
 
