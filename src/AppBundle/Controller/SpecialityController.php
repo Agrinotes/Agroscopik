@@ -52,7 +52,7 @@ class SpecialityController extends Controller
             $em->persist($speciality);
             $em->flush();
 
-            return $this->redirectToRoute('speciality_show', array('id' => $speciality->getId()));
+            return $this->redirectToRoute('speciality_index');
         }
 
         return $this->render('speciality/new.html.twig', array(
