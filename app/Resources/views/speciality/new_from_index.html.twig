@@ -1,0 +1,18 @@
+
+{{ form_start(form, {'action': path('speciality_new'), 'method': 'POST'}) }}
+    <div class="row" id="intervention">
+        <div class="col-sm-0 col-md-2"></div>
+        <div class="col-sm-12 col-md-8">
+            <div class="form-group">
+                {{ form_rest(form) }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:20px;">
+        <div class="col-sm-0 col-md-2"></div>
+        <div class="col-sm-12 col-md-8" style="text-align:right;">
+            <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
