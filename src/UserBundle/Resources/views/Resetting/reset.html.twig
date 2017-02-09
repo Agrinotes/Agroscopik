@@ -1,21 +1,3 @@
-{% extends 'FOSUserBundle::layout.html.twig' %}
 
-{% block title %}
-    Réinitialiser votre mot de passe
-{% endblock %}
-
-{% block class %}
-    page-forgot-password
-{%  endblock %}
-
-{% block stylesheet %}
-    <link rel="stylesheet" href="{{ asset('assets/css/forgot-password.css') }}">
-{% endblock %}
-
-{% block body %}
-    <h2>
-        Réinitialiser votre mot de passe
-    </h2>
     {% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
-{% endblock %}
 

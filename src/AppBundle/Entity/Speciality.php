@@ -36,7 +36,7 @@ class Speciality
     /**
      * @var int
      *
-     * @ORM\Column(name="amm", type="integer", nullable=true, unique=true)
+     * @ORM\Column(name="amm", type="integer", nullable=true)
      */
     private $amm;
 
@@ -50,28 +50,28 @@ class Speciality
     /**
      * @var string
      *
-     * @ORM\Column(name="alternative_name", type="string", length=255, unique=false)
+     * @ORM\Column(name="alternative_name", type="string", length=255, nullable=true, unique=false)
      */
     private $alternativeName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="owner", type="string", length=255, unique=false)
+     * @ORM\Column(name="owner", type="string", length=255, nullable=true, unique=false)
      */
     private $owner;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="authorized_mentions", type="string", length=255, unique=false)
+     * @ORM\Column(name="authorized_mentions", type="string", length=255, nullable=true, unique=false)
      */
     private $authorizedMentions;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="composition", type="string", length=255, unique=false)
+     * @ORM\Column(name="composition", type="string", length=255, nullable=true, unique=false)
      */
     private $composition;
 
