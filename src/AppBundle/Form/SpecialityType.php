@@ -22,7 +22,7 @@ class SpecialityType extends AbstractType
         $builder
             ->add('amm',NumberType::class,array(
                 'attr' => array('class'=>'form-control'),
-                'required'=>true,
+                'required'=>false,
                 'label' => "Numéro d'AMM (Autorisation de Mise sur le Marché)",
             ))
             ->add('name',TextType::class,array(
@@ -32,7 +32,7 @@ class SpecialityType extends AbstractType
             ))
             ->add('alternativeName',TextType::class,array(
                 'attr' => array('class'=>'form-control'),
-                'required'=>true,
+                'required'=>false,
                 'label' => "Noms secondaires",
             ))
             ->add('unitCategory',EntityType::class,array(
@@ -57,7 +57,7 @@ class SpecialityType extends AbstractType
             ))
             ->add('composition',TextType::class,array(
                 'attr' => array('class'=>'form-control'),
-                'required'=>true,
+                'required'=>false,
                 'label' => "Résumé de la composition",
             ))
             ->add('fds',UrlType::class,array(

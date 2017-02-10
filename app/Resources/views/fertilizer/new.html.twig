@@ -1,31 +1,152 @@
+{% extends 'base_topbar.html.twig' %}
 
-{{ form_start(form, {'action': path('fertilizer_new'), 'method': 'POST'}) }}
-<div class="row" id="intervention">
-    <div class="col-sm-0 col-md-2"></div>
-    <div class="col-sm-12 col-md-8">
-        <div class="form-group">
-            {{ form_label(form.name) }}
-            {{ form_errors(form.name) }}
-            {{ form_widget(form.name) }}
-        </div>
-        <div class="form-group">
-            {{ form_errors(form.organic) }}
+{% block title %}Liste des produits phytosanitaire{% endblock %}
 
-            <div class="checkbox-custom checkbox-info">
-                {{ form_widget(form.organic) }}
-                {{ form_label(form.organic) }}
+{% block plugins_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-bootstrap/dataTables.bootstrap.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-fixedheader/dataTables.fixedHeader.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('remark/3.0.5/classic/global/vendor/datatables-responsive/dataTables.responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/topbar/assets/examples/css/tables/datatable.css') }}">
+    <link rel="stylesheet" href="{{ asset('remark/3.0.5/classic/global/vendor/select2/select2.css') }}">
+
+
+{% endblock %}
+
+{% block page_stylesheets %}
+    {{ parent() }}
+    <style>
+        table tr > td > span > button > i.icon {
+            visibility: hidden;
+        }
+
+        table tr > td > span > a > i.icon {
+            visibility: hidden;
+        }
+
+        table tr:hover > td > span > button > i.icon {
+            visibility: visible;
+        }
+
+        table tr:hover > td > span > a > i.icon {
+            visibility: visible;
+        }
+
+        .actionLink {
+            text-decoration: none !important;
+            color: #526069;
+        }
+
+        .helpLink {
+            text-decoration: none !important;
+            color: #76838f;
+        }
+
+        .helpLink:hover {
+            text-decoration: underline;
+            color: #526069;
+        }
+
+        table tr:hover > td > a.actionLink {
+            text-decoration: underline !important;
+            color: #526069;
+        }
+
+        label {
+            font-weight: 500;
+            font-family: Roboto, sans-serif;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .rotate {
+            -moz-transition: all .2s linear;
+            -webkit-transition: all .2s linear;
+            transition: all .2s linear;
+        }
+
+        .rotate.down {
+            -ms-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -webkit-transform: rotate(135deg);
+            transform: rotate(135deg);
+        }
+
+        .highcharts-credits {
+            visibility: hidden !important;
+        }
+    </style>
+{% endblock %}
+
+{% block page %}
+    <div class="page-content">
+        <div class="row">
+            <div class="col-lg-3 col-md-0">
+            </div>
+
+            <div class="col-lg-6">
+                <!-- Panel Basic used as temporary fix -->
+                <div class="panel panel-info ">
+                    <header class="panel-heading">
+                        <div class="panel-actions"></div>
+                        <h3 class="panel-title">Ajouter un engrais ou amendement</h3>
+                    </header>
+                    <div class="panel-body" style="padding-top:30px;">
+                        {{ form_start(form, {'action': path('fertilizer_new'), 'method': 'POST'}) }}
+                        <div class="row" id="intervention">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8">
+                                <div class="form-group">
+                                    {{ form_label(form.name) }}
+                                    {{ form_errors(form.name) }}
+                                    {{ form_widget(form.name) }}
+                                </div>
+                                <div class="form-group">
+                                    {{ form_errors(form.organic) }}
+
+                                    <div class="checkbox-custom checkbox-info">
+                                        {{ form_widget(form.organic) }}
+                                        {{ form_label(form.organic) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    {{ form_rest(form) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-top:20px;">
+                            <div class="col-sm-0 col-md-2"></div>
+                            <div class="col-sm-12 col-md-8" style="text-align:right;">
+                                <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- End Panel Basic -->
+
             </div>
         </div>
-        <div class="form-group">
-            {{ form_rest(form) }}
-        </div>
-    </div>
-</div>
 
-<div class="row" style="margin-top:20px;">
-    <div class="col-sm-0 col-md-2"></div>
-    <div class="col-sm-12 col-md-8" style="text-align:right;">
-        <button class="btn btn-info margin-left-10" type="submit">Enregistrer</button>
-        {{ form_end(form) }}
+
     </div>
-</div>
+{% endblock %}
+
+{% block plugins_javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block page_javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+
+
+
