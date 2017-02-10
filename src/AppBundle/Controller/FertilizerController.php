@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\FarmFertilizer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -77,6 +78,16 @@ class FertilizerController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($fertilizer);
             $em->flush();
+
+            // Add a farmSpeciality automatically
+            $farm = $this->getUser()->getFarm();
+            if(is_object($farm)){
+                $farmFertilizer = new FarmFertilizer();
+                $farmFertilizer->setFarm($farm);
+                $farmFertilizer->setFertilizer($fertilizer);
+                $em->persist($farmFertilizer);
+                $em->flush();
+            };
 
             $request->getSession()->getFlashBag()->add('success', 'L\'engrais ou amendement '.$fertilizer->getName().' a été ajouté avec succès ! Vous pouvez désormais l\'ajouter dans votre stock d\'engrais.');
 

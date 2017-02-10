@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/SpecialityController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/SpecialityController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/FertilizerController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/FertilizerController.php" />
     </list>
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,11 +103,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SpecialityController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SpecialityController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SpecialityController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59130436">
-              <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+            <state vertical-scroll-proportion="-6.8965516">
+              <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="89" selection-end-column="14" />
               <folding>
                 <element signature="e#40#76#0#PHP" expanded="true" />
                 <element signature="e#843#865#1#PHP" expanded="true" />
@@ -120,8 +121,21 @@
       <file leaf-file-name="FertilizerController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FertilizerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.862069">
-              <caret line="66" column="44" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
+            <state vertical-scroll-proportion="-28.62069">
+              <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+              <folding>
+                <element signature="e#40#76#0#PHP" expanded="true" />
+                <element signature="e#741#763#1#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FarmFertilizerController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.7304348">
+              <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
               <folding />
             </state>
           </provider>
@@ -153,7 +167,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/AppBundle/Entity/SpecialityUsage.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Services/ConvertCsvToArray.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Command/UpdateUsagesCommand.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/speciality/show.html.twig" />
@@ -197,13 +210,14 @@
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/Resetting/passwordAlreadyRequested.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Speciality.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/speciality/new.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/FertilizerController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/fertilizer/new_from_index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/fertilizer/index.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/fertilizer/new.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Form/SpecialityType.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/speciality/index.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/SpecialityController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/FertilizerController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerController.php" />
       </list>
     </option>
   </component>
@@ -689,13 +703,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/CropCycle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.5172415">
-          <caret line="701" column="40" selection-start-line="701" selection-start-column="40" selection-end-line="701" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/HarvestProduct.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.965517">
@@ -1028,14 +1035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FertilizerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.862069">
-          <caret line="66" column="44" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/fertilizer/new_from_index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
@@ -1096,14 +1095,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SpecialityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59130436">
-          <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+        <state vertical-scroll-proportion="-6.8965516">
+          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="89" selection-end-column="14" />
           <folding>
             <element signature="e#40#76#0#PHP" expanded="true" />
             <element signature="e#843#865#1#PHP" expanded="true" />
             <element signature="e#1676#1713#0#PHP" expanded="true" />
             <element signature="e#2856#2882#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FertilizerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-28.62069">
+          <caret line="88" column="29" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
+          <folding>
+            <element signature="e#40#76#0#PHP" expanded="true" />
+            <element signature="e#741#763#1#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/FarmFertilizerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7304348">
+          <caret line="95" column="64" selection-start-line="95" selection-start-column="64" selection-end-line="95" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -93,7 +93,7 @@ class FarmFertilizerController extends Controller
 
 
 
-            return $this->redirectToRoute('farmfertilizer_show', array('id' => $farmFertilizer->getId()));
+            return $this->redirectToRoute('farmfertilizer_index');
         }
 
         return $this->render('farmfertilizer/new.html.twig', array(
