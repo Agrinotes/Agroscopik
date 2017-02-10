@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\FarmSpeciality;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -77,6 +78,16 @@ class SpecialityController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($speciality);
             $em->flush();
+
+            // Add a farmSpeciality automatically
+            $farm = $this->getUser()->getFarm();
+            if(is_object($farm)){
+                $farmSpeciality = new FarmSpeciality();
+                $farmSpeciality->setFarm($farm);
+                $farmSpeciality->setSpeciality($speciality);
+                $em->persist($farmSpeciality);
+                $em->flush();
+            };
 
             return $this->redirectToRoute('farmspeciality_index');
         }
