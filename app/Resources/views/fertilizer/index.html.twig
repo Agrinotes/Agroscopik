@@ -143,7 +143,7 @@
                         {% for fertilizer in fertilizers %}
                             <tr id="td_{{ fertilizer.id }}">
                                 <td><a class="actionLink"
-                                       href="{{ path('fertilizer_show',{'id':fertilizer.id}) }}">{{ fertilizer.name |capitalize }}</a>
+                                       href="{{ path('fertilizer_show',{'id':fertilizer.id}) }}">{{ fertilizer.name |capitalize }} {% if fertilizer.alternativeName %}({{ fertilizer.alternativeName }}){% endif %}</a>
 
                                      <span class="pull-right">
                                          {% if fertilizer.ft is not empty %}<a target="_blank" href="{{ fertilizer.ft}}"

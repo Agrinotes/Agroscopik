@@ -24,6 +24,11 @@ class FertilizerType extends AbstractType
                 'required'=>true,
                 'label' => "Entrer le nom de l'engrais ou amendement",
             ))
+            ->add('alternativeName',TextType::class,array(
+                'attr' => array('class'=>'form-control'),
+                'required'=>true,
+                'label' => "Noms secondaires",
+            ))
             ->add('formula',ChoiceType::class, array(
                 'choices' => array(
                     'Solide' => 'granulé',

@@ -146,37 +146,37 @@
                                 <td>{{ farmFertilizer.stock |number_format(2,',',' ') }}
                                     {%  if farmFertilizer.fertilizer.formula == "liquide" %}L{% elseif farmFertilizer.fertilizer.formula is not empty %}kg{% else %}{% endif %}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.n == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.n }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.p2O5 == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.p2O5 }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.k2O == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.k2O }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.caO == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.caO }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.mgO == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.mgO }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.fe == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.fe }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.sO3 == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.sO3 }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.b == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.b }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.mn == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.mn }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.zn == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.zn }}
                                 </td>
-                                <td>
+                                <td {% if farmFertilizer.fertilizer.cu == 0 %}style="color:lightgrey"{% endif %}>
                                     {{ farmFertilizer.fertilizer.cu }}
                                 </td>
                             </tr>
