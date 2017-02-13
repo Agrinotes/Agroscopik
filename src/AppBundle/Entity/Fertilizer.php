@@ -49,6 +49,13 @@ class Fertilizer
     /**
      * @var string
      *
+     * @ORM\Column(name="alternative_name", type="string", length=255, nullable=true, unique=false)
+     */
+    private $alternativeName;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="type", type="string", length=255, nullable=true)
      */
     private $type;
@@ -694,6 +701,22 @@ class Fertilizer
     public function setCn($cn)
     {
         $this->cn = $cn;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlternativeName()
+    {
+        return $this->alternativeName;
+    }
+
+    /**
+     * @param string $alternativeName
+     */
+    public function setAlternativeName($alternativeName)
+    {
+        $this->alternativeName = $alternativeName;
     }
 }
 
