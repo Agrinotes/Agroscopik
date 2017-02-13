@@ -92,7 +92,7 @@ class FarmSpecialityController extends Controller
             $request->getSession()->getFlashBag()->add('success', 'Vous avez ajouté le produit '.$farmSpeciality->getSpeciality()->getName().' avec succès !');
 
 
-            return $this->redirectToRoute('farmspeciality_show', array('id' => $farmSpeciality->getId()));
+            return $this->redirectToRoute('farmspeciality_index');
         }
 
         return $this->render('farmspeciality/new.html.twig', array(
@@ -105,7 +105,6 @@ class FarmSpecialityController extends Controller
      * Finds and displays a FarmSpeciality entity.
      *
      * @Route("/{id}", name="farmspeciality_show")
-     * @Security("is_granted('VIEW', farmSpeciality) or is_granted('ROLE_ADMIN')")
      * @Method("GET")
      */
     public function showAction(FarmSpeciality $farmSpeciality)
@@ -120,7 +119,6 @@ class FarmSpecialityController extends Controller
 
     /**
      * Displays a form to edit an existing FarmSpeciality entity.
-     * @Security("is_granted('EDIT', farmSpeciality) or has_role('ROLE_ADMIN')")
      * @Route("/{id}/edit", name="farmspeciality_edit")
      * @Method({"GET", "POST"})
      */
