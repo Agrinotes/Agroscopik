@@ -4,11 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/app/Resources/views/farmfertilizermvt/new_modal.html.twig" description="{{ form_widget(modal_form.unit) }}" line="21" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Form/FertilizerType.php" afterPath="$PROJECT_DIR$/src/AppBundle/Form/FertilizerType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/farmfertilizer/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/farmfertilizer/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/fertilizer/index.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/fertilizer/index.html.twig" />
-    </list>
+    <list default="true" id="840283ec-560c-4393-a4f3-ef3c6c136f73" name="Default" comment="" />
     <ignored path="agroscopik.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -74,8 +70,8 @@
       <file leaf-file-name="index.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Resources/views/farmfertilizer/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.6197183">
-              <caret line="150" column="37" selection-start-line="150" selection-start-column="37" selection-end-line="150" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.14084508">
+              <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
               <folding>
                 <element signature="e#12#33#0#Twig" expanded="true" />
                 <element signature="e#5536#5600#0#HTML" expanded="true" />
@@ -526,7 +522,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.304375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -957,8 +953,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/farmfertilizer/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.6197183">
-          <caret line="150" column="37" selection-start-line="150" selection-start-column="37" selection-end-line="150" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.14084508">
+          <caret line="62" column="17" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
           <folding>
             <element signature="e#12#33#0#Twig" expanded="true" />
             <element signature="e#5536#5600#0#HTML" expanded="true" />
